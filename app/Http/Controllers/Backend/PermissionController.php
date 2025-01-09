@@ -18,7 +18,7 @@ class PermissionController extends Controller
         $orderby = $request->has('orderby') ? $request->orderby : 'created_at';
         $ordermethod = $request->has('ordermethod') ? $request->ordermethod : 'DESC';
 
-        $permissions = Permission::orWhere([
+        $permissions = Permission::with(['roles'])->orWhere([
             ['name', 'LIKE', '%' . $request->search . '%'],
             ['guard_name', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($orderby, $ordermethod)->paginate($perpage)->withQueryString();

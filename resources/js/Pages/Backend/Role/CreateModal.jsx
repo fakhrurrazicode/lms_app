@@ -56,36 +56,6 @@ export default function CreateModal({ isOpen, setIsOpen, permissions }) {
                                 </div>
                             )}
                         </label>
-
-                        <div>
-                            <div className="overflow-x-auto">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Name</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {permissions.map((permission) => (
-                                            <tr
-                                                key={permission.id}
-                                                className="hover"
-                                            >
-                                                <th>
-                                                    <input
-                                                        type="checkbox"
-                                                        defaultChecked
-                                                        className="checkbox"
-                                                    />
-                                                </th>
-                                                <td>{permission.name}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                     </div>
                     <div className="card-actions justify-end">
                         <button type="submit" className="btn btn-primary">
