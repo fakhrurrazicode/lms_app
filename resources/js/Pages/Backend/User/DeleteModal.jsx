@@ -3,12 +3,7 @@ import { Trash } from "lucide-react";
 import React, { useEffect } from "react";
 import ReactModal from "react-modal";
 
-export default function DeleteModal({
-    isOpen,
-    setIsOpen,
-    permission,
-    setPermission,
-}) {
+export default function DeleteModal({ isOpen, setIsOpen, user, setUser }) {
     return (
         <ReactModal
             closeTimeoutMS={200}
@@ -20,24 +15,24 @@ export default function DeleteModal({
         >
             <div className="card bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="card-title mb-6">Delete Permission</h2>
+                    <h2 className="card-title mb-6">Delete User</h2>
                     <div className="mb-6">
                         <p className="mb-6">
                             Are you sure you want to delete this data?
                         </p>
 
-                        {permission && (
+                        {user && (
                             <table className="table mb-6">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Guard Name</th>
+                                        <th>Email</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>{permission.name}</td>
-                                        <td>{permission.guard_name}</td>
+                                        <td>{user.name}</td>
+                                        <td>{user.email}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -49,17 +44,14 @@ export default function DeleteModal({
                             className="btn btn-error"
                             onClick={(e) => {
                                 e.preventDefault();
-                                router.delete(
-                                    "/backend/permission/" + permission.id,
-                                    {
-                                        preserveScroll: true,
-                                        preserveState: true,
-                                        onSuccess: () => {
-                                            setPermission(null);
-                                            setIsOpen(false);
-                                        },
-                                    }
-                                );
+                                router.delete("/backend/user/" + user.id, {
+                                    preserveScroll: true,
+                                    preserveState: true,
+                                    onSuccess: () => {
+                                        setUser(null);
+                                        setIsOpen(false);
+                                    },
+                                });
                             }}
                         >
                             <Trash size={16} />
@@ -69,7 +61,7 @@ export default function DeleteModal({
                             className="btn btn-neutral"
                             onClick={(e) => {
                                 e.preventDefault;
-                                setPermission(null);
+                                setUser(null);
                                 setIsOpen(false);
                             }}
                         >

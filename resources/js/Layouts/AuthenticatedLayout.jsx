@@ -208,6 +208,8 @@ export default function AuthenticatedLayout({ header, children }) {
                         <Link
                             href="/dashboard"
                             className="flex justify-start items-center "
+                            preserveScroll={true}
+                            preserveState={true}
                         >
                             <BookOpenText size={24} />
                             <span className="font-bold text-lg">
@@ -220,6 +222,8 @@ export default function AuthenticatedLayout({ header, children }) {
                         <Link
                             href="/dashboard"
                             className="flex justify-start items-center "
+                            preserveScroll={true}
+                            preserveState={true}
                         >
                             <LayoutDashboard size={16} />
                             <span>Dashboard</span>
@@ -230,6 +234,8 @@ export default function AuthenticatedLayout({ header, children }) {
                         <Link
                             href="/backend/role"
                             className="flex justify-start items-center "
+                            preserveScroll={true}
+                            preserveState={true}
                         >
                             <UserCheck size={16} />
                             <span>Manage Roles</span>
@@ -246,7 +252,7 @@ export default function AuthenticatedLayout({ header, children }) {
                     </li>
                     <li>
                         <Link
-                            href="/dashboard"
+                            href="/backend/user"
                             className="flex justify-start items-center "
                         >
                             <Users size={16} />

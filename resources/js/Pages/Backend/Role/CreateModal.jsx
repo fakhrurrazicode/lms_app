@@ -4,7 +4,7 @@ import { Save } from "lucide-react";
 import React, { useEffect, useRef } from "react";
 import ReactModal from "react-modal";
 
-export default function CreateModal({ isOpen, setIsOpen }) {
+export default function CreateModal({ isOpen, setIsOpen, permissions }) {
     const { data, setData, post, errors, reset } = useForm({
         name: "",
     });
@@ -14,7 +14,7 @@ export default function CreateModal({ isOpen, setIsOpen }) {
         post("/backend/role", {
             preserveScroll: true,
             preserveState: true,
-            onFinish: () => {
+            onSuccess: () => {
                 setIsOpen(false);
                 reset();
             },
@@ -56,6 +56,36 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                                 </div>
                             )}
                         </label>
+
+                        <div>
+                            <div className="overflow-x-auto">
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {permissions.map((permission) => (
+                                            <tr
+                                                key={permission.id}
+                                                className="hover"
+                                            >
+                                                <th>
+                                                    <input
+                                                        type="checkbox"
+                                                        defaultChecked
+                                                        className="checkbox"
+                                                    />
+                                                </th>
+                                                <td>{permission.name}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <div className="card-actions justify-end">
                         <button type="submit" className="btn btn-primary">

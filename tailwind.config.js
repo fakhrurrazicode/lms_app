@@ -1,5 +1,6 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
+import plugin from "tailwindcss";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -18,5 +19,13 @@ export default {
         },
     },
 
-    plugins: [forms, require("daisyui")],
+    plugins: [
+        // plugin(function ({ addBase }) {
+        //     addBase({
+        //         html: { fontSize: "9px" },
+        //     });
+        // }),
+        forms,
+        require("daisyui"),
+    ],
 };

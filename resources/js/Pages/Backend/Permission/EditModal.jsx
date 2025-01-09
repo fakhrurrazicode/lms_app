@@ -25,7 +25,7 @@ export default function EditModal({
         put("/backend/permission/" + permission.id, {
             preserveScroll: true,
             preserveState: true,
-            onFinish: () => {
+            onSuccess: () => {
                 setIsOpen(false);
                 reset();
                 setPermission(null);

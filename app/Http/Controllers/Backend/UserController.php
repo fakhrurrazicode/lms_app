@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Inertia\Inertia;
-use Spatie\Permission\Models\Permission;
+use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rules\Password;
 
-class RoleController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,18 +20,18 @@ class RoleController extends Controller
         $orderby = $request->has('orderby') ? $request->orderby : 'created_at';
         $ordermethod = $request->has('ordermethod') ? $request->ordermethod : 'asc';
 
-        $roles = Role::orWhere([
+        $users = User::with(['roles'])->orWhere([
             ['name', 'LIKE', '%' . $request->search . '%'],
-            ['guard_name', 'LIKE', '%' . $request->search . '%'],
+            ['email', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($orderby, $ordermethod)->paginate($perpage)->withQueryString();
 
-        // $roles->append($_GET);
+        // $users->append($_GET);
 
-        // return $roles;
-        return Inertia::render('Backend/Role/Index', [
-            'roles' => $roles,
+        // return $users;
+        return Inertia::render('Backend/User/Index', [
+            'users' => $users,
             'request' => $request,
-            'permissions' => Permission::all()
+            'roles' => Role::all()
         ]);
     }
 
@@ -44,11 +45,18 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        Role::create($request->validate([
-            'name' => ['required', 'max:50'],
+        $user = User::create($request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'password' => ['required', 'confirmed', Password::defaults()],
+            'role' => ['required', 'exists:' . Role::class . ',name']
         ]));
 
-        return to_route('backend.role.index');
+
+        $user->assignRole($request->role);
+
+
+        return to_route('backend.user.index');
     }
 
     /**
@@ -70,23 +78,24 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name' => ['required', 'max:50'],
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class . ',email,' . $user->id,
         ]);
 
-        $role->update($validated);
+        $user->update($validated);
 
-        return to_route('backend.role.index');
+        return to_route('backend.user.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role)
+    public function destroy(User $user)
     {
-        $role->delete();
-        return to_route('backend.role.index');
+        $user->delete();
+        return to_route('backend.user.index');
     }
 }

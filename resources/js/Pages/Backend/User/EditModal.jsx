@@ -4,19 +4,28 @@ import { Save } from "lucide-react";
 import React, { useEffect, useRef } from "react";
 import ReactModal from "react-modal";
 
-export default function CreateModal({ isOpen, setIsOpen }) {
-    const { data, setData, post, errors, reset } = useForm({
+export default function EditModal({ isOpen, setIsOpen, user, setUser }) {
+    const { data, setData, put, errors, reset } = useForm({
         name: "",
+        email: "",
     });
+
+    useEffect(() => {
+        setData({
+            name: user ? user.name : "",
+            email: user ? user.email : "",
+        });
+    }, [user]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        post("/backend/permission", {
+        put("/backend/user/" + user.id, {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {
                 setIsOpen(false);
                 reset();
+                setUser(null);
             },
         });
     };
@@ -32,7 +41,7 @@ export default function CreateModal({ isOpen, setIsOpen }) {
         >
             <div className="card bg-base-100 shadow-xl">
                 <form onSubmit={onSubmitHandler} className="card-body">
-                    <h2 className="card-title mb-6">Create new Permission</h2>
+                    <h2 className="card-title mb-6">Edit User</h2>
                     <div className="mb-6">
                         <label className="form-control w-full mb-6">
                             <div className="label">
@@ -56,18 +65,39 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                                 </div>
                             )}
                         </label>
+                        <label className="form-control w-full mb-6">
+                            <div className="label">
+                                <span className="label-text">Email</span>
+                            </div>
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                className="input input-bordered w-full"
+                                name="email"
+                                onChange={(e) => {
+                                    setData(e.target.name, e.target.value);
+                                }}
+                                value={data.email}
+                            />
+                            {errors.email && (
+                                <div className="label">
+                                    <span className="label-text-alt text-error">
+                                        {errors.email}
+                                    </span>
+                                </div>
+                            )}
+                        </label>
                     </div>
                     <div className="card-actions justify-end">
                         <button type="submit" className="btn btn-primary">
                             <Save size={16} />
-                            <span>Save</span>
+                            <span>Update</span>
                         </button>
                         <a
                             className="btn btn-neutral"
                             onClick={(e) => {
-                                console.log("button cancel");
                                 e.preventDefault;
-                                reset();
+                                setUser(null);
                                 setIsOpen(false);
                             }}
                         >

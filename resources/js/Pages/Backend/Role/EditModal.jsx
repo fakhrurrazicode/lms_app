@@ -20,7 +20,7 @@ export default function EditModal({ isOpen, setIsOpen, role, setRole }) {
         put("/backend/role/" + role.id, {
             preserveScroll: true,
             preserveState: true,
-            onFinish: () => {
+            onSuccess: () => {
                 setIsOpen(false);
                 reset();
                 setRole(null);

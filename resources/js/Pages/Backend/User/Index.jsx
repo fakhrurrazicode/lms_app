@@ -1,21 +1,21 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
-import { Edit, Plus, Trash } from "lucide-react";
+import { Edit, KeyRound, Plus, Trash } from "lucide-react";
 import { useState } from "react";
 
 import CreateModal from "./CreateModal";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
 
-export default function Index({ request, roles, permissions }) {
+export default function Index({ request, users, roles }) {
     const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
 
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-    const [underEditingRole, setUnderEditingRole] = useState(null);
+    const [underEditingUser, setUnderEditingUser] = useState(null);
 
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-    const [underDeletingRole, setUnderDeletingRole] = useState(null);
+    const [underDeletingUser, setUnderDeletingUser] = useState(null);
 
     const orderByOnClickHandler = (e) =>
         router.reload({
@@ -39,7 +39,7 @@ export default function Index({ request, roles, permissions }) {
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Roles
+                    Users
                 </h2>
             }
         >
@@ -49,7 +49,7 @@ export default function Index({ request, roles, permissions }) {
                 <div className="w-full sm:px-6 lg:px-8">
                     <div className="card bg-base-100 shadow-xl">
                         <div className="card-body">
-                            <h2 className="card-title mb-6">All Roles</h2>
+                            <h2 className="card-title mb-6">All Users</h2>
 
                             <div className="overflow-x-auto">
                                 <div className="mb-6 flex justify-between items-center">
@@ -131,10 +131,18 @@ export default function Index({ request, roles, permissions }) {
                                             </th>
                                             <th
                                                 className="cursor-pointer"
-                                                data-columnname="guard_name"
+                                                data-columnname="email"
                                                 onClick={orderByOnClickHandler}
                                             >
-                                                Guard Name
+                                                Email
+                                            </th>
+
+                                            <th
+                                                className="cursor-pointer"
+                                                data-columnname="email"
+                                                onClick={orderByOnClickHandler}
+                                            >
+                                                Role
                                             </th>
                                             <th
                                                 className="cursor-pointer"
@@ -153,10 +161,10 @@ export default function Index({ request, roles, permissions }) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {roles.data.length > 0 ? (
-                                            roles.data.map((role) => (
+                                        {users.data.length > 0 ? (
+                                            users.data.map((user) => (
                                                 <tr
-                                                    key={role.id}
+                                                    key={user.id}
                                                     className="hover"
                                                 >
                                                     <th>
@@ -164,8 +172,8 @@ export default function Index({ request, roles, permissions }) {
                                                             className="btn btn-accent btn-sm"
                                                             onClick={(e) => {
                                                                 e.preventDefault();
-                                                                setUnderEditingRole(
-                                                                    role
+                                                                setUnderEditingUser(
+                                                                    user
                                                                 );
                                                                 setEditModalIsOpen(
                                                                     true
@@ -176,11 +184,30 @@ export default function Index({ request, roles, permissions }) {
                                                             <span>Edit</span>
                                                         </button>
                                                         <button
+                                                            className="btn btn-secondary btn-sm ml-1"
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                setUnderEditingUser(
+                                                                    user
+                                                                );
+                                                                setEditModalIsOpen(
+                                                                    true
+                                                                );
+                                                            }}
+                                                        >
+                                                            <KeyRound
+                                                                size={16}
+                                                            />
+                                                            <span>
+                                                                Change Password
+                                                            </span>
+                                                        </button>
+                                                        <button
                                                             className="btn btn-error btn-sm ml-1"
                                                             onClick={(e) => {
                                                                 e.preventDefault();
-                                                                setUnderDeletingRole(
-                                                                    role
+                                                                setUnderDeletingUser(
+                                                                    user
                                                                 );
                                                                 setDeleteModalIsOpen(
                                                                     true
@@ -191,10 +218,15 @@ export default function Index({ request, roles, permissions }) {
                                                             <span>Delete</span>
                                                         </button>
                                                     </th>
-                                                    <td>{role.name}</td>
-                                                    <td>{role.guard_name}</td>
-                                                    <td>{role.created_at}</td>
-                                                    <td>{role.updated_at}</td>
+                                                    <td>{user.name}</td>
+                                                    <td>{user.email}</td>
+                                                    <td>
+                                                        {user.roles.length
+                                                            ? user.roles[0].name
+                                                            : "-"}
+                                                    </td>
+                                                    <td>{user.created_at}</td>
+                                                    <td>{user.updated_at}</td>
                                                 </tr>
                                             ))
                                         ) : (
@@ -214,7 +246,7 @@ export default function Index({ request, roles, permissions }) {
                                     <div></div>
                                     <div>
                                         <div className="join">
-                                            {roles.links.map((link, index) => (
+                                            {users.links.map((link, index) => (
                                                 <Link
                                                     preserveScroll={true}
                                                     preserveState={true}
@@ -239,21 +271,21 @@ export default function Index({ request, roles, permissions }) {
             <CreateModal
                 isOpen={createModalIsOpen}
                 setIsOpen={setCreateModalIsOpen}
-                permissions={permissions}
+                roles={roles}
             />
 
             <EditModal
                 isOpen={editModalIsOpen}
                 setIsOpen={setEditModalIsOpen}
-                role={underEditingRole}
-                setRole={setUnderEditingRole}
+                user={underEditingUser}
+                setUser={setUnderEditingUser}
             />
 
             <DeleteModal
                 isOpen={deleteModalIsOpen}
                 setIsOpen={setDeleteModalIsOpen}
-                role={underDeletingRole}
-                setRole={setUnderDeletingRole}
+                user={underDeletingUser}
+                setUser={setUnderDeletingUser}
             />
         </AuthenticatedLayout>
     );

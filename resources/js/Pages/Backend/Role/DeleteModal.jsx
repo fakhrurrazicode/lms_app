@@ -4,29 +4,6 @@ import React, { useEffect } from "react";
 import ReactModal from "react-modal";
 
 export default function DeleteModal({ isOpen, setIsOpen, role, setRole }) {
-    const { data, setData, put, errors, reset } = useForm({
-        name: "",
-    });
-
-    console.log("role", role);
-
-    useEffect(() => {
-        setData({
-            name: role ? role.name : "",
-        });
-    }, [role]);
-
-    const onSubmitHandler = (e) => {
-        e.preventDefault();
-        put("/backend/role/" + role.id, {
-            onFinish: () => {
-                setIsOpen(false);
-                reset();
-                setRole(null);
-            },
-        });
-    };
-
     return (
         <ReactModal
             closeTimeoutMS={200}
@@ -37,10 +14,12 @@ export default function DeleteModal({ isOpen, setIsOpen, role, setRole }) {
             ariaHideApp={false}
         >
             <div className="card bg-base-100 shadow-xl">
-                <form onSubmit={onSubmitHandler} className="card-body">
-                    <h2 className="card-title mb-6">Edit Role</h2>
+                <div className="card-body">
+                    <h2 className="card-title mb-6">Delete Role</h2>
                     <div className="mb-6">
-                        <p>are you sure you want to delete this data?</p>
+                        <p className="mb-6">
+                            Are you sure you want to delete this data?
+                        </p>
 
                         {role && (
                             <table className="table mb-6">
@@ -68,7 +47,7 @@ export default function DeleteModal({ isOpen, setIsOpen, role, setRole }) {
                                 router.delete("/backend/role/" + role.id, {
                                     preserveScroll: true,
                                     preserveState: true,
-                                    onFinish: () => {
+                                    onSuccess: () => {
                                         setRole(null);
                                         setIsOpen(false);
                                     },
@@ -82,7 +61,6 @@ export default function DeleteModal({ isOpen, setIsOpen, role, setRole }) {
                             className="btn btn-neutral"
                             onClick={(e) => {
                                 e.preventDefault;
-                                reset();
                                 setRole(null);
                                 setIsOpen(false);
                             }}
@@ -90,7 +68,7 @@ export default function DeleteModal({ isOpen, setIsOpen, role, setRole }) {
                             Cancel
                         </a>
                     </div>
-                </form>
+                </div>
             </div>
         </ReactModal>
     );
