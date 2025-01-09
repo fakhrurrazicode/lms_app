@@ -69,12 +69,7 @@ export default function ManagePermissionModal({
                                 <table className="table">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                <input
-                                                    type="checkbox"
-                                                    className="checkbox checkbox-secondary checkbox-xs"
-                                                />
-                                            </th>
+                                            <th></th>
                                             <th>Permission Name</th>
                                             <th>Permission Guard Name</th>
                                         </tr>

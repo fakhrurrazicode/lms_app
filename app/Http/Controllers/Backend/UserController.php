@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PaginateRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdatePasswordRequest;
 use App\Http\Requests\UserUpdateRequest;
@@ -18,16 +19,13 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(PaginateRequest $request)
     {
-        $perpage = $request->has('perpage') ? $request->perpage : 10;
-        $orderby = $request->has('orderby') ? $request->orderby : 'created_at';
-        $ordermethod = $request->has('ordermethod') ? $request->ordermethod : 'asc';
 
         $users = User::with(['roles'])->orWhere([
             ['name', 'LIKE', '%' . $request->search . '%'],
             ['email', 'LIKE', '%' . $request->search . '%'],
-        ])->orderBy($orderby, $ordermethod)->paginate($perpage)->withQueryString();
+        ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
         // $users->append($_GET);
 

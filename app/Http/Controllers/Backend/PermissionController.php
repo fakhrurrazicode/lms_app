@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PaginateRequest;
+use App\Http\Requests\PermissionStoreRequest;
+use App\Http\Requests\PermissionUpdateRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
@@ -12,16 +15,12 @@ class PermissionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(PaginateRequest $request)
     {
-        $perpage = $request->has('perpage') ? $request->perpage : 10;
-        $orderby = $request->has('orderby') ? $request->orderby : 'created_at';
-        $ordermethod = $request->has('ordermethod') ? $request->ordermethod : 'DESC';
-
         $permissions = Permission::with(['roles'])->orWhere([
             ['name', 'LIKE', '%' . $request->search . '%'],
             ['guard_name', 'LIKE', '%' . $request->search . '%'],
-        ])->orderBy($orderby, $ordermethod)->paginate($perpage)->withQueryString();
+        ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
         // $permissions->append($_GET);
 
@@ -40,12 +39,9 @@ class PermissionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PermissionStoreRequest $request)
     {
-        Permission::create($request->validate([
-            'name' => ['required', 'max:50'],
-        ]));
-
+        Permission::create($request->validated());
         return to_route('backend.permission.index');
     }
 
@@ -68,14 +64,9 @@ class PermissionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Permission $permission)
+    public function update(PermissionUpdateRequest $request, Permission $permission)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'max:50'],
-        ]);
-
-        $permission->update($validated);
-
+        $permission->update($request->validated());
         return to_route('backend.permission.index');
     }
 

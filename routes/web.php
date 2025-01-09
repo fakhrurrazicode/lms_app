@@ -30,12 +30,12 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => '/backend', 'as' => 'backend.'], function () {
 
-        Route::resource('/role', RoleController::class);
+        Route::resource('/role', RoleController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::put('/role/{role}/set-permission', [RoleController::class, 'setPermission'])->name('role.set-permission');
 
-        Route::resource('/permission', PermissionController::class);
+        Route::resource('/permission', PermissionController::class)->only(['index', 'store', 'update', 'destroy']);;
 
-        Route::resource('/user', UserController::class);
+        Route::resource('/user', UserController::class)->only(['index', 'store', 'update', 'destroy']);;
         Route::put('/user/{user}/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
     });
 });
