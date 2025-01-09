@@ -237,7 +237,7 @@ export default function AuthenticatedLayout({ header, children }) {
                     </li>
                     <li>
                         <Link
-                            href="/dashboard"
+                            href="/backend/permission"
                             className="flex justify-start items-center "
                         >
                             <UserCheck size={16} />

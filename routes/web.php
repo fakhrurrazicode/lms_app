@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -26,6 +27,7 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => '/backend', 'as' => 'backend.'], function () {
         Route::resource('/role', RoleController::class);
+        Route::resource('/permission', PermissionController::class);
     });
 });
 
