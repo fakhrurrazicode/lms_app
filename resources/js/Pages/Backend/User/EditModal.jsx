@@ -89,7 +89,7 @@ export default function EditModal({ isOpen, setIsOpen, user, setUser }) {
                         </label>
                     </div>
                     <div className="card-actions justify-end">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-accent">
                             <Save size={16} />
                             <span>Update</span>
                         </button>
