@@ -7,12 +7,16 @@ import { useState } from "react";
 import CreateModal from "./CreateModal";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
+import EditPasswordModal from "./EditPasswordModal";
 
 export default function Index({ request, users, roles }) {
     const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
 
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
     const [underEditingUser, setUnderEditingUser] = useState(null);
+
+    const [editPasswordModalIsOpen, setEditPasswordModalIsOpen] =
+        useState(false);
 
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
     const [underDeletingUser, setUnderDeletingUser] = useState(null);
@@ -190,7 +194,7 @@ export default function Index({ request, users, roles }) {
                                                                 setUnderEditingUser(
                                                                     user
                                                                 );
-                                                                setEditModalIsOpen(
+                                                                setEditPasswordModalIsOpen(
                                                                     true
                                                                 );
                                                             }}
@@ -277,6 +281,13 @@ export default function Index({ request, users, roles }) {
             <EditModal
                 isOpen={editModalIsOpen}
                 setIsOpen={setEditModalIsOpen}
+                user={underEditingUser}
+                setUser={setUnderEditingUser}
+            />
+
+            <EditPasswordModal
+                isOpen={editPasswordModalIsOpen}
+                setIsOpen={setEditPasswordModalIsOpen}
                 user={underEditingUser}
                 setUser={setUnderEditingUser}
             />

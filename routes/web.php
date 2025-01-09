@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/role', RoleController::class);
         Route::resource('/permission', PermissionController::class);
         Route::resource('/user', UserController::class);
+        Route::put('/user/{user}/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
     });
 });
 

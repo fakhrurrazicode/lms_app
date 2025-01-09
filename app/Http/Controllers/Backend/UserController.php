@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -45,12 +46,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Password::defaults()],
             'role' => ['required', 'exists:' . Role::class . ',name']
-        ]));
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
 
         $user->assignRole($request->role);
@@ -86,6 +93,21 @@ class UserController extends Controller
         ]);
 
         $user->update($validated);
+
+        return to_route('backend.user.index');
+    }
+
+    public function updatePassword(Request $request, User $user)
+    {
+
+
+        $request->validate([
+            'password' => ['required', 'confirmed', Password::defaults()],
+        ]);
+
+        $user = $user->update([
+            'password' => Hash::make($request->password),
+        ]);
 
         return to_route('backend.user.index');
     }
