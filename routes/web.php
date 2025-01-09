@@ -29,8 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::group(['prefix' => '/backend', 'as' => 'backend.'], function () {
+
         Route::resource('/role', RoleController::class);
+        Route::put('/role/{role}/set-permission', [RoleController::class, 'setPermission'])->name('role.set-permission');
+
         Route::resource('/permission', PermissionController::class);
+
         Route::resource('/user', UserController::class);
         Route::put('/user/{user}/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
     });

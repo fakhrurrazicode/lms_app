@@ -42,8 +42,8 @@ export default function EditPasswordModal({
                 <form onSubmit={onSubmitHandler} className="card-body">
                     <h2 className="card-title mb-6">Edit Password User</h2>
                     <div className="mb-6">
-                        <div className="mb-6">
-                            {user && (
+                        {user && (
+                            <div className="mb-6">
                                 <table className="table">
                                     <thead>
                                         <tr>
@@ -60,8 +60,8 @@ export default function EditPasswordModal({
                                         </tr>
                                     </tbody>
                                 </table>
-                            )}
-                        </div>
+                            </div>
+                        )}
                         <label className="form-control w-full mb-6">
                             <div className="label">
                                 <span className="label-text">Password</span>
