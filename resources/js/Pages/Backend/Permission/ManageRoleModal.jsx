@@ -3,28 +3,27 @@ import classNames from "classnames";
 import { Save } from "lucide-react";
 import React, { useEffect, useRef } from "react";
 import ReactModal from "react-modal";
-import Select from "react-select";
 
-export default function ManagePermissionModal({
+export default function ManageRoleModal({
     isOpen,
     setIsOpen,
-    role,
-    setRole,
-    permissions,
+    permission,
+    setPermission,
+    roles,
 }) {
     const { data, setData, put, errors, reset } = useForm({
-        permissions: role.permission_names,
+        roles: permission.role_names,
     });
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        put("/backend/role/" + role.id + "/set-permission", {
+        put("/backend/permission/" + permission.id + "/set-role", {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {
                 setIsOpen(false);
                 reset();
-                setRole(null);
+                setPermission(null);
             },
         });
     };
@@ -34,34 +33,34 @@ export default function ManagePermissionModal({
             closeTimeoutMS={200}
             isOpen={isOpen}
             contentLabel="Minimal Modal Example"
-            overlayClassName="fixed inset-0 bg-base-200/70 overflow-y-auto"
-            className="absolute mt-16 left-1/2 -translate-x-1/2  overflow-auto outline-none p-5 md:w-6/12 h-auto"
+            overlayClassName="fixed inset-0 bg-base-200/70"
+            className="absolute mt-16 left-1/2 -translate-x-1/2  overflow-auto outline-none p-5 w-4/12 h-auto"
             ariaHideApp={false}
         >
             <div className="card bg-base-100 shadow-xl">
                 <form onSubmit={onSubmitHandler} className="card-body">
-                    <h2 className="card-title mb-6">Manage Role Permissions</h2>
+                    <h2 className="card-title mb-6">Manage Permission Roles</h2>
                     <div className="mb-6">
-                        {role && (
+                        {permission && (
                             <div className="mb-6">
                                 <table className="table">
                                     <thead>
                                         <tr>
-                                            <th>Role Name</th>
-                                            <th>Role Guard Name</th>
+                                            <th>Permission Name</th>
+                                            <th>Permission Guard Name</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{role.name}</td>
-                                            <td>{role.guard_name}</td>
+                                            <td>{permission.name}</td>
+                                            <td>{permission.guard_name}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         )}
 
-                        {permissions && (
+                        {roles && (
                             <div className="mb-6">
                                 <table className="table">
                                     <thead>
@@ -72,48 +71,44 @@ export default function ManagePermissionModal({
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {permissions.map((permission) => {
+                                        {roles.map((role) => {
                                             return (
-                                                <tr key={permission.id}>
+                                                <tr key={role.id}>
                                                     <td>
                                                         <input
                                                             type="checkbox"
                                                             className="checkbox checkbox-secondary checkbox-xs"
-                                                            id={`permission-${permission.id}`}
-                                                            value={
-                                                                permission.name
-                                                            }
-                                                            checked={data.permissions.includes(
-                                                                permission.name
+                                                            id={`role-${role.id}`}
+                                                            value={role.name}
+                                                            checked={data.roles.includes(
+                                                                role.name
                                                             )}
                                                             onChange={(e) => {
-                                                                let updatedPermissions =
-                                                                    data.permissions.includes(
-                                                                        permission.name
+                                                                let updatedRole =
+                                                                    data.roles.includes(
+                                                                        role.name
                                                                     )
-                                                                        ? data.permissions.filter(
+                                                                        ? data.roles.filter(
                                                                               (
                                                                                   p
                                                                               ) =>
                                                                                   p !==
-                                                                                  permission.name
+                                                                                  role.name
                                                                           )
                                                                         : [
-                                                                              ...data.permissions,
-                                                                              permission.name,
+                                                                              ...data.roles,
+                                                                              role.name,
                                                                           ];
 
                                                                 setData(
-                                                                    "permissions",
-                                                                    updatedPermissions
+                                                                    "roles",
+                                                                    updatedRole
                                                                 );
                                                             }}
                                                         />
                                                     </td>
-                                                    <td>{permission.name}</td>
-                                                    <td>
-                                                        {permission.guard_name}
-                                                    </td>
+                                                    <td>{role.name}</td>
+                                                    <td>{role.guard_name}</td>
                                                 </tr>
                                             );
                                         })}
@@ -125,13 +120,13 @@ export default function ManagePermissionModal({
                     <div className="card-actions justify-end">
                         <button type="submit" className="btn btn-secondary">
                             <Save size={16} />
-                            <span>Update Role Permissions</span>
+                            <span>Update Permission Role</span>
                         </button>
                         <a
                             className="btn btn-neutral"
                             onClick={(e) => {
                                 e.preventDefault;
-                                setRole(null);
+                                setPermission(null);
                                 setIsOpen(false);
                             }}
                         >

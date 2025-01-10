@@ -1,18 +1,21 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
-import { Edit, Plus, Trash } from "lucide-react";
+import { Edit, ListCheck, Plus, Trash } from "lucide-react";
 import { useState } from "react";
 
 import CreateModal from "./CreateModal";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
+import ManageRoleModal from "./ManageRoleModal";
 
-export default function Index({ request, permissions }) {
+export default function Index({ request, permissions, roles }) {
     const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
 
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
     const [underEditingPermission, setUnderEditingPermission] = useState(null);
+
+    const [manageRoleModalIsOpen, setManageRoleModalIsOpen] = useState(false);
 
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
     const [underDeletingPermission, setUnderDeletingPermission] =
@@ -183,6 +186,28 @@ export default function Index({ request, permissions }) {
                                                                     Edit
                                                                 </span>
                                                             </button>
+
+                                                            <button
+                                                                className="btn btn-secondary btn-sm ml-1"
+                                                                onClick={(
+                                                                    e
+                                                                ) => {
+                                                                    e.preventDefault();
+                                                                    setUnderEditingPermission(
+                                                                        permission
+                                                                    );
+                                                                    setManageRoleModalIsOpen(
+                                                                        true
+                                                                    );
+                                                                }}
+                                                            >
+                                                                <ListCheck
+                                                                    size={16}
+                                                                />
+                                                                <span>
+                                                                    Manage Roles
+                                                                </span>
+                                                            </button>
                                                             <button
                                                                 className="btn btn-error btn-sm ml-1"
                                                                 onClick={(
@@ -284,6 +309,16 @@ export default function Index({ request, permissions }) {
                 permission={underEditingPermission}
                 setPermission={setUnderEditingPermission}
             />
+
+            {underEditingPermission && (
+                <ManageRoleModal
+                    isOpen={manageRoleModalIsOpen}
+                    setIsOpen={setManageRoleModalIsOpen}
+                    permission={underEditingPermission}
+                    setPermission={setUnderEditingPermission}
+                    roles={roles}
+                />
+            )}
 
             <DeleteModal
                 isOpen={deleteModalIsOpen}

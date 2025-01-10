@@ -33,7 +33,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('/role', RoleController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::put('/role/{role}/set-permission', [RoleController::class, 'setPermission'])->name('role.set-permission');
 
-        Route::resource('/permission', PermissionController::class)->only(['index', 'store', 'update', 'destroy']);;
+        Route::resource('/permission', PermissionController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::put('/permission/{permission}/set-role', [PermissionController::class, 'setRole'])->name('role.set-role');
 
         Route::resource('/user', UserController::class)->only(['index', 'store', 'update', 'destroy']);;
         Route::put('/user/{user}/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
