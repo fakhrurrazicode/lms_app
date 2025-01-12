@@ -23,8 +23,8 @@ class CourseCategoryStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:50', 'unique:' . CourseCategory::class . ',name'],
-            'slug' => ['required', 'max:50', 'unique:' . CourseCategory::class . ',slug'],
+            'name' => ['required', 'max:50', 'unique:' . CourseCategory::class . ',name,' . $this->route('course_category')->id],
+            'slug' => ['required', 'max:50', 'unique:' . CourseCategory::class . ',slug,' . $this->route('course_category')->id],
         ];
     }
 }

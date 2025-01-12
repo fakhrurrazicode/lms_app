@@ -12,6 +12,8 @@ export default function EditModal({
     setSubCourseCategory,
     courseCategories,
 }) {
+    console.log("subCourseCategory", subCourseCategory);
+
     const { data, setData, put, errors, reset } = useForm({
         course_category_id: subCourseCategory
             ? subCourseCategory.course_category_id
@@ -21,13 +23,15 @@ export default function EditModal({
     });
 
     useEffect(() => {
-        setData({
-            name: subCourseCategory ? subCourseCategory.name : "",
-            slug: subCourseCategory ? subCourseCategory.slug : "",
-            course_category_id: subCourseCategory.course_category_id
-                ? subCourseCategory.course_category_id
-                : "",
-        });
+        if (subCourseCategory) {
+            setData({
+                name: subCourseCategory ? subCourseCategory.name : "",
+                slug: subCourseCategory ? subCourseCategory.slug : "",
+                course_category_id: subCourseCategory.course_category_id
+                    ? subCourseCategory.course_category_id
+                    : "",
+            });
+        }
     }, [subCourseCategory]);
 
     const onSubmitHandler = (e) => {

@@ -11,7 +11,7 @@ class SubCourseCategoryUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class SubCourseCategoryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'course_category_id' => ['required', 'exists:' . CourseCategory::class . ',id'],
+            'name' => ['required', 'max:50', 'unique:' . SubCourseCategory::class . ',name'],
+            'slug' => ['required', 'max:50', 'unique:' . SubCourseCategory::class . ',slug'],
         ];
     }
 }
