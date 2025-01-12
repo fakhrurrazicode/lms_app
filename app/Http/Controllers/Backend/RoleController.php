@@ -30,8 +30,6 @@ class RoleController extends Controller
             });
         });
 
-
-
         return Inertia::render('Backend/Role/Index', [
             'roles' => $roles,
             'request' => $request,
