@@ -262,7 +262,7 @@ export default function AuthenticatedLayout({ header, children }) {
                     <li></li>
                     <li>
                         <Link
-                            href="/dashboard"
+                            href="/backend/course_category"
                             className="flex justify-start items-center "
                         >
                             <LayoutList size={16} />
@@ -271,7 +271,7 @@ export default function AuthenticatedLayout({ header, children }) {
                     </li>
                     <li>
                         <Link
-                            href="/dashboard"
+                            href="/backend/sub_course_category"
                             className="flex justify-start items-center "
                         >
                             <LayoutList size={16} />

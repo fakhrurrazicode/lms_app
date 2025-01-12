@@ -1,12 +1,15 @@
 <?php
 
-use App\Http\Controllers\Backend\PermissionController;
+
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\CourseCategoryController;
+use App\Http\Controllers\Backend\SubCourseCategoryController;
 
 Route::get('/', function () {
 
@@ -38,6 +41,9 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/user', UserController::class)->only(['index', 'store', 'update', 'destroy']);;
         Route::put('/user/{user}/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
+
+        Route::resource('/course_category', CourseCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('/sub_course_category', SubCourseCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
     });
 });
 
