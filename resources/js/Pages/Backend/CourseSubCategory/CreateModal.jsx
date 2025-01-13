@@ -14,7 +14,7 @@ export default function CreateModal({ isOpen, setIsOpen, courseCategories }) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        post("/backend/sub_course_category", {
+        post("/backend/course_sub_category", {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {
@@ -36,7 +36,7 @@ export default function CreateModal({ isOpen, setIsOpen, courseCategories }) {
             <div className="card bg-base-100 shadow-xl">
                 <form onSubmit={onSubmitHandler} className="card-body">
                     <h2 className="card-title mb-6">
-                        Create new Sub Course Category
+                        Create new Course Sub Category
                     </h2>
                     <div className="mb-6">
                         <label className="form-control w-full mb-6">

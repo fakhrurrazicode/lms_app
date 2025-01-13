@@ -5,21 +5,28 @@ import React, { useEffect, useRef } from "react";
 import ReactModal from "react-modal";
 import slugify from "slugify";
 
-export default function CreateModal({ isOpen, setIsOpen, courseCategories }) {
-    const { data, setData, post, errors, reset } = useForm({
-        course_category_id: "",
+export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
+    const { data, setData, put, errors, reset } = useForm({
         name: "",
         slug: "",
     });
 
+    useEffect(() => {
+        setData({
+            name: course ? course.name : "",
+            slug: course ? course.slug : "",
+        });
+    }, [course]);
+
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        post("/backend/sub_course_category", {
+        put("/backend/course/" + course.id, {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {
                 setIsOpen(false);
                 reset();
+                setCourse(null);
             },
         });
     };
@@ -35,64 +42,32 @@ export default function CreateModal({ isOpen, setIsOpen, courseCategories }) {
         >
             <div className="card bg-base-100 shadow-xl">
                 <form onSubmit={onSubmitHandler} className="card-body">
-                    <h2 className="card-title mb-6">
-                        Create new Sub Course Category
-                    </h2>
+                    <h2 className="card-title mb-6">Edit Course</h2>
                     <div className="mb-6">
                         <label className="form-control w-full mb-6">
                             <div className="label">
-                                <span className="label-text">
-                                    Course Category (Parent)
-                                </span>
-                            </div>
-                            <select
-                                className="select select-bordered"
-                                name="course_category_id"
-                                onChange={(e) => {
-                                    setData(e.target.name, e.target.value);
-                                }}
-                                value={data.course_category_id}
-                            >
-                                <option>:: Select Course Category ::</option>
-                                {courseCategories.map((courseCategory) => (
-                                    <option
-                                        key={courseCategory.id}
-                                        value={courseCategory.id}
-                                    >
-                                        {courseCategory.name}
-                                    </option>
-                                ))}
-                            </select>
-                            {errors.course_category_id && (
-                                <div className="label">
-                                    <span className="label-text-alt text-error">
-                                        {errors.course_category_id}
-                                    </span>
-                                </div>
-                            )}
-                        </label>
-                        <label className="form-control w-full mb-6">
-                            <div className="label">
-                                <span className="label-text">Name</span>
+                                <span className="label-text">Title</span>
                             </div>
                             <input
                                 type="text"
-                                placeholder="Name"
+                                placeholder="Title"
                                 className="input input-bordered w-full"
-                                name="name"
+                                name="title"
                                 onChange={(e) => {
-                                    setData(e.target.name, e.target.value);
+                                    setData(e.target.title, e.target.value);
                                     setData(
                                         "slug",
-                                        slugify(e.target.value).toLowerCase()
+                                        slugify(
+                                            e.target.value
+                                        ).toLocaleLowerCase()
                                     );
                                 }}
-                                value={data.name}
+                                value={data.title}
                             />
-                            {errors.name && (
+                            {errors.title && (
                                 <div className="label">
                                     <span className="label-text-alt text-error">
-                                        {errors.name}
+                                        {errors.title}
                                     </span>
                                 </div>
                             )}
@@ -122,15 +97,15 @@ export default function CreateModal({ isOpen, setIsOpen, courseCategories }) {
                         </label>
                     </div>
                     <div className="card-actions justify-end">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-accent">
                             <Save size={16} />
-                            <span>Save</span>
+                            <span>Update</span>
                         </button>
                         <a
                             className="btn btn-neutral"
                             onClick={(e) => {
                                 e.preventDefault;
-                                reset();
+                                setCourse(null);
                                 setIsOpen(false);
                             }}
                         >

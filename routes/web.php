@@ -9,7 +9,10 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
+use App\Http\Controllers\Backend\CourseController;
+use App\Http\Controllers\Backend\CourseSubCategoryController;
 use App\Http\Controllers\Backend\SubCourseCategoryController;
+use App\Models\SubCourseCategory;
 
 Route::get('/', function () {
 
@@ -43,7 +46,14 @@ Route::middleware('auth')->group(function () {
         Route::put('/user/{user}/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
 
         Route::resource('/course_category', CourseCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
-        Route::resource('/sub_course_category', SubCourseCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
+
+        // Route::resource('/sub_course_category', SubCourseCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
+        // Route::get('/sub_course_category/data/{course_category?}', [SubCourseCategoryController::class, 'data'])->name('sub_course_category.data');
+
+        Route::resource('/course_sub_category', CourseSubCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::get('/course_sub_category/data/{course_category?}', [CourseSubCategoryController::class, 'data'])->name('course_sub_category.data');
+
+        Route::resource('/course', CourseController::class)->only(['index', 'store', 'update', 'destroy']);
     });
 });
 

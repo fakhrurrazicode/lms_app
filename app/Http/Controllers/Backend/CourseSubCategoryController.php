@@ -3,39 +3,39 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SubCourseCategoryStoreRequest;
-use App\Http\Requests\SubCourseCategoryUpdateRequest;
+use App\Http\Requests\CourseSubCategoryStoreRequest;
+use App\Http\Requests\CourseSubCategoryUpdateRequest;
 use App\Http\Requests\PaginateRequest;
-use App\Http\Resources\SubCourseCategoryResource;
+use App\Http\Resources\CourseSubCategoryResource;
 use App\Models\CourseCategory;
-use App\Models\SubCourseCategory;
+use App\Models\CourseSubCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class SubCourseCategoryController extends Controller
+class CourseSubCategoryController extends Controller
 {
 
     public function data(CourseCategory $courseCategory = null)
     {
 
-        $sub_course_categories = SubCourseCategory::where('course_category_id', $courseCategory ? $courseCategory->id : null)->get();
+        $sub_course_categories = CourseSubCategory::where('course_category_id', $courseCategory ? $courseCategory->id : null)->get();
 
-        return SubCourseCategoryResource::collection($sub_course_categories);
+        return CourseSubCategoryResource::collection($sub_course_categories);
     }
     /**
      * Display a listing of the resource.
      */
     public function index(PaginateRequest $request)
     {
-        $subCourseCategories = SubCourseCategory::with(['course_category'])->orWhere([
+        $courseSubCategories = CourseSubCategory::with(['course_category'])->orWhere([
             ['name', 'LIKE', '%' . $request->search . '%'],
             ['slug', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
-        // return $subCourseCategories;
+        // return $courseSubCategories;
 
-        return Inertia::render('Backend/SubCourseCategory/Index', [
-            'subCourseCategories' => $subCourseCategories,
+        return Inertia::render('Backend/CourseSubCategory/Index', [
+            'courseSubCategories' => $courseSubCategories,
             'request' => $request,
             'courseCategories' => CourseCategory::all(),
         ]);
@@ -52,10 +52,10 @@ class SubCourseCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SubCourseCategoryStoreRequest $request)
+    public function store(CourseSubCategoryStoreRequest $request)
     {
-        SubCourseCategory::create($request->validated());
-        return to_route('backend.sub_course_category.index');
+        CourseSubCategory::create($request->validated());
+        return to_route('backend.course_sub_category.index');
     }
 
     /**
@@ -77,18 +77,18 @@ class SubCourseCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SubCourseCategoryUpdateRequest $request, SubCourseCategory $sub_course_category)
+    public function update(CourseSubCategoryUpdateRequest $request, CourseSubCategory $course_sub_category)
     {
-        $sub_course_category->update($request->validated());
-        return to_route('backend.sub_course_category.index');
+        $course_sub_category->update($request->validated());
+        return to_route('backend.course_sub_category.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SubCourseCategory $sub_course_category)
+    public function destroy(CourseSubCategory $course_sub_category)
     {
-        $sub_course_category->delete();
-        return to_route('backend.sub_course_category.index');
+        $course_sub_category->delete();
+        return to_route('backend.course_sub_category.index');
     }
 }

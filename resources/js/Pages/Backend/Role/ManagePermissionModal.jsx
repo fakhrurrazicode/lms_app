@@ -1,9 +1,7 @@
 import { useForm } from "@inertiajs/react";
-import classNames from "classnames";
 import { Save } from "lucide-react";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import ReactModal from "react-modal";
-import Select from "react-select";
 
 export default function ManagePermissionModal({
     isOpen,
@@ -35,7 +33,7 @@ export default function ManagePermissionModal({
             isOpen={isOpen}
             contentLabel="Minimal Modal Example"
             overlayClassName="fixed inset-0 bg-base-200/70 overflow-y-auto"
-            className="absolute mt-16 left-1/2 -translate-x-1/2  overflow-auto outline-none p-5 md:w-6/12 h-auto"
+            className="absolute mt-16 left-1/2 -translate-x-1/2  overflow-auto outline-none p-5 w-full md:w-3/4 lg:w-1/2 h-auto"
             ariaHideApp={false}
         >
             <div className="card bg-base-100 shadow-xl">

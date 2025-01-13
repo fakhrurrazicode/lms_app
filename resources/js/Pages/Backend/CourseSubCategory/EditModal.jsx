@@ -5,21 +5,44 @@ import React, { useEffect, useRef } from "react";
 import ReactModal from "react-modal";
 import slugify from "slugify";
 
-export default function CreateModal({ isOpen, setIsOpen, courseCategories }) {
-    const { data, setData, post, errors, reset } = useForm({
-        course_category_id: "",
-        name: "",
-        slug: "",
+export default function EditModal({
+    isOpen,
+    setIsOpen,
+    courseSubCategory,
+    setCourseSubCategory,
+    courseCategories,
+}) {
+    console.log("courseSubCategory", courseSubCategory);
+
+    const { data, setData, put, errors, reset } = useForm({
+        course_category_id: courseSubCategory
+            ? courseSubCategory.course_category_id
+            : "",
+        name: courseSubCategory ? courseSubCategory.name : "",
+        slug: courseSubCategory ? courseSubCategory.slug : "",
     });
+
+    useEffect(() => {
+        if (courseSubCategory) {
+            setData({
+                name: courseSubCategory ? courseSubCategory.name : "",
+                slug: courseSubCategory ? courseSubCategory.slug : "",
+                course_category_id: courseSubCategory.course_category_id
+                    ? courseSubCategory.course_category_id
+                    : "",
+            });
+        }
+    }, [courseSubCategory]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        post("/backend/sub_course_category", {
+        put("/backend/course_sub_category/" + courseSubCategory.id, {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {
                 setIsOpen(false);
                 reset();
+                setCourseSubCategory(null);
             },
         });
     };
@@ -36,7 +59,7 @@ export default function CreateModal({ isOpen, setIsOpen, courseCategories }) {
             <div className="card bg-base-100 shadow-xl">
                 <form onSubmit={onSubmitHandler} className="card-body">
                     <h2 className="card-title mb-6">
-                        Create new Sub Course Category
+                        Edit Course Sub Category
                     </h2>
                     <div className="mb-6">
                         <label className="form-control w-full mb-6">
@@ -53,7 +76,7 @@ export default function CreateModal({ isOpen, setIsOpen, courseCategories }) {
                                 }}
                                 value={data.course_category_id}
                             >
-                                <option>:: Select Course Category ::</option>
+                                <option>:: Select Role ::</option>
                                 {courseCategories.map((courseCategory) => (
                                     <option
                                         key={courseCategory.id}
@@ -84,7 +107,9 @@ export default function CreateModal({ isOpen, setIsOpen, courseCategories }) {
                                     setData(e.target.name, e.target.value);
                                     setData(
                                         "slug",
-                                        slugify(e.target.value).toLowerCase()
+                                        slugify(
+                                            e.target.value
+                                        ).toLocaleLowerCase()
                                     );
                                 }}
                                 value={data.name}
@@ -97,7 +122,6 @@ export default function CreateModal({ isOpen, setIsOpen, courseCategories }) {
                                 </div>
                             )}
                         </label>
-
                         <label className="form-control w-full mb-6">
                             <div className="label">
                                 <span className="label-text">Slug</span>
@@ -122,15 +146,15 @@ export default function CreateModal({ isOpen, setIsOpen, courseCategories }) {
                         </label>
                     </div>
                     <div className="card-actions justify-end">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-accent">
                             <Save size={16} />
-                            <span>Save</span>
+                            <span>Update</span>
                         </button>
                         <a
                             className="btn btn-neutral"
                             onClick={(e) => {
                                 e.preventDefault;
-                                reset();
+                                setCourseSubCategory(null);
                                 setIsOpen(false);
                             }}
                         >

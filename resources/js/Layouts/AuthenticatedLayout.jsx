@@ -266,16 +266,28 @@ export default function AuthenticatedLayout({ header, children }) {
                             className="flex justify-start items-center "
                         >
                             <LayoutList size={16} />
-                            <span>Manage Categories</span>
+                            <span>Manage Course Categories</span>
                         </Link>
                     </li>
                     <li>
                         <Link
-                            href="/backend/sub_course_category"
+                            href="/backend/course_sub_category"
                             className="flex justify-start items-center "
                         >
                             <LayoutList size={16} />
-                            <span>Manage Sub Categories</span>
+                            <span>Manage Course Sub Categories</span>
+                        </Link>
+                    </li>
+
+                    <li></li>
+
+                    <li>
+                        <Link
+                            href="/backend/course"
+                            className="flex justify-start items-center "
+                        >
+                            <LayoutList size={16} />
+                            <span>Manage Courses</span>
                         </Link>
                     </li>
                     <li></li>
