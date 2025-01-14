@@ -28,7 +28,12 @@ class CourseController extends Controller
         $courses = Course::orWhere([
             ['title', 'LIKE', '%' . $request->search . '%'],
             ['slug', 'LIKE', '%' . $request->search . '%'],
-        ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
+        ])->orderBy($request->orderby, $request->ordermethod)
+            ->with(['instructor', 'course_category', 'course_sub_category'])
+            ->paginate($request->perpage)
+            ->withQueryString();
+
+        // return $courses;
 
         return Inertia::render('Backend/Course/Index', [
             'courses' => $courses,

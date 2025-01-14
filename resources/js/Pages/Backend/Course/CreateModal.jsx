@@ -1,28 +1,31 @@
 import { router, useForm, usePage } from "@inertiajs/react";
 import classNames from "classnames";
 import { Save } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import ReactModal from "react-modal";
 import slugify from "slugify";
 
 export default function CreateModal({ isOpen, setIsOpen }) {
+    const previewImageRef = useRef(null);
+
     const {
         props: { courseCategories, courseSubCategories, instructors },
     } = usePage();
-    const { data, setData, post, errors, reset } = useForm({
-        course_category_id: "",
-        course_sub_category_id: "",
-        instructor_id: "",
+    const { data, setData, post, errors, reset, processing, progress } =
+        useForm({
+            course_category_id: "",
+            course_sub_category_id: "",
+            instructor_id: "",
 
-        title: "",
-        slug: "",
-        image: "",
-        description: "",
-        prerequisites: "",
-        goals: "",
-        duration: "",
-        status: true,
-    });
+            title: "",
+            slug: "",
+            image: "",
+            description: "",
+            prerequisites: "",
+            goals: "",
+            duration: "",
+            status: true,
+        });
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -55,7 +58,22 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                     courseCategoryId: e.target.value,
                 });
             case "image":
-                setData("image", e.target.files[0]);
+                const file = e.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        previewImageRef.current.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImageRef.current.classList.add("hidden");
+                    previewImageRef.current.src = "";
+                }
+
+                setData("image", file);
                 break;
         }
     };
@@ -348,6 +366,7 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                                     type="file"
                                     className="file-input file-input-bordered"
                                     name="image"
+                                    accept="image/*"
                                     onChange={inputChangeHandler}
                                     // value={data.image.toString()}
                                 />
@@ -360,6 +379,15 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                                     </div>
                                 )}
                             </label>
+
+                            <div className="w-1/3">
+                                <img
+                                    ref={previewImageRef}
+                                    src=""
+                                    alt=""
+                                    className="w-full"
+                                />
+                            </div>
                         </div>
 
                         <div className="flex gap-6 mb-6">

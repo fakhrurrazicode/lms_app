@@ -122,119 +122,197 @@ export default function Index({
                                         </label>
                                     </div>
                                 </div>
-                                <table className="table mb-6">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th
-                                                className="cursor-pointer"
-                                                data-columnname="name"
-                                                onClick={orderByOnClickHandler}
-                                            >
-                                                Image
-                                            </th>
-                                            <th
-                                                className="cursor-pointer"
-                                                data-columnname="name"
-                                                onClick={orderByOnClickHandler}
-                                            >
-                                                Title
-                                            </th>
-                                            <th
-                                                className="cursor-pointer"
-                                                data-columnname="email"
-                                                onClick={orderByOnClickHandler}
-                                            >
-                                                Slug
-                                            </th>
-                                            <th
-                                                className="cursor-pointer"
-                                                data-columnname="created_at"
-                                                onClick={orderByOnClickHandler}
-                                            >
-                                                Created at
-                                            </th>
-                                            <th
-                                                className="cursor-pointer"
-                                                data-columnname="updated_at"
-                                                onClick={orderByOnClickHandler}
-                                            >
-                                                Updated at
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {courses.data.length > 0 ? (
-                                            courses.data.map((course) => (
-                                                <tr
-                                                    key={course.id}
-                                                    className="hover"
-                                                >
-                                                    <th>
-                                                        <button
-                                                            className="btn btn-accent btn-sm"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                setSelectedCourse(
-                                                                    course
-                                                                );
-                                                                setEditModalIsOpen(
-                                                                    true
-                                                                );
-                                                            }}
-                                                        >
-                                                            <Edit size={16} />
-                                                            <span>Edit</span>
-                                                        </button>
-
-                                                        <button
-                                                            className="btn btn-error btn-sm ml-1"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                setSelectedCourse(
-                                                                    course
-                                                                );
-                                                                setDeleteModalIsOpen(
-                                                                    true
-                                                                );
-                                                            }}
-                                                        >
-                                                            <Trash size={16} />
-                                                            <span>Delete</span>
-                                                        </button>
-                                                    </th>
-                                                    <td>
-                                                        {course.image_url !==
-                                                        null ? (
-                                                            <img
-                                                                src={
-                                                                    course.image_url
-                                                                }
-                                                                className="w-32"
-                                                            />
-                                                        ) : (
-                                                            "No Image"
-                                                        )}
-                                                    </td>
-                                                    <td>{course.title}</td>
-                                                    <td>{course.slug}</td>
-
-                                                    <td>{course.created_at}</td>
-                                                    <td>{course.updated_at}</td>
-                                                </tr>
-                                            ))
-                                        ) : (
+                                <div className="overflow-x-auto">
+                                    <table className="table table-xs mb-6">
+                                        <thead>
                                             <tr>
-                                                <td
-                                                    colSpan={5}
-                                                    className="text-center text-xs italic"
+                                                <th></th>
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="name"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
                                                 >
-                                                    No Data.
-                                                </td>
+                                                    Image
+                                                </th>
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="name"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Title
+                                                </th>
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="email"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Slug
+                                                </th>
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="email"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Instructor
+                                                </th>
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="email"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Category
+                                                </th>
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="email"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Sub Category
+                                                </th>
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="created_at"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Created at
+                                                </th>
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="updated_at"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Updated at
+                                                </th>
                                             </tr>
-                                        )}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            {courses.data.length > 0 ? (
+                                                courses.data.map((course) => (
+                                                    <tr
+                                                        key={course.id}
+                                                        className="hover"
+                                                    >
+                                                        <th>
+                                                            <button
+                                                                className="btn btn-accent btn-xs"
+                                                                onClick={(
+                                                                    e
+                                                                ) => {
+                                                                    e.preventDefault();
+                                                                    setSelectedCourse(
+                                                                        course
+                                                                    );
+                                                                    setEditModalIsOpen(
+                                                                        true
+                                                                    );
+                                                                }}
+                                                            >
+                                                                <Edit
+                                                                    size={16}
+                                                                />
+                                                                <span>
+                                                                    Edit
+                                                                </span>
+                                                            </button>
+
+                                                            <button
+                                                                className="btn btn-error btn-xs ml-1"
+                                                                onClick={(
+                                                                    e
+                                                                ) => {
+                                                                    e.preventDefault();
+                                                                    setSelectedCourse(
+                                                                        course
+                                                                    );
+                                                                    setDeleteModalIsOpen(
+                                                                        true
+                                                                    );
+                                                                }}
+                                                            >
+                                                                <Trash
+                                                                    size={16}
+                                                                />
+                                                                <span>
+                                                                    Delete
+                                                                </span>
+                                                            </button>
+                                                        </th>
+                                                        <td>
+                                                            {course.image_url !==
+                                                            null ? (
+                                                                <img
+                                                                    src={
+                                                                        course.image_url
+                                                                    }
+                                                                    className="w-32"
+                                                                />
+                                                            ) : (
+                                                                "No Image"
+                                                            )}
+                                                        </td>
+                                                        <td>{course.title}</td>
+                                                        <td>{course.slug}</td>
+                                                        <td>
+                                                            {
+                                                                course
+                                                                    .instructor
+                                                                    .name
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            {
+                                                                course
+                                                                    .course_category
+                                                                    .name
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            {
+                                                                course
+                                                                    .course_sub_category
+                                                                    .name
+                                                            }
+                                                        </td>
+
+                                                        <td>
+                                                            {course.created_at}
+                                                        </td>
+                                                        <td>
+                                                            {course.updated_at}
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            ) : (
+                                                <tr>
+                                                    <td
+                                                        colSpan={9}
+                                                        className="text-center text-xs italic"
+                                                    >
+                                                        <p className="py-4">
+                                                            No Data.
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            )}
+                                        </tbody>
+                                    </table>
+                                </div>
 
                                 <div className="flex justify-between">
                                     <div></div>

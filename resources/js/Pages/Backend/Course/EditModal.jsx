@@ -1,16 +1,17 @@
 import { router, useForm, usePage } from "@inertiajs/react";
-import classNames from "classnames";
 import { Save } from "lucide-react";
 import React, { useEffect, useRef } from "react";
 import ReactModal from "react-modal";
 import slugify from "slugify";
 
 export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
+    const previewImageRef = useRef(null);
+
     const {
         props: { courseCategories, courseSubCategories, instructors },
     } = usePage();
 
-    const { data, setData, put, errors, reset } = useForm({
+    const { data, setData, post, errors, reset } = useForm({
         course_category_id: "",
         course_sub_category_id: "",
         instructor_id: "",
@@ -59,7 +60,7 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        put("/backend/course/" + course.id, {
+        post("/backend/course/" + course.id, {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {
@@ -85,6 +86,21 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
                     courseCategoryId: e.target.value,
                 });
             case "image":
+                const file = e.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        previewImageRef.current.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImageRef.current.classList.add("hidden");
+                    previewImageRef.current.src = "";
+                }
+
                 setData("image", e.target.files ? e.target.files[0] : "");
                 break;
         }
@@ -400,6 +416,14 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
                                     </div>
                                 )}
                             </label>
+                            <div className="w-1/3">
+                                <img
+                                    ref={previewImageRef}
+                                    src={course && course.image_url}
+                                    alt=""
+                                    className="w-full"
+                                />
+                            </div>
                         </div>
 
                         <div className="flex gap-6 mb-6">

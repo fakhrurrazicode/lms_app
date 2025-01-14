@@ -53,7 +53,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('/course_sub_category', CourseSubCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::get('/course_sub_category/data/{course_category?}', [CourseSubCategoryController::class, 'data'])->name('course_sub_category.data');
 
-        Route::resource('/course', CourseController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('/course', CourseController::class)->only(['index', 'store', 'destroy']);
+        Route::post('/course/{course}', [CourseController::class, 'update'])->name('course.update');
     });
 });
 
