@@ -10,16 +10,13 @@ import DeleteModal from "./DeleteModal";
 import ManagePermissionModal from "./ManagePermissionModal";
 
 export default function Index({ request, roles, permissions }) {
+    const [selectedRole, setSelectedRole] = useState(null);
+
     const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
-
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-    const [underEditingRole, setUnderEditingRole] = useState(null);
-
+    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
     const [managePermissionModalIsOpen, setManagePermissionModalIsOpen] =
         useState(false);
-
-    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-    const [underDeletingRole, setUnderDeletingRole] = useState(null);
 
     const orderByOnClickHandler = (e) =>
         router.reload({
@@ -168,7 +165,7 @@ export default function Index({ request, roles, permissions }) {
                                                             className="btn btn-accent btn-sm"
                                                             onClick={(e) => {
                                                                 e.preventDefault();
-                                                                setUnderEditingRole(
+                                                                setSelectedRole(
                                                                     role
                                                                 );
                                                                 setEditModalIsOpen(
@@ -183,7 +180,7 @@ export default function Index({ request, roles, permissions }) {
                                                             className="btn btn-secondary btn-sm ml-1"
                                                             onClick={(e) => {
                                                                 e.preventDefault();
-                                                                setUnderEditingRole(
+                                                                setSelectedRole(
                                                                     role
                                                                 );
                                                                 setManagePermissionModalIsOpen(
@@ -264,31 +261,27 @@ export default function Index({ request, roles, permissions }) {
             <CreateModal
                 isOpen={createModalIsOpen}
                 setIsOpen={setCreateModalIsOpen}
-                permissions={permissions}
             />
 
             <EditModal
                 isOpen={editModalIsOpen}
                 setIsOpen={setEditModalIsOpen}
-                role={underEditingRole}
-                setRole={setUnderEditingRole}
+                role={selectedRole}
+                setRole={setSelectedRole}
             />
 
-            {underEditingRole && (
-                <ManagePermissionModal
-                    isOpen={managePermissionModalIsOpen}
-                    setIsOpen={setManagePermissionModalIsOpen}
-                    role={underEditingRole}
-                    setRole={setUnderEditingRole}
-                    permissions={permissions}
-                />
-            )}
+            <ManagePermissionModal
+                isOpen={managePermissionModalIsOpen}
+                setIsOpen={setManagePermissionModalIsOpen}
+                role={selectedRole}
+                setRole={setSelectedRole}
+            />
 
             <DeleteModal
                 isOpen={deleteModalIsOpen}
                 setIsOpen={setDeleteModalIsOpen}
-                role={underDeletingRole}
-                setRole={setUnderDeletingRole}
+                role={selectedRole}
+                setRole={setSelectedRole}
             />
         </AuthenticatedLayout>
     );

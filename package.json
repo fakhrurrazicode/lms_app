@@ -28,8 +28,10 @@
         "datatables.net-react": "^1.0.0",
         "datatables.net-responsive-dt": "^3.0.3",
         "datatables.net-select-dt": "^2.1.0",
+        "draft-js": "^0.11.7",
         "lucide-react": "^0.469.0",
         "react-modal": "^3.16.3",
+        "react-quill": "^2.0.0",
         "react-select": "^5.9.0",
         "slugify": "^1.6.6"
     }

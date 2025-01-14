@@ -32,14 +32,12 @@ export default function DeleteModal({ isOpen, setIsOpen, course, setCourse }) {
                                 <thead>
                                     <tr>
                                         <th>Title</th>
-                                        <th>Name</th>
                                         <th>Slug</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>{course.title}</td>
-                                        <td>{course.name}</td>
                                         <td>{course.slug}</td>
                                     </tr>
                                 </tbody>

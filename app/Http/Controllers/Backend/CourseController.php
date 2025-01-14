@@ -30,10 +30,6 @@ class CourseController extends Controller
             ['slug', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
-        // return CourseSubCategory::where('course_category_id', $selected_course_category_id)->get() ?? [];
-
-        // return User::role('instructor')->get();
-
         return Inertia::render('Backend/Course/Index', [
             'courses' => $courses,
             'request' => $request,
@@ -53,7 +49,12 @@ class CourseController extends Controller
      */
     public function store(CourseStoreRequest $request)
     {
-        Course::create($request->validated());
+
+        $data = $request->except(['image']);
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('images', 'public');
+        }
+        Course::create($data);
         return to_route('backend.course.index');
     }
 
@@ -78,7 +79,11 @@ class CourseController extends Controller
      */
     public function update(CourseUpdateRequest $request, Course $course)
     {
-        $course->update($request->validated());
+        $data = $request->except(['image']);
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('images', 'public');
+        }
+        $course->update($data);
         return to_route('backend.course.index');
     }
 

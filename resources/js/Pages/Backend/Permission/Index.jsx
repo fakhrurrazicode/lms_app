@@ -10,16 +10,12 @@ import DeleteModal from "./DeleteModal";
 import ManageRoleModal from "./ManageRoleModal";
 
 export default function Index({ request, permissions, roles }) {
+    const [selectedPermission, setSelectedPermission] = useState(null);
+
     const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
-
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-    const [underEditingPermission, setUnderEditingPermission] = useState(null);
-
     const [manageRoleModalIsOpen, setManageRoleModalIsOpen] = useState(false);
-
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-    const [underDeletingPermission, setUnderDeletingPermission] =
-        useState(null);
 
     const orderByOnClickHandler = (e) =>
         router.reload({
@@ -171,7 +167,7 @@ export default function Index({ request, permissions, roles }) {
                                                                     e
                                                                 ) => {
                                                                     e.preventDefault();
-                                                                    setUnderEditingPermission(
+                                                                    setSelectedPermission(
                                                                         permission
                                                                     );
                                                                     setEditModalIsOpen(
@@ -193,7 +189,7 @@ export default function Index({ request, permissions, roles }) {
                                                                     e
                                                                 ) => {
                                                                     e.preventDefault();
-                                                                    setUnderEditingPermission(
+                                                                    setSelectedPermission(
                                                                         permission
                                                                     );
                                                                     setManageRoleModalIsOpen(
@@ -214,7 +210,7 @@ export default function Index({ request, permissions, roles }) {
                                                                     e
                                                                 ) => {
                                                                     e.preventDefault();
-                                                                    setUnderDeletingPermission(
+                                                                    setSelectedPermission(
                                                                         permission
                                                                     );
                                                                     setDeleteModalIsOpen(
@@ -306,25 +302,22 @@ export default function Index({ request, permissions, roles }) {
             <EditModal
                 isOpen={editModalIsOpen}
                 setIsOpen={setEditModalIsOpen}
-                permission={underEditingPermission}
-                setPermission={setUnderEditingPermission}
+                permission={selectedPermission}
+                setPermission={setSelectedPermission}
             />
 
-            {underEditingPermission && (
-                <ManageRoleModal
-                    isOpen={manageRoleModalIsOpen}
-                    setIsOpen={setManageRoleModalIsOpen}
-                    permission={underEditingPermission}
-                    setPermission={setUnderEditingPermission}
-                    roles={roles}
-                />
-            )}
+            <ManageRoleModal
+                isOpen={manageRoleModalIsOpen}
+                setIsOpen={setManageRoleModalIsOpen}
+                permission={selectedPermission}
+                setPermission={setSelectedPermission}
+            />
 
             <DeleteModal
                 isOpen={deleteModalIsOpen}
                 setIsOpen={setDeleteModalIsOpen}
-                permission={underDeletingPermission}
-                setPermission={setUnderDeletingPermission}
+                permission={selectedPermission}
+                setPermission={setSelectedPermission}
             />
         </AuthenticatedLayout>
     );

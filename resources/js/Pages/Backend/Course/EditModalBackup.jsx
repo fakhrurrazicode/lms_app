@@ -3,27 +3,30 @@ import classNames from "classnames";
 import { Save } from "lucide-react";
 import React, { useEffect, useRef } from "react";
 import ReactModal from "react-modal";
+import slugify from "slugify";
 
-export default function EditModal({ isOpen, setIsOpen, role, setRole }) {
+export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
     const { data, setData, put, errors, reset } = useForm({
         name: "",
+        slug: "",
     });
 
     useEffect(() => {
         setData({
-            name: role && role.name && "",
+            name: course ? course.name : "",
+            slug: course ? course.slug : "",
         });
-    }, [role]);
+    }, [course]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        put("/backend/role/" + role.id, {
+        put("/backend/course/" + course.id, {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {
                 setIsOpen(false);
                 reset();
-                setRole(null);
+                setCourse(null);
             },
         });
     };
@@ -39,33 +42,62 @@ export default function EditModal({ isOpen, setIsOpen, role, setRole }) {
         >
             <div className="card bg-base-100 shadow-xl">
                 <form onSubmit={onSubmitHandler} className="card-body">
-                    <h2 className="card-title mb-6">Edit Role</h2>
+                    <h2 className="card-title mb-6">Edit Course</h2>
                     <div className="mb-6">
                         <label className="form-control w-full mb-6">
                             <div className="label">
-                                <span className="label-text">Name</span>
+                                <span className="label-text">Title</span>
                             </div>
                             <input
                                 type="text"
-                                placeholder="Name"
+                                placeholder="Title"
                                 className="input input-bordered w-full"
-                                name="name"
+                                name="title"
+                                onChange={(e) => {
+                                    setData(e.target.title, e.target.value);
+                                    setData(
+                                        "slug",
+                                        slugify(
+                                            e.target.value
+                                        ).toLocaleLowerCase()
+                                    );
+                                }}
+                                value={data.title}
+                            />
+                            {errors.title && (
+                                <div className="label">
+                                    <span className="label-text-alt text-error">
+                                        {errors.title}
+                                    </span>
+                                </div>
+                            )}
+                        </label>
+
+                        <label className="form-control w-full mb-6">
+                            <div className="label">
+                                <span className="label-text">Slug</span>
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="Slug"
+                                className="input input-bordered w-full"
+                                name="slug"
                                 onChange={(e) => {
                                     setData(e.target.name, e.target.value);
                                 }}
-                                value={data.name}
+                                value={data.slug}
                             />
-                            {errors.name && (
+                            {errors.slug && (
                                 <div className="label">
                                     <span className="label-text-alt text-error">
-                                        {errors.name}
+                                        {errors.slug}
                                     </span>
                                 </div>
                             )}
                         </label>
                     </div>
                     <div className="card-actions justify-end">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-accent">
                             <Save size={16} />
                             <span>Update</span>
                         </button>
@@ -73,7 +105,7 @@ export default function EditModal({ isOpen, setIsOpen, role, setRole }) {
                             className="btn btn-neutral"
                             onClick={(e) => {
                                 e.preventDefault;
-                                setRole(null);
+                                setCourse(null);
                                 setIsOpen(false);
                             }}
                         >

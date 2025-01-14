@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Models\Course;
 use App\Models\CourseCategory;
+use App\Models\CourseSubCategory;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CourseStoreRequest extends FormRequest
@@ -25,17 +27,24 @@ class CourseStoreRequest extends FormRequest
     {
         return [
             'course_category_id' => ['required', 'exists:' . CourseCategory::class . ',id'],
-            'course_sub_category_id' => ['required'],
-            // 'instructor_id' => ['required'],
+            'course_sub_category_id' => ['required', 'exists:' . CourseSubCategory::class . ',id'],
+            'instructor_id' => ['required', 'exists:' . User::class . ',id'],
 
-            // 'image' => ['required'],
+            'image' => ['image'],
             'title' => ['required'],
             'slug' => ['required'],
-            // 'description' => ['required'],
-            // 'prerequisites' => ['required'],
-            // 'goals' => ['required'],
-            // 'duration' => ['required'],
-            // 'status' => ['required'],
+            'description' => ['required'],
+            'prerequisites' => ['required'],
+            'goals' => ['required'],
+            'duration' => ['required'],
+            'status' => ['required'],
         ];
+    }
+
+    protected function passedValidation(): void
+    {
+
+        // dd($this->validated());
+        // $this->replace(['name' => 'Taylor']);
     }
 }

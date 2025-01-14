@@ -1,10 +1,12 @@
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 import classNames from "classnames";
 import { Save } from "lucide-react";
 import React, { useEffect, useRef } from "react";
 import ReactModal from "react-modal";
 
-export default function CreateModal({ isOpen, setIsOpen, permissions }) {
+export default function CreateModal({ isOpen, setIsOpen }) {
+    const { props } = usePage();
+
     const { data, setData, post, errors, reset } = useForm({
         name: "",
     });

@@ -15,14 +15,11 @@ export default function Index({
     courseSubCategories,
     instructors,
 }) {
-    console.log("courseSubCategories", courseSubCategories);
+    const [selectedCourse, setSelectedCourse] = useState(null);
+
     const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
-
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-    const [underEditingCourse, setUnderEditingCourse] = useState(null);
-
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-    const [underDeletingCourse, setUnderDeletingCourse] = useState(null);
 
     const orderByOnClickHandler = (e) =>
         router.reload({
@@ -134,14 +131,14 @@ export default function Index({
                                                 data-columnname="name"
                                                 onClick={orderByOnClickHandler}
                                             >
-                                                Title
+                                                Image
                                             </th>
                                             <th
                                                 className="cursor-pointer"
                                                 data-columnname="name"
                                                 onClick={orderByOnClickHandler}
                                             >
-                                                Name
+                                                Title
                                             </th>
                                             <th
                                                 className="cursor-pointer"
@@ -178,7 +175,7 @@ export default function Index({
                                                             className="btn btn-accent btn-sm"
                                                             onClick={(e) => {
                                                                 e.preventDefault();
-                                                                setUnderEditingCourse(
+                                                                setSelectedCourse(
                                                                     course
                                                                 );
                                                                 setEditModalIsOpen(
@@ -194,7 +191,7 @@ export default function Index({
                                                             className="btn btn-error btn-sm ml-1"
                                                             onClick={(e) => {
                                                                 e.preventDefault();
-                                                                setUnderDeletingCourse(
+                                                                setSelectedCourse(
                                                                     course
                                                                 );
                                                                 setDeleteModalIsOpen(
@@ -206,8 +203,20 @@ export default function Index({
                                                             <span>Delete</span>
                                                         </button>
                                                     </th>
+                                                    <td>
+                                                        {course.image_url !==
+                                                        null ? (
+                                                            <img
+                                                                src={
+                                                                    course.image_url
+                                                                }
+                                                                className="w-32"
+                                                            />
+                                                        ) : (
+                                                            "No Image"
+                                                        )}
+                                                    </td>
                                                     <td>{course.title}</td>
-                                                    <td>{course.name}</td>
                                                     <td>{course.slug}</td>
 
                                                     <td>{course.created_at}</td>
@@ -264,23 +273,20 @@ export default function Index({
             <CreateModal
                 isOpen={createModalIsOpen}
                 setIsOpen={setCreateModalIsOpen}
-                courseCategories={courseCategories}
-                courseSubCategories={courseSubCategories}
-                instructors={instructors}
             />
 
             <EditModal
                 isOpen={editModalIsOpen}
                 setIsOpen={setEditModalIsOpen}
-                courseCategory={underEditingCourse}
-                setCourse={setUnderEditingCourse}
+                course={selectedCourse}
+                setCourse={setSelectedCourse}
             />
 
             <DeleteModal
                 isOpen={deleteModalIsOpen}
                 setIsOpen={setDeleteModalIsOpen}
-                courseCategory={underDeletingCourse}
-                setCourse={setUnderDeletingCourse}
+                course={selectedCourse}
+                setCourse={setSelectedCourse}
             />
         </AuthenticatedLayout>
     );

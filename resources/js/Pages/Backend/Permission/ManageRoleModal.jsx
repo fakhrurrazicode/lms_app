@@ -1,4 +1,4 @@
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 import classNames from "classnames";
 import { Save } from "lucide-react";
 import React, { useEffect, useRef } from "react";
@@ -9,11 +9,20 @@ export default function ManageRoleModal({
     setIsOpen,
     permission,
     setPermission,
-    roles,
 }) {
+    const {
+        props: { roles },
+    } = usePage();
+
     const { data, setData, put, errors, reset } = useForm({
-        roles: permission.role_names,
+        roles: [],
     });
+
+    useEffect(() => {
+        if (permission && permission.role_names) {
+            setData("roles", permission.role_names);
+        }
+    }, [permission]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();

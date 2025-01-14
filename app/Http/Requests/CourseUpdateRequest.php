@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\CourseCategory;
+use App\Models\CourseSubCategory;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CourseUpdateRequest extends FormRequest
@@ -11,7 +14,7 @@ class CourseUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +25,18 @@ class CourseUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'course_category_id' => ['required', 'exists:' . CourseCategory::class . ',id'],
+            'course_sub_category_id' => ['required', 'exists:' . CourseSubCategory::class . ',id'],
+            'instructor_id' => ['required', 'exists:' . User::class . ',id'],
+
+            // 'image' => ['image'],
+            'title' => ['required'],
+            'slug' => ['required'],
+            'description' => ['required'],
+            'prerequisites' => ['required'],
+            'goals' => ['required'],
+            'duration' => ['required'],
+            'status' => ['required'],
         ];
     }
 }
