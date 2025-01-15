@@ -7,6 +7,7 @@ import slugify from "slugify";
 import CourseSectionsTable from "./CourseSectionsTable";
 import CreateCourseSectionModal from "./CreateCourseSectionModal";
 import EditCourseSectionModal from "./EditCourseSectionModal";
+import DeleteCourseSectionModal from "./DeleteCourseSectionModal";
 
 export default function ManageLecture({
     isOpen,
@@ -25,6 +26,8 @@ export default function ManageLecture({
         useState(false);
     const [editCourseSectionModalIsOpen, setEditCourseSectionModalIsOpen] =
         useState(false);
+    const [deleteCourseSectionModalIsOpen, setDeleteCourseSectionModalIsOpen] =
+        useState(false);
 
     const [selectedCourseSection, setSelectedCourseSection] = useState(null);
 
@@ -37,11 +40,15 @@ export default function ManageLecture({
                 overlayClassName="fixed inset-0 bg-base-200/70 overflow-y-auto"
                 className="absolute mt-16 left-1/2 -translate-x-1/2  overflow-auto outline-none p-5 w-full md:w-3/4 lg:w-10/12 h-auto"
                 ariaHideApp={false}
+                shouldCloseOnEsc={true}
             >
                 <div className="card bg-base-100 shadow-xl">
                     <form className="card-body">
                         <h2 className="card-title mb-6">
-                            Manage Sections and Lectures
+                            Manage Sections and Lectures for{" "}
+                            <span className="text-primary">
+                                {course ? course.title : ""}
+                            </span>
                         </h2>
                         <div className="mb-6">
                             <div className="mb-6 flex">
@@ -66,18 +73,19 @@ export default function ManageLecture({
                             </div>
                             <CourseSectionsTable
                                 courseSections={courseSections}
-                                setSelectedCourseSection={(courseSection) => {
-                                    setSelectedCourseSection(courseSection);
-                                    setEditCourseSectionModalIsOpen(true);
-                                }}
+                                setSelectedCourseSection={
+                                    setSelectedCourseSection
+                                }
+                                setEditCourseSectionModalIsOpen={
+                                    setEditCourseSectionModalIsOpen
+                                }
+                                setDeleteCourseSectionModalIsOpen={
+                                    setDeleteCourseSectionModalIsOpen
+                                }
                             />
                         </div>
 
                         <div className="card-actions justify-end">
-                            <button type="submit" className="btn btn-primary">
-                                <Save size={16} />
-                                <span>Save</span>
-                            </button>
                             <a
                                 className="btn btn-neutral"
                                 onClick={(e) => {
@@ -85,7 +93,7 @@ export default function ManageLecture({
                                     setIsOpen(false);
                                 }}
                             >
-                                Cancel
+                                Back
                             </a>
                         </div>
                     </form>
@@ -102,6 +110,14 @@ export default function ManageLecture({
                 isOpen={editCourseSectionModalIsOpen}
                 setIsOpen={setEditCourseSectionModalIsOpen}
                 courseSection={selectedCourseSection}
+                setCourseSection={setSelectedCourseSection}
+            />
+
+            <DeleteCourseSectionModal
+                isOpen={deleteCourseSectionModalIsOpen}
+                setIsOpen={setDeleteCourseSectionModalIsOpen}
+                courseSection={selectedCourseSection}
+                setCourseSection={setSelectedCourseSection}
             />
         </>
     );

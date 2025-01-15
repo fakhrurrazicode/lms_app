@@ -63,8 +63,9 @@ class CourseSectionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(CourseSection $course_section)
     {
-        //
+        $course_section->delete();
+        return to_route('backend.course.index', request()->query());
     }
 }

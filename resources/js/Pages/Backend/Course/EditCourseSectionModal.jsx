@@ -8,6 +8,7 @@ export default function EditCourseSectionModal({
     isOpen,
     setIsOpen,
     courseSection,
+    setCourseSection,
 }) {
     const { data, setData, put, errors, reset, clearErrors } = useForm({
         title: "",
@@ -24,10 +25,6 @@ export default function EditCourseSectionModal({
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        console.log(request);
-        request.selected_course_id = courseSection.course_id;
-        console.log(request);
-        // return;
         const query = new URLSearchParams(request).toString();
 
         put(
@@ -39,6 +36,7 @@ export default function EditCourseSectionModal({
                 preserveState: true,
                 onSuccess: () => {
                     setIsOpen(false);
+                    setCourseSection(null);
                     reset();
                 },
             }
@@ -107,6 +105,7 @@ export default function EditCourseSectionModal({
                                 e.preventDefault;
                                 reset();
                                 clearErrors();
+                                setCourseSection(null);
                                 setIsOpen(false);
                             }}
                         >

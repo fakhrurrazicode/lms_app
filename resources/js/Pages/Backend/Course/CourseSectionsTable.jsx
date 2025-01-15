@@ -5,6 +5,8 @@ import React, { useEffect } from "react";
 export default function CourseSectionsTable({
     courseSections,
     setSelectedCourseSection,
+    setEditCourseSectionModalIsOpen,
+    setDeleteCourseSectionModalIsOpen,
 }) {
     console.log("courseSections", courseSections);
 
@@ -33,13 +35,27 @@ export default function CourseSectionsTable({
                                                     setSelectedCourseSection(
                                                         courseSection
                                                     );
+                                                    setEditCourseSectionModalIsOpen(
+                                                        true
+                                                    );
                                                 }}
                                             >
                                                 <Edit size={16} />{" "}
                                                 <span>Edit</span>
                                             </button>
 
-                                            <button className="btn btn-xs min-h-7 px-2 btn-error">
+                                            <button
+                                                className="btn btn-xs min-h-7 px-2 btn-error"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setSelectedCourseSection(
+                                                        courseSection
+                                                    );
+                                                    setDeleteCourseSectionModalIsOpen(
+                                                        true
+                                                    );
+                                                }}
+                                            >
                                                 <Trash size={16} />{" "}
                                                 <span>Delete</span>
                                             </button>
