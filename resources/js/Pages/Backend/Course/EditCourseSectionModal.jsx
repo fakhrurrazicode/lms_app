@@ -13,7 +13,7 @@ export default function EditCourseSectionModal({
         title: "",
     });
 
-    const {
+    let {
         props: { request },
     } = usePage();
 
@@ -24,10 +24,16 @@ export default function EditCourseSectionModal({
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
+        console.log(request);
+        request.selected_course_id = courseSection.course_id;
+        console.log(request);
+        // return;
+        const query = new URLSearchParams(request).toString();
+
         put(
             `/backend/course_section/${
                 courseSection ? courseSection.id : ""
-            }?${new URLSearchParams(request).toString()}`,
+            }?${query}`,
             {
                 preserveScroll: true,
                 preserveState: true,
