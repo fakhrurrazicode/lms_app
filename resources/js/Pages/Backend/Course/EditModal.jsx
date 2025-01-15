@@ -41,15 +41,6 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
             duration: course ? course.duration : "",
             status: course ? course.status : true,
         });
-
-        // router.reload({
-        //     only: ["courseSubCategories"],
-        //     data: {
-        //         selected_course_category_id: course
-        //             ? course.course_category_id
-        //             : "",
-        //     },
-        // });
     }, [course]);
 
     // useEffect(() => {

@@ -2,17 +2,18 @@
 
 
 use Inertia\Inertia;
+use App\Models\SubCourseCategory;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\Backend\PermissionController;
-use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\CourseController;
+use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\CourseSectionController;
+use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\CourseSubCategoryController;
 use App\Http\Controllers\Backend\SubCourseCategoryController;
-use App\Models\SubCourseCategory;
 
 Route::get('/', function () {
 
@@ -55,6 +56,8 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/course', CourseController::class)->only(['index', 'store', 'destroy']);
         Route::post('/course/{course}', [CourseController::class, 'update'])->name('course.update');
+
+        Route::resource('/course_section', CourseSectionController::class)->only(['index', 'store', 'update', 'destroy']);
     });
 });
 

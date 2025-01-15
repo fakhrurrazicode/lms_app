@@ -1,12 +1,13 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
-import { Edit, KeyRound, Plus, Trash } from "lucide-react";
-import { useState } from "react";
+import { Edit, KeyRound, ListCollapse, Plus, Trash } from "lucide-react";
+import { useRef, useState } from "react";
 
 import CreateModal from "./CreateModal";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
+import ManageLecture from "./ManageLecture";
 
 export default function Index({
     request,
@@ -14,12 +15,16 @@ export default function Index({
     courseCategories,
     courseSubCategories,
     instructors,
+    courseSections,
 }) {
     const [selectedCourse, setSelectedCourse] = useState(null);
 
     const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
     const [editModalIsOpen, setEditModalIsOpen] = useState(false);
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+    const [manageLectureIsOpen, setManageLectureIsOpen] = useState(false);
+
+    const buttonOpenManageLectureRef = useRef(null);
 
     const orderByOnClickHandler = (e) =>
         router.reload({
@@ -126,7 +131,7 @@ export default function Index({
                                     <table className="table table-xs mb-6">
                                         <thead>
                                             <tr>
-                                                <th></th>
+                                                <th className="whitespace-nowrap"></th>
                                                 <th
                                                     className="cursor-pointer"
                                                     data-columnname="name"
@@ -208,9 +213,9 @@ export default function Index({
                                                         key={course.id}
                                                         className="hover"
                                                     >
-                                                        <th>
+                                                        <th className="whitespace-nowrap">
                                                             <button
-                                                                className="btn btn-accent btn-xs"
+                                                                className="btn btn-accent btn-sm"
                                                                 onClick={(
                                                                     e
                                                                 ) => {
@@ -232,7 +237,7 @@ export default function Index({
                                                             </button>
 
                                                             <button
-                                                                className="btn btn-error btn-xs ml-1"
+                                                                className="btn btn-error btn-sm ml-1"
                                                                 onClick={(
                                                                     e
                                                                 ) => {
@@ -252,15 +257,55 @@ export default function Index({
                                                                     Delete
                                                                 </span>
                                                             </button>
+
+                                                            <button
+                                                                className="btn btn-secondary btn-sm ml-1 mr-2"
+                                                                ref={
+                                                                    buttonOpenManageLectureRef
+                                                                }
+                                                                onClick={(
+                                                                    e
+                                                                ) => {
+                                                                    e.preventDefault();
+                                                                    setSelectedCourse(
+                                                                        course
+                                                                    );
+                                                                    router.reload(
+                                                                        {
+                                                                            only: [
+                                                                                "courseSections",
+                                                                            ],
+                                                                            data: {
+                                                                                selected_course_id:
+                                                                                    course.id,
+                                                                            },
+                                                                            onFinish:
+                                                                                () => {
+                                                                                    setManageLectureIsOpen(
+                                                                                        true
+                                                                                    );
+                                                                                },
+                                                                        }
+                                                                    );
+                                                                }}
+                                                            >
+                                                                <ListCollapse
+                                                                    size={16}
+                                                                />
+                                                                <span>
+                                                                    Sections &
+                                                                    Lectures
+                                                                </span>
+                                                            </button>
                                                         </th>
-                                                        <td>
+                                                        <td className="whitespace-nowrap">
                                                             {course.image_url !==
                                                             null ? (
                                                                 <img
                                                                     src={
                                                                         course.image_url
                                                                     }
-                                                                    className="w-32"
+                                                                    className="w-32 px-4"
                                                                 />
                                                             ) : (
                                                                 "No Image"
@@ -363,6 +408,14 @@ export default function Index({
             <DeleteModal
                 isOpen={deleteModalIsOpen}
                 setIsOpen={setDeleteModalIsOpen}
+                course={selectedCourse}
+                setCourse={setSelectedCourse}
+            />
+
+            <ManageLecture
+                courseSections={courseSections}
+                isOpen={manageLectureIsOpen}
+                setIsOpen={setManageLectureIsOpen}
                 course={selectedCourse}
                 setCourse={setSelectedCourse}
             />

@@ -14,6 +14,7 @@ use Spatie\Permission\Models\Permission;
 use App\Http\Requests\CourseStoreRequest;
 use App\Http\Requests\CourseUpdateRequest;
 use App\Http\Requests\CourseSetPermissionsRequest;
+use App\Models\CourseSection;
 
 class CourseController extends Controller
 {
@@ -23,6 +24,7 @@ class CourseController extends Controller
     public function index(PaginateRequest $request)
     {
 
+        $selected_course_id = $request->get('selected_course_id');
         $selected_course_category_id = $request->get('selected_course_category_id');
 
         $courses = Course::orWhere([
@@ -41,6 +43,7 @@ class CourseController extends Controller
             'courseCategories' => CourseCategory::all(),
             'courseSubCategories' => fn() => CourseSubCategory::where('course_category_id', $selected_course_category_id)->get() ?? [],
             'instructors' => User::role('instructor')->get(),
+            'courseSections' => fn() => CourseSection::where('course_id', $selected_course_id)->get() ?? [],
         ]);
     }
 
