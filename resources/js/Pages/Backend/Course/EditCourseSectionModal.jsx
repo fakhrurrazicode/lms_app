@@ -13,6 +13,10 @@ export default function EditCourseSectionModal({
         title: "",
     });
 
+    const {
+        props: { request },
+    } = usePage();
+
     useEffect(() => {
         setData("title", courseSection ? courseSection.title : "");
     }, [courseSection]);
@@ -23,7 +27,7 @@ export default function EditCourseSectionModal({
         put(
             `/backend/course_section/${
                 courseSection ? courseSection.id : ""
-            }?selected_course_id=${courseSection.course_id}`,
+            }?${new URLSearchParams(request).toString()}`,
             {
                 preserveScroll: true,
                 preserveState: true,
