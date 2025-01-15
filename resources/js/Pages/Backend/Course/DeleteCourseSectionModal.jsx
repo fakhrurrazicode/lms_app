@@ -51,6 +51,9 @@ export default function DeleteCourseSectionModal({
                             onClick={(e) => {
                                 e.preventDefault();
 
+                                request.selected_course_id =
+                                    courseSection.course_id;
+
                                 const query = new URLSearchParams(
                                     request
                                 ).toString();
