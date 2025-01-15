@@ -2,7 +2,10 @@ import { router, usePage } from "@inertiajs/react";
 import { Edit, Plus, Trash } from "lucide-react";
 import React, { useEffect } from "react";
 
-export default function CourseSectionsTable({ courseSections }) {
+export default function CourseSectionsTable({
+    courseSections,
+    setSelectedCourseSection,
+}) {
     console.log("courseSections", courseSections);
 
     return (
@@ -20,10 +23,18 @@ export default function CourseSectionsTable({ courseSections }) {
                     <tbody>
                         {courseSections.length > 0 ? (
                             courseSections.map((courseSection, index) => (
-                                <>
-                                    <tr key={index}>
+                                <React.Fragment key={index}>
+                                    <tr>
                                         <td className="whitespace-nowrap gap-2 flex w-auto">
-                                            <button className="btn btn-xs min-h-7 px-2 btn-accent">
+                                            <button
+                                                className="btn btn-xs min-h-7 px-2 btn-accent"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setSelectedCourseSection(
+                                                        courseSection
+                                                    );
+                                                }}
+                                            >
                                                 <Edit size={16} />{" "}
                                                 <span>Edit</span>
                                             </button>
@@ -55,7 +66,7 @@ export default function CourseSectionsTable({ courseSections }) {
                                                 </tr>
                                             )
                                         )}
-                                </>
+                                </React.Fragment>
                             ))
                         ) : (
                             <tr>

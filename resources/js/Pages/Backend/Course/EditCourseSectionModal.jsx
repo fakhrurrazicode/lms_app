@@ -4,28 +4,35 @@ import { Save } from "lucide-react";
 import React, { useEffect, useRef } from "react";
 import ReactModal from "react-modal";
 
-export default function CreateCourseSectionModal({
+export default function EditCourseSectionModal({
     isOpen,
     setIsOpen,
-    course,
+    courseSection,
 }) {
-    const { data, setData, post, errors, reset, clearErrors } = useForm({
-        course_id: "",
+    const { data, setData, put, errors, reset, clearErrors } = useForm({
         title: "",
     });
 
+    useEffect(() => {
+        setData("title", courseSection ? courseSection.title : "");
+    }, [courseSection]);
+
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        data.course_id = course.id;
 
-        post("/backend/course_section/", {
-            preserveScroll: true,
-            preserveState: true,
-            onSuccess: () => {
-                setIsOpen(false);
-                reset();
-            },
-        });
+        put(
+            `/backend/course_section/${
+                courseSection ? courseSection.id : ""
+            }?selected_course_id=${courseSection.course_id}`,
+            {
+                preserveScroll: true,
+                preserveState: true,
+                onSuccess: () => {
+                    setIsOpen(false);
+                    reset();
+                },
+            }
+        );
     };
 
     const inputChangeHandler = (e) => {
@@ -47,8 +54,15 @@ export default function CreateCourseSectionModal({
         >
             <div className="card bg-base-100 shadow-xl">
                 <form onSubmit={onSubmitHandler} className="card-body">
-                    <h2 className="card-title mb-6">Create new Section</h2>
+                    <h2 className="card-title mb-6">Update Section</h2>
                     <div className="mb-6">
+                        <input
+                            type="hidden"
+                            name="course_id"
+                            onChange={inputChangeHandler}
+                            value={data.course_id}
+                        />
+
                         <label className="form-control w-full mb-6">
                             <div className="label">
                                 <span className="label-text">Title</span>

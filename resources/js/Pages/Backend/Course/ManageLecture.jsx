@@ -6,6 +6,7 @@ import ReactModal from "react-modal";
 import slugify from "slugify";
 import CourseSectionsTable from "./CourseSectionsTable";
 import CreateCourseSectionModal from "./CreateCourseSectionModal";
+import EditCourseSectionModal from "./EditCourseSectionModal";
 
 export default function ManageLecture({
     isOpen,
@@ -22,11 +23,11 @@ export default function ManageLecture({
 
     const [createCourseSectionModalIsOpen, setCreateCourseSectionModalIsOpen] =
         useState(false);
+    const [editCourseSectionModalIsOpen, setEditCourseSectionModalIsOpen] =
+        useState(false);
 
-    const createSectionForm = useForm({
-        course_id: "",
-        title: "",
-    });
+    const [selectedCourseSection, setSelectedCourseSection] = useState(null);
+
     return (
         <>
             <ReactModal
@@ -65,6 +66,10 @@ export default function ManageLecture({
                             </div>
                             <CourseSectionsTable
                                 courseSections={courseSections}
+                                setSelectedCourseSection={(courseSection) => {
+                                    setSelectedCourseSection(courseSection);
+                                    setEditCourseSectionModalIsOpen(true);
+                                }}
                             />
                         </div>
 
@@ -91,6 +96,12 @@ export default function ManageLecture({
                 isOpen={createCourseSectionModalIsOpen}
                 setIsOpen={setCreateCourseSectionModalIsOpen}
                 course={course}
+            />
+
+            <EditCourseSectionModal
+                isOpen={editCourseSectionModalIsOpen}
+                setIsOpen={setEditCourseSectionModalIsOpen}
+                courseSection={selectedCourseSection}
             />
         </>
     );

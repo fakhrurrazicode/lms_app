@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseSectionStoreRequest;
+use App\Http\Requests\CourseSectionUpdateRequest;
 use App\Models\CourseSection;
 use Illuminate\Http\Request;
 
@@ -53,9 +54,10 @@ class CourseSectionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CourseSectionUpdateRequest $request, CourseSection $course_section)
     {
-        //
+        $course_section->update($request->validated());
+        return to_route('backend.course.index', request()->query());
     }
 
     /**
