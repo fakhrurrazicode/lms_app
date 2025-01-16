@@ -8,6 +8,8 @@ export default function CourseSectionsTable({
     setEditCourseSectionModalIsOpen,
     setDeleteCourseSectionModalIsOpen,
     setCreateCourseLectureModalIsOpen,
+    setSelectedCourseLecture,
+    setDeleteCourseLectureModalIsOpen,
 }) {
     console.log("CourseSectionsTable.courseSections", courseSections);
 
@@ -99,8 +101,8 @@ export default function CourseSectionsTable({
                                                                     e
                                                                 ) => {
                                                                     e.preventDefault();
-                                                                    setSelectedCourseSection(
-                                                                        courseSection
+                                                                    setSelectedCourseLecture(
+                                                                        courseLecture
                                                                     );
                                                                     setEditCourseSectionModalIsOpen(
                                                                         true
@@ -121,10 +123,10 @@ export default function CourseSectionsTable({
                                                                     e
                                                                 ) => {
                                                                     e.preventDefault();
-                                                                    setSelectedCourseSection(
-                                                                        courseSection
+                                                                    setSelectedCourseLecture(
+                                                                        courseLecture
                                                                     );
-                                                                    setDeleteCourseSectionModalIsOpen(
+                                                                    setDeleteCourseLectureModalIsOpen(
                                                                         true
                                                                     );
                                                                 }}

@@ -9,6 +9,7 @@ import CreateCourseSectionModal from "./CreateCourseSectionModal";
 import EditCourseSectionModal from "./EditCourseSectionModal";
 import DeleteCourseSectionModal from "./DeleteCourseSectionModal";
 import CreateCourseLectureModal from "./CreateCourseLectureModal";
+import DeleteCourseLectureModal from "./DeleteCourseLectureModal";
 
 export default function ManageLecture({
     isOpen,
@@ -38,6 +39,7 @@ export default function ManageLecture({
         useState(false);
 
     const [selectedCourseSection, setSelectedCourseSection] = useState(null);
+    const [selectedCourseLecture, setSelectedCourseLecture] = useState(null);
 
     return (
         <>
@@ -89,6 +91,12 @@ export default function ManageLecture({
                                 setCreateCourseLectureModalIsOpen={
                                     setCreateCourseLectureModalIsOpen
                                 }
+                                setSelectedCourseLecture={
+                                    setSelectedCourseLecture
+                                }
+                                setDeleteCourseLectureModalIsOpen={
+                                    setDeleteCourseLectureModalIsOpen
+                                }
                             />
                         </div>
 
@@ -132,6 +140,13 @@ export default function ManageLecture({
                 setIsOpen={setCreateCourseLectureModalIsOpen}
                 courseSection={selectedCourseSection}
                 setCourseSection={setSelectedCourseSection}
+            />
+
+            <DeleteCourseLectureModal
+                isOpen={deleteCourseLectureModalIsOpen}
+                setIsOpen={setDeleteCourseLectureModalIsOpen}
+                courseLecture={selectedCourseLecture}
+                setCourseLecture={setSelectedCourseLecture}
             />
         </>
     );
