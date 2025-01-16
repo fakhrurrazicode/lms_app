@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CourseLecture extends BaseModel
 {
+
     protected $guarded = [];
 
     protected $appends = ['video_url'];

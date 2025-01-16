@@ -300,6 +300,15 @@ export default function AuthenticatedLayout({ header, children }) {
                             <span>Profile</span>
                         </Link>
                     </li>
+                    <li>
+                        <Link
+                            href="/backend/activity_log"
+                            className="flex justify-start items-center "
+                        >
+                            <User size={16} />
+                            <span>Activity Logs</span>
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </div>

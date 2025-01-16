@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Backend\ActivityLogController;
 use Inertia\Inertia;
 use App\Models\SubCourseCategory;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +61,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('/course_section', CourseSectionController::class)->only(['index', 'store', 'update', 'destroy']);
 
         Route::resource('/course_lecture', CourseLectureController::class)->only(['index', 'store', 'update', 'destroy']);
+
+        Route::resource('/activity_log', ActivityLogController::class)->only(['index']);
     });
 });
 
