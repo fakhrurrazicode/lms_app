@@ -7,4 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class CourseLecture extends Model
 {
     protected $guarded = [];
+
+    protected $appends = ['video_url'];
+
+    public function getVideoUrlAttribute()
+    {
+        return $this->video ? url('/storage/' . $this->video) : null;
+    }
 }

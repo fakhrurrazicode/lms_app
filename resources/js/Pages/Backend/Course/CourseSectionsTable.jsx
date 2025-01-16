@@ -1,5 +1,5 @@
 import { router, usePage } from "@inertiajs/react";
-import { Edit, Plus, Trash } from "lucide-react";
+import { Edit, Plus, Trash, Video } from "lucide-react";
 import React, { useEffect } from "react";
 
 export default function CourseSectionsTable({
@@ -18,9 +18,10 @@ export default function CourseSectionsTable({
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Sections</th>
-                            <th>Lectures</th>
+                            <th>Sections/Lectures</th>
                             <th>Video</th>
+                            <th>Created at</th>
+                            <th>Updated at</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,7 +85,8 @@ export default function CourseSectionsTable({
                                             </td>
                                             <td>{courseSection.title}</td>
                                             <td></td>
-                                            <td></td>
+                                            <td>{courseSection.created_at}</td>
+                                            <td>{courseSection.updated_at}</td>
                                         </tr>
                                         {courseSection.course_lectures &&
                                             courseSection.course_lectures.map(
@@ -136,13 +138,36 @@ export default function CourseSectionsTable({
                                                                 </span>
                                                             </button>
                                                         </td>
-                                                        <td></td>
+                                                        <td>
+                                                            <span className="ml-6">
+                                                                {
+                                                                    courseLecture.title
+                                                                }
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <a
+                                                                href={
+                                                                    courseLecture.video_url
+                                                                }
+                                                                className="text-primary"
+                                                                target="_blank"
+                                                            >
+                                                                <Video
+                                                                    size={16}
+                                                                />
+                                                            </a>
+                                                        </td>
                                                         <td>
                                                             {
-                                                                courseLecture.title
+                                                                courseLecture.created_at
                                                             }
                                                         </td>
-                                                        <td></td>
+                                                        <td>
+                                                            {
+                                                                courseLecture.updated_at
+                                                            }
+                                                        </td>
                                                     </tr>
                                                 )
                                             )}

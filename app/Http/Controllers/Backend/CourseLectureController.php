@@ -30,7 +30,8 @@ class CourseLectureController extends Controller
      */
     public function store(CourseLectureStoreRequest $request)
     {
-        $data = $request->only(['title', 'description', 'course_id', 'course_section_id']);
+        $data = $request->validated();
+        unset($data['video']);
         if ($request->hasFile('video')) {
             $data['video'] = $request->file('video')->store('videos', 'public');
         }
