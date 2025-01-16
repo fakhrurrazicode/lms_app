@@ -8,6 +8,7 @@ import {
     Circle,
     LayoutDashboard,
     LayoutList,
+    Terminal,
     User,
     UserCheck,
     Users,
@@ -305,7 +306,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             href="/backend/activity_log"
                             className="flex justify-start items-center "
                         >
-                            <User size={16} />
+                            <Terminal size={16} />
                             <span>Activity Logs</span>
                         </Link>
                     </li>
