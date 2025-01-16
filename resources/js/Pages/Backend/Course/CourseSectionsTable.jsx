@@ -25,82 +25,130 @@ export default function CourseSectionsTable({
                     </thead>
                     <tbody>
                         {courseSections.length > 0 ? (
-                            courseSections.map((courseSection, index) => (
-                                <React.Fragment key={index}>
-                                    <tr>
-                                        <td className="whitespace-nowrap gap-2 flex w-auto">
-                                            <button
-                                                className="btn btn-xs min-h-7 px-2 btn-accent"
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    setSelectedCourseSection(
-                                                        courseSection
-                                                    );
-                                                    setEditCourseSectionModalIsOpen(
-                                                        true
-                                                    );
-                                                }}
-                                            >
-                                                <Edit size={16} />{" "}
-                                                <span>Edit</span>
-                                            </button>
+                            courseSections.map((courseSection, index) => {
+                                console.log(
+                                    "CourseSectionsTable.courseSections.course_lectures",
+                                    courseSections
+                                );
+                                return (
+                                    <React.Fragment key={index}>
+                                        <tr>
+                                            <td className="whitespace-nowrap gap-2 flex w-auto">
+                                                <button
+                                                    className="btn btn-xs min-h-7 px-2 btn-accent"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        setSelectedCourseSection(
+                                                            courseSection
+                                                        );
+                                                        setEditCourseSectionModalIsOpen(
+                                                            true
+                                                        );
+                                                    }}
+                                                >
+                                                    <Edit size={16} />{" "}
+                                                    <span>Edit Section</span>
+                                                </button>
 
-                                            <button
-                                                className="btn btn-xs min-h-7 px-2 btn-error"
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    setSelectedCourseSection(
-                                                        courseSection
-                                                    );
-                                                    setDeleteCourseSectionModalIsOpen(
-                                                        true
-                                                    );
-                                                }}
-                                            >
-                                                <Trash size={16} />{" "}
-                                                <span>Delete</span>
-                                            </button>
+                                                <button
+                                                    className="btn btn-xs min-h-7 px-2 btn-error"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        setSelectedCourseSection(
+                                                            courseSection
+                                                        );
+                                                        setDeleteCourseSectionModalIsOpen(
+                                                            true
+                                                        );
+                                                    }}
+                                                >
+                                                    <Trash size={16} />{" "}
+                                                    <span>Delete Section</span>
+                                                </button>
 
-                                            <button
-                                                className="btn btn-xs min-h-7 px-2 btn-secondary"
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    setSelectedCourseSection(
-                                                        courseSection
-                                                    );
-                                                    setCreateCourseLectureModalIsOpen(
-                                                        true
-                                                    );
-                                                }}
-                                            >
-                                                <Plus size={16} />{" "}
-                                                <span>Add new Lecture</span>
-                                            </button>
-                                        </td>
-                                        <td>{courseSection.title}</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    {courseSections.course_lectures &&
-                                        courseSections.course_lectures.map(
-                                            (courseLecture, _index) => (
-                                                <tr key={_index}>
-                                                    <td className="whitespace-nowrap">
-                                                        <button className="btn btn-accent">
-                                                            <Edit size={16} />{" "}
-                                                            <span>Edit</span>
-                                                        </button>
-                                                    </td>
-                                                    <td></td>
-                                                    <td>
-                                                        {courseLecture.title}
-                                                    </td>
-                                                    <td></td>
-                                                </tr>
-                                            )
-                                        )}
-                                </React.Fragment>
-                            ))
+                                                <button
+                                                    className="btn btn-xs min-h-7 px-2 btn-secondary"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        setSelectedCourseSection(
+                                                            courseSection
+                                                        );
+                                                        setCreateCourseLectureModalIsOpen(
+                                                            true
+                                                        );
+                                                    }}
+                                                >
+                                                    <Plus size={16} />{" "}
+                                                    <span>Add new Lecture</span>
+                                                </button>
+                                            </td>
+                                            <td>{courseSection.title}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        {courseSection.course_lectures &&
+                                            courseSection.course_lectures.map(
+                                                (courseLecture, _index) => (
+                                                    <tr key={_index}>
+                                                        <td className="whitespace-nowrap gap-2 flex w-auto">
+                                                            <button
+                                                                className="btn btn-xs min-h-7 px-2 btn-accent"
+                                                                onClick={(
+                                                                    e
+                                                                ) => {
+                                                                    e.preventDefault();
+                                                                    setSelectedCourseSection(
+                                                                        courseSection
+                                                                    );
+                                                                    setEditCourseSectionModalIsOpen(
+                                                                        true
+                                                                    );
+                                                                }}
+                                                            >
+                                                                <Edit
+                                                                    size={16}
+                                                                />{" "}
+                                                                <span>
+                                                                    Edit Lecture
+                                                                </span>
+                                                            </button>
+
+                                                            <button
+                                                                className="btn btn-xs min-h-7 px-2 btn-error"
+                                                                onClick={(
+                                                                    e
+                                                                ) => {
+                                                                    e.preventDefault();
+                                                                    setSelectedCourseSection(
+                                                                        courseSection
+                                                                    );
+                                                                    setDeleteCourseSectionModalIsOpen(
+                                                                        true
+                                                                    );
+                                                                }}
+                                                            >
+                                                                <Trash
+                                                                    size={16}
+                                                                />{" "}
+                                                                <span>
+                                                                    Delete
+                                                                    Lecture
+                                                                </span>
+                                                            </button>
+                                                        </td>
+                                                        <td></td>
+                                                        <td>
+                                                            {
+                                                                courseLecture.title
+                                                            }
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                )
+                                            )}
+                                    </React.Fragment>
+                                );
+                            })
                         ) : (
                             <tr>
                                 <td colSpan={4} className="py-2 text-center">

@@ -35,10 +35,17 @@ export default function CreateCourseLectureModal({
         });
     }, [courseSection]);
 
+    let {
+        props: { request },
+    } = usePage();
+
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        post("/backend/course_lecture", {
+        request.selected_course_id = courseSection.course_id;
+        const query = new URLSearchParams(request).toString();
+
+        post(`/backend/course_lecture?${query}`, {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {

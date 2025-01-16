@@ -30,12 +30,12 @@ class CourseLectureController extends Controller
      */
     public function store(CourseLectureStoreRequest $request)
     {
-        $data = $request->except(['video']);
+        $data = $request->only(['title', 'description', 'course_id', 'course_section_id']);
         if ($request->hasFile('video')) {
             $data['video'] = $request->file('video')->store('videos', 'public');
         }
         CourseLecture::create($data);
-        return to_route('backend.course.index');
+        return to_route('backend.course.index', request()->query());
     }
 
     /**
