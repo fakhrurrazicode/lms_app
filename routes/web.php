@@ -60,7 +60,8 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/course_section', CourseSectionController::class)->only(['index', 'store', 'update', 'destroy']);
 
-        Route::resource('/course_lecture', CourseLectureController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('/course_lecture', CourseLectureController::class)->only(['index', 'store', 'destroy']);
+        Route::post('/course_lecture/{course_lecture}', [CourseLectureController::class, 'update'])->name('course_lecture.update');
 
         Route::resource('/activity_log', ActivityLogController::class)->only(['index']);
     });

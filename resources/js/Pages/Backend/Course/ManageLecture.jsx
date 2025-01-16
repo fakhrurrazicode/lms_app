@@ -10,6 +10,7 @@ import EditCourseSectionModal from "./EditCourseSectionModal";
 import DeleteCourseSectionModal from "./DeleteCourseSectionModal";
 import CreateCourseLectureModal from "./CreateCourseLectureModal";
 import DeleteCourseLectureModal from "./DeleteCourseLectureModal";
+import EditCourseLectureModal from "./EditCourseLectureModal";
 
 export default function ManageLecture({
     isOpen,
@@ -88,11 +89,14 @@ export default function ManageLecture({
                                 setDeleteCourseSectionModalIsOpen={
                                     setDeleteCourseSectionModalIsOpen
                                 }
+                                setSelectedCourseLecture={
+                                    setSelectedCourseLecture
+                                }
                                 setCreateCourseLectureModalIsOpen={
                                     setCreateCourseLectureModalIsOpen
                                 }
-                                setSelectedCourseLecture={
-                                    setSelectedCourseLecture
+                                setEditCourseLectureModalIsOpen={
+                                    setEditCourseLectureModalIsOpen
                                 }
                                 setDeleteCourseLectureModalIsOpen={
                                     setDeleteCourseLectureModalIsOpen
@@ -140,6 +144,13 @@ export default function ManageLecture({
                 setIsOpen={setCreateCourseLectureModalIsOpen}
                 courseSection={selectedCourseSection}
                 setCourseSection={setSelectedCourseSection}
+            />
+
+            <EditCourseLectureModal
+                isOpen={editCourseLectureModalIsOpen}
+                setIsOpen={setEditCourseLectureModalIsOpen}
+                courseLecture={selectedCourseLecture}
+                setCourseLecture={setSelectedCourseLecture}
             />
 
             <DeleteCourseLectureModal

@@ -22,7 +22,7 @@ class RoleSetPermissionsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'permissions' => ['required', 'array', 'min:1']
+            'permissions' => ['array']
         ];
     }
 }

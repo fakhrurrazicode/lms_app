@@ -8,6 +8,7 @@ export default function CourseSectionsTable({
     setEditCourseSectionModalIsOpen,
     setDeleteCourseSectionModalIsOpen,
     setCreateCourseLectureModalIsOpen,
+    setEditCourseLectureModalIsOpen,
     setSelectedCourseLecture,
     setDeleteCourseLectureModalIsOpen,
 }) {
@@ -109,7 +110,7 @@ export default function CourseSectionsTable({
                                                                     setSelectedCourseLecture(
                                                                         courseLecture
                                                                     );
-                                                                    setEditCourseSectionModalIsOpen(
+                                                                    setEditCourseLectureModalIsOpen(
                                                                         true
                                                                     );
                                                                 }}

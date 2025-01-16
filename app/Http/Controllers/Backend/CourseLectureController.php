@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseLectureStoreRequest;
+use App\Http\Requests\CourseLectureUpdateRequest;
 use App\Models\CourseLecture;
 use Illuminate\Http\Request;
 
@@ -58,9 +59,15 @@ class CourseLectureController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CourseLectureUpdateRequest $request, CourseLecture $course_lecture)
     {
-        //
+        $data = $request->validated();
+        unset($data['video']);
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('images', 'public');
+        }
+        $course_lecture->update($data);
+        return to_route('backend.course.index', request()->query());
     }
 
     /**
