@@ -88,7 +88,12 @@ export default function CourseSectionsTable({
                                             <td>{courseSection.title}</td>
                                             <td></td>
                                             <td>{courseSection.created_at}</td>
-                                            <td>{courseSection.updated_at}</td>
+                                            <td>
+                                                {courseSection.created_at !==
+                                                courseSection.updated_at
+                                                    ? courseSection.updated_at
+                                                    : ""}
+                                            </td>
                                         </tr>
                                         {courseSection.course_lectures &&
                                             courseSection.course_lectures.map(
@@ -140,12 +145,10 @@ export default function CourseSectionsTable({
                                                                 </span>
                                                             </button>
                                                         </td>
-                                                        <td>
-                                                            <span className="ml-6">
-                                                                {
-                                                                    courseLecture.title
-                                                                }
-                                                            </span>
+                                                        <td className="pl-12">
+                                                            {
+                                                                courseLecture.title
+                                                            }
                                                         </td>
                                                         <td>
                                                             <a
@@ -166,9 +169,10 @@ export default function CourseSectionsTable({
                                                             }
                                                         </td>
                                                         <td>
-                                                            {
-                                                                courseLecture.updated_at
-                                                            }
+                                                            {courseLecture.created_at !==
+                                                            courseLecture.updated_at
+                                                                ? courseLecture.updated_at
+                                                                : ""}
                                                         </td>
                                                     </tr>
                                                 )
