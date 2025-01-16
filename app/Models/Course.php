@@ -7,7 +7,7 @@ use App\Models\CourseCategory;
 use App\Models\CourseSubCategory;
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Course extends BaseModel
 {
     protected $guarded = [];
     protected $appends = ['image_url'];
