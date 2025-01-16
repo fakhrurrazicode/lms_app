@@ -17,6 +17,7 @@ export default function Index({
     instructors,
     courseSections,
 }) {
+    console.log("courseSections", courseSections);
     const [selectedCourse, setSelectedCourse] = useState(null);
 
     const [createModalIsOpen, setCreateModalIsOpen] = useState(false);

@@ -8,6 +8,7 @@ import CourseSectionsTable from "./CourseSectionsTable";
 import CreateCourseSectionModal from "./CreateCourseSectionModal";
 import EditCourseSectionModal from "./EditCourseSectionModal";
 import DeleteCourseSectionModal from "./DeleteCourseSectionModal";
+import CreateCourseLectureModal from "./CreateCourseLectureModal";
 
 export default function ManageLecture({
     isOpen,
@@ -27,6 +28,13 @@ export default function ManageLecture({
     const [editCourseSectionModalIsOpen, setEditCourseSectionModalIsOpen] =
         useState(false);
     const [deleteCourseSectionModalIsOpen, setDeleteCourseSectionModalIsOpen] =
+        useState(false);
+
+    const [createCourseLectureModalIsOpen, setCreateCourseLectureModalIsOpen] =
+        useState(false);
+    const [editCourseLectureModalIsOpen, setEditCourseLectureModalIsOpen] =
+        useState(false);
+    const [deleteCourseLectureModalIsOpen, setDeleteCourseLectureModalIsOpen] =
         useState(false);
 
     const [selectedCourseSection, setSelectedCourseSection] = useState(null);
@@ -65,10 +73,6 @@ export default function ManageLecture({
                                         <Plus size={16} />{" "}
                                         <span>Add new Section</span>
                                     </button>
-                                    <button className="btn btn-primary">
-                                        <Plus size={16} />{" "}
-                                        <span>Add new Lecture</span>
-                                    </button>
                                 </div>
                             </div>
                             <CourseSectionsTable
@@ -81,6 +85,9 @@ export default function ManageLecture({
                                 }
                                 setDeleteCourseSectionModalIsOpen={
                                     setDeleteCourseSectionModalIsOpen
+                                }
+                                setCreateCourseLectureModalIsOpen={
+                                    setCreateCourseLectureModalIsOpen
                                 }
                             />
                         </div>
@@ -116,6 +123,13 @@ export default function ManageLecture({
             <DeleteCourseSectionModal
                 isOpen={deleteCourseSectionModalIsOpen}
                 setIsOpen={setDeleteCourseSectionModalIsOpen}
+                courseSection={selectedCourseSection}
+                setCourseSection={setSelectedCourseSection}
+            />
+
+            <CreateCourseLectureModal
+                isOpen={createCourseLectureModalIsOpen}
+                setIsOpen={setCreateCourseLectureModalIsOpen}
                 courseSection={selectedCourseSection}
                 setCourseSection={setSelectedCourseSection}
             />

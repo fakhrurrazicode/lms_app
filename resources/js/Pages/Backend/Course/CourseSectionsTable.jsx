@@ -7,8 +7,9 @@ export default function CourseSectionsTable({
     setSelectedCourseSection,
     setEditCourseSectionModalIsOpen,
     setDeleteCourseSectionModalIsOpen,
+    setCreateCourseLectureModalIsOpen,
 }) {
-    console.log("courseSections", courseSections);
+    console.log("CourseSectionsTable.courseSections", courseSections);
 
     return (
         <>
@@ -59,13 +60,29 @@ export default function CourseSectionsTable({
                                                 <Trash size={16} />{" "}
                                                 <span>Delete</span>
                                             </button>
+
+                                            <button
+                                                className="btn btn-xs min-h-7 px-2 btn-secondary"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setSelectedCourseSection(
+                                                        courseSection
+                                                    );
+                                                    setCreateCourseLectureModalIsOpen(
+                                                        true
+                                                    );
+                                                }}
+                                            >
+                                                <Plus size={16} />{" "}
+                                                <span>Add new Lecture</span>
+                                            </button>
                                         </td>
                                         <td>{courseSection.title}</td>
                                         <td></td>
                                         <td></td>
                                     </tr>
-                                    {courseSections.courseLectures &&
-                                        courseLectures.map(
+                                    {courseSections.course_lectures &&
+                                        courseSections.course_lectures.map(
                                             (courseLecture, _index) => (
                                                 <tr key={_index}>
                                                     <td className="whitespace-nowrap">

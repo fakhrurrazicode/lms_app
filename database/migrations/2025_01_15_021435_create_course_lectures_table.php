@@ -17,8 +17,7 @@ return new class extends Migration
             $table->integer('course_section_id');
             $table->string('title');
             $table->string('video');
-            $table->string('url');
-            $table->string('content');
+            $table->text('description');
             $table->timestamps();
         });
     }

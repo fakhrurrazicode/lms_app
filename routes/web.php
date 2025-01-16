@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
+use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSubCategoryController;
 use App\Http\Controllers\Backend\SubCourseCategoryController;
 
@@ -58,6 +59,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/course/{course}', [CourseController::class, 'update'])->name('course.update');
 
         Route::resource('/course_section', CourseSectionController::class)->only(['index', 'store', 'update', 'destroy']);
+
+        Route::resource('/course_lecture', CourseLectureController::class)->only(['index', 'store', 'update', 'destroy']);
     });
 });
 

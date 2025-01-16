@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Course;
+
 use App\Models\CourseCategory;
 use App\Models\CourseSubCategory;
 use App\Models\User;
