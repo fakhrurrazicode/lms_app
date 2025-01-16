@@ -29,7 +29,7 @@ export default function Index({ request, activity_logs }) {
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Roles
+                    Activity Logs
                 </h2>
             }
         >
