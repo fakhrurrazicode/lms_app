@@ -13,7 +13,10 @@ export default function CreateModal({ isOpen, setIsOpen }) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        post("/backend/role", {
+
+        const query = new URLSearchParams(props.query).toString();
+
+        post(`/backend/role?${query}`, {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {

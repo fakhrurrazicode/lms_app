@@ -73,7 +73,7 @@ class RoleController extends Controller
     public function update(RoleUpdateRequest $request, Role $role)
     {
         $role->update($request->validated());
-        return to_route('backend.role.index');
+        return to_route('backend.role.index', request()->query());
     }
 
     public function setPermission(RoleSetPermissionsRequest $request, Role $role)
@@ -81,7 +81,7 @@ class RoleController extends Controller
 
         $validated = $request->validated();
         $role->syncPermissions($validated['permissions']);
-        return to_route('backend.role.index');
+        return to_route('backend.role.index',);
     }
 
     /**
