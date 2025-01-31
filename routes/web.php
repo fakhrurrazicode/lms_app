@@ -15,17 +15,20 @@ use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSubCategoryController;
 use App\Http\Controllers\Backend\SubCourseCategoryController;
+use App\Http\Controllers\PagesController;
 
-Route::get('/', function () {
+// Route::get('/', function () {
 
-    return redirect('/login');
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+//     // return redirect('/login');
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+
+Route::get('/', [PagesController::class, 'index'])->name('page.home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
