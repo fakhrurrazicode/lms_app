@@ -56,7 +56,7 @@ export default function EditPasswordModal({
                                         <tr>
                                             <td>{user.name}</td>
                                             <td>{user.email}</td>
-                                            <td>{user.roles[0].name}</td>
+                                            <td>{user.roles ? user.roles[0].name : '-'}</td>
                                         </tr>
                                     </tbody>
                                 </table>
