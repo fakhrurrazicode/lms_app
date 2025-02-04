@@ -315,7 +315,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             </Link>
                         </li>
                     )}
-                    {permissions.includes("backend.activity_logs") && (
+                    {permissions.includes("backend.activity_logs.index") && (
                         <li>
                             <Link
                                 href="/backend/activity_log"
