@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "iseed:all": "php artisan iseed activity_log,cache,cache_locks,course_categories,course_lectures,course_sections,course_sub_categories,courses,failed_jobs,job_batches,jobs,migrations,model_has_permissions,model_has_roles,password_reset_tokens,permissions,role_has_permissions,roles,sessions,sub_course_categories,users --force -vv"
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",
