@@ -23,5 +23,22 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(ActivityLogTableSeeder::class);
+        $this->call(CacheTableSeeder::class);
+        $this->call(CacheLocksTableSeeder::class);
+        $this->call(CourseCategoriesTableSeeder::class);
+        $this->call(CourseLecturesTableSeeder::class);
+        $this->call(CourseSectionsTableSeeder::class);
+        $this->call(CourseSubCategoriesTableSeeder::class);
+        $this->call(CoursesTableSeeder::class);
+        $this->call(FailedJobsTableSeeder::class);
+        $this->call(JobBatchesTableSeeder::class);
+        $this->call(JobsTableSeeder::class);
+        $this->call(MigrationsTableSeeder::class);
+        $this->call(ModelHasPermissionsTableSeeder::class);
+        $this->call(ModelHasRolesTableSeeder::class);
+        $this->call(PasswordResetTokensTableSeeder::class);
+        $this->call(RoleHasPermissionsTableSeeder::class);
+        $this->call(SessionsTableSeeder::class);
+        $this->call(SubCourseCategoriesTableSeeder::class);
     }
 }

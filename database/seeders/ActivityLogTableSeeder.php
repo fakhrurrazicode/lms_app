@@ -64,6 +64,21 @@ class ActivityLogTableSeeder extends Seeder
                 'created_at' => '2025-02-04 03:18:00',
                 'updated_at' => '2025-02-04 03:18:00',
             ),
+            3 => 
+            array (
+                'id' => 4,
+                'log_name' => 'default',
+                'description' => 'created',
+                'subject_type' => 'App\\Models\\User',
+                'event' => 'created',
+                'subject_id' => 4,
+                'causer_type' => NULL,
+                'causer_id' => NULL,
+                'properties' => '{"attributes":{"id":4,"name":"Fakhrurrazi","username":"fakhrurrazi.code","email":"fakhrurrazi.code@gmail.com","email_verified_at":null,"password":"$2y$12$E.6bu0f8eMdThCY0GulJbeNMvut1huAkSGxE3rg.fR\\/bOilRHjfZS","remember_token":null,"created_at":"2025-02-04 04:11:21","updated_at":"2025-02-04 04:11:21","photo":null}}',
+                'batch_uuid' => NULL,
+                'created_at' => '2025-02-04 04:11:21',
+                'updated_at' => '2025-02-04 04:11:21',
+            ),
         ));
         
         
