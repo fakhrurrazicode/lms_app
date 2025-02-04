@@ -181,7 +181,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                         </button>
                                         <div
                                             className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                            style="transition: 0.3s"
+                                            style={{ transition: '0.3s' }}
                                         >
                                             <div className="shadow-dropdown3 max-w-dropdown2 w-2000 rounded-standard bg-white dark:bg-whiteColor-dark">
                                                 <ul>
@@ -225,7 +225,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                         </button>
                                         <div
                                             className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                            style="transition: 0.3s"
+                                            style={{ transition: '0.3s' }}
                                         >
                                             <div className="shadow-dropdown3 max-w-dropdown2 w-2000 rounded-standard bg-white dark:bg-whiteColor-dark">
                                                 <ul>
@@ -283,7 +283,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                         </a>
                                         <div
                                             className="dropdown absolute right-0 lg:right-8 translate-y-10 z-medium hidden opacity-0 pt-5px"
-                                            style="transition: 0.3s"
+                                            style={{ transition: '0.3s' }}
                                         >
                                             <div className="shadow-dropdown-secodary max-w-dropdown3 w-2000 rounded-standard p-5 bg-white dark:bg-whiteColor-dark">
                                                 <ul className="flex flex-col gap-y-5 pb-5 mb-30px border-b border-borderColor dark:border-borderColor-dark">
@@ -436,7 +436,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </a>
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                                style="transition: 0.3s"
+                                                style={{ transition: '0.3s' }}
                                             >
                                                 <div className="tab container 3xl:container2-lg 4xl:container shadow-dropdown px-30px mx-auto xl:px-30px py-15px max-h-dropdown 3xl:h-2000 xl:overflow-y-scroll rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <div className="tab-links grid grid-cols-2 gap-22px text-blackColor text-lg font-semibold font-hind">
@@ -1061,7 +1061,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </a>
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                                style="transition: 0.3s"
+                                                style={{ transition: '0.3s' }}
                                             >
                                                 <div className="container 3xl:container2-lg 4xl:container w-2000 shadow-dropdown px-30px mx-auto xl:px-30px py-30px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <div className="grid grid-cols-4 gap-x-30px">
@@ -1370,7 +1370,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </a>
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                                style="transition: 0.3s"
+                                                style={{ transition: '0.3s' }}
                                             >
                                                 <div className="container 3xl:container2-lg 4xl:container w-2000 shadow-dropdown px-30px mx-auto xl:px-30px py-30px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <div className="grid grid-cols-4 gap-x-30px">
@@ -1617,7 +1617,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </a>
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                                style="transition: 0.3s"
+                                                style={{ transition: '0.3s' }}
                                             >
                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <ul>
@@ -1631,7 +1631,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             </a>
                                                             <div
                                                                 className="nested-dropdown absolute left-full top-0 z-50 hidden opacity-0 group-hover/nested:block group-hover/nested:opacity-100"
-                                                                style="transition: 0.3s"
+                                                                style={{ transition: '0.3s' }}
                                                             >
                                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                                     <ul>
@@ -1715,7 +1715,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             </a>
                                                             <div
                                                                 className="nested-dropdown absolute left-full top-0 z-50 hidden opacity-0 group-hover/nested:block group-hover/nested:opacity-100"
-                                                                style="transition: 0.3s"
+                                                                style={{ transition: '0.3s' }}
                                                             >
                                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                                     <ul>
@@ -1847,7 +1847,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             </a>
                                                             <div
                                                                 className="nested-dropdown absolute left-full top-0 z-50 hidden opacity-0 group-hover/nested:block group-hover/nested:opacity-100"
-                                                                style="transition: 0.3s"
+                                                                style={{ transition: '0.3s' }}
                                                             >
                                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                                     <ul>
@@ -1953,7 +1953,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </a>
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                                style="transition: 0.3s"
+                                                style={{ transition: '0.3s' }}
                                             >
                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <ul>
@@ -2025,7 +2025,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </a>
                                             <div
                                                 className="dropdown absolute right-0 lg:right-8 translate-y-10 z-medium hidden opacity-0 pt-5px"
-                                                style="transition: 0.3s"
+                                                style={{ transition: '0.3s' }}
                                             >
                                                 <div className="shadow-dropdown-secodary max-w-dropdown3 w-2000 rounded-standard p-5 bg-white dark:bg-whiteColor-dark">
                                                     <ul className="flex flex-col gap-y-5 pb-5 mb-30px border-b border-borderColor dark:border-borderColor-dark">
@@ -4393,7 +4393,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 fill="none"
                                                 xmlns="http://www.w3.org/2000/svg"
                                             >
-                                                <g clip-path="url(#clip0_98_30)">
+                                                <g clipPath="url(#clip0_98_30)">
                                                     <path
                                                         className="group-hover:fill-whiteColor dark:group-hover:fill-whiteColor-dark"
                                                         d="M27.9228 12.1644H34.0478C34.3185 12.1644 34.5782 12.0616 34.7696 11.8788C34.9611 11.6959 35.0686 11.4479 35.0686 11.1894C35.0686 10.9308 34.9611 10.6828 34.7696 10.4999C34.5782 10.3171 34.3185 10.2144 34.0478 10.2144H27.9228C27.6521 10.2144 27.3924 10.3171 27.201 10.4999C27.0095 10.6828 26.902 10.9308 26.902 11.1894C26.902 11.4479 27.0095 11.6959 27.201 11.8788C27.3924 12.0616 27.6521 12.1644 27.9228 12.1644Z"
@@ -4667,7 +4667,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 fill="none"
                                                 xmlns="http://www.w3.org/2000/svg"
                                             >
-                                                <g clip-path="url(#clip0_98_105)">
+                                                <g clipPath="url(#clip0_98_105)">
                                                     <path
                                                         className="group-hover:fill-whiteColor dark:group-hover:fill-whiteColor-dark"
                                                         d="M38.0462 15.8125C37.7036 15.8174 37.3751 15.9558 37.125 16.2006V12.9375C37.125 11.7938 36.6904 10.6969 35.9168 9.8881C35.1432 9.07935 34.094 8.625 33 8.625H31.625V7.1875C31.625 6.04375 31.1904 4.94685 30.4168 4.1381C29.6432 3.32935 28.594 2.875 27.5 2.875H16.5C15.406 2.875 14.3568 3.32935 13.5832 4.1381C12.8096 4.94685 12.375 6.04375 12.375 7.1875V8.625H11C9.90598 8.625 8.85677 9.07935 8.08318 9.8881C7.3096 10.6969 6.875 11.7938 6.875 12.9375V33.0625C6.875 34.2062 7.3096 35.3031 8.08318 36.1119C8.85677 36.9207 9.90598 37.375 11 37.375H12.375V38.8125C12.375 39.9562 12.8096 41.0531 13.5832 41.8619C14.3568 42.6707 15.406 43.125 16.5 43.125H27.5C28.594 43.125 29.6432 42.6707 30.4168 41.8619C31.1904 41.0531 31.625 39.9562 31.625 38.8125V37.375H33C34.094 37.375 35.1432 36.9207 35.9168 36.1119C36.6904 35.3031 37.125 34.2062 37.125 33.0625V21.1744C37.3751 21.4192 37.7036 21.5576 38.0462 21.5625C38.4109 21.5625 38.7607 21.411 39.0185 21.1415C39.2764 20.8719 39.4212 20.5062 39.4212 20.125V17.25C39.4212 16.8688 39.2764 16.5031 39.0185 16.2335C38.7607 15.964 38.4109 15.8125 38.0462 15.8125ZM15.125 7.1875C15.125 6.80625 15.2699 6.44062 15.5277 6.17103C15.7856 5.90145 16.1353 5.75 16.5 5.75H27.5C27.8647 5.75 28.2144 5.90145 28.4723 6.17103C28.7301 6.44062 28.875 6.80625 28.875 7.1875V8.625H15.125V7.1875ZM28.875 38.8125C28.875 39.1937 28.7301 39.5594 28.4723 39.829C28.2144 40.0985 27.8647 40.25 27.5 40.25H16.5C16.1353 40.25 15.7856 40.0985 15.5277 39.829C15.2699 39.5594 15.125 39.1937 15.125 38.8125V37.375H28.875V38.8125ZM34.375 33.0625C34.375 33.4437 34.2301 33.8094 33.9723 34.079C33.7144 34.3486 33.3647 34.5 33 34.5H11C10.6353 34.5 10.2856 34.3486 10.0277 34.079C9.76987 33.8094 9.625 33.4437 9.625 33.0625V12.9375C9.625 12.5563 9.76987 12.1906 10.0277 11.921C10.2856 11.6515 10.6353 11.5 11 11.5H33C33.3647 11.5 33.7144 11.6515 33.9723 11.921C34.2301 12.1906 34.375 12.5563 34.375 12.9375V33.0625Z"
@@ -4737,7 +4737,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 fill="none"
                                                 xmlns="http://www.w3.org/2000/svg"
                                             >
-                                                <g clip-path="url(#clip0_98_105)">
+                                                <g clipPath="url(#clip0_98_105)">
                                                     <path
                                                         className="group-hover:fill-whiteColor dark:group-hover:fill-whiteColor-dark"
                                                         d="M38.0462 15.8125C37.7036 15.8174 37.3751 15.9558 37.125 16.2006V12.9375C37.125 11.7938 36.6904 10.6969 35.9168 9.8881C35.1432 9.07935 34.094 8.625 33 8.625H31.625V7.1875C31.625 6.04375 31.1904 4.94685 30.4168 4.1381C29.6432 3.32935 28.594 2.875 27.5 2.875H16.5C15.406 2.875 14.3568 3.32935 13.5832 4.1381C12.8096 4.94685 12.375 6.04375 12.375 7.1875V8.625H11C9.90598 8.625 8.85677 9.07935 8.08318 9.8881C7.3096 10.6969 6.875 11.7938 6.875 12.9375V33.0625C6.875 34.2062 7.3096 35.3031 8.08318 36.1119C8.85677 36.9207 9.90598 37.375 11 37.375H12.375V38.8125C12.375 39.9562 12.8096 41.0531 13.5832 41.8619C14.3568 42.6707 15.406 43.125 16.5 43.125H27.5C28.594 43.125 29.6432 42.6707 30.4168 41.8619C31.1904 41.0531 31.625 39.9562 31.625 38.8125V37.375H33C34.094 37.375 35.1432 36.9207 35.9168 36.1119C36.6904 35.3031 37.125 34.2062 37.125 33.0625V21.1744C37.3751 21.4192 37.7036 21.5576 38.0462 21.5625C38.4109 21.5625 38.7607 21.411 39.0185 21.1415C39.2764 20.8719 39.4212 20.5062 39.4212 20.125V17.25C39.4212 16.8688 39.2764 16.5031 39.0185 16.2335C38.7607 15.964 38.4109 15.8125 38.0462 15.8125ZM15.125 7.1875C15.125 6.80625 15.2699 6.44062 15.5277 6.17103C15.7856 5.90145 16.1353 5.75 16.5 5.75H27.5C27.8647 5.75 28.2144 5.90145 28.4723 6.17103C28.7301 6.44062 28.875 6.80625 28.875 7.1875V8.625H15.125V7.1875ZM28.875 38.8125C28.875 39.1937 28.7301 39.5594 28.4723 39.829C28.2144 40.0985 27.8647 40.25 27.5 40.25H16.5C16.1353 40.25 15.7856 40.0985 15.5277 39.829C15.2699 39.5594 15.125 39.1937 15.125 38.8125V37.375H28.875V38.8125ZM34.375 33.0625C34.375 33.4437 34.2301 33.8094 33.9723 34.079C33.7144 34.3486 33.3647 34.5 33 34.5H11C10.6353 34.5 10.2856 34.3486 10.0277 34.079C9.76987 33.8094 9.625 33.4437 9.625 33.0625V12.9375C9.625 12.5563 9.76987 12.1906 10.0277 11.921C10.2856 11.6515 10.6353 11.5 11 11.5H33C33.3647 11.5 33.7144 11.6515 33.9723 11.921C34.2301 12.1906 34.375 12.5563 34.375 12.9375V33.0625Z"
