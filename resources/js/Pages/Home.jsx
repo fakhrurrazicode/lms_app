@@ -1,53 +1,35 @@
-// // <!DOCTYPE html="">
-// <html lang="en">
-//     <head>
-//         <meta charset="UTF-8" />
-//         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-//         <title>Home-2 LMS Classic | Edurock - Education LMS Template</title>
-//         <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon.ico" />
-//         <link rel="stylesheet" href="./assets/css/icofont.min.css" />
-//         <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
-//         <link rel="stylesheet" href="./assets/css/video-modal.css" />
-//         <link rel="stylesheet" href="./assets/css/aos.css" />
-//         <link rel="stylesheet" href="./assets/css/style.css" />
-//     </head>
-//     <body className="relative font-inter font-normal text-base leading-[1.8] bg-bodyBg dark:bg-bodyBg-dark z-0" >
-
-//         <script src="./assets/js/swiper-bundle.min.js"></script> <script src="./assets/js/isotope.pkgd.min.js"></script> <script src="./assets/js/accordion.js"></script> <script src="./assets/js/chart.js"></script> <script src="./assets/js/count.js"></script> <script src="./assets/js/countdown.js"></script> <script src="./assets/js/counterup.js"></script> <script src="./assets/js/dropdown.js"></script> <script src="./assets/js/filter.js"></script> <script src="./assets/js/mobileMenu.js"></script> <script src="./assets/js/modal.js"></script> <script src="./assets/js/popup.js"></script> <script src="./assets/js/preloader.js"></script> <script src="./assets/js/scrollUp.js"></script> <script src="./assets/js/slider.js"></script> <script src="./assets/js/smoothScroll.js"></script> <script src="./assets/js/stickyHeader.js"></script> <script src="./assets/js/tabs.js"></script> <script src="./assets/js/theme.js"></script> <script src="./assets/js/videoModal.js"></script> <script src="./assets/js/vanilla-tilt.js"></script> <script src="./assets/js/aos.js"></script> <script src="./assets/js/main.js"></script>
-//     </body>
-// </html>
-
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link } from "@inertiajs/react";
 
 export default function Home({ auth, laravelVersion, phpVersion }) {
-    
     const handleImageError = () => {
         document
-            .getElementById('screenshot-container')
-            ?.classList.add('!hidden');
-        document.getElementById('docs-card')?.classList.add('!row-span-1');
+            .getElementById("screenshot-container")
+            ?.classList.add("!hidden");
+        document.getElementById("docs-card")?.classList.add("!row-span-1");
         document
-            .getElementById('docs-card-content')
-            ?.classList.add('!flex-row');
-        document.getElementById('background')?.classList.add('!hidden');
+            .getElementById("docs-card-content")
+            ?.classList.add("!flex-row");
+        document.getElementById("background")?.classList.add("!hidden");
     };
+
     return (
         <>
             <div className="preloader flex fixed top-0 left-0 h-screen w-full items-center justify-center z-xxl bg-whiteColor opacity-100 visible transition-all duration-700">
                 <div className="w-90px h-90px border-5px border-t-blue border-r-blue border-b-blue-light border-l-blue-light rounded-full animate-spin-infinit"></div>
                 <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
-                    {" "}
                     <img
                         src="./assets/images/pre.png"
                         alt="Preloader"
                         className="h-10 w-10 block"
-                    />{" "}
+                    />
                 </div>
             </div>
+
             <div>
                 <div className="fixed-shadow left-[-250px]"></div>
                 <div className="fixed-shadow right-[-250px]"></div>
             </div>
+
             <div className="fixed top-[100px] 2xl:top-[300px] transition-all duration-300 right-[-50px] hover:right-0 z-xl">
                 <button className="theme-controller w-90px h-10 bg-primaryColor dark:bg-whiteColor-dark rounded-l-lg2 text-whiteColor px-10px flex items-center dark:shadow-theme-controller">
                     <svg
@@ -65,6 +47,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                         ></path>
                     </svg>
                     <span className="text-base block dark:hidden">Dark</span>
+
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="hidden mr-10px w-5 dark:block"
@@ -92,13 +75,13 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                     <span className="text-base hidden dark:block">Light</span>
                 </button>
             </div>
+
             <div>
-                {" "}
                 <button className="scroll-up w-50px h-50px leading-50px text-center text-primaryColor bg-white hover:text-whiteColor hover:bg-primaryColor rounded-full fixed right-5 bottom-[60px] shadow-scroll-up z-medium text-xl dark:text-whiteColor dark:bg-primaryColor dark:hover:text-whiteColor-dark hidden">
-                    {" "}
-                    <i className="icofont-rounded-up"></i>{" "}
-                </button>{" "}
+                    <i className="icofont-rounded-up"></i>
+                </button>
             </div>
+
             <header>
                 <div className="bg-blackColor2 dark:bg-lightGrey10-dark hidden lg:block">
                     <div className="container 3xl:container2-lg 4xl:container mx-auto text-whiteColor text-size-12 xl:text-sm py-5px xl:py-9px">
@@ -112,50 +95,45 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                             <div className="flex gap-37px items-center">
                                 <div>
                                     <p>
-                                        {" "}
-                                        <i className="icofont-location-pin text-primaryColor text-size-15 mr-5px"></i>{" "}
+                                        <i className="icofont-location-pin text-primaryColor text-size-15 mr-5px"></i>
                                         <span>
                                             684 West College St. Sun City, USA
-                                        </span>{" "}
+                                        </span>
                                     </p>
                                 </div>
                                 <div>
                                     <ul className="flex gap-13px text-size-15">
                                         <li>
-                                            {" "}
                                             <a
                                                 className="hover:text-primaryColor"
                                                 href="#"
                                             >
                                                 <i className="icofont-facebook"></i>
-                                            </a>{" "}
+                                            </a>
                                         </li>
                                         <li>
-                                            {" "}
                                             <a
                                                 className="hover:text-primaryColor"
                                                 href="#"
                                             >
                                                 <i className="icofont-twitter"></i>
-                                            </a>{" "}
+                                            </a>
                                         </li>
                                         <li>
-                                            {" "}
                                             <a
                                                 className="hover:text-primaryColor"
                                                 href="#"
                                             >
                                                 <i className="icofont-instagram"></i>
-                                            </a>{" "}
+                                            </a>
                                         </li>
                                         <li>
-                                            {" "}
                                             <a
                                                 className="hover:text-primaryColor"
                                                 href="#"
                                             >
                                                 <i className="icofont-youtube-play"></i>
-                                            </a>{" "}
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -163,6 +141,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                         </div>
                     </div>
                 </div>
+
                 <div className="transition-all duration-500 sticky-header z-medium dark:bg-whiteColor-dark">
                     <nav className="lg:container 3xl:container2-lg 4xl:container mx-auto relative">
                         <div className="hidden lg:grid grid-cols-12 py-5 px-15px items-center gap-30px border-b border-borderColor dark:border-borderColor-dark -mx-15px">
@@ -170,15 +149,15 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 <ul className="flex items-center nav-list">
                                     <li className="relative">
                                         <button className="text-contentColor dark:text-contentColor-dark pr-10px flex items-center">
-                                            {" "}
                                             <img
                                                 src="./assets/images/icon/flag1.webp"
                                                 alt=""
                                                 className="w-6 h-6 mr-1 rounded-lg2"
-                                            />{" "}
-                                            ENG{" "}
-                                            <i className="icofont-rounded-down"></i>{" "}
+                                            />
+                                            ENG
+                                            <i className="icofont-rounded-down"></i>
                                         </button>
+
                                         <div
                                             className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
                                             style={{ transition: '0.3s' }}
@@ -186,7 +165,6 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             <div className="shadow-dropdown3 max-w-dropdown2 w-2000 rounded-standard bg-white dark:bg-whiteColor-dark">
                                                 <ul>
                                                     <li>
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="flex items-center text-size-13 text-blackColor p-10px transition duration-300 hover:bg-darkdeep4 hover:text-whiteColor dark:text-blackColor-dark dark:hover:text-whiteColor-dark dark:hover:bg-darkdeep4"
@@ -196,11 +174,10 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 alt=""
                                                                 className="w-18px h-18px rounded-lg mr-10px"
                                                             />
-                                                            FR{" "}
-                                                        </a>{" "}
+                                                            FR
+                                                        </a>
                                                     </li>
                                                     <li>
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="flex items-center text-size-13 text-blackColor p-10px transition duration-300 hover:bg-darkdeep4 hover:text-whiteColor dark:text-blackColor-dark dark:hover:text-whiteColor-dark dark:hover:bg-darkdeep4"
@@ -210,8 +187,8 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 alt=""
                                                                 className="w-18px h-18px rounded-lg mr-10px"
                                                             />
-                                                            DE{" "}
-                                                        </a>{" "}
+                                                            DE
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -219,10 +196,10 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                     </li>
                                     <li className="relative">
                                         <button className="text-contentColor dark:text-contentColor-dark pl-10px flex items-center">
-                                            {" "}
-                                            USD{" "}
-                                            <i className="icofont-rounded-down"></i>{" "}
+                                            USD
+                                            <i className="icofont-rounded-down"></i>
                                         </button>
+
                                         <div
                                             className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
                                             style={{ transition: '0.3s' }}
@@ -230,22 +207,20 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             <div className="shadow-dropdown3 max-w-dropdown2 w-2000 rounded-standard bg-white dark:bg-whiteColor-dark">
                                                 <ul>
                                                     <li>
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="w-full text-size-13 text-blackColor p-10px pl-5 transition duration-300 hover:bg-darkdeep4 hover:text-whiteColor dark:text-blackColor-dark dark:hover:text-whiteColor-dark dark:hover:bg-darkdeep4"
                                                         >
-                                                            FR{" "}
-                                                        </a>{" "}
+                                                            FR
+                                                        </a>
                                                     </li>
                                                     <li>
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="w-full text-size-13 text-blackColor p-10px pl-5 transition duration-300 hover:bg-darkdeep4 hover:text-whiteColor dark:text-blackColor-dark dark:hover:text-whiteColor-dark dark:hover:bg-darkdeep4"
                                                         >
-                                                            DE{" "}
-                                                        </a>{" "}
+                                                            DE
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -256,19 +231,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                             <div className="col-start-4 col-span-6">
                                 <form>
                                     <div className="text-blackColor dark:text-blackColor-dark py-2 pl-15px border border-borderColor dark:border-borderColor-dark relative rounded-full">
-                                        {" "}
                                         <input
                                             type="text"
                                             placeholder="Search Course"
                                             className="w-full focus:outline-none bg-transparent placeholder:text-darkdeep4"
-                                        />{" "}
+                                        />
                                         <button
                                             type="submit"
                                             className="absolute top-1/2 -translate-y-1/2 right-7"
                                         >
-                                            {" "}
-                                            <i className="icofont-search-1"></i>{" "}
-                                        </button>{" "}
+                                            <i className="icofont-search-1"></i>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -276,11 +249,12 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 <ul className="relative nav-list flex justify-end items-center">
                                     <li className="px-5 lg:px-10px 2xl:px-5 group">
                                         <a href="#" className="relative block">
-                                            <i className="icofont-cart-alt text-2xl text-blackColor group-hover:text-secondaryColor transition-all duration-300 dark:text-blackColor-dark"></i>{" "}
+                                            <i className="icofont-cart-alt text-2xl text-blackColor group-hover:text-secondaryColor transition-all duration-300 dark:text-blackColor-dark"></i>
                                             <span className="absolute -top-1 2xl:-top-[5px] -right-[10px] lg:right-3/4 2xl:-right-[10px] text-[10px] font-medium text-white dark:text-whiteColor-dark bg-secondaryColor px-1 py-[2px] leading-1 rounded-full z-50 block">
                                                 3
                                             </span>
                                         </a>
+
                                         <div
                                             className="dropdown absolute right-0 lg:right-8 translate-y-10 z-medium hidden opacity-0 pt-5px"
                                             style={{ transition: '0.3s' }}
@@ -303,16 +277,15 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 web dictionary
                                                             </a>
                                                             <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                {" "}
-                                                                1 x{" "}
+                                                                1 x
                                                                 <span className="text-secondaryColor">
                                                                     $ 80.00
-                                                                </span>{" "}
+                                                                </span>
                                                             </p>
                                                         </div>
+
                                                         <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                            {" "}
-                                                            <i className="icofont-close-line"></i>{" "}
+                                                            <i className="icofont-close-line"></i>
                                                         </button>
                                                     </li>
                                                     <li className="relative flex gap-x-15px items-center">
@@ -331,16 +304,15 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 Design Minois
                                                             </a>
                                                             <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                {" "}
-                                                                1 x{" "}
+                                                                1 x
                                                                 <span className="text-secondaryColor">
                                                                     $ 60.00
-                                                                </span>{" "}
+                                                                </span>
                                                             </p>
                                                         </div>
+
                                                         <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                            {" "}
-                                                            <i className="icofont-close-line"></i>{" "}
+                                                            <i className="icofont-close-line"></i>
                                                         </button>
                                                     </li>
                                                     <li className="relative flex gap-x-15px items-center">
@@ -359,54 +331,52 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 Crash Course
                                                             </a>
                                                             <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                {" "}
-                                                                1 x{" "}
+                                                                1 x
                                                                 <span className="text-secondaryColor">
                                                                     $ 70.00
-                                                                </span>{" "}
+                                                                </span>
                                                             </p>
                                                         </div>
+
                                                         <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                            {" "}
-                                                            <i className="icofont-close-line"></i>{" "}
+                                                            <i className="icofont-close-line"></i>
                                                         </button>
                                                     </li>
                                                 </ul>
+
                                                 <div>
                                                     <p className="text-size-17 text-contentColor dark:text-contentColor-dark pb-5 flex justify-between">
-                                                        {" "}
-                                                        Total Price:{" "}
+                                                        Total Price:
                                                         <span className="font-bold text-secondaryColor">
                                                             $ 210.00
-                                                        </span>{" "}
+                                                        </span>
                                                     </p>
                                                 </div>
+
                                                 <div className="flex flex-col gap-y-5">
-                                                    {" "}
                                                     <a
                                                         href="#"
                                                         className="text-sm font-bold text-contentColor dark:text-contentColor-dark hover:text-whiteColor hover:bg-secondaryColor text-center py-10px border border-secondaryColor"
                                                     >
                                                         View Cart
-                                                    </a>{" "}
+                                                    </a>
                                                     <a
                                                         href="#"
                                                         className="text-sm font-bold bg-darkblack dark:bg-darkblack-dark text-whiteColor dark:text-whiteColor-dark hover:bg-secondaryColor dark:hover:bg-secondaryColor text-center py-10px"
                                                     >
                                                         Checkout
-                                                    </a>{" "}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
                                     <li className="hidden lg:block">
-                                        {" "}
                                         <a
                                             href="login.html"
                                             className="text-size-12 2xl:text-size-15 px-15px py-2 text-blackColor hover:text-whiteColor bg-whiteColor block hover:bg-primaryColor border border-borderColor1 rounded-standard font-semibold dark:text-blackColor-dark dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor dark:hover:border-primaryColor"
                                         >
                                             <i className="icofont-user-alt-5"></i>
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -414,15 +384,15 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                         <div className="py-15px lg:py-0 px-15px">
                             <div className="grid grid-cols-2 lg:grid-cols-12 items-center gap-15px -mx-15px">
                                 <div className="lg:col-start-1 lg:col-span-2">
-                                    {" "}
                                     <a href="index.html" className="block">
                                         <img
                                             src="./assets/images/logo/logo_1.png"
                                             alt="Logo"
                                             className="w-logo-sm lg:w-auto py-2"
                                         />
-                                    </a>{" "}
+                                    </a>
                                 </div>
+
                                 <div className="hidden lg:block lg:col-start-3 lg:col-span-7">
                                     <ul className="nav-list flex justify-center">
                                         <li className="nav-item group">
@@ -430,28 +400,26 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 href="#"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
-                                                {" "}
-                                                Demos{" "}
-                                                <i className="icofont-rounded-down"></i>{" "}
+                                                Demos
+                                                <i className="icofont-rounded-down"></i>
                                             </a>
+
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
                                                 style={{ transition: '0.3s' }}
                                             >
                                                 <div className="tab container 3xl:container2-lg 4xl:container shadow-dropdown px-30px mx-auto xl:px-30px py-15px max-h-dropdown 3xl:h-2000 xl:overflow-y-scroll rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <div className="tab-links grid grid-cols-2 gap-22px text-blackColor text-lg font-semibold font-hind">
-                                                        {" "}
                                                         <button className="py-3 hover:text-primaryColor dark:text-whiteColor dark:hover:text-primaryColor bg-white dark:bg-whiteColor-dark dark:hover:bg-whiteColor-dark hover:bg-white relative group/btn shadow-bottom hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard">
-                                                            {" "}
-                                                            <span className="absolute w-full h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>{" "}
-                                                            Light{" "}
-                                                        </button>{" "}
+                                                            <span className="absolute w-full h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>
+                                                            Light
+                                                        </button>
                                                         <button className="py-3 hover:text-primaryColor dark:hover:text-primaryColor dark:text-whiteColor bg-lightGrey7 dark:bg-lightGrey7-dark hover:bg-white dark:hover:bg-whiteColor-dark relative group/btn hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard">
-                                                            {" "}
-                                                            <span className="absolute w-0 h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>{" "}
-                                                            Dark{" "}
-                                                        </button>{" "}
+                                                            <span className="absolute w-0 h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>
+                                                            Dark
+                                                        </button>
                                                     </div>
+
                                                     <div className="tab-contents">
                                                         <div
                                                             id="light-demos"
@@ -462,7 +430,6 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 className="grid grid-cols-5 gap-30px pt-30px pb-15px"
                                                             >
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="index.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -471,16 +438,14 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                             src="./assets/images/mega/home-1.png"
                                                                             className="w-full"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
-                                                                            (Default){" "}
+                                                                            (Default)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-2.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -488,16 +453,14 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-2.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
-                                                                            (Elegant){" "}
+                                                                            (Elegant)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-3.html"
                                                                         className="overflow-hidden group/light relative block box-border shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard"
@@ -506,16 +469,14 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                             src="./assets/images/mega/home-3.png"
                                                                             alt="Mega Menu"
                                                                             className="w-full"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
-                                                                            (Classic){" "}
+                                                                            (Classic)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-4.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -523,17 +484,15 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega//home-4.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
                                                                             (Classic
-                                                                            LMS){" "}
+                                                                            LMS)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-5.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -541,17 +500,15 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega//home-5.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
                                                                             (Online
-                                                                            Course){" "}
+                                                                            Course)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-6.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-5px"
@@ -559,19 +516,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-6.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
-                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
-                                                                            Home
-                                                                            (Marketplace){" "}
                                                                         </span>
-                                                                    </a>{" "}
+                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
+                                                                            Home
+                                                                            (Marketplace)
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-7.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -579,19 +534,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-7.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
-                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
-                                                                            Home
-                                                                            (University){" "}
                                                                         </span>
-                                                                    </a>{" "}
+                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
+                                                                            Home
+                                                                            (University)
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-8.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -599,19 +552,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-8.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
-                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
-                                                                            Home
-                                                                            (eCommerce){" "}
                                                                         </span>
-                                                                    </a>{" "}
+                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
+                                                                            Home
+                                                                            (eCommerce)
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-9.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -619,19 +570,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-9.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
-                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
-                                                                            Home
-                                                                            (Kindergarten){" "}
                                                                         </span>
-                                                                    </a>{" "}
+                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
+                                                                            Home
+                                                                            (Kindergarten)
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-10.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -639,20 +588,18 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-10.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
+                                                                        </span>
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
                                                                             (Machine
-                                                                            Learning){" "}
+                                                                            Learning)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-11.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -660,20 +607,18 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-11.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
+                                                                        </span>
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
                                                                             (Single
-                                                                            Course){" "}
+                                                                            Course)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -681,18 +626,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/coming.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Layout
                                                                             Coming
                                                                             Soon
-                                                                            1{" "}
+                                                                            1
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -700,18 +643,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/coming.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Layout
                                                                             Coming
                                                                             Soon
-                                                                            2{" "}
+                                                                            2
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -719,18 +660,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/coming.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Layout
                                                                             Coming
                                                                             Soon
-                                                                            3{" "}
+                                                                            3
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -738,18 +677,18 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/coming.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Layout
                                                                             Coming
                                                                             Soon
-                                                                            4{" "}
+                                                                            4
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
+
                                                         <div
                                                             id="dark-demos"
                                                             className="hidden opacity-0 transition-opacity duration-150 ease-linear"
@@ -759,7 +698,6 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 className="grid grid-cols-5 gap-30px pt-30px pb-15px"
                                                             >
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="index-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -768,16 +706,14 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                             src="./assets/images/mega/home-1-dark.png"
                                                                             className="w-full"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
-                                                                            (Default){" "}
+                                                                            (Default)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-2-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -785,16 +721,14 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-2-dark.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
-                                                                            (Elegant){" "}
+                                                                            (Elegant)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-3-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -802,16 +736,14 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-3-dark.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
-                                                                            (Classic){" "}
+                                                                            (Classic)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-4-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -819,17 +751,15 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-4-dark.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
                                                                             (Classic
-                                                                            LMS){" "}
+                                                                            LMS)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-5-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -837,17 +767,15 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-5-dark.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
                                                                             (Online
-                                                                            Course){" "}
+                                                                            Course)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-6-dark.html"
                                                                         className="overflow-hidden group relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-5px"
@@ -855,19 +783,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-6-dark.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
-                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
-                                                                            Home
-                                                                            (Marketplace){" "}
                                                                         </span>
-                                                                    </a>{" "}
+                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
+                                                                            Home
+                                                                            (Marketplace)
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-7-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -875,19 +801,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-7-dark.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
-                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
-                                                                            Home
-                                                                            (University){" "}
                                                                         </span>
-                                                                    </a>{" "}
+                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
+                                                                            Home
+                                                                            (University)
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-8-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -895,19 +819,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-8-dark.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
-                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
-                                                                            Home
-                                                                            (eCommerce){" "}
                                                                         </span>
-                                                                    </a>{" "}
+                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
+                                                                            Home
+                                                                            (eCommerce)
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-9-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -915,19 +837,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-9-dark.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
-                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
-                                                                            Home
-                                                                            (Kindergarten){" "}
                                                                         </span>
-                                                                    </a>{" "}
+                                                                        <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
+                                                                            Home
+                                                                            (Kindergarten)
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-10-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -935,20 +855,18 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-10-dark.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
+                                                                        </span>
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
                                                                             (Machine
-                                                                            Learning){" "}
+                                                                            Learning)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-11-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -956,20 +874,18 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/home-11-dark.png"
                                                                             alt="Mega Menu"
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
-                                                                        </span>{" "}
+                                                                        </span>
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Home
                                                                             (Single
-                                                                            Course){" "}
+                                                                            Course)
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-11-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -977,18 +893,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/coming-dark.png"
                                                                             alt=""
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Layout
                                                                             Coming
                                                                             Soon
-                                                                            1{" "}
+                                                                            1
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -996,18 +910,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/coming-dark.png"
                                                                             alt=""
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Layout
                                                                             Coming
                                                                             Soon
-                                                                            2{" "}
+                                                                            2
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -1015,18 +927,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/coming-dark.png"
                                                                             alt=""
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Layout
                                                                             Coming
                                                                             Soon
-                                                                            3{" "}
+                                                                            3
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
@@ -1034,15 +944,14 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <img
                                                                             src="./assets/images/mega/coming-dark.png"
                                                                             alt=""
-                                                                        />{" "}
+                                                                        />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
-                                                                            {" "}
                                                                             Layout
                                                                             Coming
                                                                             Soon
-                                                                            4{" "}
+                                                                            4
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -1055,10 +964,10 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 href="#"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
-                                                {" "}
-                                                Pages{" "}
-                                                <i className="icofont-rounded-down"></i>{" "}
+                                                Pages
+                                                <i className="icofont-rounded-down"></i>
                                             </a>
+
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
                                                 style={{ transition: '0.3s' }}
@@ -1067,67 +976,60 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     <div className="grid grid-cols-4 gap-x-30px">
                                                         <div>
                                                             <h3 className="text-lg text-blackColor font-semibold border-b border-borderColor dark:text-blackColor-dark p-10px mb-10px">
-                                                                {" "}
-                                                                Get Started 1{" "}
+                                                                Get Started 1
                                                             </h3>
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="about.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
-                                                                        About{" "}
+                                                                        About
                                                                         <span className="text-size-12 font-semibold text-primaryColor bg-whitegrey3 px-15px py-5px ml-5px rounded">
                                                                             Sale
                                                                             Everything
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="about-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         About
-                                                                        (Dark){" "}
+                                                                        (Dark)
                                                                         <span className="text-size-12 font-semibold text-secondaryColor bg-whitegrey3 px-15px py-5px ml-5px rounded">
                                                                             New
-                                                                        </span>{" "}
-                                                                    </a>{" "}
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="blog.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Blog
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="blog-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Blog
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="blog-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Blog
                                                                         Details
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="blog-details-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
@@ -1135,60 +1037,54 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Blog
                                                                         Details
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                         <div>
                                                             <h3 className="text-lg text-blackColor font-semibold border-b border-borderColor dark:text-blackColor-dark p-10px mb-10px">
-                                                                {" "}
-                                                                Get Started 2{" "}
+                                                                Get Started 2
                                                             </h3>
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="error.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Error
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="error-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Error
-                                                                        (Dark){" "}
-                                                                    </a>{" "}
+                                                                        (Dark)
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="event-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Event
                                                                         Details
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/zoom/zoom-meetings.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
-                                                                        Zoom{" "}
+                                                                        Zoom
                                                                         <span className="text-size-12 font-semibold text-primaryColor bg-whitegrey3 px-15px py-5px ml-5px rounded">
                                                                             Online
                                                                             Call
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/zoom/zoom-meetings-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
@@ -1196,29 +1092,26 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Zoom
                                                                         Meeting
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/zoom/zoom-meeting-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Zoom
                                                                         Meeting
-                                                                        Details{" "}
-                                                                    </a>{" "}
+                                                                        Details
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                         <div>
                                                             <h3 className="text-lg text-blackColor font-semibold border-b border-borderColor dark:text-blackColor-dark p-10px mb-10px">
-                                                                {" "}
-                                                                Get Started 3{" "}
+                                                                Get Started 3
                                                             </h3>
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/zoom/zoom-meeting-details-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
@@ -1226,66 +1119,59 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Meeting
                                                                         Details
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="login.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
-                                                                        Login{" "}
-                                                                    </a>{" "}
+                                                                        Login
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="login-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Login
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="maintenance.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Maintenance
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="maintenance-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Maintenance
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Terms &
                                                                         Condition
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                         <div>
                                                             <h3 className="text-lg text-blackColor font-semibold border-b border-borderColor dark:text-blackColor-dark p-10px mb-10px">
-                                                                {" "}
-                                                                Get Started 4{" "}
+                                                                Get Started 4
                                                             </h3>
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
@@ -1293,39 +1179,35 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Terms &
                                                                         Condition
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="contact.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
-                                                                        Contact{" "}
-                                                                    </a>{" "}
+                                                                        Contact
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="contact-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Contact
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Success
                                                                         Stories
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
@@ -1333,28 +1215,27 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Success
                                                                         Stories
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Work
                                                                         Policy
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
+
                                                     <div className="pt-30px">
-                                                        {" "}
                                                         <img
                                                             src="./assets/images/mega/mega_menu_2.png"
                                                             alt="Mega Menu"
                                                             className="w-full rounded-standard"
-                                                        />{" "}
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1364,10 +1245,10 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 href="#"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
-                                                {" "}
-                                                Courses{" "}
-                                                <i className="icofont-rounded-down"></i>{" "}
+                                                Courses
+                                                <i className="icofont-rounded-down"></i>
                                             </a>
+
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
                                                 style={{ transition: '0.3s' }}
@@ -1376,46 +1257,41 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     <div className="grid grid-cols-4 gap-x-30px">
                                                         <div>
                                                             <h3 className="text-lg text-blackColor font-semibold border-b border-borderColor dark:text-blackColor-dark p-10px mb-10px">
-                                                                {" "}
-                                                                Get Started 1{" "}
+                                                                Get Started 1
                                                             </h3>
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
-                                                                        Grid{" "}
+                                                                        Grid
                                                                         <span className="text-size-12 font-semibold text-primaryColor bg-whitegrey3 px-15px py-5px ml-5px rounded">
                                                                             All
                                                                             Courses
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
                                                                         Grid
-                                                                        (Dark){" "}
-                                                                    </a>{" "}
+                                                                        (Dark)
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-grid.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
                                                                         Grid
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-grid-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
@@ -1423,20 +1299,18 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Course
                                                                         Grid
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-list.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
                                                                         List
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-list-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
@@ -1444,39 +1318,35 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Course
                                                                         List
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                         <div>
                                                             <h3 className="text-lg text-blackColor font-semibold border-b border-borderColor dark:text-blackColor-dark p-10px mb-10px">
-                                                                {" "}
-                                                                Get Started 2{" "}
+                                                                Get Started 2
                                                             </h3>
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
                                                                         Details
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
                                                                         Details
-                                                                        (Dark){" "}
-                                                                    </a>{" "}
+                                                                        (Dark)
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details-2.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
@@ -1484,50 +1354,44 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Course
                                                                         Details
                                                                         2
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details-2-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Details
-                                                                        2 (Dark){" "}
-                                                                    </a>{" "}
+                                                                        2 (Dark)
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details-3.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
-                                                                        {" "}
                                                                         Coures
                                                                         Details
                                                                         3
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details-3-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Details
-                                                                        3 (Dark){" "}
-                                                                    </a>{" "}
+                                                                        3 (Dark)
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                         <div>
                                                             <h3 className="text-lg text-blackColor font-semibold border-b border-borderColor dark:text-blackColor-dark p-10px mb-10px">
-                                                                {" "}
-                                                                Get Started 3{" "}
+                                                                Get Started 3
                                                             </h3>
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/become-an-instructor.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
@@ -1535,52 +1399,47 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Become
                                                                         An
                                                                         Instructor
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/create-course.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Careate
-                                                                        Course{" "}
+                                                                        Course
                                                                         <span className="text-size-12 font-semibold text-primaryColor bg-whitegrey3 px-15px py-5px rounded">
                                                                             Career
-                                                                        </span>{" "}
-                                                                    </a>{" "}
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="instructor.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
-                                                                        Instructor{" "}
-                                                                    </a>{" "}
+                                                                        Instructor
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="instructor-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Instructor
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="instructor-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Instructor
                                                                         Details
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="lesson.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
@@ -1590,17 +1449,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         <span className="text-size-12 font-semibold text-secondaryColor bg-whitegrey3 px-15px py-5px ml-5px rounded">
                                                                             New
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
+
                                                         <div>
-                                                            {" "}
                                                             <img
                                                                 src="./assets/images/mega/mega_menu_1.png"
                                                                 alt="Mega Menu"
                                                                 className="w-full rounded-standard"
-                                                            />{" "}
+                                                            />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1611,10 +1470,10 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 href="./pages/dashboards/instructor-dashboard.html"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
-                                                {" "}
-                                                Dashboard{" "}
-                                                <i className="icofont-rounded-down"></i>{" "}
+                                                Dashboard
+                                                <i className="icofont-rounded-down"></i>
                                             </a>
+
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
                                                 style={{ transition: '0.3s' }}
@@ -1627,8 +1486,9 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg flex justify-between items-center dark:bg-whiteColor-dark dark:text-contentColor-dark dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                             >
                                                                 Admin{" "}
-                                                                <i className="icofont-rounded-right"></i>{" "}
+                                                                <i className="icofont-rounded-right"></i>
                                                             </a>
+
                                                             <div
                                                                 className="nested-dropdown absolute left-full top-0 z-50 hidden opacity-0 group-hover/nested:block group-hover/nested:opacity-100"
                                                                 style={{ transition: '0.3s' }}
@@ -1636,70 +1496,63 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                                     <ul>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/admin-dashboard.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Admin
-                                                                                Dashboard{" "}
-                                                                            </a>{" "}
+                                                                                Dashboard
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/admin-profile.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Admin
-                                                                                Profile{" "}
-                                                                            </a>{" "}
+                                                                                Profile
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/admin-message.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Message
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/admin-course.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
-                                                                                Courses{" "}
-                                                                            </a>{" "}
+                                                                                Courses
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/admin-reviews.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Review
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/admin-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Admin
                                                                                 Quiz
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/admin-settings.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Setting
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -1711,8 +1564,9 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg flex justify-between items-center dark:bg-whiteColor-dark dark:text-contentColor-dark dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                             >
                                                                 Instructor{" "}
-                                                                <i className="icofont-rounded-right"></i>{" "}
+                                                                <i className="icofont-rounded-right"></i>
                                                             </a>
+
                                                             <div
                                                                 className="nested-dropdown absolute left-full top-0 z-50 hidden opacity-0 group-hover/nested:block group-hover/nested:opacity-100"
                                                                 style={{ transition: '0.3s' }}
@@ -1720,118 +1574,106 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                                     <ul>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-dashboard.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Ins.
-                                                                                Dashboard{" "}
-                                                                            </a>{" "}
+                                                                                Dashboard
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-profile.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Ins.
-                                                                                Profile{" "}
-                                                                            </a>{" "}
+                                                                                Profile
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-message.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Message
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-wishlist.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
-                                                                                Wishlist{" "}
-                                                                            </a>{" "}
+                                                                                Wishlist
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-reviews.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Review
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-my-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 My
                                                                                 Quiz
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-order-history.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Order
                                                                                 History
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-course.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 My
                                                                                 Courses
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-announcments.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Announcements
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Quiz
                                                                                 Attempts
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-assignments.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Assignment
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/instructor-settings.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Settings
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -1845,6 +1687,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 Student{" "}
                                                                 <i className="icofont-rounded-right"></i>
                                                             </a>
+
                                                             <div
                                                                 className="nested-dropdown absolute left-full top-0 z-50 hidden opacity-0 group-hover/nested:block group-hover/nested:opacity-100"
                                                                 style={{ transition: '0.3s' }}
@@ -1852,87 +1695,78 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                                     <ul>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/student-dashboard.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
-                                                                                Dashboard{" "}
-                                                                            </a>{" "}
+                                                                                Dashboard
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/student-profile.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
-                                                                                Profile{" "}
-                                                                            </a>{" "}
+                                                                                Profile
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/student-message.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Message
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/student-enrolled-courses.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Enrolled
-                                                                                Courses{" "}
-                                                                            </a>{" "}
+                                                                                Courses
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/student-wishlist.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
-                                                                                Wishlist{" "}
-                                                                            </a>{" "}
+                                                                                Wishlist
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/student-reviews.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Review
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/student-my-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 My
                                                                                 Quiz
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/student-assignments.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Assignment
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                         <li>
-                                                                            {" "}
                                                                             <a
                                                                                 href="./pages/dashboards/student-settings.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Setting
-                                                                            </a>{" "}
+                                                                            </a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
@@ -1947,10 +1781,10 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 href="./pages/ecommerce/shop.html"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
-                                                {" "}
-                                                eCommerce{" "}
-                                                <i className="icofont-rounded-down"></i>{" "}
+                                                eCommerce
+                                                <i className="icofont-rounded-down"></i>
                                             </a>
+
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
                                                 style={{ transition: '0.3s' }}
@@ -1958,52 +1792,47 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <ul>
                                                         <li>
-                                                            {" "}
                                                             <a
                                                                 href="./pages/ecommerce/shop.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
-                                                                Shop{" "}
+                                                                Shop
                                                                 <span className="text-size-12 font-semibold text-primaryColor bg-whitegrey3 px-15px py-5px rounded">
                                                                     Online Store
-                                                                </span>{" "}
-                                                            </a>{" "}
+                                                                </span>
+                                                            </a>
                                                         </li>
                                                         <li>
-                                                            {" "}
                                                             <a
                                                                 href="./pages/ecommerce/product-details.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
-                                                                Product Details{" "}
-                                                            </a>{" "}
+                                                                Product Details
+                                                            </a>
                                                         </li>
                                                         <li>
-                                                            {" "}
                                                             <a
                                                                 href="./pages/ecommerce/cart.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Cart
-                                                            </a>{" "}
+                                                            </a>
                                                         </li>
                                                         <li>
-                                                            {" "}
                                                             <a
                                                                 href="./pages/ecommerce/checkout.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
-                                                                Checkout{" "}
-                                                            </a>{" "}
+                                                                Checkout
+                                                            </a>
                                                         </li>
                                                         <li>
-                                                            {" "}
                                                             <a
                                                                 href="./pages/ecommerce/wishlist.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Wishlist
-                                                            </a>{" "}
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -2011,6 +1840,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                         </li>
                                     </ul>
                                 </div>
+
                                 <div className="lg:col-start-10 lg:col-span-3">
                                     <ul className="relative nav-list flex justify-end items-center">
                                         <li className="px-5 lg:px-10px 2xl:px-5 group block lg:hidden">
@@ -2018,11 +1848,12 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 href="./pages/ecommerce/cart.html"
                                                 className="relative block"
                                             >
-                                                <i className="icofont-cart-alt text-2xl text-blackColor group-hover:text-secondaryColor transition-all duration-300 dark:text-blackColor-dark"></i>{" "}
+                                                <i className="icofont-cart-alt text-2xl text-blackColor group-hover:text-secondaryColor transition-all duration-300 dark:text-blackColor-dark"></i>
                                                 <span className="absolute -top-1 2xl:-top-[5px] -right-[10px] lg:right-3/4 2xl:-right-[10px] text-[10px] font-medium text-white dark:text-whiteColor-dark bg-secondaryColor px-1 py-[2px] leading-1 rounded-full z-50 block">
                                                     3
                                                 </span>
                                             </a>
+
                                             <div
                                                 className="dropdown absolute right-0 lg:right-8 translate-y-10 z-medium hidden opacity-0 pt-5px"
                                                 style={{ transition: '0.3s' }}
@@ -2046,16 +1877,15 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                     dictionary
                                                                 </a>
                                                                 <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    {" "}
-                                                                    1 x{" "}
+                                                                    1 x
                                                                     <span className="text-secondaryColor">
                                                                         $ 80.00
-                                                                    </span>{" "}
+                                                                    </span>
                                                                 </p>
                                                             </div>
+
                                                             <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                {" "}
-                                                                <i className="icofont-close-line"></i>{" "}
+                                                                <i className="icofont-close-line"></i>
                                                             </button>
                                                         </li>
                                                         <li className="relative flex gap-x-15px items-center">
@@ -2075,16 +1905,15 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                     Minois
                                                                 </a>
                                                                 <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    {" "}
-                                                                    1 x{" "}
+                                                                    1 x
                                                                     <span className="text-secondaryColor">
                                                                         $ 60.00
-                                                                    </span>{" "}
+                                                                    </span>
                                                                 </p>
                                                             </div>
+
                                                             <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                {" "}
-                                                                <i className="icofont-close-line"></i>{" "}
+                                                                <i className="icofont-close-line"></i>
                                                             </button>
                                                         </li>
                                                         <li className="relative flex gap-x-15px items-center">
@@ -2103,61 +1932,58 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                     Crash Course
                                                                 </a>
                                                                 <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    {" "}
-                                                                    1 x{" "}
+                                                                    1 x
                                                                     <span className="text-secondaryColor">
                                                                         $ 70.00
-                                                                    </span>{" "}
+                                                                    </span>
                                                                 </p>
                                                             </div>
+
                                                             <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                {" "}
-                                                                <i className="icofont-close-line"></i>{" "}
+                                                                <i className="icofont-close-line"></i>
                                                             </button>
                                                         </li>
                                                     </ul>
+
                                                     <div>
                                                         <p className="text-size-17 text-contentColor dark:text-contentColor-dark pb-5 flex justify-between">
-                                                            {" "}
-                                                            Total Price:{" "}
+                                                            Total Price:
                                                             <span className="font-bold text-secondaryColor">
                                                                 $ 210.00
-                                                            </span>{" "}
+                                                            </span>
                                                         </p>
                                                     </div>
+
                                                     <div className="flex flex-col gap-y-5">
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="text-sm font-bold text-contentColor dark:text-contentColor-dark hover:text-whiteColor hover:bg-secondaryColor text-center py-10px border border-secondaryColor"
                                                         >
                                                             View Cart
-                                                        </a>{" "}
+                                                        </a>
                                                         <a
                                                             href="#"
                                                             className="text-sm font-bold bg-darkblack dark:bg-darkblack-dark text-whiteColor dark:text-whiteColor-dark hover:bg-secondaryColor dark:hover:bg-secondaryColor text-center py-10px"
                                                         >
                                                             Checkout
-                                                        </a>{" "}
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
+
                                         <li className="hidden lg:block">
-                                            {" "}
                                             <a
                                                 href="#"
                                                 className="text-size-12 2xl:text-size-15 text-whiteColor bg-primaryColor block border-primaryColor border hover:text-primaryColor hover:bg-white px-15px py-2 rounded-standard dark:hover:bg-whiteColor-dark dark: dark:hover:text-whiteColor"
                                             >
                                                 Get Start Here
-                                            </a>{" "}
+                                            </a>
                                         </li>
                                         <li className="block lg:hidden">
-                                            {" "}
                                             <button className="open-mobile-menu text-3xl text-darkdeep1 hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor">
-                                                {" "}
-                                                <i className="icofont-navigation-menu"></i>{" "}
-                                            </button>{" "}
+                                                <i className="icofont-navigation-menu"></i>
+                                            </button>
                                         </li>
                                     </ul>
                                 </div>
@@ -2165,192 +1991,179 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                         </div>
                     </nav>
                 </div>
+
                 <div className="mobile-menu w-mobile-menu-sm md:w-mobile-menu-lg fixed top-0 -right-[280px] md:-right-[330px] transition-all duration-500 w-mobile-menu h-full shadow-dropdown-secodary bg-whiteColor dark:bg-whiteColor-dark z-high block lg:hidden">
                     <button className="close-mobile-menu text-lg bg-darkdeep1 hover:bg-secondaryColor text-white px-[11px] py-[6px] absolute top-0 right-full hidden">
-                        {" "}
-                        <i className="icofont icofont-close-line"></i>{" "}
+                        <i className="icofont icofont-close-line"></i>
                     </button>
+
                     <div className="px-5 md:px-30px pt-5 md:pt-10 pb-50px h-full overflow-y-auto">
                         <div className="pb-10 border-b border-borderColor dark:border-borderColor-dark">
                             <form className="flex justify-between items-center w-full bg-whitegrey2 dark:bg-whitegrey2-dark px-15px py-[11px]">
-                                {" "}
                                 <input
                                     type="text"
                                     placeholder="Search entire store..."
                                     className="bg-transparent w-4/5 focus:outline-none text-sm text-darkdeep1 dark:text-blackColor-dark"
-                                />{" "}
+                                />
                                 <button className="block text-lg text-darkdeep1 hover:text-secondaryColor dark:text-blackColor-dark dark:hover:text-secondaryColor">
-                                    {" "}
-                                    <i className="icofont icofont-search-2"></i>{" "}
-                                </button>{" "}
+                                    <i className="icofont icofont-search-2"></i>
+                                </button>
                             </form>
                         </div>
+
                         <div className="pt-8 pb-6 border-b border-borderColor dark:border-borderColor-dark">
                             <ul className="accordion-container">
                                 <li className="accordion">
                                     <div className="flex items-center justify-between">
-                                        {" "}
                                         <a
                                             className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                             href="index.html"
                                         >
                                             Home
-                                        </a>{" "}
+                                        </a>
                                         <button className="accordion-controller px-3 py-4">
-                                            {" "}
                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>{" "}
-                                        </button>{" "}
+                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
+                                        </button>
                                     </div>
+
                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
                                         <div className="content-wrapper">
                                             <ul className="accordion-container">
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="index.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Home Light
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="index.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Home
                                                                         (Default)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-2.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Elegant
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-3.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Classic
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-4.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Classic
                                                                         LMS
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-5.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Online
                                                                         Course
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-6.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Marketplace
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-7.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         University
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-8.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         ECommerce
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-9.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Kindergarten
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-10.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Machine
                                                                         Learning
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-11.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Single
                                                                         Course
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </li>
+
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="index-dark.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Home Dark
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="index-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2358,30 +2171,28 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Home
                                                                         Default
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-2-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Elegant
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-3-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Classic
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-4-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2389,10 +2200,9 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Classic
                                                                         LMS
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-5-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2400,50 +2210,45 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Online
                                                                         Course
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-6-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Marketplace
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-7-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         University
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-8-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         ECommerce
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-9-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Kindergarten
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-10-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2451,10 +2256,9 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Machine
                                                                         Learning
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="home-11-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2462,7 +2266,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Single
                                                                         Course
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -2474,90 +2278,83 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 </li>
                                 <li className="accordion">
                                     <div className="flex items-center justify-between">
-                                        {" "}
                                         <a
                                             className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                             href="#"
                                         >
                                             Pages
-                                        </a>{" "}
+                                        </a>
                                         <button className="accordion-controller px-3 py-4">
-                                            {" "}
                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>{" "}
-                                        </button>{" "}
+                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
+                                        </button>
                                     </div>
+
                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
                                         <div className="content-wrapper">
                                             <ul className="accordion-container">
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Get Started 1
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-300">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="about.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         About
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="about-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         About
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="blog.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Block
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="blog-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Block
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="blog-details.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Block
                                                                         Details
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="blog-details-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2565,7 +2362,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Block
                                                                         Details
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -2573,67 +2370,62 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 </li>
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Get Started 2
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-300">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="error.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Error
                                                                         404
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="error-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Error
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="event-details.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Event
                                                                         Details
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/zoom/zoom-meetings.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
-                                                                        Zoom{" "}
+                                                                        Zoom
                                                                         <span className="px-15px py-5px text-primaryColor bg-whitegrey3 text-xs rounded ml-5px">
                                                                             Online
                                                                             Call
                                                                         </span>
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/zoom/zoom-meetings-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2641,10 +2433,9 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Zoom
                                                                         Meeting
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/zoom/zoom-meeting-details.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2652,7 +2443,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Zoom
                                                                         Meeting
                                                                         Details
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -2660,24 +2451,22 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 </li>
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Get Started 3
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-300">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/zoom/zoom-meeting-details-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2685,55 +2474,51 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Meeting
                                                                         Details
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="login.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Login
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="login-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Login
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="maintenance.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Maintenance
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="maintenance-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Maintenance
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Term &
                                                                         Condition
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -2741,24 +2526,22 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 </li>
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Get Started 4
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-300">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2766,20 +2549,19 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Term &
                                                                         Condition
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Privacy
-                                                                        Policy{" "}
-                                                                    </a>{" "}
+                                                                        Policy
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2787,20 +2569,18 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Privacy
                                                                         Policy
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Success
                                                                         Stories
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2808,24 +2588,22 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Success
                                                                         Stories
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="#"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Work
                                                                         Policy
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    {" "}
                                                     <a
                                                         href="#"
                                                         className="pl-15px pt-3 pb-7px"
@@ -2835,7 +2613,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             src="./assets/images/mega/mega_menu_2.png"
                                                             alt=""
                                                         />
-                                                    </a>{" "}
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -2843,51 +2621,48 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 </li>
                                 <li className="accordion">
                                     <div className="flex items-center justify-between">
-                                        {" "}
                                         <a
                                             className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                             href="course.html"
                                         >
                                             Courses
-                                        </a>{" "}
+                                        </a>
                                         <button className="accordion-controller px-3 py-4">
-                                            {" "}
                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>{" "}
-                                        </button>{" "}
+                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
+                                        </button>
                                     </div>
+
                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
                                         <div className="content-wrapper">
                                             <ul className="accordion-container">
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Get Started 1
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-300">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Grid
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2895,20 +2670,18 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Course
                                                                         Grid
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
                                                                         Grid
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-grid-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2916,20 +2689,18 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Course
                                                                         Grid
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-list.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
                                                                         List
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-list-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2937,7 +2708,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Course
                                                                         List
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -2945,34 +2716,32 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 </li>
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Get Started 2
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-300">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
                                                                         Details
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2980,10 +2749,9 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Course
                                                                         Details
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details-2.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -2991,20 +2759,18 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Course
                                                                         Details
                                                                         2
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details-2-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Details
-                                                                        2 (Dark){" "}
-                                                                    </a>{" "}
+                                                                        2 (Dark)
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details-3.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -3012,17 +2778,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Course
                                                                         Details
                                                                         3
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="course-details-3-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Details
                                                                         3 (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -3030,24 +2795,22 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 </li>
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="#"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Get Started 3
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-300">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/become-an-instructor.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
@@ -3055,69 +2818,65 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         Become
                                                                         An
                                                                         Instructor
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/create-course.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Create
-                                                                        Course{" "}
+                                                                        Course
                                                                         <span className="px-15px py-5px text-primaryColor bg-whitegrey3 text-xs rounded ml-5px">
                                                                             Career
-                                                                        </span>{" "}
-                                                                    </a>{" "}
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="instructor.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Instructor
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="instructor-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Instructor
                                                                         (Dark)
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="instructor-details.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Instructor
                                                                         Details
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="lesson.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
-                                                                        Lesson{" "}
+                                                                        Lesson
                                                                         <span className="px-15px py-5px text-secondaryColor bg-whitegrey3 text-xs rounded ml-5px">
                                                                             New
-                                                                        </span>{" "}
-                                                                    </a>{" "}
+                                                                        </span>
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </li>
+
                                                 <li>
-                                                    {" "}
                                                     <a
                                                         href="#"
                                                         className="pl-15px pt-3 pb-7px"
@@ -3127,7 +2886,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             src="./assets/images/mega/mega_menu_1.png"
                                                             alt=""
                                                         />
-                                                    </a>{" "}
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -3135,105 +2894,97 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 </li>
                                 <li className="accordion">
                                     <div className="flex items-center justify-between">
-                                        {" "}
                                         <a
                                             className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                             href="./pages/dashboards/instructor-dashboard.html"
                                         >
                                             Dashboard
-                                        </a>{" "}
+                                        </a>
                                         <button className="accordion-controller px-3 py-4">
-                                            {" "}
                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>{" "}
-                                        </button>{" "}
+                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
+                                        </button>
                                     </div>
+
                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
                                         <div className="content-wrapper">
                                             <ul className="accordion-container">
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="./pages/dashboards/admin-dashboard.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Admin
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-300">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/admin-dashboard.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Admin
                                                                         Dashboard
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/admin-profile.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Admin
                                                                         Profile
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/admin-message.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Message
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/admin-course.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Courses
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/admin-reviews.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Review
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/admin-quiz-attempts.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Admin
                                                                         Quiz
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/admin-settings.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Settings
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -3241,134 +2992,122 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 </li>
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="./pages/dashboards/instructor-dashboard.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Instructor
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-300">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-dashboard.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Inst.
                                                                         Dashboard
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-profile.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Inst.
                                                                         Profile
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-message.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Message
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-wishlist.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
-                                                                        Wishlist{" "}
-                                                                    </a>{" "}
+                                                                        Wishlist
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-reviews.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Review
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-my-quiz-attempts.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         My Quiz
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-order-history.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Order
                                                                         History
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-course.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         My
                                                                         Courses
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-announcments.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Announcements
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-quiz-attempts.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Quiz
                                                                         Attempts
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-assignments.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Assignments
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/instructor-settings.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Settings
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -3376,103 +3115,94 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 </li>
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="./pages/dashboards/student-dashboard.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Student
-                                                        </a>{" "}
+                                                        </a>
                                                         <button className="accordion-controller px-3 py-4">
-                                                            {" "}
                                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>{" "}
-                                                        </button>{" "}
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-300"></span>
+                                                        </button>
                                                     </div>
+
                                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-300">
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/student-dashboard.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Dashboard
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
+
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/student-profile.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
-                                                                        Profile{" "}
-                                                                    </a>{" "}
+                                                                        Profile
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/student-message.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Message
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/student-enrolled-courses.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Enrolled
                                                                         Courses
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/student-wishlist.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Wishlist
-                                                                    </a>{" "}
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/student-reviews.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
-                                                                        Review{" "}
-                                                                    </a>{" "}
+                                                                        Review
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/student-my-quiz-attempts.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
-                                                                        My Quiz{" "}
-                                                                    </a>{" "}
+                                                                        My Quiz
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/student-assignments.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
-                                                                        Assignment{" "}
-                                                                    </a>{" "}
+                                                                        Assignment
+                                                                    </a>
                                                                 </li>
                                                                 <li>
-                                                                    {" "}
                                                                     <a
                                                                         href="./pages/dashboards/student-settings.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
-                                                                        Settings{" "}
-                                                                    </a>{" "}
+                                                                        Settings
+                                                                    </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -3484,78 +3214,72 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 </li>
                                 <li className="accordion">
                                     <div className="flex items-center justify-between">
-                                        {" "}
                                         <a
                                             className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                             href="./pages/ecommerce/shop.html"
                                         >
                                             ECommerce
-                                        </a>{" "}
+                                        </a>
                                         <button className="accordion-controller px-3 py-4">
-                                            {" "}
                                             <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>{" "}
-                                        </button>{" "}
+                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
+                                        </button>
                                     </div>
+
                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
                                         <div className="content-wrapper">
                                             <ul>
                                                 <li>
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="./pages/ecommerce/shop.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
-                                                            Shop{" "}
+                                                            Shop
                                                             <span className="px-15px py-5px text-primaryColor bg-whitegrey3 text-xs rounded ml-5px">
                                                                 Online Store
                                                             </span>
-                                                        </a>{" "}
+                                                        </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="./pages/ecommerce/product-details.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Product Details
-                                                        </a>{" "}
+                                                        </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="./pages/ecommerce/cart.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Cart
-                                                        </a>{" "}
+                                                        </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="./pages/ecommerce/checkout.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Checkout
-                                                        </a>{" "}
+                                                        </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="./pages/ecommerce/wishlist.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Wishlist
-                                                        </a>{" "}
+                                                        </a>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -3564,53 +3288,51 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 </li>
                             </ul>
                         </div>
+
                         <div>
                             <ul className="accordion-container mt-9 mb-30px pb-9 border-b border-borderColor dark:border-borderColor-dark">
                                 <li className="accordion group">
                                     <div className="accordion-controller flex items-center justify-between">
-                                        {" "}
                                         <a
                                             className="leading-1 text-darkdeep1 font-medium group-hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                             href="#"
                                         >
                                             My Account
-                                        </a>{" "}
+                                        </a>
                                         <button className="px-3 py-1">
-                                            {" "}
-                                            <i className="icofont-thin-down text-size-15 text-darkdeep1 group-hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"></i>{" "}
-                                        </button>{" "}
+                                            <i className="icofont-thin-down text-size-15 text-darkdeep1 group-hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"></i>
+                                        </button>
                                     </div>
+
                                     <div className="accordion-content h-0 overflow-hidden transition-all duration-500 shadow-standard">
                                         <div className="content-wrapper">
                                             <ul>
                                                 <li>
                                                     <div className="flex items-center gap-1">
-                                                        {" "}
                                                         <a
                                                             href="login.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-30px pt-7 pb-3 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
-                                                            Login{" "}
-                                                        </a>{" "}
+                                                            Login
+                                                        </a>
+
                                                         <a
                                                             href="login.html"
                                                             className="leading-1 text-darkdeep1 text-sm pr-30px pt-7 pb-4 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
-                                                            {" "}
                                                             <span>/</span>{" "}
-                                                            Create Account{" "}
-                                                        </a>{" "}
+                                                            Create Account
+                                                        </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div className="flex items-center justify-between">
-                                                        {" "}
                                                         <a
                                                             href="login.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             My Account
-                                                        </a>{" "}
+                                                        </a>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -3619,48 +3341,44 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 </li>
                             </ul>
                         </div>
+
                         <div>
                             <ul className="flex gap-6 items-center mb-5">
                                 <li>
-                                    {" "}
                                     <a className="facebook" href="#">
                                         <i className="icofont icofont-facebook text-fb-color dark:text-whiteColor dark:hover:text-secondaryColor"></i>
-                                    </a>{" "}
+                                    </a>
                                 </li>
                                 <li>
-                                    {" "}
                                     <a className="twitter" href="#">
                                         <i className="icofont icofont-twitter text-twiter-color dark:text-whiteColor dark:hover:text-secondaryColor"></i>
-                                    </a>{" "}
+                                    </a>
                                 </li>
                                 <li>
-                                    {" "}
                                     <a className="pinterest" href="#">
                                         <i className="icofont icofont-pinterest dark:text-whiteColor dark:hover:text-secondaryColor"></i>
-                                    </a>{" "}
+                                    </a>
                                 </li>
                                 <li>
-                                    {" "}
                                     <a className="instagram" href="#">
                                         <i className="icofont icofont-instagram dark:text-whiteColor dark:hover:text-secondaryColor"></i>
-                                    </a>{" "}
+                                    </a>
                                 </li>
                                 <li>
-                                    {" "}
                                     <a className="google" href="#">
                                         <i className="icofont icofont-youtube-play dark:text-whiteColor dark:hover:text-secondaryColor"></i>
-                                    </a>{" "}
+                                    </a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </header>
+
             <main className="bg-transparent">
                 <section>
                     <div className="hero bg-lightGrey11 dark:bg-lightGrey11-dark relative z-0 overflow-hidden py-50px md:pt-70px md:pb-30">
                         <div>
-                            {" "}
                             <img
                                 className="absolute left-10 bottom-[233px] md:left-[248px] md:bottom-[143px] lg:left-10 lg:bottom-[112px] 3xl:bottom-[233px] animate-move-var opacity-35 z-10"
                                 src="./assets/images/herobanner/herobanner__1.png"
@@ -3675,18 +3393,19 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 className="absolute md:left-[210px] md:top-[50px] animate-move-var2 hidden md:block"
                                 src="./assets/images/herobanner/herobanner__3.png"
                                 alt=""
-                            />{" "}
+                            />
                             <img
                                 className="absolute top-20 left-[872px] md:left-[872px] lg:left-[595px] 2xl:left-[872px] hidden md:block animate-move-hor"
                                 src="./assets/images/herobanner/herobanner__4.png"
                                 alt=""
-                            />{" "}
+                            />
                             <img
                                 className="absolute top-0 right-0 md:right-[110px] md:top-[100px] lg:right-[13px] lg:top[90px] 2xl:right-[82px] 2xl:top-[100px] 3xl:right-[110px] animate-move-hor"
                                 src="./assets/images/herobanner/herobanner__5.png"
                                 alt=""
-                            />{" "}
+                            />
                         </div>
+
                         <div className="container 2xl:container-secondary-md relative">
                             <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-30px">
                                 <div
@@ -3695,46 +3414,44 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 >
                                     <div className="3xl:pr-135px">
                                         <h3 className="uppercase text-secondaryColor text-size-15 mb-5px md:mb-15px font-inter tracking-[4px] font-semibold">
-                                            {" "}
-                                            EDUCATION SOLUTION{" "}
+                                            EDUCATION SOLUTION
                                         </h3>
                                         <h1 className="text-size-35 md:text-size-65 lg:text-5xl 2xl:text-size-65 leading-42px md:leading-18 lg:leading-15 2xl:leading-18 text-blackColor dark:text-blackColor-dark md:tracking-half lg:tracking-normal 2xl:tracking-half font-bold mb-15px">
-                                            {" "}
-                                            Ignite Your{" "}
+                                            Ignite Your
                                             <span className="text-secondaryColor">
                                                 Career
                                             </span>{" "}
-                                            with Learning the Largest{" "}
+                                            with Learning the Largest
                                             <span className="text-secondaryColor">
                                                 Online
-                                            </span>{" "}
-                                            Platform.{" "}
+                                            </span>
+                                            Platform.
                                         </h1>
                                         <p className="text-size-15md:text-lg text-blackColor dark:text-blackColor-dark font-medium">
-                                            {" "}
                                             Lorem Ipsum is simply dummy text of
-                                            the printing <br /> typesetting
-                                            industry. Lorem Ipsum has been{" "}
+                                            the printing
+                                            <br />
+                                            typesetting industry. Lorem Ipsum
+                                            has been
                                         </p>
+
                                         <div className="mt-30px">
-                                            {" "}
                                             <a
                                                 href="#"
                                                 className="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-25px py-15px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor"
                                             >
-                                                {" "}
-                                                View Courses{" "}
-                                            </a>{" "}
+                                                View Courses
+                                            </a>
                                             <a
                                                 href="#"
                                                 className="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-25px py-15px hover:text-secondaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-secondaryColor"
                                             >
-                                                {" "}
-                                                Explore More{" "}
-                                            </a>{" "}
+                                                Explore More
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div
                                     data-aos="fade-up"
                                     className="md:col-start-1 md:col-span-8 lg:col-start-9 lg:col-span-4"
@@ -3748,18 +3465,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             href="course-details.html"
                                                             className="w-full overflow-hidden rounded"
                                                         >
-                                                            {" "}
                                                             <img
                                                                 src="./assets/images/grid/grid_1.png"
                                                                 alt=""
                                                                 className="w-full transition-all duration-300 group-hover:scale-110"
-                                                            />{" "}
+                                                            />
                                                         </a>
                                                         <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                                                             <div>
                                                                 <p className="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor rounded font-semibold">
-                                                                    {" "}
-                                                                    Data & Tech{" "}
+                                                                    Data & Tech
                                                                 </p>
                                                             </div>
                                                             <a
@@ -3770,32 +3485,29 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             </a>
                                                         </div>
                                                     </div>
+
                                                     <div>
                                                         <div className="grid grid-cols-2 mb-15px">
                                                             <div className="flex items-center">
                                                                 <div>
-                                                                    {" "}
-                                                                    <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>{" "}
+                                                                    <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
                                                                 </div>
                                                                 <div>
-                                                                    {" "}
                                                                     <span className="text-sm text-black dark:text-blackColor-dark">
                                                                         23
                                                                         Lesson
-                                                                    </span>{" "}
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div className="flex items-center">
                                                                 <div>
-                                                                    {" "}
-                                                                    <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>{" "}
+                                                                    <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
                                                                 </div>
                                                                 <div>
-                                                                    {" "}
                                                                     <span className="text-sm text-black dark:text-blackColor-dark">
                                                                         1 hr 30
                                                                         min
-                                                                    </span>{" "}
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -3803,32 +3515,30 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             href="course-details.html"
                                                             className="text-2xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
-                                                            {" "}
-                                                            Figma to HTML{" "}
+                                                            Figma to HTML
                                                         </a>
                                                         <p className="text-contentColor dark:text-contentColor-dark mb-15px">
-                                                            {" "}
                                                             Lorem ipsum dolor
                                                             sit amet
                                                             consectetur,
                                                             adipisicing elit.
-                                                            Veniam, libero!{" "}
+                                                            Veniam, libero!
                                                         </p>
+
                                                         <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                            {" "}
-                                                            $32.00{" "}
+                                                            $32.00
                                                             <del className="text-sm text-lightGrey4 font-semibold">
                                                                 / $67.00
-                                                            </del>{" "}
+                                                            </del>
                                                             <span className="ml-6">
                                                                 <del className="text-base font-semibold text-secondaryColor3">
                                                                     Free
                                                                 </del>
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
+
                                                         <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
                                                             <div>
-                                                                {" "}
                                                                 <a
                                                                     href="instructor-details.html"
                                                                     className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
@@ -3837,28 +3547,28 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         className="w-[30px] h-[30px] rounded-full mr-15px"
                                                                         src="./assets/images/grid/grid_small_1.jpg"
                                                                         alt=""
-                                                                    />{" "}
+                                                                    />
                                                                     <span className="flex">
                                                                         Micle
                                                                         john
-                                                                    </span>{" "}
-                                                                </a>{" "}
+                                                                    </span>
+                                                                </a>
                                                             </div>
                                                             <div className="text-start md:text-end">
-                                                                {" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
                                                                 <span className="text-xs text-lightGrey6">
                                                                     (44)
-                                                                </span>{" "}
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div className="swiper-slide p-25px bg-whiteColor shadow-brand rounded-lg2 dark:bg-darkdeep3-dark dark:shadow-brand-dark mb-30px group">
                                                 <div className="">
                                                     <div className="relative mb-4">
@@ -3866,18 +3576,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             href="course-details.html"
                                                             className="w-full overflow-hidden rounded"
                                                         >
-                                                            {" "}
                                                             <img
                                                                 src="./assets/images/grid/grid_2.png"
                                                                 alt=""
                                                                 className="w-full transition-all duration-300 group-hover:scale-110"
-                                                            />{" "}
+                                                            />
                                                         </a>
                                                         <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                                                             <div>
                                                                 <p className="text-xs text-whiteColor px-4 py-[3px] bg-blue rounded font-semibold">
-                                                                    {" "}
-                                                                    Mechanical{" "}
+                                                                    Mechanical
                                                                 </p>
                                                             </div>
                                                             <a
@@ -3888,32 +3596,29 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             </a>
                                                         </div>
                                                     </div>
+
                                                     <div>
                                                         <div className="grid grid-cols-2 mb-15px">
                                                             <div className="flex items-center">
                                                                 <div>
-                                                                    {" "}
-                                                                    <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>{" "}
+                                                                    <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
                                                                 </div>
                                                                 <div>
-                                                                    {" "}
                                                                     <span className="text-sm text-black dark:text-blackColor-dark">
                                                                         29
                                                                         Lesson
-                                                                    </span>{" "}
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div className="flex items-center">
                                                                 <div>
-                                                                    {" "}
-                                                                    <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>{" "}
+                                                                    <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
                                                                 </div>
                                                                 <div>
-                                                                    {" "}
                                                                     <span className="text-sm text-black dark:text-blackColor-dark">
                                                                         2 hr 10
                                                                         min
-                                                                    </span>{" "}
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -3921,32 +3626,30 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             href="course.html"
                                                             className="text-2xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
-                                                            {" "}
-                                                            Figma to HTML{" "}
+                                                            Figma to HTML
                                                         </a>
                                                         <p className="text-contentColor dark:text-contentColor-dark mb-15px">
-                                                            {" "}
                                                             Lorem ipsum dolor
                                                             sit amet
                                                             consectetur,
                                                             adipisicing elit.
-                                                            Veniam, libero!{" "}
+                                                            Veniam, libero!
                                                         </p>
+
                                                         <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                            {" "}
-                                                            $32.00{" "}
+                                                            $32.00
                                                             <del className="text-sm text-lightGrey4 font-semibold">
                                                                 / $67.00
-                                                            </del>{" "}
+                                                            </del>
                                                             <span className="ml-6">
                                                                 <del className="text-base font-semibold text-greencolor">
                                                                     Free
                                                                 </del>
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
+
                                                         <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
                                                             <div>
-                                                                {" "}
                                                                 <a
                                                                     href="instructor-details.html"
                                                                     className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
@@ -3956,24 +3659,24 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         src="./assets/images/grid/grid_small_2.jpg"
                                                                         alt=""
                                                                     />
-                                                                    Rinis Jhon{" "}
-                                                                </a>{" "}
+                                                                    Rinis Jhon
+                                                                </a>
                                                             </div>
                                                             <div className="text-start md:text-end">
-                                                                {" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
                                                                 <span className="text-xs text-lightGrey6">
                                                                     (44)
-                                                                </span>{" "}
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div className="swiper-slide p-25px bg-whiteColor shadow-brand rounded-lg2 dark:bg-darkdeep3-dark dark:shadow-brand-dark mb-30px group">
                                                 <div className="">
                                                     <div className="relative mb-4">
@@ -3981,18 +3684,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             href="course-details.html"
                                                             className="w-full overflow-hidden rounded"
                                                         >
-                                                            {" "}
                                                             <img
                                                                 src="./assets/images/grid/grid_1.png"
                                                                 alt=""
                                                                 className="w-full transition-all duration-300 group-hover:scale-110"
-                                                            />{" "}
+                                                            />
                                                         </a>
                                                         <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                                                             <div>
                                                                 <p className="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor rounded font-semibold">
-                                                                    {" "}
-                                                                    Data & Tech{" "}
+                                                                    Data & Tech
                                                                 </p>
                                                             </div>
                                                             <a
@@ -4003,32 +3704,29 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             </a>
                                                         </div>
                                                     </div>
+
                                                     <div>
                                                         <div className="grid grid-cols-2 mb-15px">
                                                             <div className="flex items-center">
                                                                 <div>
-                                                                    {" "}
-                                                                    <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>{" "}
+                                                                    <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
                                                                 </div>
                                                                 <div>
-                                                                    {" "}
                                                                     <span className="text-sm text-black dark:text-blackColor-dark">
                                                                         23
                                                                         Lesson
-                                                                    </span>{" "}
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                             <div className="flex items-center">
                                                                 <div>
-                                                                    {" "}
-                                                                    <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>{" "}
+                                                                    <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
                                                                 </div>
                                                                 <div>
-                                                                    {" "}
                                                                     <span className="text-sm text-black dark:text-blackColor-dark">
                                                                         1 hr 30
                                                                         min
-                                                                    </span>{" "}
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -4036,32 +3734,30 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                             href="course-details.html"
                                                             className="text-2xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
-                                                            {" "}
-                                                            Figma to HTML{" "}
+                                                            Figma to HTML
                                                         </a>
                                                         <p className="text-contentColor dark:text-contentColor-dark mb-15px">
-                                                            {" "}
                                                             Lorem ipsum dolor
                                                             sit amet
                                                             consectetur,
                                                             adipisicing elit.
-                                                            Veniam, libero!{" "}
+                                                            Veniam, libero!
                                                         </p>
+
                                                         <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                            {" "}
-                                                            $32.00{" "}
+                                                            $32.00
                                                             <del className="text-sm text-lightGrey4 font-semibold">
                                                                 / $67.00
-                                                            </del>{" "}
+                                                            </del>
                                                             <span className="ml-6">
                                                                 <del className="text-base font-semibold text-secondaryColor3">
                                                                     Free
                                                                 </del>
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
+
                                                         <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
                                                             <div>
-                                                                {" "}
                                                                 <a
                                                                     href="instructor-details.html"
                                                                     className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
@@ -4070,31 +3766,30 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                         className="w-[30px] h-[30px] rounded-full mr-15px"
                                                                         src="./assets/images/grid/grid_small_1.jpg"
                                                                         alt=""
-                                                                    />{" "}
+                                                                    />
                                                                     <span className="flex">
                                                                         Micle
                                                                         john
-                                                                    </span>{" "}
-                                                                </a>{" "}
+                                                                    </span>
+                                                                </a>
                                                             </div>
                                                             <div className="text-start md:text-end">
-                                                                {" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>{" "}
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                <i className="icofont-star text-size-15 text-yellow"></i>
                                                                 <span className="text-xs text-lightGrey6">
                                                                     (44)
-                                                                </span>{" "}
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div className="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
-                                            {" "}
                                             <span
                                                 className="swiper-pagination-bullet"
                                                 tabIndex="0"
@@ -4113,7 +3808,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 tabIndex="0"
                                                 role="button"
                                                 aria-label="Go to slide 3"
-                                            ></span>{" "}
+                                            ></span>
                                         </div>
                                     </div>
                                 </div>
@@ -4121,59 +3816,52 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                         </div>
                     </div>
                 </section>
+
                 <div data-aos="fade-up">
                     <div className="container2-md flex flex-wrap items-center justify-center bg-white dark:bg-whiteColor-dark rounded-md mx-auto md:-translate-y-1/2 w-full shadow-brand">
                         <div className="basis-1/2 md:basis-1/4 lg:basis-1/5 flex justify-center py-5 lg:py-35px 2xl:py-45px">
-                            {" "}
                             <a href="#">
                                 <img
                                     src="./assets/images/brand/brand_1.png"
                                     alt=""
                                 />
-                            </a>{" "}
+                            </a>
                         </div>
                         <div className="basis-1/2 md:basis-1/4 lg:basis-1/5 flex justify-center py-5 lg:py-35px 2xl:py-45px">
-                            {" "}
                             <a href="#">
-                                {" "}
                                 <img
                                     src="./assets/images/brand/brand_2.png"
                                     alt=""
                                 />
-                            </a>{" "}
+                            </a>
                         </div>
                         <div className="basis-1/2 md:basis-1/4 lg:basis-1/5 flex justify-center py-5 lg:py-35px 2xl:py-45px">
-                            {" "}
                             <a href="#">
-                                {" "}
                                 <img
                                     src="./assets/images/brand/brand_3.png"
                                     alt=""
                                 />
-                            </a>{" "}
+                            </a>
                         </div>
                         <div className="basis-1/2 md:basis-1/4 lg:basis-1/5 flex justify-center py-5 lg:py-35px 2xl:py-45px">
-                            {" "}
                             <a href="#">
-                                {" "}
                                 <img
                                     src="./assets/images/brand/brand_4.png"
                                     alt=""
                                 />
-                            </a>{" "}
+                            </a>
                         </div>
                         <div className="basis-1/2 md:basis-1/4 lg:basis-1/5 flex justify-center py-5 lg:py-35px 2xl:py-45px">
-                            {" "}
                             <a href="#">
-                                {" "}
                                 <img
                                     src="./assets/images/brand/brand_5.png"
                                     alt=""
                                 />
-                            </a>{" "}
+                            </a>
                         </div>
                     </div>
                 </div>
+
                 <section>
                     <div className="container">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-30px pb-30px">
@@ -4182,59 +3870,53 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 data-aos="fade-up"
                             >
                                 <div className="tilt relative z-0">
-                                    {" "}
                                     <img
                                         className="absolute left-0"
                                         src="./assets/images/about/about_12.png"
                                         alt=""
-                                    />{" "}
+                                    />
                                     <img
                                         src="./assets/images/about/about_13.png"
                                         alt=""
                                         className="w-full"
-                                    />{" "}
+                                    />
                                 </div>
                             </div>
+
                             <div data-aos="fade-up">
                                 <span className="text-size-15 font-semibold text-secondaryColor inline-block uppercase mb-[13px]">
-                                    {" "}
-                                    EDUCATION SOLUTION{" "}
+                                    EDUCATION SOLUTION
                                 </span>
                                 <h3 className="text-3xl md:text-size-45 leading-10 md:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                                    {" "}
-                                    Welcome to the{" "}
+                                    Welcome to the
                                     <span className="relative after:w-full after:h-[7px] after:bg-secondaryColor after:absolute after:left-0 after:bottom-3 md:after:bottom-5">
                                         Online
-                                    </span>{" "}
-                                    Learning Center{" "}
+                                    </span>
+                                    Learning Center
                                 </h3>
                                 <p className="text-sm md:text-base leading-7 text-contentColor dark:text-contentColor-dark mb-6 pl-3 border-l-2 border-primaryColor">
-                                    {" "}
                                     25+Contrary to popular belief, Lorem Ipsum
                                     is not simply random text roots in a piece
-                                    of classical Latin literature from 45 BC{" "}
+                                    of classical Latin literature from 45 BC
                                 </p>
                                 <ul className="space-y-5">
                                     <li className="flex items-center group">
                                         <i className="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
                                         <p className="text-sm md:text-base font-medium text-blackColor dark:text-blackColor-dark">
-                                            {" "}
-                                            Lorem Ipsum is simply dummy{" "}
+                                            Lorem Ipsum is simply dummy
                                         </p>
                                     </li>
                                     <li className="flex items-center group">
                                         <i className="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
                                         <p className="text-sm md:text-base font-medium text-blackColor dark:text-blackColor-dark">
-                                            {" "}
                                             Explore a variety of fresh
-                                            educational teach{" "}
+                                            educational teach
                                         </p>
                                     </li>
                                     <li className="flex items-center group">
                                         <i className="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
                                         <p className="text-sm md:text-base font-medium text-blackColor dark:text-blackColor-dark">
-                                            {" "}
-                                            Lorem Ipsum is simply dummy text of{" "}
+                                            Lorem Ipsum is simply dummy text of
                                         </p>
                                     </li>
                                 </ul>
@@ -4242,6 +3924,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                         </div>
                     </div>
                 </section>
+
                 <section className="py-50px pb-20">
                     <div className="container">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-30px mb-65px">
@@ -4250,28 +3933,26 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                     className="text-sm font-semibold text-primaryColor bg-whitegrey3 px-6 py-5px mb-5 rounded-full inline-block"
                                     data-aos="fade-up"
                                 >
-                                    {" "}
-                                    Course List{" "}
+                                    Course List
                                 </span>
                                 <h3
                                     className="text-3xl md:text-size-35 2xl:text-size-38 3xl:text-size-42 leading-10 md:leading-45px 2xl:leading-50px 3xl:leading-2xl font-bold text-blackColor dark:text-blackColor-dark"
                                     data-aos="fade-up"
                                 >
-                                    {" "}
-                                    Populer{" "}
+                                    Populer
                                     <span className="relative after:w-full after:h-[7px] after:bg-secondaryColor after:absolute after:left-0 after:bottom-3 md:after:bottom-4 after:z-[-1]">
                                         Subjects
-                                    </span>{" "}
+                                    </span>
                                 </h3>
                             </div>
+
                             <div className="lg:col-star-5 lg:col-span-5">
                                 <p
                                     className="text-sm md:text-base text-contentColor dark:text-contentColor-dark mb-10px 2xl:mb-50px 2xl:pl-50px"
                                     data-aos="fade-up"
                                 >
-                                    {" "}
                                     Forging relationships between multi to
-                                    national governments and global NGOs begins.{" "}
+                                    national governments and global NGOs begins.
                                 </p>
                             </div>
                             <div
@@ -4279,17 +3960,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 data-aos="fade-up"
                             >
                                 <div>
-                                    {" "}
                                     <a
                                         className="text-size-15 text-whiteColor bg-secondaryColor px-25px py-10px border border-secondaryColor hover:text-secondaryColor hover:bg-whiteColor inline-block rounded dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor"
                                         href="#"
                                     >
                                         All Catagories{" "}
-                                        <i className="icofont-long-arrow-right"></i>{" "}
-                                    </a>{" "}
+                                        <i className="icofont-long-arrow-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-30px">
                             <div data-aos="fade-up">
                                 <div className="p-30px group bg-whiteColor rounded-xl transition-all duration-300 hover:-translate-y-5px shadow-dropdown-secodary hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor">
@@ -4336,6 +4017,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     fill="#FFB31F"
                                                 ></path>
                                             </svg>
+
                                             <div className="service__bg__img w-20 h-[60px]">
                                                 <svg
                                                     className="w-20 h-[60px]"
@@ -4369,21 +4051,21 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </svg>
                                         </div>
                                     </div>
+
                                     <div>
                                         <a
                                             href="#"
                                             className="text-size-22 sm:text-size-17 md:text-size-22 lg:text-size-17 2xl:text-size-22 leading-29px sm:leading-15px md:leading-29px lg:leading-15px 2xl:leading-29px font-semibold mb-5px hover:text-secondaryColor font-hind  dark:text-whiteColor dark:hover:text-secondaryColor  dark:transition-all dark:duration-300"
                                         >
-                                            {" "}
-                                            Business Studies{" "}
+                                            Business Studies
                                         </a>
                                         <p className="text-contentColor group-hover:text-whiteColor leading-29px">
-                                            {" "}
-                                            Business is succes{" "}
+                                            Business is succes
                                         </p>
                                     </div>
                                 </div>
                             </div>
+
                             <div data-aos="fade-up">
                                 <div className="p-30px group bg-whiteColor rounded-xl transition-all duration-300 hover:-translate-y-5px shadow-dropdown-secodary hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor">
                                     <div className="-translate-y-2 flex justify-between overflow-hidden mb-10px">
@@ -4431,6 +4113,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     ></path>
                                                 </g>
                                             </svg>
+
                                             <div className="service__bg__img w-20 h-[60px]">
                                                 <svg
                                                     className="w-20 h-[60px]"
@@ -4464,21 +4147,21 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </svg>
                                         </div>
                                     </div>
+
                                     <div>
                                         <a
                                             href="#"
                                             className="text-size-22 sm:text-size-17 md:text-size-22 lg:text-size-17 2xl:text-size-22 leading-29px sm:leading-15px md:leading-29px lg:leading-15px 2xl:leading-29px font-semibold mb-5px hover:text-secondaryColor font-hind  dark:text-whiteColor dark:hover:text-secondaryColor  dark:transition-all dark:duration-300"
                                         >
-                                            {" "}
-                                            Programming Tech{" "}
+                                            Programming Tech
                                         </a>
                                         <p className="text-contentColor group-hover:text-whiteColor leading-29px">
-                                            {" "}
-                                            update your skill{" "}
+                                            update your skill
                                         </p>
                                     </div>
                                 </div>
                             </div>
+
                             <div data-aos="fade-up">
                                 <div className="p-30px group bg-whiteColor rounded-xl transition-all duration-300 hover:-translate-y-5px shadow-dropdown-secodary hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor">
                                     <div className="-translate-y-2 flex justify-between overflow-hidden mb-10px">
@@ -4519,6 +4202,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     fill="#5F2DED"
                                                 ></path>
                                             </svg>
+
                                             <div className="service__bg__img w-20 h-[60px]">
                                                 <svg
                                                     className="w-20 h-[60px]"
@@ -4552,21 +4236,21 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </svg>
                                         </div>
                                     </div>
+
                                     <div>
                                         <a
                                             href="#"
                                             className="text-size-22 sm:text-size-17 md:text-size-22 lg:text-size-17 2xl:text-size-22 leading-29px sm:leading-15px md:leading-29px lg:leading-15px 2xl:leading-29px font-semibold mb-5px hover:text-secondaryColor font-hind  dark:text-whiteColor dark:hover:text-secondaryColor  dark:transition-all dark:duration-300"
                                         >
-                                            {" "}
-                                            Artist & Design{" "}
+                                            Artist & Design
                                         </a>
                                         <p className="text-contentColor group-hover:text-whiteColor leading-29px">
-                                            {" "}
-                                            show creativity{" "}
+                                            show creativity
                                         </p>
                                     </div>
                                 </div>
                             </div>
+
                             <div data-aos="fade-up">
                                 <div className="p-30px group bg-whiteColor rounded-xl transition-all duration-300 hover:-translate-y-5px shadow-dropdown-secodary hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor">
                                     <div className="-translate-y-2 flex justify-between overflow-hidden mb-10px">
@@ -4610,6 +4294,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     fill="#FFB31F"
                                                 ></rect>
                                             </svg>
+
                                             <div className="service__bg__img w-20 h-[60px]">
                                                 <svg
                                                     className="w-20 h-[60px]"
@@ -4643,21 +4328,21 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </svg>
                                         </div>
                                     </div>
+
                                     <div>
                                         <a
                                             href="#"
                                             className="text-size-22 sm:text-size-17 md:text-size-22 lg:text-size-17 2xl:text-size-22 leading-29px sm:leading-15px md:leading-29px lg:leading-15px 2xl:leading-29px font-semibold mb-5px hover:text-secondaryColor font-hind  dark:text-whiteColor dark:hover:text-secondaryColor  dark:transition-all dark:duration-300"
                                         >
-                                            {" "}
-                                            Machine Learning{" "}
+                                            Machine Learning
                                         </a>
                                         <p className="text-contentColor group-hover:text-whiteColor leading-29px">
-                                            {" "}
-                                            Science is power{" "}
+                                            Science is power
                                         </p>
                                     </div>
                                 </div>
                             </div>
+
                             <div data-aos="fade-up">
                                 <div className="p-30px group bg-whiteColor rounded-xl transition-all duration-300 hover:-translate-y-5px shadow-dropdown-secodary hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor">
                                     <div className="-translate-y-2 flex justify-between overflow-hidden mb-10px">
@@ -4680,6 +4365,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     ></path>
                                                 </g>
                                             </svg>
+
                                             <div className="service__bg__img w-20 h-[60px]">
                                                 <svg
                                                     className="w-20 h-[60px]"
@@ -4713,21 +4399,21 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </svg>
                                         </div>
                                     </div>
+
                                     <div>
                                         <a
                                             href="#"
                                             className="text-size-22 sm:text-size-17 md:text-size-22 lg:text-size-17 2xl:text-size-22 leading-29px sm:leading-15px md:leading-29px lg:leading-15px 2xl:leading-29px font-semibold mb-5px hover:text-secondaryColor font-hind  dark:text-whiteColor dark:hover:text-secondaryColor  dark:transition-all dark:duration-300"
                                         >
-                                            {" "}
-                                            Health & Fitness{" "}
+                                            Health & Fitness
                                         </a>
                                         <p className="text-contentColor group-hover:text-whiteColor leading-29px">
-                                            {" "}
-                                            health is wealth{" "}
+                                            health is wealth
                                         </p>
                                     </div>
                                 </div>
                             </div>
+
                             <div data-aos="fade-up">
                                 <div className="p-30px group bg-whiteColor rounded-xl transition-all duration-300 hover:-translate-y-5px shadow-dropdown-secodary hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor">
                                     <div className="-translate-y-2 flex justify-between overflow-hidden mb-10px">
@@ -4750,6 +4436,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     ></path>
                                                 </g>
                                             </svg>
+
                                             <div className="service__bg__img w-20 h-[60px]">
                                                 <svg
                                                     className="w-20 h-[60px]"
@@ -4783,21 +4470,21 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </svg>
                                         </div>
                                     </div>
+
                                     <div>
                                         <a
                                             href="#"
                                             className="text-size-22 sm:text-size-17 md:text-size-22 lg:text-size-17 2xl:text-size-22 leading-29px sm:leading-15px md:leading-29px lg:leading-15px 2xl:leading-29px font-semibold mb-5px hover:text-secondaryColor font-hind  dark:text-whiteColor dark:hover:text-secondaryColor  dark:transition-all dark:duration-300"
                                         >
-                                            {" "}
-                                            Health & Fitness{" "}
+                                            Health & Fitness
                                         </a>
                                         <p className="text-contentColor group-hover:text-whiteColor leading-29px">
-                                            {" "}
-                                            health is wealth{" "}
+                                            health is wealth
                                         </p>
                                     </div>
                                 </div>
                             </div>
+
                             <div data-aos="fade-up">
                                 <div className="p-30px group bg-whiteColor rounded-xl transition-all duration-300 hover:-translate-y-5px shadow-dropdown-secodary hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor">
                                     <div className="-translate-y-2 flex justify-between overflow-hidden mb-10px">
@@ -4843,6 +4530,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     fill="#5F2DED"
                                                 ></path>
                                             </svg>
+
                                             <div className="service__bg__img w-20 h-[60px]">
                                                 <svg
                                                     className="w-20 h-[60px]"
@@ -4876,21 +4564,21 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </svg>
                                         </div>
                                     </div>
+
                                     <div>
                                         <a
                                             href="#"
                                             className="text-size-22 sm:text-size-17 md:text-size-22 lg:text-size-17 2xl:text-size-22 leading-29px sm:leading-15px md:leading-29px lg:leading-15px 2xl:leading-29px font-semibold mb-5px hover:text-secondaryColor font-hind  dark:text-whiteColor dark:hover:text-secondaryColor  dark:transition-all dark:duration-300"
                                         >
-                                            {" "}
-                                            Marketing Analysis{" "}
+                                            Marketing Analysis
                                         </a>
                                         <p className="text-contentColor group-hover:text-whiteColor leading-29px">
-                                            {" "}
-                                            Science is power{" "}
+                                            Science is power
                                         </p>
                                     </div>
                                 </div>
                             </div>
+
                             <div data-aos="fade-up">
                                 <div className="p-30px group bg-whiteColor rounded-xl transition-all duration-300 hover:-translate-y-5px shadow-dropdown-secodary hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor">
                                     <div className="-translate-y-2 flex justify-between overflow-hidden mb-10px">
@@ -4936,6 +4624,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     fill="#FFB31F"
                                                 ></path>
                                             </svg>
+
                                             <div className="service__bg__img w-20 h-[60px]">
                                                 <svg
                                                     className="w-20 h-[60px]"
@@ -4969,17 +4658,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             </svg>
                                         </div>
                                     </div>
+
                                     <div>
                                         <a
                                             href="#"
                                             className="text-size-22 sm:text-size-17 md:text-size-22 lg:text-size-17 2xl:text-size-22 leading-29px sm:leading-15px md:leading-29px lg:leading-15px 2xl:leading-29px font-semibold mb-5px hover:text-secondaryColor font-hind  dark:text-whiteColor dark:hover:text-secondaryColor  dark:transition-all dark:duration-300"
                                         >
-                                            {" "}
-                                            Business Studies{" "}
+                                            Business Studies
                                         </a>
                                         <p className="text-contentColor group-hover:text-whiteColor leading-29px">
-                                            {" "}
-                                            Business is succes{" "}
+                                            Business is succes
                                         </p>
                                     </div>
                                 </div>
@@ -4987,6 +4675,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                         </div>
                     </div>
                 </section>
+
                 <section>
                     <div className="pt-50px pb-10 md:pt-70px md:pb-50px lg:pt-20 2xl:pt-100px 2xl:pb-70px bg-whiteColor dark:bg-whiteColor-dark">
                         <div className="filter-container container">
@@ -4996,75 +4685,65 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                     data-aos="fade-up"
                                 >
                                     <span className="text-sm font-semibold text-primaryColor bg-whitegrey3 px-6 py-5px mb-5 rounded-full inline-block">
-                                        {" "}
-                                        Course List{" "}
+                                        Course List
                                     </span>
                                     <h3
                                         className="text-3xl md:text-[35px] lg:text-size-42 leading-[45px] 2xl:leading-[45px] md:leading-[50px] font-bold text-blackColor dark:text-blackColor-dark"
                                         data-aos="fade-up"
                                     >
-                                        {" "}
-                                        Perfect Online Course Your Carrer{" "}
+                                        Perfect Online Course Your Carrer
                                     </h3>
                                 </div>
+
                                 <div className="basis-full lg:basis-[700px]">
                                     <ul
                                         className="filter-controllers flex flex-wrap sm:flex-nowrap justify-start lg:justify-end button-group filters-button-group"
                                         data-aos="fade-up"
                                     >
                                         <li>
-                                            {" "}
                                             <button
                                                 data-filter="*"
                                                 className="is-checked dark:is-checked pr-5 md:pr-10 lg:pr-17px 2xl:pr-10 text-contentColor font-medium hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor"
                                             >
-                                                {" "}
-                                                See All{" "}
-                                            </button>{" "}
+                                                See All
+                                            </button>
                                         </li>
                                         <li>
-                                            {" "}
                                             <button
                                                 data-filter=".filter1"
                                                 className="pr-5 md:pr-10 lg:pr-17px 2xl:pr-10 text-contentColor font-medium hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor"
                                             >
-                                                {" "}
-                                                Data science{" "}
-                                            </button>{" "}
+                                                Data science
+                                            </button>
                                         </li>
                                         <li>
-                                            {" "}
                                             <button
                                                 data-filter=".filter2"
                                                 className="pr-5 md:pr-10 lg:pr-17px 2xl:pr-10 text-contentColor font-medium hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor"
                                             >
-                                                {" "}
-                                                Engineering{" "}
-                                            </button>{" "}
+                                                Engineering
+                                            </button>
                                         </li>
                                         <li>
-                                            {" "}
                                             <button
                                                 data-filter=".filter3"
                                                 className="pr-5 md:pr-10 lg:pr-17px 2xl:pr-10 text-contentColor font-medium hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor"
                                             >
-                                                {" "}
-                                                Featured{" "}
-                                            </button>{" "}
+                                                Featured
+                                            </button>
                                         </li>
                                         <li>
-                                            {" "}
                                             <button
                                                 data-filter=".filter4"
                                                 className="text-contentColor font-medium hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor"
                                             >
-                                                {" "}
-                                                Architecture{" "}
-                                            </button>{" "}
+                                                Architecture
+                                            </button>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
+
                             <div
                                 className="container p-0 filter-contents flex flex-wrap sm:-mx-15px mt-7 lg:mt-10"
                                 data-aos="fade-up"
@@ -5077,18 +4756,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="w-full overflow-hidden rounded"
                                                 >
-                                                    {" "}
                                                     <img
                                                         src="./assets/images/grid/grid_1.png"
                                                         alt=""
                                                         className="w-full transition-all duration-300 group-hover:scale-110"
-                                                    />{" "}
+                                                    />
                                                 </a>
                                                 <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                                                     <div>
                                                         <p className="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor rounded font-semibold">
-                                                            {" "}
-                                                            Data & Tech{" "}
+                                                            Data & Tech
                                                         </p>
                                                     </div>
                                                     <a
@@ -5099,30 +4776,27 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     </a>
                                                 </div>
                                             </div>
+
                                             <div>
                                                 <div className="grid grid-cols-2 mb-15px">
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
                                                                 23 Lesson
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
                                                                 1 hr 30 min
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -5130,25 +4804,24 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                 >
-                                                    {" "}
                                                     Foundation course to under
-                                                    stand about softwere{" "}
+                                                    stand about softwere
                                                 </a>
+
                                                 <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                    {" "}
-                                                    $32.00{" "}
+                                                    $32.00
                                                     <del className="text-sm text-lightGrey4 font-semibold">
                                                         / $67.00
-                                                    </del>{" "}
+                                                    </del>
                                                     <span className="ml-6">
                                                         <del className="text-base font-semibold text-secondaryColor3">
                                                             Free
                                                         </del>
-                                                    </span>{" "}
+                                                    </span>
                                                 </div>
+
                                                 <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
                                                     <div>
-                                                        {" "}
                                                         <a
                                                             href="instructor-details.html"
                                                             className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
@@ -5157,28 +4830,28 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 className="w-[30px] h-[30px] rounded-full mr-15px"
                                                                 src="./assets/images/grid/grid_small_1.jpg"
                                                                 alt=""
-                                                            />{" "}
+                                                            />
                                                             <span className="flex">
                                                                 Micle john
-                                                            </span>{" "}
-                                                        </a>{" "}
+                                                            </span>
+                                                        </a>
                                                     </div>
                                                     <div className="text-start md:text-end">
-                                                        {" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
                                                         <span className="text-xs text-lightGrey6">
                                                             (44)
-                                                        </span>{" "}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className="w-full sm:w-1/2 lg:w-1/3 group grid-item filter2 filter3">
                                     <div className="tab-content-wrapper sm:px-15px mb-30px">
                                         <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
@@ -5187,18 +4860,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="w-full overflow-hidden rounded"
                                                 >
-                                                    {" "}
                                                     <img
                                                         src="./assets/images/grid/grid_2.png"
                                                         alt=""
                                                         className="w-full transition-all duration-300 group-hover:scale-110"
-                                                    />{" "}
+                                                    />
                                                 </a>
                                                 <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                                                     <div>
                                                         <p className="text-xs text-whiteColor px-4 py-[3px] bg-blue rounded font-semibold">
-                                                            {" "}
-                                                            Mechanical{" "}
+                                                            Mechanical
                                                         </p>
                                                     </div>
                                                     <a
@@ -5209,30 +4880,27 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     </a>
                                                 </div>
                                             </div>
+
                                             <div>
                                                 <div className="grid grid-cols-2 mb-15px">
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
                                                                 29 Lesson
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
                                                                 2 hr 10 min
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -5240,25 +4908,24 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                 >
-                                                    {" "}
                                                     Nidnies course to under
-                                                    stand about softwere{" "}
+                                                    stand about softwere
                                                 </a>
+
                                                 <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                    {" "}
-                                                    $32.00{" "}
+                                                    $32.00
                                                     <del className="text-sm text-lightGrey4 font-semibold">
                                                         / $67.00
-                                                    </del>{" "}
+                                                    </del>
                                                     <span className="ml-6">
                                                         <del className="text-base font-semibold text-greencolor">
                                                             Free
                                                         </del>
-                                                    </span>{" "}
+                                                    </span>
                                                 </div>
+
                                                 <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
                                                     <div>
-                                                        {" "}
                                                         <a
                                                             href="instructor-details.html"
                                                             className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
@@ -5268,25 +4935,25 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 src="./assets/images/grid/grid_small_2.jpg"
                                                                 alt=""
                                                             />
-                                                            Rinis Jhon{" "}
-                                                        </a>{" "}
+                                                            Rinis Jhon
+                                                        </a>
                                                     </div>
                                                     <div className="text-start md:text-end">
-                                                        {" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
                                                         <span className="text-xs text-lightGrey6">
                                                             (44)
-                                                        </span>{" "}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className="w-full sm:w-1/2 lg:w-1/3 group grid-item filter4 filter5">
                                     <div className="tab-content-wrapper sm:px-15px mb-30px">
                                         <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
@@ -5295,18 +4962,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="w-full overflow-hidden rounded"
                                                 >
-                                                    {" "}
                                                     <img
                                                         src="./assets/images/grid/grid_3.png"
                                                         alt=""
                                                         className="w-full transition-all duration-300 group-hover:scale-110"
-                                                    />{" "}
+                                                    />
                                                 </a>
                                                 <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                                                     <div>
                                                         <p className="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor2 rounded font-semibold">
-                                                            {" "}
-                                                            Development{" "}
+                                                            Development
                                                         </p>
                                                     </div>
                                                     <a
@@ -5317,32 +4982,27 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     </a>
                                                 </div>
                                             </div>
+
                                             <div>
                                                 <div className="grid grid-cols-2 mb-15px">
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
-                                                                {" "}
                                                                 25 Lesson
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
-                                                                {" "}
                                                                 1 hr 40 min
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -5350,25 +5010,24 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                 >
-                                                    {" "}
                                                     Minws course to under stand
-                                                    about solution{" "}
+                                                    about solution
                                                 </a>
+
                                                 <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                    {" "}
-                                                    $40.00{" "}
+                                                    $40.00
                                                     <del className="text-sm text-lightGrey4 font-semibold">
                                                         / $67.00
-                                                    </del>{" "}
+                                                    </del>
                                                     <span className="ml-6">
                                                         <del className="text-base font-semibold text-secondaryColor3">
                                                             Free
                                                         </del>
-                                                    </span>{" "}
+                                                    </span>
                                                 </div>
+
                                                 <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
                                                     <div>
-                                                        {" "}
                                                         <a
                                                             href="instructor-details.html"
                                                             className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
@@ -5378,25 +5037,25 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 src="./assets/images/grid/grid_small_3.jpg"
                                                                 alt=""
                                                             />
-                                                            Micle John{" "}
-                                                        </a>{" "}
+                                                            Micle John
+                                                        </a>
                                                     </div>
                                                     <div className="text-start md:text-end">
-                                                        {" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
                                                         <span className="text-xs text-lightGrey6">
                                                             (44)
-                                                        </span>{" "}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className="w-full sm:w-1/2 lg:w-1/3 group grid-item filter4">
                                     <div className="tab-content-wrapper sm:px-15px mb-30px">
                                         <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
@@ -5405,18 +5064,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="w-full overflow-hidden rounded"
                                                 >
-                                                    {" "}
                                                     <img
                                                         src="./assets/images/grid/grid_4.png"
                                                         alt=""
                                                         className="w-full transition-all duration-300 group-hover:scale-110"
-                                                    />{" "}
+                                                    />
                                                 </a>
                                                 <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                                                     <div>
                                                         <p className="text-xs text-whiteColor px-4 py-[3px] bg-greencolor2 rounded font-semibold">
-                                                            {" "}
-                                                            Ui & UX Design{" "}
+                                                            Ui & UX Design
                                                         </p>
                                                     </div>
                                                     <a
@@ -5427,31 +5084,27 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     </a>
                                                 </div>
                                             </div>
+
                                             <div>
                                                 <div className="grid grid-cols-2 mb-15px">
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
-                                                                {" "}
                                                                 36 Lesson
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
                                                                 3 hr 40 min
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -5459,25 +5112,24 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                 >
-                                                    {" "}
                                                     Design course to under stand
-                                                    about solution{" "}
+                                                    about solution
                                                 </a>
+
                                                 <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                    {" "}
-                                                    $40.00{" "}
+                                                    $40.00
                                                     <del className="text-sm text-lightGrey4 font-semibold">
                                                         / $67.00
-                                                    </del>{" "}
+                                                    </del>
                                                     <span className="ml-6">
                                                         <del className="text-base font-semibold text-secondaryColor3">
                                                             Free
                                                         </del>
-                                                    </span>{" "}
+                                                    </span>
                                                 </div>
+
                                                 <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
                                                     <div>
-                                                        {" "}
                                                         <a
                                                             href="instructor-details.html"
                                                             className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
@@ -5486,28 +5138,28 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 className="w-[30px] h-[30px] rounded-full mr-15px"
                                                                 src="./assets/images/grid/grid_small_4.jpg"
                                                                 alt=""
-                                                            />{" "}
+                                                            />
                                                             <span className="flex flex-shrink-0">
                                                                 Micle Robin
-                                                            </span>{" "}
-                                                        </a>{" "}
+                                                            </span>
+                                                        </a>
                                                     </div>
                                                     <div className="text-start md:text-end">
-                                                        {" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
                                                         <span className="text-xs text-lightGrey6">
                                                             (44)
-                                                        </span>{" "}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className="w-full sm:w-1/2 lg:w-1/3 group group grid-item filter1 filter3">
                                     <div className="tab-content-wrapper sm:px-15px mb-30px">
                                         <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
@@ -5516,18 +5168,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="w-full overflow-hidden rounded"
                                                 >
-                                                    {" "}
                                                     <img
                                                         src="./assets/images/grid/grid_5.png"
                                                         alt=""
                                                         className="w-full transition-all duration-300 group-hover:scale-110"
-                                                    />{" "}
+                                                    />
                                                 </a>
                                                 <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                                                     <div>
                                                         <p className="text-xs text-whiteColor px-4 py-[3px] bg-orange rounded font-semibold">
-                                                            {" "}
-                                                            Data & Tech{" "}
+                                                            Data & Tech
                                                         </p>
                                                     </div>
                                                     <a
@@ -5538,30 +5188,27 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     </a>
                                                 </div>
                                             </div>
+
                                             <div>
                                                 <div className="grid grid-cols-2 mb-15px">
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
                                                                 36 Lesson
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
                                                                 3 hr 40 min
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -5569,25 +5216,24 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                 >
-                                                    {" "}
                                                     Data course to under stand
-                                                    about solution{" "}
+                                                    about solution
                                                 </a>
+
                                                 <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                    {" "}
-                                                    $40.00{" "}
+                                                    $40.00
                                                     <del className="text-sm text-lightGrey4 font-semibold">
                                                         / $67.00
-                                                    </del>{" "}
+                                                    </del>
                                                     <span className="ml-6">
                                                         <del className="text-base font-semibold text-secondaryColor3">
                                                             Free
                                                         </del>
-                                                    </span>{" "}
+                                                    </span>
                                                 </div>
+
                                                 <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
                                                     <div>
-                                                        {" "}
                                                         <a
                                                             href="instructor-details.html"
                                                             className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
@@ -5596,28 +5242,28 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 className="w-[30px] h-[30px] rounded-full mr-15px"
                                                                 src="./assets/images/grid/grid_small_1.jpg"
                                                                 alt=""
-                                                            />{" "}
+                                                            />
                                                             <span className="flex flex-shrink-0">
                                                                 Micle Robin
-                                                            </span>{" "}
-                                                        </a>{" "}
+                                                            </span>
+                                                        </a>
                                                     </div>
                                                     <div className="text-start md:text-end">
-                                                        {" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
                                                         <span className="text-xs text-lightGrey6">
                                                             (44)
-                                                        </span>{" "}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className="w-full sm:w-1/2 lg:w-1/3 group grid-item filter2 filter5">
                                     <div className="tab-content-wrapper sm:px-15px mb-30px">
                                         <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
@@ -5626,18 +5272,16 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="w-full overflow-hidden rounded"
                                                 >
-                                                    {" "}
                                                     <img
                                                         src="./assets/images/grid/grid_6.png"
                                                         alt=""
                                                         className="w-full transition-all duration-300 group-hover:scale-110"
-                                                    />{" "}
+                                                    />
                                                 </a>
                                                 <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                                                     <div>
                                                         <p className="text-xs text-whiteColor px-4 py-[3px] bg-yellow rounded font-semibold">
-                                                            {" "}
-                                                            Big Data{" "}
+                                                            Big Data
                                                         </p>
                                                     </div>
                                                     <a
@@ -5648,31 +5292,27 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     </a>
                                                 </div>
                                             </div>
+
                                             <div>
                                                 <div className="grid grid-cols-2 mb-15px">
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
-                                                                {" "}
                                                                 30 Lesson
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center">
                                                         <div>
-                                                            {" "}
-                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>{" "}
+                                                            <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
                                                         </div>
                                                         <div>
-                                                            {" "}
                                                             <span className="text-sm text-black dark:text-blackColor-dark">
                                                                 3 hr 40 min
-                                                            </span>{" "}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -5680,26 +5320,24 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     href="course-details.html"
                                                     className="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                 >
-                                                    {" "}
                                                     Big data to under stand
-                                                    about solution pacage{" "}
+                                                    about solution pacage
                                                 </a>
+
                                                 <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                    {" "}
-                                                    $40.00{" "}
+                                                    $40.00
                                                     <del className="text-sm text-lightGrey4 font-semibold">
                                                         / $67.00
-                                                    </del>{" "}
+                                                    </del>
                                                     <span className="ml-6">
                                                         <del className="text-base font-semibold text-secondaryColor3">
-                                                            {" "}
                                                             Free
                                                         </del>
-                                                    </span>{" "}
+                                                    </span>
                                                 </div>
+
                                                 <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
                                                     <div>
-                                                        {" "}
                                                         <a
                                                             href="instructor-details.html"
                                                             className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
@@ -5708,22 +5346,21 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                                 className="w-[30px] h-[30px] rounded-full mr-15px"
                                                                 src="./assets/images/grid/grid_small_1.jpg"
                                                                 alt=""
-                                                            />{" "}
+                                                            />
                                                             <span className="flex flex-shrink-0">
                                                                 Micle Robin
-                                                            </span>{" "}
-                                                        </a>{" "}
+                                                            </span>
+                                                        </a>
                                                     </div>
                                                     <div className="text-start md:text-end">
-                                                        {" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
-                                                        <i className="icofont-star text-size-15 text-yellow"></i>{" "}
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
+                                                        <i className="icofont-star text-size-15 text-yellow"></i>
                                                         <span className="text-xs text-lightGrey6">
                                                             (44)
-                                                        </span>{" "}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -5734,25 +5371,25 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                         </div>
                     </div>
                 </section>
+
                 <section className="bg-register bg-cover bg-center bg-no-repeat lg:mb-150px">
                     <div className="overlay bg-blueDark bg-opacity-90 py-20 lg:pt-[90px] lg:pb-0 relative z-0">
                         <div>
-                            {" "}
                             <img
                                 className="absolute top-0 left-0 lg:left-[8%] 2xl:top-10 animate-move-hor block z--1"
                                 src="./assets/images/register/register__1.png"
                                 alt=""
-                            />{" "}
+                            />
                             <img
                                 className="absolute top-1/2 left-3/4 md:left-2/3 lg:left-1/2 2xl:left-[8%] md:top animate-spin-slow block z--1"
                                 src="./assets/images/register/register__2.png"
                                 alt=""
-                            />{" "}
+                            />
                             <img
                                 className="absolute top-20 lg:top-3/4 md:top-14 right-20 md:right-20 lg:right-[90%] animate-move-var block z--1"
                                 src="./assets/images/register/register__3.png"
                                 alt=""
-                            />{" "}
+                            />
                         </div>
                         <div className="container">
                             <div className="grid grid-cols-1 lg:grid-cols-12 pt-30px gap-x-30px">
@@ -5762,81 +5399,80 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 >
                                     <div className="relative">
                                         <span className="text-sm font-semibold text-primaryColor bg-whitegrey3 px-6 py-5px mb-5 rounded-full inline-block">
-                                            {" "}
-                                            Registration{" "}
+                                            Registration
                                         </span>
                                         <h3 className="text-3xl md:text-[35px] 2xl:text-size-42 leading-[45px] 2xl:leading-2xl font-bold text-whiteColor pb-25px">
-                                            {" "}
-                                            Register Your{" "}
+                                            Register Your
                                             <span className="relative after:w-full after:h-[7px] after:bg-secondaryColor after:absolute after:left-0 after:bottom-2 md:after:bottom-4 z-0 after:z-[-1]">
                                                 Account
-                                            </span>{" "}
-                                            Get free access to{" "}
+                                            </span>
+                                            Get free access to
                                             <span className="text-yellow1">
                                                 60000{" "}
                                             </span>{" "}
-                                            online course{" "}
+                                            online course
                                         </h3>
                                         <div className="flex gap-x-5 items-center">
                                             <div>
-                                                {" "}
                                                 <button
                                                     data-url="https://www.youtube.com/watch?v=vHdclsdkp28"
                                                     className="lvideo relative w-15 h-15 md:h-20 md:w-20 lg:w-15 lg:h-15 2xl:h-70px 2xl:w-70px 3xl:h-20 3xl:w-20 bg-secondaryColor rounded-full flex items-center justify-center"
                                                 >
-                                                    {" "}
                                                     <span className="animate-buble absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 block w-[180px] h-[180px] border-secondaryColor rounded-full"></span>
-                                                    <span className="animate-buble2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 block w-[180px] h-[180px] border-secondaryColor rounded-full"></span>{" "}
+                                                    <span className="animate-buble2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 block w-[180px] h-[180px] border-secondaryColor rounded-full"></span>
                                                     <img
                                                         src="./assets/images/icon/video.png"
                                                         alt=""
                                                         className=""
-                                                    />{" "}
-                                                </button>{" "}
+                                                    />
+                                                </button>
                                             </div>
+
                                             <div>
                                                 <p className="text-size-15 md:text-[22px] lg:text-lg 2xl:text-[22px] leading-6 md:leading-9 lg:leading-8 2xl:leading-9 font-semibold text-white">
-                                                    {" "}
                                                     Learn Something new & Build
                                                     Your Career From Anywhere In
-                                                    The World{" "}
+                                                    The World
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className="overflow-visible lg:col-start-8 lg:col-span-5 relative z-1 lg:-mb-150px">
                                     <form
                                         className="p-35px pt-10 bg-lightGrey10 dark:bg-lightGrey10-dark rounded shadow-experience"
                                         data-aos="fade-up"
                                     >
                                         <h3 className="text-xl text-blackColor dark:text-blackColor-dark font-semibold mb-5 font-inter">
-                                            {" "}
-                                            Fill Your Registration{" "}
+                                            Fill Your Registration
                                         </h3>
+
                                         <input
                                             type="text"
                                             placeholder="Your Name"
                                             className="w-full px-15px py-3 bg-lightGrey8 text-base mb-25px focus:outline-none"
                                         />
+
                                         <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-x-30px">
-                                            {" "}
                                             <input
                                                 type="email"
                                                 placeholder="Email Address"
                                                 className="w-full px-15px py-3 bg-lightGrey8 text-base mb-25px focus:outline-none"
-                                            />{" "}
+                                            />
+
                                             <input
                                                 type="text"
                                                 placeholder="Phone"
                                                 className="w-full px-15px py-3 bg-lightGrey8 text-base mb-25px focus:outline-none"
-                                            />{" "}
+                                            />
                                         </div>
                                         <input
                                             type="text"
                                             placeholder="Address"
                                             className="w-full px-15px py-3 bg-lightGrey8 text-base mb-25px focus:outline-none"
                                         />
+
                                         <textarea
                                             placeholder="Comment"
                                             className="w-full px-15px pb-3 pt-5 bg-lightGrey8 text-base mb-25px h-[155px] placeholder:text-blackColor"
@@ -5844,15 +5480,13 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                             rows="10"
                                         ></textarea>
                                         <div>
-                                            {" "}
                                             <button
                                                 type="submit"
                                                 className="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark"
                                             >
-                                                {" "}
-                                                Sign Up{" "}
-                                                <i className="icofont-long-arrow-right group-hover:text-primaryColor"></i>{" "}
-                                            </button>{" "}
+                                                Sign Up
+                                                <i className="icofont-long-arrow-right group-hover:text-primaryColor"></i>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -5860,16 +5494,15 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                         </div>
                     </div>
                 </section>
+
                 <section>
                     <div className="container py-30px md:pt-10 md:pb-50px 2xl:pt-50px 2xl:pb-100px">
                         <div data-aos="fade-up" className="text-center mb-15px">
                             <span className="text-size-15 font-semibold text-secondaryColor inline-block uppercase mb-[13px]">
-                                {" "}
-                                EXPERT TEACHER{" "}
+                                EXPERT TEACHER
                             </span>
                             <h3 className="text-3xl md:text-size-35 lg:text-size-45 leading-10 md:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                                {" "}
-                                Our Expert Teacher{" "}
+                                Our Expert Teacher
                             </h3>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-30px">
@@ -5880,64 +5513,59 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                         alt=""
                                         className="w-full"
                                     />
+
                                     <div className="absolute transition-all duration-300 right-0 top-5 opacity-0 group-hover:opacity-100 group-hover:right-5">
                                         <ul className="flex flex-col gap-10px">
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-facebook"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-twitter"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-instagram"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-youtube-play"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div>
                                     <p className="text-base text-contentColor dark:text-contentColor-dark uppercase mb-1">
-                                        {" "}
-                                        INTERIOR DESIGNER{" "}
+                                        INTERIOR DESIGNER
                                     </p>
                                     <h5>
-                                        {" "}
                                         <a
                                             href="instructor-details.html"
                                             className="text-2xl font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor mb-15px"
                                         >
-                                            {" "}
-                                            Mirnsdo Jons{" "}
-                                        </a>{" "}
+                                            Mirnsdo Jons
+                                        </a>
                                     </h5>
                                 </div>
                             </div>
+
                             <div data-aos="fade-up">
                                 <div className="mb-5 relative group">
                                     <img
@@ -5945,64 +5573,59 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                         alt=""
                                         className="w-full"
                                     />
+
                                     <div className="absolute transition-all duration-300 right-0 top-5 opacity-0 group-hover:opacity-100 group-hover:right-5">
                                         <ul className="flex flex-col gap-10px">
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-facebook"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-twitter"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-instagram"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-youtube-play"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div>
                                     <p className="text-base text-contentColor dark:text-contentColor-dark uppercase mb-1">
-                                        {" "}
-                                        INTERIOR DESIGNER{" "}
+                                        INTERIOR DESIGNER
                                     </p>
                                     <h5>
-                                        {" "}
                                         <a
                                             href="instructor-details.html"
                                             className="text-2xl font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor mb-15px"
                                         >
-                                            {" "}
-                                            Daniel Rock{" "}
-                                        </a>{" "}
+                                            Daniel Rock
+                                        </a>
                                     </h5>
                                 </div>
                             </div>
+
                             <div data-aos="fade-up">
                                 <div className="mb-5 relative group">
                                     <img
@@ -6010,87 +5633,80 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                         alt=""
                                         className="w-full"
                                     />
+
                                     <div className="absolute transition-all duration-300 right-0 top-5 opacity-0 group-hover:opacity-100 group-hover:right-5">
                                         <ul className="flex flex-col gap-10px">
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-facebook"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-twitter"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-instagram"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                             <li>
-                                                {" "}
                                                 <a
                                                     href="#"
                                                     className="w-41px h-41px leading-41px bg-whiteColor text-darkdeep4 hover:bg-primaryColor hover:text-whiteColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor text-base rounded text-center"
                                                 >
                                                     <i className="icofont-youtube-play"></i>
-                                                </a>{" "}
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div>
                                     <p className="text-base text-contentColor dark:text-contentColor-dark uppercase mb-1">
-                                        {" "}
-                                        INTERIOR DESIGNER{" "}
+                                        INTERIOR DESIGNER
                                     </p>
                                     <h5>
-                                        {" "}
                                         <a
                                             href="instructor-details.html"
                                             className="text-2xl font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor mb-15px"
                                         >
-                                            {" "}
-                                            Sajid Mustahidul{" "}
-                                        </a>{" "}
+                                            Sajid Mustahidul
+                                        </a>
                                     </h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+
                 <section>
                     <div className="bg-lightGrey10 dark:bg-lightGrey10-dark relative z-0 overflow-hidden">
                         <div className="container py-50px md:py-70px lg:py-20 2xl:pt-145px 2xl:pb-154px">
                             <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-30px lg:gap-0">
                                 <div data-aos="fade-up">
                                     <h3 className="uppercase text-secondaryColor text-size-15 mb-5px md:mb-15px font-inter tracking-[4px] font-semibold">
-                                        {" "}
-                                        EDUCATION SOLUTION{" "}
+                                        EDUCATION SOLUTION
                                     </h3>
                                     <h1 className="text-3xl text-blackColor md:text-size-35 lg:text-size-42 2xl:text-size-47 leading-10 md:leading-45px lg:leading-12 2xl:leading-50px dark:text-blackColor-dark font-bold mb-15px">
-                                        {" "}
-                                        Client Testimonial About Our Lms Agency{" "}
+                                        Client Testimonial About Our Lms Agency
                                     </h1>
+
                                     <div className="swiper testimonial-2">
                                         <div className="swiper-wrapper">
                                             <div className="swiper-slide">
                                                 <div>
                                                     <p className="md:text-xl md:leading-10 text-lightGrey dark:text-whiteColor">
-                                                        {" "}
-                                                        <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>{" "}
+                                                        <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>
                                                         The other hand we
                                                         denounce with righteou
                                                         indg ation and dislike
@@ -6102,27 +5718,26 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                         demoraliz worlds ed by
                                                         the charms of pleasure
                                                         of the moment. Lorem
-                                                        ipsum dolor sit amet.{" "}
-                                                        <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>{" "}
+                                                        ipsum dolor sit amet.
+                                                        <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>
                                                     </p>
+
                                                     <div className="flex items-center pt-10">
                                                         <div className="pr-18px">
-                                                            {" "}
                                                             <img
                                                                 src="./assets/images/testimonial/testi_2.png"
                                                                 alt=""
                                                                 className="w-18 h-78 rounded-full"
-                                                            />{" "}
+                                                            />
                                                         </div>
                                                         <div>
                                                             <h4>
-                                                                {" "}
                                                                 <a
                                                                     href="#"
                                                                     className="text-size-22 font-semibold text-contentColor hover:text-primaryColor dark:hover:text-primaryColor dark:text-contentColor-dark"
                                                                 >
                                                                     Mirnsdo Jons
-                                                                </a>{" "}
+                                                                </a>
                                                             </h4>
                                                             <a
                                                                 href="#"
@@ -6134,11 +5749,11 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div className="swiper-slide">
                                                 <div>
                                                     <p className="md:text-xl md:leading-10 text-lightGrey dark:text-whiteColor">
-                                                        {" "}
-                                                        <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>{" "}
+                                                        <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>
                                                         The other hand we
                                                         denounce with righteou
                                                         indg ation and dislike
@@ -6150,27 +5765,26 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                         demoraliz worlds ed by
                                                         the charms of pleasure
                                                         of the moment. Lorem
-                                                        ipsum dolor sit amet.{" "}
-                                                        <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>{" "}
+                                                        ipsum dolor sit amet.
+                                                        <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>
                                                     </p>
+
                                                     <div className="flex items-center pt-10">
                                                         <div className="pr-18px">
-                                                            {" "}
                                                             <img
                                                                 src="./assets/images/testimonial/testi_2.png"
                                                                 alt=""
                                                                 className="w-18 h-78 rounded-full"
-                                                            />{" "}
+                                                            />
                                                         </div>
                                                         <div>
                                                             <h4>
-                                                                {" "}
                                                                 <a
                                                                     href="#"
                                                                     className="text-size-22 font-semibold text-contentColor hover:text-primaryColor dark:hover:text-primaryColor dark:text-contentColor-dark"
                                                                 >
                                                                     Mirnsdo Jons
-                                                                </a>{" "}
+                                                                </a>
                                                             </h4>
                                                             <a
                                                                 href="#"
@@ -6182,11 +5796,11 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div className="swiper-slide">
                                                 <div>
                                                     <p className="md:text-xl md:leading-10 text-lightGrey dark:text-whiteColor">
-                                                        {" "}
-                                                        <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>{" "}
+                                                        <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>
                                                         The other hand we
                                                         denounce with righteou
                                                         indg ation and dislike
@@ -6198,27 +5812,26 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                         demoraliz worlds ed by
                                                         the charms of pleasure
                                                         of the moment. Lorem
-                                                        ipsum dolor sit amet.{" "}
-                                                        <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>{" "}
+                                                        ipsum dolor sit amet.
+                                                        <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>
                                                     </p>
+
                                                     <div className="flex items-center pt-10">
                                                         <div className="pr-18px">
-                                                            {" "}
                                                             <img
                                                                 src="./assets/images/testimonial/testi_2.png"
                                                                 alt=""
                                                                 className="w-18 h-78 rounded-full"
-                                                            />{" "}
+                                                            />
                                                         </div>
                                                         <div>
                                                             <h4>
-                                                                {" "}
                                                                 <a
                                                                     href="#"
                                                                     className="text-size-22 font-semibold text-contentColor hover:text-primaryColor dark:hover:text-primaryColor dark:text-contentColor-dark"
                                                                 >
                                                                     Mirnsdo Jons
-                                                                </a>{" "}
+                                                                </a>
                                                             </h4>
                                                             <a
                                                                 href="#"
@@ -6231,42 +5844,40 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div className="absolute bottom-0 right-0 flex flex-row-reverse gap-0.5">
                                             <div className="static swiper-button-next w-15 h-15 bg-whiteColor text-blackColor transition-all duration-300 text-3xl hover:bg-primaryColor hover:text-whiteColor dark:hover:bg-secondaryColor after:hidden before:hidden">
-                                                {" "}
-                                                <i className="icofont-long-arrow-right active"></i>{" "}
+                                                <i className="icofont-long-arrow-right active"></i>
                                             </div>
                                             <div className="static swiper-button-prev w-15 h-15 transition-all duration-300 bg-whiteColor text-blackColor text-3xl hover:bg-primaryColor hover:text-whiteColor dark:hover:bg-secondaryColor after:hidden before:hidden">
-                                                {" "}
-                                                <i className="icofont-long-arrow-left"></i>{" "}
+                                                <i className="icofont-long-arrow-left"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div data-aos="fade-up">
                                     <div className="tilt pl-0 md:pl-70px">
-                                        {" "}
                                         <img
                                             className="w-full"
                                             src="./assets/images/testimonial/testi__group__1.png"
                                             alt=""
-                                        />{" "}
+                                        />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+
                 <section>
                     <div className="container py-10 md:py-50px lg:py-60px 2xl:py-100px">
                         <div data-aos="fade-up" className="text-center mb-15px">
                             <span className="text-size-15 font-semibold text-secondaryColor inline-block uppercase mb-[13px]">
-                                {" "}
-                                NEWS & BLOG{" "}
+                                NEWS & BLOG
                             </span>
                             <h3 className="text-3xl md:text-size-35 lg:text-size-45 leading-10 md:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                                {" "}
-                                Latest News & Blogs{" "}
+                                Latest News & Blogs
                             </h3>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-30px">
@@ -6280,31 +5891,28 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                         alt=""
                                         className="w-full"
                                     />
+
                                     <div className="absolute left-[30px] bottom-[30px]">
-                                        {" "}
                                         <a
                                             href="#"
                                             className="px-12 py-10px text-size-15 leading-1 text-whiteColor bg-blackColor border border-blackColor hover:text-blackColor hover:bg-whiteColor rounded-full dark:text-whiteColor-dark dark:bg-blackColor-dark dark:hover:text-blackColor-dark dark:hover:bg-whiteColor-dark dark:border-blackColor-dark"
                                         >
                                             Story
-                                        </a>{" "}
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="pt-30px pr-5 pb-10 pl-30px md:py-5 md:px-10 lg:pt-30px lg:pr-10px lg:pb-10 lg:pl-5 2xl:pt-30px 2xl:pr-5 2xl:pb-10 2xl:pl-30px">
                                     <p className="text-base text-primaryColor uppercase font-bold mb-15px">
-                                        {" "}
-                                        20 APRIL 2024{" "}
+                                        20 APRIL 2024
                                     </p>
                                     <h5>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-2xl md:text-xl 2xl:text-2xl leading-8 md:leading-7 2xl:leading-8 font-bold text-blackColor dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor mb-15px"
                                         >
-                                            {" "}
                                             Facebook design is dedicated to
-                                            what\'s new in design{" "}
-                                        </a>{" "}
+                                            what's new in design
+                                        </a>
                                     </h5>
                                     <a
                                         href="#"
@@ -6315,6 +5923,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                     </a>
                                 </div>
                             </div>
+
                             <div
                                 data-aos="fade-up"
                                 className="shadow-dropdown-secodary bg-transparent"
@@ -6325,31 +5934,28 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                         alt=""
                                         className="w-full"
                                     />
+
                                     <div className="absolute left-[30px] bottom-[30px]">
-                                        {" "}
                                         <a
                                             href="#"
                                             className="px-12 py-10px text-size-15 leading-1 text-whiteColor bg-blackColor border border-blackColor hover:text-blackColor hover:bg-whiteColor rounded-full dark:text-whiteColor-dark dark:bg-blackColor-dark dark:hover:text-blackColor-dark dark:hover:bg-whiteColor-dark dark:border-blackColor-dark"
                                         >
                                             Story
-                                        </a>{" "}
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="pt-30px pr-5 pb-10 pl-30px md:py-5 md:px-10 lg:pt-30px lg:pr-10px lg:pb-10 lg:pl-5 2xl:pt-30px 2xl:pr-5 2xl:pb-10 2xl:pl-30px">
                                     <p className="text-base text-primaryColor uppercase font-bold mb-15px">
-                                        {" "}
-                                        20 APRIL 2024{" "}
+                                        20 APRIL 2024
                                     </p>
                                     <h5>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-2xl md:text-xl 2xl:text-2xl leading-8 md:leading-7 2xl:leading-8 font-bold text-blackColor dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor mb-15px"
                                         >
-                                            {" "}
                                             Facebook design is dedicated to
-                                            what\'s new in design{" "}
-                                        </a>{" "}
+                                            what's new in design
+                                        </a>
                                     </h5>
                                     <a
                                         href="#"
@@ -6360,6 +5966,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                     </a>
                                 </div>
                             </div>
+
                             <div
                                 data-aos="fade-up"
                                 className="shadow-dropdown-secodary bg-transparent"
@@ -6370,31 +5977,28 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                         alt=""
                                         className="w-full"
                                     />
+
                                     <div className="absolute left-[30px] bottom-[30px]">
-                                        {" "}
                                         <a
                                             href="#"
                                             className="px-12 py-10px text-size-15 leading-1 text-whiteColor bg-blackColor border border-blackColor hover:text-blackColor hover:bg-whiteColor rounded-full dark:text-whiteColor-dark dark:bg-blackColor-dark dark:hover:text-blackColor-dark dark:hover:bg-whiteColor-dark dark:border-blackColor-dark"
                                         >
                                             Story
-                                        </a>{" "}
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="pt-30px pr-5 pb-10 pl-30px md:py-5 md:px-10 lg:pt-30px lg:pr-10px lg:pb-10 lg:pl-5 2xl:pt-30px 2xl:pr-5 2xl:pb-10 2xl:pl-30px">
                                     <p className="text-base text-primaryColor uppercase font-bold mb-15px">
-                                        {" "}
-                                        20 APRIL 2024{" "}
+                                        20 APRIL 2024
                                     </p>
                                     <h5>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-2xl md:text-xl 2xl:text-2xl leading-8 md:leading-7 2xl:leading-8 font-bold text-blackColor dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor mb-15px"
                                         >
-                                            {" "}
                                             Facebook design is dedicated to
-                                            what\'s new in design{" "}
-                                        </a>{" "}
+                                            what's new in design
+                                        </a>
                                     </h5>
                                     <a
                                         href="#"
@@ -6406,14 +6010,14 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 </div>
                             </div>
                         </div>
+
                         <div className="flex justify-center" data-aos="fade-up">
-                            {" "}
                             <a
                                 href="#"
                                 className="text-size-15 px-47px py-15px bg-primaryColor text-whiteColor border border-primaryColor hover:text-primaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor mt-10 md:mt-50px rounded uppercase"
                             >
                                 More Blog
-                            </a>{" "}
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -6424,38 +6028,35 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-30px md:gap-y-0 items-center pb-45px border-b border-darkcolor">
                             <div data-aos="fade-up">
                                 <h4 className="text-4xl md:text-size-25 lg:text-size-40 font-bold text-whiteColor leading-50px md:leading-10 lg:leading-16">
-                                    {" "}
-                                    Still You Need Our{" "}
+                                    Still You Need Our
                                     <span className="text-primaryColor">
                                         Support
                                     </span>{" "}
-                                    ?{" "}
+                                    ?
                                 </h4>
                                 <p className="text-whiteColor text-opacity-65">
-                                    {" "}
                                     Don’t wait make a smart & logical quote
-                                    here. Its pretty easy.{" "}
+                                    here. Its pretty easy.
                                 </p>
                             </div>
                             <div data-aos="fade-up">
                                 <form className="max-w-form-xl md:max-w-form-md lg:max-w-form-lg xl:max-w-form-xl 2xl:max-w-form-2xl bg-deepgray ml-auto rounded relative">
-                                    {" "}
                                     <input
                                         type="email"
                                         placeholder="Enter your email here"
                                         className="text-whiteColor h-62px pl-15px focus:outline-none border border-deepgray focus:border-whitegrey bg-transparent rounded w-full"
-                                    />{" "}
+                                    />
                                     <button
                                         type="submit"
                                         className="px-3 md:px-10px lg:px-5 bg-primaryColor hover:bg-deepgray text-xs lg:text-size-15 text-whiteColor border border-primaryColor block rounded absolute right-0 top-0 h-full"
                                     >
-                                        {" "}
-                                        Subscribe Now{" "}
-                                    </button>{" "}
+                                        Subscribe Now
+                                    </button>
                                 </form>
                             </div>
                         </div>
                     </section>
+
                     <section>
                         <div className="grid grid-cols-12 gap-30px md:gap-y-5 lg:gap-y-0 pt-60px pb-50px md:pt-30px md:pb-30px lg:pt-110px lg:pb-20">
                             <div
@@ -6463,196 +6064,177 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 data-aos="fade-up"
                             >
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
-                                    {" "}
-                                    About us{" "}
+                                    About us
                                 </h4>
                                 <p className="text-base lg:text-sm 2xl:text-base text-darkgray mb-30px leading-1.8 2xl:leading-1.8">
-                                    {" "}
                                     orporate clients and leisure travelers has
                                     been relying on Groundlink for dependable
                                     safe, and professional chauffeured car end
-                                    service in major cities across World.{" "}
+                                    service in major cities across World.
                                 </p>
                                 <div className="flex items-center">
                                     <div>
-                                        {" "}
-                                        <i className="icofont-clock-time text-3xl text-whiteColor h-78px w-78px bg-primaryColor leading-78px mr-22px block text-center"></i>{" "}
+                                        <i className="icofont-clock-time text-3xl text-whiteColor h-78px w-78px bg-primaryColor leading-78px mr-22px block text-center"></i>
                                     </div>
                                     <div>
                                         <h6 className="text-lg text-whiteColor font-medium leading-29px">
-                                            {" "}
-                                            OPENING HOURES{" "}
+                                            OPENING HOURES
                                         </h6>
                                         <p className="text-sm text-whiteColor text-opacity-60 mb-1">
-                                            {" "}
-                                            Mon - Sat(8.00 - 6.00){" "}
+                                            Mon - Sat(8.00 - 6.00)
                                         </p>
                                         <p className="text-sm text-whiteColor text-opacity-60">
-                                            {" "}
-                                            Sunday - Closed{" "}
+                                            Sunday - Closed
                                         </p>
                                     </div>
                                 </div>
                             </div>
+
                             <div
                                 className="col-start-1 col-span-12 md:col-start-7 lg:col-start-5 md:col-span-6 lg:col-span-2"
                                 data-aos="fade-up"
                             >
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
-                                    {" "}
-                                    Usefull Links{" "}
+                                    Usefull Links
                                 </h4>
                                 <ul className="flex flex-col gap-y-3">
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0"
                                         >
                                             About Us
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0"
                                         >
                                             Teachers
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0"
                                         >
                                             Partner
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0"
                                         >
                                             Room-Details
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0"
                                         >
                                             Gallery
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
+
                             <div
                                 className="col-start-1 col-span-12 md:col-start-1 lg:col-start-7 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-60px"
                                 data-aos="fade-up"
                             >
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
-                                    {" "}
-                                    Course{" "}
+                                    Course
                                 </h4>
                                 <ul className="flex flex-col gap-y-3">
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0"
                                         >
                                             Ui Ux Design
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0"
                                         >
                                             Web Development
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0"
                                         >
                                             Business Strategy
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0"
                                         >
                                             Softwere Development
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0"
                                         >
                                             Business English
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
+
                             <div
                                 className="col-start-1 col-span-12 md:col-start-7 lg:col-start-10 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-50px"
                                 data-aos="fade-up"
                             >
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
-                                    {" "}
-                                    Recent Post{" "}
+                                    Recent Post
                                 </h4>
                                 <ul className="flex flex-col gap-y-5">
                                     <li>
                                         <a className="flex items-center gap-3 group cursor-pointer">
                                             <div>
-                                                {" "}
                                                 <img
                                                     src="./assets/images/footer/footer__1.png"
                                                     alt=""
                                                     className="w-61px h-54px"
-                                                />{" "}
+                                                />
                                             </div>
                                             <div>
                                                 <p className="text-xs text-darkgray mb-7px">
                                                     02 Apr 2024
                                                 </p>
                                                 <h6 className="text-size-15 text-whiteColor font-bold group-hover:text-primaryColor transition-all duration-300">
-                                                    {" "}
-                                                    Best Your Business{" "}
+                                                    Best Your Business
                                                 </h6>
                                             </div>
                                         </a>
                                     </li>
+
                                     <li>
                                         <a className="flex items-center gap-3 group cursor-pointer">
                                             <div>
-                                                {" "}
                                                 <img
                                                     src="./assets/images/footer/footer__2.png"
                                                     alt=""
                                                     className="w-61px h-54px"
-                                                />{" "}
+                                                />
                                             </div>
                                             <div>
                                                 <p className="text-xs text-darkgray mb-7px">
                                                     02 Apr 2024
                                                 </p>
                                                 <h6 className="text-size-15 text-whiteColor font-bold group-hover:text-primaryColor transition-all duration-300">
-                                                    {" "}
-                                                    Keep Your Business{" "}
+                                                    Keep Your Business
                                                 </h6>
                                             </div>
                                         </a>
@@ -6660,20 +6242,18 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                     <li>
                                         <a className="flex items-center gap-3 group cursor-pointer">
                                             <div>
-                                                {" "}
                                                 <img
                                                     src="./assets/images/footer/footer__3.png"
                                                     alt=""
                                                     className="w-61px h-54px"
-                                                />{" "}
+                                                />
                                             </div>
                                             <div>
                                                 <p className="text-xs text-darkgray mb-7px">
                                                     02 Apr 2024
                                                 </p>
                                                 <h6 className="text-size-15 text-whiteColor font-bold group-hover:text-primaryColor transition-all duration-300">
-                                                    {" "}
-                                                    Nice Your Business{" "}
+                                                    Nice Your Business
                                                 </h6>
                                             </div>
                                         </a>
@@ -6682,74 +6262,69 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                             </div>
                         </div>
                     </section>
+
                     <div>
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-30px pt-10 items-center">
                             <div className="lg:col-start-1 lg:col-span-3">
-                                {" "}
                                 <a href="#">
-                                    {" "}
                                     <img
                                         src="./assets/images/logo/logo_2.png"
                                         alt=""
-                                    />{" "}
-                                </a>{" "}
+                                    />
+                                </a>
                             </div>
+
                             <div className="lg:col-start-4 lg:col-span-6">
                                 <p className="text-whiteColor">
-                                    {" "}
                                     Copyright ©{" "}
                                     <span className="text-primaryColor">
                                         2024{" "}
                                     </span>{" "}
-                                    by edurock. All Rights Reserved.{" "}
+                                    by edurock. All Rights Reserved.
                                 </p>
                             </div>
+
                             <div className="lg:col-start-10 lg:col-span-3">
                                 <ul className="flex gap-3 lg:gap-2 2xl:gap-3 lg:justify-end">
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="w-40.19px lg:w-35px 2xl:w-40.19px h-37px lg:h-35px 2xl:h-37px leading-37px lg:leading-35px 2xl:leading-37px text-whiteColor bg-whiteColor bg-opacity-10 hover:bg-primaryColor text-center"
                                         >
                                             <i className="icofont-facebook"></i>
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="w-40.19px lg:w-35px 2xl:w-40.19px h-37px lg:h-35px 2xl:h-37px leading-37px lg:leading-35px 2xl:leading-37px text-whiteColor bg-whiteColor bg-opacity-10 hover:bg-primaryColor text-center"
                                         >
                                             <i className="icofont-twitter"></i>
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="w-40.19px lg:w-35px 2xl:w-40.19px h-37px lg:h-35px 2xl:h-37px leading-37px lg:leading-35px 2xl:leading-37px text-whiteColor bg-whiteColor bg-opacity-10 hover:bg-primaryColor text-center"
                                         >
                                             <i className="icofont-vimeo"></i>
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="w-40.19px lg:w-35px 2xl:w-40.19px h-37px lg:h-35px 2xl:h-37px leading-37px lg:leading-35px 2xl:leading-37px text-whiteColor bg-whiteColor bg-opacity-10 hover:bg-primaryColor text-center"
                                         >
                                             <i className="icofont-linkedin"></i>
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                     <li>
-                                        {" "}
                                         <a
                                             href="#"
                                             className="w-40.19px lg:w-35px 2xl:w-40.19px h-37px lg:h-35px 2xl:h-37px leading-37px lg:leading-35px 2xl:leading-37px text-whiteColor bg-whiteColor bg-opacity-10 hover:bg-primaryColor text-center"
                                         >
                                             <i className="icofont-skype"></i>
-                                        </a>{" "}
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
