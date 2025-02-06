@@ -37,7 +37,7 @@ videoModal();
 theme();
 
 //preloader
-preloader();
+// preloader();
 
 // scroll up
 scrollUp();
