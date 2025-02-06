@@ -34,7 +34,9 @@ modalProductDetails();
 videoModal();
 
 // theme mode controller
-theme();
+document.onload = () => {
+  theme();
+}
 
 //preloader
 preloader();

@@ -10,12 +10,12 @@
       href="./assets/images/favicon.ico"
     >
     <!-- link stylesheet -->
-    <link rel="stylesheet" href="./assets/css/icofont.min.css" >
+    <link rel="stylesheet" href="./edurock-tailwind-main-file/assets/css/icofont.min.css" >
 
-    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" >
-    <link rel="stylesheet" href="./assets/css/video-modal.css" >
-    <link rel="stylesheet" href="./assets/css/aos.css" >
-    <link rel="stylesheet" href="./assets/css/style.css" >
+    <link rel="stylesheet" href="./edurock-tailwind-main-file/assets/css/swiper-bundle.min.css" >
+    <link rel="stylesheet" href="./edurock-tailwind-main-file/assets/css/video-modal.css" >
+    <link rel="stylesheet" href="./edurock-tailwind-main-file/assets/css/aos.css" >
+    <link rel="stylesheet" href="./edurock-tailwind-main-file/assets/css/style.css" >
 
     <!-- Scripts -->
     @routes
