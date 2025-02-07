@@ -1973,7 +1973,7 @@ export default function GuestLayout({ children }) {
 
                                         <li className="hidden lg:block">
                                             <a
-                                                href="#"
+                                                href="/login"
                                                 className="text-size-12 2xl:text-size-15 text-whiteColor bg-primaryColor block border-primaryColor border hover:text-primaryColor hover:bg-white px-15px py-2 rounded-standard dark:hover:bg-whiteColor-dark dark: dark:hover:text-whiteColor"
                                             >
                                                 Get Start Here
