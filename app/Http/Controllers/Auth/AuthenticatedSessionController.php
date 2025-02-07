@@ -13,6 +13,11 @@ use Inertia\Response;
 
 class AuthenticatedSessionController extends Controller
 {
+
+    public function __construct()
+    {
+        Inertia::setRootView('frontend'); // Set `admin.blade.php` as default for this controller
+    }
     /**
      * Display the login view.
      */

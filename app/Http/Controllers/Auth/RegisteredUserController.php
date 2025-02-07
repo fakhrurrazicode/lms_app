@@ -15,13 +15,19 @@ use Inertia\Response;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
+    public function __construct()
+    {
+        Inertia::setRootView('frontend'); // Set `admin.blade.php` as default for this controller
+    }
+
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        return Inertia::render('Auth/Register', [
+            // 'canResetPassword' => Route::has('password.request'),
+            // 'status' => session('status'),
+        ]);
     }
+
 
     /**
      * Handle an incoming registration request.
