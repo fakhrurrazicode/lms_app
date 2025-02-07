@@ -374,13 +374,14 @@ export default function GuestLayout({ children }) {
                         <div className="py-15px lg:py-0 px-15px">
                             <div className="grid grid-cols-2 lg:grid-cols-12 items-center gap-15px -mx-15px">
                                 <div className="lg:col-start-1 lg:col-span-2">
-                                    <a href="index.html" className="block">
-                                        <img
+                                    <Link href="/" className="block">
+                                        {/* <img
                                             src="./assets/images/logo/logo_1.png"
                                             alt="Logo"
                                             className="w-logo-sm lg:w-auto py-2"
-                                        />
-                                    </a>
+                                        /> */}
+                                        <ApplicationLogo className="block h-20 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                                    </Link>
                                 </div>
 
                                 <div className="hidden lg:block lg:col-start-3 lg:col-span-7">
@@ -1972,12 +1973,12 @@ export default function GuestLayout({ children }) {
                                         </li>
 
                                         <li className="hidden lg:block">
-                                            <a
+                                            <Link
                                                 href="/login"
                                                 className="text-size-12 2xl:text-size-15 text-whiteColor bg-primaryColor block border-primaryColor border hover:text-primaryColor hover:bg-white px-15px py-2 rounded-standard dark:hover:bg-whiteColor-dark dark: dark:hover:text-whiteColor"
                                             >
                                                 Get Start Here
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className="block lg:hidden">
                                             <button className="open-mobile-menu text-3xl text-darkdeep1 hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor">
