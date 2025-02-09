@@ -29,6 +29,7 @@ use App\Http\Controllers\PagesController;
 // });
 
 Route::get('/', [PagesController::class, 'index'])->name('page.home');
+Route::get('/courses', [PagesController::class, 'courses'])->name('page.courses');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

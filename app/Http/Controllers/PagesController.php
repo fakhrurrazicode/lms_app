@@ -17,4 +17,9 @@ class PagesController extends Controller
     {
         return Inertia::render('Welcome');
     }
+
+    public function courses()
+    {
+        return Inertia::render('Courses');
+    }
 }
