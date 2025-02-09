@@ -27,4 +27,9 @@ class PagesController extends Controller
     {
         return Inertia::render('Course');
     }
+
+    public function become_an_instructor()
+    {
+        return Inertia::render('BecomeAnInstructor');
+    }
 }

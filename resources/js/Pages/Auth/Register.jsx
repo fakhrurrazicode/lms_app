@@ -73,44 +73,84 @@ export default function Register() {
                                             <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-30px gap-y-25px mb-25px">
                                                 <div>
                                                     <label className="text-contentColor dark:text-contentColor-dark mb-10px block">
-                                                        First Name
+                                                        Name
                                                     </label>
                                                     <input
+                                                        id="name"
+                                                        name="name"
+                                                        value={data.name}
+                                                        // className="mt-1 block w-full"
+                                                        autoComplete="name"
+                                                        isFocused={true}
+                                                        onChange={(e) =>
+                                                            setData(
+                                                                "name",
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        required
                                                         type="text"
-                                                        placeholder="First Name"
+                                                        placeholder="Name"
                                                         className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
                                                     />
-                                                </div>
-                                                <div>
-                                                    <label className="text-contentColor dark:text-contentColor-dark mb-10px block">
-                                                        Last Name
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        placeholder="Last Name"
-                                                        className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
+                                                    <InputError
+                                                        message={errors.name}
+                                                        className="mt-2"
                                                     />
                                                 </div>
-                                            </div>
-                                            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-30px gap-y-25px mb-25px">
                                                 <div>
                                                     <label className="text-contentColor dark:text-contentColor-dark mb-10px block">
                                                         Username
                                                     </label>
                                                     <input
-                                                        type="text"
-                                                        placeholder="Username"
+                                                        id="username"
+                                                        name="username"
+                                                        value={data.username}
+                                                        // className="mt-1 block w-full"
+                                                        autoComplete="username"
+                                                        onChange={(e) =>
+                                                            setData(
+                                                                "username",
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        required
+                                                        placeholder="Your Email"
                                                         className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
                                                     />
+                                                    <InputError
+                                                        message={
+                                                            errors.username
+                                                        }
+                                                        className="mt-2"
+                                                    />
                                                 </div>
+                                            </div>
+                                            <div className="grid grid-cols-1 lg:grid-cols-1 lg:gap-x-30px gap-y-25px mb-25px">
                                                 <div>
                                                     <label className="text-contentColor dark:text-contentColor-dark mb-10px block">
                                                         Email
                                                     </label>
                                                     <input
+                                                        id="email"
                                                         type="email"
+                                                        name="email"
+                                                        value={data.email}
+                                                        // className="mt-1 block w-full"
+                                                        autoComplete="username"
+                                                        onChange={(e) =>
+                                                            setData(
+                                                                "email",
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        required
                                                         placeholder="Your Email"
                                                         className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
+                                                    />
+                                                    <InputError
+                                                        message={errors.email}
+                                                        className="mt-2"
                                                     />
                                                 </div>
                                             </div>
@@ -120,9 +160,28 @@ export default function Register() {
                                                         Password
                                                     </label>
                                                     <input
+                                                        id="password"
                                                         type="password"
+                                                        name="password"
+                                                        value={data.password}
+                                                        // className="mt-1 block w-full"
+                                                        autoComplete="new-password"
+                                                        onChange={(e) =>
+                                                            setData(
+                                                                "password",
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        required
                                                         placeholder="Password"
                                                         className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
+                                                    />
+
+                                                    <InputError
+                                                        message={
+                                                            errors.password
+                                                        }
+                                                        className="mt-2"
                                                     />
                                                 </div>
                                                 <div>
@@ -130,9 +189,29 @@ export default function Register() {
                                                         Re-Enter Password
                                                     </label>
                                                     <input
+                                                        id="password_confirmation"
                                                         type="password"
+                                                        name="password_confirmation"
+                                                        value={
+                                                            data.password_confirmation
+                                                        }
+                                                        // className="mt-1 block w-full"
+                                                        autoComplete="new-password"
+                                                        onChange={(e) =>
+                                                            setData(
+                                                                "password_confirmation",
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        required
                                                         placeholder="Re-Enter Password"
                                                         className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
+                                                    />
+                                                    <InputError
+                                                        message={
+                                                            errors.password_confirmation
+                                                        }
+                                                        className="mt-2"
                                                     />
                                                 </div>
                                             </div>

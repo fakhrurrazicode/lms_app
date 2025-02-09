@@ -425,6 +425,14 @@ export default function GuestLayout({ children }) {
                                                 Courses
                                             </Link>
                                         </li>
+                                        <li className="nav-item">
+                                            <Link
+                                                href="/become-an-instructor"
+                                                className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
+                                            >
+                                                Become an Instructor
+                                            </Link>
+                                        </li>
                                         {/* <li className="nav-item group">
                                             <a
                                                 href="#"
@@ -2069,6 +2077,17 @@ export default function GuestLayout({ children }) {
                                             href="/courses"
                                         >
                                             Courses
+                                        </Link>
+                                    </div>
+                                </li>
+
+                                <li className="">
+                                    <div className="flex items-center justify-between">
+                                        <Link
+                                            className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                            href="/become-an-instructor"
+                                        >
+                                            Become an Instructor
                                         </Link>
                                     </div>
                                 </li>
