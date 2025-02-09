@@ -5,6 +5,8 @@ import "../../edurock/edurock/assets/css/video-modal.css";
 import "../../edurock/edurock/assets/css/aos.css";
 import "../../edurock/edurock/assets/css/style.css";
 
+import "../../edurock/edurock/assets/js/main.js";
+
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Link } from "@inertiajs/react";
 

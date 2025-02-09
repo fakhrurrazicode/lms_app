@@ -10,21 +10,11 @@ const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => {
-        // console.log("name", name);
-        const page = resolvePageComponent(
+        console.log("name", name);
+        return resolvePageComponent(
             `./Pages/${name}.jsx`,
             import.meta.glob("./Pages/**/*.jsx")
         );
-
-        page.then((module) => {
-            console.log("module", module);
-            console.log("module.default.layout", module.default.layout);
-            if (module.default.layout) {
-                import(`../css/${name}.css`).catch(() => {});
-            }
-        });
-
-        return page;
     },
     setup({ el, App, props }) {
         const root = createRoot(el);

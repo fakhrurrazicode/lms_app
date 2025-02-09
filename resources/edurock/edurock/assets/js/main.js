@@ -8916,7 +8916,6 @@ var Swiper = (function () {
     ];
     return te.use(me), te;
 })();
-//# sourceMappingURL=swiper-bundle.min.js.map
 /*!
  * Isotope PACKAGED v3.0.6
  *
@@ -10820,7 +10819,7 @@ const stickystickyHeader = () => {
                     stickyHeader.setAttribute(
                         "style",
                         `position: fixed;top: -${stickyHeaderHeight}px;left:0;right:0
-      `
+    `
                     );
                     stickyHeader.classList.remove("active");
                 } else {
@@ -11983,73 +11982,76 @@ dataModules.forEach((element) => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    // sticky header related funtionality
-    stickystickyHeader();
+    console.log("DOMContentLoaded");
+    setTimeout(() => {
+        // sticky header related funtionality
+        stickystickyHeader();
 
-    // dropdown functionalities
-    dropdownController();
+        // dropdown functionalities
+        dropdownController();
 
-    // tab related funtioanlities
-    tabsController();
+        // tab related funtioanlities
+        tabsController();
 
-    // mobile menu related funtionality
-    mobileMenu();
+        // mobile menu related funtionality
+        mobileMenu();
 
-    // accorfion related funtionality
-    accordions();
+        // accorfion related funtionality
+        accordions();
 
-    // project filter related funtionality
-    filter();
+        // project filter related funtionality
+        filter();
 
-    //hover effect parallex
-    VanillaTilt.init(document.querySelectorAll(".tilt"), {
-        perspective: 2000,
-    });
+        //hover effect parallex
+        VanillaTilt.init(document.querySelectorAll(".tilt"), {
+            perspective: 2000,
+        });
 
-    // counter up
-    const counters = document.querySelectorAll(".counter");
-    counters.forEach((counter) => {
-        new countUp(counter);
-    });
-    // quick view modal
-    modalProductDetails();
+        // counter up
+        const counters = document.querySelectorAll(".counter");
+        counters.forEach((counter) => {
+            new countUp(counter);
+        });
+        // quick view modal
+        modalProductDetails();
 
-    // video modal
-    videoModal();
+        // video modal
+        videoModal();
 
-    // theme mode controller
-    theme();
+        // theme mode controller
+        theme();
 
-    //preloader
-    // preloader();
+        //preloader
+        // preloader();
 
-    // scroll up
-    scrollUp();
+        // scroll up
+        scrollUp();
 
-    // swiper slider
-    slider();
-    // AOS Scroll Animation
+        // swiper slider
+        slider();
+        // AOS Scroll Animation
 
-    // AOS.init({
-    //     offset: 0,
-    //     duration: 1000,
-    //     once: true,
-    //     easing: "ease",
-    // });
+        // AOS.init({
+        //     offset: 0,
+        //     duration: 1000,
+        //     once: true,
+        //     easing: "ease",
+        // });
 
-    // images popup
-    popup();
+        // images popup
+        popup();
 
-    // count down
-    countDown();
+        // count down
+        countDown();
 
-    // charts
-    lineChart();
-    pieChart();
+        // charts
+        lineChart();
+        pieChart();
 
-    // click count
-    count();
+        // click count
+        count();
 
-    // // smooth scroll
-    smoothScroll();
+        // // smooth scroll
+        smoothScroll();
+    }, 1000);
 });
