@@ -409,7 +409,23 @@ export default function GuestLayout({ children }) {
 
                                 <div className="hidden lg:block lg:col-start-3 lg:col-span-7">
                                     <ul className="nav-list flex justify-center">
-                                        <li className="nav-item group">
+                                        <li className="nav-item">
+                                            <Link
+                                                href="/"
+                                                className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
+                                            >
+                                                Home
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link
+                                                href="/courses"
+                                                className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
+                                            >
+                                                Courses
+                                            </Link>
+                                        </li>
+                                        {/* <li className="nav-item group">
                                             <a
                                                 href="#"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
@@ -1860,7 +1876,7 @@ export default function GuestLayout({ children }) {
                                                     </ul>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </div>
 
@@ -2036,267 +2052,24 @@ export default function GuestLayout({ children }) {
 
                         <div className="pt-8 pb-6 border-b border-borderColor dark:border-borderColor-dark">
                             <ul className="accordion-container">
-                                <li className="accordion">
+                                <li className="">
                                     <div className="flex items-center justify-between">
-                                        <a
+                                        <Link
                                             className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                            href="index.html"
+                                            href="/"
                                         >
                                             Home
-                                        </a>
-                                        <button className="accordion-controller px-3 py-4">
-                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
-                                        </button>
+                                        </Link>
                                     </div>
-
-                                    <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
-                                        <div className="content-wrapper">
-                                            <ul className="accordion-container">
-                                                <li className="accordion">
-                                                    <div className="flex items-center justify-between">
-                                                        <a
-                                                            href="index.html"
-                                                            className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                        >
-                                                            Home Light
-                                                        </a>
-                                                        <button className="accordion-controller px-3 py-4">
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
-                                                        </button>
-                                                    </div>
-
-                                                    <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
-                                                        <div className="content-wrapper">
-                                                            <ul>
-                                                                <li>
-                                                                    <a
-                                                                        href="index.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Home
-                                                                        (Default)
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a
-                                                                        href="home-2.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Elegant
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-3.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Classic
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-4.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Classic
-                                                                        LMS
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-5.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Online
-                                                                        Course
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-6.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Marketplace
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-7.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        University
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-8.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        ECommerce
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-9.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Kindergarten
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-10.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Machine
-                                                                        Learning
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-11.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Single
-                                                                        Course
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-
-                                                <li className="accordion">
-                                                    <div className="flex items-center justify-between">
-                                                        <a
-                                                            href="index-dark.html"
-                                                            className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                        >
-                                                            Home Dark
-                                                        </a>
-                                                        <button className="accordion-controller px-3 py-4">
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
-                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
-                                                        </button>
-                                                    </div>
-
-                                                    <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
-                                                        <div className="content-wrapper">
-                                                            <ul>
-                                                                <li>
-                                                                    <a
-                                                                        href="index-dark.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Home
-                                                                        Default
-                                                                        (Dark)
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a
-                                                                        href="home-2-dark.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Elegant
-                                                                        (Dark)
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-3-dark.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Classic
-                                                                        (Dark)
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-4-dark.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Classic
-                                                                        LMS
-                                                                        (Dark)
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-5-dark.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Online
-                                                                        Course
-                                                                        (Dark)
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-6-dark.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Marketplace
-                                                                        (Dark)
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-7-dark.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        University
-                                                                        (Dark)
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-8-dark.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        ECommerce
-                                                                        (Dark)
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-9-dark.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Kindergarten
-                                                                        (Dark)
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-10-dark.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Machine
-                                                                        Learning
-                                                                        (Dark)
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a
-                                                                        href="home-11-dark.html"
-                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                                                    >
-                                                                        Single
-                                                                        Course
-                                                                        (Dark)
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                </li>
+                                <li className="">
+                                    <div className="flex items-center justify-between">
+                                        <Link
+                                            className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                            href="/courses"
+                                        >
+                                            Courses
+                                        </Link>
                                     </div>
                                 </li>
                                 <li className="accordion">

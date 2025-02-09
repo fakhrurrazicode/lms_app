@@ -244,7 +244,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                 <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
                                                     <div className="relative mb-4">
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="w-full overflow-hidden rounded"
                                                         >
                                                             <img
@@ -295,7 +295,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                             </div>
                                                         </div>
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="text-lg font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
                                                             Foundation course to
@@ -353,7 +353,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                 <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
                                                     <div className="relative mb-4">
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="w-full overflow-hidden rounded"
                                                         >
                                                             <img
@@ -403,7 +403,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                             </div>
                                                         </div>
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="text-lg font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
                                                             Nidnies course to
@@ -458,7 +458,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                 <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
                                                     <div className="relative mb-4">
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="w-full overflow-hidden rounded"
                                                         >
                                                             <img
@@ -508,7 +508,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                             </div>
                                                         </div>
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="text-lg font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
                                                             Minws course to
@@ -563,7 +563,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                 <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
                                                     <div className="relative mb-4">
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="w-full overflow-hidden rounded"
                                                         >
                                                             <img
@@ -614,7 +614,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                             </div>
                                                         </div>
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="text-lg font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
                                                             Design course to
@@ -672,7 +672,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                 <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
                                                     <div className="relative mb-4">
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="w-full overflow-hidden rounded"
                                                         >
                                                             <img
@@ -723,7 +723,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                             </div>
                                                         </div>
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="text-lg font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
                                                             Data course to under
@@ -780,7 +780,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                 <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
                                                     <div className="relative mb-4">
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="w-full overflow-hidden rounded"
                                                         >
                                                             <img
@@ -830,7 +830,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                             </div>
                                                         </div>
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="text-lg font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
                                                             Big data to under
@@ -888,7 +888,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                 <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
                                                     <div className="relative mb-4">
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="w-full overflow-hidden rounded"
                                                         >
                                                             <img
@@ -939,7 +939,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                             </div>
                                                         </div>
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="text-lg font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
                                                             Foundation course to
@@ -997,7 +997,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                 <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
                                                     <div className="relative mb-4">
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="w-full overflow-hidden rounded"
                                                         >
                                                             <img
@@ -1047,7 +1047,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                             </div>
                                                         </div>
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="text-lg font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
                                                             Nidnies course to
@@ -1102,7 +1102,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                 <div className="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
                                                     <div className="relative mb-4">
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="w-full overflow-hidden rounded"
                                                         >
                                                             <img
@@ -1152,7 +1152,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                             </div>
                                                         </div>
                                                         <a
-                                                            href="course-details.html"
+                                                            href="/course"
                                                             className="text-lg font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                         >
                                                             Minws course to
@@ -1210,7 +1210,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                     <div className="p-15px lg:pr-30px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark flex flex-wrap md:flex-nowrap rounded">
                                                         <div className="relative overflow-hidden w-full md:w-2/5">
                                                             <a
-                                                                href="course-details.html"
+                                                                href="/course"
                                                                 className="w-full overflow-hidden rounded"
                                                             >
                                                                 <img
@@ -1266,7 +1266,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                                     </div>
                                                                 </div>
                                                                 <a
-                                                                    href="course-details.html"
+                                                                    href="/course"
                                                                     className="text-size-26 leading-30px font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                                 >
                                                                     Become a
@@ -1320,7 +1320,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                                     <div>
                                                                         <a
                                                                             className="text-sm lg:text-base text-blackColor hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
-                                                                            href="course-details.html"
+                                                                            href="/course"
                                                                         >
                                                                             Know
                                                                             Details
@@ -1339,7 +1339,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                     <div className="p-15px lg:pr-30px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark flex flex-wrap md:flex-nowrap rounded">
                                                         <div className="relative overflow-hidden w-full md:w-2/5">
                                                             <a
-                                                                href="course-details.html"
+                                                                href="/course"
                                                                 className="w-full overflow-hidden rounded"
                                                             >
                                                                 <img
@@ -1392,7 +1392,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                                     </div>
                                                                 </div>
                                                                 <a
-                                                                    href="course-details.html"
+                                                                    href="/course"
                                                                     className="text-size-26 leading-30px font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                                 >
                                                                     Strategy law
@@ -1444,7 +1444,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                                     <div>
                                                                         <a
                                                                             className="text-sm lg:text-base text-blackColor hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
-                                                                            href="course-details.html"
+                                                                            href="/course"
                                                                         >
                                                                             Know
                                                                             Details
@@ -1516,7 +1516,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                                     </div>
                                                                 </div>
                                                                 <a
-                                                                    href="course-details.html"
+                                                                    href="/course"
                                                                     className="text-size-26 leading-30px font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                                 >
                                                                     Foundation
@@ -1569,7 +1569,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                                     <div>
                                                                         <a
                                                                             className="text-sm lg:text-base text-blackColor hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
-                                                                            href="course-details.html"
+                                                                            href="/course"
                                                                         >
                                                                             Know
                                                                             Details
@@ -1588,7 +1588,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                     <div className="p-15px lg:pr-30px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark flex flex-wrap md:flex-nowrap rounded">
                                                         <div className="relative overflow-hidden w-full md:w-2/5">
                                                             <a
-                                                                href="course-details.html"
+                                                                href="/course"
                                                                 className="w-full overflow-hidden rounded"
                                                             >
                                                                 <img
@@ -1642,7 +1642,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                                     </div>
                                                                 </div>
                                                                 <a
-                                                                    href="course-details.html"
+                                                                    href="/course"
                                                                     className="text-size-26 leading-30px font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                                 >
                                                                     The business
@@ -1695,7 +1695,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                                     <div>
                                                                         <a
                                                                             className="text-sm lg:text-base text-blackColor hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
-                                                                            href="course-details.html"
+                                                                            href="/course"
                                                                         >
                                                                             Know
                                                                             Details
@@ -1768,7 +1768,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                                     </div>
                                                                 </div>
                                                                 <a
-                                                                    href="course-details.html"
+                                                                    href="/course"
                                                                     className="text-size-26 leading-30px font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
                                                                 >
                                                                     Become a
@@ -1822,7 +1822,7 @@ export default function Courses({ auth, laravelVersion, phpVersion }) {
                                                                     <div>
                                                                         <a
                                                                             className="text-sm lg:text-base text-blackColor hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
-                                                                            href="course-details.html"
+                                                                            href="/course"
                                                                         >
                                                                             Know
                                                                             Details

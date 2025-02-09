@@ -22,4 +22,9 @@ class PagesController extends Controller
     {
         return Inertia::render('Courses');
     }
+
+    public function course()
+    {
+        return Inertia::render('Course');
+    }
 }
