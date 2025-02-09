@@ -28,20 +28,30 @@ export default function Login({ status, canResetPassword }) {
             <main className="bg-transparent">
                 <section className="relative">
                     <div className="container py-100px">
-                        <div className="tab md:w-2/3 mx-auto">
-                            <div className="tab-links grid grid-cols-2 gap-11px text-blackColor text-lg lg:text-size-22 font-semibold font-hind mb-43px mt-30px md:mt-0">
-                                <button className="py-9px lg:py-6 hover:text-primaryColor dark:text-whiteColor dark:hover:text-primaryColor bg-white dark:bg-whiteColor-dark dark:hover:bg-whiteColor-dark hover:bg-white relative group/btn shadow-bottom hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard">
+                        <div className=" md:w-2/3 mx-auto">
+                            <div className="grid grid-cols-2 gap-11px text-blackColor text-lg lg:text-size-22 font-semibold font-hind mb-43px mt-30px md:mt-0">
+                                <Link
+                                    as="button"
+                                    preserveScroll={true}
+                                    href="/login"
+                                    className="py-9px lg:py-6 hover:text-primaryColor dark:text-whiteColor dark:hover:text-primaryColor bg-white dark:bg-whiteColor-dark dark:hover:bg-whiteColor-dark hover:bg-white relative group/btn shadow-bottom hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard"
+                                >
                                     <span className="absolute w-full h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>
                                     Login
-                                </button>
-                                <button className="py-9px lg:py-6 hover:text-primaryColor dark:hover:text-primaryColor dark:text-whiteColor bg-lightGrey7 dark:bg-lightGrey7-dark hover:bg-white dark:hover:bg-whiteColor-dark relative group/btn hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard">
+                                </Link>
+                                <Link
+                                    as="button"
+                                    preserveScroll={true}
+                                    href="/register"
+                                    className="py-9px lg:py-6 hover:text-primaryColor dark:hover:text-primaryColor dark:text-whiteColor bg-lightGrey7 dark:bg-lightGrey7-dark hover:bg-white dark:hover:bg-whiteColor-dark relative group/btn hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard"
+                                >
                                     <span className="absolute w-0 h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>
-                                    Sing up
-                                </button>
+                                    Sign up
+                                </Link>
                             </div>
 
                             <div className="shadow-container bg-whiteColor dark:bg-whiteColor-dark pt-10px px-5 pb-10 md:p-50px md:pt-30px rounded-5px">
-                                <div className="tab-contents">
+                                <div className="">
                                     <div className="block opacity-100 transition-opacity duration-150 ease-linear">
                                         <div className="text-center">
                                             <h3 className="text-size-32 font-bold text-blackColor dark:text-blackColor-dark mb-2 leading-normal">
@@ -184,112 +194,6 @@ export default function Login({ status, canResetPassword }) {
                                                 >
                                                     <i className="icofont-google-plus"></i>
                                                     Google
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <div className="hidden opacity-0 transition-opacity duration-150 ease-linear">
-                                        <div className="text-center">
-                                            <h3 className="text-size-32 font-bold text-blackColor dark:text-blackColor-dark mb-2 leading-normal">
-                                                Sing Up
-                                            </h3>
-                                            <p className="text-contentColor dark:text-contentColor-dark mb-15px">
-                                                Already have an account?
-                                                <a
-                                                    href="login.html"
-                                                    className="hover:text-primaryColor relative after:absolute after:left-0 after:bottom-0.5 after:w-0 after:h-0.5 after:bg-primaryColor after:transition-all after:duration-300 hover:after:w-full"
-                                                >
-                                                    Log In
-                                                </a>
-                                            </p>
-                                        </div>
-
-                                        <form className="pt-25px">
-                                            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-30px gap-y-25px mb-25px">
-                                                <div>
-                                                    <label className="text-contentColor dark:text-contentColor-dark mb-10px block">
-                                                        First Name
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        placeholder="First Name"
-                                                        className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <label className="text-contentColor dark:text-contentColor-dark mb-10px block">
-                                                        Last Name
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        placeholder="Last Name"
-                                                        className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-30px gap-y-25px mb-25px">
-                                                <div>
-                                                    <label className="text-contentColor dark:text-contentColor-dark mb-10px block">
-                                                        Username
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        placeholder="Username"
-                                                        className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <label className="text-contentColor dark:text-contentColor-dark mb-10px block">
-                                                        Email
-                                                    </label>
-                                                    <input
-                                                        type="email"
-                                                        placeholder="Your Email"
-                                                        className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-30px gap-y-25px mb-25px">
-                                                <div>
-                                                    <label className="text-contentColor dark:text-contentColor-dark mb-10px block">
-                                                        Password
-                                                    </label>
-                                                    <input
-                                                        type="password"
-                                                        placeholder="Password"
-                                                        className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <label className="text-contentColor dark:text-contentColor-dark mb-10px block">
-                                                        Re-Enter Password
-                                                    </label>
-                                                    <input
-                                                        type="password"
-                                                        placeholder="Re-Enter Password"
-                                                        className="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded"
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="text-contentColor dark:text-contentColor-dark flex items-center">
-                                                <input
-                                                    type="checkbox"
-                                                    id="accept-pp"
-                                                    className="w-18px h-18px mr-2 block box-content"
-                                                />
-                                                <label htmlFor="accept-pp">
-                                                    Accept the Terms and Privacy
-                                                    Policy
-                                                </label>
-                                            </div>
-                                            <div className="mt-25px text-center">
-                                                <button
-                                                    type="submit"
-                                                    className="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px w-full border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark"
-                                                >
-                                                    Log in
                                                 </button>
                                             </div>
                                         </form>
