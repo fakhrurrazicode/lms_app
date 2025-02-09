@@ -5,12 +5,26 @@ import "../../edurock/edurock/assets/css/video-modal.css";
 import "../../edurock/edurock/assets/css/aos.css";
 import "../../edurock/edurock/assets/css/style.css";
 
-import "../../edurock/edurock/assets/js/main.js";
+import appInit from "../../edurock/edurock/assets/js/main.js";
 
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Link } from "@inertiajs/react";
+import { useEffect } from "react";
 
 export default function GuestLayout({ children }) {
+    useEffect(() => {
+        const onPageChange = () => {
+            console.log("Inertia page changed!");
+            appInit();
+        };
+
+        document.addEventListener("inertia:finish", onPageChange);
+
+        return () => {
+            document.removeEventListener("inertia:finish", onPageChange);
+        };
+    }, []);
+
     return (
         <>
             {/* <div className="preloader flex fixed top-0 left-0 h-screen w-full items-center justify-center z-xxl bg-whiteColor opacity-100 visible transition-all duration-700">

@@ -11981,9 +11981,9 @@ dataModules.forEach((element) => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("DOMContentLoaded");
+export default function appInit() {
     setTimeout(() => {
+        console.log("appInit");
         // sticky header related funtionality
         stickystickyHeader();
 
@@ -12054,4 +12054,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // // smooth scroll
         smoothScroll();
     }, 1000);
+}
+document.addEventListener("DOMContentLoaded", function () {
+    // console.log("DOMContentLoaded");
+    // setTimeout(() => {
+    appInit();
+    // }, 1000);
 });
