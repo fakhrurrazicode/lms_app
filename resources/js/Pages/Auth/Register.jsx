@@ -69,7 +69,10 @@ export default function Register() {
                                             </p>
                                         </div>
 
-                                        <form className="pt-25px">
+                                        <form
+                                            className="pt-25px"
+                                            onSubmit={submit}
+                                        >
                                             <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-30px gap-y-25px mb-25px">
                                                 <div>
                                                     <label className="text-contentColor dark:text-contentColor-dark mb-10px block">
