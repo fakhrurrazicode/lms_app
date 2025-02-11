@@ -1764,21 +1764,16 @@ export default function UserLayout({ children }) {
                                             </div>
                                         </li>
                                         <li className="hidden lg:block">
-                                            <a
-                                                href="../../login.html"
+                                            <Link
+                                                method="post"
+                                                href={route("logout")}
+                                                as="button"
                                                 className="text-size-12 2xl:text-size-15 px-15px py-2 text-blackColor hover:text-whiteColor bg-whiteColor block hover:bg-primaryColor border border-borderColor1 rounded-standard font-semibold mr-[7px] 2xl:mr-15px dark:text-blackColor-dark dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor dark:hover:border-primaryColor"
                                             >
-                                                <i className="icofont-user-alt-5"></i>
-                                            </a>
+                                                <i className="icofont-logout"></i>
+                                            </Link>
                                         </li>
-                                        <li className="hidden lg:block">
-                                            <a
-                                                href="#"
-                                                className="text-size-12 2xl:text-size-15 text-whiteColor bg-primaryColor block border-primaryColor border hover:text-primaryColor hover:bg-white px-15px py-2 rounded-standard dark:hover:bg-whiteColor-dark dark: dark:hover:text-whiteColor"
-                                            >
-                                                Get Start
-                                            </a>
-                                        </li>
+
                                         <li className="block lg:hidden">
                                             <button className="open-mobile-menu text-3xl text-darkdeep1 hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor">
                                                 <i className="icofont-navigation-menu"></i>
