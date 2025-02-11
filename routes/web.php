@@ -16,6 +16,8 @@ use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSubCategoryController;
 use App\Http\Controllers\Backend\SubCourseCategoryController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\StudentArea\DashboardController as StudentAreaDashboardController;
+use App\Http\Controllers\InstructorArea\DashboardController as InstructorAreaDashboardController;
 
 // Route::get('/', function () {
 
@@ -41,6 +43,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::group(['prefix' => '/student_area', 'as' => 'student-area.'], function () {
+        Route::get('/', [StudentAreaDashboardController::class, 'index'])->name('dashboard.index');
+    });
+
+    Route::group(['prefix' => '/instructor_area', 'as' => 'instructor-area.'], function () {
+        Route::get('/', [InstructorAreaDashboardController::class, 'index'])->name('dashboard.index');
+    });
 
     Route::group(['prefix' => '/backend', 'as' => 'backend.'], function () {
 

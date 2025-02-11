@@ -11,8 +11,8 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 
-export default function GuestLayout({ children }) {
-    const { auth, role } = usePage().props;
+export default function InstructorLayout({ children }) {
+    const { user } = usePage().props.auth;
 
     useEffect(() => {
         const onPageChange = () => {
@@ -28,13 +28,13 @@ export default function GuestLayout({ children }) {
     }, []);
 
     return (
-        <div className="relative font-inter font-normal text-base leading-[1.8] bg-bodyBg dark:bg-bodyBg-dark z-0">
+        <body className="relative font-inter font-normal text-base leading-[1.8] bg-bodyBg dark:bg-bodyBg-dark">
             {/* <div className="preloader flex fixed top-0 left-0 h-screen w-full items-center justify-center z-xxl bg-whiteColor opacity-100 visible transition-all duration-700">
                 <div className="w-90px h-90px border-5px border-t-blue border-r-blue border-b-blue-light border-l-blue-light rounded-full animate-spin-infinit"></div>
                 <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
                     <img
-                        src="./assets/images/pre.png"
-                        alt="Preloader"
+                        src="../../assets/images/pre.png"
+                        alt=""
                         className="h-10 w-10 block"
                     />
                 </div>
@@ -99,7 +99,7 @@ export default function GuestLayout({ children }) {
 
             <header>
                 <div className="bg-blackColor2 dark:bg-lightGrey10-dark hidden lg:block">
-                    <div className="container 3xl:container2-lg 4xl:container mx-auto text-whiteColor text-size-12 xl:text-sm py-5px xl:py-9px">
+                    <div className="container 3xl:container-secondary-lg 4xl:container mx-auto text-whiteColor text-size-12 xl:text-sm py-5px xl:py-9px">
                         <div className="flex justify-between items-center">
                             <div>
                                 <p>
@@ -158,308 +158,23 @@ export default function GuestLayout({ children }) {
                 </div>
 
                 <div className="transition-all duration-500 sticky-header z-medium dark:bg-whiteColor-dark">
-                    <nav className="lg:container 3xl:container2-lg 4xl:container mx-auto relative">
-                        <div className="hidden lg:grid grid-cols-12 py-5 px-15px items-center gap-30px border-b border-borderColor dark:border-borderColor-dark -mx-15px">
-                            <div className="col-start-1 col-span-3">
-                                <ul className="flex items-center nav-list">
-                                    <li className="relative">
-                                        <button className="text-contentColor dark:text-contentColor-dark pr-10px flex items-center">
-                                            <img
-                                                src="./assets/images/icon/flag1.webp"
-                                                alt=""
-                                                className="w-6 h-6 mr-1 rounded-lg2"
-                                            />
-                                            ENG
-                                            <i className="icofont-rounded-down"></i>
-                                        </button>
-
-                                        <div
-                                            className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                            style={{ transition: "0.3s" }}
-                                        >
-                                            <div className="shadow-dropdown3 max-w-dropdown2 w-2000 rounded-standard bg-white dark:bg-whiteColor-dark">
-                                                <ul>
-                                                    <li>
-                                                        <a
-                                                            href="#"
-                                                            className="flex items-center text-size-13 text-blackColor p-10px transition duration-300 hover:bg-darkdeep4 hover:text-whiteColor dark:text-blackColor-dark dark:hover:text-whiteColor-dark dark:hover:bg-darkdeep4"
-                                                        >
-                                                            <img
-                                                                src="./assets/images/icon/flag2.webp"
-                                                                alt=""
-                                                                className="w-18px h-18px rounded-lg mr-10px"
-                                                            />
-                                                            FR
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            href="#"
-                                                            className="flex items-center text-size-13 text-blackColor p-10px transition duration-300 hover:bg-darkdeep4 hover:text-whiteColor dark:text-blackColor-dark dark:hover:text-whiteColor-dark dark:hover:bg-darkdeep4"
-                                                        >
-                                                            <img
-                                                                src="./assets/images/icon/flag3.webp"
-                                                                alt=""
-                                                                className="w-18px h-18px rounded-lg mr-10px"
-                                                            />
-                                                            DE
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li className="relative">
-                                        <button className="text-contentColor dark:text-contentColor-dark pl-10px flex items-center">
-                                            USD
-                                            <i className="icofont-rounded-down"></i>
-                                        </button>
-
-                                        <div
-                                            className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                            style={{ transition: "0.3s" }}
-                                        >
-                                            <div className="shadow-dropdown3 max-w-dropdown2 w-2000 rounded-standard bg-white dark:bg-whiteColor-dark">
-                                                <ul>
-                                                    <li>
-                                                        <a
-                                                            href="#"
-                                                            className="w-full text-size-13 text-blackColor p-10px pl-5 transition duration-300 hover:bg-darkdeep4 hover:text-whiteColor dark:text-blackColor-dark dark:hover:text-whiteColor-dark dark:hover:bg-darkdeep4"
-                                                        >
-                                                            FR
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            href="#"
-                                                            className="w-full text-size-13 text-blackColor p-10px pl-5 transition duration-300 hover:bg-darkdeep4 hover:text-whiteColor dark:text-blackColor-dark dark:hover:text-whiteColor-dark dark:hover:bg-darkdeep4"
-                                                        >
-                                                            DE
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="col-start-4 col-span-6">
-                                <form>
-                                    <div className="text-blackColor dark:text-blackColor-dark py-2 pl-15px border border-borderColor dark:border-borderColor-dark relative rounded-full">
-                                        <input
-                                            type="text"
-                                            placeholder="Search Course"
-                                            className="w-full focus:outline-none bg-transparent placeholder:text-darkdeep4"
-                                        />
-                                        <button
-                                            type="submit"
-                                            className="absolute top-1/2 -translate-y-1/2 right-7"
-                                        >
-                                            <i className="icofont-search-1"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div className="col-start-10 col-span-3">
-                                {auth.user ? (
-                                    <ul className="relative nav-list flex justify-end items-center gap-2">
-                                        <li className="px-5 lg:px-10px 2xl:px-5 group">
-                                            <a
-                                                href="#"
-                                                className="relative block"
-                                            >
-                                                <i className="icofont-cart-alt text-2xl text-blackColor group-hover:text-secondaryColor transition-all duration-300 dark:text-blackColor-dark"></i>
-                                                <span className="absolute -top-1 2xl:-top-[5px] -right-[10px] lg:right-3/4 2xl:-right-[10px] text-[10px] font-medium text-white dark:text-whiteColor-dark bg-secondaryColor px-1 py-[2px] leading-1 rounded-full z-50 block">
-                                                    3
-                                                </span>
-                                            </a>
-
-                                            <div
-                                                className="dropdown absolute right-0 lg:right-8 translate-y-10 z-medium hidden opacity-0 pt-5px"
-                                                style={{ transition: "0.3s" }}
-                                            >
-                                                <div className="shadow-dropdown-secodary max-w-dropdown3 w-2000 rounded-standard p-5 bg-white dark:bg-whiteColor-dark">
-                                                    <ul className="flex flex-col gap-y-5 pb-5 mb-30px border-b border-borderColor dark:border-borderColor-dark">
-                                                        <li className="relative flex gap-x-15px items-center">
-                                                            <a href="#">
-                                                                <img
-                                                                    src="./assets/images/grid/cart1.jpg"
-                                                                    alt="photo"
-                                                                    className="w-card-img py-[3px]"
-                                                                />
-                                                            </a>
-                                                            <div>
-                                                                <a
-                                                                    href="#"
-                                                                    className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
-                                                                >
-                                                                    web
-                                                                    dictionary
-                                                                </a>
-                                                                <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    1 x
-                                                                    <span className="text-secondaryColor">
-                                                                        $ 80.00
-                                                                    </span>
-                                                                </p>
-                                                            </div>
-
-                                                            <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                <i className="icofont-close-line"></i>
-                                                            </button>
-                                                        </li>
-                                                        <li className="relative flex gap-x-15px items-center">
-                                                            <a href="#">
-                                                                <img
-                                                                    src="./assets/images/grid/cart2.jpg"
-                                                                    alt="photo"
-                                                                    className="w-card-img py-[3px]"
-                                                                />
-                                                            </a>
-                                                            <div>
-                                                                <a
-                                                                    href="#"
-                                                                    className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
-                                                                >
-                                                                    Design
-                                                                    Minois
-                                                                </a>
-                                                                <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    1 x
-                                                                    <span className="text-secondaryColor">
-                                                                        $ 60.00
-                                                                    </span>
-                                                                </p>
-                                                            </div>
-
-                                                            <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                <i className="icofont-close-line"></i>
-                                                            </button>
-                                                        </li>
-                                                        <li className="relative flex gap-x-15px items-center">
-                                                            <a href="#">
-                                                                <img
-                                                                    src="./assets/images/grid/cart3.jpg"
-                                                                    alt="photo"
-                                                                    className="w-card-img py-[3px]"
-                                                                />
-                                                            </a>
-                                                            <div>
-                                                                <a
-                                                                    href="#"
-                                                                    className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
-                                                                >
-                                                                    Crash Course
-                                                                </a>
-                                                                <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    1 x
-                                                                    <span className="text-secondaryColor">
-                                                                        $ 70.00
-                                                                    </span>
-                                                                </p>
-                                                            </div>
-
-                                                            <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                <i className="icofont-close-line"></i>
-                                                            </button>
-                                                        </li>
-                                                    </ul>
-
-                                                    <div>
-                                                        <p className="text-size-17 text-contentColor dark:text-contentColor-dark pb-5 flex justify-between">
-                                                            Total Price:
-                                                            <span className="font-bold text-secondaryColor">
-                                                                $ 210.00
-                                                            </span>
-                                                        </p>
-                                                    </div>
-
-                                                    <div className="flex flex-col gap-y-5">
-                                                        <a
-                                                            href="#"
-                                                            className="text-sm font-bold text-contentColor dark:text-contentColor-dark hover:text-whiteColor hover:bg-secondaryColor text-center py-10px border border-secondaryColor"
-                                                        >
-                                                            View Cart
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            className="text-sm font-bold bg-darkblack dark:bg-darkblack-dark text-whiteColor dark:text-whiteColor-dark hover:bg-secondaryColor dark:hover:bg-secondaryColor text-center py-10px"
-                                                        >
-                                                            Checkout
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="hidden lg:block">
-                                            <Link
-                                                href={
-                                                    role.name == "Student"
-                                                        ? "/student_area"
-                                                        : role.redirect_url
-                                                }
-                                                className="text-size-12 2xl:text-size-15 px-15px py-2 text-blackColor hover:text-whiteColor bg-whiteColor block hover:bg-primaryColor border border-borderColor1 rounded-standard font-semibold dark:text-blackColor-dark dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor dark:hover:border-primaryColor"
-                                            >
-                                                <i className="icofont-user-alt-5"></i>
-                                            </Link>
-                                        </li>
-
-                                        <li className="hidden lg:block">
-                                            <Link
-                                                method="post"
-                                                href={route("logout")}
-                                                as="button"
-                                                className="text-size-12 2xl:text-size-15 px-15px py-2 text-blackColor hover:text-whiteColor bg-whiteColor block hover:bg-primaryColor border border-borderColor1 rounded-standard font-semibold dark:text-blackColor-dark dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor dark:hover:border-primaryColor"
-                                            >
-                                                <i className="icofont-logout"></i>
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                ) : (
-                                    <></>
-                                )}
-                            </div>
-                        </div>
-                        <div className="py-15px lg:py-0 px-15px">
-                            <div className="grid grid-cols-2 lg:grid-cols-12 items-center gap-15px -mx-15px">
+                    <nav>
+                        <div className="py-15px lg:py-0 px-15px lg:container 3xl:container-secondary-lg 4xl:container mx-auto relative">
+                            <div className="grid grid-cols-2 lg:grid-cols-12 items-center gap-15px">
                                 <div className="lg:col-start-1 lg:col-span-2">
-                                    <Link href="/" className="block">
+                                    <a href="/" className="block">
                                         {/* <img
-                                            src="./assets/images/logo/logo_1.png"
-                                            alt="Logo"
+                                            src="../../assets/images/logo/logo_1.png"
+                                            alt="log"
                                             className="w-logo-sm lg:w-auto py-2"
                                         /> */}
                                         <ApplicationLogo className="block h-20 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                                    </Link>
+                                    </a>
                                 </div>
 
                                 <div className="hidden lg:block lg:col-start-3 lg:col-span-7">
                                     <ul className="nav-list flex justify-center">
-                                        <li className="nav-item">
-                                            <Link
-                                                href="/"
-                                                className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
-                                            >
-                                                Home
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link
-                                                href="/courses"
-                                                className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
-                                            >
-                                                Courses
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link
-                                                href="/become-an-instructor"
-                                                className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
-                                            >
-                                                Become an Instructor
-                                            </Link>
-                                        </li>
-                                        {/* <li className="nav-item group">
+                                        <li className="nav-item group">
                                             <a
                                                 href="#"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
@@ -495,13 +210,13 @@ export default function GuestLayout({ children }) {
                                                             >
                                                                 <li>
                                                                     <a
-                                                                        href="index.html"
+                                                                        href="../../index.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-1.png"
+                                                                            src="../../assets/images/mega/home-1.png"
                                                                             className="w-full"
-                                                                            alt="Mega Menu"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -511,12 +226,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-2.html"
+                                                                        href="../../home-2.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-2.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-2.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -526,12 +241,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-3.html"
+                                                                        href="../../home-3.html"
                                                                         className="overflow-hidden group/light relative block box-border shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-3.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-3.png"
+                                                                            alt=""
                                                                             className="w-full"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -542,12 +257,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-4.html"
+                                                                        href="../../home-4.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega//home-4.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega//home-4.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -558,12 +273,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-5.html"
+                                                                        href="../../home-5.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega//home-5.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega//home-5.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -574,12 +289,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-6.html"
+                                                                        href="../../home-6.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-5px"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-6.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-6.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -592,12 +307,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-7.html"
+                                                                        href="../../home-7.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-7.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-7.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -610,12 +325,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-8.html"
+                                                                        href="../../home-8.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-8.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-8.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -628,12 +343,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-9.html"
+                                                                        href="../../home-9.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-9.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-9.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -646,12 +361,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-10.html"
+                                                                        href="../../home-10.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-10.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-10.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -665,12 +380,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-11.html"
+                                                                        href="../../home-11.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-11.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-11.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -688,8 +403,8 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/coming.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Layout
@@ -705,8 +420,8 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/coming.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Layout
@@ -722,8 +437,8 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/coming.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Layout
@@ -739,8 +454,8 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/coming.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Layout
@@ -763,13 +478,13 @@ export default function GuestLayout({ children }) {
                                                             >
                                                                 <li>
                                                                     <a
-                                                                        href="index-dark.html"
+                                                                        href="../../index-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-1-dark.png"
+                                                                            src="../../assets/images/mega/home-1-dark.png"
                                                                             className="w-full"
-                                                                            alt="Mega Menu"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -779,12 +494,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-2-dark.html"
+                                                                        href="../../home-2-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-2-dark.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-2-dark.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -794,12 +509,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-3-dark.html"
+                                                                        href="../../home-3-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-3-dark.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-3-dark.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -809,12 +524,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-4-dark.html"
+                                                                        href="../../home-4-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-4-dark.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-4-dark.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -825,12 +540,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-5-dark.html"
+                                                                        href="../../home-5-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-5-dark.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-5-dark.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -841,12 +556,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-6-dark.html"
+                                                                        href="../../home-6-dark.html"
                                                                         className="overflow-hidden group relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-5px"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-6-dark.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-6-dark.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -859,12 +574,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-7-dark.html"
+                                                                        href="../../home-7-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-7-dark.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-7-dark.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -877,12 +592,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-8-dark.html"
+                                                                        href="../../home-8-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-8-dark.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-8-dark.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -895,12 +610,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-9-dark.html"
+                                                                        href="../../home-9-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-9-dark.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-9-dark.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -913,12 +628,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-10-dark.html"
+                                                                        href="../../home-10-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-10-dark.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-10-dark.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -932,12 +647,12 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-11-dark.html"
+                                                                        href="../../home-11-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-11-dark.png"
-                                                                            alt="Mega Menu"
+                                                                            src="../../assets/images/mega/home-11-dark.png"
+                                                                            alt=""
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -951,11 +666,11 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="home-11-dark.html"
+                                                                        href="../../home-11-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming-dark.png"
+                                                                            src="../../assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -972,7 +687,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming-dark.png"
+                                                                            src="../../assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -989,7 +704,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming-dark.png"
+                                                                            src="../../assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -1006,7 +721,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming-dark.png"
+                                                                            src="../../assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -1045,7 +760,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="about.html"
+                                                                        href="../../about.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         About
@@ -1057,7 +772,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="about-dark.html"
+                                                                        href="../../about-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         About
@@ -1069,7 +784,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="blog.html"
+                                                                        href="../../blog.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Blog
@@ -1077,7 +792,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="blog-dark.html"
+                                                                        href="../../blog-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Blog
@@ -1086,7 +801,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="blog-details.html"
+                                                                        href="../../blog-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Blog
@@ -1095,7 +810,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="blog-details-dark.html"
+                                                                        href="../../blog-details-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Blog
@@ -1112,7 +827,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="error.html"
+                                                                        href="../../error.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Error
@@ -1120,7 +835,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="error-dark.html"
+                                                                        href="../../error-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Error
@@ -1129,7 +844,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="event-details.html"
+                                                                        href="../../event-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Event
@@ -1138,7 +853,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/zoom/zoom-meetings.html"
+                                                                        href="../zoom/zoom-meetings.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Zoom
@@ -1150,7 +865,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/zoom/zoom-meetings-dark.html"
+                                                                        href="../zoom/zoom-meetings-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Zoom
@@ -1160,7 +875,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/zoom/zoom-meeting-details.html"
+                                                                        href="../zoom/zoom-meeting-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Zoom
@@ -1177,7 +892,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/zoom/zoom-meeting-details-dark.html"
+                                                                        href="../zoom/zoom-meeting-details-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Meeting
@@ -1187,7 +902,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="login.html"
+                                                                        href="../../login.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Login
@@ -1195,7 +910,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="login-dark.html"
+                                                                        href="../../login-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Login
@@ -1204,7 +919,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="maintenance.html"
+                                                                        href="../../maintenance.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Maintenance
@@ -1212,7 +927,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="maintenance-dark.html"
+                                                                        href="../../maintenance-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Maintenance
@@ -1247,7 +962,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="contact.html"
+                                                                        href="../../contact.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Contact
@@ -1255,7 +970,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="contact-dark.html"
+                                                                        href="../../contact-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Contact
@@ -1296,7 +1011,7 @@ export default function GuestLayout({ children }) {
 
                                                     <div className="pt-30px">
                                                         <img
-                                                            src="./assets/images/mega/mega_menu_2.png"
+                                                            src="../../assets/images/mega/mega_menu_2.png"
                                                             alt="Mega Menu"
                                                             className="w-full rounded-standard"
                                                         />
@@ -1326,7 +1041,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="course.html"
+                                                                        href="../../course.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Grid
@@ -1338,7 +1053,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-dark.html"
+                                                                        href="../../course-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1348,7 +1063,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-grid.html"
+                                                                        href="../../course-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1357,7 +1072,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-grid-dark.html"
+                                                                        href="../../course-grid-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1367,7 +1082,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-list.html"
+                                                                        href="../../course-list.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1376,7 +1091,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-list-dark.html"
+                                                                        href="../../course-list-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1393,7 +1108,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="course-details.html"
+                                                                        href="../../course-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1402,7 +1117,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-details-dark.html"
+                                                                        href="../../course-details-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1412,7 +1127,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-details-2.html"
+                                                                        href="../../course-details-2.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1422,7 +1137,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-details-2-dark.html"
+                                                                        href="../../course-details-2-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Details
@@ -1431,7 +1146,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-details-3.html"
+                                                                        href="../../course-details-3.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Coures
@@ -1441,7 +1156,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-details-3-dark.html"
+                                                                        href="../../course-details-3-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Details
@@ -1457,7 +1172,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/become-an-instructor.html"
+                                                                        href="../dashboards/become-an-instructor.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Become
@@ -1467,7 +1182,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/create-course.html"
+                                                                        href="../dashboards/create-course.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Careate
@@ -1479,7 +1194,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="instructor.html"
+                                                                        href="../../instructor.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Instructor
@@ -1487,7 +1202,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="instructor-dark.html"
+                                                                        href="../../instructor-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Instructor
@@ -1496,7 +1211,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="instructor-details.html"
+                                                                        href="../../instructor-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Instructor
@@ -1505,7 +1220,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="lesson.html"
+                                                                        href="../../lesson.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1520,7 +1235,7 @@ export default function GuestLayout({ children }) {
 
                                                         <div>
                                                             <img
-                                                                src="./assets/images/mega/mega_menu_1.png"
+                                                                src="../../assets/images/mega/mega_menu_1.png"
                                                                 alt="Mega Menu"
                                                                 className="w-full rounded-standard"
                                                             />
@@ -1531,7 +1246,7 @@ export default function GuestLayout({ children }) {
                                         </li>
                                         <li className="nav-item group relative">
                                             <a
-                                                href="./pages/dashboards/instructor-dashboard.html"
+                                                href="instructor-dashboard.html"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
                                                 Dashboard
@@ -1546,10 +1261,10 @@ export default function GuestLayout({ children }) {
                                                     <ul>
                                                         <li className="relative group/nested">
                                                             <a
-                                                                href="./pages/dashboards/admin-dashboard.html"
+                                                                href="../dashboards/admin-dashboard.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg flex justify-between items-center dark:bg-whiteColor-dark dark:text-contentColor-dark dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                             >
-                                                                Admin
+                                                                Admin{" "}
                                                                 <i className="icofont-rounded-right"></i>
                                                             </a>
 
@@ -1564,7 +1279,7 @@ export default function GuestLayout({ children }) {
                                                                     <ul>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/admin-dashboard.html"
+                                                                                href="../dashboards/admin-dashboard.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Admin
@@ -1573,7 +1288,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/admin-profile.html"
+                                                                                href="../dashboards/admin-profile.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Admin
@@ -1582,7 +1297,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/admin-message.html"
+                                                                                href="../dashboards/admin-message.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Message
@@ -1590,7 +1305,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/admin-course.html"
+                                                                                href="../dashboards/admin-course.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Courses
@@ -1598,7 +1313,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/admin-reviews.html"
+                                                                                href="../dashboards/admin-reviews.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Review
@@ -1606,7 +1321,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/admin-quiz-attempts.html"
+                                                                                href="../dashboards/admin-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Admin
@@ -1615,7 +1330,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/admin-settings.html"
+                                                                                href="../dashboards/admin-settings.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Setting
@@ -1627,10 +1342,10 @@ export default function GuestLayout({ children }) {
                                                         </li>
                                                         <li className="relative group/nested">
                                                             <a
-                                                                href="./pages/dashboards/instructor-dashboard.html"
+                                                                href="instructor-dashboard.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg flex justify-between items-center dark:bg-whiteColor-dark dark:text-contentColor-dark dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                             >
-                                                                Instructor
+                                                                Instructor{" "}
                                                                 <i className="icofont-rounded-right"></i>
                                                             </a>
 
@@ -1645,7 +1360,7 @@ export default function GuestLayout({ children }) {
                                                                     <ul>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-dashboard.html"
+                                                                                href="instructor-dashboard.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Ins.
@@ -1654,7 +1369,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-profile.html"
+                                                                                href="instructor-profile.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Ins.
@@ -1663,7 +1378,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-message.html"
+                                                                                href="instructor-message.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Message
@@ -1671,7 +1386,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-wishlist.html"
+                                                                                href="instructor-wishlist.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Wishlist
@@ -1679,7 +1394,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-reviews.html"
+                                                                                href="instructor-reviews.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Review
@@ -1687,7 +1402,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-my-quiz-attempts.html"
+                                                                                href="instructor-my-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 My
@@ -1696,7 +1411,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-order-history.html"
+                                                                                href="instructor-order-history.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Order
@@ -1705,7 +1420,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-course.html"
+                                                                                href="instructor-course.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 My
@@ -1714,7 +1429,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-announcments.html"
+                                                                                href="instructor-announcments.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Announcements
@@ -1722,7 +1437,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-quiz-attempts.html"
+                                                                                href="instructor-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Quiz
@@ -1731,7 +1446,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-assignments.html"
+                                                                                href="instructor-assignments.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Assignment
@@ -1739,7 +1454,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/instructor-settings.html"
+                                                                                href="instructor-settings.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Settings
@@ -1751,10 +1466,10 @@ export default function GuestLayout({ children }) {
                                                         </li>
                                                         <li className="relative group/nested">
                                                             <a
-                                                                href="./pages/dashboards/student-dashboard.html"
+                                                                href="../dashboards/student-dashboard.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg flex justify-between items-center dark:bg-whiteColor-dark dark:text-contentColor-dark dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                             >
-                                                                Student
+                                                                Student{" "}
                                                                 <i className="icofont-rounded-right"></i>
                                                             </a>
 
@@ -1769,7 +1484,7 @@ export default function GuestLayout({ children }) {
                                                                     <ul>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/student-dashboard.html"
+                                                                                href="../dashboards/student-dashboard.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Dashboard
@@ -1777,7 +1492,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/student-profile.html"
+                                                                                href="../dashboards/student-profile.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Profile
@@ -1785,7 +1500,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/student-message.html"
+                                                                                href="../dashboards/student-message.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Message
@@ -1793,7 +1508,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/student-enrolled-courses.html"
+                                                                                href="../dashboards/student-enrolled-courses.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Enrolled
@@ -1802,7 +1517,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/student-wishlist.html"
+                                                                                href="../dashboards/student-wishlist.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Wishlist
@@ -1810,7 +1525,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/student-reviews.html"
+                                                                                href="../dashboards/student-reviews.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Review
@@ -1818,7 +1533,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/student-my-quiz-attempts.html"
+                                                                                href="../dashboards/student-my-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 My
@@ -1827,7 +1542,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/student-assignments.html"
+                                                                                href="../dashboards/student-assignments.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Assignment
@@ -1835,7 +1550,7 @@ export default function GuestLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="./pages/dashboards/student-settings.html"
+                                                                                href="../dashboards/student-settings.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Setting
@@ -1851,7 +1566,7 @@ export default function GuestLayout({ children }) {
                                         </li>
                                         <li className="nav-item group relative">
                                             <a
-                                                href="./pages/ecommerce/shop.html"
+                                                href="../ecommerce/shop.html"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
                                                 eCommerce
@@ -1866,7 +1581,7 @@ export default function GuestLayout({ children }) {
                                                     <ul>
                                                         <li>
                                                             <a
-                                                                href="./pages/ecommerce/shop.html"
+                                                                href="../ecommerce/shop.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Shop
@@ -1877,7 +1592,7 @@ export default function GuestLayout({ children }) {
                                                         </li>
                                                         <li>
                                                             <a
-                                                                href="./pages/ecommerce/product-details.html"
+                                                                href="../ecommerce/product-details.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Product Details
@@ -1885,7 +1600,7 @@ export default function GuestLayout({ children }) {
                                                         </li>
                                                         <li>
                                                             <a
-                                                                href="./pages/ecommerce/cart.html"
+                                                                href="../ecommerce/cart.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Cart
@@ -1893,7 +1608,7 @@ export default function GuestLayout({ children }) {
                                                         </li>
                                                         <li>
                                                             <a
-                                                                href="./pages/ecommerce/checkout.html"
+                                                                href="../ecommerce/checkout.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Checkout
@@ -1901,7 +1616,7 @@ export default function GuestLayout({ children }) {
                                                         </li>
                                                         <li>
                                                             <a
-                                                                href="./pages/ecommerce/wishlist.html"
+                                                                href="../ecommerce/wishlist.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Wishlist
@@ -1910,15 +1625,15 @@ export default function GuestLayout({ children }) {
                                                     </ul>
                                                 </div>
                                             </div>
-                                        </li> */}
+                                        </li>
                                     </ul>
                                 </div>
 
                                 <div className="lg:col-start-10 lg:col-span-3">
                                     <ul className="relative nav-list flex justify-end items-center">
-                                        <li className="px-5 lg:px-10px 2xl:px-5 group block lg:hidden">
+                                        <li className="px-5 lg:px-10px 2xl:px-5 lg:py-4 2xl:py-26px 3xl:py-9 group">
                                             <a
-                                                href="./pages/ecommerce/cart.html"
+                                                href="../ecommerce/cart.html"
                                                 className="relative block"
                                             >
                                                 <i className="icofont-cart-alt text-2xl text-blackColor group-hover:text-secondaryColor transition-all duration-300 dark:text-blackColor-dark"></i>
@@ -1928,22 +1643,22 @@ export default function GuestLayout({ children }) {
                                             </a>
 
                                             <div
-                                                className="dropdown absolute right-0 lg:right-8 translate-y-10 z-medium hidden opacity-0 pt-5px"
+                                                className="dropdown absolute top-full right-0 lg:right-8 z-medium hidden opacity-0"
                                                 style={{ transition: "0.3s" }}
                                             >
                                                 <div className="shadow-dropdown-secodary max-w-dropdown3 w-2000 rounded-standard p-5 bg-white dark:bg-whiteColor-dark">
                                                     <ul className="flex flex-col gap-y-5 pb-5 mb-30px border-b border-borderColor dark:border-borderColor-dark">
                                                         <li className="relative flex gap-x-15px items-center">
-                                                            <a href="#">
+                                                            <a href="../../course-details.html">
                                                                 <img
-                                                                    src="./assets/images/grid/cart1.jpg"
+                                                                    src="../../assets/images/grid/cart1.jpg"
                                                                     alt="photo"
                                                                     className="w-card-img py-[3px]"
                                                                 />
                                                             </a>
                                                             <div>
                                                                 <a
-                                                                    href="#"
+                                                                    href="../../course-details.html"
                                                                     className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
                                                                 >
                                                                     web
@@ -1962,16 +1677,16 @@ export default function GuestLayout({ children }) {
                                                             </button>
                                                         </li>
                                                         <li className="relative flex gap-x-15px items-center">
-                                                            <a href="#">
+                                                            <a href="../../course-details.html">
                                                                 <img
-                                                                    src="./assets/images/grid/cart2.jpg"
+                                                                    src="../../assets/images/grid/cart2.jpg"
                                                                     alt="photo"
                                                                     className="w-card-img py-[3px]"
                                                                 />
                                                             </a>
                                                             <div>
                                                                 <a
-                                                                    href="#"
+                                                                    href="../../course-details.html"
                                                                     className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
                                                                 >
                                                                     Design
@@ -1990,16 +1705,16 @@ export default function GuestLayout({ children }) {
                                                             </button>
                                                         </li>
                                                         <li className="relative flex gap-x-15px items-center">
-                                                            <a href="#">
+                                                            <a href="../../course-details.html">
                                                                 <img
-                                                                    src="./assets/images/grid/cart3.jpg"
+                                                                    src="../../assets/images/grid/cart3.jpg"
                                                                     alt="photo"
                                                                     className="w-card-img py-[3px]"
                                                                 />
                                                             </a>
                                                             <div>
                                                                 <a
-                                                                    href="#"
+                                                                    href="../../course-details.html"
                                                                     className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
                                                                 >
                                                                     Crash Course
@@ -2029,13 +1744,13 @@ export default function GuestLayout({ children }) {
 
                                                     <div className="flex flex-col gap-y-5">
                                                         <a
-                                                            href="#"
+                                                            href="../ecommerce/cart.html"
                                                             className="text-sm font-bold text-contentColor dark:text-contentColor-dark hover:text-whiteColor hover:bg-secondaryColor text-center py-10px border border-secondaryColor"
                                                         >
                                                             View Cart
                                                         </a>
                                                         <a
-                                                            href="#"
+                                                            href="../ecommerce/checkout.html"
                                                             className="text-sm font-bold bg-darkblack dark:bg-darkblack-dark text-whiteColor dark:text-whiteColor-dark hover:bg-secondaryColor dark:hover:bg-secondaryColor text-center py-10px"
                                                         >
                                                             Checkout
@@ -2044,19 +1759,22 @@ export default function GuestLayout({ children }) {
                                                 </div>
                                             </div>
                                         </li>
-
-                                        {auth.user ? (
-                                            <></>
-                                        ) : (
-                                            <li className="hidden lg:block">
-                                                <Link
-                                                    href="/login"
-                                                    className="text-size-12 2xl:text-size-15 text-whiteColor bg-primaryColor block border-primaryColor border hover:text-primaryColor hover:bg-white px-15px py-2 rounded-standard dark:hover:bg-whiteColor-dark dark: dark:hover:text-whiteColor"
-                                                >
-                                                    Get Start Here
-                                                </Link>
-                                            </li>
-                                        )}
+                                        <li className="hidden lg:block">
+                                            <a
+                                                href="../../login.html"
+                                                className="text-size-12 2xl:text-size-15 px-15px py-2 text-blackColor hover:text-whiteColor bg-whiteColor block hover:bg-primaryColor border border-borderColor1 rounded-standard font-semibold mr-[7px] 2xl:mr-15px dark:text-blackColor-dark dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor dark:hover:border-primaryColor"
+                                            >
+                                                <i className="icofont-user-alt-5"></i>
+                                            </a>
+                                        </li>
+                                        <li className="hidden lg:block">
+                                            <a
+                                                href="#"
+                                                className="text-size-12 2xl:text-size-15 text-whiteColor bg-primaryColor block border-primaryColor border hover:text-primaryColor hover:bg-white px-15px py-2 rounded-standard dark:hover:bg-whiteColor-dark dark: dark:hover:text-whiteColor"
+                                            >
+                                                Get Start
+                                            </a>
+                                        </li>
                                         <li className="block lg:hidden">
                                             <button className="open-mobile-menu text-3xl text-darkdeep1 hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor">
                                                 <i className="icofont-navigation-menu"></i>
@@ -2090,35 +1808,267 @@ export default function GuestLayout({ children }) {
 
                         <div className="pt-8 pb-6 border-b border-borderColor dark:border-borderColor-dark">
                             <ul className="accordion-container">
-                                <li className="">
+                                <li className="accordion">
                                     <div className="flex items-center justify-between">
-                                        <Link
+                                        <a
                                             className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                            href="/"
+                                            href="../../index.html"
                                         >
                                             Home
-                                        </Link>
+                                        </a>
+                                        <button className="accordion-controller px-3 py-4">
+                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
+                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
+                                        </button>
                                     </div>
-                                </li>
-                                <li className="">
-                                    <div className="flex items-center justify-between">
-                                        <Link
-                                            className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                            href="/courses"
-                                        >
-                                            Courses
-                                        </Link>
-                                    </div>
-                                </li>
 
-                                <li className="">
-                                    <div className="flex items-center justify-between">
-                                        <Link
-                                            className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                            href="/become-an-instructor"
-                                        >
-                                            Become an Instructor
-                                        </Link>
+                                    <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
+                                        <div className="content-wrapper">
+                                            <ul className="accordion-container">
+                                                <li className="accordion">
+                                                    <div className="flex items-center justify-between">
+                                                        <a
+                                                            href="../../index.html"
+                                                            className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                        >
+                                                            Home Light
+                                                        </a>
+                                                        <button className="accordion-controller px-3 py-4">
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
+                                                        <div className="content-wrapper">
+                                                            <ul>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../index.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Home
+                                                                        (Default)
+                                                                    </a>
+                                                                </li>
+
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-2.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Elegant
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-3.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Classic
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-4.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Classic
+                                                                        LMS
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-5.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Online
+                                                                        Course
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-6.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Marketplace
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-7.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        University
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-8.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        ECommerce
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-9.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Kindergarten
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-10.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Machine
+                                                                        Learning
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-11.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Single
+                                                                        Course
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                                <li className="accordion">
+                                                    <div className="flex items-center justify-between">
+                                                        <a
+                                                            href="../../index-dark.html"
+                                                            className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                        >
+                                                            Home Dark
+                                                        </a>
+                                                        <button className="accordion-controller px-3 py-4">
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor"></span>
+                                                            <span className="w-[10px] h-[1px] bg-darkdeep1 block dark:bg-whiteColor rotate-90 -mt-[1px] transition-all duration-500"></span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div className="accordion-content h-0 overflow-hidden transition-all duration-500">
+                                                        <div className="content-wrapper">
+                                                            <ul>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../index-dark.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Home
+                                                                        Default
+                                                                        (Dark)
+                                                                    </a>
+                                                                </li>
+
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-2-dark.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Elegant
+                                                                        (Dark)
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-3-dark.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Classic
+                                                                        (Dark)
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-4-dark.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Classic
+                                                                        LMS
+                                                                        (Dark)
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-5-dark.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Online
+                                                                        Course
+                                                                        (Dark)
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-6-dark.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Marketplace
+                                                                        (Dark)
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-7-dark.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        University
+                                                                        (Dark)
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-8-dark.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        ECommerce
+                                                                        (Dark)
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-9-dark.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Kindergarten
+                                                                        (Dark)
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-10-dark.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Machine
+                                                                        Learning
+                                                                        (Dark)
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="../../home-11-dark.html"
+                                                                        className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
+                                                                    >
+                                                                        Single
+                                                                        Course
+                                                                        (Dark)
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </li>
                                 <li className="accordion">
@@ -2157,7 +2107,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="about.html"
+                                                                        href="../../about.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         About
@@ -2166,7 +2116,7 @@ export default function GuestLayout({ children }) {
 
                                                                 <li>
                                                                     <a
-                                                                        href="about-dark.html"
+                                                                        href="../../about-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         About
@@ -2175,7 +2125,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="blog.html"
+                                                                        href="../../blog.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Block
@@ -2183,7 +2133,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="blog-dark.html"
+                                                                        href="../../blog-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Block
@@ -2192,7 +2142,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="blog-details.html"
+                                                                        href="../../blog-details.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Block
@@ -2201,7 +2151,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="blog-details-dark.html"
+                                                                        href="../../blog-details-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Block
@@ -2232,7 +2182,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="error.html"
+                                                                        href="../../error.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Error
@@ -2242,7 +2192,7 @@ export default function GuestLayout({ children }) {
 
                                                                 <li>
                                                                     <a
-                                                                        href="error-dark.html"
+                                                                        href="../../error-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Error
@@ -2251,7 +2201,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="event-details.html"
+                                                                        href="../../event-details.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Event
@@ -2260,7 +2210,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/zoom/zoom-meetings.html"
+                                                                        href="../zoom/zoom-meetings.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Zoom
@@ -2272,7 +2222,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/zoom/zoom-meetings-dark.html"
+                                                                        href="../zoom/zoom-meetings-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Zoom
@@ -2282,7 +2232,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/zoom/zoom-meeting-details.html"
+                                                                        href="../zoom/zoom-meeting-details.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Zoom
@@ -2313,7 +2263,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/zoom/zoom-meeting-details-dark.html"
+                                                                        href="../zoom/zoom-meeting-details-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Meeting
@@ -2324,7 +2274,7 @@ export default function GuestLayout({ children }) {
 
                                                                 <li>
                                                                     <a
-                                                                        href="login.html"
+                                                                        href="../../login.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Login
@@ -2332,7 +2282,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="login-dark.html"
+                                                                        href="../../login-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Login
@@ -2341,7 +2291,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="maintenance.html"
+                                                                        href="../../maintenance.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Maintenance
@@ -2349,7 +2299,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="maintenance-dark.html"
+                                                                        href="../../maintenance-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Maintenance
@@ -2455,7 +2405,7 @@ export default function GuestLayout({ children }) {
                                                     >
                                                         <img
                                                             className="w-full"
-                                                            src="./assets/images/mega/mega_menu_2.png"
+                                                            src="../../assets/images/mega/mega_menu_2.png"
                                                             alt=""
                                                         />
                                                     </a>
@@ -2468,7 +2418,7 @@ export default function GuestLayout({ children }) {
                                     <div className="flex items-center justify-between">
                                         <a
                                             className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                            href="course.html"
+                                            href="../../course.html"
                                         >
                                             Courses
                                         </a>
@@ -2500,7 +2450,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="course.html"
+                                                                        href="../../course.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Grid
@@ -2509,7 +2459,7 @@ export default function GuestLayout({ children }) {
 
                                                                 <li>
                                                                     <a
-                                                                        href="course-dark.html"
+                                                                        href="../../course-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
@@ -2519,7 +2469,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-dark.html"
+                                                                        href="../../course-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
@@ -2528,7 +2478,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-grid-dark.html"
+                                                                        href="../../course-grid-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
@@ -2538,7 +2488,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-list.html"
+                                                                        href="../../course-list.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
@@ -2547,7 +2497,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-list-dark.html"
+                                                                        href="../../course-list-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
@@ -2578,7 +2528,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="course-details.html"
+                                                                        href="../../course-details.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
@@ -2588,7 +2538,7 @@ export default function GuestLayout({ children }) {
 
                                                                 <li>
                                                                     <a
-                                                                        href="course-details-dark.html"
+                                                                        href="../../course-details-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
@@ -2598,7 +2548,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-details-2.html"
+                                                                        href="../../course-details-2.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
@@ -2608,7 +2558,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-details-2-dark.html"
+                                                                        href="../../course-details-2-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Details
@@ -2617,7 +2567,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-details-3.html"
+                                                                        href="../../course-details-3.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
@@ -2627,7 +2577,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="course-details-3-dark.html"
+                                                                        href="../../course-details-3-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Details
@@ -2657,7 +2607,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/become-an-instructor.html"
+                                                                        href="../dashboards/become-an-instructor.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Become
@@ -2668,7 +2618,7 @@ export default function GuestLayout({ children }) {
 
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/create-course.html"
+                                                                        href="../dashboards/create-course.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Create
@@ -2680,7 +2630,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="instructor.html"
+                                                                        href="../../instructor.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Instructor
@@ -2688,7 +2638,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="instructor-dark.html"
+                                                                        href="../../instructor-dark.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Instructor
@@ -2697,7 +2647,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="instructor-details.html"
+                                                                        href="../../instructor-details.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Instructor
@@ -2706,7 +2656,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="lesson.html"
+                                                                        href="../../lesson.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Course
@@ -2728,7 +2678,7 @@ export default function GuestLayout({ children }) {
                                                     >
                                                         <img
                                                             className="w-full"
-                                                            src="./assets/images/mega/mega_menu_1.png"
+                                                            src="../../assets/images/mega/mega_menu_1.png"
                                                             alt=""
                                                         />
                                                     </a>
@@ -2741,7 +2691,7 @@ export default function GuestLayout({ children }) {
                                     <div className="flex items-center justify-between">
                                         <a
                                             className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                            href="./pages/dashboards/instructor-dashboard.html"
+                                            href="instructor-dashboard.html"
                                         >
                                             Dashboard
                                         </a>
@@ -2757,7 +2707,7 @@ export default function GuestLayout({ children }) {
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
                                                         <a
-                                                            href="./pages/dashboards/admin-dashboard.html"
+                                                            href="../dashboards/admin-dashboard.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Admin
@@ -2773,7 +2723,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/admin-dashboard.html"
+                                                                        href="../dashboards/admin-dashboard.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Admin
@@ -2783,7 +2733,7 @@ export default function GuestLayout({ children }) {
 
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/admin-profile.html"
+                                                                        href="../dashboards/admin-profile.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Admin
@@ -2792,7 +2742,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/admin-message.html"
+                                                                        href="../dashboards/admin-message.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Message
@@ -2800,7 +2750,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/admin-course.html"
+                                                                        href="../dashboards/admin-course.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Courses
@@ -2808,7 +2758,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/admin-reviews.html"
+                                                                        href="../dashboards/admin-reviews.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Review
@@ -2816,7 +2766,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/admin-quiz-attempts.html"
+                                                                        href="../dashboards/admin-quiz-attempts.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Admin
@@ -2825,7 +2775,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/admin-settings.html"
+                                                                        href="../dashboards/admin-settings.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Settings
@@ -2838,7 +2788,7 @@ export default function GuestLayout({ children }) {
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
                                                         <a
-                                                            href="./pages/dashboards/instructor-dashboard.html"
+                                                            href="instructor-dashboard.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Instructor
@@ -2854,7 +2804,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-dashboard.html"
+                                                                        href="instructor-dashboard.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Inst.
@@ -2864,7 +2814,7 @@ export default function GuestLayout({ children }) {
 
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-profile.html"
+                                                                        href="instructor-profile.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Inst.
@@ -2873,7 +2823,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-message.html"
+                                                                        href="instructor-message.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Message
@@ -2881,7 +2831,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-wishlist.html"
+                                                                        href="instructor-wishlist.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Wishlist
@@ -2889,7 +2839,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-reviews.html"
+                                                                        href="instructor-reviews.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Review
@@ -2897,7 +2847,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-my-quiz-attempts.html"
+                                                                        href="instructor-my-quiz-attempts.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         My Quiz
@@ -2905,7 +2855,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-order-history.html"
+                                                                        href="instructor-order-history.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Order
@@ -2914,7 +2864,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-course.html"
+                                                                        href="instructor-course.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         My
@@ -2923,7 +2873,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-announcments.html"
+                                                                        href="instructor-announcments.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Announcements
@@ -2931,7 +2881,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-quiz-attempts.html"
+                                                                        href="instructor-quiz-attempts.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Quiz
@@ -2940,7 +2890,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-assignments.html"
+                                                                        href="instructor-assignments.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Assignments
@@ -2948,7 +2898,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/instructor-settings.html"
+                                                                        href="instructor-settings.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Settings
@@ -2961,7 +2911,7 @@ export default function GuestLayout({ children }) {
                                                 <li className="accordion">
                                                     <div className="flex items-center justify-between">
                                                         <a
-                                                            href="./pages/dashboards/student-dashboard.html"
+                                                            href="../dashboards/student-dashboard.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Student
@@ -2977,7 +2927,7 @@ export default function GuestLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/student-dashboard.html"
+                                                                        href="../dashboards/student-dashboard.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Dashboard
@@ -2986,7 +2936,7 @@ export default function GuestLayout({ children }) {
 
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/student-profile.html"
+                                                                        href="../dashboards/student-profile.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Profile
@@ -2994,7 +2944,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/student-message.html"
+                                                                        href="../dashboards/student-message.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Message
@@ -3002,7 +2952,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/student-enrolled-courses.html"
+                                                                        href="../dashboards/student-enrolled-courses.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Enrolled
@@ -3011,7 +2961,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/student-wishlist.html"
+                                                                        href="../dashboards/student-wishlist.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Wishlist
@@ -3019,7 +2969,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/student-reviews.html"
+                                                                        href="../dashboards/student-reviews.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Review
@@ -3027,7 +2977,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/student-my-quiz-attempts.html"
+                                                                        href="../dashboards/student-my-quiz-attempts.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         My Quiz
@@ -3035,7 +2985,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/student-assignments.html"
+                                                                        href="../dashboards/student-assignments.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Assignment
@@ -3043,7 +2993,7 @@ export default function GuestLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="./pages/dashboards/student-settings.html"
+                                                                        href="../dashboards/student-settings.html"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Settings
@@ -3061,7 +3011,7 @@ export default function GuestLayout({ children }) {
                                     <div className="flex items-center justify-between">
                                         <a
                                             className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
-                                            href="./pages/ecommerce/shop.html"
+                                            href="../ecommerce/shop.html"
                                         >
                                             ECommerce
                                         </a>
@@ -3077,7 +3027,7 @@ export default function GuestLayout({ children }) {
                                                 <li>
                                                     <div className="flex items-center justify-between">
                                                         <a
-                                                            href="./pages/ecommerce/shop.html"
+                                                            href="../ecommerce/shop.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Shop
@@ -3090,7 +3040,7 @@ export default function GuestLayout({ children }) {
                                                 <li>
                                                     <div className="flex items-center justify-between">
                                                         <a
-                                                            href="./pages/ecommerce/product-details.html"
+                                                            href="../ecommerce/product-details.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Product Details
@@ -3100,7 +3050,7 @@ export default function GuestLayout({ children }) {
                                                 <li>
                                                     <div className="flex items-center justify-between">
                                                         <a
-                                                            href="./pages/ecommerce/cart.html"
+                                                            href="../ecommerce/cart.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Cart
@@ -3110,7 +3060,7 @@ export default function GuestLayout({ children }) {
                                                 <li>
                                                     <div className="flex items-center justify-between">
                                                         <a
-                                                            href="./pages/ecommerce/checkout.html"
+                                                            href="../ecommerce/checkout.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Checkout
@@ -3120,7 +3070,7 @@ export default function GuestLayout({ children }) {
                                                 <li>
                                                     <div className="flex items-center justify-between">
                                                         <a
-                                                            href="./pages/ecommerce/wishlist.html"
+                                                            href="../ecommerce/wishlist.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-15px pt-3 pb-7px font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Wishlist
@@ -3155,14 +3105,14 @@ export default function GuestLayout({ children }) {
                                                 <li>
                                                     <div className="flex items-center gap-1">
                                                         <a
-                                                            href="login.html"
+                                                            href="../../login.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-30px pt-7 pb-3 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             Login
                                                         </a>
 
                                                         <a
-                                                            href="login.html"
+                                                            href="../../login.html"
                                                             className="leading-1 text-darkdeep1 text-sm pr-30px pt-7 pb-4 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             <span>/</span>{" "}
@@ -3173,7 +3123,7 @@ export default function GuestLayout({ children }) {
                                                 <li>
                                                     <div className="flex items-center justify-between">
                                                         <a
-                                                            href="login.html"
+                                                            href="../../login.html"
                                                             className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                         >
                                                             My Account
@@ -3220,27 +3170,103 @@ export default function GuestLayout({ children }) {
                 </div>
             </header>
 
-            {children}
-
-            <footer className="bg-darkblack">
-                <div className="container-fluid-2 pt-65px pb-5 lg:pb-10">
-                    <section>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-30px md:gap-y-0 items-center pb-45px border-b border-darkcolor">
-                            <div>
-                                <h4 className="text-4xl md:text-size-25 lg:text-size-40 font-bold text-whiteColor leading-50px md:leading-10 lg:leading-16">
-                                    Still You Need Our
-                                    <span className="text-primaryColor">
-                                        Support
-                                    </span>{" "}
-                                    ?
-                                </h4>
-                                <p className="text-whiteColor text-opacity-65">
-                                    Don’t wait make a smart & logical quote
-                                    here. Its pretty easy.
+            <main className="bg-transparent">
+                <section>
+                    <div className="container-fluid-2">
+                        <div className="bg-naveBlue p-5 md:p-10 rounded-5 flex justify-center md:justify-between items-center flex-wrap gap-2">
+                            <div className="flex items-center flex-wrap justify-center sm:justify-start">
+                                <div className="mr-5">
+                                    <img
+                                        src="../../assets/images/dashbord/dashbord__2.jpg"
+                                        alt=""
+                                        className="w-27 h-27 md:w-22 md:h-22 lg:w-27 lg:h-27 rounded-full p-1 border-2 border-darkdeep7 box-content"
+                                    />
+                                </div>
+                                <div className="text-whiteColor font-bold text-center sm:text-start">
+                                    <h5 className="text-xl leading-1.2 mb-5px">
+                                        Hello
+                                    </h5>
+                                    <h2 className="text-2xl leading-1.24">
+                                        {user.name}
+                                    </h2>
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-yellow">
+                                    <i className="icofont-star"></i>
+                                    <i className="icofont-star"></i>
+                                    <i className="icofont-star"></i>
+                                    <i className="icofont-star"></i>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="16"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="feather feather-star inline-block"
+                                    >
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                    </svg>
+                                </div>
+                                <p className="text-whiteColor">
+                                    4.0 (120 Reviews)
                                 </p>
                             </div>
                             <div>
-                                <form className="max-w-form-xl md:max-w-form-md lg:max-w-form-lg xl:max-w-form-xl 2xl:max-w-form-2xl bg-deepgray ml-auto rounded relative">
+                                <a
+                                    href="create-course.html"
+                                    className="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor rounded group text-nowrap flex gap-1 items-center"
+                                >
+                                    Create a New Course
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="feather feather-arrow-right"
+                                    >
+                                        <line
+                                            x1="5"
+                                            y1="12"
+                                            x2="19"
+                                            y2="12"
+                                        ></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {children}
+            </main>
+            <footer className="bg-darkblack">
+                <div className="container pt-65px">
+                    <div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 md:gap-y-0 items-center pb-45px border-b border-darkcolor">
+                            <div data-aos="fade-up">
+                                <a href="#">
+                                    <img
+                                        src="../../assets/images/logo/logo_2.png"
+                                        alt=""
+                                    />
+                                </a>
+                            </div>
+                            <div>
+                                <form
+                                    className="max-w-form-xl md:max-w-form-md lg:max-w-form-lg xl:max-w-form-xl 2xl:max-w-form-2xl bg-deepgray ml-auto rounded relative"
+                                    data-aos="fade-up"
+                                >
                                     <input
                                         type="email"
                                         placeholder="Enter your email here"
@@ -3255,11 +3281,14 @@ export default function GuestLayout({ children }) {
                                 </form>
                             </div>
                         </div>
-                    </section>
+                    </div>
 
                     <section>
-                        <div className="grid grid-cols-12 gap-30px md:gap-y-5 lg:gap-y-0 pt-60px pb-50px md:pt-30px md:pb-30px lg:pt-110px lg:pb-20">
-                            <div className="col-start-1 col-span-12 md:col-span-6 lg:col-span-4 mr-30px">
+                        <div className="grid grid-cols-12 gap-30px md:gap-y-5 lg:gap-y-0 pt-60px pb-50px md:pt-30px md:pb-30px lg:pt-110px lg:pb-20 mb-5">
+                            <div
+                                className="col-start-1 col-span-12 md:col-span-6 lg:col-span-4 mr-30px"
+                                data-aos="fade-up"
+                            >
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
                                     About us
                                 </h4>
@@ -3269,25 +3298,57 @@ export default function GuestLayout({ children }) {
                                     safe, and professional chauffeured car end
                                     service in major cities across World.
                                 </p>
-                                <div className="flex items-center">
-                                    <div>
-                                        <i className="icofont-clock-time text-3xl text-whiteColor h-78px w-78px bg-primaryColor leading-78px mr-22px block text-center"></i>
-                                    </div>
-                                    <div>
-                                        <h6 className="text-lg text-whiteColor font-medium leading-29px">
-                                            OPENING HOURES
-                                        </h6>
-                                        <p className="text-sm text-whiteColor text-opacity-60 mb-1">
-                                            Mon - Sat(8.00 - 6.00)
-                                        </p>
-                                        <p className="text-sm text-whiteColor text-opacity-60">
-                                            Sunday - Closed
-                                        </p>
-                                    </div>
-                                </div>
+                                <ul
+                                    className="flex gap-3 lg:gap-2 2xl:gap-3"
+                                    data-aos="fade-up"
+                                >
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="w-11 md:w-10 2xl:w-11 h-11 md:h-10 2xl:h-11 leading-11 md:leading-10 2xl:leading-11 text-whitegrey bg-darkgray bg-opacity-10 hover:text-whiteColor dark:text-whiteColor-dark dark:bg-whiteColor dark:hover:bg-secondaryColor dark:hover:text-whiteColor rounded-full text-center"
+                                        >
+                                            <i className="icofont-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="w-11 md:w-10 2xl:w-11 h-11 md:h-10 2xl:h-11 leading-11 md:leading-10 2xl:leading-11 text-whitegrey bg-darkgray bg-opacity-10 hover:text-whiteColor dark:text-whiteColor-dark dark:bg-whiteColor dark:hover:bg-secondaryColor dark:hover:text-whiteColor rounded-full text-center"
+                                        >
+                                            <i className="icofont-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="w-11 md:w-10 2xl:w-11 h-11 md:h-10 2xl:h-11 leading-11 md:leading-10 2xl:leading-11 text-whitegrey bg-darkgray bg-opacity-10 hover:text-whiteColor dark:text-whiteColor-dark dark:bg-whiteColor dark:hover:bg-secondaryColor dark:hover:text-whiteColor rounded-full text-center"
+                                        >
+                                            <i className="icofont-vimeo"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="w-11 md:w-10 2xl:w-11 h-11 md:h-10 2xl:h-11 leading-11 md:leading-10 2xl:leading-11 text-whitegrey bg-darkgray bg-opacity-10 hover:text-whiteColor dark:text-whiteColor-dark dark:bg-whiteColor dark:hover:bg-secondaryColor dark:hover:text-whiteColor rounded-full text-center"
+                                        >
+                                            <i className="icofont-linkedin"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="w-11 md:w-10 2xl:w-11 h-11 md:h-10 2xl:h-11 leading-11 md:leading-10 2xl:leading-11 text-whitegrey bg-darkgray bg-opacity-10 hover:text-whiteColor dark:text-whiteColor-dark dark:bg-whiteColor dark:hover:bg-secondaryColor dark:hover:text-whiteColor rounded-full text-center"
+                                        >
+                                            <i className="icofont-skype"></i>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
 
-                            <div className="col-start-1 col-span-12 md:col-start-7 lg:col-start-5 md:col-span-6 lg:col-span-2">
+                            <div
+                                className="col-start-1 col-span-12 md:col-start-7 lg:col-start-5 md:col-span-6 lg:col-span-2"
+                                data-aos="fade-up"
+                            >
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
                                     Usefull Links
                                 </h4>
@@ -3335,7 +3396,10 @@ export default function GuestLayout({ children }) {
                                 </ul>
                             </div>
 
-                            <div className="col-start-1 col-span-12 md:col-start-1 lg:col-start-7 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-60px">
+                            <div
+                                className="col-start-1 col-span-12 md:col-start-1 lg:col-start-7 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-60px"
+                                data-aos="fade-up"
+                            >
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
                                     Course
                                 </h4>
@@ -3383,7 +3447,10 @@ export default function GuestLayout({ children }) {
                                 </ul>
                             </div>
 
-                            <div className="col-start-1 col-span-12 md:col-start-7 lg:col-start-10 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-50px">
+                            <div
+                                className="col-start-1 col-span-12 md:col-start-7 lg:col-start-10 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-50px"
+                                data-aos="fade-up"
+                            >
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
                                     Recent Post
                                 </h4>
@@ -3392,7 +3459,7 @@ export default function GuestLayout({ children }) {
                                         <a className="flex items-center gap-3 group cursor-pointer">
                                             <div>
                                                 <img
-                                                    src="./assets/images/footer/footer__1.png"
+                                                    src="../../assets/images/footer/footer__1.png"
                                                     alt=""
                                                     className="w-61px h-54px"
                                                 />
@@ -3412,7 +3479,7 @@ export default function GuestLayout({ children }) {
                                         <a className="flex items-center gap-3 group cursor-pointer">
                                             <div>
                                                 <img
-                                                    src="./assets/images/footer/footer__2.png"
+                                                    src="../../assets/images/footer/footer__2.png"
                                                     alt=""
                                                     className="w-61px h-54px"
                                                 />
@@ -3431,7 +3498,7 @@ export default function GuestLayout({ children }) {
                                         <a className="flex items-center gap-3 group cursor-pointer">
                                             <div>
                                                 <img
-                                                    src="./assets/images/footer/footer__3.png"
+                                                    src="../../assets/images/footer/footer__3.png"
                                                     alt=""
                                                     className="w-61px h-54px"
                                                 />
@@ -3452,66 +3519,36 @@ export default function GuestLayout({ children }) {
                     </section>
 
                     <div>
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-30px pt-10 items-center">
-                            <div className="lg:col-start-1 lg:col-span-3">
-                                <a href="#">
-                                    <img
-                                        src="./assets/images/logo/logo_2.png"
-                                        alt=""
-                                    />
-                                </a>
-                            </div>
-
-                            <div className="lg:col-start-4 lg:col-span-6">
-                                <p className="text-whiteColor">
-                                    Copyright ©
-                                    <span className="text-primaryColor">
-                                        2024{" "}
-                                    </span>{" "}
-                                    by edurock. All Rights Reserved.
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 py-5 lg:py-10 items-center border-t border-darkcolor">
+                            <div>
+                                <p className="text-base text-darkgray">
+                                    © 2024 Powered by
+                                    <a
+                                        href="#"
+                                        className="hover:text-primaryColor"
+                                    >
+                                        Edurock
+                                    </a>
+                                    . All Rights Reserved.
                                 </p>
                             </div>
 
-                            <div className="lg:col-start-10 lg:col-span-3">
-                                <ul className="flex gap-3 lg:gap-2 2xl:gap-3 lg:justify-end">
+                            <div>
+                                <ul className="flex items-center justify-end">
                                     <li>
                                         <a
                                             href="#"
-                                            className="w-40.19px lg:w-35px 2xl:w-40.19px h-37px lg:h-35px 2xl:h-37px leading-37px lg:leading-35px 2xl:leading-37px text-whiteColor bg-whiteColor bg-opacity-10 hover:bg-primaryColor text-center"
+                                            className="text-base text-darkgray hover:text-primaryColor pr-4 border-r border-darkgray leading-1"
                                         >
-                                            <i className="icofont-facebook"></i>
+                                            Terms of Use
                                         </a>
                                     </li>
                                     <li>
                                         <a
                                             href="#"
-                                            className="w-40.19px lg:w-35px 2xl:w-40.19px h-37px lg:h-35px 2xl:h-37px leading-37px lg:leading-35px 2xl:leading-37px text-whiteColor bg-whiteColor bg-opacity-10 hover:bg-primaryColor text-center"
+                                            className="text-base text-darkgray hover:text-primaryColor pl-4"
                                         >
-                                            <i className="icofont-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="w-40.19px lg:w-35px 2xl:w-40.19px h-37px lg:h-35px 2xl:h-37px leading-37px lg:leading-35px 2xl:leading-37px text-whiteColor bg-whiteColor bg-opacity-10 hover:bg-primaryColor text-center"
-                                        >
-                                            <i className="icofont-vimeo"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="w-40.19px lg:w-35px 2xl:w-40.19px h-37px lg:h-35px 2xl:h-37px leading-37px lg:leading-35px 2xl:leading-37px text-whiteColor bg-whiteColor bg-opacity-10 hover:bg-primaryColor text-center"
-                                        >
-                                            <i className="icofont-linkedin"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="w-40.19px lg:w-35px 2xl:w-40.19px h-37px lg:h-35px 2xl:h-37px leading-37px lg:leading-35px 2xl:leading-37px text-whiteColor bg-whiteColor bg-opacity-10 hover:bg-primaryColor text-center"
-                                        >
-                                            <i className="icofont-skype"></i>
+                                            Privacy Policy
                                         </a>
                                     </li>
                                 </ul>
@@ -3520,6 +3557,6 @@ export default function GuestLayout({ children }) {
                     </div>
                 </div>
             </footer>
-        </div>
+        </body>
     );
 }

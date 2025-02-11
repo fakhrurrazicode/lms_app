@@ -40,7 +40,9 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         // return redirect()->intended(route('dashboard', absolute: false));
-        return Inertia::location((url('/dashboard')));
+
+        $redirect_url = Auth::user()->roles[0]->redirect_url;
+        return Inertia::location((url($redirect_url)));
     }
 
     /**
