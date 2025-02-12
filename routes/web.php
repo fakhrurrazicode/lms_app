@@ -49,7 +49,12 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::group(['prefix' => '/instructor_area', 'as' => 'instructor-area.'], function () {
+
         Route::get('/', [InstructorAreaDashboardController::class, 'index'])->name('dashboard.index');
+
+        Route::get('/student-profile/edit', [StudentProfileController::class, 'edit'])->name('student-profile.edit');
+        // Route::update('/student-profile/update', [StudentProfileController::class, 'update'])->name('student-profile.update');
+        // Route::update('/student-profile/destroy', [StudentProfileController::class, 'destroy'])->name('student-profile.destroy');
     });
 
     Route::group(['prefix' => '/backend', 'as' => 'backend.'], function () {
