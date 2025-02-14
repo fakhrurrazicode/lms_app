@@ -268,6 +268,18 @@ export default function AuthenticatedLayout({ header, children }) {
                         </li>
                     )}
 
+                    {permissions.includes("backend.tag.index") && (
+                        <li>
+                            <Link
+                                href="/backend/tag"
+                                className="flex justify-start items-center "
+                            >
+                                <LayoutList size={16} />
+                                <span>Manage Tag</span>
+                            </Link>
+                        </li>
+                    )}
+
                     {permissions.includes("backend.course_category.index") && (
                         <li>
                             <Link

@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSubCategoryController;
 use App\Http\Controllers\Backend\SubCourseCategoryController;
+use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentArea\DashboardController as StudentAreaDashboardController;
 use App\Http\Controllers\InstructorArea\DashboardController as InstructorAreaDashboardController;
@@ -69,6 +70,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/user/{user}/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
 
         Route::resource('/course_category', CourseCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('/tag', TagController::class)->only(['index', 'store', 'update', 'destroy']);
 
         // Route::resource('/sub_course_category', SubCourseCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
         // Route::get('/sub_course_category/data/{course_category?}', [SubCourseCategoryController::class, 'data'])->name('sub_course_category.data');
