@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Tag;
 use App\Models\User;
 use App\Models\CourseCategory;
 use App\Models\CourseSubCategory;
@@ -15,6 +16,11 @@ class Course extends BaseModel
     public function getImageUrlAttribute()
     {
         return $this->image ? url('/storage/' . $this->image) : null;
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 
     public function instructor()

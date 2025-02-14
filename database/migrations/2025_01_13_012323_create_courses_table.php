@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->integer('course_category_id');
-            $table->integer('course_sub_category_id');
+            $table->integer('course_sub_category_id')->nullable();
             $table->integer('instructor_id');
 
             $table->string('image')->nullable();
