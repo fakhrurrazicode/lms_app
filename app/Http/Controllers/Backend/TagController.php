@@ -17,13 +17,13 @@ class TagController extends Controller
      */
     public function index(PaginateRequest $request)
     {
-        $courseCategories = Tag::orWhere([
+        $tags = Tag::orWhere([
             ['name', 'LIKE', '%' . $request->search . '%'],
             ['slug', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
         return Inertia::render('Backend/Tag/Index', [
-            'courseCategories' => $courseCategories,
+            'tags' => $tags,
             'request' => $request,
         ]);
     }
