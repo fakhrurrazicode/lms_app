@@ -6,10 +6,14 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Models\CourseCategory;
 use App\Models\CourseSubCategory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Course extends BaseModel
 {
+
+    use HasFactory;
+
     protected $guarded = [];
     protected $appends = ['image_url'];
 
