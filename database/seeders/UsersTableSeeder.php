@@ -71,6 +71,32 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2025-02-11 02:58:36',
                 'photo' => NULL,
             ),
+            4 => 
+            array (
+                'id' => 8,
+                'name' => 'Instructor B',
+                'username' => NULL,
+                'email' => 'instructor.b@gmail.com',
+                'email_verified_at' => NULL,
+                'password' => '$2y$12$b9znWh.8TU2101DWNY/XMeFMjY4cBkTU5ODFwT6g791BaHTA9lPiS',
+                'remember_token' => NULL,
+                'created_at' => '2025-02-14 07:37:34',
+                'updated_at' => '2025-02-14 07:37:34',
+                'photo' => NULL,
+            ),
+            5 => 
+            array (
+                'id' => 9,
+                'name' => 'Instructor C',
+                'username' => NULL,
+                'email' => 'instructor.c@gmail.com',
+                'email_verified_at' => NULL,
+                'password' => '$2y$12$4qq34dpipKsFfuONwKOlNO5AeZ713ZiIGY4FMHqz8riYbOZjVLk0O',
+                'remember_token' => NULL,
+                'created_at' => '2025-02-14 07:37:57',
+                'updated_at' => '2025-02-14 07:37:57',
+                'photo' => NULL,
+            ),
         ));
         
         
