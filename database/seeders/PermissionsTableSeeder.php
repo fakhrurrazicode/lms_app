@@ -411,6 +411,54 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2025-02-04 03:32:46',
                 'updated_at' => '2025-02-04 03:34:32',
             ),
+            49 => 
+            array (
+                'id' => 50,
+                'name' => 'backend.tag.index',
+                'guard_name' => 'web',
+                'created_at' => '2025-02-14 06:50:13',
+                'updated_at' => '2025-02-14 06:50:13',
+            ),
+            50 => 
+            array (
+                'id' => 51,
+                'name' => 'backend.tag.create',
+                'guard_name' => 'web',
+                'created_at' => '2025-02-14 06:50:21',
+                'updated_at' => '2025-02-14 06:50:21',
+            ),
+            51 => 
+            array (
+                'id' => 52,
+                'name' => 'backend.tag.store',
+                'guard_name' => 'web',
+                'created_at' => '2025-02-14 06:50:28',
+                'updated_at' => '2025-02-14 06:50:28',
+            ),
+            52 => 
+            array (
+                'id' => 53,
+                'name' => 'backend.tag.edit',
+                'guard_name' => 'web',
+                'created_at' => '2025-02-14 06:50:33',
+                'updated_at' => '2025-02-14 06:50:33',
+            ),
+            53 => 
+            array (
+                'id' => 54,
+                'name' => 'backend.tag.update',
+                'guard_name' => 'web',
+                'created_at' => '2025-02-14 06:50:46',
+                'updated_at' => '2025-02-14 06:50:46',
+            ),
+            54 => 
+            array (
+                'id' => 55,
+                'name' => 'backend.tag.destroy',
+                'guard_name' => 'web',
+                'created_at' => '2025-02-14 06:50:58',
+                'updated_at' => '2025-02-14 06:50:58',
+            ),
         ));
         
         

@@ -103,6 +103,30 @@ class MigrationsTableSeeder extends Seeder
                 'migration' => '2025_01_16_041823_add_batch_uuid_column_to_activity_log_table',
                 'batch' => 1,
             ),
+            14 => 
+            array (
+                'id' => 15,
+                'migration' => '2025_02_11_024859_add_redirect_url_to_roles_table',
+                'batch' => 2,
+            ),
+            15 => 
+            array (
+                'id' => 16,
+                'migration' => '2025_02_14_062552_create_tags_table',
+                'batch' => 3,
+            ),
+            16 => 
+            array (
+                'id' => 17,
+                'migration' => '2025_02_14_062856_create_course_tag_table',
+                'batch' => 3,
+            ),
+            17 => 
+            array (
+                'id' => 18,
+                'migration' => '2025_02_14_063303_create_taggables_table',
+                'batch' => 4,
+            ),
         ));
         
         
