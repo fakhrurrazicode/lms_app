@@ -329,11 +329,11 @@ export default function Index({
                                                             }
                                                         </td>
                                                         <td>
-                                                            {
-                                                                course
-                                                                    .course_sub_category
-                                                                    .name
-                                                            }
+                                                            {course.course_sub_category
+                                                                ? course
+                                                                      .course_sub_category
+                                                                      .name
+                                                                : "-"}
                                                         </td>
 
                                                         <td>
