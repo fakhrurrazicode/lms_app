@@ -103,17 +103,15 @@ export default function GuestLayout({ children }) {
                         <div className="flex justify-between items-center">
                             <div>
                                 <p>
-                                    Call Us: +1 800 123 456 789 - Mail Us:
-                                    Itcroc@mail.com
+                                    Whatsapp: +62853 6000 2091 - Email:
+                                    support@guruteknik.com
                                 </p>
                             </div>
                             <div className="flex gap-37px items-center">
                                 <div>
                                     <p>
                                         <i className="icofont-location-pin text-primaryColor text-size-15 mr-5px"></i>
-                                        <span>
-                                            684 West College St. Sun City, USA
-                                        </span>
+                                        <span>Jakarta, Indonesia</span>
                                     </p>
                                 </div>
                                 <div>
@@ -161,7 +159,7 @@ export default function GuestLayout({ children }) {
                     <nav className="lg:container 3xl:container2-lg 4xl:container mx-auto relative">
                         <div className="hidden lg:grid grid-cols-12 py-5 px-15px items-center gap-30px border-b border-borderColor dark:border-borderColor-dark -mx-15px">
                             <div className="col-start-1 col-span-3">
-                                <ul className="flex items-center nav-list">
+                                {/* <ul className="flex items-center nav-list">
                                     <li className="relative">
                                         <button className="text-contentColor dark:text-contentColor-dark pr-10px flex items-center">
                                             <img
@@ -241,7 +239,7 @@ export default function GuestLayout({ children }) {
                                             </div>
                                         </div>
                                     </li>
-                                </ul>
+                                </ul> */}
                             </div>
                             <div className="col-start-4 col-span-6">
                                 <form>
@@ -440,7 +438,7 @@ export default function GuestLayout({ children }) {
                                                 href="/"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
-                                                Home
+                                                Beranda
                                             </Link>
                                         </li>
                                         <li className="nav-item">
@@ -448,7 +446,7 @@ export default function GuestLayout({ children }) {
                                                 href="/courses"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
-                                                Courses
+                                                Kursus
                                             </Link>
                                         </li>
                                         <li className="nav-item">
@@ -456,7 +454,7 @@ export default function GuestLayout({ children }) {
                                                 href="/become-an-instructor"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
-                                                Become an Instructor
+                                                Daftar Sebagai Instruktur
                                             </Link>
                                         </li>
                                         {/* <li className="nav-item group">
@@ -2053,7 +2051,7 @@ export default function GuestLayout({ children }) {
                                                     href="/login"
                                                     className="text-size-12 2xl:text-size-15 text-whiteColor bg-primaryColor block border-primaryColor border hover:text-primaryColor hover:bg-white px-15px py-2 rounded-standard dark:hover:bg-whiteColor-dark dark: dark:hover:text-whiteColor"
                                                 >
-                                                    Get Start Here
+                                                    Mulai
                                                 </Link>
                                             </li>
                                         )}
@@ -2117,7 +2115,7 @@ export default function GuestLayout({ children }) {
                                             className="leading-1 py-11px text-darkdeep1 font-medium hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                             href="/become-an-instructor"
                                         >
-                                            Become an Instructor
+                                            Daftar Sebagai Instruktur
                                         </Link>
                                     </div>
                                 </li>
@@ -3228,11 +3226,11 @@ export default function GuestLayout({ children }) {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-30px md:gap-y-0 items-center pb-45px border-b border-darkcolor">
                             <div>
                                 <h4 className="text-4xl md:text-size-25 lg:text-size-40 font-bold text-whiteColor leading-50px md:leading-10 lg:leading-16">
-                                    Still You Need Our
+                                    Masih Butuh{" "}
                                     <span className="text-primaryColor">
-                                        Support
+                                        Dukungan
                                     </span>{" "}
-                                    ?
+                                    Kami? ?
                                 </h4>
                                 <p className="text-whiteColor text-opacity-65">
                                     Don’t wait make a smart & logical quote
@@ -3455,10 +3453,7 @@ export default function GuestLayout({ children }) {
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-30px pt-10 items-center">
                             <div className="lg:col-start-1 lg:col-span-3">
                                 <a href="#">
-                                    <img
-                                        src="./assets/images/logo/logo_2.png"
-                                        alt=""
-                                    />
+                                    <ApplicationLogo className="block h-20 w-auto fill-current text-gray-800 dark:text-gray-200" />
                                 </a>
                             </div>
 
@@ -3468,7 +3463,7 @@ export default function GuestLayout({ children }) {
                                     <span className="text-primaryColor">
                                         2024{" "}
                                     </span>{" "}
-                                    by edurock. All Rights Reserved.
+                                    by guruteknik.com. All Rights Reserved.
                                 </p>
                             </div>
 

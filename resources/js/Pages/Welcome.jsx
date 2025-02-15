@@ -43,22 +43,20 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                             EDUCATION SOLUTION
                                         </h3>
                                         <h1 className="text-size-35 md:text-size-65 lg:text-5xl 2xl:text-size-65 leading-42px md:leading-18 lg:leading-15 2xl:leading-18 text-blackColor dark:text-blackColor-dark md:tracking-half lg:tracking-normal 2xl:tracking-half font-bold mb-15px">
-                                            Ignite Your
+                                            Belajar Tanpa{" "}
                                             <span className="text-secondaryColor">
-                                                Career
-                                            </span>
-                                            with Learning the Largest
-                                            <span className="text-secondaryColor">
-                                                Online
-                                            </span>
-                                            Platform.
+                                                Batas
+                                            </span>{" "}
+                                            Mencapai Masa Depan
                                         </h1>
                                         <p className="text-size-15md:text-lg text-blackColor dark:text-blackColor-dark font-medium">
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing
-                                            <br />
-                                            typesetting industry. Lorem Ipsum
-                                            has been
+                                            Dengan LMS kami, anda dapat belajar
+                                            kapan saja dan dimana saja, Akses
+                                            ribuan kursus dan sumber daya
+                                            pemebelajaran yang berkualitas
+                                            tinggi, serta komunitas
+                                            pemebelajaran yang aktif dan
+                                            mendukung.
                                         </p>
 
                                         <div className="mt-30px">
@@ -487,7 +485,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
                 <section>
                     <div className="container">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-30px pb-30px">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-30px pb-30px items-center">
                             <div className="mb-20 lg:mb-0 pb-0 md:pb-30px xl:pb-0 overflow-visible">
                                 <div className="tilt relative z-0">
                                     <img
@@ -508,18 +506,20 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                     EDUCATION SOLUTION
                                 </span>
                                 <h3 className="text-3xl md:text-size-45 leading-10 md:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                                    Welcome to the
+                                    Selamat Datang di{" "}
                                     <span className="relative after:w-full after:h-[7px] after:bg-secondaryColor after:absolute after:left-0 after:bottom-3 md:after:bottom-5">
-                                        Online
-                                    </span>
-                                    Learning Center
+                                        GuruTeknik
+                                    </span>{" "}
+                                    LMS
                                 </h3>
                                 <p className="text-sm md:text-base leading-7 text-contentColor dark:text-contentColor-dark mb-6 pl-3 border-l-2 border-primaryColor">
-                                    25+Contrary to popular belief, Lorem Ipsum
-                                    is not simply random text roots in a piece
-                                    of classical Latin literature from 45 BC
+                                    Dengan LMS kami, anda dapat belajar kapan
+                                    saja dan dimana saja, Akses ribuan kursus
+                                    dan sumber daya pemebelajaran yang
+                                    berkualitas tinggi, serta komunitas
+                                    pemebelajaran yang aktif dan mendukung.
                                 </p>
-                                <ul className="space-y-5">
+                                {/* <ul className="space-y-5">
                                     <li className="flex items-center group">
                                         <i className="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
                                         <p className="text-sm md:text-base font-medium text-blackColor dark:text-blackColor-dark">
@@ -539,7 +539,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                             Lorem Ipsum is simply dummy text of
                                         </p>
                                     </li>
-                                </ul>
+                                </ul> */}
                             </div>
                         </div>
                     </div>
@@ -553,18 +553,18 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                     Course List
                                 </span>
                                 <h3 className="text-3xl md:text-size-35 2xl:text-size-38 3xl:text-size-42 leading-10 md:leading-45px 2xl:leading-50px 3xl:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                                    Populer
                                     <span className="relative after:w-full after:h-[7px] after:bg-secondaryColor after:absolute after:left-0 after:bottom-3 md:after:bottom-4 after:z-[-1]">
-                                        Subjects
-                                    </span>
+                                        Tema
+                                    </span>{" "}
+                                    Populer
                                 </h3>
                             </div>
 
                             <div className="lg:col-star-5 lg:col-span-5">
-                                <p className="text-sm md:text-base text-contentColor dark:text-contentColor-dark mb-10px 2xl:mb-50px 2xl:pl-50px">
+                                {/* <p className="text-sm md:text-base text-contentColor dark:text-contentColor-dark mb-10px 2xl:mb-50px 2xl:pl-50px">
                                     Forging relationships between multi to
                                     national governments and global NGOs begins.
-                                </p>
+                                </p> */}
                             </div>
                             <div className="lg:col-star-10 lg:col-span-3 flex lg:justify-end">
                                 <div>
@@ -572,7 +572,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         className="text-size-15 text-whiteColor bg-secondaryColor px-25px py-10px border border-secondaryColor hover:text-secondaryColor hover:bg-whiteColor inline-block rounded dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor"
                                         href="#"
                                     >
-                                        All Catagories
+                                        Semua Kategori
                                         <i className="icofont-long-arrow-right"></i>
                                     </a>
                                 </div>
@@ -1293,7 +1293,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         Course List
                                     </span>
                                     <h3 className="text-3xl md:text-[35px] lg:text-size-42 leading-[45px] 2xl:leading-[45px] md:leading-[50px] font-bold text-blackColor dark:text-blackColor-dark">
-                                        Perfect Online Course Your Carrer
+                                        Kursus Online Terbaik Anda
                                     </h3>
                                 </div>
 
@@ -1304,7 +1304,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                                 data-filter="*"
                                                 className="is-checked dark:is-checked pr-5 md:pr-10 lg:pr-17px 2xl:pr-10 text-contentColor font-medium hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor"
                                             >
-                                                See All
+                                                Lihat Semua
                                             </button>
                                         </li>
                                         <li>
@@ -1995,15 +1995,15 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                             Registration
                                         </span>
                                         <h3 className="text-3xl md:text-[35px] 2xl:text-size-42 leading-[45px] 2xl:leading-2xl font-bold text-whiteColor pb-25px">
-                                            Register Your
+                                            Daftarkan{" "}
                                             <span className="relative after:w-full after:h-[7px] after:bg-secondaryColor after:absolute after:left-0 after:bottom-2 md:after:bottom-4 z-0 after:z-[-1]">
-                                                Account
+                                                Akun
                                             </span>
-                                            Get free access to
+                                            mu, dan dapatkan akses ke{" "}
                                             <span className="text-yellow1">
-                                                60000{" "}
+                                                600+{" "}
                                             </span>
-                                            online course
+                                            Kursus Online
                                         </h3>
                                         <div className="flex gap-x-5 items-center">
                                             <div>
@@ -2023,9 +2023,9 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
                                             <div>
                                                 <p className="text-size-15 md:text-[22px] lg:text-lg 2xl:text-[22px] leading-6 md:leading-9 lg:leading-8 2xl:leading-9 font-semibold text-white">
-                                                    Learn Something new & Build
-                                                    Your Career From Anywhere In
-                                                    The World
+                                                    Pelajari Sesuatu yang baru &
+                                                    Bangun Karir Anda Dari Mana
+                                                    Saja Di Dunia
                                                 </p>
                                             </div>
                                         </div>
@@ -2035,36 +2035,36 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                 <div className="overflow-visible lg:col-start-8 lg:col-span-5 relative z-1 lg:-mb-150px">
                                     <form className="p-35px pt-10 bg-lightGrey10 dark:bg-lightGrey10-dark rounded shadow-experience">
                                         <h3 className="text-xl text-blackColor dark:text-blackColor-dark font-semibold mb-5 font-inter">
-                                            Fill Your Registration
+                                            Isi Pendaftaran
                                         </h3>
 
                                         <input
                                             type="text"
-                                            placeholder="Your Name"
+                                            placeholder="Nama"
                                             className="w-full px-15px py-3 bg-lightGrey8 text-base mb-25px focus:outline-none"
                                         />
 
                                         <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-x-30px">
                                             <input
                                                 type="email"
-                                                placeholder="Email Address"
+                                                placeholder="Alamat Email"
                                                 className="w-full px-15px py-3 bg-lightGrey8 text-base mb-25px focus:outline-none"
                                             />
 
                                             <input
                                                 type="text"
-                                                placeholder="Phone"
+                                                placeholder="No Handphone"
                                                 className="w-full px-15px py-3 bg-lightGrey8 text-base mb-25px focus:outline-none"
                                             />
                                         </div>
                                         <input
                                             type="text"
-                                            placeholder="Address"
+                                            placeholder="Alamat"
                                             className="w-full px-15px py-3 bg-lightGrey8 text-base mb-25px focus:outline-none"
                                         />
 
                                         <textarea
-                                            placeholder="Comment"
+                                            placeholder="Komentar"
                                             className="w-full px-15px pb-3 pt-5 bg-lightGrey8 text-base mb-25px h-[155px] placeholder:text-blackColor"
                                             cols="30"
                                             rows="10"
@@ -2089,10 +2089,10 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                     <div className="container py-30px md:pt-10 md:pb-50px 2xl:pt-50px 2xl:pb-100px">
                         <div className="text-center mb-15px">
                             <span className="text-size-15 font-semibold text-secondaryColor inline-block uppercase mb-[13px]">
-                                EXPERT TEACHER
+                                Instruktur Ahli
                             </span>
                             <h3 className="text-3xl md:text-size-35 lg:text-size-45 leading-10 md:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                                Our Expert Teacher
+                                Instruktur Ahli Kami
                             </h3>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-30px">
@@ -2288,7 +2288,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         EDUCATION SOLUTION
                                     </h3>
                                     <h1 className="text-3xl text-blackColor md:text-size-35 lg:text-size-42 2xl:text-size-47 leading-10 md:leading-45px lg:leading-12 2xl:leading-50px dark:text-blackColor-dark font-bold mb-15px">
-                                        Client Testimonial About Our Lms Agency
+                                        Testimoni Klien Tentang Agensi Lms Kami
                                     </h1>
 
                                     <div className="swiper testimonial-2">
@@ -2297,18 +2297,23 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                                 <div>
                                                     <p className="md:text-xl md:leading-10 text-lightGrey dark:text-whiteColor">
                                                         <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>
-                                                        The other hand we
-                                                        denounce with righteou
-                                                        indg ation and dislike
-                                                        men who are so beguiled
-                                                        and demorali ed by the
-                                                        of pleasure of the
-                                                        moment.Dislike men who
-                                                        are so beguiled and
-                                                        demoraliz worlds ed by
-                                                        the charms of pleasure
-                                                        of the moment. Lorem
-                                                        ipsum dolor sit amet.
+                                                        Lorem, ipsum dolor sit
+                                                        amet consectetur
+                                                        adipisicing elit.
+                                                        Laudantium corporis
+                                                        minima perferendis
+                                                        obcaecati soluta dicta
+                                                        quidem, animi nobis
+                                                        blanditiis earum,
+                                                        tenetur itaque facilis
+                                                        excepturi. Inventore
+                                                        aperiam praesentium, ex
+                                                        deleniti porro ut
+                                                        consectetur minus
+                                                        perspiciatis provident
+                                                        quo consequuntur,
+                                                        exercitationem in?
+                                                        Tenetur.
                                                         <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>
                                                     </p>
 
@@ -2344,18 +2349,23 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                                 <div>
                                                     <p className="md:text-xl md:leading-10 text-lightGrey dark:text-whiteColor">
                                                         <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>
-                                                        The other hand we
-                                                        denounce with righteou
-                                                        indg ation and dislike
-                                                        men who are so beguiled
-                                                        and demorali ed by the
-                                                        of pleasure of the
-                                                        moment.Dislike men who
-                                                        are so beguiled and
-                                                        demoraliz worlds ed by
-                                                        the charms of pleasure
-                                                        of the moment. Lorem
-                                                        ipsum dolor sit amet.
+                                                        Lorem, ipsum dolor sit
+                                                        amet consectetur
+                                                        adipisicing elit.
+                                                        Laudantium corporis
+                                                        minima perferendis
+                                                        obcaecati soluta dicta
+                                                        quidem, animi nobis
+                                                        blanditiis earum,
+                                                        tenetur itaque facilis
+                                                        excepturi. Inventore
+                                                        aperiam praesentium, ex
+                                                        deleniti porro ut
+                                                        consectetur minus
+                                                        perspiciatis provident
+                                                        quo consequuntur,
+                                                        exercitationem in?
+                                                        Tenetur.
                                                         <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>
                                                     </p>
 
@@ -2391,18 +2401,23 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                                 <div>
                                                     <p className="md:text-xl md:leading-10 text-lightGrey dark:text-whiteColor">
                                                         <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>
-                                                        The other hand we
-                                                        denounce with righteou
-                                                        indg ation and dislike
-                                                        men who are so beguiled
-                                                        and demorali ed by the
-                                                        of pleasure of the
-                                                        moment.Dislike men who
-                                                        are so beguiled and
-                                                        demoraliz worlds ed by
-                                                        the charms of pleasure
-                                                        of the moment. Lorem
-                                                        ipsum dolor sit amet.
+                                                        Lorem, ipsum dolor sit
+                                                        amet consectetur
+                                                        adipisicing elit.
+                                                        Laudantium corporis
+                                                        minima perferendis
+                                                        obcaecati soluta dicta
+                                                        quidem, animi nobis
+                                                        blanditiis earum,
+                                                        tenetur itaque facilis
+                                                        excepturi. Inventore
+                                                        aperiam praesentium, ex
+                                                        deleniti porro ut
+                                                        consectetur minus
+                                                        perspiciatis provident
+                                                        quo consequuntur,
+                                                        exercitationem in?
+                                                        Tenetur.
                                                         <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>
                                                     </p>
 
@@ -2464,10 +2479,10 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                     <div className="container py-10 md:py-50px lg:py-60px 2xl:py-100px">
                         <div className="text-center mb-15px">
                             <span className="text-size-15 font-semibold text-secondaryColor inline-block uppercase mb-[13px]">
-                                NEWS & BLOG
+                                BERITA & BLOG
                             </span>
                             <h3 className="text-3xl md:text-size-35 lg:text-size-45 leading-10 md:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                                Latest News & Blogs
+                                Berita dan Blog Terbaru
                             </h3>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-30px">
@@ -2597,7 +2612,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                 href="#"
                                 className="text-size-15 px-47px py-15px bg-primaryColor text-whiteColor border border-primaryColor hover:text-primaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor mt-10 md:mt-50px rounded uppercase"
                             >
-                                More Blog
+                                Lebih Banyak
                             </a>
                         </div>
                     </div>

@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 
-export default function FrontendLayout({children}) {
-  return (
-    <>
+export default function FrontendLayout({ children }) {
+    return (
+        <>
             {/* <div className="preloader flex fixed top-0 left-0 h-screen w-full items-center justify-center z-xxl bg-whiteColor opacity-100 visible transition-all duration-700">
                 <div className="w-90px h-90px border-5px border-t-blue border-r-blue border-b-blue-light border-l-blue-light rounded-full animate-spin-infinit"></div>
                 <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
@@ -149,7 +149,7 @@ export default function FrontendLayout({children}) {
 
                                         <div
                                             className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                            style={{ transition: '0.3s' }}
+                                            style={{ transition: "0.3s" }}
                                         >
                                             <div className="shadow-dropdown3 max-w-dropdown2 w-2000 rounded-standard bg-white dark:bg-whiteColor-dark">
                                                 <ul>
@@ -191,7 +191,7 @@ export default function FrontendLayout({children}) {
 
                                         <div
                                             className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                            style={{ transition: '0.3s' }}
+                                            style={{ transition: "0.3s" }}
                                         >
                                             <div className="shadow-dropdown3 max-w-dropdown2 w-2000 rounded-standard bg-white dark:bg-whiteColor-dark">
                                                 <ul>
@@ -246,7 +246,7 @@ export default function FrontendLayout({children}) {
 
                                         <div
                                             className="dropdown absolute right-0 lg:right-8 translate-y-10 z-medium hidden opacity-0 pt-5px"
-                                            style={{ transition: '0.3s' }}
+                                            style={{ transition: "0.3s" }}
                                         >
                                             <div className="shadow-dropdown-secodary max-w-dropdown3 w-2000 rounded-standard p-5 bg-white dark:bg-whiteColor-dark">
                                                 <ul className="flex flex-col gap-y-5 pb-5 mb-30px border-b border-borderColor dark:border-borderColor-dark">
@@ -395,7 +395,7 @@ export default function FrontendLayout({children}) {
 
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                                style={{ transition: '0.3s' }}
+                                                style={{ transition: "0.3s" }}
                                             >
                                                 <div className="tab container 3xl:container2-lg 4xl:container shadow-dropdown px-30px mx-auto xl:px-30px py-15px max-h-dropdown 3xl:h-2000 xl:overflow-y-scroll rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <div className="tab-links grid grid-cols-2 gap-22px text-blackColor text-lg font-semibold font-hind">
@@ -959,7 +959,7 @@ export default function FrontendLayout({children}) {
 
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                                style={{ transition: '0.3s' }}
+                                                style={{ transition: "0.3s" }}
                                             >
                                                 <div className="container 3xl:container2-lg 4xl:container w-2000 shadow-dropdown px-30px mx-auto xl:px-30px py-30px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <div className="grid grid-cols-4 gap-x-30px">
@@ -1240,7 +1240,7 @@ export default function FrontendLayout({children}) {
 
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                                style={{ transition: '0.3s' }}
+                                                style={{ transition: "0.3s" }}
                                             >
                                                 <div className="container 3xl:container2-lg 4xl:container w-2000 shadow-dropdown px-30px mx-auto xl:px-30px py-30px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <div className="grid grid-cols-4 gap-x-30px">
@@ -1395,7 +1395,7 @@ export default function FrontendLayout({children}) {
                                                                         href="./pages/dashboards/create-course.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
-                                                                        Careate
+                                                                        Create
                                                                         Course
                                                                         <span className="text-size-12 font-semibold text-primaryColor bg-whitegrey3 px-15px py-5px rounded">
                                                                             Career
@@ -1465,7 +1465,7 @@ export default function FrontendLayout({children}) {
 
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                                style={{ transition: '0.3s' }}
+                                                style={{ transition: "0.3s" }}
                                             >
                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <ul>
@@ -1480,7 +1480,10 @@ export default function FrontendLayout({children}) {
 
                                                             <div
                                                                 className="nested-dropdown absolute left-full top-0 z-50 hidden opacity-0 group-hover/nested:block group-hover/nested:opacity-100"
-                                                                style={{ transition: '0.3s' }}
+                                                                style={{
+                                                                    transition:
+                                                                        "0.3s",
+                                                                }}
                                                             >
                                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                                     <ul>
@@ -1558,7 +1561,10 @@ export default function FrontendLayout({children}) {
 
                                                             <div
                                                                 className="nested-dropdown absolute left-full top-0 z-50 hidden opacity-0 group-hover/nested:block group-hover/nested:opacity-100"
-                                                                style={{ transition: '0.3s' }}
+                                                                style={{
+                                                                    transition:
+                                                                        "0.3s",
+                                                                }}
                                                             >
                                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                                     <ul>
@@ -1679,7 +1685,10 @@ export default function FrontendLayout({children}) {
 
                                                             <div
                                                                 className="nested-dropdown absolute left-full top-0 z-50 hidden opacity-0 group-hover/nested:block group-hover/nested:opacity-100"
-                                                                style={{ transition: '0.3s' }}
+                                                                style={{
+                                                                    transition:
+                                                                        "0.3s",
+                                                                }}
                                                             >
                                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                                     <ul>
@@ -1776,7 +1785,7 @@ export default function FrontendLayout({children}) {
 
                                             <div
                                                 className="dropdown absolute left-0 translate-y-10 z-medium hidden opacity-0"
-                                                style={{ transition: '0.3s' }}
+                                                style={{ transition: "0.3s" }}
                                             >
                                                 <div className="shadow-dropdown max-w-dropdown2 w-2000 py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <ul>
@@ -1845,7 +1854,7 @@ export default function FrontendLayout({children}) {
 
                                             <div
                                                 className="dropdown absolute right-0 lg:right-8 translate-y-10 z-medium hidden opacity-0 pt-5px"
-                                                style={{ transition: '0.3s' }}
+                                                style={{ transition: "0.3s" }}
                                             >
                                                 <div className="shadow-dropdown-secodary max-w-dropdown3 w-2000 rounded-standard p-5 bg-white dark:bg-whiteColor-dark">
                                                     <ul className="flex flex-col gap-y-5 pb-5 mb-30px border-b border-borderColor dark:border-borderColor-dark">
@@ -3677,5 +3686,5 @@ export default function FrontendLayout({children}) {
                 </div>
             </footer>
         </>
-  )
+    );
 }

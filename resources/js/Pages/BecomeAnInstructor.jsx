@@ -63,12 +63,12 @@ export default function BecomeAnInstructor({
                 <section>
                     <div class="container pt-100px pb-100px">
                         <h3 class="text-size-32 font-bold text-blackColor dark:text-blackColor-dark leading-1.2 pb-15px border-b border-borderColor dark:border-borderColor-dark mb-10">
-                            Apply As Instructor
+                            Daftar sebagai instruktur
                         </h3>
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-30px">
                             <div>
                                 <h6 class="text-2xl font-semibold text-blackColor dark:text-blackColor-dark leading-1.8 mb-15px">
-                                    Become an Instructor
+                                    Menjadi instruktur
                                 </h6>
                                 <p class="text-contentColor dark:text-contentColor-dark leading-1.8 mb-15px mt-5">
                                     Lorem ipsum dolor sit amet consectetur
@@ -80,7 +80,7 @@ export default function BecomeAnInstructor({
                                     consectetur dolorem aliquid soluta.
                                 </p>
                                 <h6 class="text-2xl font-semibold text-blackColor dark:text-blackColor-dark leading-1.8 mb-15px">
-                                    Instructor Rules
+                                    Aturan instruktur
                                 </h6>
                                 <p class="text-contentColor dark:text-contentColor-dark leading-1.8 mb-15px mt-5">
                                     Various versions have evolved over the
@@ -98,8 +98,8 @@ export default function BecomeAnInstructor({
                                             />
                                         </div>
                                         <p class="text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Basic knowledge and detailed
-                                            understanding of CSS3 to create.
+                                            Pengetahuan Dasar dan Detail
+                                            Memahami CSS3 untuk membuat.
                                         </p>
                                     </li>
                                     <li class="mt-5 flex items-center gap-5">
@@ -111,8 +111,8 @@ export default function BecomeAnInstructor({
                                             />
                                         </div>
                                         <p class="text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Details Idea about HTMLS, Creating
-                                            Basic Web Pages using HTMLS
+                                            Merinci ide tentang htmls, membuat
+                                            Halaman web dasar menggunakan htmls
                                         </p>
                                     </li>
                                     <li class="mt-5 flex items-center gap-5">
@@ -124,8 +124,8 @@ export default function BecomeAnInstructor({
                                             />
                                         </div>
                                         <p class="text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Web Page Layout Design and Slider
-                                            Creation
+                                            Desain tata letak halaman web dan
+                                            slider Penciptaan
                                         </p>
                                     </li>
                                     <li class="mt-5 flex items-center gap-5">
@@ -137,7 +137,7 @@ export default function BecomeAnInstructor({
                                             />
                                         </div>
                                         <p class="text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Image Insert method af web site
+                                            Situs Web Metode Masukkan Gambar AF
                                         </p>
                                     </li>
                                     <li class="mt-5 flex items-center gap-5">
@@ -149,13 +149,13 @@ export default function BecomeAnInstructor({
                                             />
                                         </div>
                                         <p class="text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Creating Styling Web Pages Using
-                                            CSS3
+                                            Membuat halaman web styling
+                                            menggunakan CSS3
                                         </p>
                                     </li>
                                 </ul>
                                 <h6 class="text-2xl font-semibold text-blackColor dark:text-blackColor-dark leading-1.8 mb-15px">
-                                    Start With courses
+                                    Mulailah dengan kursus
                                 </h6>
                                 <p class="text-contentColor dark:text-contentColor-dark leading-1.8 mb-15px mt-5">
                                     Lorem ipsum dolor sit amet consectetur
@@ -177,8 +177,8 @@ export default function BecomeAnInstructor({
                                             />
                                         </div>
                                         <p class="text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Basic knowledge and detailed
-                                            understanding of CSS3 to create.
+                                            Pengetahuan Dasar dan Detail
+                                            Memahami CSS3 untuk membuat.
                                         </p>
                                     </li>
                                     <li class="mt-5 flex items-center gap-5">
@@ -190,8 +190,8 @@ export default function BecomeAnInstructor({
                                             />
                                         </div>
                                         <p class="text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Details Idea about HTMLS, Creating
-                                            Basic Web Pages using HTMLS
+                                            Merinci ide tentang htmls, membuat
+                                            Halaman web dasar menggunakan htmls
                                         </p>
                                     </li>
                                     <li class="mt-5 flex items-center gap-5">
@@ -204,7 +204,7 @@ export default function BecomeAnInstructor({
                                         </div>
                                         <p class="text-contentColor dark:text-contentColor-dark leading-1.8">
                                             Web Page Layout Design and Slider
-                                            Creation
+                                            Penciptaan
                                         </p>
                                     </li>
                                 </ul>
@@ -219,7 +219,7 @@ export default function BecomeAnInstructor({
                                     <div class="grid grid-cols-1 mb-15px gap-15px">
                                         <div>
                                             <label class="mb-3 block font-semibold">
-                                                First Name
+                                                Nama depan
                                             </label>
                                             <input
                                                 type="text"
@@ -229,7 +229,7 @@ export default function BecomeAnInstructor({
                                         </div>
                                         <div>
                                             <label class="mb-3 block font-semibold">
-                                                Last Name
+                                                Nama Belakang
                                             </label>
                                             <input
                                                 type="text"
@@ -249,7 +249,7 @@ export default function BecomeAnInstructor({
                                         </div>
                                         <div>
                                             <label class="mb-3 block font-semibold">
-                                                Phone Number
+                                                Nomor telepon
                                             </label>
                                             <input
                                                 type="text"
@@ -276,14 +276,14 @@ export default function BecomeAnInstructor({
                                     <div>
                                         <input type="checkbox" />
                                         <span class="text-size-15 text-contentColor dark:text-contentColor-dark">
-                                            You agree to our friendly
+                                            Anda menyetujui
                                             <a
                                                 href="#"
                                                 class="text-base text-blackColor dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor font-bold leading-1 relative before:w-full before:h-1px before:bg-blackColor dark:before:bg-blackColor-dark before:absolute before:left-0 before:-bottom-0.5"
                                             >
-                                                Privacy policy
+                                                Kebijakan Privasi
                                             </a>
-                                            .
+                                            Ramah kami.
                                         </span>
                                     </div>
                                     <div class="mt-15px">
