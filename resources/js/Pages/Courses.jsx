@@ -1,8 +1,9 @@
 import { rupiah } from "@/bootstrap";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 
 export default function Courses({ auth, laravelVersion, phpVersion, courses }) {
+    const { url } = usePage();
     return (
         <GuestLayout>
             <main className="bg-transparent">
@@ -523,46 +524,36 @@ export default function Courses({ auth, laravelVersion, phpVersion, courses }) {
 
                                 <div>
                                     <ul className="flex items-center justify-center gap-15px mt-60px mb-30px">
-                                        <li>
-                                            <a
-                                                href="#"
-                                                className="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor cursor-not-allowed"
-                                            >
-                                                <i className="icofont-double-left"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="#"
-                                                className="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-whiteColor hover:text-whiteColor bg-primaryColor hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-primaryColor dark:hover:bg-primaryColor"
-                                            >
-                                                1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="#"
-                                                className="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor"
-                                            >
-                                                2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="#"
-                                                className="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor"
-                                            >
-                                                3
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="#"
-                                                className="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor"
-                                            >
-                                                <i className="icofont-double-right"></i>
-                                            </a>
-                                        </li>
+                                        {courses.links.map((link, index) => {
+                                            console.log("url", url);
+                                            console.log("link.url", link.url);
+                                            return (
+                                                <li>
+                                                    <Link
+                                                        // preserveScroll={true}
+                                                        preserveState={true}
+                                                        key={index}
+                                                        href={link.url}
+                                                        className={
+                                                            link.url ==
+                                                            window.location.href
+                                                                ? "w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-whiteColor hover:text-whiteColor bg-primaryColor hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-primaryColor dark:hover:bg-primaryColor"
+                                                                : "w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor cursor-not-allowed"
+                                                        }
+                                                    >
+                                                        {link.label
+                                                            .replace(
+                                                                "&laquo; Previous",
+                                                                "<<"
+                                                            )
+                                                            .replace(
+                                                                "Next &raquo;",
+                                                                ">>"
+                                                            )}
+                                                    </Link>
+                                                </li>
+                                            );
+                                        })}
                                     </ul>
                                 </div>
                             </div>

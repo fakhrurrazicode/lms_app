@@ -1,6 +1,7 @@
 import { rupiah } from "@/bootstrap";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link } from "@inertiajs/react";
+import { Trash } from "lucide-react";
 
 export default function Cart({ auth, laravelVersion, phpVersion, cartItems }) {
     return (
@@ -44,7 +45,9 @@ export default function Cart({ auth, laravelVersion, phpVersion, cartItems }) {
                                                     <a href="#">
                                                         <img
                                                             loading="lazy"
-                                                            src="../../assets/images/products/2.jpg"
+                                                            src={
+                                                                itemable.image_url
+                                                            }
                                                             alt="product-1"
                                                             className="max-w-20 w-full"
                                                         />
@@ -71,59 +74,21 @@ export default function Cart({ auth, laravelVersion, phpVersion, cartItems }) {
                                                     {rupiah(itemable.price)}
                                                 </td>
                                                 <td className="py-15px md:py-5">
-                                                    <a href="#">
-                                                        <svg
-                                                            width="25"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            className="w-4 h-4 ionicon"
-                                                            viewBox="0 0 512 512"
-                                                        >
-                                                            <title>
-                                                                Pencil
-                                                            </title>
-                                                            <path
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth="32"
-                                                                d="M364.13 125.25L87 403l-23 45 44.99-23 277.76-277.13-22.62-22.62zM420.69 68.69l-22.62 22.62 22.62 22.63 22.62-22.63a16 16 0 000-22.62h0a16 16 0 00-22.62 0z"
-                                                            ></path>
-                                                        </svg>
-                                                    </a>
-                                                    <a href="#">
-                                                        <svg
-                                                            width="25"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            className="w-4 h-4 ionicon"
-                                                            viewBox="0 0 512 512"
-                                                        >
-                                                            <title>Trash</title>
-                                                            <path
-                                                                d="M112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth="32"
-                                                            ></path>
-                                                            <path
-                                                                stroke="currentColor"
-                                                                strokeLinecap="round"
-                                                                strokeMiterlimit="10"
-                                                                strokeWidth="32"
-                                                                d="M80 112h352"
-                                                            ></path>
-                                                            <path
-                                                                d="M192 112V72h0a23.93 23.93 0 0124-24h80a23.93 23.93 0 0124 24h0v40M256 176v224M184 176l8 224M328 176l-8 224"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth="32"
-                                                            ></path>
-                                                        </svg>
-                                                    </a>
+                                                    <Link
+                                                        method="DELETE"
+                                                        href="/remove-from-cart"
+                                                        preserveScroll={true}
+                                                        preserveState={true}
+                                                        data={{
+                                                            itemable_id:
+                                                                itemable.id,
+                                                            itemable_type:
+                                                                "App\\Models\\Course",
+                                                        }}
+                                                        type="submit"
+                                                    >
+                                                        <Trash />
+                                                    </Link>
                                                 </td>
                                             </tr>
                                         );
