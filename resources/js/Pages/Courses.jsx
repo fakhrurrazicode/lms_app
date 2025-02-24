@@ -116,6 +116,7 @@ export default function Courses({
                                                             ...request,
                                                             search: e.target
                                                                 .value,
+                                                            page: 1,
                                                         },
                                                     })
                                                 }
