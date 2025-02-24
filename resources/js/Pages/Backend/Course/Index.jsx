@@ -121,6 +121,7 @@ export default function Index({
                                                             ...request,
                                                             search: e.target
                                                                 .value,
+                                                            page: 1,
                                                         },
                                                     })
                                                 }
