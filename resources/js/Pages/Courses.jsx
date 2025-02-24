@@ -1,8 +1,14 @@
 import { rupiah } from "@/bootstrap";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, Link, usePage } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 
-export default function Courses({ auth, laravelVersion, phpVersion, courses }) {
+export default function Courses({
+    auth,
+    laravelVersion,
+    phpVersion,
+    courses,
+    request,
+}) {
     const { url } = usePage();
     return (
         <GuestLayout>
@@ -102,6 +108,17 @@ export default function Courses({ auth, laravelVersion, phpVersion, courses }) {
                                                 type="text"
                                                 placeholder="Search Produce"
                                                 className="placeholder:text-placeholder bg-transparent focus:outline-none placeholder:opacity-80 w-full"
+                                                onChange={(e) =>
+                                                    router.reload({
+                                                        preserveScroll: true,
+                                                        preserveState: true,
+                                                        data: {
+                                                            ...request,
+                                                            search: e.target
+                                                                .value,
+                                                        },
+                                                    })
+                                                }
                                             />
                                             <button type="submit">
                                                 <i className="icofont-search-1 text-base"></i>

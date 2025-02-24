@@ -35,7 +35,10 @@ class PagesController extends Controller
 
         // return $courses;
 
-        return Inertia::render('Courses', compact('courses'));
+        return Inertia::render('Courses', [
+            'courses' => $courses,
+            'request' => $request
+        ]);
     }
 
     public function course($slug)
