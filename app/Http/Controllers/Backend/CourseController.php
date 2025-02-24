@@ -31,7 +31,7 @@ class CourseController extends Controller
             ['title', 'LIKE', '%' . $request->search . '%'],
             ['slug', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($request->orderby, $request->ordermethod)
-            ->with(['instructor', 'course_category', 'course_sub_category'])
+            ->with(['instructor', 'course_category'])
             ->paginate($request->perpage)
             ->withQueryString();
 

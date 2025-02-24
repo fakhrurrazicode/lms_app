@@ -35,6 +35,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
                 'permissions' => $request->user() ? $request->user()->getAllPermissions()->pluck('name') : []
             ],
+            // 'cart' => $request->user()->cart,
         ];
     }
 }

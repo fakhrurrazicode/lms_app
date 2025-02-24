@@ -40,7 +40,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                 <div className="md:col-start-1 md:col-span-12 lg:col-start-1 lg:col-span-8">
                                     <div className="3xl:pr-135px">
                                         <h3 className="uppercase text-secondaryColor text-size-15 mb-5px md:mb-15px font-inter tracking-[4px] font-semibold">
-                                            EDUCATION SOLUTION
+                                            Solusi pendidikan
                                         </h3>
                                         <h1 className="text-size-35 md:text-size-65 lg:text-5xl 2xl:text-size-65 leading-42px md:leading-18 lg:leading-15 2xl:leading-18 text-blackColor dark:text-blackColor-dark md:tracking-half lg:tracking-normal 2xl:tracking-half font-bold mb-15px">
                                             Belajar Tanpa{" "}
@@ -2297,23 +2297,16 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                                 <div>
                                                     <p className="md:text-xl md:leading-10 text-lightGrey dark:text-whiteColor">
                                                         <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>
-                                                        Lorem, ipsum dolor sit
-                                                        amet consectetur
-                                                        adipisicing elit.
-                                                        Laudantium corporis
-                                                        minima perferendis
-                                                        obcaecati soluta dicta
-                                                        quidem, animi nobis
-                                                        blanditiis earum,
-                                                        tenetur itaque facilis
-                                                        excepturi. Inventore
-                                                        aperiam praesentium, ex
-                                                        deleniti porro ut
-                                                        consectetur minus
-                                                        perspiciatis provident
-                                                        quo consequuntur,
-                                                        exercitationem in?
-                                                        Tenetur.
+                                                        LMS ini sangat membantu
+                                                        saya dalam meningkatkan
+                                                        pengetahuan dan
+                                                        keterampilan saya. Saya
+                                                        dapat belajar kapan saha
+                                                        dan di mana saja, dengan
+                                                        fitur-fitur yang
+                                                        disediakan sangat
+                                                        lengkap dan mudah
+                                                        digunakan
                                                         <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>
                                                     </p>
 
@@ -2349,23 +2342,16 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                                 <div>
                                                     <p className="md:text-xl md:leading-10 text-lightGrey dark:text-whiteColor">
                                                         <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>
-                                                        Lorem, ipsum dolor sit
-                                                        amet consectetur
-                                                        adipisicing elit.
-                                                        Laudantium corporis
-                                                        minima perferendis
-                                                        obcaecati soluta dicta
-                                                        quidem, animi nobis
-                                                        blanditiis earum,
-                                                        tenetur itaque facilis
-                                                        excepturi. Inventore
-                                                        aperiam praesentium, ex
-                                                        deleniti porro ut
-                                                        consectetur minus
-                                                        perspiciatis provident
-                                                        quo consequuntur,
-                                                        exercitationem in?
-                                                        Tenetur.
+                                                        LMS ini sangat membantu
+                                                        saya dalam meningkatkan
+                                                        pengetahuan dan
+                                                        keterampilan saya. Saya
+                                                        dapat belajar kapan saha
+                                                        dan di mana saja, dengan
+                                                        fitur-fitur yang
+                                                        disediakan sangat
+                                                        lengkap dan mudah
+                                                        digunakan
                                                         <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>
                                                     </p>
 
@@ -2401,23 +2387,16 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                                 <div>
                                                     <p className="md:text-xl md:leading-10 text-lightGrey dark:text-whiteColor">
                                                         <i className="icofont-quote-left quote__left text-primaryColor text-xl"></i>
-                                                        Lorem, ipsum dolor sit
-                                                        amet consectetur
-                                                        adipisicing elit.
-                                                        Laudantium corporis
-                                                        minima perferendis
-                                                        obcaecati soluta dicta
-                                                        quidem, animi nobis
-                                                        blanditiis earum,
-                                                        tenetur itaque facilis
-                                                        excepturi. Inventore
-                                                        aperiam praesentium, ex
-                                                        deleniti porro ut
-                                                        consectetur minus
-                                                        perspiciatis provident
-                                                        quo consequuntur,
-                                                        exercitationem in?
-                                                        Tenetur.
+                                                        LMS ini sangat membantu
+                                                        saya dalam meningkatkan
+                                                        pengetahuan dan
+                                                        keterampilan saya. Saya
+                                                        dapat belajar kapan saha
+                                                        dan di mana saja, dengan
+                                                        fitur-fitur yang
+                                                        disediakan sangat
+                                                        lengkap dan mudah
+                                                        digunakan
                                                         <i className="icofont-quote-right quote__right text-primaryColor text-xl"></i>
                                                     </p>
 

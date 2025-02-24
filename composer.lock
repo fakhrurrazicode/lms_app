@@ -4,8 +4,84 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06c0fb8ff2724fb21c04856f0817170c",
+    "content-hash": "da9c974eadc40ed3d179db66452b3ab6",
     "packages": [
+        {
+            "name": "binafy/laravel-cart",
+            "version": "v1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/binafy/laravel-cart.git",
+                "reference": "529811ae12d6557233201c88a8a2fd3ca72d9f12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/binafy/laravel-cart/zipball/529811ae12d6557233201c88a8a2fd3ca72d9f12",
+                "reference": "529811ae12d6557233201c88a8a2fd3ca72d9f12",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^9.0|^10.0|^11.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.5",
+                "orchestra/testbench": "^7.0|^8.0|^9.0",
+                "pestphp/pest-plugin-laravel": "^1.4.0|^2.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Binafy\\LaravelCart\\Providers\\LaravelCartServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Binafy\\LaravelCart\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "milwad-dev",
+                    "email": "milwad.dev@gmail.com",
+                    "homepage": "https://github.com/milwad-dev",
+                    "role": "author"
+                },
+                {
+                    "name": "binafy",
+                    "homepage": "https://github.com/binafy",
+                    "role": "owner"
+                }
+            ],
+            "description": "Laravel Cart is a customizable package for adding shopping cart functionality to Laravel applications",
+            "homepage": "https://github.com/binafy/laravel-cart",
+            "keywords": [
+                "Laravel Basket",
+                "Laravel cart",
+                "binafy",
+                "cart",
+                "framework",
+                "laravel",
+                "laravel cart package",
+                "laravel e-commerce",
+                "laravel package",
+                "laravel-cart",
+                "laravel-cart-shop",
+                "laravel-shop",
+                "milwad"
+            ],
+            "support": {
+                "issues": "https://github.com/binafy/laravel-cart/issues",
+                "source": "https://github.com/binafy/laravel-cart/tree/v1.1.3"
+            },
+            "time": "2025-01-28T13:59:53+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.12.1",
@@ -1736,6 +1812,97 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.10.1"
             },
             "time": "2025-01-27T14:24:01+00:00"
+        },
+        {
+            "name": "laravolt/avatar",
+            "version": "6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravolt/avatar.git",
+                "reference": "60673413db93f1491c2eb556e1c2050de14fba5c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravolt/avatar/zipball/60673413db93f1491c2eb556e1c2050de14fba5c",
+                "reference": "60673413db93f1491c2eb556e1c2050de14fba5c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/cache": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "intervention/image": "^3.4",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.3",
+                "pestphp/pest": "^2.34",
+                "pestphp/pest-plugin-type-coverage": "^2.8",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^10.5",
+                "roave/security-advisories": "dev-latest"
+            },
+            "suggest": {
+                "ext-gd": "Needed to support image manipulation",
+                "ext-imagick": "Needed to support image manipulation, better than GD"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Avatar": "Laravolt\\Avatar\\Facade"
+                    },
+                    "providers": [
+                        "Laravolt\\Avatar\\ServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "6.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravolt\\Avatar\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bayu Hendra Winata",
+                    "email": "uyab.exe@gmail.com",
+                    "homepage": "https://laravolt.dev",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Turn name, email, and any other string into initial-based avatar or gravatar.",
+            "homepage": "https://github.com/laravolt/avatar",
+            "keywords": [
+                "avatar",
+                "gravatar",
+                "laravel",
+                "laravolt"
+            ],
+            "support": {
+                "issues": "https://github.com/laravolt/avatar/issues",
+                "source": "https://github.com/laravolt/avatar/tree/6.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/bayuhendra",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://ko-fi.com/bayuhendra",
+                    "type": "ko_fi"
+                },
+                {
+                    "url": "https://www.patreon.com/uyab",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2024-09-20T17:07:45+00:00"
         },
         {
             "name": "league/commonmark",

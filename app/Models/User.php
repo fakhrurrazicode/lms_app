@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-
-
+use Binafy\LaravelCart\Models\Cart;
 use Illuminate\Auth\MustVerifyEmail;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Permission\Traits\HasRoles;
@@ -16,6 +15,8 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles, LogsActivity;
+
+    protected $with = ['cart'];
 
 
     public function getActivitylogOptions(): LogOptions
@@ -39,6 +40,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'photo',
     ];
 
     /**
@@ -62,5 +64,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
     }
 }

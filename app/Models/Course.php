@@ -4,22 +4,41 @@ namespace App\Models;
 
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\CourseReview;
+use App\Models\CourseSection;
 use App\Models\CourseCategory;
 use App\Models\CourseSubCategory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Binafy\LaravelCart\Cartable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Course extends BaseModel
+class Course extends BaseModel implements Cartable
 {
 
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['image_url'];
+    protected $appends = ['image_url', 'average_stars'];
+
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
 
     public function getImageUrlAttribute()
     {
-        return $this->image ? url('/storage/' . $this->image) : null;
+        return $this->image ? url('/storage/' . $this->image) : asset('assets/images/no-image.jpeg');
+    }
+
+    public function getAverageStarsAttribute()
+    {
+        $stars = CourseReview::where('course_id', $this->id)->avg('stars');
+
+        if ($stars == null) {
+            return 0;
+        }
+
+        return round($stars, 0);
     }
 
     public function tags()
@@ -40,5 +59,20 @@ class Course extends BaseModel
     public function course_sub_category()
     {
         return $this->belongsTo(CourseSubCategory::class);
+    }
+
+    public function course_reviews()
+    {
+        return $this->hasMany(CourseReview::class);
+    }
+
+    public function course_sections()
+    {
+        return $this->hasMany(CourseSection::class);
+    }
+
+    public function course_lectures()
+    {
+        return $this->hasMany(CourseLecture::class);
     }
 }

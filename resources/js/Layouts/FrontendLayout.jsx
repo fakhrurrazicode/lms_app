@@ -3417,13 +3417,14 @@ export default function FrontendLayout({ children }) {
                                 data-aos="fade-up"
                             >
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
-                                    About us
+                                    Tentang kami
                                 </h4>
                                 <p className="text-base lg:text-sm 2xl:text-base text-darkgray mb-30px leading-1.8 2xl:leading-1.8">
-                                    orporate clients and leisure travelers has
-                                    been relying on Groundlink for dependable
-                                    safe, and professional chauffeured car end
-                                    service in major cities across World.
+                                    klien korporat dan pelancong rekreasi telah
+                                    mengandalkan tautan tanah untuk dapat
+                                    diandalkan Ujung mobil sopir yang aman dan
+                                    profesional Layanan di kota -kota besar di
+                                    seluruh dunia.
                                 </p>
                                 <div className="flex items-center">
                                     <div>
@@ -3431,7 +3432,7 @@ export default function FrontendLayout({ children }) {
                                     </div>
                                     <div>
                                         <h6 className="text-lg text-whiteColor font-medium leading-29px">
-                                            OPENING HOURES
+                                            Jam buka
                                         </h6>
                                         <p className="text-sm text-whiteColor text-opacity-60 mb-1">
                                             Mon - Sat(8.00 - 6.00)

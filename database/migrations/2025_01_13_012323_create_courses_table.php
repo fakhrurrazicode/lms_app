@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->integer('course_category_id');
-            $table->integer('course_sub_category_id')->nullable();
+            // $table->integer('course_sub_category_id')->nullable();
             $table->integer('instructor_id');
 
             $table->string('image')->nullable();
@@ -24,6 +24,11 @@ return new class extends Migration
             $table->text('prerequisites')->nullable();
             $table->text('goals')->nullable();
             $table->integer('duration')->nullable()->comment('in minutes');
+
+            $table->integer('price')->default(0);
+
+            $table->enum('level', ['beginner', 'intermediate', 'advance'])->default('beginner');
+
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

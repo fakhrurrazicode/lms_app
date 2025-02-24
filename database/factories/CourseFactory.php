@@ -25,7 +25,6 @@ class CourseFactory extends Factory
         $title = fake()->sentence();
         return [
             'course_category_id' => $randomCourseCategory->id,
-            // 'course_sub_category_id' => fake(),
             'instructor_id' => $randomInstructor->id,
             // 'image' => fake(),
             'title' => $title,

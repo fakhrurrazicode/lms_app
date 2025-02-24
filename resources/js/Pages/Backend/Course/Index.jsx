@@ -178,15 +178,7 @@ export default function Index({
                                                 >
                                                     Category
                                                 </th>
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="email"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Sub Category
-                                                </th>
+
                                                 <th
                                                     className="cursor-pointer"
                                                     data-columnname="created_at"
@@ -315,11 +307,11 @@ export default function Index({
                                                         <td>{course.title}</td>
                                                         <td>{course.slug}</td>
                                                         <td>
-                                                            {
-                                                                course
-                                                                    .instructor
-                                                                    .name
-                                                            }
+                                                            {course.instructor
+                                                                ? course
+                                                                      .instructor
+                                                                      .name
+                                                                : "-"}
                                                         </td>
                                                         <td>
                                                             {
@@ -327,13 +319,6 @@ export default function Index({
                                                                     .course_category
                                                                     .name
                                                             }
-                                                        </td>
-                                                        <td>
-                                                            {course.course_sub_category
-                                                                ? course
-                                                                      .course_sub_category
-                                                                      .name
-                                                                : "-"}
                                                         </td>
 
                                                         <td>

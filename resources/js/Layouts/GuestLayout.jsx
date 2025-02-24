@@ -33,7 +33,7 @@ export default function GuestLayout({ children }) {
                 <div className="w-90px h-90px border-5px border-t-blue border-r-blue border-b-blue-light border-l-blue-light rounded-full animate-spin-infinit"></div>
                 <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
                     <img
-                        src="./assets/images/pre.png"
+                        src="assets/images/pre.png"
                         alt="Preloader"
                         className="h-10 w-10 block"
                     />
@@ -163,7 +163,7 @@ export default function GuestLayout({ children }) {
                                     <li className="relative">
                                         <button className="text-contentColor dark:text-contentColor-dark pr-10px flex items-center">
                                             <img
-                                                src="./assets/images/icon/flag1.webp"
+                                                src="assets/images/icon/flag1.webp"
                                                 alt=""
                                                 className="w-6 h-6 mr-1 rounded-lg2"
                                             />
@@ -183,7 +183,7 @@ export default function GuestLayout({ children }) {
                                                             className="flex items-center text-size-13 text-blackColor p-10px transition duration-300 hover:bg-darkdeep4 hover:text-whiteColor dark:text-blackColor-dark dark:hover:text-whiteColor-dark dark:hover:bg-darkdeep4"
                                                         >
                                                             <img
-                                                                src="./assets/images/icon/flag2.webp"
+                                                                src="assets/images/icon/flag2.webp"
                                                                 alt=""
                                                                 className="w-18px h-18px rounded-lg mr-10px"
                                                             />
@@ -196,7 +196,7 @@ export default function GuestLayout({ children }) {
                                                             className="flex items-center text-size-13 text-blackColor p-10px transition duration-300 hover:bg-darkdeep4 hover:text-whiteColor dark:text-blackColor-dark dark:hover:text-whiteColor-dark dark:hover:bg-darkdeep4"
                                                         >
                                                             <img
-                                                                src="./assets/images/icon/flag3.webp"
+                                                                src="assets/images/icon/flag3.webp"
                                                                 alt=""
                                                                 className="w-18px h-18px rounded-lg mr-10px"
                                                             />
@@ -281,7 +281,7 @@ export default function GuestLayout({ children }) {
                                                         <li className="relative flex gap-x-15px items-center">
                                                             <a href="#">
                                                                 <img
-                                                                    src="./assets/images/grid/cart1.jpg"
+                                                                    src="assets/images/grid/cart1.jpg"
                                                                     alt="photo"
                                                                     className="w-card-img py-[3px]"
                                                                 />
@@ -309,7 +309,7 @@ export default function GuestLayout({ children }) {
                                                         <li className="relative flex gap-x-15px items-center">
                                                             <a href="#">
                                                                 <img
-                                                                    src="./assets/images/grid/cart2.jpg"
+                                                                    src="assets/images/grid/cart2.jpg"
                                                                     alt="photo"
                                                                     className="w-card-img py-[3px]"
                                                                 />
@@ -337,7 +337,7 @@ export default function GuestLayout({ children }) {
                                                         <li className="relative flex gap-x-15px items-center">
                                                             <a href="#">
                                                                 <img
-                                                                    src="./assets/images/grid/cart3.jpg"
+                                                                    src="assets/images/grid/cart3.jpg"
                                                                     alt="photo"
                                                                     className="w-card-img py-[3px]"
                                                                 />
@@ -373,12 +373,12 @@ export default function GuestLayout({ children }) {
                                                     </div>
 
                                                     <div className="flex flex-col gap-y-5">
-                                                        <a
-                                                            href="#"
+                                                        <Link
+                                                            href="/cart"
                                                             className="text-sm font-bold text-contentColor dark:text-contentColor-dark hover:text-whiteColor hover:bg-secondaryColor text-center py-10px border border-secondaryColor"
                                                         >
                                                             View Cart
-                                                        </a>
+                                                        </Link>
                                                         <a
                                                             href="#"
                                                             className="text-sm font-bold bg-darkblack dark:bg-darkblack-dark text-whiteColor dark:text-whiteColor-dark hover:bg-secondaryColor dark:hover:bg-secondaryColor text-center py-10px"
@@ -423,7 +423,7 @@ export default function GuestLayout({ children }) {
                                 <div className="lg:col-start-1 lg:col-span-2">
                                     <Link href="/" className="block">
                                         {/* <img
-                                            src="./assets/images/logo/logo_1.png"
+                                            src="assets/images/logo/logo_1.png"
                                             alt="Logo"
                                             className="w-logo-sm lg:w-auto py-2"
                                         /> */}
@@ -497,7 +497,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-1.png"
+                                                                            src="assets/images/mega/home-1.png"
                                                                             className="w-full"
                                                                             alt="Mega Menu"
                                                                         />
@@ -513,7 +513,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-2.png"
+                                                                            src="assets/images/mega/home-2.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -528,7 +528,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block box-border shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-3.png"
+                                                                            src="assets/images/mega/home-3.png"
                                                                             alt="Mega Menu"
                                                                             className="w-full"
                                                                         />
@@ -544,7 +544,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega//home-4.png"
+                                                                            src="assets/images/mega//home-4.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -560,7 +560,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega//home-5.png"
+                                                                            src="assets/images/mega//home-5.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -576,7 +576,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-5px"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-6.png"
+                                                                            src="assets/images/mega/home-6.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -594,7 +594,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-7.png"
+                                                                            src="assets/images/mega/home-7.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -612,7 +612,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-8.png"
+                                                                            src="assets/images/mega/home-8.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -630,7 +630,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-9.png"
+                                                                            src="assets/images/mega/home-9.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -648,7 +648,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-10.png"
+                                                                            src="assets/images/mega/home-10.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -667,7 +667,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-11.png"
+                                                                            src="assets/images/mega/home-11.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -686,7 +686,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming.png"
+                                                                            src="assets/images/mega/coming.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -703,7 +703,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming.png"
+                                                                            src="assets/images/mega/coming.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -720,7 +720,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming.png"
+                                                                            src="assets/images/mega/coming.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -737,7 +737,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming.png"
+                                                                            src="assets/images/mega/coming.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -765,7 +765,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-1-dark.png"
+                                                                            src="assets/images/mega/home-1-dark.png"
                                                                             className="w-full"
                                                                             alt="Mega Menu"
                                                                         />
@@ -781,7 +781,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-2-dark.png"
+                                                                            src="assets/images/mega/home-2-dark.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -796,7 +796,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-3-dark.png"
+                                                                            src="assets/images/mega/home-3-dark.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -811,7 +811,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-4-dark.png"
+                                                                            src="assets/images/mega/home-4-dark.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -827,7 +827,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-5-dark.png"
+                                                                            src="assets/images/mega/home-5-dark.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -843,7 +843,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-5px"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-6-dark.png"
+                                                                            src="assets/images/mega/home-6-dark.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -861,7 +861,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-7-dark.png"
+                                                                            src="assets/images/mega/home-7-dark.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -879,7 +879,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-8-dark.png"
+                                                                            src="assets/images/mega/home-8-dark.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -897,7 +897,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-9-dark.png"
+                                                                            src="assets/images/mega/home-9-dark.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -915,7 +915,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-10-dark.png"
+                                                                            src="assets/images/mega/home-10-dark.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -934,7 +934,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/home-11-dark.png"
+                                                                            src="assets/images/mega/home-11-dark.png"
                                                                             alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
@@ -953,7 +953,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming-dark.png"
+                                                                            src="assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -970,7 +970,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming-dark.png"
+                                                                            src="assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -987,7 +987,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming-dark.png"
+                                                                            src="assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -1004,7 +1004,7 @@ export default function GuestLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="./assets/images/mega/coming-dark.png"
+                                                                            src="assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -1294,7 +1294,7 @@ export default function GuestLayout({ children }) {
 
                                                     <div className="pt-30px">
                                                         <img
-                                                            src="./assets/images/mega/mega_menu_2.png"
+                                                            src="assets/images/mega/mega_menu_2.png"
                                                             alt="Mega Menu"
                                                             className="w-full rounded-standard"
                                                         />
@@ -1518,7 +1518,7 @@ export default function GuestLayout({ children }) {
 
                                                         <div>
                                                             <img
-                                                                src="./assets/images/mega/mega_menu_1.png"
+                                                                src="assets/images/mega/mega_menu_1.png"
                                                                 alt="Mega Menu"
                                                                 className="w-full rounded-standard"
                                                             />
@@ -1934,7 +1934,7 @@ export default function GuestLayout({ children }) {
                                                         <li className="relative flex gap-x-15px items-center">
                                                             <a href="#">
                                                                 <img
-                                                                    src="./assets/images/grid/cart1.jpg"
+                                                                    src="assets/images/grid/cart1.jpg"
                                                                     alt="photo"
                                                                     className="w-card-img py-[3px]"
                                                                 />
@@ -1962,7 +1962,7 @@ export default function GuestLayout({ children }) {
                                                         <li className="relative flex gap-x-15px items-center">
                                                             <a href="#">
                                                                 <img
-                                                                    src="./assets/images/grid/cart2.jpg"
+                                                                    src="assets/images/grid/cart2.jpg"
                                                                     alt="photo"
                                                                     className="w-card-img py-[3px]"
                                                                 />
@@ -1990,7 +1990,7 @@ export default function GuestLayout({ children }) {
                                                         <li className="relative flex gap-x-15px items-center">
                                                             <a href="#">
                                                                 <img
-                                                                    src="./assets/images/grid/cart3.jpg"
+                                                                    src="assets/images/grid/cart3.jpg"
                                                                     alt="photo"
                                                                     className="w-card-img py-[3px]"
                                                                 />
@@ -2453,7 +2453,7 @@ export default function GuestLayout({ children }) {
                                                     >
                                                         <img
                                                             className="w-full"
-                                                            src="./assets/images/mega/mega_menu_2.png"
+                                                            src="assets/images/mega/mega_menu_2.png"
                                                             alt=""
                                                         />
                                                     </a>
@@ -2726,7 +2726,7 @@ export default function GuestLayout({ children }) {
                                                     >
                                                         <img
                                                             className="w-full"
-                                                            src="./assets/images/mega/mega_menu_1.png"
+                                                            src="assets/images/mega/mega_menu_1.png"
                                                             alt=""
                                                         />
                                                     </a>
@@ -3233,8 +3233,8 @@ export default function GuestLayout({ children }) {
                                     Kami? ?
                                 </h4>
                                 <p className="text-whiteColor text-opacity-65">
-                                    Don’t wait make a smart & logical quote
-                                    here. Its pretty easy.
+                                    Jangan menunggu membuat kutipan yang cerdas
+                                    & logis Di Sini.Itu cukup mudah.
                                 </p>
                             </div>
                             <div>
@@ -3259,13 +3259,17 @@ export default function GuestLayout({ children }) {
                         <div className="grid grid-cols-12 gap-30px md:gap-y-5 lg:gap-y-0 pt-60px pb-50px md:pt-30px md:pb-30px lg:pt-110px lg:pb-20">
                             <div className="col-start-1 col-span-12 md:col-span-6 lg:col-span-4 mr-30px">
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
-                                    About us
+                                    Tentang Kami
                                 </h4>
                                 <p className="text-base lg:text-sm 2xl:text-base text-darkgray mb-30px leading-1.8 2xl:leading-1.8">
-                                    orporate clients and leisure travelers has
-                                    been relying on Groundlink for dependable
-                                    safe, and professional chauffeured car end
-                                    service in major cities across World.
+                                    Selamat Datang di GuruTeknik! Kami adalah
+                                    tim yang berdedikasi untuk membantu anda
+                                    mencapai tujuan pembelajaran anda. Kami
+                                    percaya bahwa pembelajaran haruslah menjadi
+                                    pengalaman yang kolaboratif dan interaktif.
+                                    Oleh karena itu, kami telah menciptakan LMS
+                                    yang dirancang untuk membantu anda belajar
+                                    dengan lebih baik dan lebih efektif
                                 </p>
                                 <div className="flex items-center">
                                     <div>
@@ -3390,7 +3394,7 @@ export default function GuestLayout({ children }) {
                                         <a className="flex items-center gap-3 group cursor-pointer">
                                             <div>
                                                 <img
-                                                    src="./assets/images/footer/footer__1.png"
+                                                    src="assets/images/footer/footer__1.png"
                                                     alt=""
                                                     className="w-61px h-54px"
                                                 />
@@ -3410,7 +3414,7 @@ export default function GuestLayout({ children }) {
                                         <a className="flex items-center gap-3 group cursor-pointer">
                                             <div>
                                                 <img
-                                                    src="./assets/images/footer/footer__2.png"
+                                                    src="assets/images/footer/footer__2.png"
                                                     alt=""
                                                     className="w-61px h-54px"
                                                 />
@@ -3429,7 +3433,7 @@ export default function GuestLayout({ children }) {
                                         <a className="flex items-center gap-3 group cursor-pointer">
                                             <div>
                                                 <img
-                                                    src="./assets/images/footer/footer__3.png"
+                                                    src="assets/images/footer/footer__3.png"
                                                     alt=""
                                                     className="w-61px h-54px"
                                                 />
