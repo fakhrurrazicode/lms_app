@@ -8,6 +8,7 @@ export default function Courses({
     phpVersion,
     courses,
     request,
+    course_categories,
 }) {
     const { url } = usePage();
     return (
@@ -132,32 +133,22 @@ export default function Courses({
                                             categories
                                         </h4>
                                         <ul className="flex flex-col gap-y-4">
-                                            <li className="text-contentColor hover:text-contentColor-dark hover:bg-primaryColor text-sm font-medium px-13px py-2 border border-borderColor dark:border-borderColor-dark flex justify-between leading-7 transition-all duration-300">
-                                                <a href="#">Mobile Set</a>{" "}
-                                                <a href="#">03</a>
-                                            </li>
-                                            <li className="text-contentColor hover:text-contentColor-dark hover:bg-primaryColor text-sm font-medium px-13px py-2 border border-borderColor dark:border-borderColor-dark flex justify-between leading-7 transition-all duration-300">
-                                                <a href="#">Mobile Set</a>{" "}
-                                                <a href="#">03</a>
-                                            </li>
-                                            <li className="text-contentColor hover:text-contentColor-dark hover:bg-primaryColor text-sm font-medium px-13px py-2 border border-borderColor dark:border-borderColor-dark flex justify-between leading-7 transition-all duration-300">
-                                                <a href="#">
-                                                    Raxila Dish nonyte
-                                                </a>{" "}
-                                                <a href="#">09</a>
-                                            </li>
-                                            <li className="text-contentColor hover:text-contentColor-dark hover:bg-primaryColor text-sm font-medium px-13px py-2 border border-borderColor dark:border-borderColor-dark flex justify-between leading-7 transition-all duration-300">
-                                                <a href="#">Fresh Vegetable</a>{" "}
-                                                <a href="#">01</a>
-                                            </li>
-                                            <li className="text-contentColor hover:text-contentColor-dark hover:bg-primaryColor text-sm font-medium px-13px py-2 border border-borderColor dark:border-borderColor-dark flex justify-between leading-7 transition-all duration-300">
-                                                <a href="#">Fruites</a>{" "}
-                                                <a href="#">00</a>
-                                            </li>
-                                            <li className="text-contentColor hover:text-contentColor-dark hover:bg-primaryColor text-sm font-medium px-13px py-2 border border-borderColor dark:border-borderColor-dark flex justify-between leading-7 transition-all duration-300">
-                                                <a href="#">Gesuriesey</a>{" "}
-                                                <a href="#">26</a>
-                                            </li>
+                                            {course_categories.map(
+                                                (course_category) => (
+                                                    <li className="text-contentColor hover:text-contentColor-dark hover:bg-primaryColor text-sm font-medium px-13px py-2 border border-borderColor dark:border-borderColor-dark flex justify-between leading-7 transition-all duration-300">
+                                                        <a href="#">
+                                                            {
+                                                                course_category.name
+                                                            }
+                                                        </a>{" "}
+                                                        <a href="#">
+                                                            {
+                                                                course_category.course_count
+                                                            }
+                                                        </a>
+                                                    </li>
+                                                )
+                                            )}
                                         </ul>
                                     </div>
 

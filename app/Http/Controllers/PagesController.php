@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PaginateRequest;
 use Inertia\Inertia;
 use App\Models\Course;
+use App\Models\CourseCategory;
 use Binafy\LaravelCart\Models\Cart;
 use Binafy\LaravelCart\Models\CartItem;
 use Illuminate\Http\Request;
@@ -35,9 +36,12 @@ class PagesController extends Controller
 
         // return $courses;
 
+
+
         return Inertia::render('Courses', [
             'courses' => $courses,
-            'request' => $request
+            'request' => $request,
+            'course_categories' => CourseCategory::whereHas('courses')->get(),
         ]);
     }
 
