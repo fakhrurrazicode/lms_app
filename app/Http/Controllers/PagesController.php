@@ -41,7 +41,7 @@ class PagesController extends Controller
         return Inertia::render('Courses', [
             'courses' => $courses,
             'request' => $request,
-            'course_categories' => CourseCategory::whereHas('courses')->get(),
+            'course_categories' => CourseCategory::whereHas('courses')->orderBy('name', 'asc')->get(),
         ]);
     }
 

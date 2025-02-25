@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Binafy\LaravelCart\Models\Cart;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -33,9 +34,11 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
-                'permissions' => $request->user() ? $request->user()->getAllPermissions()->pluck('name') : []
+                'permissions' => $request->user() ? $request->user()->getAllPermissions()->pluck('name') : [],
             ],
-            // 'cart' => $request->user()->cart,
+            'auth.user.cart' => fn() => $request->user()
+                ? Cart::with('items.itemable')->where('user_id', $request->user()->id)->first()
+                : null,
         ];
     }
 }

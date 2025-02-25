@@ -399,7 +399,9 @@ export default function Courses({
                                                                     className="w-full overflow-hidden rounded"
                                                                 >
                                                                     <img
-                                                                        src="./assets/images/grid/grid_1.png"
+                                                                        src={
+                                                                            course.image_url
+                                                                        }
                                                                         alt=""
                                                                         className="w-full transition-all duration-300 group-hover:scale-110 block"
                                                                     />

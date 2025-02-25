@@ -10,9 +10,12 @@ import appInit from "../../edurock/edurock/assets/js/main.js";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
+import { rupiah } from "@/bootstrap";
 
 export default function GuestLayout({ children }) {
     const { auth, role } = usePage().props;
+
+    console.log("auth.user.cart", auth.user.cart);
 
     useEffect(() => {
         const onPageChange = () => {
@@ -268,7 +271,10 @@ export default function GuestLayout({ children }) {
                                             >
                                                 <i className="icofont-cart-alt text-2xl text-blackColor group-hover:text-secondaryColor transition-all duration-300 dark:text-blackColor-dark"></i>
                                                 <span className="absolute -top-1 2xl:-top-[5px] -right-[10px] lg:right-3/4 2xl:-right-[10px] text-[10px] font-medium text-white dark:text-whiteColor-dark bg-secondaryColor px-1 py-[2px] leading-1 rounded-full z-50 block">
-                                                    3
+                                                    {
+                                                        auth.user.cart.items
+                                                            .length
+                                                    }
                                                 </span>
                                             </a>
 
@@ -278,99 +284,100 @@ export default function GuestLayout({ children }) {
                                             >
                                                 <div className="shadow-dropdown-secodary max-w-dropdown3 w-2000 rounded-standard p-5 bg-white dark:bg-whiteColor-dark">
                                                     <ul className="flex flex-col gap-y-5 pb-5 mb-30px border-b border-borderColor dark:border-borderColor-dark">
-                                                        <li className="relative flex gap-x-15px items-center">
-                                                            <a href="#">
-                                                                <img
-                                                                    src="assets/images/grid/cart1.jpg"
-                                                                    alt="photo"
-                                                                    className="w-card-img py-[3px]"
-                                                                />
-                                                            </a>
-                                                            <div>
-                                                                <a
-                                                                    href="#"
-                                                                    className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
-                                                                >
-                                                                    web
-                                                                    dictionary
-                                                                </a>
-                                                                <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    1 x
-                                                                    <span className="text-secondaryColor">
-                                                                        $ 80.00
-                                                                    </span>
-                                                                </p>
-                                                            </div>
+                                                        {auth.user.cart.items
+                                                            .length > 0 ? (
+                                                            auth.user.cart.items.map(
+                                                                (item) => (
+                                                                    <li
+                                                                        key={
+                                                                            item.id
+                                                                        }
+                                                                        className="relative flex gap-x-15px items-center"
+                                                                    >
+                                                                        <a href="#">
+                                                                            <img
+                                                                                src={
+                                                                                    item
+                                                                                        .itemable
+                                                                                        .image_url
+                                                                                }
+                                                                                alt="photo"
+                                                                                className="w-card-img py-[3px]"
+                                                                            />
+                                                                        </a>
+                                                                        <div>
+                                                                            <a
+                                                                                href="#"
+                                                                                className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
+                                                                            >
+                                                                                {
+                                                                                    item
+                                                                                        .itemable
+                                                                                        .title
+                                                                                }
+                                                                            </a>
+                                                                            <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
+                                                                                1
+                                                                                x{" "}
+                                                                                <span className="text-secondaryColor">
+                                                                                    {rupiah(
+                                                                                        item
+                                                                                            .itemable
+                                                                                            .price
+                                                                                    )}
+                                                                                </span>
+                                                                            </p>
+                                                                        </div>
 
-                                                            <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                <i className="icofont-close-line"></i>
-                                                            </button>
-                                                        </li>
-                                                        <li className="relative flex gap-x-15px items-center">
-                                                            <a href="#">
-                                                                <img
-                                                                    src="assets/images/grid/cart2.jpg"
-                                                                    alt="photo"
-                                                                    className="w-card-img py-[3px]"
-                                                                />
-                                                            </a>
-                                                            <div>
-                                                                <a
-                                                                    href="#"
-                                                                    className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
-                                                                >
-                                                                    Design
-                                                                    Minois
-                                                                </a>
-                                                                <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    1 x
-                                                                    <span className="text-secondaryColor">
-                                                                        $ 60.00
-                                                                    </span>
-                                                                </p>
-                                                            </div>
-
-                                                            <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                <i className="icofont-close-line"></i>
-                                                            </button>
-                                                        </li>
-                                                        <li className="relative flex gap-x-15px items-center">
-                                                            <a href="#">
-                                                                <img
-                                                                    src="assets/images/grid/cart3.jpg"
-                                                                    alt="photo"
-                                                                    className="w-card-img py-[3px]"
-                                                                />
-                                                            </a>
-                                                            <div>
-                                                                <a
-                                                                    href="#"
-                                                                    className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
-                                                                >
-                                                                    Crash Course
-                                                                </a>
-                                                                <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    1 x
-                                                                    <span className="text-secondaryColor">
-                                                                        $ 70.00
-                                                                    </span>
-                                                                </p>
-                                                            </div>
-
-                                                            <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                <i className="icofont-close-line"></i>
-                                                            </button>
-                                                        </li>
+                                                                        <Link
+                                                                            method="DELETE"
+                                                                            href="/remove-from-cart"
+                                                                            preserveScroll={
+                                                                                true
+                                                                            }
+                                                                            preserveState={
+                                                                                true
+                                                                            }
+                                                                            data={{
+                                                                                itemable_id:
+                                                                                    item.itemable_id,
+                                                                                itemable_type:
+                                                                                    item.itemable_type,
+                                                                            }}
+                                                                            type="submit"
+                                                                            className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor"
+                                                                        >
+                                                                            <i className="icofont-close-line"></i>
+                                                                        </Link>
+                                                                    </li>
+                                                                )
+                                                            )
+                                                        ) : (
+                                                            <li className="relative flex gap-x-15px items-center">
+                                                                <span className="text-base-300">
+                                                                    Belum ada
+                                                                    produk
+                                                                    terpilih.
+                                                                    <a
+                                                                        href="/courses"
+                                                                        className="text-primaryColor text-bold"
+                                                                    >
+                                                                        Lihat
+                                                                        Produk
+                                                                    </a>
+                                                                </span>
+                                                            </li>
+                                                        )}
                                                     </ul>
 
-                                                    <div>
+                                                    {/* <div>
                                                         <p className="text-size-17 text-contentColor dark:text-contentColor-dark pb-5 flex justify-between">
                                                             Total Price:
                                                             <span className="font-bold text-secondaryColor">
                                                                 $ 210.00
                                                             </span>
                                                         </p>
-                                                    </div>
+                                                    </div> */}
 
                                                     <div className="flex flex-col gap-y-5">
                                                         <Link
