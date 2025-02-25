@@ -271,10 +271,10 @@ export default function GuestLayout({ children }) {
                                             >
                                                 <i className="icofont-cart-alt text-2xl text-blackColor group-hover:text-secondaryColor transition-all duration-300 dark:text-blackColor-dark"></i>
                                                 <span className="absolute -top-1 2xl:-top-[5px] -right-[10px] lg:right-3/4 2xl:-right-[10px] text-[10px] font-medium text-white dark:text-whiteColor-dark bg-secondaryColor px-1 py-[2px] leading-1 rounded-full z-50 block">
-                                                    {
-                                                        auth.user.cart.items
-                                                            .length
-                                                    }
+                                                    {auth.user.cart
+                                                        ? auth.user.cart.items
+                                                              .length
+                                                        : ""}
                                                 </span>
                                             </a>
 
@@ -284,7 +284,8 @@ export default function GuestLayout({ children }) {
                                             >
                                                 <div className="shadow-dropdown-secodary max-w-dropdown3 w-2000 rounded-standard p-5 bg-white dark:bg-whiteColor-dark">
                                                     <ul className="flex flex-col gap-y-5 pb-5 mb-30px border-b border-borderColor dark:border-borderColor-dark">
-                                                        {auth.user.cart.items
+                                                        {auth.user.cart &&
+                                                        auth.user.cart.items
                                                             .length > 0 ? (
                                                             auth.user.cart.items.map(
                                                                 (item) => (

@@ -33,19 +33,18 @@ class AppServiceProvider extends ServiceProvider
 
         // dd($user);
 
-        Inertia::share([
-            'auth' => [
-                'user' => fn() => Auth::user() ? [
-                    'id' => Auth::id(),
-                    'name' => Auth::user()->name,
-                    'email' => Auth::user()->email,
-                ] : null,
-            ],
-            'role' => function () {
-                $user = User::find(Auth::id());
-
-                return $user ? $user->roles[0] : null;
-            },
-        ]);
+        // Inertia::share([
+        //     'auth' => [
+        //         'user' => fn() => Auth::user() ? [
+        //             'id' => Auth::id(),
+        //             'name' => Auth::user()->name,
+        //             'email' => Auth::user()->email,
+        //         ] : null,
+        //     ],
+        //     'role' => function () {
+        //         $user = User::find(Auth::id());
+        //         return $user ? $user->roles[0] : null;
+        //     },
+        // ]);
     }
 }

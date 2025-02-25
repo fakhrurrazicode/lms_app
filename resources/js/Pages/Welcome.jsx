@@ -1,7 +1,13 @@
+import { rupiah } from "@/bootstrap";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link } from "@inertiajs/react";
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Welcome({
+    auth,
+    laravelVersion,
+    phpVersion,
+    latestCourses,
+}) {
     return (
         <GuestLayout>
             <main className="bg-transparent">
@@ -79,335 +85,134 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                 <div className="md:col-start-1 md:col-span-8 lg:col-start-9 lg:col-span-4">
                                     <div className="swiper card-slider px-30px md:px-0">
                                         <div className="swiper-wrapper">
-                                            <div className="swiper-slide p-25px bg-whiteColor shadow-brand rounded-lg2 dark:bg-darkdeep3-dark dark:shadow-brand-dark mb-30px group">
-                                                <div className="">
-                                                    <div className="relative mb-4">
-                                                        <a
-                                                            href="course-details.html"
-                                                            className="w-full overflow-hidden rounded"
-                                                        >
-                                                            <img
-                                                                src="./assets/images/grid/grid_1.png"
-                                                                alt=""
-                                                                className="w-full transition-all duration-300 group-hover:scale-110"
-                                                            />
-                                                        </a>
-                                                        <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                            <div>
-                                                                <p className="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor rounded font-semibold">
-                                                                    Data & Tech
-                                                                </p>
-                                                            </div>
-                                                            <a
-                                                                className="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                href="#"
+                                            {latestCourses.map((course) => (
+                                                <div className="swiper-slide p-25px bg-whiteColor shadow-brand rounded-lg2 dark:bg-darkdeep3-dark dark:shadow-brand-dark mb-30px group">
+                                                    <div className="">
+                                                        <div className="relative mb-4">
+                                                            <Link
+                                                                href={
+                                                                    "/course/" +
+                                                                    course.slug
+                                                                }
+                                                                className="w-full overflow-hidden rounded"
                                                             >
-                                                                <i className="icofont-heart-alt text-base py-1 px-2"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <div className="grid grid-cols-2 mb-15px">
-                                                            <div className="flex items-center">
+                                                                <img
+                                                                    src={
+                                                                        course.image_url
+                                                                    }
+                                                                    alt=""
+                                                                    className="w-full transition-all duration-300 group-hover:scale-110"
+                                                                />
+                                                            </Link>
+                                                            <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                                                                 <div>
-                                                                    <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
+                                                                    <p className="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor rounded font-semibold">
+                                                                        {
+                                                                            course
+                                                                                .course_category
+                                                                                .name
+                                                                        }
+                                                                    </p>
                                                                 </div>
-                                                                <div>
-                                                                    <span className="text-sm text-black dark:text-blackColor-dark">
-                                                                        23
-                                                                        Lesson
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="flex items-center">
-                                                                <div>
-                                                                    <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                                </div>
-                                                                <div>
-                                                                    <span className="text-sm text-black dark:text-blackColor-dark">
-                                                                        1 hr 30
-                                                                        min
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <a
-                                                            href="course-details.html"
-                                                            className="text-2xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
-                                                        >
-                                                            Figma to HTML
-                                                        </a>
-                                                        <p className="text-contentColor dark:text-contentColor-dark mb-15px">
-                                                            Lorem ipsum dolor
-                                                            sit amet
-                                                            consectetur,
-                                                            adipisicing elit.
-                                                            Veniam, libero!
-                                                        </p>
-
-                                                        <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                            $32.00
-                                                            <del className="text-sm text-lightGrey4 font-semibold">
-                                                                / $67.00
-                                                            </del>
-                                                            <span className="ml-6">
-                                                                <del className="text-base font-semibold text-secondaryColor3">
-                                                                    Free
-                                                                </del>
-                                                            </span>
-                                                        </div>
-
-                                                        <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                                                            <div>
                                                                 <a
-                                                                    href="instructor-details.html"
-                                                                    className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
+                                                                    className="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
+                                                                    href="#"
                                                                 >
-                                                                    <img
-                                                                        className="w-[30px] h-[30px] rounded-full mr-15px"
-                                                                        src="./assets/images/grid/grid_small_1.jpg"
-                                                                        alt=""
-                                                                    />
-                                                                    <span className="flex">
-                                                                        Micle
-                                                                        john
-                                                                    </span>
+                                                                    <i className="icofont-heart-alt text-base py-1 px-2"></i>
                                                                 </a>
                                                             </div>
-                                                            <div className="text-start md:text-end">
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <span className="text-xs text-lightGrey6">
-                                                                    (44)
-                                                                </span>
+                                                        </div>
+
+                                                        <div>
+                                                            <div className="grid grid-cols-2 mb-15px">
+                                                                <div className="flex items-center">
+                                                                    <div>
+                                                                        <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span className="text-sm text-black dark:text-blackColor-dark">
+                                                                            23
+                                                                            Lesson
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="flex items-center">
+                                                                    <div>
+                                                                        <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span className="text-sm text-black dark:text-blackColor-dark">
+                                                                            1 hr
+                                                                            30
+                                                                            min
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <Link
+                                                                href={
+                                                                    "/course/" +
+                                                                    course.slug
+                                                                }
+                                                                className="text-2xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
+                                                            >
+                                                                {course.title}
+                                                            </Link>
+                                                            <p className="text-contentColor dark:text-contentColor-dark mb-15px">
+                                                                {
+                                                                    course.description
+                                                                }
+                                                            </p>
+
+                                                            <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
+                                                                {rupiah(
+                                                                    course.price
+                                                                )}
+                                                                {/* <del className="text-sm text-lightGrey4 font-semibold">
+                                                                    / $67.00
+                                                                </del>
+                                                                <span className="ml-6">
+                                                                    <del className="text-base font-semibold text-secondaryColor3">
+                                                                        Free
+                                                                    </del>
+                                                                </span> */}
+                                                            </div>
+
+                                                            <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
+                                                                <div>
+                                                                    <a
+                                                                        href="#"
+                                                                        className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
+                                                                    >
+                                                                        <img
+                                                                            className="w-[30px] h-[30px] rounded-full mr-15px"
+                                                                            src="./assets/images/grid/grid_small_1.jpg"
+                                                                            alt=""
+                                                                        />
+                                                                        <span className="flex">
+                                                                            {
+                                                                                course
+                                                                                    .instructor
+                                                                                    .name
+                                                                            }
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                                <div className="text-start md:text-end">
+                                                                    <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                    <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                    <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                    <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                    <i className="icofont-star text-size-15 text-yellow"></i>
+                                                                    <span className="text-xs text-lightGrey6">
+                                                                        (44)
+                                                                    </span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <div className="swiper-slide p-25px bg-whiteColor shadow-brand rounded-lg2 dark:bg-darkdeep3-dark dark:shadow-brand-dark mb-30px group">
-                                                <div className="">
-                                                    <div className="relative mb-4">
-                                                        <a
-                                                            href="course-details.html"
-                                                            className="w-full overflow-hidden rounded"
-                                                        >
-                                                            <img
-                                                                src="./assets/images/grid/grid_2.png"
-                                                                alt=""
-                                                                className="w-full transition-all duration-300 group-hover:scale-110"
-                                                            />
-                                                        </a>
-                                                        <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                            <div>
-                                                                <p className="text-xs text-whiteColor px-4 py-[3px] bg-blue rounded font-semibold">
-                                                                    Mechanical
-                                                                </p>
-                                                            </div>
-                                                            <a
-                                                                className="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                href="#"
-                                                            >
-                                                                <i className="icofont-heart-alt text-base py-1 px-2"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <div className="grid grid-cols-2 mb-15px">
-                                                            <div className="flex items-center">
-                                                                <div>
-                                                                    <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                                                                </div>
-                                                                <div>
-                                                                    <span className="text-sm text-black dark:text-blackColor-dark">
-                                                                        29
-                                                                        Lesson
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="flex items-center">
-                                                                <div>
-                                                                    <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                                </div>
-                                                                <div>
-                                                                    <span className="text-sm text-black dark:text-blackColor-dark">
-                                                                        2 hr 10
-                                                                        min
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <a
-                                                            href="course.html"
-                                                            className="text-2xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
-                                                        >
-                                                            Figma to HTML
-                                                        </a>
-                                                        <p className="text-contentColor dark:text-contentColor-dark mb-15px">
-                                                            Lorem ipsum dolor
-                                                            sit amet
-                                                            consectetur,
-                                                            adipisicing elit.
-                                                            Veniam, libero!
-                                                        </p>
-
-                                                        <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                            $32.00
-                                                            <del className="text-sm text-lightGrey4 font-semibold">
-                                                                / $67.00
-                                                            </del>
-                                                            <span className="ml-6">
-                                                                <del className="text-base font-semibold text-greencolor">
-                                                                    Free
-                                                                </del>
-                                                            </span>
-                                                        </div>
-
-                                                        <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                                                            <div>
-                                                                <a
-                                                                    href="instructor-details.html"
-                                                                    className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
-                                                                >
-                                                                    <img
-                                                                        className="w-[30px] h-[30px] rounded-full mr-15px"
-                                                                        src="./assets/images/grid/grid_small_2.jpg"
-                                                                        alt=""
-                                                                    />
-                                                                    Rinis Jhon
-                                                                </a>
-                                                            </div>
-                                                            <div className="text-start md:text-end">
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <span className="text-xs text-lightGrey6">
-                                                                    (44)
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="swiper-slide p-25px bg-whiteColor shadow-brand rounded-lg2 dark:bg-darkdeep3-dark dark:shadow-brand-dark mb-30px group">
-                                                <div className="">
-                                                    <div className="relative mb-4">
-                                                        <a
-                                                            href="course-details.html"
-                                                            className="w-full overflow-hidden rounded"
-                                                        >
-                                                            <img
-                                                                src="./assets/images/grid/grid_1.png"
-                                                                alt=""
-                                                                className="w-full transition-all duration-300 group-hover:scale-110"
-                                                            />
-                                                        </a>
-                                                        <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                            <div>
-                                                                <p className="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor rounded font-semibold">
-                                                                    Data & Tech
-                                                                </p>
-                                                            </div>
-                                                            <a
-                                                                className="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                href="#"
-                                                            >
-                                                                <i className="icofont-heart-alt text-base py-1 px-2"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <div className="grid grid-cols-2 mb-15px">
-                                                            <div className="flex items-center">
-                                                                <div>
-                                                                    <i className="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                                                                </div>
-                                                                <div>
-                                                                    <span className="text-sm text-black dark:text-blackColor-dark">
-                                                                        23
-                                                                        Lesson
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="flex items-center">
-                                                                <div>
-                                                                    <i className="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                                </div>
-                                                                <div>
-                                                                    <span className="text-sm text-black dark:text-blackColor-dark">
-                                                                        1 hr 30
-                                                                        min
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <a
-                                                            href="course-details.html"
-                                                            className="text-2xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor"
-                                                        >
-                                                            Figma to HTML
-                                                        </a>
-                                                        <p className="text-contentColor dark:text-contentColor-dark mb-15px">
-                                                            Lorem ipsum dolor
-                                                            sit amet
-                                                            consectetur,
-                                                            adipisicing elit.
-                                                            Veniam, libero!
-                                                        </p>
-
-                                                        <div className="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                            $32.00
-                                                            <del className="text-sm text-lightGrey4 font-semibold">
-                                                                / $67.00
-                                                            </del>
-                                                            <span className="ml-6">
-                                                                <del className="text-base font-semibold text-secondaryColor3">
-                                                                    Free
-                                                                </del>
-                                                            </span>
-                                                        </div>
-
-                                                        <div className="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                                                            <div>
-                                                                <a
-                                                                    href="instructor-details.html"
-                                                                    className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
-                                                                >
-                                                                    <img
-                                                                        className="w-[30px] h-[30px] rounded-full mr-15px"
-                                                                        src="./assets/images/grid/grid_small_1.jpg"
-                                                                        alt=""
-                                                                    />
-                                                                    <span className="flex">
-                                                                        Micle
-                                                                        john
-                                                                    </span>
-                                                                </a>
-                                                            </div>
-                                                            <div className="text-start md:text-end">
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <i className="icofont-star text-size-15 text-yellow"></i>
-                                                                <span className="text-xs text-lightGrey6">
-                                                                    (44)
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            ))}
                                         </div>
 
                                         <div className="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
