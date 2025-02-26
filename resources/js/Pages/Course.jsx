@@ -2658,16 +2658,21 @@ export default function Course({
                                             </div>
                                         </div>
                                         <div className="mb-5">
-                                            <AddCourseToCartButton
-                                                course={course}
-                                                cartItems={auth.user.cart.items}
-                                            />
-                                            <button
-                                                type="submit"
-                                                className="w-full text-size-15 text-whiteColor bg-secondaryColor px-25px py-10px mb-10px leading-1.8 border border-secondaryColor hover:text-secondaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-secondaryColor dark:hover:bg-whiteColor-dark"
-                                            >
-                                                Buy Now
-                                            </button>
+                                            {auth.user && auth.cart ? (
+                                                <AddCourseToCartButton
+                                                    course={course}
+                                                    cartItems={
+                                                        auth.user.cart.items
+                                                    }
+                                                />
+                                            ) : (
+                                                <Link
+                                                    href="/login"
+                                                    class="text-center w-full text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border mb-10px leading-1.8 border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark"
+                                                >
+                                                    Tambahkan ke Keranjang
+                                                </Link>
+                                            )}
 
                                             <span className="text-size-13 text-contentColor dark:text-contentColor-dark leading-1.8">
                                                 <i className="icofont-ui-rotation"></i>{" "}

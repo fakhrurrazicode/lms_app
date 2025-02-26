@@ -111,4 +111,19 @@ class PagesController extends Controller
         // // return $itemable;
         // $cart->removeItem($itemable);
     }
+
+    public function clearCart(Request $request)
+    {
+        $user = $request->user();
+        $cart = Cart::query()->firstOrCreate(['user_id' => $user->id]);
+
+        CartItem::where([
+            'itemable_type' => $request->itemable_type,
+            'itemable_id' => $request->itemable_id,
+            'cart_id' => $cart->id,
+        ])->delete();
+
+        // // return $itemable;
+        // $cart->removeItem($itemable);
+    }
 }

@@ -86,7 +86,10 @@ export default function Welcome({
                                     <div className="swiper card-slider px-30px md:px-0">
                                         <div className="swiper-wrapper">
                                             {latestCourses.map((course) => (
-                                                <div className="swiper-slide p-25px bg-whiteColor shadow-brand rounded-lg2 dark:bg-darkdeep3-dark dark:shadow-brand-dark mb-30px group">
+                                                <div
+                                                    key={course.id}
+                                                    className="swiper-slide p-25px bg-whiteColor shadow-brand rounded-lg2 dark:bg-darkdeep3-dark dark:shadow-brand-dark mb-30px group"
+                                                >
                                                     <div className="">
                                                         <div className="relative mb-4">
                                                             <Link
@@ -106,7 +109,7 @@ export default function Welcome({
                                                             </Link>
                                                             <div className="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                                                                 <div>
-                                                                    <p className="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor rounded font-semibold">
+                                                                    <p className="text-xs text-whiteColor px-4 py-[3px] bg-primaryColor rounded font-semibold">
                                                                         {
                                                                             course
                                                                                 .course_category

@@ -15,7 +15,8 @@ import { rupiah } from "@/bootstrap";
 export default function GuestLayout({ children }) {
     const { auth, role } = usePage().props;
 
-    console.log("auth.user.cart", auth.user.cart);
+    console.log("auth", auth);
+    console.log("role", role);
 
     useEffect(() => {
         const onPageChange = () => {

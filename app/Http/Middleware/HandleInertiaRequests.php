@@ -35,10 +35,10 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
                 'permissions' => $request->user() ? $request->user()->getAllPermissions()->pluck('name') : [],
+                'cart' => $request->user()
+                    ? Cart::with('items.itemable')->where('user_id', $request->user()->id)->first()
+                    : null
             ],
-            'auth.user.cart' => fn() => $request->user()
-                ? Cart::with('items.itemable')->where('user_id', $request->user()->id)->first()
-                : null,
             'role' => function () use ($request) {
                 $user = $request->user();
                 return $user ? $user->roles[0] : null;
