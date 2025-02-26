@@ -5,7 +5,6 @@ import React from "react";
 export default function CourseCardHorizontal({ course }) {
     const { auth } = usePage().props;
 
-    console.log("auth", auth);
     return (
         <div key={course.id} className="w-full group grid-item rounded">
             <div className="tab-content-wrapper">

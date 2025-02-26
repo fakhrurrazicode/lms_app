@@ -1,8 +1,10 @@
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { Trash } from "lucide-react";
 import React from "react";
 
-export default function AddCourseToCartButton({ course, cartItems }) {
+export default function AddCourseToCartButton({ course }) {
+    const { auth } = usePage().props;
+
     const itemExists = cartItems.some((item) => {
         return (
             item.itemable_id == course.id &&

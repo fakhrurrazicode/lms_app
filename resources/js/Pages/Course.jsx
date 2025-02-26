@@ -2658,12 +2658,9 @@ export default function Course({
                                             </div>
                                         </div>
                                         <div className="mb-5">
-                                            {auth.user && auth.cart ? (
+                                            {auth.user ? (
                                                 <AddCourseToCartButton
                                                     course={course}
-                                                    cartItems={
-                                                        auth.user.cart.items
-                                                    }
                                                 />
                                             ) : (
                                                 <Link

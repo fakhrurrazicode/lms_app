@@ -111,12 +111,43 @@ export default function Welcome({
                                                                         }
                                                                     </p>
                                                                 </div>
-                                                                <a
-                                                                    className="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                    href="#"
-                                                                >
-                                                                    <i className="icofont-heart-alt text-base py-1 px-2"></i>
-                                                                </a>
+                                                                {auth.user ===
+                                                                null ? (
+                                                                    <Link
+                                                                        href="/login"
+                                                                        className="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
+                                                                    >
+                                                                        <i className="icofont-heart-alt text-base py-1 px-2"></i>
+                                                                    </Link>
+                                                                ) : (
+                                                                    <Link
+                                                                        method="POST"
+                                                                        href="/toggle-wishlist"
+                                                                        preserveScroll={
+                                                                            true
+                                                                        }
+                                                                        preserveState={
+                                                                            true
+                                                                        }
+                                                                        data={{
+                                                                            wishlistable_type:
+                                                                                "App\\Model\\Course",
+                                                                            wishlistable_id:
+                                                                                course.id,
+                                                                            user_id:
+                                                                                auth
+                                                                                    .user
+                                                                                    .id,
+                                                                        }}
+                                                                        className={
+                                                                            course.is_on_wishlist
+                                                                                ? "text-white rounded bg-primaryColor"
+                                                                                : "text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
+                                                                        }
+                                                                    >
+                                                                        <i className="icofont-heart-alt text-base py-1 px-2"></i>
+                                                                    </Link>
+                                                                )}
                                                             </div>
                                                         </div>
 
