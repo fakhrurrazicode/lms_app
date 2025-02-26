@@ -79,8 +79,9 @@ class PagesController extends Controller
     public function cart(Request $request)
     {
         $user = $request->user();
+        $cart = Cart::query()->firstOrCreate(['user_id' => $user->id]);
         $cartItems = CartItem::where([
-            'cart_id' => $user->cart->id,
+            'cart_id' => $cart->id,
         ])->with(['itemable'])->get();
 
         // return $cartItems;
@@ -135,6 +136,7 @@ class PagesController extends Controller
         $user = $request->user();
 
         $cart = Cart::query()->firstOrCreate(['user_id' => $user->id]);
+        // return $cart;
 
         return Inertia::render('Checkout', compact('cart'));
     }

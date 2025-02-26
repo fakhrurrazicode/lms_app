@@ -131,7 +131,7 @@ export default function Courses({
 
                                     <div className="pt-30px pr-15px pl-10px pb-23px 2xl:pt-10 2xl:pr-25px 2xl:pl-5 2xl:pb-33px mb-30px border border-borderColor dark:border-borderColor-dark">
                                         <h4 className="text-size-22 text-blackColor dark:text-blackColor-dark font-bold leading-30px mb-25px">
-                                            categories
+                                            Categories
                                         </h4>
                                         <ul className="flex flex-col gap-y-4">
                                             {course_categories.map(

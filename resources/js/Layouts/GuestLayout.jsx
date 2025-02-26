@@ -271,11 +271,13 @@ export default function GuestLayout({ children }) {
                                                 className="relative block"
                                             >
                                                 <i className="icofont-cart-alt text-2xl text-blackColor group-hover:text-secondaryColor transition-all duration-300 dark:text-blackColor-dark"></i>
-                                                <span className="absolute -top-1 2xl:-top-[5px] -right-[10px] lg:right-3/4 2xl:-right-[10px] text-[10px] font-medium text-white dark:text-whiteColor-dark bg-secondaryColor px-1 py-[2px] leading-1 rounded-full z-50 block">
-                                                    {auth.cart
-                                                        ? auth.cart.items.length
-                                                        : ""}
-                                                </span>
+                                                {auth.cart ? (
+                                                    <span className="absolute -top-1 2xl:-top-[5px] -right-[10px] lg:right-3/4 2xl:-right-[10px] text-[10px] font-medium text-white dark:text-whiteColor-dark bg-secondaryColor px-1 py-[2px] leading-1 rounded-full z-50 block">
+                                                        {auth.cart.items.length}
+                                                    </span>
+                                                ) : (
+                                                    <></>
+                                                )}
                                             </a>
 
                                             <div
@@ -380,20 +382,26 @@ export default function GuestLayout({ children }) {
                                                         </p>
                                                     </div> */}
 
-                                                    <div className="flex flex-col gap-y-5">
-                                                        <Link
-                                                            href="/cart"
-                                                            className="text-sm font-bold text-contentColor dark:text-contentColor-dark hover:text-whiteColor hover:bg-secondaryColor text-center py-10px border border-secondaryColor"
-                                                        >
-                                                            View Cart
-                                                        </Link>
-                                                        <Link
-                                                            href="/checkout"
-                                                            className="text-sm font-bold bg-darkblack dark:bg-darkblack-dark text-whiteColor dark:text-whiteColor-dark hover:bg-secondaryColor dark:hover:bg-secondaryColor text-center py-10px"
-                                                        >
-                                                            Checkout
-                                                        </Link>
-                                                    </div>
+                                                    {auth.cart &&
+                                                    auth.cart.items.length >
+                                                        0 ? (
+                                                        <div className="flex flex-col gap-y-5">
+                                                            <Link
+                                                                href="/cart"
+                                                                className="text-sm font-bold text-contentColor dark:text-contentColor-dark hover:text-whiteColor hover:bg-secondaryColor text-center py-10px border border-secondaryColor"
+                                                            >
+                                                                View Cart
+                                                            </Link>
+                                                            <Link
+                                                                href="/checkout"
+                                                                className="text-sm font-bold bg-darkblack dark:bg-darkblack-dark text-whiteColor dark:text-whiteColor-dark hover:bg-secondaryColor dark:hover:bg-secondaryColor text-center py-10px"
+                                                            >
+                                                                Checkout
+                                                            </Link>
+                                                        </div>
+                                                    ) : (
+                                                        <></>
+                                                    )}
                                                 </div>
                                             </div>
                                         </li>

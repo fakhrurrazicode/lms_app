@@ -229,6 +229,14 @@ export default function Checkout({ auth, laravelVersion, phpVersion, cart }) {
                                     <div>Coupon Discount: </div>
                                     <div className="text-right">Rp. 0</div>
                                 </div>
+                                <div className="flex justify-between mb-4">
+                                    <div className="text-2xl font-bold">
+                                        Total:{" "}
+                                    </div>
+                                    <div className="text-2xl font-bold">
+                                        Rp. 0
+                                    </div>
+                                </div>
                             </div>
 
                             <div>
