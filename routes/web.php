@@ -35,15 +35,20 @@ Route::get('/', [PagesController::class, 'index'])->name('page.home');
 Route::get('/courses', [PagesController::class, 'courses'])->name('page.courses');
 Route::get('/course/{slug}', [PagesController::class, 'course'])->name('page.course');
 Route::get('/become-an-instructor', [PagesController::class, 'become_an_instructor'])->name('page.become-an-instructor');
-Route::get('/cart', [PagesController::class, 'cart'])->name('page.cart');
-Route::post('/add-to-cart', [PagesController::class, 'addToCart'])->name('page.add-to-cart');
-Route::delete('/remove-from-cart', [PagesController::class, 'removeFromCart'])->name('page.remove-from-cart');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
+
+    Route::get('/cart', [PagesController::class, 'cart'])->name('page.cart');
+    Route::post('/add-to-cart', [PagesController::class, 'addToCart'])->name('page.add-to-cart');
+    Route::delete('/remove-from-cart', [PagesController::class, 'removeFromCart'])->name('page.remove-from-cart');
+    Route::delete('/clear-cart', [PagesController::class, 'clearCart'])->name('page.clear-cart');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

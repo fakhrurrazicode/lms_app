@@ -123,12 +123,7 @@ class PagesController extends Controller
     {
         $user = $request->user();
         $cart = Cart::query()->firstOrCreate(['user_id' => $user->id]);
-
-        CartItem::where([
-            'itemable_type' => $request->itemable_type,
-            'itemable_id' => $request->itemable_id,
-            'cart_id' => $cart->id,
-        ])->delete();
+        $cart->emptyCart();
 
         // // return $itemable;
         // $cart->removeItem($itemable);
