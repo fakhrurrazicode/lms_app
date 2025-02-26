@@ -136,16 +136,16 @@ export default function Courses({
                                             {course_categories.map(
                                                 (course_category) => (
                                                     <li className="text-contentColor hover:text-contentColor-dark hover:bg-primaryColor text-sm font-medium px-13px py-2 border border-borderColor dark:border-borderColor-dark flex justify-between leading-7 transition-all duration-300">
-                                                        <a href="#">
+                                                        <span href="#">
                                                             {
                                                                 course_category.name
                                                             }
-                                                        </a>{" "}
-                                                        <a href="#">
+                                                        </span>{" "}
+                                                        <span href="#">
                                                             {
                                                                 course_category.course_count
                                                             }
-                                                        </a>
+                                                        </span>
                                                     </li>
                                                 )
                                             )}

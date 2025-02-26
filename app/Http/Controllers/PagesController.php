@@ -28,16 +28,23 @@ class PagesController extends Controller
     public function courses(PaginateRequest $request)
     {
 
-        $courses = Course::orWhere([
-            ['title', 'LIKE', '%' . $request->search . '%'],
-            ['slug', 'LIKE', '%' . $request->search . '%'],
-        ])->orderBy($request->orderby, $request->ordermethod)
+        $courses = Course::query();
+
+        if ($request->has('course_category_ids')) {
+            $courses->whereIn('course_category_id', $request->course_category_ids);
+        }
+
+        if ($request->has('search')) {
+            $courses->where([
+                ['title', 'LIKE', '%' . $request->search . '%'],
+                ['slug', 'LIKE', '%' . $request->search . '%'],
+            ]);
+        }
+
+        $courses = $courses->orderBy($request->orderby, $request->ordermethod)
             ->with(['instructor', 'course_category', 'course_reviews'])
             ->paginate($request->perpage)
             ->withQueryString();
-
-        // return $courses;
-
 
 
         return Inertia::render('Courses', [
