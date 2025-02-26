@@ -39,6 +39,8 @@ export default function CourseCardHorizontal({ course }) {
                                 <Link
                                     method="POST"
                                     href="/toggle-wishlist"
+                                    preserveScroll={true}
+                                    preserveState={true}
                                     data={{
                                         wishlistable_type: "App\\Model\\Course",
                                         wishlistable_id: course.id,
@@ -46,7 +48,7 @@ export default function CourseCardHorizontal({ course }) {
                                     }}
                                     className={
                                         course.is_on_wishlist
-                                            ? "text-white bg-black bg-opacity-15 rounded bg-primaryColor"
+                                            ? "text-white rounded bg-primaryColor"
                                             : "text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
                                     }
                                 >

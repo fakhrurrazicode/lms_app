@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Wishlist;
 use App\Models\CourseReview;
 use App\Models\CourseSection;
 use App\Models\CourseCategory;
@@ -84,14 +85,13 @@ class Course extends BaseModel implements Cartable
 
     public function getIsOnWishlistAttribute()
     {
+        // dd($this->isUserAuthenticated());
         if ($this->isUserAuthenticated()) {
 
-
-            $wishlist = Wishlist::where([
-                'wishlistable_type' => self::class,
-                'wishlistable_id' => $this->id,
-                'user_id' => Auth::user()->id,
-            ])->first();
+            $wishlist = Wishlist::where('user_id', Auth::user()->id)
+                ->where('wishlistable_id', $this->id)
+                ->where('wishlistable_type', 'App\Model\Course')
+                ->first();
 
             return $wishlist ? true : false;
         } else {
