@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 // use Binafy\LaravelCart\Models\Cart;
 use App\Models\CourseCategory;
 use App\Http\Requests\PaginateRequest;
+use App\Models\Wishlist;
 use Binafy\LaravelCart\Models\CartItem;
 
 class PagesController extends Controller
@@ -88,6 +89,29 @@ class PagesController extends Controller
 
         // return $cartItems;
         return Inertia::render('Cart', compact('cartItems'));
+    }
+
+    public function toggleWishlist(Request $request)
+    {
+        $user = $request->user();
+
+        $wishlist = Wishlist::where([
+            'user_id' => $user->id,
+            'wishlistable_type' => $request->wishlistable_type,
+            'wishlistable_id' => $request->wishlistable_id,
+        ])->first();
+
+        if ($wishlist) {
+            $wishlist->delete();
+        } else {
+            Wishlist::create([
+                'user_id' => $user->id,
+                'wishlistable_type' => $request->wishlistable_type,
+                'wishlistable_id' => $request->wishlistable_id,
+            ]);
+        }
+
+        // to_route('page.cart');
     }
 
     public function addToCart(Request $request)

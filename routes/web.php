@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/remove-from-cart', [PagesController::class, 'removeFromCart'])->name('page.remove-from-cart');
     Route::delete('/clear-cart', [PagesController::class, 'clearCart'])->name('page.clear-cart');
 
+    Route::post('/toggle-wishlist', [PagesController::class, 'toggleWishlist'])->name('page.toggle-wishlist');
+
     Route::get('/checkout', [PagesController::class, 'checkout'])->name('page.checkout');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

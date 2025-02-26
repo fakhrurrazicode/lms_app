@@ -1,5 +1,5 @@
 import { rupiah } from "@/bootstrap";
-import CourseCard from "@/Components/CourseCard";
+import CourseCardHorizontal from "@/Components/CourseCardHorizontal";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
 
@@ -446,7 +446,7 @@ export default function Courses({
                                     <div className="hidden opacity-0 transition-all duration-300">
                                         <div className="flex flex-col gap-30px">
                                             {courses.data.map((course) => (
-                                                <CourseCard
+                                                <CourseCardHorizontal
                                                     key={course.id}
                                                     course={course}
                                                 />

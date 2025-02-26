@@ -1,7 +1,11 @@
 import { rupiah } from "@/bootstrap";
+import { Link, usePage } from "@inertiajs/react";
 import React from "react";
 
-export default function CourseCard({ course }) {
+export default function CourseCardHorizontal({ course }) {
+    const { auth } = usePage().props;
+
+    console.log("auth", auth);
     return (
         <div key={course.id} className="w-full group grid-item rounded">
             <div className="tab-content-wrapper">
@@ -24,12 +28,31 @@ export default function CourseCard({ course }) {
                                     {course.course_category.name}
                                 </p>
                             </div>
-                            <a
-                                className="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                href="#"
-                            >
-                                <i className="icofont-heart-alt text-base py-1 px-2"></i>
-                            </a>
+                            {auth.user === null ? (
+                                <Link
+                                    href="/login"
+                                    className="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
+                                >
+                                    <i className="icofont-heart-alt text-base py-1 px-2"></i>
+                                </Link>
+                            ) : (
+                                <Link
+                                    method="POST"
+                                    href="/toggle-wishlist"
+                                    data={{
+                                        wishlistable_type: "App\\Model\\Course",
+                                        wishlistable_id: course.id,
+                                        user_id: auth.user.id,
+                                    }}
+                                    className={
+                                        course.is_on_wishlist
+                                            ? "text-white bg-black bg-opacity-15 rounded bg-primaryColor"
+                                            : "text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
+                                    }
+                                >
+                                    <i className="icofont-heart-alt text-base py-1 px-2"></i>
+                                </Link>
+                            )}
                         </div>
                     </div>
 
