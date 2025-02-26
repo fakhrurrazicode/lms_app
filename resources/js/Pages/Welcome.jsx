@@ -66,18 +66,12 @@ export default function Welcome({
                                         </p>
 
                                         <div className="mt-30px">
-                                            <a
-                                                href="#"
+                                            <Link
+                                                href="/courses"
                                                 className="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-25px py-15px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor"
                                             >
-                                                View Courses
-                                            </a>
-                                            <a
-                                                href="#"
-                                                className="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-25px py-15px hover:text-secondaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-secondaryColor"
-                                            >
-                                                Explore More
-                                            </a>
+                                                Lihat Lebih Banyak Kursus
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

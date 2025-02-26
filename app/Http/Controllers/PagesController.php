@@ -47,6 +47,8 @@ class PagesController extends Controller
             ->paginate($request->perpage)
             ->withQueryString();
 
+        // return $courses;
+
 
         return Inertia::render('Courses', [
             'courses' => $courses,
