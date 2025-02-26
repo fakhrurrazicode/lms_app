@@ -55,12 +55,16 @@ export default function Cart({ auth, laravelVersion, phpVersion, cartItems }) {
                                                         </a>
                                                     </td>
                                                     <td className="py-15px md:py-5 border-r border-borderColor dark:border-borderColor-dark w-300px">
-                                                        <a
+                                                        <Link
                                                             className="hover:text-primaryColor"
-                                                            href="product-details.html"
+                                                            href={
+                                                                "/course/" +
+                                                                itemable.slug
+                                                            }
+                                                            target="_blank"
                                                         >
                                                             {itemable.title}
-                                                        </a>
+                                                        </Link>
                                                     </td>
                                                     <td className="py-15px md:py-5 border-r border-borderColor dark:border-borderColor-dark">
                                                         <span className="amount">
