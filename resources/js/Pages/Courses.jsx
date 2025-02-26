@@ -11,6 +11,7 @@ export default function Courses({
     course_categories,
 }) {
     const { url } = usePage();
+
     return (
         <GuestLayout>
             <main className="bg-transparent">
@@ -135,7 +136,66 @@ export default function Courses({
                                         <ul className="flex flex-col gap-y-4">
                                             {course_categories.map(
                                                 (course_category) => (
-                                                    <li className="text-contentColor hover:text-contentColor-dark hover:bg-primaryColor text-sm font-medium px-13px py-2 border border-borderColor dark:border-borderColor-dark flex justify-between leading-7 transition-all duration-300">
+                                                    <li
+                                                        key={course_category.id}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+
+                                                            let new_course_category_ids =
+                                                                [];
+
+                                                            if (
+                                                                request.course_category_ids
+                                                            ) {
+                                                                if (
+                                                                    request.course_category_ids.includes(
+                                                                        course_category.id.toString()
+                                                                    )
+                                                                ) {
+                                                                    new_course_category_ids =
+                                                                        request.course_category_ids.filter(
+                                                                            (
+                                                                                course_category_id
+                                                                            ) =>
+                                                                                course_category_id !==
+                                                                                course_category.id.toString()
+                                                                        );
+                                                                } else {
+                                                                    new_course_category_ids =
+                                                                        [
+                                                                            ...request.course_category_ids,
+                                                                            course_category.id.toString(),
+                                                                        ];
+                                                                }
+                                                            } else {
+                                                                new_course_category_ids.push(
+                                                                    course_category.id.toString()
+                                                                );
+                                                            }
+
+                                                            router.get(
+                                                                "/courses/",
+                                                                {
+                                                                    ...request,
+                                                                    course_category_ids:
+                                                                        new_course_category_ids,
+                                                                    page: 1,
+                                                                },
+                                                                {
+                                                                    preserveScroll: true,
+                                                                    preserveState: true,
+                                                                }
+                                                            );
+                                                        }}
+                                                        className={
+                                                            request.course_category_ids &&
+                                                            request.course_category_ids.includes(
+                                                                course_category.id.toString()
+                                                            )
+                                                                ? "cursor-pointer text-white bg-primaryColor text-sm font-medium px-13px py-2 border border-borderColor dark:border-borderColor-dark flex justify-between leading-7 transition-all duration-300"
+                                                                : "text-contentColor cursor-pointer hover:text-contentColor-dark hover:bg-primaryColor text-sm font-medium px-13px py-2 border border-borderColor dark:border-borderColor-dark flex justify-between leading-7 transition-all duration-300"
+                                                        }
+                                                    >
                                                         <span href="#">
                                                             {
                                                                 course_category.name
@@ -536,14 +596,11 @@ export default function Courses({
                                 <div>
                                     <ul className="flex items-center justify-center gap-15px mt-60px mb-30px">
                                         {courses.links.map((link, index) => {
-                                            console.log("url", url);
-                                            console.log("link.url", link.url);
                                             return (
-                                                <li>
+                                                <li key={index}>
                                                     <Link
                                                         // preserveScroll={true}
                                                         preserveState={true}
-                                                        key={index}
                                                         href={link.url}
                                                         className={
                                                             link.url ==

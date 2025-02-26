@@ -27,7 +27,7 @@ class PagesController extends Controller
 
     public function courses(PaginateRequest $request)
     {
-
+        // return $request;
         $courses = Course::query();
 
         if ($request->has('course_category_ids')) {
