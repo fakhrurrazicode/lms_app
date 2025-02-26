@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PaginateRequest;
+use App\Models\Cart;
 use Inertia\Inertia;
 use App\Models\Course;
-use App\Models\CourseCategory;
-use Binafy\LaravelCart\Models\Cart;
-use Binafy\LaravelCart\Models\CartItem;
 use Illuminate\Http\Request;
+// use Binafy\LaravelCart\Models\Cart;
+use App\Models\CourseCategory;
+use App\Http\Requests\PaginateRequest;
+use Binafy\LaravelCart\Models\CartItem;
 
 class PagesController extends Controller
 {
@@ -127,5 +128,14 @@ class PagesController extends Controller
 
         // // return $itemable;
         // $cart->removeItem($itemable);
+    }
+
+    public function checkout(Request $request)
+    {
+        $user = $request->user();
+
+        $cart = Cart::query()->firstOrCreate(['user_id' => $user->id]);
+
+        return Inertia::render('Checkout', compact('cart'));
     }
 }

@@ -3,7 +3,7 @@ import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link } from "@inertiajs/react";
 import { Trash } from "lucide-react";
 
-export default function Cart({ auth, laravelVersion, phpVersion, cartItems }) {
+export default function Cart({ auth, laravelVersion, phpVersion }) {
     return (
         <GuestLayout>
             <section>
@@ -33,13 +33,13 @@ export default function Cart({ auth, laravelVersion, phpVersion, cartItems }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cartItems.length > 0 ? (
-                                    cartItems.map((cartItem) => {
-                                        if (cartItem.itemable) {
-                                            let itemable = cartItem.itemable;
+                                {auth.cart.items.length > 0 ? (
+                                    auth.cart.items.map((item) => {
+                                        if (item.itemable) {
+                                            let itemable = item.itemable;
                                             return (
                                                 <tr
-                                                    key={cartItem.id}
+                                                    key={item.id}
                                                     className="border-b border-borderColor dark:border-borderColor-dark"
                                                 >
                                                     <td className="py-15px md:py-5 border-r border-borderColor dark:border-borderColor-dark">
@@ -134,123 +134,12 @@ export default function Cart({ auth, laravelVersion, phpVersion, cartItems }) {
                             >
                                 Bersihkan Keranjang
                             </Link>
-                            <button className="text-size-13 text-whiteColor dark:text-whiteColor-dark dark:hover:text-whiteColor leading-1 px-5 py-18px md:px-10 bg-blackColor dark:bg-blackColor-dark hover:bg-primaryColor dark:hover:bg-primaryColor">
+                            <Link
+                                href="/checkout"
+                                className="text-size-13 text-whiteColor dark:text-whiteColor-dark dark:hover:text-whiteColor leading-1 px-5 py-18px md:px-10 bg-blackColor dark:bg-blackColor-dark hover:bg-primaryColor dark:hover:bg-primaryColor"
+                            >
                                 Checkout
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-30px">
-                        <div>
-                            <div className="px-30px pt-45px pb-50px leading-1.8 border border-borderColor dark:border-borderColor-dark rounded-5px">
-                                <div className="flex gap-x-4">
-                                    <h3 className="text-lg whitespace-nowrap font-medium text-blackColor dark:text-blackColor-dark mb-22px">
-                                        <span className="leading-1.2">
-                                            Estimate Shipping And Tax
-                                        </span>
-                                    </h3>
-                                    <div className="h-1px w-full bg-borderColor2 dark:bg-borderColor2-dark mt-2"></div>
-                                </div>
-                                <p className="text-contentColor dark:text-contentColor-dark mb-15px">
-                                    Enter your destination to get a shipping
-                                    estimate.
-                                </p>
-
-                                <form>
-                                    <div className="mb-5">
-                                        <label className="text-blackColor dark:text-blackColor-dark">
-                                            * Country
-                                        </label>
-                                        <select className="text-xs text-blackColor py-9px px-15px w-full rounded box-border border border-blackColor dark:border-blackColor-dark">
-                                            <option value="USA" selected="">
-                                                USA
-                                            </option>
-                                            <option value=" UK">UK</option>
-                                            <option value="Canada">
-                                                Canada
-                                            </option>
-                                            <option value="Russia">
-                                                Russia
-                                            </option>
-                                            <option value="price-ascending">
-                                                China
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div className="mb-5">
-                                        <label
-                                            className="text-blackColor dark:text-blackColor-dark"
-                                            htmlFor="zip"
-                                        >
-                                            * Zip/Postal Code
-                                        </label>
-                                        <input
-                                            type="text"
-                                            placeholder="Zip/Postal Code"
-                                            id="zip"
-                                            className="text-xs text-blackColor py-11px px-15px w-full rounded box-border border border-borderColor dark:border-borderColor-dark focus:outline-none placeholder:text-placeholder placeholder:opacity-55"
-                                        />
-                                    </div>
-                                    <div>
-                                        <a
-                                            href="create-course.html"
-                                            className="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor rounded group text-nowrap"
-                                        >
-                                            Calculate shipping
-                                        </a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="px-30px pt-45px pb-50px leading-1.8 border border-borderColor dark:border-borderColor-dark rounded-5px">
-                                <div className="flex gap-x-4">
-                                    <h3 className="text-lg whitespace-nowrap font-medium text-blackColor dark:text-blackColor-dark mb-22px">
-                                        <span className="leading-1.2">
-                                            Cart Note
-                                        </span>
-                                    </h3>
-                                    <div className="h-1px w-full bg-borderColor2 dark:bg-borderColor2-dark mt-2"></div>
-                                </div>
-                                <p className="text-contentColor dark:text-contentColor-dark mb-15px">
-                                    Special instructions for seller
-                                </p>
-
-                                <form>
-                                    <div className="mb-5">
-                                        <textarea
-                                            className="text-xs text-blackColor py-11px px-15px w-full rounded box-border border border-borderColor2 dark:border-borderColor2-dark"
-                                            cols="30"
-                                            rows="4"
-                                        ></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="px-30px pt-45px pb-50px leading-1.8 border border-borderColor dark:border-borderColor-dark rounded-5px">
-                                <div className="flex gap-x-4">
-                                    <h3 className="text-lg whitespace-nowrap font-medium text-blackColor dark:text-blackColor-dark mb-9">
-                                        <span className="leading-1.2">
-                                            Cart Total
-                                        </span>
-                                    </h3>
-                                    <div className="h-1px w-full bg-borderColor2 dark:bg-borderColor2-dark mt-2"></div>
-                                </div>
-                                <h4 className="text-sm font-bold text-blackColor dark:text-blackColor-dark mb-5 flex justify-between items-center">
-                                    <span className="leading-1.2">
-                                        Cart Totals
-                                    </span>
-                                    <span className="leading-1.2 text-lg font-medium">
-                                        $189.00
-                                    </span>
-                                </h4>
-                                <div>
-                                    <button className="text-size-13 text-whiteColor dark:text-whiteColor-dark dark:hover:text-whiteColor leading-1 w-full px-10px py-18px bg-blackColor dark:bg-blackColor-dark hover:bg-primaryColor dark:hover:bg-primaryColor">
-                                        PROCEED TO CHECKOUT
-                                    </button>
-                                </div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </div>

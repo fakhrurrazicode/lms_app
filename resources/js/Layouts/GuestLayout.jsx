@@ -387,12 +387,12 @@ export default function GuestLayout({ children }) {
                                                         >
                                                             View Cart
                                                         </Link>
-                                                        <a
-                                                            href="#"
+                                                        <Link
+                                                            href="/checkout"
                                                             className="text-sm font-bold bg-darkblack dark:bg-darkblack-dark text-whiteColor dark:text-whiteColor-dark hover:bg-secondaryColor dark:hover:bg-secondaryColor text-center py-10px"
                                                         >
                                                             Checkout
-                                                        </a>
+                                                        </Link>
                                                     </div>
                                                 </div>
                                             </div>
