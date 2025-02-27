@@ -1,22 +1,25 @@
 <?php
 
-use App\Http\Controllers\Backend\ActivityLogController;
 use Inertia\Inertia;
+
+
 use App\Models\SubCourseCategory;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\ActivityLogController;
+use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
-use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSubCategoryController;
 use App\Http\Controllers\Backend\SubCourseCategoryController;
-use App\Http\Controllers\Backend\TagController;
-use App\Http\Controllers\PagesController;
+use App\Http\Controllers\StudentArea\StudentProfileController;
 use App\Http\Controllers\StudentArea\DashboardController as StudentAreaDashboardController;
 use App\Http\Controllers\InstructorArea\DashboardController as InstructorAreaDashboardController;
 
@@ -57,15 +60,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::group(['prefix' => '/student_area', 'as' => 'student-area.'], function () {
+    Route::group(['prefix' => '/student-area', 'as' => 'student-area.'], function () {
         Route::get('/', [StudentAreaDashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/student-profile/edit', [StudentProfileController::class, 'edit'])->name('student-profile.edit');
     });
 
     Route::group(['prefix' => '/instructor_area', 'as' => 'instructor-area.'], function () {
 
         Route::get('/', [InstructorAreaDashboardController::class, 'index'])->name('dashboard.index');
 
-        Route::get('/student-profile/edit', [StudentProfileController::class, 'edit'])->name('student-profile.edit');
+
         // Route::update('/student-profile/update', [StudentProfileController::class, 'update'])->name('student-profile.update');
         // Route::update('/student-profile/destroy', [StudentProfileController::class, 'destroy'])->name('student-profile.destroy');
     });

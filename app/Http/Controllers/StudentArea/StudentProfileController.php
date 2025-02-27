@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers\StudentArea;
+
 
 use Inertia\Inertia;
 use Inertia\Response;

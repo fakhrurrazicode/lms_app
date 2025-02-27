@@ -7,8 +7,6 @@ import { createRoot } from "react-dom/client";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
-console.log("using app.jsx");
-
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => {

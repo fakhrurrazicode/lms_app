@@ -22,7 +22,6 @@ class PagesController extends Controller
 
     public function index()
     {
-
         $latestCourses = Course::with(['course_category', 'instructor'])->orderBy('created_at', 'DESC')->limit(3)->get();
         return Inertia::render('Welcome', compact('latestCourses'));
     }

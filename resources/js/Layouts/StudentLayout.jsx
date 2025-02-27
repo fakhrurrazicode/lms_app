@@ -2925,21 +2925,21 @@ export default function UserLayout({ children }) {
                                                         <div className="content-wrapper">
                                                             <ul>
                                                                 <li>
-                                                                    <a
-                                                                        href="../dashboards/student-dashboard.html"
+                                                                    <Link
+                                                                        href="./student-area"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Dashboard
-                                                                    </a>
+                                                                    </Link>
                                                                 </li>
 
                                                                 <li>
-                                                                    <a
-                                                                        href="../dashboards/student-profile.html"
+                                                                    <Link
+                                                                        href="/student-area/student-profile/edit"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Profile
-                                                                    </a>
+                                                                    </Link>
                                                                 </li>
                                                                 <li>
                                                                     <a
@@ -3537,7 +3537,7 @@ export default function UserLayout({ children }) {
                 <div className="container pt-65px">
                     <div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 md:gap-y-0 items-center pb-45px border-b border-darkcolor">
-                            <div data-aos="fade-up">
+                            <div>
                                 <a href="#">
                                     <img
                                         src="../../assets/images/logo/logo_2.png"
@@ -3546,10 +3546,7 @@ export default function UserLayout({ children }) {
                                 </a>
                             </div>
                             <div>
-                                <form
-                                    className="max-w-form-xl md:max-w-form-md lg:max-w-form-lg xl:max-w-form-xl 2xl:max-w-form-2xl bg-deepgray ml-auto rounded relative"
-                                    data-aos="fade-up"
-                                >
+                                <form className="max-w-form-xl md:max-w-form-md lg:max-w-form-lg xl:max-w-form-xl 2xl:max-w-form-2xl bg-deepgray ml-auto rounded relative">
                                     <input
                                         type="email"
                                         placeholder="Enter your email here"
@@ -3568,10 +3565,7 @@ export default function UserLayout({ children }) {
 
                     <section>
                         <div className="grid grid-cols-12 gap-30px md:gap-y-5 lg:gap-y-0 pt-60px pb-50px md:pt-30px md:pb-30px lg:pt-110px lg:pb-20 mb-5">
-                            <div
-                                className="col-start-1 col-span-12 md:col-span-6 lg:col-span-4 mr-30px"
-                                data-aos="fade-up"
-                            >
+                            <div className="col-start-1 col-span-12 md:col-span-6 lg:col-span-4 mr-30px">
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
                                     About us
                                 </h4>
@@ -3581,10 +3575,7 @@ export default function UserLayout({ children }) {
                                     safe, and professional chauffeured car end
                                     service in major cities across World.
                                 </p>
-                                <ul
-                                    className="flex gap-3 lg:gap-2 2xl:gap-3"
-                                    data-aos="fade-up"
-                                >
+                                <ul className="flex gap-3 lg:gap-2 2xl:gap-3">
                                     <li>
                                         <a
                                             href="#"
@@ -3628,10 +3619,7 @@ export default function UserLayout({ children }) {
                                 </ul>
                             </div>
 
-                            <div
-                                className="col-start-1 col-span-12 md:col-start-7 lg:col-start-5 md:col-span-6 lg:col-span-2"
-                                data-aos="fade-up"
-                            >
+                            <div className="col-start-1 col-span-12 md:col-start-7 lg:col-start-5 md:col-span-6 lg:col-span-2">
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
                                     Usefull Links
                                 </h4>
@@ -3679,10 +3667,7 @@ export default function UserLayout({ children }) {
                                 </ul>
                             </div>
 
-                            <div
-                                className="col-start-1 col-span-12 md:col-start-1 lg:col-start-7 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-60px"
-                                data-aos="fade-up"
-                            >
+                            <div className="col-start-1 col-span-12 md:col-start-1 lg:col-start-7 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-60px">
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
                                     Course
                                 </h4>
@@ -3730,10 +3715,7 @@ export default function UserLayout({ children }) {
                                 </ul>
                             </div>
 
-                            <div
-                                className="col-start-1 col-span-12 md:col-start-7 lg:col-start-10 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-50px"
-                                data-aos="fade-up"
-                            >
+                            <div className="col-start-1 col-span-12 md:col-start-7 lg:col-start-10 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-50px">
                                 <h4 className="text-size-22 font-bold text-whiteColor mb-3">
                                     Recent Post
                                 </h4>

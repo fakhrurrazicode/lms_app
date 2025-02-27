@@ -1,5 +1,4 @@
 import "../../css/app.css";
-import "daisyui/dist/full.css"; // ✅ Correct way to load DaisyUI manually
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
@@ -17,7 +16,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-export default function AuthenticatedLayout({ header, children }) {
+export default function AdminLayout({ header, children }) {
     const { user, permissions } = usePage().props.auth;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =

@@ -27,6 +27,6 @@ export default {
         // }),
         forms,
         require("@tailwindcss/typography"),
-        require("daisyui"),
+        // require("daisyui"),
     ],
 };

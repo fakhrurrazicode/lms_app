@@ -13,7 +13,7 @@ import { Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 import { rupiah } from "@/bootstrap";
 
-export default function GuestLayout({ children }) {
+export default function PublicLayout({ children }) {
     const { auth, role } = usePage().props;
 
     console.log("auth", auth);

@@ -3,8 +3,10 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
+        "build:admin": "vite build --mode admin",
         "dev": "vite",
-         "start": "concurrently \"php artisan serve\" \"npm run dev\"",
+        "dev:admin": "vite --mode admin",
+        "start": "concurrently \"php artisan serve\" \"npm run dev\"",
         "iseed:all": "php artisan iseed activity_log,cache,cache_locks,course_categories,course_lectures,course_sections,course_sub_categories,courses,failed_jobs,job_batches,jobs,migrations,model_has_permissions,model_has_roles,password_reset_tokens,permissions,role_has_permissions,roles,sessions,sub_course_categories,users,tags --force -vv"
     },
     "devDependencies": {
@@ -16,7 +18,7 @@
         "autoprefixer": "^10.4.12",
         "axios": "^1.7.4",
         "concurrently": "^9.1.2",
-        "daisyui": "^4.12.23",
+        "daisyui": "^4.12.24",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.31",
         "react": "^18.2.0",
