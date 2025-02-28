@@ -3,11 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Models\CourseCategory;
-use App\Models\CourseSubCategory;
-use App\Models\User;
+use App\Models\SubCourseCategory;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CourseUpdateRequest extends FormRequest
+class SubCourseCategoryStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,17 +25,8 @@ class CourseUpdateRequest extends FormRequest
     {
         return [
             'course_category_id' => ['required', 'exists:' . CourseCategory::class . ',id'],
-            'course_sub_category_id' => ['required', 'exists:' . CourseSubCategory::class . ',id'],
-            'instructor_id' => ['required', 'exists:' . User::class . ',id'],
-
-            // 'image' => ['image'],
-            'title' => ['required'],
-            'slug' => ['required'],
-            'description' => ['required'],
-            'prerequisites' => ['required'],
-            'goals' => ['required'],
-            'duration' => ['required'],
-            'status' => ['required'],
+            'name' => ['required', 'max:50', 'unique:' . SubCourseCategory::class . ',name'],
+            'slug' => ['required', 'max:50', 'unique:' . SubCourseCategory::class . ',slug'],
         ];
     }
 }

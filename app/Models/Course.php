@@ -58,7 +58,10 @@ class Course extends BaseModel implements Cartable
         return $this->belongsTo(CourseCategory::class);
     }
 
-
+    public function course_sub_category()
+    {
+        return $this->belongsTo(CourseSubCategory::class);
+    }
 
     public function course_reviews()
     {
