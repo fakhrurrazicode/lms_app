@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 // use Binafy\LaravelCart\Models\Cart;
 use App\Models\CourseCategory;
 use App\Http\Requests\PaginateRequest;
+use App\Http\Requests\SubmitCheckoutRequest;
 use App\Models\Wishlist;
 use Binafy\LaravelCart\Models\CartItem;
 
@@ -164,5 +165,12 @@ class PagesController extends Controller
         // return $cart;
 
         return Inertia::render('Checkout', compact('cart'));
+    }
+
+    public function submitCheckout(SubmitCheckoutRequest $request)
+    {
+        $user = $request->user();
+        $cart = Cart::query()->firstOrCreate(['user_id' => $user->id]);
+        $cartItems = CartItem::where('cart_id', $cart->id)->get();
     }
 }

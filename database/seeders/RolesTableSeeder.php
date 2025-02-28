@@ -35,7 +35,7 @@ class RolesTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => '2025-02-03 09:06:00',
                 'updated_at' => '2025-02-03 09:06:00',
-                'redirect_url' => '/instructor_area',
+                'redirect_url' => '/instructor-area',
             ),
             2 => 
             array (
@@ -44,7 +44,7 @@ class RolesTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => '2025-02-03 09:06:05',
                 'updated_at' => '2025-02-03 09:06:05',
-                'redirect_url' => '/student_area',
+                'redirect_url' => '/student-area',
             ),
         ));
         

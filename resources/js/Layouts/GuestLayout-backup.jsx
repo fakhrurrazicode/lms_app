@@ -247,7 +247,7 @@ export default function GuestLayout({ children }) {
                             </div>
                             <div className="col-start-4 col-span-6">
                                 <form>
-                                    <div className="text-blackColor dark:text-blackColor-dark py-2 pl-15px border border-borderColor dark:border-borderColor-dark relative rounded-full">
+                                    <div className="text-blackColor dark:text-blackColor-dark py-2 pl-15px border border-borderColor dark:border-borderColor-dark relative rounded-full border-transparent">
                                         <input
                                             type="text"
                                             placeholder="Search Course"

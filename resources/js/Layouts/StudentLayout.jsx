@@ -5,14 +5,17 @@ import "../../edurock/edurock/assets/css/video-modal.css";
 import "../../edurock/edurock/assets/css/aos.css";
 import "../../edurock/edurock/assets/css/style.css";
 
+import "../../css/app.css";
+
 import appInit from "../../edurock/edurock/assets/js/main.js";
 
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
+import { rupiah } from "@/bootstrap";
 
 export default function UserLayout({ children }) {
-    const { user } = usePage().props.auth;
+    const { auth, role } = usePage().props;
 
     useEffect(() => {
         const onPageChange = () => {
@@ -158,7 +161,7 @@ export default function UserLayout({ children }) {
                 </div>
 
                 <div className="transition-all duration-500 sticky-header z-medium dark:bg-whiteColor-dark">
-                    <nav>
+                    <nav className="py-6">
                         <div className="py-15px lg:py-0 px-15px lg:container 3xl:container-secondary-lg 4xl:container mx-auto relative">
                             <div className="grid grid-cols-2 lg:grid-cols-12 items-center gap-15px">
                                 <div className="lg:col-start-1 lg:col-span-2">
@@ -178,7 +181,31 @@ export default function UserLayout({ children }) {
 
                                 <div className="hidden lg:block lg:col-start-3 lg:col-span-7">
                                     <ul className="nav-list flex justify-center">
-                                        <li className="nav-item group">
+                                        <li className="nav-item">
+                                            <Link
+                                                href="/"
+                                                className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
+                                            >
+                                                Beranda
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link
+                                                href="/courses"
+                                                className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
+                                            >
+                                                Kursus
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link
+                                                href="/become-an-instructor"
+                                                className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
+                                            >
+                                                Daftar Sebagai Instruktur
+                                            </Link>
+                                        </li>
+                                        {/* <li className="nav-item group">
                                             <a
                                                 href="#"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
@@ -214,13 +241,13 @@ export default function UserLayout({ children }) {
                                                             >
                                                                 <li>
                                                                     <a
-                                                                        href="../../index.html"
+                                                                        href="index.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-1.png"
+                                                                            src="assets/images/mega/home-1.png"
                                                                             className="w-full"
-                                                                            alt=""
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -230,12 +257,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-2.html"
+                                                                        href="home-2.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-2.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-2.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -245,12 +272,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-3.html"
+                                                                        href="home-3.html"
                                                                         className="overflow-hidden group/light relative block box-border shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-3.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-3.png"
+                                                                            alt="Mega Menu"
                                                                             className="w-full"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -261,12 +288,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-4.html"
+                                                                        href="home-4.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega//home-4.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega//home-4.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -277,12 +304,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-5.html"
+                                                                        href="home-5.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega//home-5.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega//home-5.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -293,12 +320,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-6.html"
+                                                                        href="home-6.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-5px"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-6.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-6.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -311,12 +338,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-7.html"
+                                                                        href="home-7.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-7.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-7.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -329,12 +356,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-8.html"
+                                                                        href="home-8.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-8.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-8.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -347,12 +374,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-9.html"
+                                                                        href="home-9.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-9.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-9.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -365,12 +392,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-10.html"
+                                                                        href="home-10.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-10.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-10.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -384,12 +411,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-11.html"
+                                                                        href="home-11.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-11.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-11.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -407,8 +434,8 @@ export default function UserLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/coming.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/coming.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Layout
@@ -424,8 +451,8 @@ export default function UserLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/coming.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/coming.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Layout
@@ -441,8 +468,8 @@ export default function UserLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/coming.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/coming.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Layout
@@ -458,8 +485,8 @@ export default function UserLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/coming.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/coming.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Layout
@@ -482,13 +509,13 @@ export default function UserLayout({ children }) {
                                                             >
                                                                 <li>
                                                                     <a
-                                                                        href="../../index-dark.html"
+                                                                        href="index-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-1-dark.png"
+                                                                            src="assets/images/mega/home-1-dark.png"
                                                                             className="w-full"
-                                                                            alt=""
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -498,12 +525,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-2-dark.html"
+                                                                        href="home-2-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-2-dark.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-2-dark.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -513,12 +540,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-3-dark.html"
+                                                                        href="home-3-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-3-dark.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-3-dark.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -528,12 +555,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-4-dark.html"
+                                                                        href="home-4-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-4-dark.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-4-dark.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -544,12 +571,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-5-dark.html"
+                                                                        href="home-5-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-5-dark.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-5-dark.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
                                                                             Home
@@ -560,12 +587,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-6-dark.html"
+                                                                        href="home-6-dark.html"
                                                                         className="overflow-hidden group relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-5px"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-6-dark.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-6-dark.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -578,12 +605,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-7-dark.html"
+                                                                        href="home-7-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-7-dark.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-7-dark.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -596,12 +623,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-8-dark.html"
+                                                                        href="home-8-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-8-dark.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-8-dark.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -614,12 +641,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-9-dark.html"
+                                                                        href="home-9-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-9-dark.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-9-dark.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -632,12 +659,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-10-dark.html"
+                                                                        href="home-10-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-10-dark.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-10-dark.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -651,12 +678,12 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-11-dark.html"
+                                                                        href="home-11-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/home-11-dark.png"
-                                                                            alt=""
+                                                                            src="assets/images/mega/home-11-dark.png"
+                                                                            alt="Mega Menu"
                                                                         />
                                                                         <span className="bg-secondaryColor text-xs px-15px py-5px leading-1 text-white absolute top-5px left-5px rounded-standard">
                                                                             New
@@ -670,11 +697,11 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../home-11-dark.html"
+                                                                        href="home-11-dark.html"
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/coming-dark.png"
+                                                                            src="assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -691,7 +718,7 @@ export default function UserLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/coming-dark.png"
+                                                                            src="assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -708,7 +735,7 @@ export default function UserLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/coming-dark.png"
+                                                                            src="assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -725,7 +752,7 @@ export default function UserLayout({ children }) {
                                                                         className="overflow-hidden group/light relative block shadow-dropdown-card hover:shadow-dropdown-card-hover hover:-translate-y-[5px] rounded-standard dark:shadow-dropdown-card-dark"
                                                                     >
                                                                         <img
-                                                                            src="../../assets/images/mega/coming-dark.png"
+                                                                            src="assets/images/mega/coming-dark.png"
                                                                             alt=""
                                                                         />
                                                                         <span className="absolute left-0 w-full top-full group-hover/light:-translate-y-full bg-primaryColor text-sm leading-[1] p-10px text-center font-semibold text-whiteColor">
@@ -764,7 +791,7 @@ export default function UserLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="../../about.html"
+                                                                        href="about.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         About
@@ -776,7 +803,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../about-dark.html"
+                                                                        href="about-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         About
@@ -788,7 +815,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../blog.html"
+                                                                        href="blog.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Blog
@@ -796,7 +823,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../blog-dark.html"
+                                                                        href="blog-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Blog
@@ -805,7 +832,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../blog-details.html"
+                                                                        href="blog-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Blog
@@ -814,7 +841,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../blog-details-dark.html"
+                                                                        href="blog-details-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Blog
@@ -831,7 +858,7 @@ export default function UserLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="../../error.html"
+                                                                        href="error.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Error
@@ -839,7 +866,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../error-dark.html"
+                                                                        href="error-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Error
@@ -848,7 +875,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../event-details.html"
+                                                                        href="event-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Event
@@ -857,7 +884,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../zoom/zoom-meetings.html"
+                                                                        href="./pages/zoom/zoom-meetings.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Zoom
@@ -869,7 +896,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../zoom/zoom-meetings-dark.html"
+                                                                        href="./pages/zoom/zoom-meetings-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Zoom
@@ -879,7 +906,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../zoom/zoom-meeting-details.html"
+                                                                        href="./pages/zoom/zoom-meeting-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Zoom
@@ -896,7 +923,7 @@ export default function UserLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="../zoom/zoom-meeting-details-dark.html"
+                                                                        href="./pages/zoom/zoom-meeting-details-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Meeting
@@ -906,7 +933,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../login.html"
+                                                                        href="login.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Login
@@ -914,7 +941,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../login-dark.html"
+                                                                        href="login-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Login
@@ -923,7 +950,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../maintenance.html"
+                                                                        href="maintenance.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Maintenance
@@ -931,7 +958,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../maintenance-dark.html"
+                                                                        href="maintenance-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Maintenance
@@ -966,7 +993,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../contact.html"
+                                                                        href="contact.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Contact
@@ -974,7 +1001,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../contact-dark.html"
+                                                                        href="contact-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Contact
@@ -1015,7 +1042,7 @@ export default function UserLayout({ children }) {
 
                                                     <div className="pt-30px">
                                                         <img
-                                                            src="../../assets/images/mega/mega_menu_2.png"
+                                                            src="assets/images/mega/mega_menu_2.png"
                                                             alt="Mega Menu"
                                                             className="w-full rounded-standard"
                                                         />
@@ -1045,7 +1072,7 @@ export default function UserLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course.html"
+                                                                        href="course.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Grid
@@ -1057,7 +1084,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course-dark.html"
+                                                                        href="course-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1067,7 +1094,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course-dark.html"
+                                                                        href="course-grid.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1076,7 +1103,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course-grid-dark.html"
+                                                                        href="course-grid-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1086,7 +1113,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course-list.html"
+                                                                        href="course-list.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1095,7 +1122,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course-list-dark.html"
+                                                                        href="course-list-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1112,7 +1139,7 @@ export default function UserLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course-details.html"
+                                                                        href="course-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1121,7 +1148,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course-details-dark.html"
+                                                                        href="course-details-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1131,7 +1158,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course-details-2.html"
+                                                                        href="course-details-2.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1141,7 +1168,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course-details-2-dark.html"
+                                                                        href="course-details-2-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Details
@@ -1150,7 +1177,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course-details-3.html"
+                                                                        href="course-details-3.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Coures
@@ -1160,7 +1187,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../course-details-3-dark.html"
+                                                                        href="course-details-3-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Details
@@ -1176,7 +1203,7 @@ export default function UserLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <a
-                                                                        href="../dashboards/become-an-instructor.html"
+                                                                        href="./pages/dashboards/become-an-instructor.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Become
@@ -1186,7 +1213,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../dashboards/create-course.html"
+                                                                        href="./pages/dashboards/create-course.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Careate
@@ -1198,7 +1225,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../instructor.html"
+                                                                        href="instructor.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Instructor
@@ -1206,7 +1233,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../instructor-dark.html"
+                                                                        href="instructor-dark.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Instructor
@@ -1215,7 +1242,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../instructor-details.html"
+                                                                        href="instructor-details.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Instructor
@@ -1224,7 +1251,7 @@ export default function UserLayout({ children }) {
                                                                 </li>
                                                                 <li>
                                                                     <a
-                                                                        href="../../lesson.html"
+                                                                        href="lesson.html"
                                                                         className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor p-10px block hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-whiteColor dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                                     >
                                                                         Course
@@ -1239,7 +1266,7 @@ export default function UserLayout({ children }) {
 
                                                         <div>
                                                             <img
-                                                                src="../../assets/images/mega/mega_menu_1.png"
+                                                                src="assets/images/mega/mega_menu_1.png"
                                                                 alt="Mega Menu"
                                                                 className="w-full rounded-standard"
                                                             />
@@ -1250,7 +1277,7 @@ export default function UserLayout({ children }) {
                                         </li>
                                         <li className="nav-item group relative">
                                             <a
-                                                href="instructor-dashboard.html"
+                                                href="./pages/dashboards/instructor-dashboard.html"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
                                                 Dashboard
@@ -1265,7 +1292,7 @@ export default function UserLayout({ children }) {
                                                     <ul>
                                                         <li className="relative group/nested">
                                                             <a
-                                                                href="../dashboards/admin-dashboard.html"
+                                                                href="./pages/dashboards/admin-dashboard.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg flex justify-between items-center dark:bg-whiteColor-dark dark:text-contentColor-dark dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                             >
                                                                 Admin
@@ -1283,7 +1310,7 @@ export default function UserLayout({ children }) {
                                                                     <ul>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/admin-dashboard.html"
+                                                                                href="./pages/dashboards/admin-dashboard.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Admin
@@ -1292,7 +1319,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/admin-profile.html"
+                                                                                href="./pages/dashboards/admin-profile.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Admin
@@ -1301,7 +1328,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/admin-message.html"
+                                                                                href="./pages/dashboards/admin-message.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Message
@@ -1309,7 +1336,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/admin-course.html"
+                                                                                href="./pages/dashboards/admin-course.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Courses
@@ -1317,7 +1344,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/admin-reviews.html"
+                                                                                href="./pages/dashboards/admin-reviews.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Review
@@ -1325,7 +1352,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/admin-quiz-attempts.html"
+                                                                                href="./pages/dashboards/admin-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Admin
@@ -1334,7 +1361,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/admin-settings.html"
+                                                                                href="./pages/dashboards/admin-settings.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Setting
@@ -1346,7 +1373,7 @@ export default function UserLayout({ children }) {
                                                         </li>
                                                         <li className="relative group/nested">
                                                             <a
-                                                                href="instructor-dashboard.html"
+                                                                href="./pages/dashboards/instructor-dashboard.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg flex justify-between items-center dark:bg-whiteColor-dark dark:text-contentColor-dark dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                             >
                                                                 Instructor
@@ -1364,7 +1391,7 @@ export default function UserLayout({ children }) {
                                                                     <ul>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-dashboard.html"
+                                                                                href="./pages/dashboards/instructor-dashboard.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Ins.
@@ -1373,7 +1400,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-profile.html"
+                                                                                href="./pages/dashboards/instructor-profile.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Ins.
@@ -1382,7 +1409,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-message.html"
+                                                                                href="./pages/dashboards/instructor-message.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Message
@@ -1390,7 +1417,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-wishlist.html"
+                                                                                href="./pages/dashboards/instructor-wishlist.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Wishlist
@@ -1398,7 +1425,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-reviews.html"
+                                                                                href="./pages/dashboards/instructor-reviews.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Review
@@ -1406,7 +1433,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-my-quiz-attempts.html"
+                                                                                href="./pages/dashboards/instructor-my-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 My
@@ -1415,7 +1442,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-order-history.html"
+                                                                                href="./pages/dashboards/instructor-order-history.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Order
@@ -1424,7 +1451,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-course.html"
+                                                                                href="./pages/dashboards/instructor-course.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 My
@@ -1433,7 +1460,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-announcments.html"
+                                                                                href="./pages/dashboards/instructor-announcments.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Announcements
@@ -1441,7 +1468,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-quiz-attempts.html"
+                                                                                href="./pages/dashboards/instructor-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Quiz
@@ -1450,7 +1477,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-assignments.html"
+                                                                                href="./pages/dashboards/instructor-assignments.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Assignment
@@ -1458,7 +1485,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="instructor-settings.html"
+                                                                                href="./pages/dashboards/instructor-settings.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Settings
@@ -1470,7 +1497,7 @@ export default function UserLayout({ children }) {
                                                         </li>
                                                         <li className="relative group/nested">
                                                             <a
-                                                                href="../dashboards/student-dashboard.html"
+                                                                href="./pages/dashboards/student-dashboard.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg flex justify-between items-center dark:bg-whiteColor-dark dark:text-contentColor-dark dark:hover:bg-whitegrey1-dark dark:hover:text-primaryColor"
                                                             >
                                                                 Student
@@ -1488,7 +1515,7 @@ export default function UserLayout({ children }) {
                                                                     <ul>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/student-dashboard.html"
+                                                                                href="./pages/dashboards/student-dashboard.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Dashboard
@@ -1496,7 +1523,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/student-profile.html"
+                                                                                href="./pages/dashboards/student-profile.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Profile
@@ -1504,7 +1531,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/student-message.html"
+                                                                                href="./pages/dashboards/student-message.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Message
@@ -1512,7 +1539,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/student-enrolled-courses.html"
+                                                                                href="./pages/dashboards/student-enrolled-courses.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Enrolled
@@ -1521,7 +1548,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/student-wishlist.html"
+                                                                                href="./pages/dashboards/student-wishlist.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Wishlist
@@ -1529,7 +1556,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/student-reviews.html"
+                                                                                href="./pages/dashboards/student-reviews.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Review
@@ -1537,7 +1564,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/student-my-quiz-attempts.html"
+                                                                                href="./pages/dashboards/student-my-quiz-attempts.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 My
@@ -1546,7 +1573,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/student-assignments.html"
+                                                                                href="./pages/dashboards/student-assignments.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Assignment
@@ -1554,7 +1581,7 @@ export default function UserLayout({ children }) {
                                                                         </li>
                                                                         <li>
                                                                             <a
-                                                                                href="../dashboards/student-settings.html"
+                                                                                href="./pages/dashboards/student-settings.html"
                                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                                             >
                                                                                 Setting
@@ -1570,7 +1597,7 @@ export default function UserLayout({ children }) {
                                         </li>
                                         <li className="nav-item group relative">
                                             <a
-                                                href="../ecommerce/shop.html"
+                                                href="./pages/ecommerce/shop.html"
                                                 className="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor"
                                             >
                                                 eCommerce
@@ -1585,7 +1612,7 @@ export default function UserLayout({ children }) {
                                                     <ul>
                                                         <li>
                                                             <a
-                                                                href="../ecommerce/shop.html"
+                                                                href="./pages/ecommerce/shop.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Shop
@@ -1596,7 +1623,7 @@ export default function UserLayout({ children }) {
                                                         </li>
                                                         <li>
                                                             <a
-                                                                href="../ecommerce/product-details.html"
+                                                                href="./pages/ecommerce/product-details.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Product Details
@@ -1604,7 +1631,7 @@ export default function UserLayout({ children }) {
                                                         </li>
                                                         <li>
                                                             <a
-                                                                href="../ecommerce/cart.html"
+                                                                href="./pages/ecommerce/cart.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Cart
@@ -1612,7 +1639,7 @@ export default function UserLayout({ children }) {
                                                         </li>
                                                         <li>
                                                             <a
-                                                                href="../ecommerce/checkout.html"
+                                                                href="./pages/ecommerce/checkout.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Checkout
@@ -1620,7 +1647,7 @@ export default function UserLayout({ children }) {
                                                         </li>
                                                         <li>
                                                             <a
-                                                                href="../ecommerce/wishlist.html"
+                                                                href="./pages/ecommerce/wishlist.html"
                                                                 className="text-sm 2xl:text-base font-semibold text-contentColor border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor leading-sm lg:leading-lg 2xl:leading-lg dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark"
                                                             >
                                                                 Wishlist
@@ -1629,21 +1656,25 @@ export default function UserLayout({ children }) {
                                                     </ul>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </div>
 
                                 <div className="lg:col-start-10 lg:col-span-3">
-                                    <ul className="relative nav-list flex justify-end items-center">
+                                    <ul className="relative nav-list flex justify-end items-center gap-2">
                                         <li className="px-5 lg:px-10px 2xl:px-5 lg:py-4 2xl:py-26px 3xl:py-9 group">
                                             <a
                                                 href="../ecommerce/cart.html"
                                                 className="relative block"
                                             >
                                                 <i className="icofont-cart-alt text-2xl text-blackColor group-hover:text-secondaryColor transition-all duration-300 dark:text-blackColor-dark"></i>
-                                                <span className="absolute -top-1 2xl:-top-[5px] -right-[10px] lg:right-3/4 2xl:-right-[10px] text-[10px] font-medium text-white dark:text-whiteColor-dark bg-secondaryColor px-1 py-[2px] leading-1 rounded-full z-50 block">
-                                                    3
-                                                </span>
+                                                {auth.cart ? (
+                                                    <span className="absolute -top-1 2xl:-top-[5px] -right-[10px] lg:right-3/4 2xl:-right-[10px] text-[10px] font-medium text-white dark:text-whiteColor-dark bg-secondaryColor px-1 py-[2px] leading-1 rounded-full z-50 block">
+                                                        {auth.cart.items.length}
+                                                    </span>
+                                                ) : (
+                                                    <></>
+                                                )}
                                             </a>
 
                                             <div
@@ -1652,116 +1683,123 @@ export default function UserLayout({ children }) {
                                             >
                                                 <div className="shadow-dropdown-secodary max-w-dropdown3 w-2000 rounded-standard p-5 bg-white dark:bg-whiteColor-dark">
                                                     <ul className="flex flex-col gap-y-5 pb-5 mb-30px border-b border-borderColor dark:border-borderColor-dark">
-                                                        <li className="relative flex gap-x-15px items-center">
-                                                            <a href="../../course-details.html">
-                                                                <img
-                                                                    src="../../assets/images/grid/cart1.jpg"
-                                                                    alt="photo"
-                                                                    className="w-card-img py-[3px]"
-                                                                />
-                                                            </a>
-                                                            <div>
-                                                                <a
-                                                                    href="../../course-details.html"
-                                                                    className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
-                                                                >
-                                                                    web
-                                                                    dictionary
-                                                                </a>
-                                                                <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    1 x
-                                                                    <span className="text-secondaryColor">
-                                                                        $ 80.00
-                                                                    </span>
-                                                                </p>
-                                                            </div>
+                                                        {auth.cart &&
+                                                        auth.cart.items.length >
+                                                            0 ? (
+                                                            auth.cart.items.map(
+                                                                (item) => (
+                                                                    <li
+                                                                        key={
+                                                                            item.id
+                                                                        }
+                                                                        className="relative flex gap-x-15px items-center"
+                                                                    >
+                                                                        <a href="#">
+                                                                            <img
+                                                                                src={
+                                                                                    item
+                                                                                        .itemable
+                                                                                        .image_url
+                                                                                }
+                                                                                alt="photo"
+                                                                                className="w-card-img py-[3px]"
+                                                                            />
+                                                                        </a>
+                                                                        <div>
+                                                                            <a
+                                                                                href="#"
+                                                                                className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
+                                                                            >
+                                                                                {
+                                                                                    item
+                                                                                        .itemable
+                                                                                        .title
+                                                                                }
+                                                                            </a>
+                                                                            <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
+                                                                                1
+                                                                                x{" "}
+                                                                                <span className="text-secondaryColor">
+                                                                                    {rupiah(
+                                                                                        item
+                                                                                            .itemable
+                                                                                            .price
+                                                                                    )}
+                                                                                </span>
+                                                                            </p>
+                                                                        </div>
 
-                                                            <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                <i className="icofont-close-line"></i>
-                                                            </button>
-                                                        </li>
-                                                        <li className="relative flex gap-x-15px items-center">
-                                                            <a href="../../course-details.html">
-                                                                <img
-                                                                    src="../../assets/images/grid/cart2.jpg"
-                                                                    alt="photo"
-                                                                    className="w-card-img py-[3px]"
-                                                                />
-                                                            </a>
-                                                            <div>
-                                                                <a
-                                                                    href="../../course-details.html"
-                                                                    className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
-                                                                >
-                                                                    Design
-                                                                    Minois
-                                                                </a>
-                                                                <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    1 x
-                                                                    <span className="text-secondaryColor">
-                                                                        $ 60.00
-                                                                    </span>
-                                                                </p>
-                                                            </div>
-
-                                                            <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                <i className="icofont-close-line"></i>
-                                                            </button>
-                                                        </li>
-                                                        <li className="relative flex gap-x-15px items-center">
-                                                            <a href="../../course-details.html">
-                                                                <img
-                                                                    src="../../assets/images/grid/cart3.jpg"
-                                                                    alt="photo"
-                                                                    className="w-card-img py-[3px]"
-                                                                />
-                                                            </a>
-                                                            <div>
-                                                                <a
-                                                                    href="../../course-details.html"
-                                                                    className="text-sm text-darkblack hover:text-secondaryColor leading-5 block pb-2 capitalize dark:text-darkblack-dark dark:hover:text-secondaryColor"
-                                                                >
-                                                                    Crash Course
-                                                                </a>
-                                                                <p className="text-sm text-darkblack leading-5 block pb-5px dark:text-darkblack-dark">
-                                                                    1 x
-                                                                    <span className="text-secondaryColor">
-                                                                        $ 70.00
-                                                                    </span>
-                                                                </p>
-                                                            </div>
-
-                                                            <button className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor">
-                                                                <i className="icofont-close-line"></i>
-                                                            </button>
-                                                        </li>
+                                                                        <Link
+                                                                            method="DELETE"
+                                                                            href="/remove-from-cart"
+                                                                            preserveScroll={
+                                                                                true
+                                                                            }
+                                                                            preserveState={
+                                                                                true
+                                                                            }
+                                                                            data={{
+                                                                                itemable_id:
+                                                                                    item.itemable_id,
+                                                                                itemable_type:
+                                                                                    item.itemable_type,
+                                                                            }}
+                                                                            type="submit"
+                                                                            className="absolute block top-0 right-0 text-base text-contentColor leading-1 hover:text-secondaryColor dark:text-contentColor-dark dark:hover:text-secondaryColor"
+                                                                        >
+                                                                            <i className="icofont-close-line"></i>
+                                                                        </Link>
+                                                                    </li>
+                                                                )
+                                                            )
+                                                        ) : (
+                                                            <li className="relative flex gap-x-15px items-center">
+                                                                <span className="text-base-300">
+                                                                    Belum ada
+                                                                    produk
+                                                                    terpilih.
+                                                                    <a
+                                                                        href="/courses"
+                                                                        className="text-primaryColor text-bold"
+                                                                    >
+                                                                        Lihat
+                                                                        Produk
+                                                                    </a>
+                                                                </span>
+                                                            </li>
+                                                        )}
                                                     </ul>
 
-                                                    <div>
-                                                        <p className="text-size-17 text-contentColor dark:text-contentColor-dark pb-5 flex justify-between">
-                                                            Total Price:
-                                                            <span className="font-bold text-secondaryColor">
-                                                                $ 210.00
-                                                            </span>
-                                                        </p>
-                                                    </div>
-
-                                                    <div className="flex flex-col gap-y-5">
-                                                        <a
-                                                            href="../ecommerce/cart.html"
-                                                            className="text-sm font-bold text-contentColor dark:text-contentColor-dark hover:text-whiteColor hover:bg-secondaryColor text-center py-10px border border-secondaryColor"
-                                                        >
-                                                            View Cart
-                                                        </a>
-                                                        <a
-                                                            href="../ecommerce/checkout.html"
-                                                            className="text-sm font-bold bg-darkblack dark:bg-darkblack-dark text-whiteColor dark:text-whiteColor-dark hover:bg-secondaryColor dark:hover:bg-secondaryColor text-center py-10px"
-                                                        >
-                                                            Checkout
-                                                        </a>
-                                                    </div>
+                                                    {auth.cart &&
+                                                    auth.cart.items.length >
+                                                        0 ? (
+                                                        <div className="flex flex-col gap-y-5">
+                                                            <Link
+                                                                href="/cart"
+                                                                className="text-sm font-bold text-contentColor dark:text-contentColor-dark hover:text-whiteColor hover:bg-secondaryColor text-center py-10px border border-secondaryColor"
+                                                            >
+                                                                View Cart
+                                                            </Link>
+                                                            <Link
+                                                                href="/checkout"
+                                                                className="text-sm font-bold bg-darkblack dark:bg-darkblack-dark text-whiteColor dark:text-whiteColor-dark hover:bg-secondaryColor dark:hover:bg-secondaryColor text-center py-10px"
+                                                            >
+                                                                Checkout
+                                                            </Link>
+                                                        </div>
+                                                    ) : (
+                                                        <></>
+                                                    )}
                                                 </div>
                                             </div>
+                                        </li>
+                                        <li className="hidden lg:block">
+                                            <Link
+                                                href={role.redirect_url}
+                                                className="text-size-12 2xl:text-size-15 px-15px py-2 text-blackColor hover:text-whiteColor bg-whiteColor block hover:bg-primaryColor border border-borderColor1 rounded-standard font-semibold dark:text-blackColor-dark dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor dark:hover:border-primaryColor"
+                                            >
+                                                <i className="icofont-user-alt-5"></i>
+                                            </Link>
                                         </li>
                                         <li className="hidden lg:block">
                                             <Link
@@ -2926,7 +2964,7 @@ export default function UserLayout({ children }) {
                                                             <ul>
                                                                 <li>
                                                                     <Link
-                                                                        href="./student-area"
+                                                                        href="/student-area"
                                                                         className="leading-1 text-darkdeep1 text-sm pl-30px pt-3 pb-7px font-light hover:text-secondaryColor dark:text-whiteColor dark:hover:text-secondaryColor"
                                                                     >
                                                                         Dashboard
@@ -3176,14 +3214,14 @@ export default function UserLayout({ children }) {
                             <div className="flex items-center flex-wrap justify-center sm:justify-start">
                                 <div className="mr-5">
                                     <img
-                                        src="../../assets/images/teacher/teacher__2.png"
+                                        src={auth.user.photo_url}
                                         alt=""
                                         className="w-27 h-27 md:w-22 md:h-22 lg:w-27 lg:h-27 rounded-full p-1 border-2 border-darkdeep7 box-content"
                                     />
                                 </div>
                                 <div className="text-whiteColor font-bold text-center sm:text-start">
                                     <h5 className="text-2xl leading-1.24 mb-5px">
-                                        Hello
+                                        Hello {auth.user.name}
                                     </h5>
                                     <ul className="flex items-center gap-15px">
                                         <li className="text-sm font-normal flex items-center gap-0.5">
@@ -3268,12 +3306,12 @@ export default function UserLayout({ children }) {
                             <div className="lg:col-start-1 lg:col-span-3">
                                 <div className="p-30px pt-5 lg:p-5 2xl:p-30px 2xl:pt-5 rounded-lg2 shadow-accordion dark:shadow-accordion-dark bg-whiteColor dark:bg-whiteColor-dark">
                                     <h5 className="text-sm leading-1 font-semibold uppercase text-contentColor dark:text-contentColor-dark bg-lightGrey5 dark:bg-whiteColor-dark p-10px pb-7px mt-5 mb-10px">
-                                        WELCOME, {user.name}
+                                        WELCOME, {auth.user.name}
                                     </h5>
                                     <ul>
                                         <li className="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                            <a
-                                                href="student-dashboard.html"
+                                            <Link
+                                                href="/student-area"
                                                 className="text-primaryColor hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"
                                             >
                                                 <svg
@@ -3292,11 +3330,11 @@ export default function UserLayout({ children }) {
                                                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
                                                 </svg>
                                                 Dashboard
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                            <a
-                                                href="student-profile.html"
+                                            <Link
+                                                href="/student-area/student-profile/edit"
                                                 className="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"
                                             >
                                                 <svg
@@ -3319,7 +3357,7 @@ export default function UserLayout({ children }) {
                                                     ></circle>
                                                 </svg>
                                                 My Profile
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className="py-10px border-b border-borderColor dark:border-borderColor-dark flex justify-between items-center">
                                             <a

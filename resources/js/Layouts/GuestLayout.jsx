@@ -13,6 +13,8 @@ import { Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 import { rupiah } from "@/bootstrap";
 
+// localStorage.removeItem("dark-mode");
+
 export default function GuestLayout({ children }) {
     const { auth, role } = usePage().props;
 
@@ -252,7 +254,7 @@ export default function GuestLayout({ children }) {
                                         <input
                                             type="text"
                                             placeholder="Search Course"
-                                            className="w-full focus:outline-none bg-transparent placeholder:text-darkdeep4"
+                                            className="w-full !focus:outline-none bg-transparent placeholder:text-darkdeep4 border-none focus:border-none"
                                         />
                                         <button
                                             type="submit"
@@ -373,15 +375,6 @@ export default function GuestLayout({ children }) {
                                                             </li>
                                                         )}
                                                     </ul>
-
-                                                    {/* <div>
-                                                        <p className="text-size-17 text-contentColor dark:text-contentColor-dark pb-5 flex justify-between">
-                                                            Total Price:
-                                                            <span className="font-bold text-secondaryColor">
-                                                                $ 210.00
-                                                            </span>
-                                                        </p>
-                                                    </div> */}
 
                                                     {auth.cart &&
                                                     auth.cart.items.length >

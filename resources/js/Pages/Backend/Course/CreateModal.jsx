@@ -14,7 +14,7 @@ export default function CreateModal({ isOpen, setIsOpen }) {
     const { data, setData, post, errors, reset, processing, progress } =
         useForm({
             course_category_id: "",
-            course_sub_category_id: "",
+            // course_sub_category_id: "",
             instructor_id: "",
 
             title: "",
@@ -218,7 +218,7 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                                 )}
                             </label>
 
-                            <label className="form-control mb-6 w-1/3">
+                            {/* <label className="form-control mb-6 w-1/3">
                                 <div className="label">
                                     <span className="label-text">
                                         Course Sub Category
@@ -252,7 +252,7 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                                         </span>
                                     </div>
                                 )}
-                            </label>
+                            </label> */}
                         </div>
 
                         <div className="flex gap-6">

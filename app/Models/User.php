@@ -18,6 +18,13 @@ class User extends Authenticatable
 
     protected $with = ['cart'];
 
+    protected $appends = ['photo_url'];
+
+    public function getPhotoUrlAttribute()
+    {
+        return $this->photo ? url('/storage/' . $this->photo) : asset('assets/images/no-image.jpeg');
+    }
+
 
     public function getActivitylogOptions(): LogOptions
     {

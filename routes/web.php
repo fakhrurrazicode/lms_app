@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/toggle-wishlist', [PagesController::class, 'toggleWishlist'])->name('page.toggle-wishlist');
 
     Route::get('/checkout', [PagesController::class, 'checkout'])->name('page.checkout');
+    Route::post('/submit-checkout', [PagesController::class, 'submitCheckout'])->name('page.submit-checkout');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -62,7 +63,10 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => '/student-area', 'as' => 'student-area.'], function () {
         Route::get('/', [StudentAreaDashboardController::class, 'index'])->name('dashboard.index');
-        Route::get('/student-profile/edit', [StudentProfileController::class, 'edit'])->name('student-profile.edit');
+
+        Route::get('/student-profile', [StudentProfileController::class, 'edit'])->name('student-profile.edit');
+        Route::patch('/student-profile', [StudentProfileController::class, 'update'])->name('student-profile.update');
+        Route::delete('/student-profile', [StudentProfileController::class, 'destroy'])->name('student-profile.destroy');
     });
 
     Route::group(['prefix' => '/instructor_area', 'as' => 'instructor-area.'], function () {

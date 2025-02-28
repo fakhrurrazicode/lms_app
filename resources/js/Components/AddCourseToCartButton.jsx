@@ -5,7 +5,7 @@ import React from "react";
 export default function AddCourseToCartButton({ course }) {
     const { auth } = usePage().props;
 
-    const itemExists = cartItems.some((item) => {
+    const itemExists = auth.cart.items.some((item) => {
         return (
             item.itemable_id == course.id &&
             item.itemable_type == "App\\Models\\Course"

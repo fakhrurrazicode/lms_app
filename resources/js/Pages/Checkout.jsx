@@ -1,9 +1,22 @@
 import { rupiah } from "@/bootstrap";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, useForm } from "@inertiajs/react";
 import { Trash } from "lucide-react";
 
 export default function Checkout({ auth, laravelVersion, phpVersion, cart }) {
+    const { data, setData, post, processing, errors } = useForm({
+        name: auth.user.name,
+        email: auth.user.email,
+        phone_number: auth.user.phone,
+        total_amount: 0,
+        invoice_number: "",
+        status: "",
+    });
+
+    function submit(e) {
+        e.preventDefault();
+        post("/");
+    }
     return (
         <GuestLayout>
             <section>
@@ -59,14 +72,17 @@ export default function Checkout({ auth, laravelVersion, phpVersion, cart }) {
 
             <section>
                 <div className="container py-50px lg:py-60px 2xl:py-20 3xl:py-100px">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-30px">
+                    <form
+                        onSubmit={submit}
+                        className="grid grid-cols-1 lg:grid-cols-2 gap-x-30px"
+                    >
                         <div>
                             <h4 className="text-xl text-blackColor dark:text-blackColor-dark font-bold pb-10px mb-5 border-b border-borderColor dark:border-borderColor-dark">
                                 <span className="leading-1.2">
                                     Billing Details
                                 </span>
                             </h4>
-                            <form>
+                            <div>
                                 {/* <div className="grid grid-cols-1 xl:grid-cols-2 lg:gap-x-30px gap-y-5 mb-5">
                                     <div>
                                         <label className="text-sm text-blackColor dark:text-blackColor-dark mb-5px block">
@@ -104,9 +120,19 @@ export default function Checkout({ auth, laravelVersion, phpVersion, cart }) {
                                         placeholder="Name"
                                         name="name"
                                         id="name"
-                                        value={auth.user.name}
+                                        value={data.name}
+                                        onChange={(e) =>
+                                            setData("name", e.target.value)
+                                        }
                                         className="w-full h-50px leading-50px px-5 bg-transparent text-sm focus:outline-none text-blackColor dark:text-blackColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80"
                                     />
+                                    {errors.name && (
+                                        <div className="label">
+                                            <span className="label-text-alt text-red-500 text-xs">
+                                                {errors.name}
+                                            </span>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="grid grid-cols-1 xl:grid-cols-2 lg:gap-x-30px gap-y-5 mb-5">
                                     <div>
@@ -118,11 +144,21 @@ export default function Checkout({ auth, laravelVersion, phpVersion, cart }) {
                                         <input
                                             type="email"
                                             placeholder="Your email"
-                                            value={auth.user.email}
+                                            value={data.email}
+                                            onChange={(e) =>
+                                                setData("email", e.target.value)
+                                            }
                                             name="email"
                                             id="email"
                                             className="w-full h-50px leading-50px px-5 bg-transparent text-sm focus:outline-none text-blackColor dark:text-blackColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80"
                                         />
+                                        {errors.email && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-red-500 text-xs">
+                                                    {errors.email}
+                                                </span>
+                                            </div>
+                                        )}
                                     </div>
                                     <div>
                                         <label className="text-sm text-blackColor dark:text-blackColor-dark mb-5px block">
@@ -133,11 +169,24 @@ export default function Checkout({ auth, laravelVersion, phpVersion, cart }) {
                                         <input
                                             type="text"
                                             placeholder="Phone Number"
-                                            value={auth.user.phone}
-                                            name="phone"
-                                            id="phone"
+                                            value={data.phone_number}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "phone_number",
+                                                    e.target.value
+                                                )
+                                            }
+                                            name="phone_number"
+                                            id="phone_number"
                                             className="w-full h-50px leading-50px px-5 bg-transparent text-sm focus:outline-none text-blackColor dark:text-blackColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80"
                                         />
+                                        {errors.phone_number && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-red-500 text-xs">
+                                                    {errors.phone_number}
+                                                </span>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="mb-5">
@@ -149,11 +198,23 @@ export default function Checkout({ auth, laravelVersion, phpVersion, cart }) {
                                     <input
                                         type="text"
                                         placeholder="Address"
-                                        value={auth.user.address}
+                                        value={data.address}
+                                        onChange={(e) =>
+                                            setData("address", e.target.value)
+                                        }
+                                        id="address"
+                                        name="address"
                                         className="w-full h-50px leading-50px px-5 bg-transparent text-sm focus:outline-none text-blackColor dark:text-blackColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80"
                                     />
+                                    {errors.address && (
+                                        <div className="label">
+                                            <span className="label-text-alt text-red-500 text-xs">
+                                                {errors.address}
+                                            </span>
+                                        </div>
+                                    )}
                                 </div>
-                            </form>
+                            </div>
                         </div>
 
                         <div className="p-10px lg:p-35px text-blackColor dark:text-blackColor-dark leading-1.8">
@@ -298,13 +359,16 @@ export default function Checkout({ auth, laravelVersion, phpVersion, cart }) {
                                 </div> */}
 
                                 <div className="mt-30px">
-                                    <button className="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
+                                    <button
+                                        type="submit"
+                                        className="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark"
+                                    >
                                         Place order
                                     </button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </section>
         </GuestLayout>

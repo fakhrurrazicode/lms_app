@@ -44,5 +44,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TagsTableSeeder::class);
 
         $this->call(CoursesTableSeeder::class);
+        $this->call(CartsTableSeeder::class);
     }
 }
