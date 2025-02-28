@@ -1,7 +1,8 @@
+import { minutesToHumanReadable } from "@/bootstrap";
 import React from "react";
 import { FaBook, FaClock, FaHeart, FaStar } from "react-icons/fa";
 
-export default function CourseCard() {
+export default function CourseCard({ course }) {
     return (
         <div className="card bg-base-100 w-full shadow-xl rounded-md">
             <a href="#" className="relative">
@@ -34,38 +35,44 @@ export default function CourseCard() {
 
                     <div className="flex justify-start items-center gap-2 text-xs">
                         <FaClock className="text-primary" />
-                        <span>1 hr 30 min</span>
+                        <span>{minutesToHumanReadable(course.duration)}</span>
                     </div>
                 </div>
                 <a href="#" className="card-title mb-2 text-lg">
-                    Foundation course to under stand about softwere
+                    {course.title}
                 </a>
                 <p className="mb-2 font-bold text-sm">
                     <span className="text-primary">$32.00</span>{" "}
                     <span className="text-gray-400">/ $67.00</span>
                 </p>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 pt-[15px] border-t border-borderColor">
+                <div className="grid grid-cols-1 md:grid-cols-2 pt-[15px] border-t border-borderColor">
                     <div>
-                        <a
-                            href="instructor-details.html"
-                            class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
-                        >
-                            <img
-                                class="w-[30px] h-[30px] rounded-full mr-[15px]"
-                                src="/images/grids/grid_small_1.jpg"
-                                alt=""
-                            />
-                            <span class="flex">Micle john</span>
-                        </a>
+                        {course.instructor ? (
+                            <a
+                                href="instructor-details.html"
+                                className="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"
+                            >
+                                <img
+                                    className="w-[30px] h-[30px] rounded-full mr-[15px]"
+                                    src="/images/grids/grid_small_1.jpg"
+                                    alt=""
+                                />
+                                <span className="flex">
+                                    {course.instructor.name}
+                                </span>
+                            </a>
+                        ) : (
+                            <></>
+                        )}
                     </div>
-                    <div class="text-start md:text-end flex justify-end gap-1 items-center">
+                    <div className="text-start md:text-end flex justify-end gap-1 items-center">
                         <FaStar className="text-xs text-yellow-400" />
                         <FaStar className="text-xs text-yellow-400" />
                         <FaStar className="text-xs text-yellow-400" />
                         <FaStar className="text-xs text-yellow-400" />
                         <FaStar className="text-xs text-yellow-400" />
-                        <span class="text-xs text-lightGrey6">(44)</span>
+                        <span className="text-xs text-lightGrey6">(44)</span>
                     </div>
                 </div>
                 {/* <div className="card-actions justify-end">

@@ -8,7 +8,7 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
     const previewImageRef = useRef(null);
 
     const {
-        props: { courseCategories, courseSubCategories, instructors },
+        props: { courseCategories, instructors },
     } = usePage();
 
     const { data, setData, post, errors, reset } = useForm({
@@ -43,12 +43,6 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
         });
     }, [course]);
 
-    // useEffect(() => {
-    //     reloadCourseSubCategories({
-    //         courseCategoryId: course ? course.course_category_id : "",
-    //     });
-    // }, [data.course_sub_category_id]);
-
     const onSubmitHandler = (e) => {
         e.preventDefault();
         post("/backend/course/" + course.id, {
@@ -73,9 +67,9 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
                 setData("slug", slugify(e.target.value).toLowerCase());
                 break;
             case "course_category_id":
-                reloadCourseSubCategories({
-                    courseCategoryId: e.target.value,
-                });
+            // reloadCourseSubCategories({
+            //     courseCategoryId: e.target.value,
+            // });
             case "image":
                 const file = e.target.files[0];
 
@@ -97,14 +91,14 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
         }
     };
 
-    const reloadCourseSubCategories = ({ courseCategoryId = null }) => {
-        router.reload({
-            only: ["courseSubCategories"],
-            data: {
-                selected_course_category_id: courseCategoryId,
-            },
-        });
-    };
+    // const reloadCourseSubCategories = ({ courseCategoryId = null }) => {
+    //     router.reload({
+    //         only: ["courseSubCategories"],
+    //         data: {
+    //             selected_course_category_id: courseCategoryId,
+    //         },
+    //     });
+    // };
 
     return (
         <ReactModal
@@ -112,7 +106,7 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
             isOpen={isOpen}
             onAfterOpen={() => {
                 router.reload({
-                    only: ["courseSubCategories"],
+                    // only: ["courseSubCategories"],
                     data: {
                         selected_course_category_id: course
                             ? course.course_category_id
@@ -247,7 +241,7 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
                                 )}
                             </label>
 
-                            <label className="form-control mb-6 w-1/3">
+                            {/* <label className="form-control mb-6 w-1/3">
                                 <div className="label">
                                     <span className="label-text">
                                         Course Sub Category
@@ -281,7 +275,7 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
                                         </span>
                                     </div>
                                 )}
-                            </label>
+                            </label> */}
                         </div>
 
                         <div className="flex gap-6">
@@ -443,9 +437,9 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
                             onClick={(e) => {
                                 e.preventDefault;
                                 reset();
-                                reloadCourseSubCategories({
-                                    courseCategoryId: null,
-                                });
+                                // reloadCourseSubCategories({
+                                //     courseCategoryId: null,
+                                // });
                                 setIsOpen(false);
                             }}
                         >
