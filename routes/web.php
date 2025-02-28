@@ -1,31 +1,13 @@
 <?php
 
 use Inertia\Inertia;
-
-
-use App\Models\SubCourseCategory;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
-use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Backend\TagController;
-use App\Http\Controllers\Backend\RoleController;
-use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\Backend\CourseController;
-use App\Http\Controllers\Backend\PermissionController;
-use App\Http\Controllers\Backend\ActivityLogController;
-use App\Http\Controllers\Backend\CourseLectureController;
-use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
-use App\Http\Controllers\Backend\CourseSubCategoryController;
-use App\Http\Controllers\Backend\SubCourseCategoryController;
-use App\Http\Controllers\StudentArea\StudentProfileController;
-use App\Http\Controllers\StudentArea\DashboardController as StudentAreaDashboardController;
-use App\Http\Controllers\InstructorArea\DashboardController as InstructorAreaDashboardController;
 
 // Route::get('/', function () {
-
-//     // return redirect('/login');
 //     return Inertia::render('Welcome', [
 //         'canLogin' => Route::has('login'),
 //         'canRegister' => Route::has('register'),
@@ -34,79 +16,20 @@ use App\Http\Controllers\InstructorArea\DashboardController as InstructorAreaDas
 //     ]);
 // });
 
-Route::get('/', [PagesController::class, 'index'])->name('page.home');
-Route::get('/courses', [PagesController::class, 'courses'])->name('page.courses');
-Route::get('/course/{slug}', [PagesController::class, 'course'])->name('page.course');
-Route::get('/become-an-instructor', [PagesController::class, 'become_an_instructor'])->name('page.become-an-instructor');
-
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/courses', [PageController::class, 'courses'])->name('courses');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-
-
-    Route::get('/cart', [PagesController::class, 'cart'])->name('page.cart');
-    Route::post('/add-to-cart', [PagesController::class, 'addToCart'])->name('page.add-to-cart');
-    Route::delete('/remove-from-cart', [PagesController::class, 'removeFromCart'])->name('page.remove-from-cart');
-    Route::delete('/clear-cart', [PagesController::class, 'clearCart'])->name('page.clear-cart');
-
-    Route::post('/toggle-wishlist', [PagesController::class, 'toggleWishlist'])->name('page.toggle-wishlist');
-
-    Route::get('/checkout', [PagesController::class, 'checkout'])->name('page.checkout');
-    Route::post('/submit-checkout', [PagesController::class, 'submitCheckout'])->name('page.submit-checkout');
-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::group(['prefix' => '/student-area', 'as' => 'student-area.'], function () {
-        Route::get('/', [StudentAreaDashboardController::class, 'index'])->name('dashboard.index');
-
-        Route::get('/student-profile', [StudentProfileController::class, 'edit'])->name('student-profile.edit');
-        Route::patch('/student-profile', [StudentProfileController::class, 'update'])->name('student-profile.update');
-        Route::delete('/student-profile', [StudentProfileController::class, 'destroy'])->name('student-profile.destroy');
-    });
-
-    Route::group(['prefix' => '/instructor_area', 'as' => 'instructor-area.'], function () {
-
-        Route::get('/', [InstructorAreaDashboardController::class, 'index'])->name('dashboard.index');
-
-
-        // Route::update('/student-profile/update', [StudentProfileController::class, 'update'])->name('student-profile.update');
-        // Route::update('/student-profile/destroy', [StudentProfileController::class, 'destroy'])->name('student-profile.destroy');
-    });
-
     Route::group(['prefix' => '/backend', 'as' => 'backend.'], function () {
-
-        Route::resource('/role', RoleController::class)->only(['index', 'store', 'update', 'destroy']);
-        Route::put('/role/{role}/set-permission', [RoleController::class, 'setPermission'])->name('role.set-permission');
-
-        Route::resource('/permission', PermissionController::class)->only(['index', 'store', 'update', 'destroy']);
-        Route::put('/permission/{permission}/set-role', [PermissionController::class, 'setRole'])->name('role.set-role');
-
-        Route::resource('/user', UserController::class)->only(['index', 'store', 'update', 'destroy']);;
-        Route::put('/user/{user}/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
-
         Route::resource('/course_category', CourseCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
-        Route::resource('/tag', TagController::class)->only(['index', 'store', 'update', 'destroy']);
-
-        // Route::resource('/sub_course_category', SubCourseCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
-        // Route::get('/sub_course_category/data/{course_category?}', [SubCourseCategoryController::class, 'data'])->name('sub_course_category.data');
-
-        Route::resource('/course_sub_category', CourseSubCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
-        Route::get('/course_sub_category/data/{course_category?}', [CourseSubCategoryController::class, 'data'])->name('course_sub_category.data');
-
-        Route::resource('/course', CourseController::class)->only(['index', 'store', 'destroy']);
-        Route::post('/course/{course}', [CourseController::class, 'update'])->name('course.update');
-
-        Route::resource('/course_section', CourseSectionController::class)->only(['index', 'store', 'update', 'destroy']);
-
-        Route::resource('/course_lecture', CourseLectureController::class)->only(['index', 'store', 'destroy']);
-        Route::post('/course_lecture/{course_lecture}', [CourseLectureController::class, 'update'])->name('course_lecture.update');
-
-        Route::resource('/activity_log', ActivityLogController::class)->only(['index']);
     });
 });
 

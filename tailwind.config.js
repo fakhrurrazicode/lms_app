@@ -1,10 +1,8 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
-import plugin from "tailwindcss";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-    darkMode: false,
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
@@ -15,19 +13,10 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                sans: ["Inter", ...defaultTheme.fontFamily.sans],
             },
         },
     },
 
-    plugins: [
-        // plugin(function ({ addBase }) {
-        //     addBase({
-        //         html: { fontSize: "9px" },
-        //     });
-        // }),
-        forms,
-        require("@tailwindcss/typography"),
-        // require("daisyui"),
-    ],
+    plugins: [forms, require("daisyui")],
 };
