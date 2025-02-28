@@ -26,7 +26,6 @@ class CourseUpdateRequest extends FormRequest
     {
         return [
             'course_category_id' => ['required', 'exists:' . CourseCategory::class . ',id'],
-            'course_sub_category_id' => ['required', 'exists:' . CourseSubCategory::class . ',id'],
             'instructor_id' => ['required', 'exists:' . User::class . ',id'],
 
             // 'image' => ['image'],

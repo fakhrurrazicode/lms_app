@@ -2,8 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use Binafy\LaravelCart\Models\Cart;
-use Closure;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -35,25 +33,7 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
-                'permissions' => $request->user() ? $request->user()->getAllPermissions()->pluck('name') : [],
-                'cart' => $request->user()
-                    ? Cart::with('items.itemable')->where('user_id', $request->user()->id)->first()
-                    : null
             ],
-            'role' => function () use ($request) {
-                $user = $request->user();
-                return $user ? $user->roles[0] : null;
-            },
         ];
-    }
-
-    public function handle(Request $request, Closure $next)
-    {
-        if ($request->is('/backend/*')) {
-            $this->rootView = 'admin';
-        } else {
-            $this->rootView = 'app';
-        }
-        return parent::handle($request, $next);
     }
 }

@@ -41,7 +41,7 @@ class CourseController extends Controller
             'courses' => $courses,
             'request' => $request,
             'courseCategories' => CourseCategory::all(),
-            'courseSubCategories' => fn() => CourseSubCategory::where('course_category_id', $selected_course_category_id)->get() ?? [],
+            // 'courseSubCategories' => fn() => CourseSubCategory::where('course_category_id', $selected_course_category_id)->get() ?? [],
             'instructors' => User::role('instructor')->get(),
             'courseSections' => fn() => CourseSection::with(['course_lectures'])->where('course_id', $selected_course_id)->get() ?? [],
         ]);
