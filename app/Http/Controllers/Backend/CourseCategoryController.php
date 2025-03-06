@@ -8,6 +8,7 @@ use App\Http\Requests\CourseCategoryUpdateRequest;
 use App\Http\Requests\PaginateRequest;
 use App\Models\CourseCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class CourseCategoryController extends Controller
@@ -33,7 +34,7 @@ class CourseCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Backend/CourseCategory/Create');
     }
 
     /**
@@ -56,9 +57,9 @@ class CourseCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(CourseCategory $course_category)
     {
-        //
+        return Inertia::render('Backend/CourseCategory/Edit', compact('course_category'));
     }
 
     /**

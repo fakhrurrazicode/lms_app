@@ -1,13 +1,13 @@
 import CourseCard from "@/Components/CourseCard";
-import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, usePage } from "@inertiajs/react";
+import FrontendLayout from "@/Layouts/FrontendLayout";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import React from "react";
 import { FaBook, FaClock, FaHeart } from "react-icons/fa";
 
 export default function Courses() {
-    const { courses, course_categories } = usePage().props;
+    const { courses, course_categories, request } = usePage().props;
     return (
-        <GuestLayout
+        <FrontendLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     Dashboard
@@ -20,7 +20,7 @@ export default function Courses() {
                 <div className="flex justify-between items-center py-6">
                     <div>
                         <p>
-                            howing {courses.from}–{courses.to} of{" "}
+                            Showing {courses.from}–{courses.to} of{" "}
                             {courses.total} Results
                         </p>
                     </div>
@@ -38,6 +38,17 @@ export default function Courses() {
                                     type="text"
                                     placeholder="Search Courses"
                                     className="input input-bordered w-full "
+                                    onChange={(e) =>
+                                        router.reload({
+                                            preserveScroll: true,
+                                            preserveState: true,
+                                            data: {
+                                                ...request,
+                                                search: e.target.value,
+                                                page: 1,
+                                            },
+                                        })
+                                    }
                                 />
                             </div>
                         </div>
@@ -50,7 +61,10 @@ export default function Courses() {
                                 <ul className="flex flex-col gap-y-4">
                                     {course_categories.map(
                                         (course_category) => (
-                                            <li className="border border-2px rounded-md px-4 py-3 group hover:bg-primary hover:text-white transition-all ease-in-out text-sm">
+                                            <li
+                                                key={course_category.id}
+                                                className="border border-2px dark:border-gray-800 rounded-md px-4 py-3 group hover:bg-primary hover:text-white transition-all ease-in-out text-sm"
+                                            >
                                                 <a
                                                     href="#"
                                                     className="flex justify-between items-center"
@@ -78,9 +92,30 @@ export default function Courses() {
                                 <CourseCard key={course.id} course={course} />
                             ))}
                         </div>
+
+                        <div className="flex justify-center">
+                            <div className="join">
+                                {courses.links.map((link, index) => {
+                                    return (
+                                        <Link
+                                            key={index}
+                                            href={link.url}
+                                            className="join-item btn"
+                                        >
+                                            {link.label
+                                                .replace(
+                                                    "&laquo; Previous",
+                                                    "<<"
+                                                )
+                                                .replace("Next &raquo;", ">>")}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-        </GuestLayout>
+        </FrontendLayout>
     );
 }

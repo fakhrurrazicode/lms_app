@@ -18,5 +18,27 @@ export default {
         },
     },
 
-    plugins: [forms, require("daisyui")],
+    plugins: [
+        forms,
+        require("daisyui"),
+        function ({ addComponents }) {
+            addComponents({
+                ".container": {
+                    maxWidth: "100%",
+                    "@screen sm": {
+                        maxWidth: 640 - 150 + "px",
+                    },
+                    "@screen md": {
+                        maxWidth: 768 - 150 + "px",
+                    },
+                    "@screen lg": {
+                        maxWidth: 1280 - 150 + "px",
+                    },
+                    "@screen xl": {
+                        maxWidth: 1400 - 150 + "px",
+                    },
+                },
+            });
+        },
+    ],
 };

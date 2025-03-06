@@ -1,24 +1,11 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
 import { Edit, KeyRound, Plus, Trash } from "lucide-react";
 import { useState } from "react";
 
-import CreateModal from "./CreateModal";
-import EditModal from "./EditModal";
-import DeleteModal from "./DeleteModal";
+import BackendLayout from "@/Layouts/BackendLayout";
 
 export default function Index({ request, courseCategories }) {
-    const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
-
-    const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-    const [underEditingCourseCategory, setUnderEditingCourseCategory] =
-        useState(null);
-
-    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-    const [underDeletingCourseCategory, setUnderDeletingCourseCategory] =
-        useState(null);
-
     const orderByOnClickHandler = (e) =>
         router.reload({
             preserveScroll: true,
@@ -37,8 +24,9 @@ export default function Index({ request, courseCategories }) {
                 })(),
             },
         });
+
     return (
-        <AuthenticatedLayout
+        <BackendLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     Course Categories
@@ -46,7 +34,6 @@ export default function Index({ request, courseCategories }) {
             }
         >
             <Head title="Dashboard" />
-
             <div className="py-12">
                 <div className="w-full sm:px-6 lg:px-8">
                     <div className="card bg-base-100 shadow-xl">
@@ -58,16 +45,15 @@ export default function Index({ request, courseCategories }) {
                             <div className="overflow-x-auto">
                                 <div className="mb-6 flex justify-between items-center">
                                     <div>
-                                        <button
+                                        <Link
                                             className="btn btn-primary"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                setCreateModalIsOpen(true);
-                                            }}
+                                            href={route(
+                                                "backend.course_category.create"
+                                            )}
                                         >
                                             <Plus size={16} />
                                             <span>Create new</span>
-                                        </button>
+                                        </Link>
                                     </div>
                                     <div className="flex gap-2">
                                         <label className="form-control w-full max-w-xs">
@@ -165,19 +151,15 @@ export default function Index({ request, courseCategories }) {
                                                         className="hover"
                                                     >
                                                         <th>
-                                                            <button
+                                                            <Link
+                                                                href={route(
+                                                                    "backend.course_category.edit",
+                                                                    {
+                                                                        course_category:
+                                                                            course_category,
+                                                                    }
+                                                                )}
                                                                 className="btn btn-accent btn-sm"
-                                                                onClick={(
-                                                                    e
-                                                                ) => {
-                                                                    e.preventDefault();
-                                                                    setUnderEditingCourseCategory(
-                                                                        course_category
-                                                                    );
-                                                                    setEditModalIsOpen(
-                                                                        true
-                                                                    );
-                                                                }}
                                                             >
                                                                 <Edit
                                                                     size={16}
@@ -185,20 +167,27 @@ export default function Index({ request, courseCategories }) {
                                                                 <span>
                                                                     Edit
                                                                 </span>
-                                                            </button>
+                                                            </Link>
 
                                                             <button
                                                                 className="btn btn-error btn-sm ml-1"
                                                                 onClick={(
                                                                     e
                                                                 ) => {
-                                                                    e.preventDefault();
-                                                                    setUnderDeletingCourseCategory(
-                                                                        course_category
-                                                                    );
-                                                                    setDeleteModalIsOpen(
-                                                                        true
-                                                                    );
+                                                                    confirm(
+                                                                        "Anda yakin ingin menghapus data " +
+                                                                            course_category.name +
+                                                                            "?"
+                                                                    )
+                                                                        ? router.delete(
+                                                                              route(
+                                                                                  "backend.course_category.destroy",
+                                                                                  {
+                                                                                      course_category,
+                                                                                  }
+                                                                              )
+                                                                          )
+                                                                        : null;
                                                                 }}
                                                             >
                                                                 <Trash
@@ -279,25 +268,6 @@ export default function Index({ request, courseCategories }) {
                     </div>
                 </div>
             </div>
-
-            <CreateModal
-                isOpen={createModalIsOpen}
-                setIsOpen={setCreateModalIsOpen}
-            />
-
-            <EditModal
-                isOpen={editModalIsOpen}
-                setIsOpen={setEditModalIsOpen}
-                courseCategory={underEditingCourseCategory}
-                setCourseCategory={setUnderEditingCourseCategory}
-            />
-
-            <DeleteModal
-                isOpen={deleteModalIsOpen}
-                setIsOpen={setDeleteModalIsOpen}
-                courseCategory={underDeletingCourseCategory}
-                setCourseCategory={setUnderDeletingCourseCategory}
-            />
-        </AuthenticatedLayout>
+        </BackendLayout>
     );
 }

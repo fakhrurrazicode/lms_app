@@ -1,11 +1,13 @@
-import GuestLayout from "@/Layouts/GuestLayout";
-import { Head } from "@inertiajs/react";
+import FrontendLayout from "@/Layouts/FrontendLayout";
+import { Head, usePage } from "@inertiajs/react";
 import React from "react";
 import { MdOutlineCheck } from "react-icons/md";
 
 export default function Home() {
+    const page = usePage();
+    console.log("page", page);
     return (
-        <GuestLayout>
+        <FrontendLayout>
             <Head title="Home" />
 
             <section id="hero" className="">
@@ -164,6 +166,6 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-        </GuestLayout>
+        </FrontendLayout>
     );
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\CourseSubCategoryController;
+use App\Http\Controllers\CartController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -27,6 +28,10 @@ use App\Http\Controllers\Backend\CourseSubCategoryController;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
+Route::get('/course/{slug}', [PageController::class, 'course'])->name('course');
+
+Route::resource('/cart', CartController::class)->only(['index', 'store']);
+Route::delete('/cart', [CartController::class, 'destroy'])->name('cart.destroy');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -44,17 +49,11 @@ Route::middleware('auth')->group(function () {
         Route::resource('/permission', PermissionController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::put('/permission/{permission}/set-role', [PermissionController::class, 'setRole'])->name('role.set-role');
 
-        Route::resource('/user', UserController::class)->only(['index', 'store', 'update', 'destroy']);;
+        Route::resource('/user', UserController::class);
         Route::put('/user/{user}/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
 
-        Route::resource('/course_category', CourseCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
-        Route::resource('/tag', TagController::class)->only(['index', 'store', 'update', 'destroy']);
-
-        // Route::resource('/sub_course_category', SubCourseCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
-        // Route::get('/sub_course_category/data/{course_category?}', [SubCourseCategoryController::class, 'data'])->name('sub_course_category.data');
-
-        Route::resource('/course_sub_category', CourseSubCategoryController::class)->only(['index', 'store', 'update', 'destroy']);
-        Route::get('/course_sub_category/data/{course_category?}', [CourseSubCategoryController::class, 'data'])->name('course_sub_category.data');
+        Route::resource('/course_category', CourseCategoryController::class);
+        Route::resource('/tag', TagController::class);
 
         Route::resource('/course', CourseController::class)->only(['index', 'store', 'destroy']);
         Route::post('/course/{course}', [CourseController::class, 'update'])->name('course.update');

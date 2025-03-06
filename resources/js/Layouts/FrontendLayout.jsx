@@ -4,9 +4,10 @@ import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
+import { FaCartArrowDown } from "react-icons/fa";
 
-export default function GuestLayout({ header, children }) {
-    const user = usePage().props.auth.user;
+export default function FrontendLayout({ header, children }) {
+    const { user, role, cart } = usePage().props.auth;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
@@ -96,6 +97,40 @@ export default function GuestLayout({ header, children }) {
 
                         {user ? (
                             <div className="hidden sm:ms-6 sm:flex sm:items-center">
+                                <div className="relative ms-3">
+                                    <Dropdown>
+                                        <Dropdown.Trigger>
+                                            <span className="inline-flex rounded-md">
+                                                <button
+                                                    type="button"
+                                                    className="inline-flex relative items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
+                                                >
+                                                    <FaCartArrowDown
+                                                        size={22}
+                                                    />
+                                                    <div className="badge badge-secondary scale-75 absolute -top-1 -right-6 z-50 ">
+                                                        {cart.items.length}
+                                                    </div>
+                                                </button>
+                                            </span>
+                                        </Dropdown.Trigger>
+
+                                        <Dropdown.Content>
+                                            <Dropdown.Link
+                                                href={route("cart.index")}
+                                            >
+                                                View Cart
+                                            </Dropdown.Link>
+                                            <Dropdown.Link
+                                                href={route("logout")}
+                                                method="post"
+                                                as="button"
+                                            >
+                                                Checkout
+                                            </Dropdown.Link>
+                                        </Dropdown.Content>
+                                    </Dropdown>
+                                </div>
                                 <div className="relative ms-3">
                                     <Dropdown>
                                         <Dropdown.Trigger>

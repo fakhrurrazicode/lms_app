@@ -15,3 +15,10 @@ export function minutesToHumanReadable(minutes) {
 
     return result.join(" ");
 }
+
+export const rupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+    }).format(number);
+};

@@ -4,9 +4,6 @@ import { Head, Link, router } from "@inertiajs/react";
 import { Edit, KeyRound, Plus, Trash } from "lucide-react";
 import { useState } from "react";
 
-import CreateModal from "./CreateModal";
-import EditModal from "./EditModal";
-import DeleteModal from "./DeleteModal";
 import EditPasswordModal from "./EditPasswordModal";
 
 export default function Index({ request, users, roles }) {
@@ -58,16 +55,13 @@ export default function Index({ request, users, roles }) {
                             <div className="overflow-x-auto">
                                 <div className="mb-6 flex justify-between items-center">
                                     <div>
-                                        <button
+                                        <Link
+                                            href={route("backend.user.create")}
                                             className="btn btn-primary"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                setCreateModalIsOpen(true);
-                                            }}
                                         >
                                             <Plus size={16} />
                                             <span>Create new</span>
-                                        </button>
+                                        </Link>
                                     </div>
                                     <div className="flex gap-2">
                                         <label className="form-control w-full max-w-xs">
@@ -272,31 +266,11 @@ export default function Index({ request, users, roles }) {
                 </div>
             </div>
 
-            <CreateModal
-                isOpen={createModalIsOpen}
-                setIsOpen={setCreateModalIsOpen}
-                roles={roles}
-            />
-
-            <EditModal
-                isOpen={editModalIsOpen}
-                setIsOpen={setEditModalIsOpen}
-                user={underEditingUser}
-                setUser={setUnderEditingUser}
-            />
-
             <EditPasswordModal
                 isOpen={editPasswordModalIsOpen}
                 setIsOpen={setEditPasswordModalIsOpen}
                 user={underEditingUser}
                 setUser={setUnderEditingUser}
-            />
-
-            <DeleteModal
-                isOpen={deleteModalIsOpen}
-                setIsOpen={setDeleteModalIsOpen}
-                user={underDeletingUser}
-                setUser={setUnderDeletingUser}
             />
         </AuthenticatedLayout>
     );

@@ -45,4 +45,20 @@ class PageController extends Controller
             'course_categories' => CourseCategory::whereHas('courses')->orderBy('name', 'asc')->get(),
         ]);
     }
+
+    public function course($slug)
+    {
+
+        $course = Course::where('slug', $slug)->with([
+            'instructor',
+            'course_category',
+            'course_reviews',
+            'course_sections.course_lectures',
+            'course_lectures'
+        ])->firstOrFail();
+
+
+        // return $course;
+        return Inertia::render('Course', compact('course'));
+    }
 }

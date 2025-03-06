@@ -29,7 +29,7 @@ class Course extends BaseModel implements Cartable
 
     public function getImageUrlAttribute()
     {
-        return $this->image ? url('/storage/' . $this->image) : asset('assets/images/no-image.jpeg');
+        return $this->image ? url('/storage/' . $this->image) : asset('images/dummy/no-image.jpeg');
     }
 
     public function getAverageStarsAttribute()
