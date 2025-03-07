@@ -63,11 +63,66 @@ export default function Courses() {
                                         (course_category) => (
                                             <li
                                                 key={course_category.id}
-                                                className="border border-2px dark:border-gray-800 rounded-md px-4 py-3 group hover:bg-primary hover:text-white transition-all ease-in-out text-sm"
+                                                className={
+                                                    request.course_category_ids &&
+                                                    request.course_category_ids.includes(
+                                                        course_category.id.toString()
+                                                    )
+                                                        ? "border border-2px dark:border-gray-800 rounded-md px-4 py-3 group bg-primary text-white transition-all ease-in-out text-sm"
+                                                        : "border border-2px dark:border-gray-800 rounded-md px-4 py-3 group hover:bg-primary hover:text-white transition-all ease-in-out text-sm"
+                                                }
                                             >
                                                 <a
                                                     href="#"
                                                     className="flex justify-between items-center"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        let new_course_category_ids =
+                                                            [];
+
+                                                        if (
+                                                            request.course_category_ids
+                                                        ) {
+                                                            if (
+                                                                request.course_category_ids.includes(
+                                                                    course_category.id.toString()
+                                                                )
+                                                            ) {
+                                                                new_course_category_ids =
+                                                                    request.course_category_ids.filter(
+                                                                        (
+                                                                            course_category_id
+                                                                        ) =>
+                                                                            course_category_id !==
+                                                                            course_category.id.toString()
+                                                                    );
+                                                            } else {
+                                                                new_course_category_ids =
+                                                                    [
+                                                                        ...request.course_category_ids,
+                                                                        course_category.id.toString(),
+                                                                    ];
+                                                            }
+                                                        } else {
+                                                            new_course_category_ids.push(
+                                                                course_category.id.toString()
+                                                            );
+                                                        }
+
+                                                        router.get(
+                                                            "/courses/",
+                                                            {
+                                                                ...request,
+                                                                course_category_ids:
+                                                                    new_course_category_ids,
+                                                                page: 1,
+                                                            },
+                                                            {
+                                                                preserveScroll: true,
+                                                                preserveState: true,
+                                                            }
+                                                        );
+                                                    }}
                                                 >
                                                     <span>
                                                         {course_category.name}

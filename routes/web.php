@@ -3,9 +3,11 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\StudentAreaController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CourseController;
@@ -15,7 +17,6 @@ use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\CourseSubCategoryController;
-use App\Http\Controllers\CartController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -30,14 +31,26 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
 Route::get('/course/{slug}', [PageController::class, 'course'])->name('course');
 
-Route::resource('/cart', CartController::class)->only(['index', 'store']);
-Route::delete('/cart', [CartController::class, 'destroy'])->name('cart.destroy');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
+    Route::resource('/cart', CartController::class)->only(['index', 'store']);
+    Route::delete('/cart', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    // student area
+    Route::group(['prefix' => '/student_area', 'as' => 'student_area.'], function () {
+        Route::get('/dashboard', [StudentAreaController::class, 'dashboard'])->name('dashboard');
+    });
+
+
+
+    // backend area
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

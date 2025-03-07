@@ -22,3 +22,12 @@ export const rupiah = (number) => {
         currency: "IDR",
     }).format(number);
 };
+
+export const itemIsExitsOnCart = (item, cart) => {
+    return cart.items.some((_item) => {
+        return (
+            _item.itemable_id == item.id &&
+            _item.itemable_type == "App\\Models\\Course"
+        );
+    });
+};

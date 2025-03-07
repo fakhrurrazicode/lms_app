@@ -11,9 +11,11 @@ import {
     FaChevronDown,
     FaParagraph,
     FaStar,
+    FaTrash,
     FaUserAlt,
 } from "react-icons/fa";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { itemIsExitsOnCart } from "@/bootstrap";
 
 const AccordionItem = ({ header, ...rest }) => (
     <Item
@@ -43,7 +45,12 @@ const AccordionItem = ({ header, ...rest }) => (
 );
 
 export default function Course() {
-    const { course } = usePage().props;
+    const { course, auth } = usePage().props;
+    console.log(
+        "itemIsExitsOnCart(course, auth.cart)",
+        itemIsExitsOnCart(course, auth.cart)
+    );
+
     return (
         <FrontendLayout
             header={
@@ -488,19 +495,39 @@ export default function Course() {
                                 </div>
 
                                 <div className="mb-6">
-                                    <Link
-                                        href={route("cart.store")}
-                                        method="POST"
-                                        data={{
-                                            itemable_type:
-                                                "App\\Models\\Course",
-                                            itemable_id: course.id,
-                                        }}
-                                        className="btn flex justify-center items-center btn-primary w-full mb-3"
-                                    >
-                                        <FaCartPlus />
-                                        <span>Add to Cart</span>
-                                    </Link>
+                                    {!itemIsExitsOnCart(course, auth.cart) ? (
+                                        <Link
+                                            href={route("cart.store")}
+                                            method="POST"
+                                            preserveScroll={true}
+                                            preserveState={true}
+                                            data={{
+                                                itemable_type:
+                                                    "App\\Models\\Course",
+                                                itemable_id: course.id,
+                                            }}
+                                            className="btn flex justify-center items-center btn-primary w-full mb-3"
+                                        >
+                                            <FaCartPlus />
+                                            <span>Add to Cart</span>
+                                        </Link>
+                                    ) : (
+                                        <Link
+                                            href={route("cart.destroy")}
+                                            method="DELETE"
+                                            preserveScroll={true}
+                                            preserveState={true}
+                                            data={{
+                                                itemable_type:
+                                                    "App\\Models\\Course",
+                                                itemable_id: course.id,
+                                            }}
+                                            className="btn flex justify-center items-center btn-error w-full mb-3"
+                                        >
+                                            <FaTrash />
+                                            <span>Remove from Cart</span>
+                                        </Link>
+                                    )}
                                     <button className="btn flex justify-center items-center btn-secondary w-full">
                                         <span>Buy Now</span>
                                     </button>

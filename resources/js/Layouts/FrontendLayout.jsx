@@ -159,6 +159,13 @@ export default function FrontendLayout({ header, children }) {
 
                                         <Dropdown.Content>
                                             <Dropdown.Link
+                                                href={route(
+                                                    "student_area.dashboard"
+                                                )}
+                                            >
+                                                Dashboard
+                                            </Dropdown.Link>
+                                            <Dropdown.Link
                                                 href={route("profile.edit")}
                                             >
                                                 Profile
