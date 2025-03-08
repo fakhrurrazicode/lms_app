@@ -18,6 +18,7 @@ import {
     FiStar,
     FiUser,
 } from "react-icons/fi";
+import { Link } from "@inertiajs/react";
 export default function StudentAreaLayout({ children }) {
     return (
         <FrontendLayout>
@@ -59,13 +60,15 @@ export default function StudentAreaLayout({ children }) {
                                     <div className="card-body px-8">
                                         <ul>
                                             <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
-                                                <a
-                                                    href=""
+                                                <Link
+                                                    href={route(
+                                                        "student_area.dashboard"
+                                                    )}
                                                     className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                                 >
                                                     <FiHome />
                                                     <span>Dashboard</span>
-                                                </a>
+                                                </Link>
                                             </li>
                                             <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                                 <a
@@ -97,13 +100,15 @@ export default function StudentAreaLayout({ children }) {
                                                 </a>
                                             </li>
                                             <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
-                                                <a
-                                                    href=""
+                                                <Link
+                                                    href={route(
+                                                        "student_area.wishlist.index"
+                                                    )}
                                                     className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                                 >
                                                     <FiBookmark />
                                                     <span>Wishlist</span>
-                                                </a>
+                                                </Link>
                                             </li>
                                             <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                                 <a

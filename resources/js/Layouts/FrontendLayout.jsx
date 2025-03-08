@@ -62,8 +62,10 @@ export default function FrontendLayout({ header, children }) {
                                 </NavLink>
 
                                 <NavLink
-                                    href={route("dashboard")}
-                                    active={route().current("dashboard")}
+                                    href={route("backend.dashboard")}
+                                    active={route().current(
+                                        "backend.dashboard"
+                                    )}
                                 >
                                     Mendaftar Sebagai Instruktur
                                 </NavLink>
@@ -158,13 +160,30 @@ export default function FrontendLayout({ header, children }) {
                                         </Dropdown.Trigger>
 
                                         <Dropdown.Content>
-                                            <Dropdown.Link
-                                                href={route(
-                                                    "student_area.dashboard"
-                                                )}
-                                            >
-                                                Dashboard
-                                            </Dropdown.Link>
+                                            {role.name == "student" ? (
+                                                <Dropdown.Link
+                                                    href={route(
+                                                        "student_area.dashboard"
+                                                    )}
+                                                >
+                                                    Dashboard
+                                                </Dropdown.Link>
+                                            ) : (
+                                                <></>
+                                            )}
+
+                                            {role.name == "administrator" ? (
+                                                <Dropdown.Link
+                                                    href={route(
+                                                        "backend.dashboard"
+                                                    )}
+                                                >
+                                                    Dashboard
+                                                </Dropdown.Link>
+                                            ) : (
+                                                <></>
+                                            )}
+
                                             <Dropdown.Link
                                                 href={route("profile.edit")}
                                             >
@@ -236,8 +255,8 @@ export default function FrontendLayout({ header, children }) {
                 >
                     <div className="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink
-                            href={route("dashboard")}
-                            active={route().current("dashboard")}
+                            href={route("backend.dashboard")}
+                            active={route().current("backend.dashboard")}
                         >
                             Dashboard
                         </ResponsiveNavLink>

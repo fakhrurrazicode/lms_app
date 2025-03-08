@@ -3,7 +3,7 @@ import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
-import GuestLayout from "@/Layouts/GuestLayout";
+import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Register() {
@@ -23,7 +23,7 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout>
+        <FrontendLayout>
             <Head title="Register" />
 
             <div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0 dark:bg-gray-900">
@@ -175,6 +175,6 @@ export default function Register() {
                     </form>
                 </div>
             </div>
-        </GuestLayout>
+        </FrontendLayout>
     );
 }

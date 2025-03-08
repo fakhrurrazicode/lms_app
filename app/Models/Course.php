@@ -99,10 +99,14 @@ class Course extends BaseModel implements Cartable
         // dd($this->isUserAuthenticated());
         if ($this->isUserAuthenticated()) {
 
+            // dd(Auth::user()->id);
+            // dd($this->id);
             $wishlist = Wishlist::where('user_id', Auth::user()->id)
                 ->where('wishlistable_id', $this->id)
-                ->where('wishlistable_type', 'App\Model\Course')
+                ->where('wishlistable_type', 'App\Models\Course')
                 ->first();
+
+            // dd($wishlist);
 
             return $wishlist ? true : false;
         } else {

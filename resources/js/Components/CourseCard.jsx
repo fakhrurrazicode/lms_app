@@ -6,7 +6,7 @@ import { FaBook, FaClock, FaHeart, FaStar } from "react-icons/fa";
 export default function CourseCard({ course }) {
     return (
         <div className="card bg-base-100 w-full shadow-xl rounded-md overflow-hidden">
-            <Link href={"/course/" + course.slug} className="relative">
+            <div className="relative">
                 <div className="absolute top-0 py-4 px-4 w-full flex justify-between items-center">
                     <span
                         href="#"
@@ -15,15 +15,26 @@ export default function CourseCard({ course }) {
                         {course.course_category.name}
                     </span>
 
-                    <span
-                        href="#"
-                        className="text-white bg-black/30 hover:bg-primary transition-all ease-in-out px-2 py-2 rounded-lg"
+                    <Link
+                        href={route("wishlist.toggle")}
+                        method="POST"
+                        data={{
+                            wishlistable_type: "App\\Models\\Course",
+                            wishlistable_id: course.id,
+                        }}
+                        className={
+                            course.is_on_wishlist
+                                ? "text-white bg-pink-600 ease-in-out px-2 py-2 rounded-lg"
+                                : "text-white bg-black/30 hover:bg-primary transition-all ease-in-out px-2 py-2 rounded-lg"
+                        }
                     >
                         <FaHeart />
-                    </span>
+                    </Link>
                 </div>
-                <img src={course.image_url} alt="Shoes" />
-            </Link>
+                <Link href={"/course/" + course.slug}>
+                    <img src={course.image_url} alt="Shoes" />
+                </Link>
+            </div>
             <div className="card-body px-4">
                 <div className="flex justify-between mb-2">
                     <div className="flex justify-start items-center gap-2 text-xs">

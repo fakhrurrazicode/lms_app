@@ -8,4 +8,11 @@ class Wishlist extends Model
 {
     protected $table = 'wishlists';
     protected $guarded = [];
+
+    public $with = ['wishlistable'];
+
+    public function wishlistable(): \Illuminate\Database\Eloquent\Relations\MorphTo
+    {
+        return $this->morphTo();
+    }
 }

@@ -9,12 +9,12 @@ class CourseCategory extends BaseModel
 {
     protected $guarded = [];
 
-    public $appends = ['course_count'];
+    // public $appends = ['course_count'];
 
-    public function getCourseCountAttribute()
-    {
-        return $this->courses->count();
-    }
+    // public function getCourseCountAttribute()
+    // {
+    //     return $this->courses->count();
+    // }
 
     public function courses()
     {
