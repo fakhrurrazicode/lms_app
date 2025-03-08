@@ -1,4 +1,4 @@
-import { minutesToHumanReadable } from "@/bootstrap";
+import { minutesToHumanReadable, rupiah } from "@/bootstrap";
 import { Link } from "@inertiajs/react";
 import React from "react";
 import { FaBook, FaClock, FaHeart, FaStar } from "react-icons/fa";
@@ -28,7 +28,7 @@ export default function CourseCard({ course }) {
                 <div className="flex justify-between mb-2">
                     <div className="flex justify-start items-center gap-2 text-xs">
                         <FaBook className="text-primary" />
-                        <span>23 Lessons</span>
+                        <span>{course.course_lecture_count} Lectures </span>
                     </div>
 
                     <div className="flex justify-start items-center gap-2 text-xs">
@@ -45,11 +45,13 @@ export default function CourseCard({ course }) {
                     {course.title}
                 </a>
                 <p className="mb-2 font-bold text-sm">
-                    <span className="text-primary">$32.00</span>{" "}
-                    <span className="text-gray-400">/ $67.00</span>
+                    <span className="text-primary">{rupiah(course.price)}</span>{" "}
+                    <span className="text-gray-400">
+                        / {rupiah(course.price)}
+                    </span>
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 pt-[15px] border-t border-gray-200">
+                <div className="grid grid-cols-1 md:grid-cols-2 pt-[15px] border-t border-gray-700">
                     <div>
                         {course.instructor ? (
                             <a

@@ -58,7 +58,11 @@ export default function Cart({ cart }) {
                                                                 href="#"
                                                                 className="text-primary"
                                                             >
-                                                                Mina Farid
+                                                                {itemable.instructor
+                                                                    ? itemable
+                                                                          .instructor
+                                                                          .name
+                                                                    : "Unknown"}
                                                             </a>
                                                         </p>
                                                         <div className="flex justify-start items-center gap-2 text-sm mb-2 text-yellow-700">
@@ -73,7 +77,10 @@ export default function Cart({ cart }) {
                                                         </div>
                                                         <div className="flex gap-2 text-sm">
                                                             <div className="flex-1 text-left">
-                                                                20 Total Jam
+                                                                {
+                                                                    itemable.duration
+                                                                }{" "}
+                                                                Menit
                                                             </div>
                                                             <div className="flex-1 text-left">
                                                                 180 Pelajaran

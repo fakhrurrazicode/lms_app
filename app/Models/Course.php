@@ -20,7 +20,8 @@ class Course extends BaseModel implements Cartable
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['image_url', 'average_stars', 'is_on_wishlist'];
+    protected $appends = ['image_url', 'average_stars', 'is_on_wishlist', 'course_section_count', 'course_lecture_count'];
+    protected $with = ['instructor'];
 
     public function getPrice(): float
     {
@@ -41,6 +42,16 @@ class Course extends BaseModel implements Cartable
         }
 
         return round($stars, 0);
+    }
+
+    public function getCourseSectionCountAttribute()
+    {
+        return $this->course_sections()->count();
+    }
+
+    public function getCourseLectureCountAttribute()
+    {
+        return $this->course_lectures()->count();
     }
 
     public function tags()

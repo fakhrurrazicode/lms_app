@@ -15,7 +15,7 @@ import {
     FaUserAlt,
 } from "react-icons/fa";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { itemIsExitsOnCart } from "@/bootstrap";
+import { itemIsExitsOnCart, minutesToHumanReadable, rupiah } from "@/bootstrap";
 
 const AccordionItem = ({ header, ...rest }) => (
     <Item
@@ -46,10 +46,6 @@ const AccordionItem = ({ header, ...rest }) => (
 
 export default function Course() {
     const { course, auth } = usePage().props;
-    console.log(
-        "itemIsExitsOnCart(course, auth.cart)",
-        itemIsExitsOnCart(course, auth.cart)
-    );
 
     return (
         <FrontendLayout
@@ -80,12 +76,17 @@ export default function Course() {
                                 </div>
 
                                 <div>
-                                    <p className="text-gray-600 font-semibold">
-                                        Last Update:{" "}
-                                        <span className="text-primary">
-                                            Sep 29, 2024
-                                        </span>
-                                    </p>
+                                    {course.created_at || course.updated_at ? (
+                                        <p className="text-gray-600 font-semibold">
+                                            Last Update:{" "}
+                                            <span className="text-primary">
+                                                {course.created_at ||
+                                                    course.updated_at}
+                                            </span>
+                                        </p>
+                                    ) : (
+                                        <></>
+                                    )}
                                 </div>
                             </div>
 
@@ -95,9 +96,9 @@ export default function Course() {
 
                             <div className="flex gap-5 flex-wrap items-center mb-[30px]">
                                 <div className="text-xl font-medium text-primary leading-[25px]">
-                                    $32.00
+                                    {rupiah(course.price)}
                                     <del className="text-sm text-gray-500 font-semibold">
-                                        / $67.00
+                                        / {rupiah(course.price)}
                                     </del>
                                 </div>
                                 <div className="flex items-center gap-2">
@@ -106,7 +107,8 @@ export default function Course() {
                                     </div>
                                     <div>
                                         <span className="text-sm text-gray-800 dark:text-gray-400">
-                                            23 Lesson
+                                            {course.course_lecture_count}{" "}
+                                            Lecture
                                         </span>
                                     </div>
                                 </div>
@@ -123,19 +125,7 @@ export default function Course() {
                             </div>
 
                             <div className="text-gray-800 dark:text-gray-200 font-normal text-lg mb-[30px]">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Curabitur vulputate
-                                    vestibulum rhoncus, dolor eget viverra
-                                    pretium, dolor tellus aliquet nunc, vitae
-                                    ultricies erat elit eu lacus. Vestibulum non
-                                    justo consectetur, cursus ante, tincidunt
-                                    sapien. Nulla quis diam sit amet turpis
-                                    interd enim. Vivamus faucibus ex sed nibh
-                                    egestas elementum. Mauris et bibendum dui.
-                                    Aenean consequat pulvinar luctus.
-                                    Suspendisse consectetur tristique
-                                </p>
+                                {course.description}
                             </div>
 
                             <div>
@@ -148,7 +138,9 @@ export default function Course() {
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Instructor :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    Mirnsdo.H
+                                                    {course.instructor
+                                                        ? course.instructor.name
+                                                        : "-"}
                                                 </span>
                                             </p>
                                         </li>
@@ -156,7 +148,10 @@ export default function Course() {
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Lectures :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    120 sub
+                                                    {
+                                                        course.course_lecture_count
+                                                    }{" "}
+                                                    Lectures
                                                 </span>
                                             </p>
                                         </li>
@@ -164,7 +159,9 @@ export default function Course() {
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Duration :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    20h 41m 32s
+                                                    {minutesToHumanReadable(
+                                                        course.duration
+                                                    )}
                                                 </span>
                                             </p>
                                         </li>
@@ -176,14 +173,6 @@ export default function Course() {
                                                 </span>
                                             </p>
                                         </li>
-                                        <li>
-                                            <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Total :
-                                                <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    222 students
-                                                </span>
-                                            </p>
-                                        </li>
                                     </ul>
 
                                     <ul className="p-10px md:py-[55px] md:pl-[50px] md:pr-[70px] lg:py-[35px] lg:px-[30px] 2xl:py-[55px] 2xl:pl-[50px] 2xl:pr-[70px] border-r-2 border-base-200 space-y-[10px]">
@@ -191,15 +180,7 @@ export default function Course() {
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Course level :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    Intermediate
-                                                </span>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Language :
-                                                <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    English spanish
+                                                    {course.level}
                                                 </span>
                                             </p>
                                         </li>
@@ -215,15 +196,7 @@ export default function Course() {
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Regular Price :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    $228/Mo
-                                                </span>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Course Status :
-                                                <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    Available
+                                                    {rupiah(course.price)}
                                                 </span>
                                             </p>
                                         </li>
@@ -488,50 +461,64 @@ export default function Course() {
                             </figure>
                             <div className="card-body">
                                 <div className="text-xl font-medium text-primary leading-[25px] mb-6">
-                                    $32.00
+                                    {rupiah(course.price)}
                                     <del className="text-sm text-gray-500 font-semibold">
-                                        / $67.00
+                                        / {rupiah(course.price)}
                                     </del>
                                 </div>
 
-                                <div className="mb-6">
-                                    {!itemIsExitsOnCart(course, auth.cart) ? (
+                                {auth.user ? (
+                                    <div className="mb-6">
+                                        {!itemIsExitsOnCart(
+                                            course,
+                                            auth.cart
+                                        ) ? (
+                                            <Link
+                                                href={route("cart.store")}
+                                                method="POST"
+                                                preserveScroll={true}
+                                                preserveState={true}
+                                                data={{
+                                                    itemable_type:
+                                                        "App\\Models\\Course",
+                                                    itemable_id: course.id,
+                                                }}
+                                                className="btn flex justify-center items-center btn-primary w-full mb-3"
+                                            >
+                                                <FaCartPlus />
+                                                <span>Add to Cart</span>
+                                            </Link>
+                                        ) : (
+                                            <Link
+                                                href={route("cart.destroy")}
+                                                method="DELETE"
+                                                preserveScroll={true}
+                                                preserveState={true}
+                                                data={{
+                                                    itemable_type:
+                                                        "App\\Models\\Course",
+                                                    itemable_id: course.id,
+                                                }}
+                                                className="btn flex justify-center items-center btn-error w-full mb-3"
+                                            >
+                                                <FaTrash />
+                                                <span>Remove from Cart</span>
+                                            </Link>
+                                        )}
+                                        <button className="btn flex justify-center items-center btn-secondary w-full">
+                                            <span>Buy Now</span>
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="mb-6">
                                         <Link
-                                            href={route("cart.store")}
-                                            method="POST"
-                                            preserveScroll={true}
-                                            preserveState={true}
-                                            data={{
-                                                itemable_type:
-                                                    "App\\Models\\Course",
-                                                itemable_id: course.id,
-                                            }}
-                                            className="btn flex justify-center items-center btn-primary w-full mb-3"
+                                            href={route("login")}
+                                            className="btn flex justify-center items-center btn-primary w-full"
                                         >
-                                            <FaCartPlus />
-                                            <span>Add to Cart</span>
+                                            <span>Sign in/Sign Up</span>
                                         </Link>
-                                    ) : (
-                                        <Link
-                                            href={route("cart.destroy")}
-                                            method="DELETE"
-                                            preserveScroll={true}
-                                            preserveState={true}
-                                            data={{
-                                                itemable_type:
-                                                    "App\\Models\\Course",
-                                                itemable_id: course.id,
-                                            }}
-                                            className="btn flex justify-center items-center btn-error w-full mb-3"
-                                        >
-                                            <FaTrash />
-                                            <span>Remove from Cart</span>
-                                        </Link>
-                                    )}
-                                    <button className="btn flex justify-center items-center btn-secondary w-full">
-                                        <span>Buy Now</span>
-                                    </button>
-                                </div>
+                                    </div>
+                                )}
 
                                 <div className="mb-6">
                                     <ul>

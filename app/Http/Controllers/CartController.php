@@ -17,6 +17,7 @@ class CartController extends Controller
     public function index()
     {
         $cart = Cart::query()->firstOrCreate(['user_id' => Auth::user()->id]);
+        // return $cart;
         return Inertia::render('Cart', compact('cart'));
     }
 
