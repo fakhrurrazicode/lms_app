@@ -174,6 +174,7 @@ export default function Index({ request, courseCategories }) {
                                                                 onClick={(
                                                                     e
                                                                 ) => {
+                                                                    e.preventDefault();
                                                                     confirm(
                                                                         "Anda yakin ingin menghapus data " +
                                                                             course_category.name +
@@ -183,7 +184,12 @@ export default function Index({ request, courseCategories }) {
                                                                               route(
                                                                                   "backend.course_category.destroy",
                                                                                   {
-                                                                                      course_category,
+                                                                                      course_category:
+                                                                                          course_category.id,
+                                                                                  },
+                                                                                  {
+                                                                                      preserveScroll: true,
+                                                                                      preserveScroll: true,
                                                                                   }
                                                                               )
                                                                           )

@@ -4,18 +4,16 @@ import { Save } from "lucide-react";
 import React from "react";
 import slugify from "slugify";
 
-export default function Create({ roles }) {
-    const { data, setData, post, errors, reset } = useForm({
-        name: "",
-        email: "",
-        password: "",
-        password_confirmation: "",
-        role: "",
+export default function Edit({ user, roles }) {
+    const { data, setData, put, errors, reset } = useForm({
+        name: user.name,
+        email: user.email,
+        role: user.role_name,
     });
 
     const submitHandler = (e) => {
         e.preventDefault();
-        post(route("backend.user.store"));
+        put(route("backend.user.update", user.id));
     };
     return (
         <BackendLayout
@@ -32,9 +30,7 @@ export default function Create({ roles }) {
                     <form onSubmit={submitHandler}>
                         <div className="card bg-base-100 shadow-xl">
                             <div className="card-body">
-                                <h2 className="card-title mb-6">
-                                    Create new User
-                                </h2>
+                                <h2 className="card-title mb-6">Edit User</h2>
 
                                 <div className="mb-6">
                                     <label className="form-control w-full mb-6">
@@ -88,64 +84,6 @@ export default function Create({ roles }) {
                                             <div className="label">
                                                 <span className="label-text-alt text-error">
                                                     {errors.email}
-                                                </span>
-                                            </div>
-                                        )}
-                                    </label>
-
-                                    <label className="form-control w-full mb-6">
-                                        <div className="label">
-                                            <span className="label-text">
-                                                Password
-                                            </span>
-                                        </div>
-                                        <input
-                                            type="password"
-                                            placeholder="Password"
-                                            className="input input-bordered w-full"
-                                            name="password"
-                                            onChange={(e) => {
-                                                setData(
-                                                    e.target.name,
-                                                    e.target.value
-                                                );
-                                            }}
-                                            value={data.password}
-                                        />
-                                        {errors.password && (
-                                            <div className="label">
-                                                <span className="label-text-alt text-error">
-                                                    {errors.password}
-                                                </span>
-                                            </div>
-                                        )}
-                                    </label>
-
-                                    <label className="form-control w-full mb-6">
-                                        <div className="label">
-                                            <span className="label-text">
-                                                Password
-                                            </span>
-                                        </div>
-                                        <input
-                                            type="password"
-                                            placeholder="Password Confirmation"
-                                            className="input input-bordered w-full"
-                                            name="password_confirmation"
-                                            onChange={(e) => {
-                                                setData(
-                                                    e.target.name,
-                                                    e.target.value
-                                                );
-                                            }}
-                                            value={data.password_confirmation}
-                                        />
-                                        {errors.password_confirmation && (
-                                            <div className="label">
-                                                <span className="label-text-alt text-error">
-                                                    {
-                                                        errors.password_confirmation
-                                                    }
                                                 </span>
                                             </div>
                                         )}

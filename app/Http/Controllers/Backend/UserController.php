@@ -75,9 +75,16 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+        return Inertia::render('Backend/User/Edit', compact('user', 'roles'));
+    }
+
+
+    public function editPassword(User $user)
+    {
+        return Inertia::render('Backend/User/EditPassword', compact('user'));
     }
 
     /**
@@ -91,6 +98,8 @@ class UserController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
         ]);
+
+        $user->assignRole($validated['role']);
 
         return to_route('backend.user.index');
     }

@@ -1,23 +1,9 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import BackendLayout from "@/Layouts/BackendLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
 import { Edit, KeyRound, Plus, Trash } from "lucide-react";
-import { useState } from "react";
-
-import EditPasswordModal from "./EditPasswordModal";
 
 export default function Index({ request, users, roles }) {
-    const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
-
-    const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-    const [underEditingUser, setUnderEditingUser] = useState(null);
-
-    const [editPasswordModalIsOpen, setEditPasswordModalIsOpen] =
-        useState(false);
-
-    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-    const [underDeletingUser, setUnderDeletingUser] = useState(null);
-
     const orderByOnClickHandler = (e) =>
         router.reload({
             preserveScroll: true,
@@ -37,7 +23,7 @@ export default function Index({ request, users, roles }) {
             },
         });
     return (
-        <AuthenticatedLayout
+        <BackendLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     Users
@@ -166,50 +152,52 @@ export default function Index({ request, users, roles }) {
                                                     className="hover"
                                                 >
                                                     <th>
-                                                        <button
+                                                        <Link
+                                                            href={route(
+                                                                "backend.user.edit",
+                                                                user.id
+                                                            )}
                                                             className="btn btn-accent btn-sm"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                setUnderEditingUser(
-                                                                    user
-                                                                );
-                                                                setEditModalIsOpen(
-                                                                    true
-                                                                );
-                                                            }}
                                                         >
                                                             <Edit size={16} />
                                                             <span>Edit</span>
-                                                        </button>
-                                                        <button
+                                                        </Link>
+                                                        <Link
+                                                            href={route(
+                                                                "backend.user.edit_password",
+                                                                user.id
+                                                            )}
                                                             className="btn btn-secondary btn-sm ml-1"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                setUnderEditingUser(
-                                                                    user
-                                                                );
-                                                                setEditPasswordModalIsOpen(
-                                                                    true
-                                                                );
-                                                            }}
                                                         >
                                                             <KeyRound
                                                                 size={16}
                                                             />
                                                             <span>
-                                                                Change Password
+                                                                Edit Password
                                                             </span>
-                                                        </button>
+                                                        </Link>
                                                         <button
                                                             className="btn btn-error btn-sm ml-1"
                                                             onClick={(e) => {
                                                                 e.preventDefault();
-                                                                setUnderDeletingUser(
-                                                                    user
-                                                                );
-                                                                setDeleteModalIsOpen(
-                                                                    true
-                                                                );
+                                                                confirm(
+                                                                    "Anda yakin ingin menghapus data " +
+                                                                        user.name +
+                                                                        "?"
+                                                                )
+                                                                    ? router.delete(
+                                                                          route(
+                                                                              "backend.user.destroy",
+                                                                              {
+                                                                                  user: user.id,
+                                                                              }
+                                                                          ),
+                                                                          {
+                                                                              preserveState: true,
+                                                                              preserveState: true,
+                                                                          }
+                                                                      )
+                                                                    : null;
                                                             }}
                                                         >
                                                             <Trash size={16} />
@@ -265,13 +253,6 @@ export default function Index({ request, users, roles }) {
                     </div>
                 </div>
             </div>
-
-            <EditPasswordModal
-                isOpen={editPasswordModalIsOpen}
-                setIsOpen={setEditPasswordModalIsOpen}
-                user={underEditingUser}
-                setUser={setUnderEditingUser}
-            />
-        </AuthenticatedLayout>
+        </BackendLayout>
     );
 }

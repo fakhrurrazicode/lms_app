@@ -16,7 +16,8 @@ use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\ActivityLogController;
 use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
-use App\Http\Controllers\StudentArea\DashboardController;
+use App\Http\Controllers\StudentArea\DashboardController as StudentAreaDashboardController;
+use App\Http\Controllers\InstructorArea\DashboardController as InstructorAreaDashboardController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\StudentArea\StudentAreaController;
 use App\Http\Controllers\Backend\CourseSubCategoryController;
@@ -46,10 +47,14 @@ Route::middleware('auth')->group(function () {
 
     // student area
     Route::group(['prefix' => '/student_area', 'as' => 'student_area.'], function () {
-        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/dashboard', [StudentAreaDashboardController::class, 'dashboard'])->name('dashboard');
 
         Route::resource('/wishlist', StudentAreaWishlistController::class);
         Route::post('/wishlist/{wishlist}/add_to_cart', [StudentAreaWishlistController::class, 'add_to_cart'])->name('wishlist.add-to-cart');
+    });
+
+    Route::group(['prefix' => '/instructor_area', 'as' => 'instructor_area.'], function () {
+        Route::get('/dashboard', [InstructorAreaDashboardController::class, 'dashboard'])->name('dashboard');
     });
 
     // backend area
@@ -72,7 +77,8 @@ Route::middleware('auth')->group(function () {
         Route::put('/permission/{permission}/set-role', [PermissionController::class, 'setRole'])->name('role.set-role');
 
         Route::resource('/user', UserController::class);
-        Route::put('/user/{user}/update-password', [UserController::class, 'updatePassword'])->name('user.update-password');
+        Route::get('/user/{user}/edit_password', [UserController::class, 'editPassword'])->name('user.edit_password');
+        Route::put('/user/{user}/update_password', [UserController::class, 'updatePassword'])->name('user.update_password');
 
         Route::resource('/course_category', CourseCategoryController::class);
         Route::resource('/tag', TagController::class);

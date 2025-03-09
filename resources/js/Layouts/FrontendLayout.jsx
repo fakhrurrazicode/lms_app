@@ -160,6 +160,17 @@ export default function FrontendLayout({ header, children }) {
                                         </Dropdown.Trigger>
 
                                         <Dropdown.Content>
+                                            {role.name == "instructor" ? (
+                                                <Dropdown.Link
+                                                    href={route(
+                                                        "instructor_area.dashboard"
+                                                    )}
+                                                >
+                                                    Dashboard
+                                                </Dropdown.Link>
+                                            ) : (
+                                                <></>
+                                            )}
                                             {role.name == "student" ? (
                                                 <Dropdown.Link
                                                     href={route(
