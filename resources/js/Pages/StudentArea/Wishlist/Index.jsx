@@ -1,13 +1,13 @@
 import { rupiah } from "@/bootstrap";
 import CourseCard from "@/Components/CourseCard";
-import StudentAreaLayout from "@/Layouts/StudentAreaLayout";
+import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link } from "@inertiajs/react";
 
 import React from "react";
 
 export default function Index({ wishlists }) {
     return (
-        <StudentAreaLayout>
+        <UserAreaLayout>
             <Head title="Wishlist" />
             <div className="card bg-base-100">
                 <div className="card-body">
@@ -110,6 +110,6 @@ export default function Index({ wishlists }) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-[30px]"></div>
                 </div>
             </div>
-        </StudentAreaLayout>
+        </UserAreaLayout>
     );
 }

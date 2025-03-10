@@ -29,7 +29,7 @@ export default function Courses() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-[30px]">
                     <div className="md:col-start-1 md:col-span-4 lg:col-span-3">
-                        <div className="card bg-base-100 w-full shadow-xl rounded-md mb-6">
+                        <div className="card bg-white dark:bg-slate-950 w-full shadow-xl rounded-md mb-6">
                             <div className="card-body px-6">
                                 <h3 className="card-title mb-4 text-lg font-bold">
                                     Search here
@@ -53,7 +53,7 @@ export default function Courses() {
                             </div>
                         </div>
 
-                        <div className="card bg-base-100 w-full shadow-xl rounded-md mb-6">
+                        <div className="card bg-white dark:bg-slate-950 w-full shadow-xl rounded-md mb-6">
                             <div className="card-body px-6">
                                 <h3 className="card-title mb-4 text-lg font-bold">
                                     Categories

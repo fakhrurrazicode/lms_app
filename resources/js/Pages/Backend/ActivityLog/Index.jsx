@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import BackendLayout from "@/Layouts/BackendLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
 import { Edit, ListCheck, Plus, Trash } from "lucide-react";
@@ -26,7 +26,7 @@ export default function Index({ request, activity_logs }) {
             },
         });
     return (
-        <AuthenticatedLayout
+        <BackendLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     Activity Logs
@@ -312,6 +312,6 @@ export default function Index({ request, activity_logs }) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </BackendLayout>
     );
 }

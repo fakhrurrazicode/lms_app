@@ -12,7 +12,10 @@ class PageController extends Controller
 {
     public function home()
     {
-        return Inertia::render('Home');
+
+        $course_categories = CourseCategory::orderBy('created_at', 'DESC')->limit(8)->get();
+        $latest_courses = Course::with(['course_category'])->orderBy('created_at', 'DESC')->limit(8)->get();
+        return Inertia::render('Home', compact('latest_courses', 'course_categories'));
     }
 
     public function courses(PaginateRequest $request)

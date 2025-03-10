@@ -13,7 +13,7 @@ export default function FrontendLayout({ header, children }) {
         useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div className="min-h-screen bg-gray-100/50 dark:bg-gray-900">
             <header className="bg-white shadow dark:bg-gray-800">
                 <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                     <label className="input input-bordered flex items-center gap-2 rounded-full">
@@ -43,7 +43,7 @@ export default function FrontendLayout({ header, children }) {
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                                    <ApplicationLogo className="block h-12 w-auto fill-current text-gray-800 dark:text-gray-200" />
                                 </Link>
                             </div>
 
@@ -302,6 +302,208 @@ export default function FrontendLayout({ header, children }) {
             </nav>
 
             {children}
+
+            <div className="bg-slate-950 text-white">
+                <div className="container mx-auto pt-[65px] pb-5 lg:pb-10">
+                    <section>
+                        <div className="grid grid-cols-12 gap-[30px] md:gap-y-5 lg:gap-y-0 pt-[60px] pb-50px md:pt-[30px] md:pb-[30px] lg:pt-[110px] lg:pb-20">
+                            <div className="col-start-1 col-span-12 md:col-span-6 lg:col-span-4 mr-[30px]">
+                                <h4 className="text-xl font-bold dark:text-white mb-3">
+                                    Tentang Kami
+                                </h4>
+                                <p className="text-base lg:text-sm 2xl:text-base text-white dark:dark:text-white mb-[30px] leading-1.8 2xl:leading-1.8">
+                                    Selamat Datang di GuruTeknik! Kami adalah
+                                    tim yang berdedikasi untuk membantu anda
+                                    mencapai tujuan pembelajaran anda. Kami
+                                    percaya bahwa pembelajaran haruslah menjadi
+                                    pengalaman yang kolaboratif dan interaktif.
+                                    Oleh karena itu, kami telah menciptakan LMS
+                                    yang dirancang untuk membantu anda belajar
+                                    dengan lebih baik dan lebih efektif
+                                </p>
+                                <div className="flex items-center">
+                                    <div>
+                                        <i className="icofont-clock-time text-3xl dark:text-white h-78px w-78px bg-primary leading-78px mr-22px block text-center"></i>
+                                    </div>
+                                    <div>
+                                        <h6 className="text-lg dark:text-white font-medium leading-29px">
+                                            OPENING HOURES
+                                        </h6>
+                                        <p className="text-sm dark:text-white text-opacity-60 mb-1">
+                                            Mon - Sat(8.00 - 6.00)
+                                        </p>
+                                        <p className="text-sm dark:text-white text-opacity-60">
+                                            Sunday - Closed
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-start-1 col-span-12 md:col-start-7 lg:col-start-5 md:col-span-6 lg:col-span-2">
+                                <h4 className="text-xl font-bold dark:text-white mb-3">
+                                    Usefull Links
+                                </h4>
+                                <ul className="flex flex-col gap-y-3">
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="text-white dark:dark:text-white relative hover:text-primary after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primary hover:after:w-full after:bottom-0 after:left-0"
+                                        >
+                                            About Us
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="text-white dark:dark:text-white relative hover:text-primary after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primary hover:after:w-full after:bottom-0 after:left-0"
+                                        >
+                                            Teachers
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="text-white dark:dark:text-white relative hover:text-primary after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primary hover:after:w-full after:bottom-0 after:left-0"
+                                        >
+                                            Partner
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="text-white dark:dark:text-white relative hover:text-primary after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primary hover:after:w-full after:bottom-0 after:left-0"
+                                        >
+                                            Room-Details
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="text-white dark:dark:text-white relative hover:text-primary after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primary hover:after:w-full after:bottom-0 after:left-0"
+                                        >
+                                            Gallery
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="col-start-1 col-span-12 md:col-start-1 lg:col-start-7 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-[60px]">
+                                <h4 className="text-xl font-bold dark:text-white mb-3">
+                                    Course
+                                </h4>
+                                <ul className="flex flex-col gap-y-3">
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="text-white dark:dark:text-white relative hover:text-primary after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primary hover:after:w-full after:bottom-0 after:left-0"
+                                        >
+                                            Ui Ux Design
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="text-white dark:dark:text-white relative hover:text-primary after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primary hover:after:w-full after:bottom-0 after:left-0"
+                                        >
+                                            Web Development
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="text-white dark:dark:text-white relative hover:text-primary after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primary hover:after:w-full after:bottom-0 after:left-0"
+                                        >
+                                            Business Strategy
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="text-white dark:dark:text-white relative hover:text-primary after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primary hover:after:w-full after:bottom-0 after:left-0"
+                                        >
+                                            Softwere Development
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="text-white dark:dark:text-white relative hover:text-primary after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primary hover:after:w-full after:bottom-0 after:left-0"
+                                        >
+                                            Business English
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="col-start-1 col-span-12 md:col-start-7 lg:col-start-10 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-50px">
+                                <h4 className="text-xl font-bold dark:text-white mb-3">
+                                    Recent Post
+                                </h4>
+                                <ul className="flex flex-col gap-y-5">
+                                    <li>
+                                        <a className="flex items-center gap-3 group cursor-pointer">
+                                            <div>
+                                                <img
+                                                    src="/images/footer/footer__1.png"
+                                                    alt=""
+                                                    className="w-[61px] h-[54px]"
+                                                />
+                                            </div>
+                                            <div>
+                                                <p className="text-xs text-white dark:dark:text-white mb-7px">
+                                                    02 Apr 2024
+                                                </p>
+                                                <h6 className="text-size-15 dark:text-white font-bold group-hover:text-primary transition-all duration-300">
+                                                    Best Your Business
+                                                </h6>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a className="flex items-center gap-3 group cursor-pointer">
+                                            <div>
+                                                <img
+                                                    src="/images/footer/footer__2.png"
+                                                    alt=""
+                                                    className="w-[61px] h-[54px]"
+                                                />
+                                            </div>
+                                            <div>
+                                                <p className="text-xs text-white dark:dark:text-white mb-7px">
+                                                    02 Apr 2024
+                                                </p>
+                                                <h6 className="text-size-15 dark:text-white font-bold group-hover:text-primary transition-all duration-300">
+                                                    Keep Your Business
+                                                </h6>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a className="flex items-center gap-3 group cursor-pointer">
+                                            <div>
+                                                <img
+                                                    src="/images/footer/footer__3.png"
+                                                    alt=""
+                                                    className="w-[61px] h-[54px]"
+                                                />
+                                            </div>
+                                            <div>
+                                                <p className="text-xs text-white dark:dark:text-white mb-7px">
+                                                    02 Apr 2024
+                                                </p>
+                                                <h6 className="text-size-15 dark:text-white font-bold group-hover:text-primary transition-all duration-300">
+                                                    Nice Your Business
+                                                </h6>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
     );
 }

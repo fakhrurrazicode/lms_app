@@ -21,7 +21,7 @@ import {
     FiUser,
 } from "react-icons/fi";
 import { Link, usePage } from "@inertiajs/react";
-export default function InstructorAreaLayout({ children }) {
+export default function UserAreaLayout({ children }) {
     const { auth } = usePage().props;
     return (
         <FrontendLayout>
@@ -114,22 +114,26 @@ export default function InstructorAreaLayout({ children }) {
                                             </li>
                                         </ul>
 
-                                        <ul className="mb-6">
-                                            <li className="text-xs font-semibold mb-4">
-                                                Instructor
-                                            </li>
-                                            <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
-                                                <Link
-                                                    href={route(
-                                                        "student_area.dashboard"
-                                                    )}
-                                                    className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
-                                                >
-                                                    <FiMonitor />
-                                                    <span>My Courses</span>
-                                                </Link>
-                                            </li>
-                                        </ul>
+                                        {auth.role.name == "instructor" ? (
+                                            <ul className="mb-6">
+                                                <li className="text-xs font-semibold mb-4">
+                                                    Instructor
+                                                </li>
+                                                <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                                    <Link
+                                                        href={route(
+                                                            "student_area.dashboard"
+                                                        )}
+                                                        className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                                    >
+                                                        <FiMonitor />
+                                                        <span>My Courses</span>
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        ) : (
+                                            <></>
+                                        )}
 
                                         <ul className="mb-6">
                                             <li className="text-xs font-semibold mb-4">

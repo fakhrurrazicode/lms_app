@@ -436,11 +436,15 @@ export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
                             className="btn btn-neutral"
                             onClick={(e) => {
                                 e.preventDefault;
-                                reset();
+
+                                setIsOpen(false);
+                                setTimeout(() => {
+                                    reset();
+                                }, 500);
+                                // reset();
                                 // reloadCourseSubCategories({
                                 //     courseCategoryId: null,
                                 // });
-                                setIsOpen(false);
                             }}
                         >
                             Cancel

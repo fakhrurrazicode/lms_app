@@ -235,7 +235,7 @@ export default function BackendLayout({ header, children }) {
                         <li></li>
                         <li>
                             <Link
-                                href="/dashboard"
+                                href={route("backend.dashboard")}
                                 className="flex justify-start items-center "
                                 preserveScroll={true}
                                 preserveState={true}

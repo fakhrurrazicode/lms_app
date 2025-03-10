@@ -41,4 +41,17 @@ export default {
             });
         },
     ],
+
+    // daisyui: {
+    //     themes: [
+    //         {
+    //             dark: {
+    //                 ...require("daisyui/src/theming/themes")["dark"],
+    //                 primary: "#0260A3",
+    //                 secondary: "#FBC304",
+    //                 "primary-focus": "mediumblue",
+    //             },
+    //         },
+    //     ],
+    // },
 };
