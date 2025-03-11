@@ -3,3 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.video-player-modal > .video-js{
+    width: 100%;
+    /* height: auto; */
+}

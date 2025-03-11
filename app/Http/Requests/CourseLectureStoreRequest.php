@@ -31,7 +31,7 @@ class CourseLectureStoreRequest extends FormRequest
                 'required',          // The video file is required
                 'file',              // The uploaded input must be a file
                 'mimes:mp4,mov,avi', // Specify allowed file types
-                'max:51200',         // Maximum file size in kilobytes (50MB in this case)
+                // 'max:51200',         // Maximum file size in kilobytes (50MB in this case)
             ],
             'title' => ['required'],
             'description' => ['required'],

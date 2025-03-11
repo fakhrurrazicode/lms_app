@@ -11,6 +11,7 @@ export default function CourseSectionsTable({
     setEditCourseLectureModalIsOpen,
     setSelectedCourseLecture,
     setDeleteCourseLectureModalIsOpen,
+    setVideoPlayerModalIsOpen,
 }) {
     console.log("CourseSectionsTable.courseSections", courseSections);
 
@@ -153,11 +154,15 @@ export default function CourseSectionsTable({
                                                         </td>
                                                         <td>
                                                             <a
-                                                                href={
-                                                                    courseLecture.video_url
-                                                                }
                                                                 className="text-primary"
-                                                                target="_blank"
+                                                                onClick={() => {
+                                                                    setSelectedCourseLecture(
+                                                                        courseLecture
+                                                                    );
+                                                                    setVideoPlayerModalIsOpen(
+                                                                        true
+                                                                    );
+                                                                }}
                                                             >
                                                                 <Video
                                                                     size={16}

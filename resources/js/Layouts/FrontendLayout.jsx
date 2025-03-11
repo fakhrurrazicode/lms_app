@@ -160,21 +160,11 @@ export default function FrontendLayout({ header, children }) {
                                         </Dropdown.Trigger>
 
                                         <Dropdown.Content>
-                                            {role.name == "instructor" ? (
+                                            {role.name == "instructor" ||
+                                            role.name == "student" ? (
                                                 <Dropdown.Link
                                                     href={route(
-                                                        "instructor_area.dashboard"
-                                                    )}
-                                                >
-                                                    Dashboard
-                                                </Dropdown.Link>
-                                            ) : (
-                                                <></>
-                                            )}
-                                            {role.name == "student" ? (
-                                                <Dropdown.Link
-                                                    href={route(
-                                                        "student_area.dashboard"
+                                                        "user_area.dashboard"
                                                     )}
                                                 >
                                                     Dashboard
@@ -196,7 +186,9 @@ export default function FrontendLayout({ header, children }) {
                                             )}
 
                                             <Dropdown.Link
-                                                href={route("profile.edit")}
+                                                href={route(
+                                                    "user_area.profile.edit"
+                                                )}
                                             >
                                                 Profile
                                             </Dropdown.Link>

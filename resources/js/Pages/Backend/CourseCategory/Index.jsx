@@ -188,7 +188,7 @@ export default function Index({ request, courseCategories }) {
                                                                                           course_category.id,
                                                                                   },
                                                                                   {
-                                                                                      preserveScroll: true,
+                                                                                      preserveState: true,
                                                                                       preserveScroll: true,
                                                                                   }
                                                                               )

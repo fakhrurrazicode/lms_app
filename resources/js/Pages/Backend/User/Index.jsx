@@ -194,7 +194,7 @@ export default function Index({ request, users, roles }) {
                                                                           ),
                                                                           {
                                                                               preserveState: true,
-                                                                              preserveState: true,
+                                                                              preserveScroll: true,
                                                                           }
                                                                       )
                                                                     : null;

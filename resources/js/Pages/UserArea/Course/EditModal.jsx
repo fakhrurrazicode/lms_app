@@ -1,44 +1,57 @@
 import { router, useForm, usePage } from "@inertiajs/react";
-import classNames from "classnames";
 import { Save } from "lucide-react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ReactModal from "react-modal";
 import slugify from "slugify";
 
-export default function CreateModal({ isOpen, setIsOpen }) {
+export default function EditModal({ isOpen, setIsOpen, course, setCourse }) {
     const previewImageRef = useRef(null);
 
     const {
-        props: { courseCategories, courseSubCategories, instructors },
+        props: { courseCategories, instructors },
     } = usePage();
-    const { data, setData, post, errors, reset, processing, progress } =
-        useForm({
-            course_category_id: "",
-            // course_sub_category_id: "",
-            instructor_id: "",
 
-            title: "",
-            slug: "",
-            image: "",
-            description: "",
-            prerequisites: "",
-            goals: "",
-            duration: "",
-            status: true,
+    const { data, setData, post, errors, reset } = useForm({
+        course_category_id: "",
+        course_sub_category_id: "",
+        instructor_id: "",
+
+        title: "",
+        slug: "",
+        image: "",
+        description: "",
+        prerequisites: "",
+        goals: "",
+        duration: "",
+        status: true,
+    });
+
+    useEffect(() => {
+        setData({
+            course_category_id: course ? course.course_category_id : "",
+            course_sub_category_id: course ? course.course_sub_category_id : "",
+            instructor_id: course ? course.instructor_id : "",
+
+            title: course ? course.title : "",
+            slug: course ? course.slug : "",
+            image: course ? course.image : "",
+            description: course ? course.description : "",
+            prerequisites: course ? course.prerequisites : "",
+            goals: course ? course.goals : "",
+            duration: course ? course.duration : "",
+            status: course ? course.status : true,
         });
+    }, [course]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        post("/backend/course", {
-            // forceFormData: true,
+        post("/backend/course/" + course.id, {
             preserveScroll: true,
             preserveState: true,
             onSuccess: () => {
                 setIsOpen(false);
                 reset();
-                reloadCourseSubCategories({
-                    courseCategoryId: null,
-                });
+                setCourse(null);
             },
         });
     };
@@ -54,9 +67,9 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                 setData("slug", slugify(e.target.value).toLowerCase());
                 break;
             case "course_category_id":
-                reloadCourseSubCategories({
-                    courseCategoryId: e.target.value,
-                });
+            // reloadCourseSubCategories({
+            //     courseCategoryId: e.target.value,
+            // });
             case "image":
                 const file = e.target.files[0];
 
@@ -73,24 +86,34 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                     previewImageRef.current.src = "";
                 }
 
-                setData("image", file);
+                setData("image", e.target.files ? e.target.files[0] : "");
                 break;
         }
     };
 
-    const reloadCourseSubCategories = ({ courseCategoryId = null }) => {
-        router.reload({
-            only: ["courseSubCategories"],
-            data: {
-                selected_course_category_id: courseCategoryId,
-            },
-        });
-    };
+    // const reloadCourseSubCategories = ({ courseCategoryId = null }) => {
+    //     router.reload({
+    //         only: ["courseSubCategories"],
+    //         data: {
+    //             selected_course_category_id: courseCategoryId,
+    //         },
+    //     });
+    // };
 
     return (
         <ReactModal
             closeTimeoutMS={200}
             isOpen={isOpen}
+            onAfterOpen={() => {
+                router.reload({
+                    // only: ["courseSubCategories"],
+                    data: {
+                        selected_course_category_id: course
+                            ? course.course_category_id
+                            : "",
+                    },
+                });
+            }}
             contentLabel="Minimal Modal Example"
             overlayClassName="fixed inset-0 bg-base-200/70 overflow-y-auto"
             className="absolute mt-16 left-1/2 -translate-x-1/2  overflow-auto outline-none p-5 w-full md:w-3/4 lg:w-8/12 h-auto"
@@ -98,7 +121,7 @@ export default function CreateModal({ isOpen, setIsOpen }) {
         >
             <div className="card bg-base-100 shadow-xl">
                 <form onSubmit={onSubmitHandler} className="card-body">
-                    <h2 className="card-title mb-6">Create new Course</h2>
+                    <h2 className="card-title mb-6">Update Course</h2>
                     <div className="mb-6">
                         <div className="flex gap-6">
                             <label className="form-control mb-6 w-1/2">
@@ -366,7 +389,6 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                                     type="file"
                                     className="file-input file-input-bordered"
                                     name="image"
-                                    accept="image/*"
                                     onChange={inputChangeHandler}
                                     // value={data.image.toString()}
                                 />
@@ -379,11 +401,10 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                                     </div>
                                 )}
                             </label>
-
                             <div className="w-1/3">
                                 <img
                                     ref={previewImageRef}
-                                    src=""
+                                    src={course && course.image_url}
                                     alt=""
                                     className="w-full"
                                 />
@@ -407,19 +428,23 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                     </div>
 
                     <div className="card-actions justify-end">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-accent">
                             <Save size={16} />
-                            <span>Save</span>
+                            <span>Update</span>
                         </button>
                         <a
                             className="btn btn-neutral"
                             onClick={(e) => {
                                 e.preventDefault;
-                                reset();
-                                reloadCourseSubCategories({
-                                    courseCategoryId: null,
-                                });
+
                                 setIsOpen(false);
+                                setTimeout(() => {
+                                    reset();
+                                }, 500);
+                                // reset();
+                                // reloadCourseSubCategories({
+                                //     courseCategoryId: null,
+                                // });
                             }}
                         >
                             Cancel

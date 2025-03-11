@@ -2,7 +2,6 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
@@ -13,15 +12,18 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\UserArea\DashboardController;
 use App\Http\Controllers\Backend\ActivityLogController;
 use App\Http\Controllers\Backend\CourseLectureController;
+
 use App\Http\Controllers\Backend\CourseSectionController;
-use App\Http\Controllers\StudentArea\DashboardController as StudentAreaDashboardController;
-use App\Http\Controllers\InstructorArea\DashboardController as InstructorAreaDashboardController;
+
 use App\Http\Controllers\Backend\CourseCategoryController;
-use App\Http\Controllers\StudentArea\StudentAreaController;
-use App\Http\Controllers\Backend\CourseSubCategoryController;
-use App\Http\Controllers\StudentArea\WishlistController as StudentAreaWishlistController;
+use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
+use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
+use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
+use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
+use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -45,16 +47,21 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 
-    // student area
-    Route::group(['prefix' => '/student_area', 'as' => 'student_area.'], function () {
-        Route::get('/dashboard', [StudentAreaDashboardController::class, 'dashboard'])->name('dashboard');
+    Route::group(['prefix' => '/user_area', 'as' => 'user_area.'], function () {
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-        Route::resource('/wishlist', StudentAreaWishlistController::class);
-        Route::post('/wishlist/{wishlist}/add_to_cart', [StudentAreaWishlistController::class, 'add_to_cart'])->name('wishlist.add-to-cart');
-    });
+        Route::resource('/wishlist', UserAreaWishlistController::class);
+        Route::post('/wishlist/{wishlist}/add_to_cart', [UserAreaWishlistController::class, 'add_to_cart'])->name('wishlist.add-to-cart');
 
-    Route::group(['prefix' => '/instructor_area', 'as' => 'instructor_area.'], function () {
-        Route::get('/dashboard', [InstructorAreaDashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/profile', [UserAreaProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [UserAreaProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [UserAreaProfileController::class, 'destroy'])->name('profile.destroy');
+
+        Route::resource('/course', UserAreaCourseController::class);
+        Route::post('/course/{course}', [UserAreaCourseController::class, 'update'])->name('course.update');
+        Route::resource('/course/{course}/course_section', UserAreaCourseSectionController::class);
+        Route::resource('/course/{course}/course_section/{course_section}/course_lecture', UserAreaCourseLectureController::class)->except(['index', 'update']);
+        Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [CourseLectureController::class, 'update'])->name('course_lecture.update');
     });
 
     // backend area
@@ -83,13 +90,12 @@ Route::middleware('auth')->group(function () {
         Route::resource('/course_category', CourseCategoryController::class);
         Route::resource('/tag', TagController::class);
 
-        Route::resource('/course', CourseController::class)->only(['index', 'store', 'destroy']);
+        Route::resource('/course', CourseController::class);
         Route::post('/course/{course}', [CourseController::class, 'update'])->name('course.update');
 
-        Route::resource('/course_section', CourseSectionController::class)->only(['index', 'store', 'update', 'destroy']);
-
-        Route::resource('/course_lecture', CourseLectureController::class)->only(['index', 'store', 'destroy']);
-        Route::post('/course_lecture/{course_lecture}', [CourseLectureController::class, 'update'])->name('course_lecture.update');
+        Route::resource('/course/{course}/course_section', CourseSectionController::class);
+        Route::resource('/course/{course}/course_section/{course_section}/course_lecture', CourseLectureController::class)->except(['index', 'update']);
+        Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [CourseLectureController::class, 'update'])->name('course_lecture.update');
 
         Route::resource('/activity_log', ActivityLogController::class)->only(['index']);
     });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\UserArea;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class CourseLectureController extends Controller
      */
     public function index(Course $course, CourseSection $course_section)
     {
-        // return Inertia::render('Backend/CourseSection/Index', compact('course', 'course_section'));
+        // return Inertia::render('UserArea/CourseSection/Index', compact('course', 'course_section'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CourseLectureController extends Controller
      */
     public function create(Course $course, CourseSection $course_section)
     {
-        return Inertia::render('Backend/CourseLecture/Create', compact('course', 'course_section'));
+        return Inertia::render('UserArea/CourseLecture/Create', compact('course', 'course_section'));
     }
 
     /**
@@ -59,7 +59,7 @@ class CourseLectureController extends Controller
      */
     public function edit(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
     {
-        return Inertia::render('Backend/CourseLecture/Edit', compact('course', 'course_section', 'course_lecture'));
+        return Inertia::render('UserArea/CourseLecture/Edit', compact('course', 'course_section', 'course_lecture'));
     }
 
     /**

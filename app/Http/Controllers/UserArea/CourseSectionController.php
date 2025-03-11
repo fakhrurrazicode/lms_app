@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\UserArea;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseSectionStoreRequest;
@@ -18,7 +18,7 @@ class CourseSectionController extends Controller
     public function index(Course $course)
     {
         $course_sections = CourseSection::with(['course_lectures'])->where('course_id', $course->id)->get();
-        return Inertia::render('Backend/CourseSection/Index', compact('course', 'course_sections'));
+        return Inertia::render('UserArea/CourseSection/Index', compact('course', 'course_sections'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CourseSectionController extends Controller
      */
     public function create(Course $course)
     {
-        return Inertia::render('Backend/CourseSection/Create', compact('course'));
+        return Inertia::render('UserArea/CourseSection/Create', compact('course'));
     }
 
     /**
@@ -53,7 +53,7 @@ class CourseSectionController extends Controller
      */
     public function edit(Course $course, CourseSection $course_section)
     {
-        return Inertia::render('Backend/CourseSection/Edit', compact('course', 'course_section'));
+        return Inertia::render('UserArea/CourseSection/Edit', compact('course', 'course_section'));
     }
 
     /**

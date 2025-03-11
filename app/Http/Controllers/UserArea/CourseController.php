@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\UserArea;
 
 use App\Models\User;
 use Inertia\Inertia;
@@ -37,7 +37,7 @@ class CourseController extends Controller
 
         // return $courses;
 
-        return Inertia::render('Backend/Course/Index', [
+        return Inertia::render('UserArea/Course/Index', [
             'courses' => $courses,
             'request' => $request,
             'courseCategories' => CourseCategory::all(),
@@ -54,7 +54,7 @@ class CourseController extends Controller
     {
         $instructors = User::role('instructor')->get();
         $course_categories = CourseCategory::all();
-        return Inertia::render('Backend/Course/Create', compact('instructors', 'course_categories'));
+        return Inertia::render('UserArea/Course/Create', compact('instructors', 'course_categories'));
     }
 
     /**
@@ -85,7 +85,7 @@ class CourseController extends Controller
     {
         $instructors = User::role('instructor')->get();
         $course_categories = CourseCategory::all();
-        return Inertia::render('Backend/Course/Edit', compact('instructors', 'course_categories', 'course'));
+        return Inertia::render('UserArea/Course/Edit', compact('instructors', 'course_categories', 'course'));
     }
 
     /**

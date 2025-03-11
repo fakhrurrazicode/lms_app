@@ -63,7 +63,7 @@ export default function UserAreaLayout({ children }) {
                                             <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                                 <Link
                                                     href={route(
-                                                        "student_area.dashboard"
+                                                        "user_area.dashboard"
                                                     )}
                                                     className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                                 >
@@ -95,7 +95,7 @@ export default function UserAreaLayout({ children }) {
                                             <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                                 <Link
                                                     href={route(
-                                                        "student_area.wishlist.index"
+                                                        "user_area.wishlist.index"
                                                     )}
                                                     className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                                 >
@@ -122,12 +122,14 @@ export default function UserAreaLayout({ children }) {
                                                 <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                                     <Link
                                                         href={route(
-                                                            "student_area.dashboard"
+                                                            "user_area.course.index"
                                                         )}
                                                         className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                                     >
                                                         <FiMonitor />
-                                                        <span>My Courses</span>
+                                                        <span>
+                                                            Courses Management
+                                                        </span>
                                                     </Link>
                                                 </li>
                                             </ul>
@@ -140,22 +142,26 @@ export default function UserAreaLayout({ children }) {
                                                 User
                                             </li>
                                             <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
-                                                <a
-                                                    href=""
+                                                <Link
+                                                    href={route(
+                                                        "user_area.profile.edit"
+                                                    )}
                                                     className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                                 >
                                                     <FiSettings />
                                                     <span>Settings</span>
-                                                </a>
+                                                </Link>
                                             </li>
                                             <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
-                                                <a
-                                                    href=""
+                                                <Link
+                                                    href={route("logout")}
+                                                    method="post"
+                                                    as="button"
                                                     className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                                 >
                                                     <FiLogOut />
                                                     <span>Logout</span>
-                                                </a>
+                                                </Link>
                                             </li>
                                         </ul>
                                     </div>

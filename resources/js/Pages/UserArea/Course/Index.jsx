@@ -1,4 +1,4 @@
-import BackendLayout from "@/Layouts/BackendLayout";
+import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
 import { Edit, KeyRound, ListCollapse, Plus, Trash } from "lucide-react";
@@ -38,7 +38,7 @@ export default function Index({
             },
         });
     return (
-        <BackendLayout
+        <UserAreaLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     Courses
@@ -47,8 +47,8 @@ export default function Index({
         >
             <Head title="Dashboard" />
 
-            <div className="py-12">
-                <div className="w-full sm:px-6 lg:px-8">
+            <div className="">
+                <div className="w-full ">
                     <div className="card bg-base-100 shadow-xl">
                         <div className="card-body">
                             <h2 className="card-title mb-6">All Courses</h2>
@@ -58,9 +58,9 @@ export default function Index({
                                     <div>
                                         <Link
                                             href={route(
-                                                "backend.course.create"
+                                                "user_area.course.create"
                                             )}
-                                            className="btn btn-primary"
+                                            className="btn btn-xs btn-primary"
                                         >
                                             <Plus size={16} />
                                             <span>Create new</span>
@@ -120,7 +120,7 @@ export default function Index({
                                         </label>
                                     </div>
                                 </div>
-                                <div className="overflow-x-auto">
+                                <div className="overflow-x-scroll">
                                     <table className="table table-xs mb-6">
                                         <thead>
                                             <tr>
@@ -201,10 +201,10 @@ export default function Index({
                                                         <th className="whitespace-nowrap">
                                                             <Link
                                                                 href={route(
-                                                                    "backend.course.edit",
+                                                                    "user_area.course.edit",
                                                                     course.id
                                                                 )}
-                                                                className="btn btn-accent btn-sm"
+                                                                className="btn btn-xs btn-accent"
                                                             >
                                                                 <Edit
                                                                     size={16}
@@ -215,7 +215,7 @@ export default function Index({
                                                             </Link>
 
                                                             <button
-                                                                className="btn btn-error btn-sm ml-1"
+                                                                className="btn btn-xs btn-error ml-1"
                                                                 onClick={(
                                                                     e
                                                                 ) => {
@@ -230,7 +230,7 @@ export default function Index({
                                                                     ) {
                                                                         router.delete(
                                                                             route(
-                                                                                "backend.course.destroy",
+                                                                                "user_area.course.destroy",
                                                                                 course.id
                                                                             ),
                                                                             {
@@ -250,12 +250,12 @@ export default function Index({
 
                                                             <Link
                                                                 href={route(
-                                                                    "backend.course_section.index",
+                                                                    "user_area.course_section.index",
                                                                     {
                                                                         course: course,
                                                                     }
                                                                 )}
-                                                                className="btn btn-secondary btn-sm ml-1 mr-2"
+                                                                className="btn btn-xs btn-secondary ml-1 mr-2"
                                                             >
                                                                 <ListCollapse
                                                                     size={16}
@@ -353,6 +353,6 @@ export default function Index({
                     </div>
                 </div>
             </div>
-        </BackendLayout>
+        </UserAreaLayout>
     );
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\StudentArea;
+namespace App\Http\Controllers\UserArea;
 
 use App\Models\Cart;
 use Inertia\Inertia;
@@ -18,7 +18,7 @@ class WishlistController extends Controller
     {
 
         $wishlists = Wishlist::where('user_id', Auth::user()->id)->get();
-        return Inertia::render('StudentArea/Wishlist/Index', compact('wishlists'));
+        return Inertia::render('UserArea/Wishlist/Index', compact('wishlists'));
     }
 
     public function add_to_cart(Request $request, Wishlist $wishlist)
