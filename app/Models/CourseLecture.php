@@ -11,8 +11,9 @@ class CourseLecture extends BaseModel
 
     protected $appends = ['video_url'];
 
+
     public function getVideoUrlAttribute()
     {
-        return $this->video ? url('/storage/' . $this->video) : null;
+        return $this->image ? url('/storage/' . $this->image) : asset('videos/dummy/sample_video.mp4');
     }
 }

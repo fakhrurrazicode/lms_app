@@ -8,6 +8,7 @@ use App\Http\Requests\TagUpdateRequest;
 use App\Http\Requests\PaginateRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class TagController extends Controller
@@ -17,13 +18,13 @@ class TagController extends Controller
      */
     public function index(PaginateRequest $request)
     {
-        $tags = Tag::orWhere([
+        $courseCategories = Tag::orWhere([
             ['name', 'LIKE', '%' . $request->search . '%'],
             ['slug', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
         return Inertia::render('Backend/Tag/Index', [
-            'tags' => $tags,
+            'courseCategories' => $courseCategories,
             'request' => $request,
         ]);
     }
@@ -33,7 +34,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Backend/Tag/Create');
     }
 
     /**
@@ -56,9 +57,9 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Tag $tag)
     {
-        //
+        return Inertia::render('Backend/Tag/Edit', compact('tag'));
     }
 
     /**

@@ -1,13 +1,8 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import BackendLayout from "@/Layouts/BackendLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
 import { Edit, KeyRound, ListCollapse, Plus, Trash } from "lucide-react";
 import { useRef, useState } from "react";
-
-import CreateModal from "./CreateModal";
-import EditModal from "./EditModal";
-import DeleteModal from "./DeleteModal";
-import ManageLecture from "./ManageLecture";
 
 export default function Index({
     request,
@@ -20,9 +15,6 @@ export default function Index({
     console.log("courseSections", courseSections);
     const [selectedCourse, setSelectedCourse] = useState(null);
 
-    const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
-    const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
     const [manageLectureIsOpen, setManageLectureIsOpen] = useState(false);
 
     const buttonOpenManageLectureRef = useRef(null);
@@ -46,7 +38,7 @@ export default function Index({
             },
         });
     return (
-        <AuthenticatedLayout
+        <BackendLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     Courses
@@ -64,16 +56,15 @@ export default function Index({
                             <div className="overflow-x-auto">
                                 <div className="mb-6 flex justify-between items-center">
                                     <div>
-                                        <button
+                                        <Link
+                                            href={route(
+                                                "backend.course.create"
+                                            )}
                                             className="btn btn-primary"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                setCreateModalIsOpen(true);
-                                            }}
                                         >
                                             <Plus size={16} />
                                             <span>Create new</span>
-                                        </button>
+                                        </Link>
                                     </div>
                                     <div className="flex gap-2">
                                         <label className="form-control w-full max-w-xs">
@@ -208,19 +199,12 @@ export default function Index({
                                                         className="hover"
                                                     >
                                                         <th className="whitespace-nowrap">
-                                                            <button
+                                                            <Link
+                                                                href={route(
+                                                                    "backend.course.edit",
+                                                                    course.id
+                                                                )}
                                                                 className="btn btn-accent btn-sm"
-                                                                onClick={(
-                                                                    e
-                                                                ) => {
-                                                                    e.preventDefault();
-                                                                    setSelectedCourse(
-                                                                        course
-                                                                    );
-                                                                    setEditModalIsOpen(
-                                                                        true
-                                                                    );
-                                                                }}
                                                             >
                                                                 <Edit
                                                                     size={16}
@@ -228,7 +212,7 @@ export default function Index({
                                                                 <span>
                                                                     Edit
                                                                 </span>
-                                                            </button>
+                                                            </Link>
 
                                                             <button
                                                                 className="btn btn-error btn-sm ml-1"
@@ -236,12 +220,24 @@ export default function Index({
                                                                     e
                                                                 ) => {
                                                                     e.preventDefault();
-                                                                    setSelectedCourse(
-                                                                        course
-                                                                    );
-                                                                    setDeleteModalIsOpen(
-                                                                        true
-                                                                    );
+
+                                                                    if (
+                                                                        confirm(
+                                                                            "Anda yakin ingin menghapus data " +
+                                                                                course.title +
+                                                                                " ?"
+                                                                        )
+                                                                    ) {
+                                                                        router.delete(
+                                                                            route(
+                                                                                "backend.course.destroy",
+                                                                                course.id
+                                                                            ),
+                                                                            {
+                                                                                preserveState: true,
+                                                                            }
+                                                                        );
+                                                                    }
                                                                 }}
                                                             >
                                                                 <Trash
@@ -252,36 +248,14 @@ export default function Index({
                                                                 </span>
                                                             </button>
 
-                                                            <button
+                                                            <Link
+                                                                href={route(
+                                                                    "backend.course_section.index",
+                                                                    {
+                                                                        course: course,
+                                                                    }
+                                                                )}
                                                                 className="btn btn-secondary btn-sm ml-1 mr-2"
-                                                                ref={
-                                                                    buttonOpenManageLectureRef
-                                                                }
-                                                                onClick={(
-                                                                    e
-                                                                ) => {
-                                                                    e.preventDefault();
-                                                                    setSelectedCourse(
-                                                                        course
-                                                                    );
-                                                                    router.reload(
-                                                                        {
-                                                                            only: [
-                                                                                "courseSections",
-                                                                            ],
-                                                                            data: {
-                                                                                selected_course_id:
-                                                                                    course.id,
-                                                                            },
-                                                                            onFinish:
-                                                                                () => {
-                                                                                    setManageLectureIsOpen(
-                                                                                        true
-                                                                                    );
-                                                                                },
-                                                                        }
-                                                                    );
-                                                                }}
                                                             >
                                                                 <ListCollapse
                                                                     size={16}
@@ -290,7 +264,7 @@ export default function Index({
                                                                     Sections &
                                                                     Lectures
                                                                 </span>
-                                                            </button>
+                                                            </Link>
                                                         </th>
                                                         <td className="whitespace-nowrap">
                                                             {course.image_url !==
@@ -379,33 +353,6 @@ export default function Index({
                     </div>
                 </div>
             </div>
-
-            <CreateModal
-                isOpen={createModalIsOpen}
-                setIsOpen={setCreateModalIsOpen}
-            />
-
-            <EditModal
-                isOpen={editModalIsOpen}
-                setIsOpen={setEditModalIsOpen}
-                course={selectedCourse}
-                setCourse={setSelectedCourse}
-            />
-
-            <DeleteModal
-                isOpen={deleteModalIsOpen}
-                setIsOpen={setDeleteModalIsOpen}
-                course={selectedCourse}
-                setCourse={setSelectedCourse}
-            />
-
-            <ManageLecture
-                courseSections={courseSections}
-                isOpen={manageLectureIsOpen}
-                setIsOpen={setManageLectureIsOpen}
-                course={selectedCourse}
-                setCourse={setSelectedCourse}
-            />
-        </AuthenticatedLayout>
+        </BackendLayout>
     );
 }

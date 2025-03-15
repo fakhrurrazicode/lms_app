@@ -1,10 +1,8 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
-import plugin from "tailwindcss";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-    darkMode: false,
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
@@ -15,19 +13,45 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                sans: ["Inter", ...defaultTheme.fontFamily.sans],
             },
         },
     },
 
     plugins: [
-        // plugin(function ({ addBase }) {
-        //     addBase({
-        //         html: { fontSize: "9px" },
-        //     });
-        // }),
         forms,
-        require("@tailwindcss/typography"),
-        // require("daisyui"),
+        require("daisyui"),
+        function ({ addComponents }) {
+            addComponents({
+                ".container": {
+                    maxWidth: "100%",
+                    "@screen sm": {
+                        maxWidth: 640 - 150 + "px",
+                    },
+                    "@screen md": {
+                        maxWidth: 768 - 150 + "px",
+                    },
+                    "@screen lg": {
+                        maxWidth: 1280 - 150 + "px",
+                    },
+                    "@screen xl": {
+                        maxWidth: 1400 - 150 + "px",
+                    },
+                },
+            });
+        },
     ],
+
+    // daisyui: {
+    //     themes: [
+    //         {
+    //             dark: {
+    //                 ...require("daisyui/src/theming/themes")["dark"],
+    //                 primary: "#0260A3",
+    //                 secondary: "#FBC304",
+    //                 "primary-focus": "mediumblue",
+    //             },
+    //         },
+    //     ],
+    // },
 };

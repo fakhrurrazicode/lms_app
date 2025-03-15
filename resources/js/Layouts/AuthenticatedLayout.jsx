@@ -233,113 +233,97 @@ export default function AuthenticatedLayout({ header, children }) {
                         </Link>
                     </li>
                     <li></li>
-                    {permissions.includes("backend.role.index") && (
-                        <li>
-                            <Link
-                                href="/backend/role"
-                                className="flex justify-start items-center "
-                                preserveScroll={true}
-                                preserveState={true}
-                            >
-                                <UserCheck size={16} />
-                                <span>Manage Roles</span>
-                            </Link>
-                        </li>
-                    )}
-                    {permissions.includes("backend.permission.index") && (
-                        <li>
-                            <Link
-                                href="/backend/permission"
-                                className="flex justify-start items-center "
-                            >
-                                <UserCheck size={16} />
-                                <span>Manage Permissions</span>
-                            </Link>
-                        </li>
-                    )}
-                    {permissions.includes("backend.user.index") && (
-                        <li>
-                            <Link
-                                href="/backend/user"
-                                className="flex justify-start items-center "
-                            >
-                                <Users size={16} />
-                                <span>Manage Users</span>
-                            </Link>
-                        </li>
-                    )}
+                    <li>
+                        <Link
+                            href="/backend/role"
+                            className="flex justify-start items-center "
+                            preserveScroll={true}
+                            preserveState={true}
+                        >
+                            <UserCheck size={16} />
+                            <span>Manage Roles</span>
+                        </Link>
+                    </li>
 
-                    {permissions.includes("backend.tag.index") && (
-                        <li>
-                            <Link
-                                href="/backend/tag"
-                                className="flex justify-start items-center "
-                            >
-                                <LayoutList size={16} />
-                                <span>Manage Tag</span>
-                            </Link>
-                        </li>
-                    )}
+                    <li>
+                        <Link
+                            href="/backend/permission"
+                            className="flex justify-start items-center "
+                        >
+                            <UserCheck size={16} />
+                            <span>Manage Permissions</span>
+                        </Link>
+                    </li>
 
-                    {permissions.includes("backend.course_category.index") && (
-                        <li>
-                            <Link
-                                href="/backend/course_category"
-                                className="flex justify-start items-center "
-                            >
-                                <LayoutList size={16} />
-                                <span>Manage Course Categories</span>
-                            </Link>
-                        </li>
-                    )}
-                    {permissions.includes(
-                        "backend.course_sub_category.index"
-                    ) && (
-                        <li>
-                            <Link
-                                href="/backend/course_sub_category"
-                                className="flex justify-start items-center "
-                            >
-                                <LayoutList size={16} />
-                                <span>Manage Course Sub Categories</span>
-                            </Link>
-                        </li>
-                    )}
+                    <li>
+                        <Link
+                            href="/backend/user"
+                            className="flex justify-start items-center "
+                        >
+                            <Users size={16} />
+                            <span>Manage Users</span>
+                        </Link>
+                    </li>
 
-                    {permissions.includes("backend.course.index") && (
-                        <li>
-                            <Link
-                                href="/backend/course"
-                                className="flex justify-start items-center "
-                            >
-                                <LayoutList size={16} />
-                                <span>Manage Courses</span>
-                            </Link>
-                        </li>
-                    )}
+                    <li>
+                        <Link
+                            href="/backend/tag"
+                            className="flex justify-start items-center "
+                        >
+                            <LayoutList size={16} />
+                            <span>Manage Tag</span>
+                        </Link>
+                    </li>
 
-                    {permissions.includes("backend.profile") && (
-                        <li>
-                            <Link
-                                href="/profile"
-                                className="flex justify-start items-center "
-                            >
-                                <User size={16} />
-                                <span>Profile</span>
-                            </Link>
-                        </li>
-                    )}
-                    {permissions.includes("backend.activity_logs.index") && (
-                        <li>
-                            <Link
-                                href="/backend/activity_log"
-                                className="flex justify-start items-center "
-                            >
-                                <Terminal size={16} />
-                                <span>Activity Logs</span>
-                            </Link>
-                        </li>
-                    )}
+                    <li>
+                        <Link
+                            href="/backend/course_category"
+                            className="flex justify-start items-center "
+                        >
+                            <LayoutList size={16} />
+                            <span>Manage Course Categories</span>
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link
+                            href="/backend/course_sub_category"
+                            className="flex justify-start items-center "
+                        >
+                            <LayoutList size={16} />
+                            <span>Manage Course Sub Categories</span>
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link
+                            href="/backend/course"
+                            className="flex justify-start items-center "
+                        >
+                            <LayoutList size={16} />
+                            <span>Manage Courses</span>
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link
+                            href="/profile"
+                            className="flex justify-start items-center "
+                        >
+                            <User size={16} />
+                            <span>Profile</span>
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link
+                            href="/backend/activity_log"
+                            className="flex justify-start items-center "
+                        >
+                            <Terminal size={16} />
+                            <span>Activity Logs</span>
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </div>

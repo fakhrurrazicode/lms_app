@@ -1,149 +1,230 @@
 import { rupiah } from "@/bootstrap";
-import GuestLayout from "@/Layouts/GuestLayout";
+import CheckoutButton from "@/Components/CheckoutButton";
+import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link } from "@inertiajs/react";
-import { Trash } from "lucide-react";
 
-export default function Cart({ auth, laravelVersion, phpVersion }) {
+import React from "react";
+import { FaStar } from "react-icons/fa";
+import { FiArrowRight } from "react-icons/fi";
+
+export default function Cart({ cart }) {
+    console.log("cart", cart);
+    console.log("cart.items.length", cart.items.length);
     return (
-        <GuestLayout>
-            <section>
-                <div className="container py-50px lg:py-60px 2xl:py-20 3xl:py-100px">
-                    <div className="text-contentColor dark:text-contentColor-dark text-size-10 md:text-base overflow-auto">
-                        <table className="table-fixed md:table-auto leading-1.8 text-center w-150 md:w-full overflow-auto border border-borderColor dark:border-borderColor-dark box-content md:box-border">
-                            <thead>
-                                <tr className="md:text-sm text-blackColor dark:text-blackColor-dark uppercase font-medium border-b border-borderColor dark:border-borderColor-dark">
-                                    <th className="pt-13px pb-9px md:py-22px px-5 md:px-25px leading-1.8 max-w-25 whitespace-nowrap">
-                                        Image
-                                    </th>
-                                    <th className="pt-13px pb-9px md:py-22px px-5 md:px-25px leading-1.8 max-w-25 whitespace-nowrap">
-                                        Product
-                                    </th>
-                                    <th className="pt-13px pb-9px md:py-22px px-5 md:px-25px leading-1.8 max-w-25 whitespace-nowrap">
-                                        Price
-                                    </th>
-                                    <th className="pt-13px pb-9px md:py-22px px-5 md:px-25px leading-1.8 max-w-25 whitespace-nowrap">
-                                        Discount
-                                    </th>
-                                    <th className="pt-13px pb-9px md:py-22px px-5 md:px-25px leading-1.8 max-w-25 whitespace-nowrap">
-                                        Total
-                                    </th>
-                                    <th className="pt-13px pb-9px md:py-22px px-5 md:px-25px leading-1.8 max-w-25 whitespace-nowrap">
-                                        Remove
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {auth.cart.items.length > 0 ? (
-                                    auth.cart.items.map((item) => {
-                                        if (item.itemable) {
-                                            let itemable = item.itemable;
+        <FrontendLayout
+            header={
+                <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    Dashboard
+                </h2>
+            }
+        >
+            <Head title="Courses" />
+            <section className="container mx-auto px-4 py-16">
+                <div className="mb-8">
+                    <h1 className="text-3xl font-bold">Shopping Cart</h1>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {cart && cart.items.length > 0 ? (
+                        <>
+                            <div className="col-span-2">
+                                <div className="card bg-base-100">
+                                    <div className="card-body">
+                                        {cart.items.map((item) => {
+                                            const itemable = item.itemable;
+
                                             return (
-                                                <tr
+                                                <div
                                                     key={item.id}
-                                                    className="border-b border-borderColor dark:border-borderColor-dark"
+                                                    className="grid grid-cols-12 gap-6 py-3 border-b border-base-300"
                                                 >
-                                                    <td className="py-15px md:py-5 border-r border-borderColor dark:border-borderColor-dark">
-                                                        <a href="#">
-                                                            <img
-                                                                loading="lazy"
-                                                                src={
-                                                                    itemable.image_url
-                                                                }
-                                                                alt="product-1"
-                                                                className="max-w-20 w-full"
-                                                            />
-                                                        </a>
-                                                    </td>
-                                                    <td className="py-15px md:py-5 border-r border-borderColor dark:border-borderColor-dark w-300px">
-                                                        <Link
-                                                            className="hover:text-primaryColor"
-                                                            href={
-                                                                "/course/" +
-                                                                itemable.slug
+                                                    <div className="col-span-3">
+                                                        <img
+                                                            src={
+                                                                itemable.image_url
                                                             }
-                                                            target="_blank"
+                                                            alt=""
+                                                        />
+                                                    </div>
+                                                    <div className="col-span-5">
+                                                        <Link
+                                                            href={route(
+                                                                "course",
+                                                                {
+                                                                    slug: itemable.slug,
+                                                                }
+                                                            )}
+                                                            className="text-md font-bold mb-2 block text-primary"
                                                         >
                                                             {itemable.title}
                                                         </Link>
-                                                    </td>
-                                                    <td className="py-15px md:py-5 border-r border-borderColor dark:border-borderColor-dark">
-                                                        <span className="amount">
-                                                            {rupiah(
-                                                                itemable.price
-                                                            )}
-                                                        </span>
-                                                    </td>
-
-                                                    <td className="py-15px md:py-5 border-r border-borderColor dark:border-borderColor-dark">
-                                                        -
-                                                    </td>
-                                                    <td className="py-15px md:py-5 border-r border-borderColor dark:border-borderColor-dark">
-                                                        {rupiah(itemable.price)}
-                                                    </td>
-                                                    <td className="py-15px md:py-5">
+                                                        <p className="text-sm mb-2">
+                                                            Oleh:{" "}
+                                                            <a
+                                                                href="#"
+                                                                className="text-primary"
+                                                            >
+                                                                {itemable.instructor
+                                                                    ? itemable
+                                                                          .instructor
+                                                                          .name
+                                                                    : "Unknown"}
+                                                            </a>
+                                                        </p>
+                                                        <div className="flex justify-start items-center gap-2 text-sm mb-2 text-yellow-700">
+                                                            <span>4.4</span>
+                                                            <div className="flex gap-1">
+                                                                <FaStar />
+                                                                <FaStar />
+                                                                <FaStar />
+                                                                <FaStar />
+                                                                <FaStar />
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex gap-2 text-sm">
+                                                            <div className="flex-1 text-left">
+                                                                {
+                                                                    itemable.duration
+                                                                }{" "}
+                                                                Menit
+                                                            </div>
+                                                            <div className="flex-1 text-left">
+                                                                180 Pelajaran
+                                                            </div>
+                                                            <div className="flex-1 text-left">
+                                                                Menengah
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-span-2 ">
                                                         <Link
+                                                            href={route(
+                                                                "cart.destroy"
+                                                            )}
                                                             method="DELETE"
-                                                            href="/remove-from-cart"
                                                             preserveScroll={
                                                                 true
                                                             }
                                                             preserveState={true}
                                                             data={{
-                                                                itemable_id:
-                                                                    itemable.id,
                                                                 itemable_type:
                                                                     "App\\Models\\Course",
+                                                                itemable_id:
+                                                                    itemable.id,
                                                             }}
-                                                            type="submit"
+                                                            className="btn btn-error btn-sm"
                                                         >
-                                                            <Trash />
+                                                            Hapus
                                                         </Link>
-                                                    </td>
-                                                </tr>
-                                            );
-                                        }
-                                    })
-                                ) : (
-                                    <tr className="py-12">
-                                        <td
-                                            colSpan={6}
-                                            className="text-center py-12"
-                                        >
-                                            Belum ada produk yang di tambahkan
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
 
-                    <div className="flex flex-wrap sm:flex-nowrap justify-between items-center gap-x-5 gap-y-10px pt-22px pb-9 md:pt-30px md:pb-55px">
-                        <div>
-                            <Link
-                                href="/courses"
-                                className="text-size-13 text-whiteColor dark:text-whiteColor-dark dark:hover:text-whiteColor leading-1 px-5 py-18px md:px-10 bg-blackColor dark:bg-blackColor-dark hover:bg-primaryColor dark:hover:bg-primaryColor"
-                            >
-                                Lihat Kursus Lain
-                            </Link>
+                                                        {/* <br /> */}
+
+                                                        <Link
+                                                            href={route(
+                                                                "cart.destroy"
+                                                            )}
+                                                            method="DELETE"
+                                                            preserveScroll={
+                                                                true
+                                                            }
+                                                            preserveState={true}
+                                                            data={{
+                                                                itemable_type:
+                                                                    "App\\Models\\Course",
+                                                                itemable_id:
+                                                                    itemable.id,
+                                                            }}
+                                                            className="btn btn-primary btn-sm"
+                                                        >
+                                                            Pindahkan ke
+                                                            Wishlist
+                                                        </Link>
+                                                    </div>
+                                                    <div className="col-span-2">
+                                                        <p className="text-md font-bold text-primary text-right">
+                                                            <span className="block">
+                                                                {rupiah(
+                                                                    itemable.price
+                                                                )}
+                                                            </span>
+                                                            {itemable.discount_percentage ? (
+                                                                <span className="block text-xs text-gray-500 font-semibold line-through">
+                                                                    {rupiah(
+                                                                        itemable.real_price
+                                                                    )}
+                                                                </span>
+                                                            ) : (
+                                                                <></>
+                                                            )}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-span-1">
+                                <div className="card bg-base-100">
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <div className="mb-6">
+                                                <h3 className="font-bold">
+                                                    Total:
+                                                </h3>
+                                                <h1 className="text-3xl font-bold">
+                                                    {rupiah(cart.total_price)}
+                                                </h1>
+                                                <h3 className="line-through">
+                                                    {rupiah(
+                                                        cart.total_real_price
+                                                    )}
+                                                </h3>
+                                                <p>
+                                                    Diskon{" "}
+                                                    {
+                                                        cart.total_discount_percentage
+                                                    }
+                                                    %
+                                                </p>
+                                            </div>
+
+                                            <CheckoutButton />
+
+                                            <p className="text-xs">
+                                                Anda belum dikenakan biaya
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="col-span-3">
+                            <div className="card bg-base-100">
+                                <div className="card-body flex flex-col items-center">
+                                    <img
+                                        src="/images/empty-cart.png"
+                                        className="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 mb-8"
+                                    />
+                                    <p className="mb-6">
+                                        Keranjang Anda kosong. Teruskan belanja
+                                        untuk menemukan kursus!
+                                    </p>
+
+                                    <div>
+                                        <Link
+                                            href={route("courses")}
+                                            className="btn btn-primary"
+                                        >
+                                            Terus Belanja
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex flex-wrap sm:flex-nowrap justify-between items-center gap-x-5 gap-y-10px">
-                            <Link
-                                href="/clear-cart"
-                                method="DELETE"
-                                className="text-size-13 text-whiteColor dark:text-whiteColor-dark dark:hover:text-whiteColor leading-1 px-5 py-18px md:px-10 bg-blackColor dark:bg-blackColor-dark hover:bg-primaryColor dark:hover:bg-primaryColor"
-                            >
-                                Bersihkan Keranjang
-                            </Link>
-                            <Link
-                                href="/checkout"
-                                className="text-size-13 text-whiteColor dark:text-whiteColor-dark dark:hover:text-whiteColor leading-1 px-5 py-18px md:px-10 bg-blackColor dark:bg-blackColor-dark hover:bg-primaryColor dark:hover:bg-primaryColor"
-                            >
-                                Checkout
-                            </Link>
-                        </div>
-                    </div>
+                    )}
                 </div>
             </section>
-        </GuestLayout>
+        </FrontendLayout>
     );
 }

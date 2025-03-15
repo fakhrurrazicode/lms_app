@@ -20,10 +20,7 @@ use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
-    // public function __construct()
-    // {
-    //     Inertia::setRootView('frontend'); // Set `admin.blade.php` as default for this controller
-    // }
+
 
     public function create(): Response
     {
@@ -74,6 +71,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('page.home', absolute: false));
+        return redirect(route('home', absolute: false));
     }
 }

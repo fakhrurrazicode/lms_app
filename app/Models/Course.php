@@ -20,16 +20,32 @@ class Course extends BaseModel implements Cartable
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['image_url', 'average_stars', 'is_on_wishlist'];
+    protected $appends = ['image_url', 'average_stars', 'is_on_wishlist', 'course_section_count', 'course_lecture_count', 'real_price'];
+    protected $with = ['instructor'];
 
     public function getPrice(): float
     {
         return $this->price;
     }
 
+
+
+    public function getPriceAttribute(): float
+    {
+        if ($this->attributes['discount_percentage']) {
+            return $this->attributes['price'] - ($this->attributes['price'] * ($this->attributes['discount_percentage'] / 100));
+        }
+        return $this->attributes['price'];
+    }
+
+    public function getRealPriceAttribute()
+    {
+        return $this->attributes['price'];
+    }
+
     public function getImageUrlAttribute()
     {
-        return $this->image ? url('/storage/' . $this->image) : asset('assets/images/no-image.jpeg');
+        return $this->image ? url('/storage/' . $this->image) : asset('images/dummy/no-image.jpeg');
     }
 
     public function getAverageStarsAttribute()
@@ -41,6 +57,16 @@ class Course extends BaseModel implements Cartable
         }
 
         return round($stars, 0);
+    }
+
+    public function getCourseSectionCountAttribute()
+    {
+        return $this->course_sections()->count();
+    }
+
+    public function getCourseLectureCountAttribute()
+    {
+        return $this->course_lectures()->count();
     }
 
     public function tags()
@@ -88,10 +114,14 @@ class Course extends BaseModel implements Cartable
         // dd($this->isUserAuthenticated());
         if ($this->isUserAuthenticated()) {
 
+            // dd(Auth::user()->id);
+            // dd($this->id);
             $wishlist = Wishlist::where('user_id', Auth::user()->id)
                 ->where('wishlistable_id', $this->id)
-                ->where('wishlistable_type', 'App\Model\Course')
+                ->where('wishlistable_type', 'App\Models\Course')
                 ->first();
+
+            // dd($wishlist);
 
             return $wishlist ? true : false;
         } else {

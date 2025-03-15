@@ -1,22 +1,11 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
 import { Edit, KeyRound, Plus, Trash } from "lucide-react";
 import { useState } from "react";
 
-import CreateModal from "./CreateModal";
-import EditModal from "./EditModal";
-import DeleteModal from "./DeleteModal";
+import BackendLayout from "@/Layouts/BackendLayout";
 
-export default function Index({ request, tags }) {
-    const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
-
-    const [editModalIsOpen, setEditModalIsOpen] = useState(false);
-    const [underEditingTag, setUnderEditingTag] = useState(null);
-
-    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-    const [underDeletingTag, setUnderDeletingTag] = useState(null);
-
+export default function Index({ request, courseCategories }) {
     const orderByOnClickHandler = (e) =>
         router.reload({
             preserveScroll: true,
@@ -35,8 +24,9 @@ export default function Index({ request, tags }) {
                 })(),
             },
         });
+
     return (
-        <AuthenticatedLayout
+        <BackendLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     Tags
@@ -44,7 +34,6 @@ export default function Index({ request, tags }) {
             }
         >
             <Head title="Dashboard" />
-
             <div className="py-12">
                 <div className="w-full sm:px-6 lg:px-8">
                     <div className="card bg-base-100 shadow-xl">
@@ -54,16 +43,13 @@ export default function Index({ request, tags }) {
                             <div className="overflow-x-auto">
                                 <div className="mb-6 flex justify-between items-center">
                                     <div>
-                                        <button
+                                        <Link
                                             className="btn btn-primary"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                setCreateModalIsOpen(true);
-                                            }}
+                                            href={route("backend.tag.create")}
                                         >
                                             <Plus size={16} />
                                             <span>Create new</span>
-                                        </button>
+                                        </Link>
                                     </div>
                                     <div className="flex gap-2">
                                         <label className="form-control w-full max-w-xs">
@@ -153,39 +139,43 @@ export default function Index({ request, tags }) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {tags.data.length > 0 ? (
-                                            tags.data.map((tag) => (
+                                        {courseCategories.data.length > 0 ? (
+                                            courseCategories.data.map((tag) => (
                                                 <tr
                                                     key={tag.id}
                                                     className="hover"
                                                 >
                                                     <th>
-                                                        <button
+                                                        <Link
+                                                            href={route(
+                                                                "backend.tag.edit",
+                                                                {
+                                                                    tag: tag,
+                                                                }
+                                                            )}
                                                             className="btn btn-accent btn-sm"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                setUnderEditingTag(
-                                                                    tag
-                                                                );
-                                                                setEditModalIsOpen(
-                                                                    true
-                                                                );
-                                                            }}
                                                         >
                                                             <Edit size={16} />
                                                             <span>Edit</span>
-                                                        </button>
+                                                        </Link>
 
                                                         <button
                                                             className="btn btn-error btn-sm ml-1"
                                                             onClick={(e) => {
-                                                                e.preventDefault();
-                                                                setUnderDeletingTag(
-                                                                    tag
-                                                                );
-                                                                setDeleteModalIsOpen(
-                                                                    true
-                                                                );
+                                                                confirm(
+                                                                    "Anda yakin ingin menghapus data " +
+                                                                        tag.name +
+                                                                        "?"
+                                                                )
+                                                                    ? router.delete(
+                                                                          route(
+                                                                              "backend.tag.destroy",
+                                                                              {
+                                                                                  tag,
+                                                                              }
+                                                                          )
+                                                                      )
+                                                                    : null;
                                                             }}
                                                         >
                                                             <Trash size={16} />
@@ -216,19 +206,27 @@ export default function Index({ request, tags }) {
                                     <div></div>
                                     <div>
                                         <div className="join">
-                                            {tags.links.map((link, index) => (
-                                                <Link
-                                                    preserveScroll={true}
-                                                    preserveState={true}
-                                                    key={index}
-                                                    href={link.url}
-                                                    className="join-item btn"
-                                                >
-                                                    {link.label
-                                                        .replace("&laquo;", "")
-                                                        .replace("&raquo;", "")}
-                                                </Link>
-                                            ))}
+                                            {courseCategories.links.map(
+                                                (link, index) => (
+                                                    <Link
+                                                        preserveScroll={true}
+                                                        preserveState={true}
+                                                        key={index}
+                                                        href={link.url}
+                                                        className="join-item btn"
+                                                    >
+                                                        {link.label
+                                                            .replace(
+                                                                "&laquo;",
+                                                                ""
+                                                            )
+                                                            .replace(
+                                                                "&raquo;",
+                                                                ""
+                                                            )}
+                                                    </Link>
+                                                )
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -237,25 +235,6 @@ export default function Index({ request, tags }) {
                     </div>
                 </div>
             </div>
-
-            <CreateModal
-                isOpen={createModalIsOpen}
-                setIsOpen={setCreateModalIsOpen}
-            />
-
-            <EditModal
-                isOpen={editModalIsOpen}
-                setIsOpen={setEditModalIsOpen}
-                tag={underEditingTag}
-                setTag={setUnderEditingTag}
-            />
-
-            <DeleteModal
-                isOpen={deleteModalIsOpen}
-                setIsOpen={setDeleteModalIsOpen}
-                tag={underDeletingTag}
-                setTag={setUnderDeletingTag}
-            />
-        </AuthenticatedLayout>
+        </BackendLayout>
     );
 }

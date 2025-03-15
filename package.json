@@ -3,42 +3,34 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "build:admin": "vite build --mode admin",
-        "dev": "vite",
-        "dev:admin": "vite --mode admin",
-        "start": "concurrently \"php artisan serve\" \"npm run dev\"",
-        "iseed:all": "php artisan iseed activity_log,cache,cache_locks,course_categories,course_lectures,course_sections,course_sub_categories,courses,failed_jobs,job_batches,jobs,migrations,model_has_permissions,model_has_roles,password_reset_tokens,permissions,role_has_permissions,roles,sessions,sub_course_categories,users,tags --force -vv"
+        "dev": "vite"
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",
         "@inertiajs/react": "^2.0.0",
         "@tailwindcss/forms": "^0.5.3",
-        "@tailwindcss/typography": "^0.5.16",
+        "@tailwindcss/vite": "^4.0.0",
         "@vitejs/plugin-react": "^4.2.0",
         "autoprefixer": "^10.4.12",
         "axios": "^1.7.4",
-        "concurrently": "^9.1.2",
+        "concurrently": "^9.0.1",
         "daisyui": "^4.12.24",
-        "laravel-vite-plugin": "^1.0",
+        "laravel-vite-plugin": "^1.2.0",
         "postcss": "^8.4.31",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "tailwindcss": "^3.2.1",
-        "vite": "^6.0"
+        "vite": "^6.0.11"
     },
     "dependencies": {
+        "@graphland/react-video-player": "^0.1.14",
+        "@szhsin/react-accordion": "^1.4.0",
         "classnames": "^2.5.1",
-        "datatables.net-bs5": "^2.2.0",
-        "datatables.net-dt": "^2.2.0",
-        "datatables.net-react": "^1.0.0",
-        "datatables.net-responsive-dt": "^3.0.3",
-        "datatables.net-select-dt": "^2.1.0",
-        "draft-js": "^0.11.7",
-        "lucide-react": "^0.469.0",
+        "lucide-react": "^0.476.0",
+        "react-icons": "^5.5.0",
         "react-modal": "^3.16.3",
-        "react-quill": "^2.0.0",
-        "react-select": "^5.9.0",
-        "slugify": "^1.6.6",
-        "swiper": "^11.2.2"
+        "react-tabs": "^6.1.0",
+        "react-toastify": "^11.0.5",
+        "slugify": "^1.6.6"
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserUpdateRequest extends FormRequest
@@ -25,6 +26,7 @@ class UserUpdateRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class . ',email,' . $this->route('user')->id,
+            'role' => ['required', 'exists:' . Role::class . ',name']
         ];
     }
 }

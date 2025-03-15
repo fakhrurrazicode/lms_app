@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import BackendLayout from "@/Layouts/BackendLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
 import { Edit, ListCheck, Plus, Trash } from "lucide-react";
@@ -37,7 +37,7 @@ export default function Index({ request, roles, permissions }) {
             },
         });
     return (
-        <AuthenticatedLayout
+        <BackendLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     Roles
@@ -283,6 +283,6 @@ export default function Index({ request, roles, permissions }) {
                 role={selectedRole}
                 setRole={setSelectedRole}
             />
-        </AuthenticatedLayout>
+        </BackendLayout>
     );
 }

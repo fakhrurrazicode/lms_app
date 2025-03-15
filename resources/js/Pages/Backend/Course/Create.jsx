@@ -1,0 +1,432 @@
+import BackendLayout from "@/Layouts/BackendLayout";
+import { Head, Link, useForm } from "@inertiajs/react";
+import { Save } from "lucide-react";
+import React, { useRef } from "react";
+
+export default function Create({ instructors, course_categories }) {
+    const previewImageRef = useRef(null);
+    const { data, setData, post, errors, reset, processing, progress } =
+        useForm({
+            course_category_id: "",
+            // course_sub_category_id: "",
+            instructor_id: "",
+
+            title: "",
+            slug: "",
+            image: "",
+            description: "",
+            prerequisites: "",
+            goals: "",
+            duration: "",
+            status: true,
+        });
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        post("/backend/course", {
+            // forceFormData: true,
+            preserveScroll: true,
+            preserveState: true,
+        });
+    };
+
+    const inputChangeHandler = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        setData(name, value);
+
+        switch (name) {
+            case "title":
+                setData("slug", slugify(e.target.value).toLowerCase());
+                break;
+            case "course_category_id":
+                reloadCourseSubCategories({
+                    course_categoryId: e.target.value,
+                });
+            case "image":
+                const file = e.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        previewImageRef.current.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImageRef.current.classList.add("hidden");
+                    previewImageRef.current.src = "";
+                }
+
+                setData("image", file);
+                break;
+        }
+    };
+
+    return (
+        <BackendLayout
+            header={
+                <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    Create Courses
+                </h2>
+            }
+        >
+            <Head title="Create Course" />
+
+            <div className="py-12">
+                <div className="w-full sm:px-6 lg:px-8">
+                    <div className="card bg-base-100 shadow-xl">
+                        <form onSubmit={onSubmitHandler} className="card-body">
+                            <h2 className="card-title mb-6">
+                                Create new Course
+                            </h2>
+                            <div className="mb-6">
+                                <div className="flex gap-6">
+                                    <label className="form-control mb-6 w-1/2">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Title
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Title"
+                                            className="input input-bordered w-full"
+                                            name="title"
+                                            onChange={inputChangeHandler}
+                                            value={data.title}
+                                        />
+                                        {errors.title && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.title}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+                                </div>
+
+                                <div className="flex gap-6">
+                                    <label className="form-control mb-6 w-1/2">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Slug
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Slug"
+                                            className="input input-bordered w-full"
+                                            name="slug"
+                                            onChange={(e) => {
+                                                setData(
+                                                    e.target.name,
+                                                    e.target.value
+                                                );
+                                            }}
+                                            value={data.slug}
+                                        />
+                                        {errors.slug && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.slug}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+                                </div>
+
+                                <div className="flex gap-6">
+                                    <label className="form-control mb-6 w-1/3">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Instructor
+                                            </span>
+                                        </div>
+                                        <select
+                                            className="select select-bordered"
+                                            name="instructor_id"
+                                            onChange={inputChangeHandler}
+                                            value={data.instructor_id}
+                                        >
+                                            <option>
+                                                :: Select Instructor ::
+                                            </option>
+
+                                            {instructors.map((instructor) => (
+                                                <option
+                                                    key={instructor.id}
+                                                    value={instructor.id}
+                                                >
+                                                    {instructor.name}
+                                                </option>
+                                            ))}
+                                        </select>
+
+                                        {errors.instructor_id && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.instructor_id}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+                                </div>
+                                <div className="flex gap-6">
+                                    <label className="form-control mb-6 w-1/3">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Course Category
+                                            </span>
+                                        </div>
+                                        <select
+                                            className="select select-bordered"
+                                            name="course_category_id"
+                                            onChange={inputChangeHandler}
+                                            value={data.course_category_id}
+                                        >
+                                            <option>
+                                                :: Select Sub Course Category ::
+                                            </option>
+
+                                            {course_categories.map(
+                                                (course_category) => (
+                                                    <option
+                                                        key={course_category.id}
+                                                        value={
+                                                            course_category.id
+                                                        }
+                                                    >
+                                                        {course_category.name}
+                                                    </option>
+                                                )
+                                            )}
+                                        </select>
+
+                                        {errors.course_category_id && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.course_category_id}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
+                                    {/* <label className="form-control mb-6 w-1/3">
+                                <div className="label">
+                                    <span className="label-text">
+                                        Course Sub Category
+                                    </span>
+                                </div>
+                                <select
+                                    className="select select-bordered"
+                                    name="course_sub_category_id"
+                                    onChange={inputChangeHandler}
+                                    value={data.course_sub_category_id}
+                                >
+                                    <option>
+                                        :: Select Course Sub Category ::
+                                    </option>
+
+                                    {courseSubCategories.map(
+                                        (courseSubCategory) => (
+                                            <option
+                                                key={courseSubCategory.id}
+                                                value={courseSubCategory.id}
+                                            >
+                                                {courseSubCategory.name}
+                                            </option>
+                                        )
+                                    )}
+                                </select>
+                                {errors.course_sub_category_id && (
+                                    <div className="label">
+                                        <span className="label-text-alt text-error">
+                                            {errors.course_sub_category_id}
+                                        </span>
+                                    </div>
+                                )}
+                            </label> */}
+                                </div>
+
+                                <div className="flex gap-6">
+                                    <label className="form-control mb-6 w-full">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Description
+                                            </span>
+                                        </div>
+
+                                        <textarea
+                                            className="textarea textarea-bordered h-24"
+                                            placeholder="Description"
+                                            name="description"
+                                            value={data.description}
+                                            onChange={inputChangeHandler}
+                                        ></textarea>
+                                        {errors.description && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.description}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+                                </div>
+
+                                <div className="flex gap-6">
+                                    <label className="form-control mb-6 w-full">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Prerequisites
+                                            </span>
+                                        </div>
+                                        <textarea
+                                            className="textarea textarea-bordered h-24"
+                                            placeholder="Prerequisites"
+                                            name="prerequisites"
+                                            value={data.prerequisites}
+                                            onChange={inputChangeHandler}
+                                        ></textarea>
+                                        {errors.prerequisites && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.prerequisites}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+                                </div>
+
+                                <div className="flex gap-6">
+                                    <label className="form-control mb-6 w-full">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Goals
+                                            </span>
+                                        </div>
+                                        <textarea
+                                            className="textarea textarea-bordered h-24"
+                                            placeholder="Goals"
+                                            name="goals"
+                                            value={data.goals}
+                                            onChange={inputChangeHandler}
+                                        ></textarea>
+                                        {errors.goals && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.goals}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+                                </div>
+
+                                <div className="flex gap-6">
+                                    <label className="form-control mb-6 w-1/3">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Duration
+                                            </span>
+                                            <span className="label-text-alt">
+                                                In minutes
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="number"
+                                            placeholder="Duration"
+                                            className="input input-bordered w-full"
+                                            name="duration"
+                                            onChange={inputChangeHandler}
+                                            value={data.duration}
+                                        />
+                                        {errors.duration && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.duration}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+                                </div>
+
+                                <div className="flex gap-6">
+                                    <label className="form-control mb-6 w-1/3">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Course Image
+                                            </span>
+                                            <span className="label-text-alt">
+                                                JPG, JPEG, PNG
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="file"
+                                            className="file-input file-input-bordered"
+                                            name="image"
+                                            accept="image/*"
+                                            onChange={inputChangeHandler}
+                                            // value={data.image.toString()}
+                                        />
+
+                                        {errors.image && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.image}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
+                                    <div className="w-1/3">
+                                        <img
+                                            ref={previewImageRef}
+                                            src=""
+                                            alt=""
+                                            className="w-full"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="flex gap-6 mb-6">
+                                    <div className="form-control py-6 w-1/5">
+                                        <label className="label cursor-pointer">
+                                            <span className="label-text">
+                                                Is active?
+                                            </span>
+                                            <input
+                                                type="checkbox"
+                                                defaultChecked
+                                                className="checkbox checkbox-primary"
+                                            />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="card-actions justify-end">
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                >
+                                    <Save size={16} />
+                                    <span>Save</span>
+                                </button>
+                                <Link
+                                    href={route("backend.course.index")}
+                                    preserveState={true}
+                                    // preserveScroll={true}
+                                    className="btn btn-neutral"
+                                >
+                                    Cancel
+                                </Link>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </BackendLayout>
+    );
+}

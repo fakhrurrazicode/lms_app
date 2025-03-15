@@ -41,7 +41,7 @@ class CourseController extends Controller
             'courses' => $courses,
             'request' => $request,
             'courseCategories' => CourseCategory::all(),
-            'courseSubCategories' => fn() => CourseSubCategory::where('course_category_id', $selected_course_category_id)->get() ?? [],
+            // 'courseSubCategories' => fn() => CourseSubCategory::where('course_category_id', $selected_course_category_id)->get() ?? [],
             'instructors' => User::role('instructor')->get(),
             'courseSections' => fn() => CourseSection::with(['course_lectures'])->where('course_id', $selected_course_id)->get() ?? [],
         ]);
@@ -50,7 +50,12 @@ class CourseController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request) {}
+    public function create(Request $request)
+    {
+        $instructors = User::role('instructor')->get();
+        $course_categories = CourseCategory::all();
+        return Inertia::render('Backend/Course/Create', compact('instructors', 'course_categories'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -76,9 +81,11 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Course $course)
     {
-        //
+        $instructors = User::role('instructor')->get();
+        $course_categories = CourseCategory::all();
+        return Inertia::render('Backend/Course/Edit', compact('instructors', 'course_categories', 'course'));
     }
 
     /**
