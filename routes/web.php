@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
 
 use App\Http\Controllers\Backend\CourseCategoryController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
 use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
 use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
@@ -44,6 +45,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/cart', CartController::class)->only(['index', 'store']);
     Route::delete('/cart', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    // Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+    Route::post('/midtrans/token', [PaymentController::class, 'token'])->name('midtrans.token');
 
     Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 

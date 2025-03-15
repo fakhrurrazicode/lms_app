@@ -27,6 +27,7 @@ return new class extends Migration
 
             $table->integer('price')->default(0);
 
+
             $table->enum('level', ['beginner', 'intermediate', 'advance'])->default('beginner');
 
             $table->boolean('status')->default(true);

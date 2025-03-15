@@ -1,9 +1,11 @@
 import { rupiah } from "@/bootstrap";
+import CheckoutButton from "@/Components/CheckoutButton";
 import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link } from "@inertiajs/react";
 
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { FiArrowRight } from "react-icons/fi";
 
 export default function Cart({ cart }) {
     console.log("cart", cart);
@@ -31,7 +33,10 @@ export default function Cart({ cart }) {
                                             const itemable = item.itemable;
 
                                             return (
-                                                <div className="grid grid-cols-12 gap-6 py-3 border-b border-base-300">
+                                                <div
+                                                    key={item.id}
+                                                    className="grid grid-cols-12 gap-6 py-3 border-b border-base-300"
+                                                >
                                                     <div className="col-span-3">
                                                         <img
                                                             src={
@@ -90,7 +95,7 @@ export default function Cart({ cart }) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="col-span-2 text-right">
+                                                    <div className="col-span-2 ">
                                                         <Link
                                                             href={route(
                                                                 "cart.destroy"
@@ -106,15 +111,49 @@ export default function Cart({ cart }) {
                                                                 itemable_id:
                                                                     itemable.id,
                                                             }}
-                                                            className="text-error"
+                                                            className="btn btn-error btn-sm"
                                                         >
                                                             Hapus
                                                         </Link>
+
+                                                        {/* <br /> */}
+
+                                                        <Link
+                                                            href={route(
+                                                                "cart.destroy"
+                                                            )}
+                                                            method="DELETE"
+                                                            preserveScroll={
+                                                                true
+                                                            }
+                                                            preserveState={true}
+                                                            data={{
+                                                                itemable_type:
+                                                                    "App\\Models\\Course",
+                                                                itemable_id:
+                                                                    itemable.id,
+                                                            }}
+                                                            className="btn btn-primary btn-sm"
+                                                        >
+                                                            Pindahkan ke
+                                                            Wishlist
+                                                        </Link>
                                                     </div>
                                                     <div className="col-span-2">
-                                                        <p className="text-md font-bold text-secondary text-right">
-                                                            {rupiah(
-                                                                itemable.price
+                                                        <p className="text-md font-bold text-primary text-right">
+                                                            <span className="block">
+                                                                {rupiah(
+                                                                    itemable.price
+                                                                )}
+                                                            </span>
+                                                            {itemable.discount_percentage ? (
+                                                                <span className="block text-xs text-gray-500 font-semibold line-through">
+                                                                    {rupiah(
+                                                                        itemable.real_price
+                                                                    )}
+                                                                </span>
+                                                            ) : (
+                                                                <></>
                                                             )}
                                                         </p>
                                                     </div>
@@ -128,15 +167,31 @@ export default function Cart({ cart }) {
                                 <div className="card bg-base-100">
                                     <div className="card">
                                         <div className="card-body">
-                                            <p>
-                                                Lorem ipsum dolor sit amet
-                                                consectetur adipisicing elit.
-                                                Excepturi obcaecati inventore
-                                                voluptates ratione quam sit quos
-                                                doloremque dolorum repellendus,
-                                                sed atque. Qui, voluptatibus
-                                                rerum itaque adipisci explicabo
-                                                laudantium temporibus veritatis!
+                                            <div className="mb-6">
+                                                <h3 className="font-bold">
+                                                    Total:
+                                                </h3>
+                                                <h1 className="text-3xl font-bold">
+                                                    {rupiah(cart.total_price)}
+                                                </h1>
+                                                <h3 className="line-through">
+                                                    {rupiah(
+                                                        cart.total_real_price
+                                                    )}
+                                                </h3>
+                                                <p>
+                                                    Diskon{" "}
+                                                    {
+                                                        cart.total_discount_percentage
+                                                    }
+                                                    %
+                                                </p>
+                                            </div>
+
+                                            <CheckoutButton />
+
+                                            <p className="text-xs">
+                                                Anda belum dikenakan biaya
                                             </p>
                                         </div>
                                     </div>

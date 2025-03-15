@@ -1,8 +1,10 @@
+import { rupiah } from "@/bootstrap";
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
 import { Edit, KeyRound, ListCollapse, Plus, Trash } from "lucide-react";
 import { useRef, useState } from "react";
+import { CourseDetail } from "./CourseCardDetail";
 
 export default function Index({
     request,
@@ -60,7 +62,7 @@ export default function Index({
                                             href={route(
                                                 "user_area.course.create"
                                             )}
-                                            className="btn btn-xs btn-primary"
+                                            className="btn btn-primary"
                                         >
                                             <Plus size={16} />
                                             <span>Create new</span>
@@ -120,8 +122,87 @@ export default function Index({
                                         </label>
                                     </div>
                                 </div>
-                                <div className="overflow-x-scroll">
-                                    <table className="table table-xs mb-6">
+                                <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                                    {courses.data.length > 0 ? (
+                                        courses.data.map((course) => (
+                                            <div className="card card-side bg-base-100 border border-base-200 shadow-xl items-start">
+                                                <div className="card-body">
+                                                    <h2 className="card-title text-md mb-6 text-primary">
+                                                        <Link href="#">
+                                                            {course.title}
+                                                        </Link>
+                                                    </h2>
+                                                    <div className="mb-6">
+                                                        <CourseDetail
+                                                            course={course}
+                                                        />
+                                                    </div>
+
+                                                    <div className="card-actions justify-end">
+                                                        <Link
+                                                            href={route(
+                                                                "user_area.course.edit",
+                                                                course.id
+                                                            )}
+                                                            className="btn btn-sm btn-accent"
+                                                        >
+                                                            <Edit size={16} />
+                                                            <span>Edit</span>
+                                                        </Link>
+
+                                                        <button
+                                                            className="btn btn-sm btn-error ml-1"
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+
+                                                                if (
+                                                                    confirm(
+                                                                        "Anda yakin ingin menghapus data " +
+                                                                            course.title +
+                                                                            " ?"
+                                                                    )
+                                                                ) {
+                                                                    router.delete(
+                                                                        route(
+                                                                            "user_area.course.destroy",
+                                                                            course.id
+                                                                        ),
+                                                                        {
+                                                                            preserveState: true,
+                                                                        }
+                                                                    );
+                                                                }
+                                                            }}
+                                                        >
+                                                            <Trash size={16} />
+                                                            <span>Delete</span>
+                                                        </button>
+
+                                                        <Link
+                                                            href={route(
+                                                                "user_area.course_section.index",
+                                                                {
+                                                                    course: course,
+                                                                }
+                                                            )}
+                                                            className="btn btn-sm btn-secondary ml-1 mr-2"
+                                                        >
+                                                            <ListCollapse
+                                                                size={16}
+                                                            />
+                                                            <span>
+                                                                Sections &
+                                                                Lectures
+                                                            </span>
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p className="py-4">No Data.</p>
+                                    )}
+                                    {/* <table className="table table-xs mb-6">
                                         <thead>
                                             <tr>
                                                 <th className="whitespace-nowrap"></th>
@@ -317,7 +398,7 @@ export default function Index({
                                                 </tr>
                                             )}
                                         </tbody>
-                                    </table>
+                                    </table> */}
                                 </div>
 
                                 <div className="flex justify-between">

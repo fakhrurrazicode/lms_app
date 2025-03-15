@@ -96,10 +96,14 @@ export default function Course() {
 
                             <div className="flex gap-5 flex-wrap items-center mb-[30px]">
                                 <div className="text-xl font-medium text-primary leading-[25px]">
-                                    {rupiah(course.price)}
-                                    <del className="text-sm text-gray-500 font-semibold">
-                                        / {rupiah(course.price)}
-                                    </del>
+                                    <span>{rupiah(course.price)}</span>
+                                    {course.discount_percentage ? (
+                                        <del className="text-sm text-gray-500 font-semibold">
+                                            / {rupiah(course.real_price)}
+                                        </del>
+                                    ) : (
+                                        <></>
+                                    )}
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <div>
@@ -460,11 +464,15 @@ export default function Course() {
                                 <img src={course.image_url} alt="Shoes" />
                             </figure>
                             <div className="card-body">
-                                <div className="text-xl font-medium text-primary leading-[25px] mb-6">
-                                    {rupiah(course.price)}
-                                    <del className="text-sm text-gray-500 font-semibold">
-                                        / {rupiah(course.price)}
-                                    </del>
+                                <div className="text-xl font-bold text-primary leading-[25px] mb-6">
+                                    <span>{rupiah(course.price)}</span>{" "}
+                                    {course.discount_percentage ? (
+                                        <span className="text-sm text-gray-500 font-semibold line-through">
+                                            / {rupiah(course.real_price)}
+                                        </span>
+                                    ) : (
+                                        <></>
+                                    )}
                                 </div>
 
                                 {auth.user ? (
@@ -486,7 +494,9 @@ export default function Course() {
                                                 className="btn flex justify-center items-center btn-primary w-full mb-3"
                                             >
                                                 <FaCartPlus />
-                                                <span>Add to Cart</span>
+                                                <span>
+                                                    Tambahkan ke keranjang
+                                                </span>
                                             </Link>
                                         ) : (
                                             <Link
@@ -502,11 +512,13 @@ export default function Course() {
                                                 className="btn flex justify-center items-center btn-error w-full mb-3"
                                             >
                                                 <FaTrash />
-                                                <span>Remove from Cart</span>
+                                                <span>
+                                                    Hapus Dari Keranjang
+                                                </span>
                                             </Link>
                                         )}
                                         <button className="btn flex justify-center items-center btn-secondary w-full">
-                                            <span>Buy Now</span>
+                                            <span>Beli Sekarang</span>
                                         </button>
                                     </div>
                                 ) : (
@@ -515,7 +527,7 @@ export default function Course() {
                                             href={route("login")}
                                             className="btn flex justify-center items-center btn-primary w-full"
                                         >
-                                            <span>Sign in/Sign Up</span>
+                                            <span>Login/Daftar</span>
                                         </Link>
                                     </div>
                                 )}

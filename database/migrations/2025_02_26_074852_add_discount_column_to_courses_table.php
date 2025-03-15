@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->integer('discount')->nullable()->default(0);
+            $table->integer('discount_percentage')->nullable();
         });
     }
 

@@ -20,12 +20,27 @@ class Course extends BaseModel implements Cartable
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['image_url', 'average_stars', 'is_on_wishlist', 'course_section_count', 'course_lecture_count'];
+    protected $appends = ['image_url', 'average_stars', 'is_on_wishlist', 'course_section_count', 'course_lecture_count', 'real_price'];
     protected $with = ['instructor'];
 
     public function getPrice(): float
     {
         return $this->price;
+    }
+
+
+
+    public function getPriceAttribute(): float
+    {
+        if ($this->attributes['discount_percentage']) {
+            return $this->attributes['price'] - ($this->attributes['price'] * ($this->attributes['discount_percentage'] / 100));
+        }
+        return $this->attributes['price'];
+    }
+
+    public function getRealPriceAttribute()
+    {
+        return $this->attributes['price'];
     }
 
     public function getImageUrlAttribute()

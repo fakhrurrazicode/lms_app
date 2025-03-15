@@ -14,13 +14,13 @@ class CoursesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('courses')->delete();
-        
-        \DB::table('courses')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('courses')->insert(array(
+            0 =>
+            array(
                 'id' => 30,
                 'course_category_id' => 15,
                 'instructor_id' => 8,
@@ -31,12 +31,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Pemahaman dasar keamanan siber.',
                 'goals' => 'Mampu melakukan penetration testing terhadap aplikasi web.',
                 'duration' => 210,
+                'price' => 100000,
+                'discount_percentage' => 5,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            1 => 
-            array (
+            1 =>
+            array(
                 'id' => 28,
                 'course_category_id' => 14,
                 'instructor_id' => 9,
@@ -47,12 +49,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Pemahaman dasar SQL.',
                 'goals' => 'Mampu mengoptimalkan database untuk performa tinggi.',
                 'duration' => 200,
+                'price' => 100000,
+                'discount_percentage' => 5,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            2 => 
-            array (
+            2 =>
+            array(
                 'id' => 29,
                 'course_category_id' => 15,
                 'instructor_id' => 9,
@@ -63,12 +67,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Pemahaman dasar pemrograman.',
                 'goals' => 'Mampu melakukan pengujian perangkat lunak dengan teknik manual dan otomatis.',
                 'duration' => 190,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            3 => 
-            array (
+            3 =>
+            array(
                 'id' => 25,
                 'course_category_id' => 13,
                 'instructor_id' => 9,
@@ -79,12 +85,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar pemrograman.',
                 'goals' => 'Mampu membangun game sederhana menggunakan Unity.',
                 'duration' => 240,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            4 => 
-            array (
+            4 =>
+            array(
                 'id' => 26,
                 'course_category_id' => 13,
                 'instructor_id' => 9,
@@ -95,12 +103,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Pemahaman dasar pemrograman.',
                 'goals' => 'Mampu membuat game berbasis Unreal Engine.',
                 'duration' => 260,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            5 => 
-            array (
+            5 =>
+            array(
                 'id' => 27,
                 'course_category_id' => 14,
                 'instructor_id' => 9,
@@ -111,12 +121,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar SQL.',
                 'goals' => 'Mampu mengelola database menggunakan PostgreSQL.',
                 'duration' => 180,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            6 => 
-            array (
+            6 =>
+            array(
                 'id' => 22,
                 'course_category_id' => 11,
                 'instructor_id' => 8,
@@ -127,28 +139,32 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Pemahaman dasar desain.',
                 'goals' => 'Mampu membuat desain UI/UX berbasis pengalaman pengguna.',
                 'duration' => 200,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            7 => 
-            array (
+            7 =>
+            array(
                 'id' => 23,
                 'course_category_id' => 12,
                 'instructor_id' => 6,
                 'image' => NULL,
-            'title' => 'Internet of Things (IoT) dengan Arduino',
+                'title' => 'Internet of Things (IoT) dengan Arduino',
                 'slug' => 'iot-arduino',
                 'description' => 'Pelajari cara membuat perangkat IoT menggunakan Arduino.',
                 'prerequisites' => 'Dasar pemrograman.',
                 'goals' => 'Mampu membangun proyek IoT sederhana dengan Arduino.',
                 'duration' => 200,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            8 => 
-            array (
+            8 =>
+            array(
                 'id' => 24,
                 'course_category_id' => 12,
                 'instructor_id' => 6,
@@ -159,12 +175,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar pemrograman Python.',
                 'goals' => 'Mampu menghubungkan perangkat IoT dengan cloud.',
                 'duration' => 220,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            9 => 
-            array (
+            9 =>
+            array(
                 'id' => 19,
                 'course_category_id' => 10,
                 'instructor_id' => 6,
@@ -175,12 +193,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Tidak ada, cocok untuk pemula.',
                 'goals' => 'Memahami cara kerja blockchain dan mata uang kripto.',
                 'duration' => 200,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            10 => 
-            array (
+            10 =>
+            array(
                 'id' => 20,
                 'course_category_id' => 10,
                 'instructor_id' => 6,
@@ -191,12 +211,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar pemrograman.',
                 'goals' => 'Mampu membuat smart contract menggunakan Solidity.',
                 'duration' => 220,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            11 => 
-            array (
+            11 =>
+            array(
                 'id' => 21,
                 'course_category_id' => 11,
                 'instructor_id' => 6,
@@ -207,12 +229,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Tidak ada, cocok untuk pemula.',
                 'goals' => 'Mampu merancang antarmuka pengguna yang menarik dan fungsional.',
                 'duration' => 180,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            12 => 
-            array (
+            12 =>
+            array(
                 'id' => 17,
                 'course_category_id' => 9,
                 'instructor_id' => 6,
@@ -223,12 +247,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar JavaScript.',
                 'goals' => 'Mampu membangun chatbot interaktif untuk berbagai keperluan.',
                 'duration' => 160,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            13 => 
-            array (
+            13 =>
+            array(
                 'id' => 18,
                 'course_category_id' => 9,
                 'instructor_id' => 9,
@@ -239,12 +265,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar pemrograman Python.',
                 'goals' => 'Mampu membangun asisten suara berbasis AI.',
                 'duration' => 180,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            14 => 
-            array (
+            14 =>
+            array(
                 'id' => 14,
                 'course_category_id' => 7,
                 'instructor_id' => 6,
@@ -255,12 +283,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Tidak ada, cocok untuk pemula.',
                 'goals' => 'Memahami dasar konfigurasi jaringan menggunakan perangkat Cisco.',
                 'duration' => 180,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            15 => 
-            array (
+            15 =>
+            array(
                 'id' => 15,
                 'course_category_id' => 8,
                 'instructor_id' => 8,
@@ -271,12 +301,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar pemrograman dan Linux.',
                 'goals' => 'Mampu menggunakan Docker dan Kubernetes dalam proses deployment.',
                 'duration' => 200,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            16 => 
-            array (
+            16 =>
+            array(
                 'id' => 16,
                 'course_category_id' => 8,
                 'instructor_id' => 6,
@@ -287,12 +319,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar jaringan dan sistem operasi.',
                 'goals' => 'Mampu menggunakan AWS untuk hosting dan pengelolaan aplikasi.',
                 'duration' => 220,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            17 => 
-            array (
+            17 =>
+            array(
                 'id' => 11,
                 'course_category_id' => 6,
                 'instructor_id' => 6,
@@ -303,12 +337,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Pemahaman dasar JavaScript dan React.',
                 'goals' => 'Mampu membangun aplikasi mobile sederhana dengan React Native.',
                 'duration' => 180,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            18 => 
-            array (
+            18 =>
+            array(
                 'id' => 12,
                 'course_category_id' => 6,
                 'instructor_id' => 6,
@@ -319,12 +355,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar pemrograman.',
                 'goals' => 'Mampu membuat aplikasi Android dengan Kotlin.',
                 'duration' => 200,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            19 => 
-            array (
+            19 =>
+            array(
                 'id' => 13,
                 'course_category_id' => 7,
                 'instructor_id' => 8,
@@ -335,12 +373,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Tidak ada, cocok untuk pemula.',
                 'goals' => 'Memahami konsep dasar jaringan dan keamanan.',
                 'duration' => 160,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            20 => 
-            array (
+            20 =>
+            array(
                 'id' => 9,
                 'course_category_id' => 5,
                 'instructor_id' => 8,
@@ -351,12 +391,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar-dasar jaringan dan sistem operasi Linux.',
                 'goals' => 'Memahami cara mengamankan sistem dari serangan siber.',
                 'duration' => 240,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            21 => 
-            array (
+            21 =>
+            array(
                 'id' => 10,
                 'course_category_id' => 5,
                 'instructor_id' => 8,
@@ -367,12 +409,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Tidak ada, cocok untuk pemula.',
                 'goals' => 'Mampu memahami ancaman keamanan digital dan mitigasinya.',
                 'duration' => 180,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            22 => 
-            array (
+            22 =>
+            array(
                 'id' => 6,
                 'course_category_id' => 3,
                 'instructor_id' => 9,
@@ -383,12 +427,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar pemrograman Python.',
                 'goals' => 'Mampu mengolah dan menganalisis data dengan Python.',
                 'duration' => 180,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            23 => 
-            array (
+            23 =>
+            array(
                 'id' => 7,
                 'course_category_id' => 4,
                 'instructor_id' => 9,
@@ -399,12 +445,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Pemahaman dasar JavaScript dan Node.js.',
                 'goals' => 'Mampu membangun backend API dengan Express.js dan database MongoDB.',
                 'duration' => 150,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            24 => 
-            array (
+            24 =>
+            array(
                 'id' => 8,
                 'course_category_id' => 4,
                 'instructor_id' => 6,
@@ -415,12 +463,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar pemrograman Java.',
                 'goals' => 'Mampu membangun aplikasi berbasis microservices.',
                 'duration' => 200,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            25 => 
-            array (
+            25 =>
+            array(
                 'id' => 4,
                 'course_category_id' => 2,
                 'instructor_id' => 6,
@@ -431,12 +481,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Tidak ada, cocok untuk pemula.',
                 'goals' => 'Mampu membangun halaman web statis yang menarik.',
                 'duration' => 120,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            26 => 
-            array (
+            26 =>
+            array(
                 'id' => 5,
                 'course_category_id' => 3,
                 'instructor_id' => 9,
@@ -447,12 +499,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Pemrograman dasar Python.',
                 'goals' => 'Mampu memahami konsep machine learning dan menerapkan algoritma sederhana.',
                 'duration' => 200,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            27 => 
-            array (
+            27 =>
+            array(
                 'id' => 1,
                 'course_category_id' => 1,
                 'instructor_id' => 8,
@@ -463,12 +517,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Tidak ada, cocok untuk pemula.',
                 'goals' => 'Memahami sintaks dasar Python dan mampu membuat program sederhana.',
                 'duration' => 120,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            28 => 
-            array (
+            28 =>
+            array(
                 'id' => 2,
                 'course_category_id' => 1,
                 'instructor_id' => 8,
@@ -479,12 +535,14 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Dasar pemrograman Python.',
                 'goals' => 'Mampu mengimplementasikan algoritma dan struktur data dalam Python.',
                 'duration' => 150,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            29 => 
-            array (
+            29 =>
+            array(
                 'id' => 3,
                 'course_category_id' => 2,
                 'instructor_id' => 6,
@@ -495,12 +553,12 @@ class CoursesTableSeeder extends Seeder
                 'prerequisites' => 'Pemahaman dasar HTML, CSS, dan JavaScript.',
                 'goals' => 'Mampu membangun aplikasi web dengan Next.js dan menghubungkannya dengan MySQL.',
                 'duration' => 180,
+                'price' => 100000,
+                'discount_percentage' => null,
                 'status' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
         ));
-        
-        
     }
 }

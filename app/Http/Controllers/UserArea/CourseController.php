@@ -6,15 +6,17 @@ use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Models\CourseSection;
 use App\Models\CourseCategory;
 use App\Models\CourseSubCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PaginateRequest;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\CourseStoreRequest;
 use App\Http\Requests\CourseUpdateRequest;
 use App\Http\Requests\CourseSetPermissionsRequest;
-use App\Models\CourseSection;
+
 
 class CourseController extends Controller
 {
@@ -30,6 +32,8 @@ class CourseController extends Controller
         $courses = Course::orWhere([
             ['title', 'LIKE', '%' . $request->search . '%'],
             ['slug', 'LIKE', '%' . $request->search . '%'],
+        ])->where([
+            'instructor_id' => Auth::user()->id,
         ])->orderBy($request->orderby, $request->ordermethod)
             ->with(['instructor', 'course_category'])
             ->paginate($request->perpage)

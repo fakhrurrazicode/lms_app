@@ -15,8 +15,8 @@ export default function Index({ course, course_sections }) {
             }
         >
             <Head title="Course Section" />
-            <div className="py-12">
-                <div className="w-full sm:px-6 lg:px-8">
+            <div className="">
+                <div className="w-full">
                     <div className="mb-6">
                         <Link
                             href={route("user_area.course.index")}
@@ -33,7 +33,7 @@ export default function Index({ course, course_sections }) {
 
                     <div className="card bg-base-100 shadow-xl">
                         <div className="card-body">
-                            <div>
+                            <div className="mb-6">
                                 <Link
                                     preserveState={true}
                                     href={route(
@@ -46,285 +46,263 @@ export default function Index({ course, course_sections }) {
                                     <span>Add new Section</span>
                                 </Link>
                             </div>
-                            <div className="overflow-x-auto">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Sections/Lectures</th>
-                                            <th>Video</th>
-                                            <th>Created at</th>
-                                            <th>Updated at</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {course_sections.length > 0 ? (
-                                            course_sections.map(
-                                                (course_section, index) => {
-                                                    console.log(
-                                                        "CourseSectionsTable.course_sections.course_lectures",
-                                                        course_sections
-                                                    );
-                                                    return (
-                                                        <React.Fragment
-                                                            key={index}
-                                                        >
-                                                            <tr>
-                                                                <td className="whitespace-nowrap gap-2 flex w-auto">
-                                                                    <Link
-                                                                        href={route(
-                                                                            "user_area.course_section.edit",
-                                                                            {
-                                                                                course: course,
-                                                                                course_section:
-                                                                                    course_section,
-                                                                            }
-                                                                        )}
-                                                                        className="btn btn-xs min-h-7 px-2 btn-accent"
-                                                                    >
-                                                                        <Edit
-                                                                            size={
-                                                                                16
-                                                                            }
-                                                                        />{" "}
-                                                                        <span>
-                                                                            Edit
-                                                                            Section
-                                                                        </span>
-                                                                    </Link>
-
-                                                                    <button
-                                                                        className="btn btn-xs min-h-7 px-2 btn-error"
-                                                                        onClick={(
-                                                                            e
-                                                                        ) => {
-                                                                            e.preventDefault();
-
-                                                                            if (
-                                                                                confirm(
-                                                                                    "Apakah anda yakin ingin menghapus data section " +
-                                                                                        course_section.title +
-                                                                                        "?"
-                                                                                )
-                                                                            ) {
-                                                                                router.delete(
-                                                                                    route(
-                                                                                        "user_area.course_section.destroy",
-                                                                                        {
-                                                                                            course: course,
-                                                                                            course_section:
-                                                                                                course_section,
-                                                                                        }
-                                                                                    ),
-                                                                                    {
-                                                                                        preserveScroll: true,
-                                                                                        preserveState: true,
-                                                                                    }
-                                                                                );
-                                                                            }
-                                                                        }}
-                                                                    >
-                                                                        <Trash
-                                                                            size={
-                                                                                16
-                                                                            }
-                                                                        />{" "}
-                                                                        <span>
-                                                                            Delete
-                                                                            Section
-                                                                        </span>
-                                                                    </button>
-
-                                                                    <Link
-                                                                        href={route(
-                                                                            "user_area.course_lecture.create",
-                                                                            {
-                                                                                course: course,
-                                                                                course_section:
-                                                                                    course_section,
-                                                                            }
-                                                                        )}
-                                                                        className="btn btn-xs min-h-7 px-2 btn-secondary"
-                                                                    >
-                                                                        <Plus
-                                                                            size={
-                                                                                16
-                                                                            }
-                                                                        />{" "}
-                                                                        <span>
-                                                                            Add
-                                                                            new
-                                                                            Lecture
-                                                                        </span>
-                                                                    </Link>
-                                                                </td>
-                                                                <td>
+                            <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                                {course_sections.length > 0 ? (
+                                    course_sections.map(
+                                        (course_section, index) => {
+                                            return (
+                                                <div className="card card-side bg-base-100 border border-base-200 shadow-xl items-start">
+                                                    <div className="card-body">
+                                                        <div className="flex justify-between items-center mb-6">
+                                                            <h2 className="card-title text-md text-primary text-md">
+                                                                <Link href="#">
                                                                     {
                                                                         course_section.title
                                                                     }
-                                                                </td>
-                                                                <td></td>
-                                                                <td>
-                                                                    {
-                                                                        course_section.created_at
-                                                                    }
-                                                                </td>
-                                                                <td>
-                                                                    {course_section.created_at !==
-                                                                    course_section.updated_at
-                                                                        ? course_section.updated_at
-                                                                        : ""}
-                                                                </td>
-                                                            </tr>
-                                                            {course_section.course_lectures &&
-                                                                course_section.course_lectures.map(
-                                                                    (
-                                                                        course_lecture,
-                                                                        _index
-                                                                    ) => (
-                                                                        <tr
-                                                                            key={
-                                                                                _index
-                                                                            }
-                                                                        >
-                                                                            <td className="whitespace-nowrap gap-2 flex w-auto !ps-16">
-                                                                                <Link
-                                                                                    href={route(
-                                                                                        "user_area.course_lecture.edit",
-                                                                                        {
-                                                                                            course: course,
-                                                                                            course_section:
-                                                                                                course_section,
-                                                                                            course_lecture:
-                                                                                                course_lecture,
-                                                                                        }
-                                                                                    )}
-                                                                                    className="btn btn-xs min-h-7 px-2 btn-accent"
-                                                                                >
-                                                                                    <Edit
-                                                                                        size={
-                                                                                            16
-                                                                                        }
-                                                                                    />{" "}
-                                                                                    <span>
-                                                                                        Edit
-                                                                                        Lecture
-                                                                                    </span>
-                                                                                </Link>
+                                                                </Link>
+                                                            </h2>
+                                                            <div className="flex gap-2">
+                                                                <Link
+                                                                    href={route(
+                                                                        "user_area.course_section.edit",
+                                                                        {
+                                                                            course: course,
+                                                                            course_section:
+                                                                                course_section,
+                                                                        }
+                                                                    )}
+                                                                    className="btn btn-xs min-h-7 px-2 btn-accent"
+                                                                >
+                                                                    <Edit
+                                                                        size={
+                                                                            16
+                                                                        }
+                                                                    />{" "}
+                                                                    <span>
+                                                                        Edit
+                                                                        Section
+                                                                    </span>
+                                                                </Link>
 
-                                                                                <button
-                                                                                    className="btn btn-xs min-h-7 px-2 btn-error"
-                                                                                    onClick={(
-                                                                                        e
-                                                                                    ) => {
-                                                                                        e.preventDefault();
+                                                                <button
+                                                                    className="btn btn-xs min-h-7 px-2 btn-error"
+                                                                    onClick={(
+                                                                        e
+                                                                    ) => {
+                                                                        e.preventDefault();
 
-                                                                                        if (
-                                                                                            confirm(
-                                                                                                "Apakah anda yakin ingin menghapus data lecture " +
-                                                                                                    course_lecture.title +
-                                                                                                    "?"
-                                                                                            )
-                                                                                        )
-                                                                                            router.delete(
-                                                                                                route(
-                                                                                                    "user_area.course_lecture.destroy",
-                                                                                                    {
-                                                                                                        course: course,
-                                                                                                        course_section:
-                                                                                                            course_section,
-                                                                                                        course_lecture:
-                                                                                                            course_lecture,
-                                                                                                    }
-                                                                                                ),
-                                                                                                {
-                                                                                                    preserveScroll: true,
-                                                                                                    preserveState: true,
-                                                                                                }
-                                                                                            );
-                                                                                    }}
-                                                                                >
-                                                                                    <Trash
-                                                                                        size={
-                                                                                            16
-                                                                                        }
-                                                                                    />{" "}
-                                                                                    <span>
-                                                                                        Delete
-                                                                                        Lecture
-                                                                                    </span>
-                                                                                </button>
-                                                                            </td>
-                                                                            <td className="!ps-16">
-                                                                                {
-                                                                                    course_lecture.title
-                                                                                }
-                                                                            </td>
-                                                                            <td>
-                                                                                <a
-                                                                                    className="text-primary"
-                                                                                    href={
-                                                                                        course_lecture.video_url
+                                                                        if (
+                                                                            confirm(
+                                                                                "Apakah anda yakin ingin menghapus data section " +
+                                                                                    course_section.title +
+                                                                                    "?"
+                                                                            )
+                                                                        ) {
+                                                                            router.delete(
+                                                                                route(
+                                                                                    "user_area.course_section.destroy",
+                                                                                    {
+                                                                                        course: course,
+                                                                                        course_section:
+                                                                                            course_section,
                                                                                     }
-                                                                                    target="_blank"
-                                                                                >
-                                                                                    <Video
-                                                                                        size={
-                                                                                            16
-                                                                                        }
-                                                                                    />
-                                                                                </a>
-                                                                            </td>
-                                                                            <td>
+                                                                                ),
                                                                                 {
-                                                                                    course_lecture.created_at
+                                                                                    preserveScroll: true,
+                                                                                    preserveState: true,
                                                                                 }
-                                                                            </td>
-                                                                            <td>
-                                                                                {course_lecture.created_at !==
-                                                                                course_lecture.updated_at
-                                                                                    ? course_lecture.updated_at
-                                                                                    : ""}
-                                                                            </td>
-                                                                        </tr>
-                                                                    )
-                                                                )}
-                                                        </React.Fragment>
-                                                    );
-                                                }
-                                            )
-                                        ) : (
-                                            <tr>
-                                                <td
-                                                    colSpan={4}
-                                                    className="py-2 text-center"
-                                                >
-                                                    No Data
-                                                </td>
-                                            </tr>
-                                        )}
-                                        {/* <tr className="hover">
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td></td>
-                            <td>Blue</td>
-                        </tr>
+                                                                            );
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    <Trash
+                                                                        size={
+                                                                            16
+                                                                        }
+                                                                    />{" "}
+                                                                    <span>
+                                                                        Delete
+                                                                        Section
+                                                                    </span>
+                                                                </button>
 
-                        <tr className="hover">
-                            <th>2</th>
-                            <td></td>
-                            <td>Desktop Support Technician</td>
-                            <td>Purple</td>
-                        </tr>
+                                                                <Link
+                                                                    href={route(
+                                                                        "user_area.course_lecture.create",
+                                                                        {
+                                                                            course: course,
+                                                                            course_section:
+                                                                                course_section,
+                                                                        }
+                                                                    )}
+                                                                    className="btn btn-xs min-h-7 px-2 btn-secondary"
+                                                                >
+                                                                    <Plus
+                                                                        size={
+                                                                            16
+                                                                        }
+                                                                    />{" "}
+                                                                    <span>
+                                                                        Add new
+                                                                        Lecture
+                                                                    </span>
+                                                                </Link>
+                                                            </div>
+                                                        </div>
 
-                        <tr className="hover">
-                            <th>3</th>
-                            <td></td>
-                            <td>Tax Accountant</td>
-                            <td>Red</td>
-                        </tr> */}
-                                    </tbody>
-                                </table>
+                                                        <div className="pl-6 border-l-8 border-primary">
+                                                            <table className="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th>
+                                                                            Lectures
+                                                                        </th>
+                                                                        <th>
+                                                                            Video
+                                                                        </th>
+                                                                        <th>
+                                                                            Created
+                                                                            at
+                                                                        </th>
+                                                                        <th>
+                                                                            Updated
+                                                                            at
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {course_section.course_lectures &&
+                                                                        course_section.course_lectures.map(
+                                                                            (
+                                                                                course_lecture,
+                                                                                _index
+                                                                            ) => (
+                                                                                <tr
+                                                                                    key={
+                                                                                        _index
+                                                                                    }
+                                                                                >
+                                                                                    <td className="whitespace-nowrap gap-2 flex w-auto">
+                                                                                        <Link
+                                                                                            href={route(
+                                                                                                "user_area.course_lecture.edit",
+                                                                                                {
+                                                                                                    course: course,
+                                                                                                    course_section:
+                                                                                                        course_section,
+                                                                                                    course_lecture:
+                                                                                                        course_lecture,
+                                                                                                }
+                                                                                            )}
+                                                                                            className="btn btn-xs min-h-7 px-2 btn-accent"
+                                                                                        >
+                                                                                            <Edit
+                                                                                                size={
+                                                                                                    16
+                                                                                                }
+                                                                                            />{" "}
+                                                                                            <span>
+                                                                                                Edit
+                                                                                                Lecture
+                                                                                            </span>
+                                                                                        </Link>
+
+                                                                                        <button
+                                                                                            className="btn btn-xs min-h-7 px-2 btn-error"
+                                                                                            onClick={(
+                                                                                                e
+                                                                                            ) => {
+                                                                                                e.preventDefault();
+
+                                                                                                if (
+                                                                                                    confirm(
+                                                                                                        "Apakah anda yakin ingin menghapus data lecture " +
+                                                                                                            course_lecture.title +
+                                                                                                            "?"
+                                                                                                    )
+                                                                                                )
+                                                                                                    router.delete(
+                                                                                                        route(
+                                                                                                            "user_area.course_lecture.destroy",
+                                                                                                            {
+                                                                                                                course: course,
+                                                                                                                course_section:
+                                                                                                                    course_section,
+                                                                                                                course_lecture:
+                                                                                                                    course_lecture,
+                                                                                                            }
+                                                                                                        ),
+                                                                                                        {
+                                                                                                            preserveScroll: true,
+                                                                                                            preserveState: true,
+                                                                                                        }
+                                                                                                    );
+                                                                                            }}
+                                                                                        >
+                                                                                            <Trash
+                                                                                                size={
+                                                                                                    16
+                                                                                                }
+                                                                                            />{" "}
+                                                                                            <span>
+                                                                                                Delete
+                                                                                                Lecture
+                                                                                            </span>
+                                                                                        </button>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        {
+                                                                                            course_lecture.title
+                                                                                        }
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <a
+                                                                                            className="text-primary"
+                                                                                            href={
+                                                                                                course_lecture.video_url
+                                                                                            }
+                                                                                            target="_blank"
+                                                                                        >
+                                                                                            <Video
+                                                                                                size={
+                                                                                                    16
+                                                                                                }
+                                                                                            />
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        {
+                                                                                            course_lecture.created_at
+                                                                                        }
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        {course_lecture.created_at !==
+                                                                                        course_lecture.updated_at
+                                                                                            ? course_lecture.updated_at
+                                                                                            : ""}
+                                                                                    </td>
+                                                                                </tr>
+                                                                            )
+                                                                        )}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            );
+                                        }
+                                    )
+                                ) : (
+                                    <tr>
+                                        <td
+                                            colSpan={4}
+                                            className="py-2 text-center"
+                                        >
+                                            No Data
+                                        </td>
+                                    </tr>
+                                )}
                             </div>
                         </div>
                     </div>

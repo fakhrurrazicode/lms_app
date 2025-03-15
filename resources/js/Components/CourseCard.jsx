@@ -55,11 +55,22 @@ export default function CourseCard({ course }) {
                 >
                     {course.title}
                 </a>
+
                 <p className="mb-2 font-bold text-sm">
-                    <span className="text-primary">{rupiah(course.price)}</span>{" "}
-                    <span className="text-gray-400">
-                        / {rupiah(course.price)}
-                    </span>
+                    {course.discount_percentage ? (
+                        <>
+                            <span className="text-primary">
+                                {rupiah(course.price)}
+                            </span>{" "}
+                            <span className="text-gray-400 line-through">
+                                / {rupiah(course.real_price)}
+                            </span>
+                        </>
+                    ) : (
+                        <span className="text-primary">
+                            {rupiah(course.price)}
+                        </span>
+                    )}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 pt-[15px] border-t border-gray-700">
