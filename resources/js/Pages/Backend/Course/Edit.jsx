@@ -6,8 +6,8 @@ import slugify from "slugify";
 
 export default function Edit({ course, instructors, course_categories }) {
     const previewImageRef = useRef(null);
-    const { data, setData, put, errors, reset, processing, progress } = useForm(
-        {
+    const { data, setData, post, errors, reset, processing, progress } =
+        useForm({
             course_category_id: course.course_category_id,
             // course_sub_category_id: course.// course_sub_category_id,
             instructor_id: course.instructor_id,
@@ -20,12 +20,11 @@ export default function Edit({ course, instructors, course_categories }) {
             goals: course.goals,
             duration: course.duration,
             status: true,
-        }
-    );
+        });
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        put(
+        post(
             route("backend.course.update", {
                 course: course,
             }),
