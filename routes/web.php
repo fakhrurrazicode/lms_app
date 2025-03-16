@@ -1,30 +1,32 @@
 <?php
 
+
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PaymentController;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WishlistController;
-
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\UserArea\DashboardController;
+
 use App\Http\Controllers\Backend\ActivityLogController;
+
 use App\Http\Controllers\Backend\CourseLectureController;
-
 use App\Http\Controllers\Backend\CourseSectionController;
-
 use App\Http\Controllers\Backend\CourseCategoryController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
 use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
 use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -41,13 +43,21 @@ Route::get('/course/{slug}', [PageController::class, 'course'])->name('course');
 
 // Route::get('/dashboard', function () {})->middleware(['auth', 'verified'])->name('dashboard');
 
+
+
+
 Route::middleware('auth')->group(function () {
 
     Route::resource('/cart', CartController::class)->only(['index', 'store']);
     Route::delete('/cart', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::delete('/cart/empty', [CartController::class, 'empty_cart'])->name('cart.empty');
 
     // Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
     Route::post('/midtrans/token', [PaymentController::class, 'token'])->name('midtrans.token');
+
+    Route::get('/payment/finish', [PaymentController::class, 'finish'])->name('payment.finish');
+    Route::get('/payment/unfinish', [PaymentController::class, 'unfinish'])->name('payment.unfinish');
+    Route::get('/payment/error', [PaymentController::class, 'error'])->name('payment.error');
 
     Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 

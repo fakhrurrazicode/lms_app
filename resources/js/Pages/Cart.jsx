@@ -8,8 +8,6 @@ import { FaStar } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 
 export default function Cart({ cart }) {
-    console.log("cart", cart);
-    console.log("cart.items.length", cart.items.length);
     return (
         <FrontendLayout
             header={

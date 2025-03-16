@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('midtrans_notification_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('order_id')->nullable();
-            $table->integer('gross_amount')->nullable();
-            $table->integer('user_id')->nullable();
-            $table->string('transaction_id')->nullable();
-            $table->string('transaction_status')->nullable();
+            $table->json('json');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('midtrans_notification_logs');
     }
 };

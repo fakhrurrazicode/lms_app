@@ -1,3 +1,4 @@
+import { router } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 
@@ -38,7 +39,44 @@ export default function CheckoutButton() {
             const data = await response.json();
 
             if (data.token) {
-                window.snap.pay(data.token);
+                window.snap.pay(data.token, {
+                    onSuccess: function (result) {
+                        console.log("Success:", result);
+                        router.delete(route("cart.empty"), {
+                            onFinish: () => {
+                                router.get(route("payment.finish"), {
+                                    order_id: result.order_id,
+                                    transaction_status:
+                                        result.transaction_status,
+                                });
+                            },
+                        });
+                    },
+                    onPending: function (result) {
+                        console.log("Pending:", result);
+                        router.delete(route("cart.empty"), {
+                            onFinish: () => {
+                                router.get(route("payment.unfinish"), {
+                                    order_id: result.order_id,
+                                    transaction_status:
+                                        result.transaction_status,
+                                });
+                            },
+                        });
+                    },
+                    onError: function (result) {
+                        console.log("Error:", result);
+                        router.get(route("payment.error"), {
+                            order_id: result.order_id,
+                            transaction_status: result.transaction_status,
+                        });
+                    },
+                    onClose: function () {
+                        console.log(
+                            "Customer closed the popup without finishing the payment"
+                        );
+                    },
+                });
             } else {
                 alert("Payment error: " + data.error);
             }

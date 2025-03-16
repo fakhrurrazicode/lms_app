@@ -78,4 +78,10 @@ class CartController extends Controller
             'cart_id' => $cart->id,
         ])->delete();
     }
+
+    public function empty_cart()
+    {
+        $cart = Cart::query()->firstOrCreate(['user_id' => Auth::user()->id]);
+        $cart->emptyCart();
+    }
 }
