@@ -2,6 +2,7 @@ import BackendLayout from "@/Layouts/BackendLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { Save } from "lucide-react";
 import React, { useRef } from "react";
+import slugify from "slugify";
 
 export default function Create({ instructors, course_categories }) {
     const previewImageRef = useRef(null);
