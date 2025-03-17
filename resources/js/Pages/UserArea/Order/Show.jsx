@@ -4,6 +4,7 @@ import { Head, Link, router } from "@inertiajs/react";
 import classNames from "classnames";
 import { Plus } from "lucide-react";
 import React from "react";
+import { FiArrowLeft } from "react-icons/fi";
 
 export default function Show({ order }) {
     return (
@@ -17,6 +18,14 @@ export default function Show({ order }) {
             <Head title="Order History" />
 
             <div className="w-full">
+                <div className="mb-6">
+                    <Link
+                        href={route("user_area.order.index")}
+                        className="btn btn-neutral"
+                    >
+                        <FiArrowLeft /> Back
+                    </Link>
+                </div>
                 <div className="card bg-base-100 shadow-xl mb-6">
                     <div className="card-body">
                         <dl className="grid grid-cols-4 md:grid-cols-8 gap-2 text-xs">
@@ -65,6 +74,8 @@ export default function Show({ order }) {
                                         <th></th>
                                         <th>Item</th>
                                         <th>Price</th>
+                                        <th>Discount</th>
+                                        <th>Price (After Discount)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,17 +84,18 @@ export default function Show({ order }) {
                                         return (
                                             <tr>
                                                 <td></td>
+                                                <td>{itemable.title} </td>
                                                 <td>
-                                                    {itemable.title}{" "}
+                                                    {rupiah(item.real_price)}
+                                                </td>
+                                                <td>
                                                     {item.discount_percentage >
                                                     0
-                                                        ? "(" +
-                                                          item.discount_percentage +
-                                                          "%)"
+                                                        ? item.discount_percentage +
+                                                          "%"
                                                         : ""}
                                                 </td>
-                                                <td>{item.price}</td>
-                                                <td>Price</td>
+                                                <td>{rupiah(item.price)}</td>
                                             </tr>
                                         );
                                     })}
