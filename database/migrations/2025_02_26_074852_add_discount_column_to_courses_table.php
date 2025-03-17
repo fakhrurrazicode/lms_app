@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->integer('discount_percentage')->nullable();
+            $table->double('discount_percentage')->nullable();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->dropColumn('discount');
+            $table->dropColumn('discount_percentage');
         });
     }
 };

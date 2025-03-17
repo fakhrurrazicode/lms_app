@@ -16,6 +16,8 @@ return new class extends Migration
             $table->integer('order_id');
             $table->morphs('itemable');
             $table->integer('quantity')->default(1);
+            $table->double('price')->default(0);
+            $table->double('discount_percentage')->default(0);
             $table->json('options')->nullable();
             $table->timestamps();
         });

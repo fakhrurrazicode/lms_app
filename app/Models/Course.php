@@ -28,8 +28,6 @@ class Course extends BaseModel implements Cartable
         return $this->price;
     }
 
-
-
     public function getPriceAttribute(): float
     {
         if ($this->attributes['discount_percentage']) {

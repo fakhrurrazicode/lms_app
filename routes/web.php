@@ -26,6 +26,7 @@ use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController
 use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
+use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 // Route::get('/', function () {
@@ -66,6 +67,8 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/wishlist', UserAreaWishlistController::class);
         Route::post('/wishlist/{wishlist}/add_to_cart', [UserAreaWishlistController::class, 'add_to_cart'])->name('wishlist.add-to-cart');
+
+        Route::resource('/order', UserAreaOrderController::class);
 
         Route::get('/profile', [UserAreaProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [UserAreaProfileController::class, 'update'])->name('profile.update');

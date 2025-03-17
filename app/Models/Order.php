@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\BaseModel;
 use App\Models\OrderItem;
 use App\Models\Enrollment;
-use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+
+class Order extends BaseModel
 {
     protected $guarded = [];
 
@@ -27,6 +28,11 @@ class Order extends Model
                 }
             }
         });
+    }
+
+    public function order_items()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 
     public function user()

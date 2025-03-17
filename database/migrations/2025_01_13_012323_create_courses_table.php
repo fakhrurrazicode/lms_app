@@ -25,7 +25,7 @@ return new class extends Migration
             $table->text('goals')->nullable();
             $table->integer('duration')->nullable()->comment('in minutes');
 
-            $table->integer('price')->default(0);
+            $table->double('price')->default(0);
 
 
             $table->enum('level', ['beginner', 'intermediate', 'advance'])->default('beginner');
