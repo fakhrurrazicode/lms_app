@@ -4,34 +4,39 @@ import { Save } from "lucide-react";
 import React, { useRef } from "react";
 import slugify from "slugify";
 
-export default function Create({ course_categories }) {
+export default function Edit({ course, course_categories }) {
     const { auth } = usePage().props;
 
     const previewImageRef = useRef(null);
     const { data, setData, post, errors, reset, processing, progress } =
         useForm({
-            course_category_id: "",
-            // course_sub_category_id: "",
-            // instructor_id: "",
+            course_category_id: course.course_category_id,
+            // course_sub_category_id: course.course_sub_category_id,
+            // instructor_id: course.instructor_id,
 
-            title: "",
-            slug: "",
-            image: "",
-            description: "",
-            prerequisites: "",
-            goals: "",
-            // duration: "",
-            price: 0,
+            title: course.title,
+            slug: course.slug,
+            image: course.image,
+            description: course.description,
+            prerequisites: course.prerequisites,
+            goals: course.goals,
+            // duration: course.duration,
+            price: course.price,
             status: true,
         });
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        post("/user_area/course", {
-            // forceFormData: true,
-            preserveScroll: true,
-            preserveState: true,
-        });
+        post(
+            route("user_area.course.edit", {
+                course: course,
+            }),
+            {
+                // forceFormData: true,
+                preserveScroll: true,
+                preserveState: true,
+            }
+        );
     };
 
     const inputChangeHandler = (e) => {
@@ -73,16 +78,16 @@ export default function Create({ course_categories }) {
         <UserAreaLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Create Courses
+                    Edit Courses
                 </h2>
             }
         >
-            <Head title="Create Course" />
+            <Head title="Edit Course" />
 
             <div className="w-full">
                 <div className="card bg-base-100 shadow-xl">
                     <form onSubmit={onSubmitHandler} className="card-body">
-                        <h2 className="card-title mb-6">Create new Course</h2>
+                        <h2 className="card-title mb-6">Edit Course</h2>
                         <div className="mb-6">
                             <div className="flex gap-6">
                                 <label className="form-control mb-6 w-full md:w-1/2">
@@ -284,7 +289,6 @@ export default function Create({ course_categories }) {
                                     )}
                                 </label>
                             </div>
-
                             <div className="flex gap-6">
                                 <label className="form-control mb-6 w-full md:w-1/4">
                                     <div className="label">

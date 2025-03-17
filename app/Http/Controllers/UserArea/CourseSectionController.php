@@ -35,7 +35,7 @@ class CourseSectionController extends Controller
     public function store(CourseSectionStoreRequest $request, Course $course)
     {
         CourseSection::create($request->validated());
-        return to_route('backend.course_section.index', [
+        return to_route('user_area.course_section.index', [
             'course' => $course
         ]);
     }
@@ -62,7 +62,7 @@ class CourseSectionController extends Controller
     public function update(CourseSectionUpdateRequest $request, Course $course, CourseSection $course_section)
     {
         $course_section->update($request->validated());
-        return to_route('backend.course_section.index', [
+        return to_route('user_area.course_section.index', [
             'course' => $course
         ]);
     }
@@ -73,7 +73,7 @@ class CourseSectionController extends Controller
     public function destroy(Course $course, CourseSection $course_section)
     {
         $course_section->delete();
-        return to_route('backend.course_section.index', [
+        return to_route('user_area.course_section.index', [
             'course' => $course
         ]);
     }

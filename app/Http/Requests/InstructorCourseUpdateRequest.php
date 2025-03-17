@@ -2,13 +2,12 @@
 
 namespace App\Http\Requests;
 
-
 use App\Models\CourseCategory;
 use App\Models\CourseSubCategory;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CourseStoreRequest extends FormRequest
+class InstructorCourseUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,6 +16,7 @@ class CourseStoreRequest extends FormRequest
     {
         return true;
     }
+
 
     /**
      * Get the validation rules that apply to the request.
@@ -28,23 +28,17 @@ class CourseStoreRequest extends FormRequest
         return [
             'course_category_id' => ['required', 'exists:' . CourseCategory::class . ',id'],
             // 'course_sub_category_id' => ['required', 'exists:' . CourseSubCategory::class . ',id'],
-            'instructor_id' => ['required', 'exists:' . User::class . ',id'],
+            // 'instructor_id' => ['required', 'exists:' . User::class . ',id'],
 
-            'image' => ['image'],
+            // 'image' => ['image'],
             'title' => ['required'],
             'slug' => ['required'],
             'description' => ['required'],
             'prerequisites' => ['required'],
             'goals' => ['required'],
             // 'duration' => ['required'],
+            'price' => ['required'],
             'status' => ['required'],
         ];
-    }
-
-    protected function passedValidation(): void
-    {
-
-        // dd($this->validated());
-        // $this->replace(['name' => 'Taylor']);
     }
 }

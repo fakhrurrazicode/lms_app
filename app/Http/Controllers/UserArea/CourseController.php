@@ -13,8 +13,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PaginateRequest;
 use Spatie\Permission\Models\Permission;
-use App\Http\Requests\CourseStoreRequest;
-use App\Http\Requests\CourseUpdateRequest;
+use App\Http\Requests\InstructorCourseStoreRequest;
+use App\Http\Requests\InstructorCourseUpdateRequest;
 use App\Http\Requests\CourseSetPermissionsRequest;
 
 
@@ -56,22 +56,23 @@ class CourseController extends Controller
      */
     public function create(Request $request)
     {
-        $instructors = User::role('instructor')->get();
+
         $course_categories = CourseCategory::all();
-        return Inertia::render('UserArea/Course/Create', compact('instructors', 'course_categories'));
+        return Inertia::render('UserArea/Course/Create', compact('course_categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CourseStoreRequest $request)
+    public function store(InstructorCourseStoreRequest $request)
     {
         $data = $request->except(['image']);
+        $data['instructor_id'] = Auth::user()->id;
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('images', 'public');
         }
         Course::create($data);
-        return to_route('backend.course.index');
+        return to_route('user_area.course.index');
     }
 
     /**
@@ -87,22 +88,23 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        $instructors = User::role('instructor')->get();
+
         $course_categories = CourseCategory::all();
-        return Inertia::render('UserArea/Course/Edit', compact('instructors', 'course_categories', 'course'));
+        return Inertia::render('UserArea/Course/Edit', compact('course_categories', 'course'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CourseUpdateRequest $request, Course $course)
+    public function update(InstructorCourseUpdateRequest $request, Course $course)
     {
         $data = $request->except(['image']);
+        $data['instructor_id'] = Auth::user()->id;
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('images', 'public');
         }
         $course->update($data);
-        return to_route('backend.course.index');
+        return to_route('user_area.course.index');
     }
 
     /**
@@ -111,6 +113,6 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $course->delete();
-        return to_route('backend.course.index');
+        return to_route('user_area.course.index');
     }
 }

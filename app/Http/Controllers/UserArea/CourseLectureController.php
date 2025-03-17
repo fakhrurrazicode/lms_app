@@ -40,7 +40,7 @@ class CourseLectureController extends Controller
             $data['video'] = $request->file('video')->store('videos', 'public');
         }
         CourseLecture::create($data);
-        return to_route('backend.course_section.index', [
+        return to_route('user_area.course_section.index', [
             'course' => $course,
             'course_section' => $course_section,
         ]);
@@ -73,7 +73,7 @@ class CourseLectureController extends Controller
             $data['image'] = $request->file('image')->store('images', 'public');
         }
         $course_lecture->update($data);
-        return to_route('backend.course_section.index', [
+        return to_route('user_area.course_section.index', [
             'course' => $course,
             'course_section' => $course_section,
         ]);
@@ -85,7 +85,7 @@ class CourseLectureController extends Controller
     public function destroy(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
     {
         $course_lecture->delete();
-        return to_route('backend.course_section.index', [
+        return to_route('user_area.course_section.index', [
             'course' => $course,
             'course_section' => $course_section,
         ]);

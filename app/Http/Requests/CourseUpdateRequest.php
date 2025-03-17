@@ -35,7 +35,7 @@ class CourseUpdateRequest extends FormRequest
             'description' => ['required'],
             'prerequisites' => ['required'],
             'goals' => ['required'],
-            'duration' => ['required'],
+            // 'duration' => ['required'],
             'status' => ['required'],
         ];
     }
