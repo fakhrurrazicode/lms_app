@@ -79,13 +79,15 @@ export default function UserAreaLayout({ children }) {
                                         </a>
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
-                                        <a
-                                            href=""
+                                        <Link
+                                            href={route(
+                                                "user_area.enrollment.index"
+                                            )}
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiBookmark />
                                             <span>Enrolled Courses</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                         <Link

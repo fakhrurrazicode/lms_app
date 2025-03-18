@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Tag;
 use App\Models\User;
 use App\Models\Wishlist;
+use App\Models\Enrollment;
 use App\Models\CourseReview;
 use App\Models\CourseSection;
 use App\Models\CourseCategory;
@@ -20,8 +21,8 @@ class Course extends BaseModel implements Cartable
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['image_url', 'average_stars', 'is_on_wishlist', 'course_section_count', 'course_lecture_count', 'real_price'];
-    protected $with = ['instructor'];
+    protected $appends = ['image_url', 'average_stars', 'is_on_wishlist', 'enrolled', 'course_section_count', 'course_lecture_count', 'real_price'];
+    protected $with = ['instructor', 'course_category'];
 
     public function getPrice(): float
     {
@@ -122,6 +123,19 @@ class Course extends BaseModel implements Cartable
             // dd($wishlist);
 
             return $wishlist ? true : false;
+        } else {
+            return false;
+        }
+    }
+
+    public function getEnrolledAttribute()
+    {
+        if ($this->isUserAuthenticated()) {
+            $enrolled = Enrollment::where('user_id', Auth::user()->id)
+                ->where('course_id', $this->id)
+                ->first();
+
+            return $enrolled ? true : false;
         } else {
             return false;
         }

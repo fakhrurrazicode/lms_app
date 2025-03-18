@@ -4,8 +4,7 @@ import { Head, Link, router, usePage } from "@inertiajs/react";
 import React from "react";
 import { FaBook, FaClock, FaHeart } from "react-icons/fa";
 
-export default function Courses() {
-    const { courses, course_categories, request } = usePage().props;
+export default function Courses({ courses, course_categories, request }) {
     return (
         <FrontendLayout
             header={

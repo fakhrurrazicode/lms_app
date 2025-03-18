@@ -2,11 +2,12 @@
 
 
 use Inertia\Inertia;
+use App\Models\Enrollment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\PaymentController;
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Backend\TagController;
@@ -14,20 +15,22 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\PermissionController;
+
 use App\Http\Controllers\UserArea\DashboardController;
 
 use App\Http\Controllers\Backend\ActivityLogController;
-
+use App\Http\Controllers\UserArea\EnrollmentController;
 use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
 use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
 use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
 use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
+use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
-use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -74,11 +77,17 @@ Route::middleware('auth')->group(function () {
         Route::patch('/profile', [UserAreaProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [UserAreaProfileController::class, 'destroy'])->name('profile.destroy');
 
+        Route::resource('/enrollment', EnrollmentController::class);
+
         Route::resource('/course', UserAreaCourseController::class);
         Route::post('/course/{course}', [UserAreaCourseController::class, 'update'])->name('course.update');
         Route::resource('/course/{course}/course_section', UserAreaCourseSectionController::class);
         Route::resource('/course/{course}/course_section/{course_section}/course_lecture', UserAreaCourseLectureController::class)->except(['index', 'update']);
         Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [CourseLectureController::class, 'update'])->name('course_lecture.update');
+    });
+
+    Route::group(['prefix' => '/learning_area/{course}', 'as' => 'learning_area.'], function () {
+        Route::get('/course', [LearningAreaCourseController::class, 'index'])->name('course.index');
     });
 
     // backend area

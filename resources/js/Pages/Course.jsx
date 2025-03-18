@@ -16,6 +16,7 @@ import {
 } from "react-icons/fa";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { itemIsExitsOnCart, minutesToHumanReadable, rupiah } from "@/bootstrap";
+import { FiCheck } from "react-icons/fi";
 
 const AccordionItem = ({ header, ...rest }) => (
     <Item
@@ -95,16 +96,24 @@ export default function Course() {
                             </h4>
 
                             <div className="flex gap-5 flex-wrap items-center mb-[30px]">
-                                <div className="text-xl font-medium text-primary leading-[25px]">
-                                    <span>{rupiah(course.price)}</span>
-                                    {course.discount_percentage ? (
-                                        <del className="text-sm text-gray-500 font-semibold">
-                                            / {rupiah(course.real_price)}
-                                        </del>
-                                    ) : (
-                                        <></>
-                                    )}
-                                </div>
+                                {course.enrolled ? (
+                                    <div className="text-xl font-bold text-success leading-[25px] flex items-center gap-2">
+                                        <FiCheck />
+                                        <span>Enrolled</span>
+                                    </div>
+                                ) : (
+                                    <div className="text-xl font-medium text-primary leading-[25px]">
+                                        <span>{rupiah(course.price)}</span>
+                                        {course.discount_percentage ? (
+                                            <del className="text-sm text-gray-500 font-semibold">
+                                                / {rupiah(course.real_price)}
+                                            </del>
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </div>
+                                )}
+
                                 <div className="flex items-center gap-2">
                                     <div>
                                         <FaBook className="text-primary" />
@@ -464,62 +473,110 @@ export default function Course() {
                                 <img src={course.image_url} alt="Shoes" />
                             </figure>
                             <div className="card-body">
-                                <div className="text-xl font-bold text-primary leading-[25px] mb-6">
-                                    <span>{rupiah(course.price)}</span>{" "}
-                                    {course.discount_percentage ? (
-                                        <span className="text-sm text-gray-500 font-semibold line-through">
-                                            / {rupiah(course.real_price)}
-                                        </span>
-                                    ) : (
-                                        <></>
-                                    )}
-                                </div>
+                                {course.enrolled ? (
+                                    <div className="text-xl font-bold text-success leading-[25px] mb-6 flex items-center gap-2">
+                                        <FiCheck />
+                                        <span>Enrolled</span>
+                                    </div>
+                                ) : (
+                                    <div className=" mb-6 flex justify-between">
+                                        <div className="text-xl font-bold text-primary leading-[25px]">
+                                            <span>{rupiah(course.price)}</span>{" "}
+                                            {course.discount_percentage ? (
+                                                <span className="text-sm text-gray-500 font-semibold line-through">
+                                                    /{" "}
+                                                    {rupiah(course.real_price)}
+                                                </span>
+                                            ) : (
+                                                <></>
+                                            )}
+                                        </div>
+                                        <div>
+                                            <span className="bg-secondary text-xs rounded-full px-3 py-1 text-white">
+                                                {course.discount_percentage}%
+                                                OFF
+                                            </span>
+                                        </div>
+                                    </div>
+                                )}
 
                                 {auth.user ? (
                                     <div className="mb-6">
-                                        {!itemIsExitsOnCart(
-                                            course,
-                                            auth.cart
-                                        ) ? (
-                                            <Link
-                                                href={route("cart.store")}
-                                                method="POST"
-                                                preserveScroll={true}
-                                                preserveState={true}
-                                                data={{
-                                                    itemable_type:
-                                                        "App\\Models\\Course",
-                                                    itemable_id: course.id,
-                                                }}
-                                                className="btn flex justify-center items-center btn-primary w-full mb-3"
-                                            >
-                                                <FaCartPlus />
-                                                <span>
-                                                    Tambahkan ke keranjang
-                                                </span>
-                                            </Link>
+                                        {course.enrolled ? (
+                                            <>
+                                                <Link
+                                                    href={route("cart.store")}
+                                                    method="POST"
+                                                    preserveScroll={true}
+                                                    preserveState={true}
+                                                    data={{
+                                                        itemable_type:
+                                                            "App\\Models\\Course",
+                                                        itemable_id: course.id,
+                                                    }}
+                                                    className="btn flex justify-center items-center btn-success w-full mb-3"
+                                                >
+                                                    <FaBook />
+                                                    <span>
+                                                        Menuju Halaman
+                                                        Pembelajaran
+                                                    </span>
+                                                </Link>
+                                            </>
                                         ) : (
-                                            <Link
-                                                href={route("cart.destroy")}
-                                                method="DELETE"
-                                                preserveScroll={true}
-                                                preserveState={true}
-                                                data={{
-                                                    itemable_type:
-                                                        "App\\Models\\Course",
-                                                    itemable_id: course.id,
-                                                }}
-                                                className="btn flex justify-center items-center btn-error w-full mb-3"
-                                            >
-                                                <FaTrash />
-                                                <span>
-                                                    Hapus Dari Keranjang
-                                                </span>
-                                            </Link>
+                                            <>
+                                                {!itemIsExitsOnCart(
+                                                    course,
+                                                    auth.cart
+                                                ) ? (
+                                                    <Link
+                                                        href={route(
+                                                            "cart.store"
+                                                        )}
+                                                        method="POST"
+                                                        preserveScroll={true}
+                                                        preserveState={true}
+                                                        data={{
+                                                            itemable_type:
+                                                                "App\\Models\\Course",
+                                                            itemable_id:
+                                                                course.id,
+                                                        }}
+                                                        className="btn flex justify-center items-center btn-primary w-full mb-3"
+                                                    >
+                                                        <FaCartPlus />
+                                                        <span>
+                                                            Tambahkan ke
+                                                            keranjang
+                                                        </span>
+                                                    </Link>
+                                                ) : (
+                                                    <Link
+                                                        href={route(
+                                                            "cart.destroy"
+                                                        )}
+                                                        method="DELETE"
+                                                        preserveScroll={true}
+                                                        preserveState={true}
+                                                        data={{
+                                                            itemable_type:
+                                                                "App\\Models\\Course",
+                                                            itemable_id:
+                                                                course.id,
+                                                        }}
+                                                        className="btn flex justify-center items-center btn-error w-full mb-3"
+                                                    >
+                                                        <FaTrash />
+                                                        <span>
+                                                            Hapus Dari Keranjang
+                                                        </span>
+                                                    </Link>
+                                                )}
+                                                <button className="btn flex justify-center items-center btn-secondary w-full">
+                                                    <span>Beli Sekarang</span>
+                                                </button>
+                                            </>
                                         )}
-                                        <button className="btn flex justify-center items-center btn-secondary w-full">
-                                            <span>Beli Sekarang</span>
-                                        </button>
                                     </div>
                                 ) : (
                                     <div className="mb-6">
@@ -536,26 +593,32 @@ export default function Course() {
                                     <ul>
                                         <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">
                                             <span>Instruktur:</span>
-                                            <span className="bg-gray-500 text-xs rounded-full px-3 py-1">
-                                                D. William
+                                            <span className="bg-primary text-xs rounded-full px-3 py-1">
+                                                {course.instructor.name}
                                             </span>
                                         </li>
                                         <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">
                                             <span>Total Durasi:</span>
-                                            <span className="bg-gray-500 text-xs rounded-full px-3 py-1">
-                                                8Hrs 32Min
+                                            <span className="bg-primary text-xs rounded-full px-3 py-1">
+                                                {course.duration} Menit
+                                            </span>
+                                        </li>
+                                        <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">
+                                            <span>Jumlah Section:</span>
+                                            <span className="bg-primary text-xs rounded-full px-3 py-1">
+                                                {course.course_section_count}
                                             </span>
                                         </li>
                                         <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">
                                             <span>Jumlah Lecture:</span>
-                                            <span className="bg-gray-500 text-xs rounded-full px-3 py-1">
-                                                30
+                                            <span className="bg-primary text-xs rounded-full px-3 py-1">
+                                                {course.course_lecture_count}
                                             </span>
                                         </li>
                                         <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">
                                             <span>Level</span>
-                                            <span className="bg-gray-500 text-xs rounded-full px-3 py-1">
-                                                Basic
+                                            <span className="bg-primary text-xs rounded-full px-3 py-1">
+                                                {course.level}
                                             </span>
                                         </li>
                                     </ul>

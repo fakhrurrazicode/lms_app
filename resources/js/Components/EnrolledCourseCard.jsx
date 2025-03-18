@@ -4,7 +4,8 @@ import React from "react";
 import { FaBook, FaClock, FaHeart, FaStar } from "react-icons/fa";
 import { FiCheck } from "react-icons/fi";
 
-export default function CourseCard({ course }) {
+export default function EnrolledCourseCard({ enrollment }) {
+    const { course } = enrollment;
     return (
         <div className="card bg-white dark:bg-slate-950 w-full shadow-xl rounded-md overflow-hidden">
             <div className="relative">
@@ -15,31 +16,6 @@ export default function CourseCard({ course }) {
                     >
                         {course.course_category.name}
                     </span>
-
-                    {course.enrolled ? (
-                        <span
-                            href="#"
-                            className="badge badge-success font-semibold text-xs py-3 px-4"
-                        >
-                            Enrolled
-                        </span>
-                    ) : (
-                        <Link
-                            href={route("wishlist.toggle")}
-                            method="POST"
-                            data={{
-                                wishlistable_type: "App\\Models\\Course",
-                                wishlistable_id: course.id,
-                            }}
-                            className={
-                                course.is_on_wishlist
-                                    ? "text-white bg-pink-600 ease-in-out px-2 py-2 rounded-lg"
-                                    : "text-white bg-black/30 hover:bg-primary transition-all ease-in-out px-2 py-2 rounded-lg"
-                            }
-                        >
-                            <FaHeart />
-                        </Link>
-                    )}
                 </div>
                 <Link href={"/course/" + course.slug}>
                     <img src={course.image_url} alt="Shoes" />
@@ -66,31 +42,7 @@ export default function CourseCard({ course }) {
                     {course.title}
                 </a>
 
-                {course.enrolled ? (
-                    <p className="mb-2 font-bold text-sm text-success flex items-center gap-2">
-                        <FiCheck />
-                        <span>Enrolled</span>
-                    </p>
-                ) : (
-                    <p className="mb-2 font-bold text-sm">
-                        {course.discount_percentage ? (
-                            <>
-                                <span className="text-primary">
-                                    {rupiah(course.price)}
-                                </span>{" "}
-                                <span className="text-gray-400 line-through">
-                                    / {rupiah(course.real_price)}
-                                </span>
-                            </>
-                        ) : (
-                            <span className="text-primary">
-                                {rupiah(course.price)}
-                            </span>
-                        )}
-                    </p>
-                )}
-
-                <div className="grid grid-cols-1 md:grid-cols-2 pt-[15px] border-t border-gray-700">
+                <div className="grid grid-cols-1 md:grid-cols-2 pt-[15px] border-t border-gray-700 mb-6">
                     <div>
                         {course.instructor ? (
                             <a
@@ -119,9 +71,31 @@ export default function CourseCard({ course }) {
                         <span className="text-xs text-lightGrey6">(44)</span>
                     </div>
                 </div>
-                {/* <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Buy Now</button>
-                </div> */}
+                <div className="card-actions">
+                    <div className="bg-base-200 h-[25px] w-full rounded-lg relative overflow-hidden mb-6">
+                        <div
+                            className={
+                                "bg-primary w-[" +
+                                enrollment.progress +
+                                "%] text-center absolute top-0 bottom-0"
+                            }
+                        >
+                            <span className="text-white text-xs">
+                                {enrollment.progress}%
+                            </span>
+                        </div>
+                    </div>
+
+                    <Link
+                        href={route("learning_area.course.show", {
+                            course: course,
+                        })}
+                        className="btn btn-primary w-full"
+                    >
+                        <FaBook />
+                        <span>Belajar Sekarang</span>
+                    </Link>
+                </div>
             </div>
         </div>
     );

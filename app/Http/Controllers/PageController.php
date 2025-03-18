@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PaginateRequest;
-use App\Models\Course;
 use Inertia\Inertia;
+use App\Models\Course;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
 use App\Models\CourseCategory;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PaginateRequest;
+
 
 class PageController extends Controller
 {
@@ -20,7 +23,6 @@ class PageController extends Controller
 
     public function courses(PaginateRequest $request)
     {
-        // return $request;
         $courses = Course::query();
 
         if ($request->has('course_category_ids')) {
@@ -39,13 +41,14 @@ class PageController extends Controller
             ->paginate($request->perpage)
             ->withQueryString();
 
-        // return $courses;
 
+
+        $course_categories = CourseCategory::whereHas('courses')->orderBy('name', 'asc')->get();
 
         return Inertia::render('Courses', [
             'courses' => $courses,
             'request' => $request,
-            'course_categories' => CourseCategory::whereHas('courses')->orderBy('name', 'asc')->get(),
+            'course_categories' => $course_categories,
         ]);
     }
 
