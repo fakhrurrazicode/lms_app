@@ -79,7 +79,7 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/enrollment', EnrollmentController::class);
 
-        Route::resource('/course', UserAreaCourseController::class);
+        Route::resource('/course', UserAreaCourseController::class)->except(['update']);
         Route::post('/course/{course}', [UserAreaCourseController::class, 'update'])->name('course.update');
         Route::resource('/course/{course}/course_section', UserAreaCourseSectionController::class);
         Route::resource('/course/{course}/course_section/{course_section}/course_lecture', UserAreaCourseLectureController::class)->except(['index', 'update']);
