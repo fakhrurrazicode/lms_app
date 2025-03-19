@@ -41,7 +41,7 @@ export default function UserAreaLayout({ children }) {
                                             9 Daftar Kursus
                                         </div>
                                         <div className="me-4">
-                                            8 Sertifikat
+                                            3 Sertifikat
                                         </div>
                                     </div>
                                 </div>
