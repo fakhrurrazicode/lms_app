@@ -18,7 +18,7 @@ class PaginateRequest extends FormRequest
     {
         $this->merge([
             // 'page' => request()->query('search') ? request()->query('page') : 1,
-            'perpage' => request()->query('perpage') ? request()->query('perpage') : 10,
+            'perpage' => request()->query('perpage') ? request()->query('perpage') : 15,
             'orderby' => request()->query('orderby') ? request()->query('orderby') : 'created_at',
             'ordermethod' => request()->query('ordermethod') ? request()->query('ordermethod') : 'DESC',
         ]);
