@@ -87,7 +87,7 @@ export default function EnrolledCourseCard({ enrollment }) {
                     </div>
 
                     <Link
-                        href={route("learning_area.course.show", {
+                        href={route("learning_area.course.index", {
                             course: course,
                         })}
                         className="btn btn-primary w-full"

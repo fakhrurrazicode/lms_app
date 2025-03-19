@@ -73,7 +73,7 @@ export default function Create({ course_categories }) {
         <UserAreaLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Create Courses
+                    Membuat Kursus
                 </h2>
             }
         >
@@ -82,18 +82,18 @@ export default function Create({ course_categories }) {
             <div className="w-full">
                 <div className="card bg-base-100 shadow-xl">
                     <form onSubmit={onSubmitHandler} className="card-body">
-                        <h2 className="card-title mb-6">Create new Course</h2>
+                        <h2 className="card-title mb-6">Buat Kursus Baru</h2>
                         <div className="mb-6">
                             <div className="flex gap-6">
                                 <label className="form-control mb-6 w-full md:w-1/2">
                                     <div className="label">
                                         <span className="label-text">
-                                            Title
+                                            Judul
                                         </span>
                                     </div>
                                     <input
                                         type="text"
-                                        placeholder="Title"
+                                        placeholder="Judul"
                                         className="input input-bordered w-full"
                                         name="title"
                                         onChange={inputChangeHandler}
@@ -141,7 +141,7 @@ export default function Create({ course_categories }) {
                                 <label className="form-control mb-6 w-full md:w-1/3">
                                     <div className="label">
                                         <span className="label-text">
-                                            Course Category
+                                            Kategori kursus
                                         </span>
                                     </div>
                                     <select
@@ -151,7 +151,7 @@ export default function Create({ course_categories }) {
                                         value={data.course_category_id}
                                     >
                                         <option>
-                                            :: Select Sub Course Category ::
+                                            :: Pilih Kategori Kursus ::
                                         </option>
 
                                         {course_categories.map(
@@ -216,13 +216,13 @@ export default function Create({ course_categories }) {
                                 <label className="form-control mb-6 w-full md:w-full">
                                     <div className="label">
                                         <span className="label-text">
-                                            Description
+                                            Keterangan
                                         </span>
                                     </div>
 
                                     <textarea
                                         className="textarea textarea-bordered h-24"
-                                        placeholder="Description"
+                                        placeholder="Keterangan"
                                         name="description"
                                         value={data.description}
                                         onChange={inputChangeHandler}
@@ -241,12 +241,12 @@ export default function Create({ course_categories }) {
                                 <label className="form-control mb-6 w-full md:w-full">
                                     <div className="label">
                                         <span className="label-text">
-                                            Prerequisites
+                                            Prasyarat
                                         </span>
                                     </div>
                                     <textarea
                                         className="textarea textarea-bordered h-24"
-                                        placeholder="Prerequisites"
+                                        placeholder="Prasyarat"
                                         name="prerequisites"
                                         value={data.prerequisites}
                                         onChange={inputChangeHandler}
@@ -265,12 +265,12 @@ export default function Create({ course_categories }) {
                                 <label className="form-control mb-6 w-full md:w-full">
                                     <div className="label">
                                         <span className="label-text">
-                                            Goals
+                                            Sasaran
                                         </span>
                                     </div>
                                     <textarea
                                         className="textarea textarea-bordered h-24"
-                                        placeholder="Goals"
+                                        placeholder="Sasaran"
                                         name="goals"
                                         value={data.goals}
                                         onChange={inputChangeHandler}
@@ -289,7 +289,7 @@ export default function Create({ course_categories }) {
                                 <label className="form-control mb-6 w-full md:w-1/4">
                                     <div className="label">
                                         <span className="label-text">
-                                            Price
+                                            Harga
                                         </span>
                                         <span className="label-text-alt">
                                             Dalam Satuan Rupiah
@@ -297,7 +297,7 @@ export default function Create({ course_categories }) {
                                     </div>
                                     <input
                                         type="number"
-                                        placeholder="Price"
+                                        placeholder="Harga"
                                         className="input input-bordered w-full"
                                         name="price"
                                         onChange={inputChangeHandler}
@@ -317,7 +317,7 @@ export default function Create({ course_categories }) {
                                 <label className="form-control mb-6 w-full md:w-1/3">
                                     <div className="label">
                                         <span className="label-text">
-                                            Course Image
+                                            Gambar Kursus
                                         </span>
                                         <span className="label-text-alt">
                                             JPG, JPEG, PNG
@@ -370,7 +370,7 @@ export default function Create({ course_categories }) {
                         <div className="card-actions justify-end">
                             <button type="submit" className="btn btn-primary">
                                 <Save size={16} />
-                                <span>Save</span>
+                                <span>Simpan</span>
                             </button>
                             <Link
                                 href={route("user_area.course.index")}
@@ -378,7 +378,7 @@ export default function Create({ course_categories }) {
                                 // preserveScroll={true}
                                 className="btn btn-neutral"
                             >
-                                Cancel
+                                Batalkan
                             </Link>
                         </div>
                     </form>

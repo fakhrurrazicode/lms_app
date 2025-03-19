@@ -1,10 +1,10 @@
 import React from "react";
 
 export default function CartItemCard({ cartItem }) {
-    const itemable = item.itemable;
+    const itemable = cartItem.itemable;
     return (
         <div
-            key={item.id}
+            key={cartItem.id}
             className="grid grid-cols-12 gap-6 py-3 border-b border-base-300"
         >
             <div className="col-span-3">
