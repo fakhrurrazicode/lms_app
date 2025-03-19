@@ -1,5 +1,6 @@
 import { Link } from "@inertiajs/react";
 import React from "react";
+import { FaStar } from "react-icons/fa";
 
 export default function CartItemCard({ cartItem }) {
     const itemable = cartItem.itemable;
