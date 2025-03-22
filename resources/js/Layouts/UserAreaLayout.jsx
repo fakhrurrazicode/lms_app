@@ -75,7 +75,7 @@ export default function UserAreaLayout({ children }) {
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiMessageSquare />
-                                            <span>Message</span>
+                                            <span>Pesan</span>
                                         </a>
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
@@ -86,7 +86,7 @@ export default function UserAreaLayout({ children }) {
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiBookmark />
-                                            <span>Enrolled Courses</span>
+                                            <span>Kursus terdaftar</span>
                                         </Link>
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
@@ -97,7 +97,7 @@ export default function UserAreaLayout({ children }) {
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiBookmark />
-                                            <span>Wishlist</span>
+                                            <span>Daftar Keinginan</span>
                                         </Link>
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
@@ -108,7 +108,7 @@ export default function UserAreaLayout({ children }) {
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiShoppingBag />
-                                            <span>Order History</span>
+                                            <span>Riwayat pesanan</span>
                                         </Link>
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
@@ -117,7 +117,7 @@ export default function UserAreaLayout({ children }) {
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiStar />
-                                            <span>Reviews</span>
+                                            <span>Ulasan</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -125,7 +125,7 @@ export default function UserAreaLayout({ children }) {
                                 {auth.role.name == "instructor" ? (
                                     <ul className="mb-6">
                                         <li className="text-xs font-semibold mb-4">
-                                            Instructor
+                                            Pengajar
                                         </li>
                                         <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                             <Link
@@ -155,7 +155,7 @@ export default function UserAreaLayout({ children }) {
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiSettings />
-                                            <span>Settings</span>
+                                            <span>Pengaturan</span>
                                         </Link>
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
@@ -166,7 +166,7 @@ export default function UserAreaLayout({ children }) {
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiLogOut />
-                                            <span>Logout</span>
+                                            <span>Keluar</span>
                                         </Link>
                                     </li>
                                 </ul>

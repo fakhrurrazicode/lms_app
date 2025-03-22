@@ -68,9 +68,9 @@ class CourseLectureController extends Controller
     public function update(CourseLectureUpdateRequest $request, Course $course, CourseSection $course_section, CourseLecture $course_lecture)
     {
         $data = $request->validated();
-        unset($data['video']);
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('images', 'public');
+
+        if ($request->hasFile('video')) {
+            $data['video'] = $request->file('video')->store('videos', 'public');
         }
         $course_lecture->update($data);
         return to_route('backend.course_section.index', [

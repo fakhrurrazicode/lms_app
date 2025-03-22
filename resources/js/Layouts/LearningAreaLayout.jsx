@@ -39,24 +39,41 @@ export default function LearningAreaLayout({ children }) {
 
     return (
         <FrontendLayout>
-            <div className="mx-auto max-w-[100rem] space-y-6 sm:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <div className="lg:col-start-1 lg:col-span-4">
+            <div className="mx-auto max-w-[100rem] space-y-6 sm:px-6 lg:px-8 py-32">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <div className="col-span-12 md:col-span-4">
                         <div className="card shadow-lg bg-base-100">
                             <div className="card-body p-0 overflow-hidden">
-                                <Accordion transition transitionTimeout={200}>
+                                <Accordion
+                                    transition
+                                    transitionTimeout={200}
+                                    // popover="manual"
+                                    allowMultiple={true}
+                                >
                                     {course.course_sections.map(
                                         (course_section) => (
                                             <AccordionItem
                                                 header={course_section.title}
+                                                initialEntered={true}
                                             >
                                                 <ul className="">
                                                     {course_section.course_lectures.map(
                                                         (course_lecture) => (
                                                             <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                                                 <Link
+                                                                    preserveScroll={
+                                                                        true
+                                                                    }
+                                                                    preserveState={
+                                                                        true
+                                                                    }
                                                                     href={route(
-                                                                        "user_area.dashboard"
+                                                                        "learning_area.course_lecture.show",
+                                                                        {
+                                                                            course: course.id,
+                                                                            course_lecture:
+                                                                                course_lecture.id,
+                                                                        }
                                                                     )}
                                                                     className="text-gray-600 dark:text-white leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                                                 >
@@ -91,7 +108,17 @@ export default function LearningAreaLayout({ children }) {
                             </div>
                         </div>
                     </div>
-                    <div className="lg:col-start-4 lg:col-span-9">
+                    <div className="col-span-12 md:col-span-8">
+                        <p className="mb-3 font-bold">Progress</p>
+                        <div className="bg-base-200 h-[35px] w-full rounded-lg relative overflow-hidden mb-6">
+                            <div
+                                className={
+                                    "bg-primary w-[10%] text-center absolute top-0 bottom-0 flex justify-center items-center"
+                                }
+                            >
+                                <span className="text-white text-xs">10%</span>
+                            </div>
+                        </div>
                         {children}
                     </div>
                 </div>

@@ -19,7 +19,7 @@ export default function Edit({ course, course_section, course_lecture }) {
         course_id: course.id,
         course_section_id: course_section.id,
         title: course_lecture.title,
-        video: null,
+        video: course_lecture.video,
         description: course_lecture.description,
     });
 
@@ -62,6 +62,27 @@ export default function Edit({ course, course_section, course_lecture }) {
         const value = e.target.value;
 
         setData(name, value);
+
+        switch (name) {
+            case "video":
+                const file = e.target.files[0];
+
+                // if (file) {
+                //     const reader = new FileReader();
+
+                //     reader.onload = function (e) {
+                //         previewImageRef.current.src = e.target.result;
+                //     };
+
+                //     reader.readAsDataURL(file);
+                // } else {
+                //     previewImageRef.current.classList.add("hidden");
+                //     previewImageRef.current.src = "";
+                // }
+
+                setData("video", file);
+                break;
+        }
     };
     return (
         <BackendLayout

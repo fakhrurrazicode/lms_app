@@ -1,8 +1,11 @@
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
+
 import { Save } from "lucide-react";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import ReactQuill from "react-quill";
 import slugify from "slugify";
+import "react-quill/dist/quill.snow.css"; // Impo
 
 export default function Create({ course_categories }) {
     const { auth } = usePage().props;
@@ -48,6 +51,10 @@ export default function Create({ course_categories }) {
             //     reloadCourseSubCategories({
             //         course_categoryId: e.target.value,
             //     });
+
+            // case "description":
+            //     setData('description', )
+            //     break;
             case "image":
                 const file = e.target.files[0];
 
@@ -220,13 +227,23 @@ export default function Create({ course_categories }) {
                                         </span>
                                     </div>
 
-                                    <textarea
+                                    <div className="w-full mx-auto mt-10">
+                                        <ReactQuill
+                                            name="description"
+                                            value={data.description}
+                                            onChange={inputChangeHandler}
+                                            className="bg-white border border-gray-300 rounded-lg shadow-md"
+                                            // className="textarea textarea-bordered p-0 h-36"
+                                        />
+                                    </div>
+
+                                    {/* <textarea
                                         className="textarea textarea-bordered h-24"
                                         placeholder="Keterangan"
                                         name="description"
                                         value={data.description}
                                         onChange={inputChangeHandler}
-                                    ></textarea>
+                                    ></textarea> */}
                                     {errors.description && (
                                         <div className="label">
                                             <span className="label-text-alt text-error">

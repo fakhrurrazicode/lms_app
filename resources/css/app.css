@@ -5,7 +5,15 @@
 @tailwind utilities;
 
 
+
+
 .video-player-modal > .video-js{
     width: 100%;
     /* height: auto; */
 }
+
+
+/* video::-webkit-media-controls-panel {
+    display: none !important;
+    pointer-events: none !important;
+} */

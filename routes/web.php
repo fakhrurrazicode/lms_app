@@ -29,6 +29,7 @@ use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
 use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
 use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
 use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseController;
+use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
 
@@ -88,6 +89,7 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => '/learning_area/{course}', 'as' => 'learning_area.'], function () {
         Route::get('/course', [LearningAreaCourseController::class, 'index'])->name('course.index');
+        Route::get('/course_lecture/{course_lecture}', [LearningAreaCourseLectureController::class, 'show'])->name('course_lecture.show');
     });
 
     // backend area
