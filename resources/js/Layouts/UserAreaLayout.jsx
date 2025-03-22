@@ -34,14 +34,14 @@ export default function UserAreaLayout({ children }) {
                                 <div></div>
                                 <div>
                                     <h3 className="text-xl font-bold mb-2">
-                                        Hello, {auth.user.name}
+                                        Hallo, {auth.user.name}
                                     </h3>
                                     <div className="flex">
                                         <div className="me-4">
-                                            9 Course Enrolled
+                                            9 Daftar Kursus
                                         </div>
                                         <div className="me-4">
-                                            8 Certificate
+                                            3 Sertifikat
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@ export default function UserAreaLayout({ children }) {
                             <div className="card-body px-8">
                                 <ul className="mb-6">
                                     <li className="text-xs font-semibold mb-4">
-                                        Welcome, {auth.user.name}
+                                        Selamat datang, {auth.user.name}
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                         <Link
@@ -86,7 +86,11 @@ export default function UserAreaLayout({ children }) {
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiBookmark />
+<<<<<<< HEAD
                                             <span>Kursus terdaftar</span>
+=======
+                                            <span>Daftar Kursus</span>
+>>>>>>> 7bfab4feef351075d9de5312943bf4a042527591
                                         </Link>
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
@@ -108,7 +112,11 @@ export default function UserAreaLayout({ children }) {
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiShoppingBag />
+<<<<<<< HEAD
                                             <span>Riwayat pesanan</span>
+=======
+                                            <span>Riwayat Pesanan</span>
+>>>>>>> 7bfab4feef351075d9de5312943bf4a042527591
                                         </Link>
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
@@ -135,7 +143,7 @@ export default function UserAreaLayout({ children }) {
                                                 className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                             >
                                                 <FiMonitor />
-                                                <span>Courses Management</span>
+                                                <span>Managemen Kursus</span>
                                             </Link>
                                         </li>
                                     </ul>
@@ -145,7 +153,7 @@ export default function UserAreaLayout({ children }) {
 
                                 <ul className="mb-6">
                                     <li className="text-xs font-semibold mb-4">
-                                        User
+                                        Pengguna
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                         <Link
