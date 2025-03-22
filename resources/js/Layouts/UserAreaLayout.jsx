@@ -40,9 +40,7 @@ export default function UserAreaLayout({ children }) {
                                         <div className="me-4">
                                             9 Daftar Kursus
                                         </div>
-                                        <div className="me-4">
-                                            3 Sertifikat
-                                        </div>
+                                        <div className="me-4">3 Sertifikat</div>
                                     </div>
                                 </div>
                             </div>
@@ -86,11 +84,7 @@ export default function UserAreaLayout({ children }) {
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiBookmark />
-<<<<<<< HEAD
                                             <span>Kursus terdaftar</span>
-=======
-                                            <span>Daftar Kursus</span>
->>>>>>> 7bfab4feef351075d9de5312943bf4a042527591
                                         </Link>
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
@@ -112,11 +106,7 @@ export default function UserAreaLayout({ children }) {
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiShoppingBag />
-<<<<<<< HEAD
                                             <span>Riwayat pesanan</span>
-=======
-                                            <span>Riwayat Pesanan</span>
->>>>>>> 7bfab4feef351075d9de5312943bf4a042527591
                                         </Link>
                                     </li>
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
