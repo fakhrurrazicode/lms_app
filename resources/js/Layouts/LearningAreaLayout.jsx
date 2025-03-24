@@ -2,7 +2,7 @@ import React from "react";
 import FrontendLayout from "./FrontendLayout";
 import { FaChevronDown, FaClock } from "react-icons/fa";
 
-import { BiMoviePlay } from "react-icons/bi";
+import { BiHome, BiMoviePlay } from "react-icons/bi";
 import { Link, usePage } from "@inertiajs/react";
 import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion";
 
@@ -42,8 +42,21 @@ export default function LearningAreaLayout({ children }) {
             <div className="mx-auto max-w-[100rem] space-y-6 sm:px-6 lg:px-8 py-32">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     <div className="col-span-12 md:col-span-4">
-                        <div className="card shadow-lg bg-base-100">
+                        <div className="card shadow-lg bg-base-100 rounded-none">
                             <div className="card-body p-0 overflow-hidden">
+                                <Link
+                                    preserveScroll={true}
+                                    preserveState={true}
+                                    href={route("learning_area.course.index", {
+                                        course: course.id,
+                                    })}
+                                    className="text-gray-600 py-4 px-4 dark:text-white leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <BiHome size={22} />
+                                        <span>Home</span>
+                                    </div>
+                                </Link>
                                 <Accordion
                                     transition
                                     transitionTimeout={200}

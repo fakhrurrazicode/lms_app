@@ -92,6 +92,7 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => '/learning_area/{course}', 'as' => 'learning_area.'], function () {
         Route::get('/course', [LearningAreaCourseController::class, 'index'])->name('course.index');
         Route::get('/course_lecture/{course_lecture}', [LearningAreaCourseLectureController::class, 'show'])->name('course_lecture.show');
+        Route::post('/course_lecture/{course_lecture}/finish_lecture', [LearningAreaCourseLectureController::class, 'finish_lecture'])->name('course_lecture.finish_lecture');
     });
 
     // backend area

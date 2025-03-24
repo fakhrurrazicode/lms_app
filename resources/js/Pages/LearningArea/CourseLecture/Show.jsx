@@ -1,6 +1,6 @@
 import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import React from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "@vidstack/react/player/styles/base.css";
@@ -11,7 +11,12 @@ import {
     plyrLayoutIcons,
 } from "@vidstack/react/player/layouts/plyr";
 
-export default function Show({ course, course_lecture }) {
+export default function Show({
+    course,
+    course_lecture,
+    prev_course_lecture,
+    next_course_lecture,
+}) {
     return (
         <LearningAreaLayout
             header={
@@ -26,9 +31,10 @@ export default function Show({ course, course_lecture }) {
                 <div className="card-body bg-base-100">
                     <div className="mb-6">
                         <h2 className="text-white text-2xl font-bold mb-6">
-                            {course.title}
+                            Course :{" "}
+                            <Link className="text-primary">{course.title}</Link>
                         </h2>
-                        <h1 className="text-primary text-5xl font-bold mb-6">
+                        <h1 className="text-5xl font-bold mb-6">
                             {course_lecture.title}
                         </h1>
                     </div>
@@ -49,15 +55,35 @@ export default function Show({ course, course_lecture }) {
 
                     <div className="flex justify-between">
                         <div>
-                            <button className="btn btn-accent">
-                                <FaChevronLeft />
-                                Prev
-                            </button>
+                            {prev_course_lecture ? (
+                                <button className="btn btn-accent">
+                                    <FaChevronLeft />
+                                    Sebelumnya
+                                </button>
+                            ) : (
+                                <></>
+                            )}
                         </div>
                         <div>
-                            <button className="btn btn-accent">
-                                Next <FaChevronRight />
-                            </button>
+                            {next_course_lecture ? (
+                                <Link
+                                    href={route(
+                                        "learning_area.course_lecture.finish_lecture",
+                                        {
+                                            course: course.id,
+                                            course_lecture: course_lecture.id,
+                                        }
+                                    )}
+                                    // preserveScroll={true}
+                                    preserveState={true}
+                                    method="POST"
+                                    className="btn btn-accent"
+                                >
+                                    Selanjutnya <FaChevronRight />
+                                </Link>
+                            ) : (
+                                <></>
+                            )}
                         </div>
                     </div>
                 </div>
