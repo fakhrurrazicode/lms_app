@@ -50,19 +50,24 @@ export default function Index({ course, course_sections }) {
                                 <table className="table">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>Sections/Lectures</th>
-                                            <th>Video</th>
+                                            <th className="whitespace-nowrap"></th>
+                                            <th className="whitespace-nowrap">
+                                                Sections/Lectures
+                                            </th>
+                                            <th className="whitespace-nowrap">
+                                                Video
+                                            </th>
                                             <th className="text-center">
-                                                Set as Preview Video
+                                                Tetapkan sebagai video pratinjau
                                             </th>
 
                                             <th className="text-center">
-                                                Set as Featured Video (only 1)
+                                                Tetapkan sebagai video unggulan
+                                                (hanya 1)
                                             </th>
 
-                                            <th>Created at</th>
-                                            <th>Updated at</th>
+                                            <th>Dibuat di</th>
+                                            <th>Diperbarui di</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -166,15 +171,15 @@ export default function Index({ course, course_sections }) {
                                                                         </span>
                                                                     </Link>
                                                                 </td>
-                                                                <td>
+                                                                <td className="whitespace-nowrap">
                                                                     {
                                                                         course_section.title
                                                                     }
                                                                 </td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
+                                                                <td className="whitespace-nowrap"></td>
+                                                                <td className="whitespace-nowrap"></td>
+                                                                <td className="whitespace-nowrap"></td>
+                                                                <td className="whitespace-nowrap">
                                                                     {
                                                                         course_section.created_at
                                                                     }
