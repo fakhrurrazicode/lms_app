@@ -13,6 +13,9 @@ import {
     FaStar,
     FaTrash,
     FaUserAlt,
+    FaClock,
+    FaEye,
+    FaLock,
 } from "react-icons/fa";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { itemIsExitsOnCart, minutesToHumanReadable, rupiah } from "@/bootstrap";
@@ -24,6 +27,7 @@ import {
     PlyrLayout,
     plyrLayoutIcons,
 } from "@vidstack/react/player/layouts/plyr";
+import { BiMoviePlay } from "react-icons/bi";
 
 const AccordionItem = ({ header, ...rest }) => (
     <Item
@@ -38,15 +42,17 @@ const AccordionItem = ({ header, ...rest }) => (
                 />
             </>
         )}
-        className="border-b"
+        className=""
         buttonProps={{
-            className: ({ isEnter }) =>
-                `flex w-full p-4 text-left border bg-white ${
-                    isEnter && "bg-slate-200"
-                }`,
+            className: (param) => {
+                console.log("param", param);
+                return `flex w-full p-4 text-left bg-base-100 ${
+                    param.isEnter && "bg-slate-200"
+                }`;
+            },
         }}
         contentProps={{
-            className: "transition-height duration-200 ease-out border",
+            className: "transition-height duration-200 ease-out ",
         }}
         panelProps={{ className: "p-4" }}
     />
@@ -189,7 +195,8 @@ export default function Course() {
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Enrolled :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    2 students
+                                                    {course.enrollment_count}{" "}
+                                                    students
                                                 </span>
                                             </p>
                                         </li>
@@ -208,7 +215,8 @@ export default function Course() {
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Price Discount :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    -20%
+                                                    {course.discount_percentage}
+                                                    %
                                                 </span>
                                             </p>
                                         </li>
@@ -216,7 +224,7 @@ export default function Course() {
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Regular Price :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    {rupiah(course.price)}
+                                                    {rupiah(course.real_price)}
                                                 </span>
                                             </p>
                                         </li>
@@ -262,30 +270,58 @@ export default function Course() {
                                             transition
                                             transitionTimeout={200}
                                         >
-                                            <AccordionItem
-                                                header="What is Lorem Ipsum?"
-                                                initialEntered
-                                            >
-                                                Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit, sed
-                                                do eiusmod tempor incididunt ut
-                                                labore et dolore magna aliqua.
-                                            </AccordionItem>
-
-                                            <AccordionItem header="Where does it come from?">
-                                                Quisque eget luctus mi, vehicula
-                                                mollis lorem. Proin fringilla
-                                                vel erat quis sodales. Nam ex
-                                                enim, eleifend venenatis lectus
-                                                vitae.
-                                            </AccordionItem>
-
-                                            <AccordionItem header="Why do we use it?">
-                                                Suspendisse massa risus, pretium
-                                                id interdum in, dictum sit amet
-                                                ante. Fusce vulputate purus sed
-                                                tempus feugiat.
-                                            </AccordionItem>
+                                            {course.course_sections.map(
+                                                (course_section, index) => {
+                                                    return (
+                                                        <AccordionItem
+                                                            header={
+                                                                course_section.title
+                                                            }
+                                                            initialEntered={
+                                                                index === 0
+                                                            }
+                                                        >
+                                                            {course_section.course_lectures.map(
+                                                                (
+                                                                    course_lecture
+                                                                ) => (
+                                                                    <div className="flex justify-between items-center py-4 border-b border-base-100 last:border-b-0 text-sm">
+                                                                        <div className="flex justify-between items-center gap-4">
+                                                                            <BiMoviePlay />
+                                                                            <div>
+                                                                                {
+                                                                                    course_lecture.title
+                                                                                }
+                                                                            </div>
+                                                                        </div>
+                                                                        {course_lecture.set_as_preview ? (
+                                                                            <div className="flex justify-between gap-4">
+                                                                                <div className="flex justify-between items-center gap-2">
+                                                                                    <FaClock />
+                                                                                    {course_lecture.video_duration
+                                                                                        ? course_lecture.video_duration
+                                                                                        : 0}{" "}
+                                                                                    Minutes
+                                                                                </div>
+                                                                                <button className="btn btn-primary btn-sm">
+                                                                                    <FaEye />
+                                                                                    <span>
+                                                                                        Preview
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        ) : (
+                                                                            <div>
+                                                                                <FaLock />
+                                                                            </div>
+                                                                        )}
+                                                                    </div>
+                                                                )
+                                                            )}
+                                                        </AccordionItem>
+                                                    );
+                                                }
+                                            )}
                                         </Accordion>
                                     </div>
                                 </TabPanel>

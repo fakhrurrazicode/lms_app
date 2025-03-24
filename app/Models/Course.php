@@ -29,7 +29,8 @@ class Course extends BaseModel implements Cartable
         'course_section_count',
         'course_lecture_count',
         'real_price',
-        'feature_course_lecture'
+        'feature_course_lecture',
+        'enrollment_count'
     ];
     protected $with = ['instructor', 'course_category'];
 
@@ -110,6 +111,16 @@ class Course extends BaseModel implements Cartable
     public function course_lectures()
     {
         return $this->hasMany(CourseLecture::class);
+    }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
+
+    public function getEnrollmentCountAttribute()
+    {
+        return $this->enrollments()->count();
     }
 
     public function isUserAuthenticated()
