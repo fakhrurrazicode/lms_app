@@ -8,7 +8,7 @@ export default function CourseCard({ course }) {
     return (
         <div className="card bg-white dark:bg-slate-950 w-full shadow-xl rounded-md overflow-hidden">
             <div className="relative">
-                <div className="absolute top-0 py-4 px-4 w-full flex justify-between items-center">
+                <div className="absolute z-50 top-0 py-4 px-4 w-full flex justify-between items-center">
                     <span
                         href="#"
                         className="badge badge-primary font-semibold text-xs py-3 px-4"

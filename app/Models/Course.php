@@ -21,7 +21,16 @@ class Course extends BaseModel implements Cartable
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['image_url', 'average_stars', 'is_on_wishlist', 'enrolled', 'course_section_count', 'course_lecture_count', 'real_price'];
+    protected $appends = [
+        'image_url',
+        'average_stars',
+        'is_on_wishlist',
+        'enrolled',
+        'course_section_count',
+        'course_lecture_count',
+        'real_price',
+        'feature_course_lecture'
+    ];
     protected $with = ['instructor', 'course_category'];
 
     public function getPrice(): float
@@ -140,5 +149,12 @@ class Course extends BaseModel implements Cartable
             return false;
         }
     }
-    public function getFeatureVideoAttribute() {}
+    public function getFeatureCourseLectureAttribute()
+    {
+        $course_lecture = CourseLecture::where([
+            'course_id' => $this->id,
+            'set_as_featured' => true,
+        ])->first();
+        return $course_lecture;
+    }
 }

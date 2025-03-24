@@ -476,19 +476,22 @@ export default function Course() {
                     </div>
                     <div className="lg:col-start-9 lg:col-span-4">
                         <div className="card bg-base-100 shadow-xl">
-                            {/* <figure>
-                                <img src={course.image_url} alt="Shoes" />
-                            </figure> */}
-                            <MediaPlayer
-                                title="Sprite Fight"
-                                src={course.course_lectures[0].video_url}
-                            >
-                                <MediaProvider />
-                                <PlyrLayout
-                                    // thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
-                                    icons={plyrLayoutIcons}
-                                />
-                            </MediaPlayer>
+                            {!course.feature_course_lecture ? (
+                                <></>
+                            ) : (
+                                <MediaPlayer
+                                    title="Sprite Fight"
+                                    src={
+                                        course.feature_course_lecture.video_url
+                                    }
+                                >
+                                    <MediaProvider />
+                                    <PlyrLayout
+                                        // thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
+                                        icons={plyrLayoutIcons}
+                                    />
+                                </MediaPlayer>
+                            )}
                             <div className="card-body">
                                 {course.enrolled ? (
                                     <div className="text-xl font-bold text-success leading-[25px] mb-6 flex items-center gap-2">
