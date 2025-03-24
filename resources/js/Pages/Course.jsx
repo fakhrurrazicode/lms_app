@@ -17,6 +17,13 @@ import {
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { itemIsExitsOnCart, minutesToHumanReadable, rupiah } from "@/bootstrap";
 import { FiCheck } from "react-icons/fi";
+import "@vidstack/react/player/styles/base.css";
+import "@vidstack/react/player/styles/plyr/theme.css";
+import { MediaPlayer, MediaProvider } from "@vidstack/react";
+import {
+    PlyrLayout,
+    plyrLayoutIcons,
+} from "@vidstack/react/player/layouts/plyr";
 
 const AccordionItem = ({ header, ...rest }) => (
     <Item
@@ -469,9 +476,19 @@ export default function Course() {
                     </div>
                     <div className="lg:col-start-9 lg:col-span-4">
                         <div className="card bg-base-100 shadow-xl">
-                            <figure>
+                            {/* <figure>
                                 <img src={course.image_url} alt="Shoes" />
-                            </figure>
+                            </figure> */}
+                            <MediaPlayer
+                                title="Sprite Fight"
+                                src={course.course_lectures[0].video_url}
+                            >
+                                <MediaProvider />
+                                <PlyrLayout
+                                    // thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
+                                    icons={plyrLayoutIcons}
+                                />
+                            </MediaPlayer>
                             <div className="card-body">
                                 {course.enrolled ? (
                                     <div className="text-xl font-bold text-success leading-[25px] mb-6 flex items-center gap-2">
