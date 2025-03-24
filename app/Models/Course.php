@@ -30,7 +30,8 @@ class Course extends BaseModel implements Cartable
         'course_lecture_count',
         'real_price',
         'feature_course_lecture',
-        'enrollment_count'
+        'enrollment_count',
+        'progress_percentage',
     ];
     protected $with = ['instructor', 'course_category'];
 
@@ -111,6 +112,28 @@ class Course extends BaseModel implements Cartable
     public function course_lectures()
     {
         return $this->hasMany(CourseLecture::class);
+    }
+
+    public function course_tracks()
+    {
+        return Auth::check() ? $this->hasMany(CourseTrack::class)->where([
+            'user_id' => Auth::user()->id,
+        ]) : [];
+    }
+
+    public function getCourseTrackCountAttribute()
+    {
+        return $this->course_tracks()->count();
+    }
+
+    public function getProgressPercentageAttribute()
+    {
+        $course_lecture_count = $this->course_lecture_count;
+        $course_track_count = $this->course_track_count;
+
+        $percentage = ($course_track_count / $course_lecture_count) * 100;
+        $percentage = number_format($percentage, 2);
+        return $percentage;
     }
 
     public function enrollments()

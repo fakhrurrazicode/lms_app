@@ -12,7 +12,9 @@ class CourseController extends Controller
 {
     public function index(Course $course)
     {
-        $course->load('course_sections.course_lectures');
+        $course->load('course_sections.course_lectures.course_track');
+
+        // return $course;
 
         return Inertia::render('LearningArea/Course/Index', compact('course'));
     }

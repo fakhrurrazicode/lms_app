@@ -143,10 +143,14 @@ export default function LearningAreaLayout({ children }) {
                         <div className="bg-base-200 h-[35px] w-full rounded-lg relative overflow-hidden mb-6">
                             <div
                                 className={
-                                    "bg-primary w-[10%] text-center absolute top-0 bottom-0 flex justify-center items-center"
+                                    "bg-primary w-[" +
+                                    course.progress_percentage +
+                                    "%] text-center absolute top-0 bottom-0 flex justify-center items-center"
                                 }
                             >
-                                <span className="text-white text-xs">10%</span>
+                                <span className="text-white text-xs">
+                                    {course.progress_percentage}%
+                                </span>
                             </div>
                         </div>
                         {children}

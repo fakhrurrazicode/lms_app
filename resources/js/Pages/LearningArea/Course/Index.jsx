@@ -114,7 +114,7 @@ export default function Index({ course }) {
                             <h3 className="border-l-4 border-primary pl-3 mb-[30px]">
                                 Detail Kursus
                             </h3>
-                            <div className="card bg-base-100 mb-[30px] grid grid-cols-1 md:grid-cols-2">
+                            <div className="card bg-base-200 mb-[30px] grid grid-cols-1 md:grid-cols-2">
                                 <ul className="p-10px md:py-[55px] md:pl-[50px] md:pr-[70px] lg:py-[35px] lg:px-[30px] 2xl:py-[55px] 2xl:pl-[50px] 2xl:pr-[70px] border-r-2 border-base-200 space-y-[10px]">
                                     <li>
                                         <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
@@ -186,7 +186,7 @@ export default function Index({ course }) {
                         </div>
 
                         <Tabs>
-                            <TabList className="w-full bg-white dark:bg-base-100 flex justify-between shadow-md">
+                            <TabList className="w-full bg-white dark:bg-base-200 flex justify-between shadow-md">
                                 <Tab
                                     className="flex-1 flex justify-center items-center gap-2 text-center py-6 cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-primary hover:text-white"
                                     selectedClassName="border-none bg-primary text-white"
@@ -205,7 +205,7 @@ export default function Index({ course }) {
 
                             <TabPanel>
                                 <div className="py-8">
-                                    <div className="card bg-base-100 rounded-none">
+                                    <div className="card bg-base-200 rounded-none">
                                         <div className="card-body">
                                             <div className="mb-10">
                                                 <h3 className="text-3xl font-bold mb-4 text-primary">
