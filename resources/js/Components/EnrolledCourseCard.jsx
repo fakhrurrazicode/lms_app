@@ -17,9 +17,17 @@ export default function EnrolledCourseCard({ enrollment }) {
                         {course.course_category.name}
                     </span>
                 </div>
-                <Link href={"/course/" + course.slug}>
-                    <img src={course.image_url} alt="Shoes" />
-                </Link>
+                <Link
+                    href={route("learning_area.course.index", {
+                        course: course,
+                    })}
+                    preserveScroll={true}
+                    preserveState={true}
+                    className={"w-full h-[200px] block relative bg-cover "}
+                    style={{
+                        backgroundImage: `url('${course.image_url}')`,
+                    }}
+                ></Link>
             </div>
             <div className="card-body px-4">
                 <div className="flex justify-between mb-2">
@@ -34,9 +42,11 @@ export default function EnrolledCourseCard({ enrollment }) {
                     </div>
                 </div>
                 <a
-                    href={route("course", {
-                        slug: course.slug,
+                    href={route("learning_area.course.index", {
+                        course: course,
                     })}
+                    preserveScroll={true}
+                    preserveState={true}
                     className="card-title mb-2 text-lg"
                 >
                     {course.title}
@@ -90,6 +100,8 @@ export default function EnrolledCourseCard({ enrollment }) {
                         href={route("learning_area.course.index", {
                             course: course,
                         })}
+                        preserveScroll={true}
+                        preserveState={true}
                         className="btn btn-primary w-full"
                     >
                         <FaBook />

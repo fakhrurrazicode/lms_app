@@ -47,13 +47,7 @@ export default function CourseCard({ course }) {
                     style={{
                         backgroundImage: `url('${course.image_url}')`,
                     }}
-                >
-                    {/* <img
-                        src={}
-                        alt="Shoes"
-                        className="absolute top-[-50%] left-[-50%] translate-x-[50%] translate-y-[50%]"
-                    /> */}
-                </Link>
+                ></Link>
             </div>
             <div className="card-body px-4">
                 <div className="flex justify-between mb-2">
