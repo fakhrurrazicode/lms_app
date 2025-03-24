@@ -14,7 +14,9 @@ class CourseLectureController extends Controller
 {
     public function show(Course $course, CourseLecture $course_lecture)
     {
-        $course->load('course_sections.course_lectures');
+        $course->load('course_sections.course_lectures.course_track');
+
+        // return $course;
 
         $prev_course_lecture = CourseLecture::where('id', '<', $course_lecture->id)
             ->where('course_id', $course->id)
@@ -36,12 +38,21 @@ class CourseLectureController extends Controller
 
     public function finish_lecture(Request $request, Course $course, CourseLecture $course_lecture)
     {
-        CourseTrack::create([
+        $course_track = CourseTrack::where([
             'user_id' => Auth::user()->id,
             'course_id' => $course_lecture->course_id,
             'course_section_id' => $course_lecture->course_section_id,
             'course_lecture_id' => $course_lecture->id,
-        ]);
+        ])->first();
+
+        if (!$course_track) {
+            CourseTrack::create([
+                'user_id' => Auth::user()->id,
+                'course_id' => $course_lecture->course_id,
+                'course_section_id' => $course_lecture->course_section_id,
+                'course_lecture_id' => $course_lecture->id,
+            ]);
+        }
 
         $next_course_lecture = CourseLecture::where('id', '>', $course_lecture->id)
             ->where('course_id', $course_lecture->course_id)

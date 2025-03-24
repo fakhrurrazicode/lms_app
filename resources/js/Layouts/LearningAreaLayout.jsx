@@ -2,7 +2,7 @@ import React from "react";
 import FrontendLayout from "./FrontendLayout";
 import { FaChevronDown, FaClock } from "react-icons/fa";
 
-import { BiHome, BiMoviePlay } from "react-icons/bi";
+import { BiCheck, BiHome, BiMoviePlay } from "react-icons/bi";
 import { Link, usePage } from "@inertiajs/react";
 import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion";
 
@@ -72,7 +72,12 @@ export default function LearningAreaLayout({ children }) {
                                                 <ul className="">
                                                     {course_section.course_lectures.map(
                                                         (course_lecture) => (
-                                                            <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                                            <li
+                                                                key={
+                                                                    course_lecture.id
+                                                                }
+                                                                className="py-[10px] border-b border-base-300 dark:border-gray-700"
+                                                            >
                                                                 <Link
                                                                     preserveScroll={
                                                                         true
@@ -88,14 +93,26 @@ export default function LearningAreaLayout({ children }) {
                                                                                 course_lecture.id,
                                                                         }
                                                                     )}
-                                                                    className="text-gray-600 dark:text-white leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                                                    className={`${
+                                                                        course_lecture.course_track
+                                                                            ? "text-success font-bold"
+                                                                            : "text-gray-600 dark:text-white"
+                                                                    } leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out`}
                                                                 >
                                                                     <div className="flex items-center gap-4">
-                                                                        <BiMoviePlay
-                                                                            size={
-                                                                                22
-                                                                            }
-                                                                        />
+                                                                        {course_lecture.course_track ? (
+                                                                            <BiCheck
+                                                                                size={
+                                                                                    22
+                                                                                }
+                                                                            />
+                                                                        ) : (
+                                                                            <BiMoviePlay
+                                                                                size={
+                                                                                    22
+                                                                                }
+                                                                            />
+                                                                        )}
                                                                         <span>
                                                                             {
                                                                                 course_lecture.title

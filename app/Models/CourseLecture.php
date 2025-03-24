@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class CourseLecture extends BaseModel
@@ -15,6 +16,16 @@ class CourseLecture extends BaseModel
     public function getVideoUrlAttribute()
     {
         return $this->video ? url('/storage/' . $this->video) : asset('videos/dummy/sample_video.mp4');
+    }
+
+    public function course_track()
+    {
+        if (!Auth::check()) {
+            return null;
+        }
+
+        return $this->belongsTo(CourseTrack::class, 'id', 'course_lecture_id')
+            ->where('user_id', Auth::user()->id);
     }
 
     // public function getPrevCourseLectureAttribute()
