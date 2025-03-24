@@ -42,17 +42,18 @@ const AccordionItem = ({ header, ...rest }) => (
                 />
             </>
         )}
-        className=""
+        className="shadow-md"
         buttonProps={{
             className: (param) => {
                 console.log("param", param);
-                return `flex w-full p-4 text-left bg-base-100 ${
-                    param.isEnter && "bg-slate-200"
+                return `flex w-full p-6 text-left bg-primary/90 text-white ${
+                    param.isEnter && "bg-primary/100"
                 }`;
             },
         }}
         contentProps={{
-            className: "transition-height duration-200 ease-out ",
+            className:
+                "transition-height duration-200 ease-out bg-white dark:bg-base-200 px-6",
         }}
         panelProps={{ className: "p-4" }}
     />
@@ -156,13 +157,13 @@ export default function Course() {
 
                             <div>
                                 <h3 className="border-l-4 border-primary pl-3 mb-[30px]">
-                                    Course Details
+                                    Detail Kursus
                                 </h3>
                                 <div className="card bg-base-100 mb-[30px] grid grid-cols-1 md:grid-cols-2">
                                     <ul className="p-10px md:py-[55px] md:pl-[50px] md:pr-[70px] lg:py-[35px] lg:px-[30px] 2xl:py-[55px] 2xl:pl-[50px] 2xl:pr-[70px] border-r-2 border-base-200 space-y-[10px]">
                                         <li>
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Instructor :
+                                                Instruktur :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
                                                     {course.instructor
                                                         ? course.instructor.name
@@ -183,7 +184,7 @@ export default function Course() {
                                         </li>
                                         <li>
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Duration :
+                                                Durasi :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
                                                     {minutesToHumanReadable(
                                                         course.duration
@@ -193,7 +194,7 @@ export default function Course() {
                                         </li>
                                         <li>
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Enrolled :
+                                                Jumlah Terdaftar :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
                                                     {course.enrollment_count}{" "}
                                                     students
@@ -205,7 +206,7 @@ export default function Course() {
                                     <ul className="p-10px md:py-[55px] md:pl-[50px] md:pr-[70px] lg:py-[35px] lg:px-[30px] 2xl:py-[55px] 2xl:pl-[50px] 2xl:pr-[70px] border-r-2 border-base-200 space-y-[10px]">
                                         <li>
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Course level :
+                                                Tingkatan :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
                                                     {course.level}
                                                 </span>
@@ -213,7 +214,7 @@ export default function Course() {
                                         </li>
                                         <li>
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Price Discount :
+                                                Diskon :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
                                                     {course.discount_percentage}
                                                     %
@@ -222,7 +223,7 @@ export default function Course() {
                                         </li>
                                         <li>
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Regular Price :
+                                                Harga Normal:
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
                                                     {rupiah(course.real_price)}
                                                 </span>
@@ -233,7 +234,7 @@ export default function Course() {
                             </div>
 
                             <Tabs>
-                                <TabList className="w-full bg-white dark:bg-base-100 flex justify-between">
+                                <TabList className="w-full bg-white dark:bg-base-100 flex justify-between shadow-md">
                                     <Tab
                                         className="flex-1 flex justify-center items-center gap-2 text-center py-6 cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-primary hover:text-white"
                                         selectedClassName="border-none bg-primary text-white"
@@ -275,7 +276,11 @@ export default function Course() {
                                                     return (
                                                         <AccordionItem
                                                             header={
-                                                                course_section.title
+                                                                <span className="font-semibold">
+                                                                    {
+                                                                        course_section.title
+                                                                    }
+                                                                </span>
                                                             }
                                                             initialEntered={
                                                                 index === 0
@@ -327,51 +332,33 @@ export default function Course() {
                                 </TabPanel>
                                 <TabPanel>
                                     <div className="py-8">
-                                        <h3 className="text-3xl font-bold mb-6">
-                                            Experience is over the world visit
-                                        </h3>{" "}
-                                        <p className="mb-6">
-                                            {" "}
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit.
-                                            Curabitur vulputate vestibulum
-                                            Phasellus rhoncus, dolor eget
-                                            viverra pretium, dolor tellus
-                                            aliquet nunc, vitae ultricies erat
-                                            elit eu lacus.
-                                        </p>{" "}
-                                        <p className="mb-6">
-                                            Vestibulum non justo consectetur,
-                                            cursus ante, tincidunt sapien. Nulla
-                                            quis diam sit amet turpis interdum
-                                            accumsan quis nec enim. Vivamus
-                                            faucibus ex sed nibh egestas
-                                            elementum. Mauris et bibendum dui.
-                                        </p>{" "}
-                                        <p className="mb-6">
-                                            Aenean consequat pulvinar luctus We
-                                            have covered many special events
-                                            such as fireworks, fairs, parades,
-                                            races, walks, awards ceremonies,
-                                            fashion shows, sporting events, and
-                                            even a memorial service. Lorem ipsum
-                                            dolor sit amet, consectetur
-                                            adipiscing elit.
-                                        </p>{" "}
-                                        <p className="mb-6">
-                                            Curabitur vulputate vestibulum
-                                            Phasellus rhoncus, dolor eget
-                                            viverra pretium, dolor tellus
-                                            aliquet nunc, vitae ultricies erat
-                                            elit eu lacus. Vestibulum non justo
-                                            consectetur, cursus ante, tincidunt
-                                            sapien. Nulla quis diam sit amet
-                                            turpis interdum accumsan quis nec
-                                            enim. Vivamus faucibus ex sed nibh
-                                            egestas elementum. Mauris et
-                                            bibendum dui. Aenean consequat
-                                            pulvinar luctus.
-                                        </p>
+                                        <div className="card bg-base-100 rounded-none">
+                                            <div className="card-body">
+                                                <div className="mb-10">
+                                                    <h3 className="text-3xl font-bold mb-4 text-primary">
+                                                        Deskripsi
+                                                    </h3>{" "}
+                                                    <div>
+                                                        {course.description}
+                                                    </div>
+                                                </div>
+                                                <div className="mb-10">
+                                                    <h3 className="text-xl font-bold mb-4 text-primary">
+                                                        Prasyarat
+                                                    </h3>{" "}
+                                                    <div>
+                                                        {course.prerequisites}
+                                                    </div>
+                                                </div>
+
+                                                <div className="mb-10">
+                                                    <h3 className="text-xl font-bold mb-4 text-primary">
+                                                        Tujuan
+                                                    </h3>{" "}
+                                                    <div>{course.goals}</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
