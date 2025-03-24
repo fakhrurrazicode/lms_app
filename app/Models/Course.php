@@ -140,4 +140,5 @@ class Course extends BaseModel implements Cartable
             return false;
         }
     }
+    public function getFeatureVideoAttribute() {}
 }

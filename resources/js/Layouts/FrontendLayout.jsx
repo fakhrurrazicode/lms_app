@@ -118,7 +118,7 @@ export default function FrontendLayout({ header, children }) {
                                             </span>
                                         </Dropdown.Trigger>
 
-                                        <Dropdown.Content width="96">
+                                        <Dropdown.Content width="80">
                                             <div>
                                                 {cart.items.map((item) => {
                                                     let itemable =

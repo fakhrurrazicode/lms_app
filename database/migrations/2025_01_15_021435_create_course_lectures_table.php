@@ -17,8 +17,10 @@ return new class extends Migration
             $table->integer('course_section_id');
             $table->string('title');
             $table->string('video');
+            $table->integer('video_duration')->default(0); // in minutes
             $table->text('description');
             $table->boolean('set_as_preview')->default(false);
+            $table->boolean('set_as_featured')->default(false);
             $table->timestamps();
         });
     }
