@@ -78,7 +78,7 @@ class PaymentController extends Controller
                     'itemable_id' => $item->itemable_id,
                     'quantity' => $item->quantity,
                     'price' => $item->itemable->price,
-                    'discount' => $item->itemable->discount,
+                    'discount_percentage' => $item->itemable->discount_percentage,
                 ];
             }
 

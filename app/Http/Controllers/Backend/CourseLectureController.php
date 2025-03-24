@@ -90,4 +90,27 @@ class CourseLectureController extends Controller
             'course_section' => $course_section,
         ]);
     }
+    public function set_as_preview(Request $request, Course $course, CourseSection $course_section, CourseLecture $course_lecture)
+    {
+        $set_as_preview = $request->set_as_preview;
+
+        $course_lecture->update([
+            'set_as_preview' => $set_as_preview
+        ]);
+    }
+
+
+    public function set_as_featured(Request $request, Course $course, CourseSection $course_section, CourseLecture $course_lecture)
+    {
+
+        CourseLecture::where('course_section_id', $course_section->id)->update([
+            'set_as_featured' => 0,
+        ]);
+
+        $set_as_featured = $request->set_as_featured;
+
+        $course_lecture->update([
+            'set_as_featured' => $set_as_featured
+        ]);
+    }
 }

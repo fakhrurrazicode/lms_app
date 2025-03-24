@@ -1,15 +1,6 @@
 import React from "react";
 import FrontendLayout from "./FrontendLayout";
-import {
-    FaAddressCard,
-    FaHome,
-    FaSignOutAlt,
-    FaStar,
-    FaTachometerAlt,
-    FaUser,
-    FaUserAlt,
-} from "react-icons/fa";
-import { FaBookmark, FaMessage } from "react-icons/fa6";
+
 import {
     FiBookmark,
     FiHome,
@@ -34,7 +25,7 @@ export default function UserAreaLayout({ children }) {
                                 <div></div>
                                 <div>
                                     <h3 className="text-xl font-bold mb-2">
-                                        Hallo, {auth.user.name}
+                                        Hello, {auth.user.name}
                                     </h3>
                                     <div className="flex">
                                         <div className="me-4">

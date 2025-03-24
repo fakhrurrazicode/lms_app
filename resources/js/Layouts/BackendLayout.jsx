@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
+import { RiMenuFill } from "react-icons/ri";
 
 export default function BackendLayout({ header, children }) {
     const { user, permissions } = usePage().props.auth;
@@ -36,8 +37,14 @@ export default function BackendLayout({ header, children }) {
                     <div className="min-h-screen bg-base-200">
                         <nav className="border-b border-base-200  dark:border-gray-700 bg-base-100">
                             <div className="w-full px-4 sm:px-6 lg:px-8">
-                                <div className="flex h-16 justify-between">
-                                    <div className="flex">
+                                <div className="flex h-16 justify-between ">
+                                    <div className="flex items-center gap-4">
+                                        <label
+                                            htmlFor="my-drawer-2"
+                                            className="btn btn-link drawer-button lg:hidden"
+                                        >
+                                            <RiMenuFill size={24} />
+                                        </label>
                                         <div className="flex shrink-0 items-center">
                                             <Link href="/">
                                                 <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
@@ -205,12 +212,6 @@ export default function BackendLayout({ header, children }) {
 
                         <main>{children}</main>
                     </div>
-                    <label
-                        htmlFor="my-drawer-2"
-                        className="btn btn-primary drawer-button lg:hidden"
-                    >
-                        Open drawer
-                    </label>
                 </div>
                 <div className="drawer-side ">
                     <label
@@ -297,7 +298,7 @@ export default function BackendLayout({ header, children }) {
                             </Link>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <Link
                                 href="/backend/course_sub_category"
                                 className="flex justify-start items-center "
@@ -305,7 +306,7 @@ export default function BackendLayout({ header, children }) {
                                 <LayoutList size={16} />
                                 <span>Manage Course Sub Categories</span>
                             </Link>
-                        </li>
+                        </li> */}
 
                         <li>
                             <Link

@@ -62,7 +62,10 @@ class CourseController extends Controller
      */
     public function store(CourseStoreRequest $request)
     {
+
+
         $data = $request->except(['image']);
+        // return $data;
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('images', 'public');
         }

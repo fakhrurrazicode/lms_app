@@ -572,9 +572,9 @@ export default function Course() {
                                                         </span>
                                                     </Link>
                                                 )}
-                                                <button className="btn flex justify-center items-center btn-secondary w-full">
+                                                {/* <button className="btn flex justify-center items-center btn-secondary w-full">
                                                     <span>Beli Sekarang</span>
-                                                </button>
+                                                </button> */}
                                             </>
                                         )}
                                     </div>

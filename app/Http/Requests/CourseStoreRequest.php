@@ -37,6 +37,9 @@ class CourseStoreRequest extends FormRequest
             'prerequisites' => ['required'],
             'goals' => ['required'],
             // 'duration' => ['required'],
+            'price' => ['required'],
+            // 'discount_percentage' => ['required'],
+            'level' => ['required'],
             'status' => ['required'],
         ];
     }

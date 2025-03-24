@@ -58,7 +58,7 @@ export default function CartItemCard({ cartItem }) {
                         itemable_type: "App\\Models\\Course",
                         itemable_id: itemable.id,
                     }}
-                    className="btn btn-error btn-sm"
+                    className="btn btn-link text-left text-error btn-sm"
                 >
                     Hapus
                 </Link>
@@ -74,7 +74,7 @@ export default function CartItemCard({ cartItem }) {
                         itemable_type: "App\\Models\\Course",
                         itemable_id: itemable.id,
                     }}
-                    className="btn btn-primary btn-sm"
+                    className="btn btn-link text-left btn-sm"
                 >
                     Pindahkan ke Wishlist
                 </Link>

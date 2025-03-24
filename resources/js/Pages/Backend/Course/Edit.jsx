@@ -18,7 +18,10 @@ export default function Edit({ course, instructors, course_categories }) {
             description: course.description,
             prerequisites: course.prerequisites,
             goals: course.goals,
+            price: course.real_price,
             duration: course.duration,
+            discount_percentage: course.discount_percentage,
+            level: course.level,
             status: true,
         });
 
@@ -86,8 +89,8 @@ export default function Edit({ course, instructors, course_categories }) {
                         <form onSubmit={onSubmitHandler} className="card-body">
                             <h2 className="card-title mb-6">Edit Course</h2>
                             <div className="mb-6">
-                                <div className="flex gap-6">
-                                    <label className="form-control mb-6 w-1/2">
+                                <div className="grid grid-cols-12 gap-6">
+                                    <label className="form-control mb-6 col-span-12 md:col-span-6">
                                         <div className="label">
                                             <span className="label-text">
                                                 Title
@@ -111,8 +114,8 @@ export default function Edit({ course, instructors, course_categories }) {
                                     </label>
                                 </div>
 
-                                <div className="flex gap-6">
-                                    <label className="form-control mb-6 w-1/2">
+                                <div className="grid grid-cols-12 gap-6">
+                                    <label className="form-control mb-6 col-span-12 md:col-span-6">
                                         <div className="label">
                                             <span className="label-text">
                                                 Slug
@@ -141,8 +144,8 @@ export default function Edit({ course, instructors, course_categories }) {
                                     </label>
                                 </div>
 
-                                <div className="flex gap-6">
-                                    <label className="form-control mb-6 w-1/3">
+                                <div className="grid grid-cols-12 gap-6">
+                                    <label className="form-control mb-6 col-span-12 md:col-span-4">
                                         <div className="label">
                                             <span className="label-text">
                                                 Instructor
@@ -177,8 +180,9 @@ export default function Edit({ course, instructors, course_categories }) {
                                         )}
                                     </label>
                                 </div>
-                                <div className="flex gap-6">
-                                    <label className="form-control mb-6 w-1/3">
+
+                                <div className="grid grid-cols-12 gap-6">
+                                    <label className="form-control mb-6 col-span-12 md:col-span-4">
                                         <div className="label">
                                             <span className="label-text">
                                                 Course Category
@@ -191,7 +195,7 @@ export default function Edit({ course, instructors, course_categories }) {
                                             value={data.course_category_id}
                                         >
                                             <option>
-                                                :: Select Sub Course Category ::
+                                                :: Select Course Category ::
                                             </option>
 
                                             {course_categories.map(
@@ -217,45 +221,44 @@ export default function Edit({ course, instructors, course_categories }) {
                                         )}
                                     </label>
 
-                                    {/* <label className="form-control mb-6 w-1/3">
-                    <div className="label">
-                        <span className="label-text">
-                            Course Sub Category
-                        </span>
-                    </div>
-                    <select
-                        className="select select-bordered"
-                        name="course_sub_category_id"
-                        onChange={inputChangeHandler}
-                        value={data.course_sub_category_id}
-                    >
-                        <option>
-                            :: Select Course Sub Category ::
-                        </option>
+                                    <label className="form-control mb-6 col-span-12 md:col-span-4">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Course Level
+                                            </span>
+                                        </div>
+                                        <select
+                                            className="select select-bordered"
+                                            name="level"
+                                            onChange={inputChangeHandler}
+                                            value={data.level}
+                                        >
+                                            <option>
+                                                :: Select Course Level ::
+                                            </option>
+                                            {[
+                                                "beginner",
+                                                "intermediate",
+                                                "advance",
+                                            ].map((level) => (
+                                                <option value={level}>
+                                                    {level}
+                                                </option>
+                                            ))}
+                                        </select>
 
-                        {courseSubCategories.map(
-                            (courseSubCategory) => (
-                                <option
-                                    key={courseSubCategory.id}
-                                    value={courseSubCategory.id}
-                                >
-                                    {courseSubCategory.name}
-                                </option>
-                            )
-                        )}
-                    </select>
-                    {errors.course_sub_category_id && (
-                        <div className="label">
-                            <span className="label-text-alt text-error">
-                                {errors.course_sub_category_id}
-                            </span>
-                        </div>
-                    )}
-                </label> */}
+                                        {errors.level && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.level}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
                                 </div>
 
-                                <div className="flex gap-6">
-                                    <label className="form-control mb-6 w-full">
+                                <div className="grid grid-cols-12 gap-6">
+                                    <label className="form-control mb-6 col-span-12 md:col-span-10">
                                         <div className="label">
                                             <span className="label-text">
                                                 Description
@@ -279,8 +282,8 @@ export default function Edit({ course, instructors, course_categories }) {
                                     </label>
                                 </div>
 
-                                <div className="flex gap-6">
-                                    <label className="form-control mb-6 w-full">
+                                <div className="grid grid-cols-12 gap-6">
+                                    <label className="form-control mb-6 col-span-12 md:col-span-10">
                                         <div className="label">
                                             <span className="label-text">
                                                 Prerequisites
@@ -303,8 +306,8 @@ export default function Edit({ course, instructors, course_categories }) {
                                     </label>
                                 </div>
 
-                                <div className="flex gap-6">
-                                    <label className="form-control mb-6 w-full">
+                                <div className="grid grid-cols-12 gap-6">
+                                    <label className="form-control mb-6 col-span-12 md:col-span-10">
                                         <div className="label">
                                             <span className="label-text">
                                                 Goals
@@ -327,36 +330,62 @@ export default function Edit({ course, instructors, course_categories }) {
                                     </label>
                                 </div>
 
-                                <div className="flex gap-6">
-                                    <label className="form-control mb-6 w-1/3">
+                                <div className="grid grid-cols-12 gap-6">
+                                    <label className="form-control mb-6 col-span-12 md:col-span-4">
                                         <div className="label">
                                             <span className="label-text">
-                                                Duration
+                                                Price
                                             </span>
                                             <span className="label-text-alt">
-                                                In minutes
+                                                Dalam Satuan Rupiah
                                             </span>
                                         </div>
                                         <input
                                             type="number"
-                                            placeholder="Duration"
+                                            placeholder="Price"
                                             className="input input-bordered w-full"
-                                            name="duration"
+                                            name="price"
                                             onChange={inputChangeHandler}
-                                            value={data.duration}
+                                            value={data.price}
                                         />
-                                        {errors.duration && (
+                                        {errors.price && (
                                             <div className="label">
                                                 <span className="label-text-alt text-error">
-                                                    {errors.duration}
+                                                    {errors.price}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
+                                    <label className="form-control mb-6 col-span-12 md:col-span-4">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Discount Percentage
+                                            </span>
+                                            <span className="label-text-alt">
+                                                0 - 100%
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="number"
+                                            placeholder="Discount Percentage"
+                                            className="input input-bordered w-full"
+                                            name="discount_percentage"
+                                            onChange={inputChangeHandler}
+                                            value={data.discount_percentage}
+                                        />
+                                        {errors.discount_percentage && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.discount_percentage}
                                                 </span>
                                             </div>
                                         )}
                                     </label>
                                 </div>
 
-                                <div className="flex gap-6">
-                                    <label className="form-control mb-6 w-1/3">
+                                <div className="grid grid-cols-12 gap-6">
+                                    <label className="form-control mb-6 col-span-12 md:col-span-4">
                                         <div className="label">
                                             <span className="label-text">
                                                 Course Image
@@ -383,7 +412,7 @@ export default function Edit({ course, instructors, course_categories }) {
                                         )}
                                     </label>
 
-                                    <div className="w-1/3">
+                                    <div className="col-span-12 md:col-span-4">
                                         <img
                                             ref={previewImageRef}
                                             src=""
@@ -393,8 +422,8 @@ export default function Edit({ course, instructors, course_categories }) {
                                     </div>
                                 </div>
 
-                                <div className="flex gap-6 mb-6">
-                                    <div className="form-control py-6 w-1/5">
+                                <div className="grid grid-cols-12 gap-6 mb-6">
+                                    <div className="form-control py-6 col-span-8 md:col-span-6">
                                         <label className="label cursor-pointer">
                                             <span className="label-text">
                                                 Is active?

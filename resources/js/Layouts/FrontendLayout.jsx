@@ -1,10 +1,11 @@
+import { rupiah } from "@/bootstrap";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
-import { FaCartArrowDown } from "react-icons/fa";
+import { FaCartArrowDown, FaTimes } from "react-icons/fa";
 
 export default function FrontendLayout({ header, children }) {
     const { user, role, cart } = usePage().props.auth;
@@ -117,18 +118,91 @@ export default function FrontendLayout({ header, children }) {
                                             </span>
                                         </Dropdown.Trigger>
 
-                                        <Dropdown.Content>
+                                        <Dropdown.Content width="96">
+                                            <div>
+                                                {cart.items.map((item) => {
+                                                    let itemable =
+                                                        item.itemable;
+                                                    return (
+                                                        <div className="grid grid-cols-3 px-4 py-4 gap-4 relative hover:bg-base-100 transition-all ease-in-out">
+                                                            <Link
+                                                                className="absolute right-0 top-0 m-4"
+                                                                href={route(
+                                                                    "cart.destroy"
+                                                                )}
+                                                                method="DELETE"
+                                                                preserveScroll={
+                                                                    true
+                                                                }
+                                                                preserveState={
+                                                                    true
+                                                                }
+                                                                data={{
+                                                                    itemable_type:
+                                                                        "App\\Models\\Course",
+                                                                    itemable_id:
+                                                                        itemable.id,
+                                                                }}
+                                                            >
+                                                                <FaTimes className="text-error" />
+                                                            </Link>
+                                                            <div>
+                                                                <Link
+                                                                    href={route(
+                                                                        "course",
+                                                                        {
+                                                                            slug: itemable.slug,
+                                                                        }
+                                                                    )}
+                                                                >
+                                                                    <img
+                                                                        src={
+                                                                            itemable.image_url
+                                                                        }
+                                                                    />
+                                                                </Link>
+                                                            </div>
+                                                            <div className="col-span-2 pr-4">
+                                                                <Link
+                                                                    href={route(
+                                                                        "course",
+                                                                        {
+                                                                            slug: itemable.slug,
+                                                                        }
+                                                                    )}
+                                                                    className="text-primary font-bold"
+                                                                >
+                                                                    {
+                                                                        itemable.title
+                                                                    }
+                                                                </Link>
+
+                                                                <div>
+                                                                    <span className="block">
+                                                                        {rupiah(
+                                                                            itemable.price
+                                                                        )}
+                                                                    </span>
+                                                                    {itemable.discount_percentage ? (
+                                                                        <span className="block text-xs text-gray-500 font-semibold line-through">
+                                                                            {rupiah(
+                                                                                itemable.real_price
+                                                                            )}
+                                                                        </span>
+                                                                    ) : (
+                                                                        <></>
+                                                                    )}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
                                             <Dropdown.Link
                                                 href={route("cart.index")}
-                                            >
-                                                View Cart
-                                            </Dropdown.Link>
-                                            <Dropdown.Link
-                                                href={route("logout")}
-                                                method="post"
                                                 as="button"
                                             >
-                                                Checkout
+                                                View Cart
                                             </Dropdown.Link>
                                         </Dropdown.Content>
                                     </Dropdown>

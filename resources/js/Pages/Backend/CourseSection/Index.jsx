@@ -53,6 +53,14 @@ export default function Index({ course, course_sections }) {
                                             <th></th>
                                             <th>Sections/Lectures</th>
                                             <th>Video</th>
+                                            <th className="text-center">
+                                                Set as Preview Video
+                                            </th>
+
+                                            <th className="text-center">
+                                                Set as Featured Video (only 1)
+                                            </th>
+
                                             <th>Created at</th>
                                             <th>Updated at</th>
                                         </tr>
@@ -164,6 +172,8 @@ export default function Index({ course, course_sections }) {
                                                                     }
                                                                 </td>
                                                                 <td></td>
+                                                                <td></td>
+                                                                <td></td>
                                                                 <td>
                                                                     {
                                                                         course_section.created_at
@@ -274,6 +284,102 @@ export default function Index({ course, course_sections }) {
                                                                                         }
                                                                                     />
                                                                                 </a>
+                                                                            </td>
+                                                                            <td className="text-center">
+                                                                                <input
+                                                                                    type="checkbox"
+                                                                                    className="toggle toggle-primary toggle-xs"
+                                                                                    checked={
+                                                                                        course_lecture.set_as_preview
+                                                                                    }
+                                                                                    onChange={(
+                                                                                        e
+                                                                                    ) => {
+                                                                                        console.log(
+                                                                                            e
+                                                                                                .target
+                                                                                                .value
+                                                                                        );
+                                                                                        console.log(
+                                                                                            e
+                                                                                                .target
+                                                                                                .checked
+                                                                                        );
+
+                                                                                        router.put(
+                                                                                            route(
+                                                                                                "backend.course.set_as_preview",
+                                                                                                {
+                                                                                                    course: course.id,
+                                                                                                    course_section:
+                                                                                                        course_section.id,
+                                                                                                    course_lecture:
+                                                                                                        course_lecture.id,
+                                                                                                }
+                                                                                            ),
+                                                                                            {
+                                                                                                set_as_preview:
+                                                                                                    e
+                                                                                                        .target
+                                                                                                        .checked
+                                                                                                        ? 1
+                                                                                                        : 0,
+                                                                                            },
+                                                                                            {
+                                                                                                preserveScroll: true,
+                                                                                                preserveState: true,
+                                                                                            }
+                                                                                        );
+                                                                                    }}
+                                                                                />
+                                                                            </td>
+                                                                            <td className="text-center">
+                                                                                <input
+                                                                                    type="checkbox"
+                                                                                    className="toggle toggle-primary toggle-xs"
+                                                                                    checked={
+                                                                                        course_lecture.set_as_featured
+                                                                                    }
+                                                                                    onChange={(
+                                                                                        e
+                                                                                    ) => {
+                                                                                        console.log(
+                                                                                            e
+                                                                                                .target
+                                                                                                .value
+                                                                                        );
+                                                                                        console.log(
+                                                                                            e
+                                                                                                .target
+                                                                                                .checked
+                                                                                        );
+
+                                                                                        router.put(
+                                                                                            route(
+                                                                                                "backend.course.set_as_featured",
+                                                                                                {
+                                                                                                    course: course.id,
+                                                                                                    course_section:
+                                                                                                        course_section.id,
+                                                                                                    course_lecture:
+                                                                                                        course_lecture.id,
+                                                                                                }
+                                                                                            ),
+                                                                                            {
+                                                                                                set_as_featured:
+                                                                                                    e
+                                                                                                        .target
+                                                                                                        .checked
+                                                                                                        ? 1
+                                                                                                        : 0,
+                                                                                            },
+                                                                                            {
+                                                                                                preserveScroll: true,
+                                                                                                preserveState: true,
+                                                                                            }
+                                                                                        );
+                                                                                    }}
+                                                                                />
                                                                             </td>
                                                                             <td>
                                                                                 {

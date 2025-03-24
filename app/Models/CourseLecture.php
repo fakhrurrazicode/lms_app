@@ -8,9 +8,7 @@ class CourseLecture extends BaseModel
 {
 
     protected $guarded = [];
-
     protected $appends = ['video_url'];
-
 
     public function getVideoUrlAttribute()
     {

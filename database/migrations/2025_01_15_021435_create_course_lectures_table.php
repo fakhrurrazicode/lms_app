@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('video');
             $table->text('description');
+            $table->boolean('set_as_preview')->default(false);
             $table->timestamps();
         });
     }
