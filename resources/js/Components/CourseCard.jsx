@@ -41,8 +41,18 @@ export default function CourseCard({ course }) {
                         </Link>
                     )}
                 </div>
-                <Link href={"/course/" + course.slug}>
-                    <img src={course.image_url} alt="Shoes" />
+                <Link
+                    href={"/course/" + course.slug}
+                    className={"w-full h-[200px] block relative bg-cover "}
+                    style={{
+                        backgroundImage: `url('${course.image_url}')`,
+                    }}
+                >
+                    {/* <img
+                        src={}
+                        alt="Shoes"
+                        className="absolute top-[-50%] left-[-50%] translate-x-[50%] translate-y-[50%]"
+                    /> */}
                 </Link>
             </div>
             <div className="card-body px-4">
