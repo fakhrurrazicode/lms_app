@@ -73,8 +73,8 @@ export default function Edit({ course, course_section, course_lecture }) {
         >
             <Head title="Edit Course Section" />
 
-            <div className="py-12">
-                <div className="w-full sm:px-6 lg:px-8">
+            <div className="">
+                <div className="w-full">
                     <div className="mb-6">
                         <Link
                             href={route("user_area.course_section.index", {
@@ -84,7 +84,7 @@ export default function Edit({ course, course_section, course_lecture }) {
                             className="btn btn-neutral"
                         >
                             <FiArrowLeft />
-                            Back to Course Section
+                            Kembali ke Section
                         </Link>
                     </div>
                     <div className="mb-6">
@@ -94,16 +94,21 @@ export default function Edit({ course, course_section, course_lecture }) {
                     <div className="card bg-base-100 shadow-xl">
                         <form onSubmit={onSubmitHandler} className="card-body">
                             <h2 className="card-title mb-6">
-                                Edit Lecture for section{" "}
+                                Perbaharui Lecture{" "}
                                 <span className="text-primary">
-                                    {course_section ? course_section.title : ""}
+                                    {course_lecture ? course_lecture.title : ""}
                                 </span>
                             </h2>
                             <div className="mb-6">
-                                <label className="form-control w-full mb-6">
+                                <label className="form-control w-full max-w-xs mb-6">
                                     <div className="label">
                                         <span className="label-text">
                                             Video
+                                        </span>
+
+                                        <span className="label-text-alt">
+                                            Abaikan jika tidak ingin mengubah
+                                            video
                                         </span>
                                     </div>
 
@@ -127,12 +132,12 @@ export default function Edit({ course, course_section, course_lecture }) {
                                 <label className="form-control w-full mb-6">
                                     <div className="label">
                                         <span className="label-text">
-                                            Title
+                                            Judul Lecture
                                         </span>
                                     </div>
                                     <input
                                         type="text"
-                                        placeholder="Title"
+                                        placeholder="Judul Lecture"
                                         className="input input-bordered w-full"
                                         name="title"
                                         onChange={inputChangeHandler}
@@ -150,12 +155,12 @@ export default function Edit({ course, course_section, course_lecture }) {
                                 <label className="form-control w-full mb-6">
                                     <div className="label">
                                         <span className="label-text">
-                                            Description
+                                            Deskripsi Lecture
                                         </span>
                                     </div>
                                     <textarea
                                         className="textarea textarea-bordered h-64"
-                                        placeholder="Description"
+                                        placeholder="Deskripsi Lecture"
                                         name="description"
                                         onChange={inputChangeHandler}
                                         value={data.description}
@@ -176,8 +181,12 @@ export default function Edit({ course, course_section, course_lecture }) {
                                     className="btn btn-primary"
                                     disabled={processing}
                                 >
-                                    <Save size={16} />
-                                    <span>Save</span>
+                                    {processing ? (
+                                        <span className="loading loading-spinner loading-md"></span>
+                                    ) : (
+                                        <Save size={16} />
+                                    )}
+                                    <span>Perbaharui</span>
                                 </button>
                                 <Link
                                     href={route(
@@ -188,7 +197,7 @@ export default function Edit({ course, course_section, course_lecture }) {
                                     )}
                                     className="btn btn-neutral"
                                 >
-                                    Cancel
+                                    Batalkan
                                 </Link>
                             </div>
                         </form>

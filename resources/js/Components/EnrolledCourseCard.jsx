@@ -82,16 +82,17 @@ export default function EnrolledCourseCard({ enrollment }) {
                     </div>
                 </div>
                 <div className="card-actions">
-                    <div className="bg-base-200 h-[25px] w-full rounded-lg relative overflow-hidden mb-6">
+                    <div className="bg-base-100 h-[35px] w-full rounded-lg relative overflow-hidden mb-6">
                         <div
+                            style={{
+                                width: course.progress_percentage + "%",
+                            }}
                             className={
-                                "bg-primary w-[" +
-                                enrollment.progress +
-                                "%] text-center absolute top-0 bottom-0"
+                                "bg-primary text-center absolute top-0 bottom-0 flex justify-center items-center"
                             }
                         >
                             <span className="text-white text-xs">
-                                {enrollment.progress}%
+                                {course.progress_percentage}%
                             </span>
                         </div>
                     </div>

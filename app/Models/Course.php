@@ -123,13 +123,21 @@ class Course extends BaseModel implements Cartable
 
     public function getCourseTrackCountAttribute()
     {
-        return $this->course_tracks()->count();
+        return Auth::check() ? $this->course_tracks()->count() : 0;
     }
 
     public function getProgressPercentageAttribute()
     {
         $course_lecture_count = $this->course_lecture_count;
         $course_track_count = $this->course_track_count;
+
+        if (!$course_lecture_count) {
+            return 0;
+        }
+
+        if (!$course_track_count) {
+            return 0;
+        }
 
         $percentage = ($course_track_count / $course_lecture_count) * 100;
         $percentage = number_format($percentage, 2);

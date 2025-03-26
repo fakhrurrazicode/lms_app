@@ -37,7 +37,9 @@ class InstructorCourseStoreRequest extends FormRequest
             'prerequisites' => ['required'],
             'goals' => ['required'],
             // 'duration' => ['required'],
-            'price' => ['required'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'discount_percentage' => ['numeric', 'min:0', 'max:100'],
+            'level' => ['required'],
             'status' => ['required'],
         ];
     }

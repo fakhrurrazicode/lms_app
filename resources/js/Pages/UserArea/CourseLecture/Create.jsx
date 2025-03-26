@@ -92,14 +92,14 @@ export default function Create({ course, course_section }) {
         <UserAreaLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Create Courses Sections
+                    Buat Lecture Baru
                 </h2>
             }
         >
-            <Head title="Create Course Section" />
+            <Head title="CBuat Lecture Baru" />
 
-            <div className="py-12">
-                <div className="w-full sm:px-6 lg:px-8">
+            <div className="">
+                <div className="w-full">
                     <div className="mb-6">
                         <Link
                             href={route("user_area.course_section.index", {
@@ -109,7 +109,7 @@ export default function Create({ course, course_section }) {
                             className="btn btn-neutral"
                         >
                             <FiArrowLeft />
-                            Back to Course Section
+                            Kembali ke Section
                         </Link>
                     </div>
                     <div className="mb-6">
@@ -119,7 +119,7 @@ export default function Create({ course, course_section }) {
                     <div className="card bg-base-100 shadow-xl">
                         <form onSubmit={onSubmitHandler} className="card-body">
                             <h2 className="card-title mb-6">
-                                Create new Lecture for section{" "}
+                                Buat Lecture baru untuk section{" "}
                                 <span className="text-primary">
                                     {course_section ? course_section.title : ""}
                                 </span>
@@ -152,12 +152,12 @@ export default function Create({ course, course_section }) {
                                 <label className="form-control w-full mb-6">
                                     <div className="label">
                                         <span className="label-text">
-                                            Title
+                                            Judul Lecture
                                         </span>
                                     </div>
                                     <input
                                         type="text"
-                                        placeholder="Title"
+                                        placeholder="Judul Lecture"
                                         className="input input-bordered w-full"
                                         name="title"
                                         onChange={inputChangeHandler}
@@ -175,12 +175,12 @@ export default function Create({ course, course_section }) {
                                 <label className="form-control w-full mb-6">
                                     <div className="label">
                                         <span className="label-text">
-                                            Description
+                                            Deskripsi Lecture
                                         </span>
                                     </div>
                                     <textarea
                                         className="textarea textarea-bordered h-64"
-                                        placeholder="Description"
+                                        placeholder="Deskripsi Lecture"
                                         name="description"
                                         onChange={inputChangeHandler}
                                         value={data.description}
@@ -201,8 +201,12 @@ export default function Create({ course, course_section }) {
                                     className="btn btn-primary"
                                     disabled={processing}
                                 >
-                                    <Save size={16} />
-                                    <span>Save</span>
+                                    {processing ? (
+                                        <span className="loading loading-spinner loading-md"></span>
+                                    ) : (
+                                        <Save size={16} />
+                                    )}
+                                    <span>Simpan</span>
                                 </button>
                                 <Link
                                     href={route(
@@ -213,7 +217,7 @@ export default function Create({ course, course_section }) {
                                     )}
                                     className="btn btn-neutral"
                                 >
-                                    Cancel
+                                    Batalkan
                                 </Link>
                             </div>
                         </form>

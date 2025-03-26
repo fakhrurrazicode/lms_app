@@ -4,13 +4,14 @@ import React from "react";
 import CourseCardDetail from "../Course/CourseCardDetail";
 import { FiArrowLeft } from "react-icons/fi";
 import { Edit, Plus, Trash, Video } from "lucide-react";
+import { FaPlus } from "react-icons/fa";
 
 export default function Index({ course, course_sections }) {
     return (
         <UserAreaLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Courses Sections
+                    Section Kursus
                 </h2>
             }
         >
@@ -24,7 +25,7 @@ export default function Index({ course, course_sections }) {
                             className="btn btn-neutral"
                         >
                             <FiArrowLeft />
-                            Back
+                            Kembali
                         </Link>
                     </div>
                     <div className="mb-6">
@@ -43,7 +44,7 @@ export default function Index({ course, course_sections }) {
                                     className="btn btn-primary"
                                 >
                                     <Plus size={16} />{" "}
-                                    <span>Add new Section</span>
+                                    <span>Tambah Section Baru</span>
                                 </Link>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
@@ -79,7 +80,7 @@ export default function Index({ course, course_sections }) {
                                                                         }
                                                                     />{" "}
                                                                     <span>
-                                                                        Edit
+                                                                        Perbaharui
                                                                         Section
                                                                     </span>
                                                                 </Link>
@@ -121,7 +122,7 @@ export default function Index({ course, course_sections }) {
                                                                         }
                                                                     />{" "}
                                                                     <span>
-                                                                        Delete
+                                                                        Hapus
                                                                         Section
                                                                     </span>
                                                                 </button>
@@ -143,8 +144,9 @@ export default function Index({ course, course_sections }) {
                                                                         }
                                                                     />{" "}
                                                                     <span>
-                                                                        Add new
+                                                                        Tambah
                                                                         Lecture
+                                                                        Baru
                                                                     </span>
                                                                 </Link>
                                                             </div>
@@ -176,7 +178,9 @@ export default function Index({ course, course_sections }) {
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    {course_section.course_lectures &&
+                                                                    {course_section
+                                                                        .course_lectures
+                                                                        .length ? (
                                                                         course_section.course_lectures.map(
                                                                             (
                                                                                 course_lecture,
@@ -207,7 +211,7 @@ export default function Index({ course, course_sections }) {
                                                                                                 }
                                                                                             />{" "}
                                                                                             <span>
-                                                                                                Edit
+                                                                                                Perbaharui
                                                                                                 Lecture
                                                                                             </span>
                                                                                         </Link>
@@ -250,7 +254,7 @@ export default function Index({ course, course_sections }) {
                                                                                                 }
                                                                                             />{" "}
                                                                                             <span>
-                                                                                                Delete
+                                                                                                Hapus
                                                                                                 Lecture
                                                                                             </span>
                                                                                         </button>
@@ -298,7 +302,7 @@ export default function Index({ course, course_sections }) {
 
                                                                                                 router.put(
                                                                                                     route(
-                                                                                                        "backend.course.set_as_preview",
+                                                                                                        "user_area.course.set_as_preview",
                                                                                                         {
                                                                                                             course: course.id,
                                                                                                             course_section:
@@ -346,7 +350,7 @@ export default function Index({ course, course_sections }) {
 
                                                                                                 router.put(
                                                                                                     route(
-                                                                                                        "backend.course.set_as_featured",
+                                                                                                        "user_area.course.set_as_featured",
                                                                                                         {
                                                                                                             course: course.id,
                                                                                                             course_section:
@@ -373,7 +377,37 @@ export default function Index({ course, course_sections }) {
                                                                                     </td>
                                                                                 </tr>
                                                                             )
-                                                                        )}
+                                                                        )
+                                                                    ) : (
+                                                                        <tr>
+                                                                            <td
+                                                                                colSpan={
+                                                                                    5
+                                                                                }
+                                                                                className="text-center"
+                                                                            >
+                                                                                Belum
+                                                                                ada
+                                                                                data
+                                                                                lecture
+                                                                                <Link
+                                                                                    href={route(
+                                                                                        "user_area.course_lecture.create",
+                                                                                        {
+                                                                                            course: course,
+                                                                                            course_section:
+                                                                                                course_section,
+                                                                                        }
+                                                                                    )}
+                                                                                    className="btn btn-link text-secondary px-2"
+                                                                                >
+                                                                                    Tambah
+                                                                                    lecture
+                                                                                    Baru
+                                                                                </Link>
+                                                                            </td>
+                                                                        </tr>
+                                                                    )}
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -383,14 +417,20 @@ export default function Index({ course, course_sections }) {
                                         }
                                     )
                                 ) : (
-                                    <tr>
-                                        <td
-                                            colSpan={4}
-                                            className="py-2 text-center"
+                                    <div className="text-center py-6 italic">
+                                        <span>Belum ada data section </span>
+                                        <Link
+                                            href={route(
+                                                "user_area.course_section.create",
+                                                {
+                                                    course: course.id,
+                                                }
+                                            )}
+                                            className="btn btn-link px-0"
                                         >
-                                            No Data
-                                        </td>
-                                    </tr>
+                                            <span>Tambah Baru</span>
+                                        </Link>
+                                    </div>
                                 )}
                             </div>
                         </div>

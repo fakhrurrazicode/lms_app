@@ -442,8 +442,13 @@ export default function Edit({ course, instructors, course_categories }) {
                                 <button
                                     type="submit"
                                     className="btn btn-primary"
+                                    disabled={processing}
                                 >
-                                    <Save size={16} />
+                                    {processing ? (
+                                        <span className="loading loading-spinner loading-md"></span>
+                                    ) : (
+                                        <Save size={16} />
+                                    )}
                                     <span>Save</span>
                                 </button>
                                 <Link

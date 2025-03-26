@@ -84,7 +84,7 @@ export default function Create({ instructors, course_categories }) {
                     <div className="card bg-base-100 shadow-xl">
                         <form onSubmit={onSubmitHandler} className="card-body">
                             <h2 className="card-title mb-6">
-                                Create new Course
+                                Buat Kursus Baru
                             </h2>
                             <div className="mb-6">
                                 <div className="grid grid-cols-12 gap-6">
@@ -366,6 +366,8 @@ export default function Create({ instructors, course_categories }) {
                                         </div>
                                         <input
                                             type="number"
+                                            min={0}
+                                            max={100}
                                             placeholder="Discount Percentage"
                                             className="input input-bordered w-full"
                                             name="discount_percentage"
@@ -440,8 +442,13 @@ export default function Create({ instructors, course_categories }) {
                                 <button
                                     type="submit"
                                     className="btn btn-primary"
+                                    disabled={processing}
                                 >
-                                    <Save size={16} />
+                                    {processing ? (
+                                        <span className="loading loading-spinner loading-md"></span>
+                                    ) : (
+                                        <Save size={16} />
+                                    )}
                                     <span>Save</span>
                                 </button>
                                 <Link

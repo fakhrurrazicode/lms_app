@@ -30,10 +30,75 @@ export default function Show({
             <div className="card">
                 <div className="card-body bg-base-100">
                     <div className="mb-6">
-                        <h2 className="text-white text-2xl font-bold mb-6">
-                            Course :{" "}
-                            <Link className="text-primary">{course.title}</Link>
-                        </h2>
+                        <div className="breadcrumbs text-sm mb-6">
+                            <ul>
+                                <li>
+                                    <Link
+                                        href={route(
+                                            "learning_area.course.index",
+                                            {
+                                                course: course.id,
+                                                course_lecture:
+                                                    course_lecture.id,
+                                            }
+                                        )}
+                                        className="gap-2 items-center"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            className="h-4 w-4 stroke-current"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                                            ></path>
+                                        </svg>
+                                        {course.title}
+                                    </Link>
+                                </li>
+                                {/* <li>
+                                    <a className="gap-2 items-center">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            className="h-4 w-4 stroke-current"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                                            ></path>
+                                        </svg>
+                                        {course_lecture.title}
+                                    </a>
+                                </li> */}
+                                <li>
+                                    <span className="inline-flex items-center gap-2">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            className="h-4 w-4 stroke-current"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                                            ></path>
+                                        </svg>
+                                        {course_lecture.title}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+
                         <h1 className="text-5xl font-bold mb-6">
                             {course_lecture.title}
                         </h1>
@@ -56,10 +121,20 @@ export default function Show({
                     <div className="flex justify-between">
                         <div>
                             {prev_course_lecture ? (
-                                <button className="btn btn-accent">
+                                <Link
+                                    href={route(
+                                        "learning_area.course_lecture.show",
+                                        {
+                                            course: prev_course_lecture.course_id,
+                                            course_lecture:
+                                                prev_course_lecture.id,
+                                        }
+                                    )}
+                                    className="btn btn-accent"
+                                >
                                     <FaChevronLeft />
                                     Sebelumnya
-                                </button>
+                                </Link>
                             ) : (
                                 <></>
                             )}

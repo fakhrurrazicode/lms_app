@@ -22,7 +22,7 @@ export default function Home({ latest_courses, course_categories }) {
                                     Solusi pendidikan
                                 </h3>
 
-                                <h1 className="text-7xl font-extrabold mb-8">
+                                <h1 className="text-5xl md:text-7xl font-extrabold mb-8">
                                     Belajar Tanpa{" "}
                                     <span className="text-secondary">
                                         Batas
@@ -30,7 +30,7 @@ export default function Home({ latest_courses, course_categories }) {
                                     Mencapai Masa Depan
                                 </h1>
 
-                                <p className="mb-8">
+                                <p className="mb-8 text-sm md:text-lg">
                                     Dengan LMS kami, anda dapat belajar kapan
                                     saja dan dimana saja, Akses ribuan kursus
                                     dan sumber daya pemebelajaran yang

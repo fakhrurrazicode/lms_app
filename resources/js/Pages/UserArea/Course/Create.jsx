@@ -15,7 +15,7 @@ export default function Create({ course_categories }) {
         useForm({
             course_category_id: "",
             // course_sub_category_id: "",
-            // instructor_id: "",
+            instructor_id: "",
 
             title: "",
             slug: "",
@@ -23,8 +23,10 @@ export default function Create({ course_categories }) {
             description: "",
             prerequisites: "",
             goals: "",
-            // duration: "",
-            price: 0,
+            price: "",
+            duration: "",
+            discount_percentage: "",
+            level: "",
             status: true,
         });
 
@@ -91,8 +93,8 @@ export default function Create({ course_categories }) {
                     <form onSubmit={onSubmitHandler} className="card-body">
                         <h2 className="card-title mb-6">Buat Kursus Baru</h2>
                         <div className="mb-6">
-                            <div className="flex gap-6">
-                                <label className="form-control mb-6 w-full md:w-1/2">
+                            <div className="grid grid-cols-12 gap-6">
+                                <label className="form-control mb-6 col-span-12 md:col-span-6">
                                     <div className="label">
                                         <span className="label-text">
                                             Judul
@@ -116,8 +118,8 @@ export default function Create({ course_categories }) {
                                 </label>
                             </div>
 
-                            <div className="flex gap-6">
-                                <label className="form-control mb-6 w-full md:w-1/2">
+                            <div className="grid grid-cols-12 gap-6">
+                                <label className="form-control mb-6 col-span-12 md:col-span-6">
                                     <div className="label">
                                         <span className="label-text">Slug</span>
                                     </div>
@@ -144,8 +146,8 @@ export default function Create({ course_categories }) {
                                 </label>
                             </div>
 
-                            <div className="flex gap-6">
-                                <label className="form-control mb-6 w-full md:w-1/3">
+                            <div className="grid grid-cols-12 gap-6">
+                                <label className="form-control mb-6 col-span-12 md:col-span-4">
                                     <div className="label">
                                         <span className="label-text">
                                             Kategori kursus
@@ -158,7 +160,7 @@ export default function Create({ course_categories }) {
                                         value={data.course_category_id}
                                     >
                                         <option>
-                                            :: Pilih Kategori Kursus ::
+                                            :: Pilih Kategori kursus ::
                                         </option>
 
                                         {course_categories.map(
@@ -182,68 +184,57 @@ export default function Create({ course_categories }) {
                                     )}
                                 </label>
 
-                                {/* <label className="form-control mb-6 w-full md:w-1/3">
-                                <div className="label">
-                                    <span className="label-text">
-                                        Course Sub Category
-                                    </span>
-                                </div>
-                                <select
-                                    className="select select-bordered"
-                                    name="course_sub_category_id"
-                                    onChange={inputChangeHandler}
-                                    value={data.course_sub_category_id}
-                                >
-                                    <option>
-                                        :: Select Course Sub Category ::
-                                    </option>
-
-                                    {courseSubCategories.map(
-                                        (courseSubCategory) => (
-                                            <option
-                                                key={courseSubCategory.id}
-                                                value={courseSubCategory.id}
-                                            >
-                                                {courseSubCategory.name}
-                                            </option>
-                                        )
-                                    )}
-                                </select>
-                                {errors.course_sub_category_id && (
+                                <label className="form-control mb-6 col-span-12 md:col-span-4">
                                     <div className="label">
-                                        <span className="label-text-alt text-error">
-                                            {errors.course_sub_category_id}
+                                        <span className="label-text">
+                                            Level kursus
                                         </span>
                                     </div>
-                                )}
-                            </label> */}
+                                    <select
+                                        className="select select-bordered"
+                                        name="level"
+                                        onChange={inputChangeHandler}
+                                        value={data.level}
+                                    >
+                                        <option>
+                                            :: Pilih Level kursus ::
+                                        </option>
+                                        {[
+                                            "beginner",
+                                            "intermediate",
+                                            "advance",
+                                        ].map((level) => (
+                                            <option value={level}>
+                                                {level}
+                                            </option>
+                                        ))}
+                                    </select>
+
+                                    {errors.level && (
+                                        <div className="label">
+                                            <span className="label-text-alt text-error">
+                                                {errors.level}
+                                            </span>
+                                        </div>
+                                    )}
+                                </label>
                             </div>
 
-                            <div className="flex gap-6">
-                                <label className="form-control mb-6 w-full md:w-full">
+                            <div className="grid grid-cols-12 gap-6">
+                                <label className="form-control mb-6 col-span-12 md:col-span-10">
                                     <div className="label">
                                         <span className="label-text">
                                             Keterangan
                                         </span>
                                     </div>
 
-                                    <div className="w-full mx-auto mt-10">
-                                        <ReactQuill
-                                            name="description"
-                                            value={data.description}
-                                            onChange={inputChangeHandler}
-                                            className="bg-white border border-gray-300 rounded-lg shadow-md"
-                                            // className="textarea textarea-bordered p-0 h-36"
-                                        />
-                                    </div>
-
-                                    {/* <textarea
+                                    <textarea
                                         className="textarea textarea-bordered h-24"
                                         placeholder="Keterangan"
                                         name="description"
                                         value={data.description}
                                         onChange={inputChangeHandler}
-                                    ></textarea> */}
+                                    ></textarea>
                                     {errors.description && (
                                         <div className="label">
                                             <span className="label-text-alt text-error">
@@ -254,8 +245,8 @@ export default function Create({ course_categories }) {
                                 </label>
                             </div>
 
-                            <div className="flex gap-6">
-                                <label className="form-control mb-6 w-full md:w-full">
+                            <div className="grid grid-cols-12 gap-6">
+                                <label className="form-control mb-6 col-span-12 md:col-span-10">
                                     <div className="label">
                                         <span className="label-text">
                                             Prasyarat
@@ -263,7 +254,7 @@ export default function Create({ course_categories }) {
                                     </div>
                                     <textarea
                                         className="textarea textarea-bordered h-24"
-                                        placeholder="Prasyarat"
+                                        placeholder="Prerequisites"
                                         name="prerequisites"
                                         value={data.prerequisites}
                                         onChange={inputChangeHandler}
@@ -278,8 +269,8 @@ export default function Create({ course_categories }) {
                                 </label>
                             </div>
 
-                            <div className="flex gap-6">
-                                <label className="form-control mb-6 w-full md:w-full">
+                            <div className="grid grid-cols-12 gap-6">
+                                <label className="form-control mb-6 col-span-12 md:col-span-10">
                                     <div className="label">
                                         <span className="label-text">
                                             Sasaran
@@ -302,8 +293,8 @@ export default function Create({ course_categories }) {
                                 </label>
                             </div>
 
-                            <div className="flex gap-6">
-                                <label className="form-control mb-6 w-full md:w-1/4">
+                            <div className="grid grid-cols-12 gap-6">
+                                <label className="form-control mb-6 col-span-12 md:col-span-4">
                                     <div className="label">
                                         <span className="label-text">
                                             Harga
@@ -328,13 +319,41 @@ export default function Create({ course_categories }) {
                                         </div>
                                     )}
                                 </label>
-                            </div>
 
-                            <div className="flex gap-6">
-                                <label className="form-control mb-6 w-full md:w-1/3">
+                                <label className="form-control mb-6 col-span-12 md:col-span-4">
                                     <div className="label">
                                         <span className="label-text">
-                                            Gambar Kursus
+                                            Persentase diskon
+                                        </span>
+                                        <span className="label-text-alt">
+                                            0 - 100%
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="number"
+                                        min={0}
+                                        max={100}
+                                        placeholder="Persentase diskon"
+                                        className="input input-bordered w-full"
+                                        name="discount_percentage"
+                                        onChange={inputChangeHandler}
+                                        value={data.discount_percentage}
+                                    />
+                                    {errors.discount_percentage && (
+                                        <div className="label">
+                                            <span className="label-text-alt text-error">
+                                                {errors.discount_percentage}
+                                            </span>
+                                        </div>
+                                    )}
+                                </label>
+                            </div>
+
+                            <div className="grid grid-cols-12 gap-6">
+                                <label className="form-control mb-6 col-span-12 md:col-span-4">
+                                    <div className="label">
+                                        <span className="label-text">
+                                            Gambar kursus
                                         </span>
                                         <span className="label-text-alt">
                                             JPG, JPEG, PNG
@@ -358,7 +377,7 @@ export default function Create({ course_categories }) {
                                     )}
                                 </label>
 
-                                <div className="w-1/3">
+                                <div className="col-span-12 md:col-span-4">
                                     <img
                                         ref={previewImageRef}
                                         src=""
@@ -368,11 +387,11 @@ export default function Create({ course_categories }) {
                                 </div>
                             </div>
 
-                            <div className="flex gap-6 mb-6">
-                                <div className="form-control py-6 w-1/5">
+                            <div className="grid grid-cols-12 gap-6 mb-6">
+                                <div className="form-control py-6 col-span-8 md:col-span-6">
                                     <label className="label cursor-pointer">
                                         <span className="label-text">
-                                            Is active?
+                                            Aktif?
                                         </span>
                                         <input
                                             type="checkbox"
@@ -383,10 +402,17 @@ export default function Create({ course_categories }) {
                                 </div>
                             </div>
                         </div>
-
                         <div className="card-actions justify-end">
-                            <button type="submit" className="btn btn-primary">
-                                <Save size={16} />
+                            <button
+                                type="submit"
+                                className="btn btn-primary"
+                                disabled={processing}
+                            >
+                                {processing ? (
+                                    <span className="loading loading-spinner loading-md"></span>
+                                ) : (
+                                    <Save size={16} />
+                                )}
                                 <span>Simpan</span>
                             </button>
                             <Link

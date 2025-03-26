@@ -97,7 +97,18 @@ export default function LearningAreaLayout({ children }) {
                                                                         course_lecture.course_track
                                                                             ? "text-success font-bold"
                                                                             : "text-gray-600 dark:text-white"
-                                                                    } leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out`}
+                                                                    } ${
+                                                                        route().current(
+                                                                            "learning_area.course_lecture.show",
+                                                                            {
+                                                                                course: course.id,
+                                                                                course_lecture:
+                                                                                    course_lecture.id,
+                                                                            }
+                                                                        )
+                                                                            ? "!text-primary !font-bold"
+                                                                            : ""
+                                                                    } active:text-primary leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out`}
                                                                 >
                                                                     <div className="flex items-center gap-4">
                                                                         {course_lecture.course_track ? (
@@ -140,12 +151,13 @@ export default function LearningAreaLayout({ children }) {
                     </div>
                     <div className="col-span-12 md:col-span-8">
                         <p className="mb-3 font-bold">Progress</p>
-                        <div className="bg-base-200 h-[35px] w-full rounded-lg relative overflow-hidden mb-6">
+                        <div className="bg-base-100 h-[35px] w-full rounded-lg relative overflow-hidden mb-6">
                             <div
+                                style={{
+                                    width: course.progress_percentage + "%",
+                                }}
                                 className={
-                                    "bg-primary w-[" +
-                                    course.progress_percentage +
-                                    "%] text-center absolute top-0 bottom-0 flex justify-center items-center"
+                                    "bg-primary text-center absolute top-0 bottom-0 flex justify-center items-center"
                                 }
                             >
                                 <span className="text-white text-xs">

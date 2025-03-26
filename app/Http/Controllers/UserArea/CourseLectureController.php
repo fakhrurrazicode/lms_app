@@ -34,10 +34,16 @@ class CourseLectureController extends Controller
      */
     public function store(CourseLectureStoreRequest $request, Course $course, CourseSection $course_section)
     {
+
+
         $data = $request->validated();
         unset($data['video']);
         if ($request->hasFile('video')) {
             $data['video'] = $request->file('video')->store('videos', 'public');
+        }
+
+        if ($course->course_lectures->count() == 0) {
+            $data['set_as_featured'] = 1;
         }
         CourseLecture::create($data);
         return to_route('user_area.course_section.index', [

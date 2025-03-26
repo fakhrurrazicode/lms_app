@@ -63,10 +63,8 @@ export default function FrontendLayout({ header, children }) {
                                 </NavLink>
 
                                 <NavLink
-                                    href={route("backend.dashboard")}
-                                    active={route().current(
-                                        "backend.dashboard"
-                                    )}
+                                    href={route("courses")}
+                                    active={route().current("courses")}
                                 >
                                     Mendaftar Sebagai Instruktur
                                 </NavLink>
