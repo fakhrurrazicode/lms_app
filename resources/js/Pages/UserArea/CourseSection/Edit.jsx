@@ -6,10 +6,11 @@ import { FiArrowLeft } from "react-icons/fi";
 import { Save } from "lucide-react";
 
 export default function Edit({ course, course_section }) {
-    const { data, setData, put, errors, reset, clearErrors } = useForm({
-        course_id: course_section.course_id,
-        title: course_section.title,
-    });
+    const { data, setData, put, errors, reset, clearErrors, processing } =
+        useForm({
+            course_id: course_section.course_id,
+            title: course_section.title,
+        });
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -39,14 +40,14 @@ export default function Edit({ course, course_section }) {
         <UserAreaLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Edit Courses Sections
+                    Perbaharui Section
                 </h2>
             }
         >
             <Head title="Edit Course Section" />
 
-            <div className="py-12">
-                <div className="w-full sm:px-6 lg:px-8">
+            <div className="">
+                <div className="w-full">
                     <div className="mb-6">
                         <Link
                             href={route("user_area.course_section.index", {
@@ -56,7 +57,7 @@ export default function Edit({ course, course_section }) {
                             className="btn btn-neutral"
                         >
                             <FiArrowLeft />
-                            Back to Course
+                            Kembali ke section
                         </Link>
                     </div>
                     <div className="mb-6">
@@ -65,17 +66,19 @@ export default function Edit({ course, course_section }) {
 
                     <div className="card bg-base-100 shadow-xl">
                         <form onSubmit={onSubmitHandler} className="card-body">
-                            <h2 className="card-title mb-6">Edit Section</h2>
+                            <h2 className="card-title mb-6">
+                                Perbaharui Section
+                            </h2>
                             <div className="mb-6">
                                 <label className="form-control w-full mb-6">
                                     <div className="label">
                                         <span className="label-text">
-                                            Title
+                                            Judul
                                         </span>
                                     </div>
                                     <input
                                         type="text"
-                                        placeholder="Title"
+                                        placeholder="Judul"
                                         className="input input-bordered w-full"
                                         name="title"
                                         onChange={inputChangeHandler}
@@ -96,8 +99,12 @@ export default function Edit({ course, course_section }) {
                                     type="submit"
                                     className="btn btn-primary"
                                 >
-                                    <Save size={16} />
-                                    <span>Update</span>
+                                    {processing ? (
+                                        <span className="loading loading-spinner loading-md"></span>
+                                    ) : (
+                                        <Save size={16} />
+                                    )}
+                                    <span>Perbaharui</span>
                                 </button>
                                 <Link
                                     href={route(

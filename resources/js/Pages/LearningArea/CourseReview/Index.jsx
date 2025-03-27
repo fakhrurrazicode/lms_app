@@ -1,0 +1,210 @@
+import { rupiah } from "@/bootstrap";
+import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
+
+import { Head, useForm, usePage } from "@inertiajs/react";
+import React from "react";
+import { FaStar } from "react-icons/fa";
+
+export default function Index({ course }) {
+    const { auth } = usePage().props;
+    const { data, setData, post, errors, reset, clearErrors } = useForm({
+        course_id: course.id,
+        user_id: auth.user.id,
+        comment: "",
+        stars: 1,
+    });
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+
+        post(
+            route("learning_area.course_review.store", {
+                course: course,
+            }),
+            {
+                onError: (error) => {
+                    console.log("error", error);
+                },
+            }
+        );
+    };
+
+    const inputChangeHandler = (e) => {
+        e.preventDefault();
+        const name = e.target.name;
+        const value = e.target.value;
+
+        setData(name, value);
+    };
+
+    return (
+        <LearningAreaLayout
+            header={
+                <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    User Reviews
+                </h2>
+            }
+        >
+            <Head title="User Reviews" />
+            <div className="card bg-base-100">
+                <div className="card-body">
+                    <div>
+                        <h4 className="text-4xl font-bold mb-8">
+                            {course.title}
+                        </h4>
+
+                        {!course.course_review ? (
+                            <>
+                                <div className="text-gray-800 text-6xl font-bold dark:text-gray-200  mb-[60px]">
+                                    kami ingin mendengar pengalaman anda
+                                </div>
+                                <form
+                                    onSubmit={onSubmitHandler}
+                                    className="text-gray-800 dark:text-gray-200 font-normal text-lg mb-[30px]"
+                                >
+                                    <div className="mb-6">
+                                        <label className="form-control">
+                                            <div className="label">
+                                                <span className="label-text">
+                                                    Komentar
+                                                </span>
+                                                {/* <span className="label-text-alt">
+                                        Alt label
+                                    </span> */}
+                                            </div>
+                                            <textarea
+                                                className="textarea textarea-bordered h-32"
+                                                placeholder="Komentar"
+                                                name="comment"
+                                                onChange={inputChangeHandler}
+                                                value={data.comment}
+                                            ></textarea>
+                                            {errors.comment && (
+                                                <div className="label">
+                                                    <span className="label-text-alt text-error">
+                                                        {errors.comment}
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </label>
+                                    </div>
+
+                                    <div className="flex justify-center py-6 mb-6">
+                                        <div className="rating rating-lg gap-6">
+                                            <input
+                                                type="radio"
+                                                name="stars"
+                                                value={1}
+                                                className="mask mask-star-2 bg-orange-400"
+                                                defaultChecked={true}
+                                                onClick={(e) => {
+                                                    console.log(e.target.value);
+                                                    setData(
+                                                        e.target.name,
+                                                        e.target.value
+                                                    );
+                                                }}
+                                            />
+                                            <input
+                                                type="radio"
+                                                name="stars"
+                                                value={2}
+                                                className="mask mask-star-2 bg-orange-400"
+                                                onClick={(e) => {
+                                                    console.log(e.target.value);
+                                                    setData(
+                                                        e.target.name,
+                                                        e.target.value
+                                                    );
+                                                }}
+                                            />
+                                            <input
+                                                type="radio"
+                                                name="stars"
+                                                value={3}
+                                                className="mask mask-star-2 bg-orange-400"
+                                                onClick={(e) => {
+                                                    console.log(e.target.value);
+                                                    setData(
+                                                        e.target.name,
+                                                        e.target.value
+                                                    );
+                                                }}
+                                            />
+                                            <input
+                                                type="radio"
+                                                name="stars"
+                                                value={4}
+                                                className="mask mask-star-2 bg-orange-400"
+                                                onClick={(e) => {
+                                                    console.log(e.target.value);
+                                                    setData(
+                                                        e.target.name,
+                                                        e.target.value
+                                                    );
+                                                }}
+                                            />
+                                            <input
+                                                type="radio"
+                                                name="stars"
+                                                value={5}
+                                                className="mask mask-star-2 bg-orange-400"
+                                                onClick={(e) => {
+                                                    console.log(e.target.value);
+                                                    setData(
+                                                        e.target.name,
+                                                        e.target.value
+                                                    );
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-end">
+                                        <button
+                                            type="submit"
+                                            className="btn btn-warning btn-lg"
+                                        >
+                                            <FaStar />
+                                            Submit Review
+                                        </button>
+                                    </div>
+                                </form>
+                            </>
+                        ) : (
+                            <div className="mt-12">
+                                <div className="text-gray-800 text-center text-5xl font-bold dark:text-gray-200  mb-6">
+                                    Terima kasih sudah tetap bersama kami,
+                                </div>
+                                <div className="text-gray-800 text-center text-3xl font-normal dark:text-gray-200  mb-6">
+                                    review dan komentar anda akan menjadi
+                                    motivasi bagi kami untuk tetap memberikan
+                                    yang terbaik
+                                </div>
+
+                                <hr className="border-base-300" />
+
+                                <div className="flex gap-2 justify-center mb-6 mt-6">
+                                    <div>Komentar:</div>
+                                    <div>{course.course_review.comment}</div>
+                                </div>
+                                <div className="flex gap-2 justify-center items-center mb-6">
+                                    <div>Bintang:</div>
+                                    <div className="flex gap-2">
+                                        <FaStar className="text-3xl text-warning" />
+                                        <FaStar className="text-3xl text-warning" />
+                                        <FaStar className="text-3xl text-warning" />
+                                        <FaStar className="text-3xl text-warning" />
+                                        <FaStar className="text-3xl text-warning" />
+                                    </div>
+                                </div>
+                                <div className="text-center italic py-6">
+                                    Terima Kasih telah memberikan review
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </LearningAreaLayout>
+    );
+}

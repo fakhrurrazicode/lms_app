@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('course_id');
             $table->integer('stars');
-            $table->integer('comment');
+            $table->text('comment');
             $table->timestamps();
         });
     }

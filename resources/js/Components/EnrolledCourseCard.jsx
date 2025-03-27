@@ -108,6 +108,17 @@ export default function EnrolledCourseCard({ enrollment }) {
                         <FaBook />
                         <span>Belajar Sekarang</span>
                     </Link>
+                    <Link
+                        href={route("learning_area.course_review.index", {
+                            course: course,
+                        })}
+                        preserveScroll={true}
+                        preserveState={true}
+                        className="btn btn-warning w-full"
+                    >
+                        <FaStar />
+                        <span>Review</span>
+                    </Link>
                 </div>
             </div>
         </div>

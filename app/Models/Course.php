@@ -199,4 +199,9 @@ class Course extends BaseModel implements Cartable
         ])->first();
         return $course_lecture;
     }
+
+    public function course_review()
+    {
+        return $this->hasOne(CourseReview::class);
+    }
 }

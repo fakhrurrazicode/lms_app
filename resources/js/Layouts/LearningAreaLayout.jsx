@@ -1,8 +1,8 @@
 import React from "react";
 import FrontendLayout from "./FrontendLayout";
-import { FaChevronDown, FaClock } from "react-icons/fa";
+import { FaChevronDown, FaClock, FaStar } from "react-icons/fa";
 
-import { BiCheck, BiHome, BiMoviePlay } from "react-icons/bi";
+import { BiCheck, BiHome, BiMoviePlay, BiStar } from "react-icons/bi";
 import { Link, usePage } from "@inertiajs/react";
 import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion";
 
@@ -44,19 +44,40 @@ export default function LearningAreaLayout({ children }) {
                     <div className="col-span-12 md:col-span-4">
                         <div className="card shadow-lg bg-base-100 rounded-none">
                             <div className="card-body p-0 overflow-hidden">
-                                <Link
-                                    preserveScroll={true}
-                                    preserveState={true}
-                                    href={route("learning_area.course.index", {
-                                        course: course.id,
-                                    })}
-                                    className="text-gray-600 py-4 px-4 dark:text-white leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
-                                >
-                                    <div className="flex items-center gap-4">
-                                        <BiHome size={22} />
-                                        <span>Home</span>
-                                    </div>
-                                </Link>
+                                <div className="p-4">
+                                    <Link
+                                        preserveScroll={true}
+                                        preserveState={true}
+                                        href={route(
+                                            "learning_area.course.index",
+                                            {
+                                                course: course.id,
+                                            }
+                                        )}
+                                        className="text-gray-600 border-b border-base-300 dark:border-gray-700 py-[10px] dark:text-white leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <BiHome size={18} />
+                                            <span>Home</span>
+                                        </div>
+                                    </Link>
+                                    <Link
+                                        preserveScroll={true}
+                                        preserveState={true}
+                                        href={route(
+                                            "learning_area.course_review.index",
+                                            {
+                                                course: course.id,
+                                            }
+                                        )}
+                                        className="text-gray-600 border-b border-base-300 dark:border-gray-700 py-[10px] dark:text-white leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <FaStar size={18} />
+                                            <span>Review</span>
+                                        </div>
+                                    </Link>
+                                </div>
                                 <Accordion
                                     transition
                                     transitionTimeout={200}

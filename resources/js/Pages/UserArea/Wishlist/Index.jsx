@@ -18,6 +18,24 @@ export default function Index({ wishlists }) {
                             {/* head */}
 
                             <tbody>
+                                {wishlists.length == 0 ? (
+                                    <>
+                                        <div className="text-center py-6">
+                                            <span>
+                                                Belum Ada Data pada daftar
+                                                keinginan anda.
+                                            </span>
+                                            <Link
+                                                href={route("courses")}
+                                                className="btn btn-link px-2"
+                                            >
+                                                Lihat Produk
+                                            </Link>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <></>
+                                )}
                                 {wishlists.map((wishlist) => {
                                     if (
                                         wishlist.wishlistable_type ==
