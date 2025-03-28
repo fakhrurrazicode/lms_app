@@ -508,15 +508,14 @@ export default function Course() {
                                         {course.enrolled ? (
                                             <>
                                                 <Link
-                                                    href={route("cart.store")}
-                                                    method="POST"
+                                                    href={route(
+                                                        "learning_area.course.index",
+                                                        {
+                                                            course: course.id,
+                                                        }
+                                                    )}
                                                     preserveScroll={true}
                                                     preserveState={true}
-                                                    data={{
-                                                        itemable_type:
-                                                            "App\\Models\\Course",
-                                                        itemable_id: course.id,
-                                                    }}
                                                     className="btn flex justify-center items-center btn-success w-full mb-3"
                                                 >
                                                     <FaBook />
