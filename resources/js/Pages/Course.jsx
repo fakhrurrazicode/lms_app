@@ -366,7 +366,11 @@ export default function Course() {
                                         <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-x-30px gap-y-5">
                                             <div class="lg:col-start-1 lg:col-span-4 px-10px py-30px bg-whiteColor dark:bg-whiteColor-dark shadow-review text-center">
                                                 <p class="text-7xl font-extrabold text-blackColor dark:text-blackColor-dark leading-90px">
-                                                    5.0
+                                                    {
+                                                        course
+                                                            .course_review_recap
+                                                            .avg
+                                                    }
                                                 </p>
                                                 <div class="text-secondary">
                                                     <FaStar className="inline-block" />
@@ -376,116 +380,72 @@ export default function Course() {
                                                     <FaStar className="inline-block" />
                                                 </div>
                                                 <p class="text-blackColor dark:text-blackColor-dark leading-26px font-medium">
-                                                    (17 Reviews)
+                                                    (
+                                                    {
+                                                        course
+                                                            .course_review_recap
+                                                            .total
+                                                    }{" "}
+                                                    Reviews)
                                                 </p>
                                             </div>
 
                                             <div class="lg:col-start-5 lg:col-span-8 px-15px">
                                                 <ul class="flex flex-col gap-y-3">
-                                                    <li class="flex items-center text-blackColor dark:text-blackColor-dark">
-                                                        <div className="flex w-[10%] justify-between items-center gap-2">
-                                                            <span>5</span>
-                                                            <span>
-                                                                <FaStar className="text-secondary" />
-                                                            </span>
-                                                        </div>
-                                                        <div class="w-[80%] mx-6">
-                                                            <progress
-                                                                className="progress progress-secondary w-full"
-                                                                value={100}
-                                                                max="100"
-                                                            ></progress>
-                                                        </div>
-                                                        <div className="w-[10%]">
-                                                            <span className="text-end block w-full">
-                                                                10
-                                                            </span>
-                                                        </div>
-                                                    </li>
+                                                    {[5, 4, 3, 2, 1].map(
+                                                        (i) => {
+                                                            let total =
+                                                                course
+                                                                    .course_review_recap
+                                                                    .total;
+                                                            let star_counts =
+                                                                course.course_review_recap.star_counts.hasOwnProperty(
+                                                                    i
+                                                                )
+                                                                    ? course
+                                                                          .course_review_recap
+                                                                          .star_counts[
+                                                                          i
+                                                                      ]
+                                                                    : 0;
 
-                                                    <li class="flex items-center text-blackColor dark:text-blackColor-dark">
-                                                        <div className="flex w-[10%] justify-between items-center gap-2">
-                                                            <span>4</span>
-                                                            <span>
-                                                                <FaStar className="text-secondary" />
-                                                            </span>
-                                                        </div>
-                                                        <div class="w-[80%] mx-6">
-                                                            <progress
-                                                                className="progress progress-secondary w-full"
-                                                                value={80}
-                                                                max="100"
-                                                            ></progress>
-                                                        </div>
-                                                        <div className="w-[10%]">
-                                                            <span className="text-end block w-full">
-                                                                5
-                                                            </span>
-                                                        </div>
-                                                    </li>
+                                                            let percentage =
+                                                                (star_counts /
+                                                                    total) *
+                                                                100;
 
-                                                    <li class="flex items-center text-blackColor dark:text-blackColor-dark">
-                                                        <div className="flex w-[10%] justify-between items-center gap-2">
-                                                            <span>3</span>
-                                                            <span>
-                                                                <FaStar className="text-secondary" />
-                                                            </span>
-                                                        </div>
-                                                        <div class="w-[80%] mx-6">
-                                                            <progress
-                                                                className="progress progress-secondary w-full"
-                                                                value={60}
-                                                                max="100"
-                                                            ></progress>
-                                                        </div>
-                                                        <div className="w-[10%]">
-                                                            <span className="text-end block w-full">
-                                                                3
-                                                            </span>
-                                                        </div>
-                                                    </li>
-
-                                                    <li class="flex items-center text-blackColor dark:text-blackColor-dark">
-                                                        <div className="flex w-[10%] justify-between items-center gap-2">
-                                                            <span>2</span>
-                                                            <span>
-                                                                <FaStar className="text-secondary" />
-                                                            </span>
-                                                        </div>
-                                                        <div class="w-[80%] mx-6">
-                                                            <progress
-                                                                className="progress progress-secondary w-full"
-                                                                value={25}
-                                                                max="100"
-                                                            ></progress>
-                                                        </div>
-                                                        <div className="w-[10%]">
-                                                            <span className="text-end block w-full">
-                                                                2
-                                                            </span>
-                                                        </div>
-                                                    </li>
-
-                                                    <li class="flex items-center text-blackColor dark:text-blackColor-dark">
-                                                        <div className="flex w-[10%] justify-between items-center gap-2">
-                                                            <span>1</span>
-                                                            <span>
-                                                                <FaStar className="text-secondary" />
-                                                            </span>
-                                                        </div>
-                                                        <div class="w-[80%] mx-6">
-                                                            <progress
-                                                                className="progress progress-secondary w-full"
-                                                                value={20}
-                                                                max="100"
-                                                            ></progress>
-                                                        </div>
-                                                        <div className="w-[10%]">
-                                                            <span className="text-end block w-full">
-                                                                1
-                                                            </span>
-                                                        </div>
-                                                    </li>
+                                                            return (
+                                                                <li class="flex items-center text-blackColor dark:text-blackColor-dark">
+                                                                    <div className="flex w-[10%] justify-between items-center gap-2">
+                                                                        <span>
+                                                                            {i}
+                                                                        </span>
+                                                                        <span>
+                                                                            <FaStar className="text-secondary" />
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="w-[80%] mx-6">
+                                                                        <progress
+                                                                            className="progress progress-secondary w-full"
+                                                                            value={
+                                                                                percentage
+                                                                            }
+                                                                            max={
+                                                                                percentage
+                                                                            }
+                                                                        ></progress>
+                                                                    </div>
+                                                                    <div className="w-[10%]">
+                                                                        <span className="text-end block w-full">
+                                                                            {
+                                                                                star_counts
+                                                                            }
+                                                                        </span>
+                                                                    </div>
+                                                                </li>
+                                                            );
+                                                        }
+                                                    )}
                                                 </ul>
                                             </div>
                                         </div>

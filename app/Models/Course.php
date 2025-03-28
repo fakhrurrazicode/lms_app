@@ -11,6 +11,7 @@ use App\Models\CourseSection;
 use App\Models\CourseCategory;
 use Binafy\LaravelCart\Cartable;
 use App\Models\CourseSubCategory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,6 +33,7 @@ class Course extends BaseModel implements Cartable
         'feature_course_lecture',
         'enrollment_count',
         'progress_percentage',
+        'course_review_recap',
     ];
     protected $with = ['instructor', 'course_category'];
 
@@ -102,6 +104,24 @@ class Course extends BaseModel implements Cartable
     public function course_reviews()
     {
         return $this->hasMany(CourseReview::class);
+    }
+
+    public function getCourseReviewRecapAttribute()
+    {
+        $avg = CourseReview::where('course_id', $this->id)->avg('stars');
+        $total = CourseReview::where('course_id', $this->id)->count();
+
+        $star_counts = DB::table('course_reviews')
+            ->where('course_id', $this->id)
+            ->select('stars', DB::raw('COUNT(*) as count'))
+            ->groupBy('stars')
+            ->pluck('count', 'stars');
+
+        return [
+            'avg' => number_format($avg, 1),
+            'total' => $total,
+            'star_counts' => $star_counts,
+        ];
     }
 
     public function course_sections()

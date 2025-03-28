@@ -61,8 +61,10 @@ class PageController extends Controller
             'course_reviews',
             'course_sections.course_lectures',
             'course_lectures',
-            // 'enrollments'
+            'course_reviews'
         ])->firstOrFail();
+
+        // return $course;
 
 
         // return $course;
