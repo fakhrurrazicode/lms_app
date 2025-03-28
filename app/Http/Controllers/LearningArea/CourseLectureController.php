@@ -59,10 +59,15 @@ class CourseLectureController extends Controller
             ->orderBy('id', 'asc')
             ->first(); // jika tidak menemukan next lecture lagi arti nya course telah selesai
 
-
-        return to_route('learning_area.course_lecture.show', [
-            'course' => $next_course_lecture->course_id,
-            'course_lecture' => $next_course_lecture->id,
-        ]);
+        if ($next_course_lecture) {
+            return to_route('learning_area.course_lecture.show', [
+                'course' => $next_course_lecture->course_id,
+                'course_lecture' => $next_course_lecture->id,
+            ]);
+        } else {
+            return to_route('learning_area.course.index', [
+                'course' => $course->id,
+            ]);
+        }
     }
 }

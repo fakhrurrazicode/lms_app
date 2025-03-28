@@ -1,6 +1,6 @@
 import React from "react";
 import FrontendLayout from "./FrontendLayout";
-import { FaChevronDown, FaClock, FaStar } from "react-icons/fa";
+import { FaCertificate, FaChevronDown, FaClock, FaStar } from "react-icons/fa";
 
 import { BiCheck, BiHome, BiMoviePlay, BiStar } from "react-icons/bi";
 import { Link, usePage } from "@inertiajs/react";
@@ -177,15 +177,18 @@ export default function LearningAreaLayout({ children }) {
                                 style={{
                                     width: course.progress_percentage + "%",
                                 }}
-                                className={
-                                    "bg-primary text-center absolute top-0 bottom-0 flex justify-center items-center"
-                                }
+                                className={`${
+                                    course.progress_percentage < 100
+                                        ? "bg-primary"
+                                        : "bg-success"
+                                } text-center absolute top-0 bottom-0 flex justify-center items-center`}
                             >
                                 <span className="text-white text-xs">
                                     {course.progress_percentage}%
                                 </span>
                             </div>
                         </div>
+
                         {children}
                     </div>
                 </div>

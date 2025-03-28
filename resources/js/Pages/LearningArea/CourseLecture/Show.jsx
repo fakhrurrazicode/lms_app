@@ -2,7 +2,7 @@ import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaCheck, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "@vidstack/react/player/styles/base.css";
 import "@vidstack/react/player/styles/plyr/theme.css";
 import { MediaPlayer, MediaProvider } from "@vidstack/react";
@@ -157,7 +157,21 @@ export default function Show({
                                     Selanjutnya <FaChevronRight />
                                 </Link>
                             ) : (
-                                <></>
+                                <Link
+                                    href={route(
+                                        "learning_area.course_lecture.finish_lecture",
+                                        {
+                                            course: course.id,
+                                            course_lecture: course_lecture.id,
+                                        }
+                                    )}
+                                    // preserveScroll={true}
+                                    preserveState={true}
+                                    method="POST"
+                                    className="btn btn-accent"
+                                >
+                                    Selesai <FaCheck />
+                                </Link>
                             )}
                         </div>
                     </div>
