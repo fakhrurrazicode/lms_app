@@ -134,7 +134,10 @@ export default function FrontendLayout({ header, children }) {
                                                         let itemable =
                                                             item.itemable;
                                                         return (
-                                                            <div className="grid grid-cols-3 px-4 py-4 gap-4 relative hover:bg-base-100 transition-all ease-in-out">
+                                                            <div
+                                                                key={item.id}
+                                                                className="grid grid-cols-3 px-4 py-4 gap-4 relative hover:bg-base-100 transition-all ease-in-out"
+                                                            >
                                                                 <Link
                                                                     className="absolute right-0 top-0 m-4"
                                                                     href={route(

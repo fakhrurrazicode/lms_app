@@ -319,6 +319,7 @@ export default function Course() {
                                                             initialEntered={
                                                                 index === 0
                                                             }
+                                                            key={index}
                                                         >
                                                             {course_section.course_lectures.map(
                                                                 (
@@ -449,7 +450,10 @@ export default function Course() {
                                                                 100;
 
                                                             return (
-                                                                <li class="flex items-center text-blackColor dark:text-blackColor-dark">
+                                                                <li
+                                                                    key={i}
+                                                                    class="flex items-center text-blackColor dark:text-blackColor-dark"
+                                                                >
                                                                     <div className="flex w-[10%] justify-between items-center gap-2">
                                                                         <span>
                                                                             {i}

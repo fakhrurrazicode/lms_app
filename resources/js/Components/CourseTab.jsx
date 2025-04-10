@@ -10,6 +10,7 @@ export default function CourseTab({ tabContents }) {
             <div className="flex justify-center mb-6">
                 {tabContents.map((content, index) => (
                     <div
+                        key={index}
                         onClick={() => setActiveIndex(index)}
                         className={
                             index === activeIndex
@@ -24,7 +25,9 @@ export default function CourseTab({ tabContents }) {
 
             <div>
                 {tabContents.map((content, index) => (
-                    <>{content.content}</>
+                    <React.Fragment key={index}>
+                        {content.content}
+                    </React.Fragment>
                 ))}
             </div>
         </>

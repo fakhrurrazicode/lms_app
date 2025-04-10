@@ -29,15 +29,10 @@ export default function Cart({ cart }) {
                                 <div className="card bg-base-100">
                                     <div className="card-body">
                                         {cart.items.map((item) => (
-                                            // <div className="flex items-center gap-4">
-                                            //     <input
-                                            //         type="checkbox"
-                                            //         defaultChecked
-                                            //         className="checkbox checkbox-primary"
-                                            //     />
-                                            //     <CartItemCard cartItem={item} />
-                                            // </div>
-                                            <CartItemCard cartItem={item} />
+                                            <CartItemCard
+                                                cartItem={item}
+                                                key={item.id}
+                                            />
                                         ))}
                                     </div>
                                 </div>
