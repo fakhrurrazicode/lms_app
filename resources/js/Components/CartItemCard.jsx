@@ -1,10 +1,24 @@
-import { rupiah } from "@/bootstrap";
-import { Link } from "@inertiajs/react";
+import { removeFromCart, rupiah } from "@/bootstrap";
+import { Link, router } from "@inertiajs/react";
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export default function CartItemCard({ cartItem }) {
     const itemable = cartItem.itemable;
+
+    const removeFromCartHandler = () => {
+        removeFromCart("App\\Models\\Course", itemable.id)
+            .then((response) => {
+                const { status, message } = response.data;
+                if (status) {
+                    toast.success(message);
+                    router.reload();
+                }
+            })
+            .catch((error) => console.error(error));
+    };
+
     return (
         <div
             key={cartItem.id}
@@ -49,19 +63,15 @@ export default function CartItemCard({ cartItem }) {
                 </div>
             </div>
             <div className="col-span-2 ">
-                <Link
-                    href={route("cart.destroy")}
-                    method="DELETE"
-                    preserveScroll={true}
-                    preserveState={true}
-                    data={{
-                        itemable_type: "App\\Models\\Course",
-                        itemable_id: itemable.id,
-                    }}
+                <a
                     className="btn btn-link text-left text-error btn-sm"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        removeFromCartHandler();
+                    }}
                 >
                     Hapus
-                </Link>
+                </a>
 
                 {/* <br /> */}
 

@@ -94,5 +94,10 @@ class CartController extends Controller
     {
         $cart = Cart::query()->firstOrCreate(['user_id' => Auth::user()->id]);
         $cart->emptyCart();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Keranjang belanja berhasil di kosongkan',
+        ]);
     }
 }

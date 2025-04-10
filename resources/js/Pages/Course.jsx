@@ -18,7 +18,13 @@ import {
     FaLock,
 } from "react-icons/fa";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { itemIsExitsOnCart, minutesToHumanReadable, rupiah } from "@/bootstrap";
+import {
+    addToCart,
+    itemIsExitsOnCart,
+    minutesToHumanReadable,
+    removeFromCart,
+    rupiah,
+} from "@/bootstrap";
 import { FiCheck } from "react-icons/fi";
 import "@vidstack/react/player/styles/base.css";
 import "@vidstack/react/player/styles/plyr/theme.css";
@@ -64,13 +70,8 @@ const AccordionItem = ({ header, ...rest }) => (
 export default function Course() {
     const { course, auth } = usePage().props;
 
-    const addToCartHandler = (e) => {
-        e.preventDefault();
-        axios
-            .post(route("cart.store"), {
-                itemable_type: "App\\Models\\Course",
-                itemable_id: course.id,
-            })
+    const addToCartHandler = (course_id) => {
+        addToCart("App\\Models\\Course", course_id)
             .then((response) => {
                 const { status, message } = response.data;
 
@@ -78,18 +79,12 @@ export default function Course() {
                     toast.success(message);
                     router.reload();
                 }
-            });
+            })
+            .catch((error) => console.error(error));
     };
 
-    const removeFromCartHandler = (e) => {
-        e.preventDefault();
-        axios
-            .delete(route("cart.destroy"), {
-                data: {
-                    itemable_type: "App\\Models\\Course",
-                    itemable_id: course.id,
-                },
-            })
+    const removeFromCartHandler = (course_id) => {
+        removeFromCart("App\\Models\\Course", course.id)
             .then((response) => {
                 const { status, message } = response.data;
 
@@ -97,7 +92,8 @@ export default function Course() {
                     toast.success(message);
                     router.reload();
                 }
-            });
+            })
+            .catch((error) => console.error(error));
     };
 
     return (
@@ -571,9 +567,12 @@ export default function Course() {
                                                 ) ? (
                                                     <button
                                                         className="btn flex justify-center items-center btn-primary w-full mb-3"
-                                                        onClick={
-                                                            addToCartHandler
-                                                        }
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            addToCartHandler(
+                                                                course.id
+                                                            );
+                                                        }}
                                                     >
                                                         <FaCartPlus />
                                                         <span>
@@ -584,9 +583,12 @@ export default function Course() {
                                                 ) : (
                                                     <button
                                                         className="btn flex justify-center items-center btn-error w-full mb-3"
-                                                        onClick={
-                                                            removeFromCartHandler
-                                                        }
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            removeFromCartHandler(
+                                                                course.id
+                                                            );
+                                                        }}
                                                     >
                                                         <FaTrash />
                                                         <span>

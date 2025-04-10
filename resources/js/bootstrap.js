@@ -1,4 +1,6 @@
+import { router } from "@inertiajs/react";
 import axios from "axios";
+import { toast } from "react-toastify";
 window.axios = axios;
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
@@ -30,5 +32,21 @@ export const itemIsExitsOnCart = (item, cart) => {
             _item.itemable_id == item.id &&
             _item.itemable_type == "App\\Models\\Course"
         );
+    });
+};
+
+export const addToCart = async (itemable_type, itemable_id) => {
+    return axios.post(route("cart.store"), {
+        itemable_type,
+        itemable_id,
+    });
+};
+
+export const removeFromCart = async (itemable_type, itemable_id) => {
+    return axios.delete(route("cart.destroy"), {
+        data: {
+            itemable_type,
+            itemable_id,
+        },
     });
 };
