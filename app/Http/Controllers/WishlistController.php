@@ -7,6 +7,8 @@ use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function Pest\Laravel\json;
+
 class WishlistController extends Controller
 {
     /**
@@ -37,11 +39,19 @@ class WishlistController extends Controller
 
         if ($wishlist) {
             $wishlist->delete();
+            return response()->json([
+                'status' => true,
+                'message' => 'Berhasil di hapus dari daftar keinginan.'
+            ]);
         } else {
             Wishlist::create([
                 'user_id' => $user->id,
                 'wishlistable_type' => $request->wishlistable_type,
                 'wishlistable_id' => $request->wishlistable_id,
+            ]);
+            return response()->json([
+                'status' => true,
+                'message' => 'Berhasil ditambahkan ke daftar keinginan.'
             ]);
         }
     }

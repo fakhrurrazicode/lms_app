@@ -1,10 +1,12 @@
 import CourseCard from "@/Components/CourseCard";
+import TiltElement from "@/Components/TiltElement";
 import FrontendLayout from "@/Layouts/FrontendLayout";
-import { Head, usePage } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import React from "react";
 import { FaChartBar, FaChartLine } from "react-icons/fa6";
 import { FiArrowLeft, FiArrowRight, FiBookOpen } from "react-icons/fi";
 import { MdOutlineCheck } from "react-icons/md";
+import { RiTriangleLine } from "react-icons/ri";
 
 export default function Home({ latest_courses, course_categories }) {
     const page = usePage();
@@ -91,142 +93,159 @@ export default function Home({ latest_courses, course_categories }) {
                 </div>
             </section>
 
-            <section
-                id="hero"
-                className=" py-32 bg-purple-500/10 dark:bg-slate-900 overflow-hidden"
+            <div
+                className="
+            bg-gradient-to-r from-fuchsia-100 from-0% via-slate-50 via-50% to-fuchsia-100 to-100%
+            dark:bg-gradient-to-r dark:from-indigo-900/20 dark:from-0% dark:via-slate-900/20 dark:via-50% dark:to-indigo-900/20 dark:to-100%"
             >
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-col justify-center h-full">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-[30px]">
-                            <div className="p-6">
-                                <div>
-                                    <img
-                                        src="/images/abouts/about_12.png"
-                                        alt=""
-                                    />
+                <section id="hero" className="pt-32 pb-0 overflow-hidden">
+                    <div data-aos="fade-up" className="container mx-auto px-4">
+                        <div className="flex flex-col justify-center h-full">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-[30px]">
+                                <div className="p-6">
+                                    <div className=""></div>
+
+                                    <TiltElement className="relative">
+                                        <img
+                                            className="absolute z-0 left-1/2 -translate-x-1/2"
+                                            src="/images/abouts/about_12.png"
+                                            alt=""
+                                        />
+                                        <img
+                                            className="z-10"
+                                            src="/images/abouts/about_13.png"
+                                            alt=""
+                                        />
+                                    </TiltElement>
                                 </div>
-                            </div>
-                            <div className="p-6">
-                                <h3 className="text-lg text-secondary uppercase font-semibold tracking-[.25em] mb-8">
-                                    Solusi pendidikan
-                                </h3>
-
-                                <h1 className="text-6xl font-extrabold mb-8">
-                                    Selamat datang di di{" "}
-                                    <span className="text-secondary">
-                                        GuruTeknik
-                                    </span>{" "}
-                                    LMS
-                                </h1>
-
-                                <div className="ps-6 border-l-4 border-secondary mb-8">
-                                    <p>
-                                        Dengan LMS kami, anda dapat belajar
-                                        kapan saja dan dimana saja, Akses ribuan
-                                        kursus dan sumber daya pemebelajaran
-                                        yang berkualitas tinggi, serta komunitas
-                                        pemebelajaran yang aktif dan mendukung.
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <div className="flex items-center gap-4 mb-6 group">
-                                        <div className="bg-indigo-500/20 p-2 group-hover:text-white group-hover:bg-indigo-500 transition-all">
-                                            <MdOutlineCheck />
-                                        </div>
-                                        <p>Lorem Ipsum is simply dummy</p>
-                                    </div>
-                                    <div className="flex items-center gap-4 mb-6 group">
-                                        <div className="bg-indigo-500/20 p-2 group-hover:text-white group-hover:bg-indigo-500 transition-all">
-                                            <MdOutlineCheck />
-                                        </div>
-                                        <p>
-                                            Explore a variety of fresh
-                                            educational teachy
-                                        </p>
-                                    </div>
-                                    <div className="flex items-center gap-4 mb-6 group">
-                                        <div className="bg-indigo-500/20 p-2 group-hover:text-white group-hover:bg-indigo-500 transition-all">
-                                            <MdOutlineCheck />
-                                        </div>
-                                        <p>
-                                            Lorem Ipsum is simply dummy text of
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="popular" className="py-32 dark:bg-slate-900">
-                <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[30px] mb-[65px]">
-                        <div className="lg:col-star-1 lg:col-span-4">
-                            <span className="text-sm font-semibold text-primary bg-white px-6 py-[5px] mb-5 rounded-full inline-block">
-                                Course List
-                            </span>
-                            <h3 className="text-3xl md:text-size-35 2xl:text-size-38 3xl:text-size-42 leading-10 md:leading-45px 2xl:leading-50px 3xl:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                                Populer{" "}
-                                <span className="relative text-secondary">
-                                    Subjects
-                                </span>
-                            </h3>
-                        </div>
-
-                        <div className="lg:col-star-5 lg:col-span-5">
-                            <p className="text-sm md:text-base text-gray-900 dark:text-white mb-[10px] 2xl:mb-[50px] 2xl:pl-[50px]">
-                                Forging relationships between multi to national
-                                governments and global NGOs begins.
-                            </p>
-                        </div>
-                        <div className="lg:col-star-10 lg:col-span-3 flex lg:justify-end">
-                            <div>
-                                <a className="btn btn-secondary" href="#">
-                                    All Catagories
-                                    <FiArrowRight />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px]">
-                        {course_categories.map((course_category) => (
-                            <div className="card dark:bg-slate-950 dark:text-white shadow-2xl shadow-indigo-600/50 transition-all ease-in-out duration-500 hover:-translate-y-2 hover:bg-primary hover:text-white group">
-                                <div className="card-body">
-                                    <FiBookOpen className="text-primary text-3xl mb-4 group-hover:text-white transition-all ease-in-out duration-500" />
-                                    <h3 className="text-xl font-bold text-inherit">
-                                        {course_category.name}
+                                <div className="p-6">
+                                    <h3 className="text-lg text-secondary uppercase font-semibold tracking-[.25em] mb-8">
+                                        Solusi pendidikan
                                     </h3>
-                                    {/* <p className="text-slate-500 group-hover:text-white transition-all ease-in-out duration-500">
+
+                                    <h1 className="text-6xl font-extrabold mb-8">
+                                        Selamat datang di{" "}
+                                        <span className="text-secondary">
+                                            GuruTeknik
+                                        </span>{" "}
+                                        LMS
+                                    </h1>
+
+                                    <div className="ps-6 border-l-4 border-secondary mb-8">
+                                        <p>
+                                            Dengan LMS kami, anda dapat belajar
+                                            kapan saja dan dimana saja, Akses
+                                            ribuan kursus dan sumber daya
+                                            pemebelajaran yang berkualitas
+                                            tinggi, serta komunitas
+                                            pemebelajaran yang aktif dan
+                                            mendukung.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div className="flex items-center gap-4 mb-6 group">
+                                            <div className="bg-indigo-500/20 p-2 group-hover:text-white group-hover:bg-indigo-500 transition-all">
+                                                <MdOutlineCheck />
+                                            </div>
+                                            <p>Lorem Ipsum is simply dummy</p>
+                                        </div>
+                                        <div className="flex items-center gap-4 mb-6 group">
+                                            <div className="bg-indigo-500/20 p-2 group-hover:text-white group-hover:bg-indigo-500 transition-all">
+                                                <MdOutlineCheck />
+                                            </div>
+                                            <p>
+                                                Explore a variety of fresh
+                                                educational teachy
+                                            </p>
+                                        </div>
+                                        <div className="flex items-center gap-4 mb-6 group">
+                                            <div className="bg-indigo-500/20 p-2 group-hover:text-white group-hover:bg-indigo-500 transition-all">
+                                                <MdOutlineCheck />
+                                            </div>
+                                            <p>
+                                                Lorem Ipsum is simply dummy text
+                                                of
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="popular" className="py-32">
+                    <div className="container mx-auto px-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[30px] mb-[65px]">
+                            <div className="lg:col-star-1 lg:col-span-4">
+                                <span className="text-sm font-semibold text-primary bg-white px-6 py-[5px] mb-5 rounded-full inline-block">
+                                    Course List
+                                </span>
+                                <h3 className="text-5xl md:text-size-35 2xl:text-size-38 3xl:text-size-42 leading-10 md:leading-45px 2xl:leading-50px 3xl:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
+                                    Populer{" "}
+                                    <span className="relative text-secondary">
+                                        Subjects
+                                    </span>
+                                </h3>
+                            </div>
+
+                            <div className="lg:col-star-5 lg:col-span-5">
+                                <p className="text-sm md:text-base text-gray-900 dark:text-white mb-[10px] 2xl:mb-[50px] 2xl:pl-[50px]">
+                                    Forging relationships between multi to
+                                    national governments and global NGOs begins.
+                                </p>
+                            </div>
+                            <div className="lg:col-star-10 lg:col-span-3 flex lg:justify-end">
+                                <div>
+                                    <a className="btn btn-secondary" href="#">
+                                        All Catagories
+                                        <FiArrowRight />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px]">
+                            {course_categories.map((course_category) => (
+                                <div data-aos="fade-up">
+                                    <div className="card dark:bg-slate-950 dark:text-white shadow-2xl shadow-indigo-600/50 transition-all ease-in-out duration-500 hover:-translate-y-2 hover:bg-indigo-700 hover:text-white group">
+                                        <div className="card-body relative">
+                                            <RiTriangleLine className="text-warning text-4xl absolute right-[15%] opacity-0 rotate-0 group-hover:opacity-80 group-hover:rotate-45 group-hover:transition-all duration-500 group-hover:ease-in-out" />
+                                            <FiBookOpen className="text-primary text-3xl mb-4 group-hover:text-black transition-all ease-in-out duration-500" />
+                                            <h3 className="text-xl font-bold text-inherit ">
+                                                <Link className="hover:text-secondary">
+                                                    {course_category.name}
+                                                </Link>
+                                            </h3>
+                                            {/* <p className="text-slate-500 group-hover:text-white transition-all ease-in-out duration-500">
                                         Business is success
                                     </p> */}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
             <section id="popular" className="py-32 dark:bg-slate-900">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[30px] mb-[65px]">
-                        <div className="lg:col-star-1 lg:col-span-4">
+                        <div className="lg:col-start-1 lg:col-span-4">
                             <span className="text-sm font-semibold text-primary bg-white px-6 py-[5px] mb-5 rounded-full inline-block">
                                 Course List
                             </span>
-                            <h3 className="text-3xl md:text-size-35 2xl:text-size-38 3xl:text-size-42 leading-10 md:leading-45px 2xl:leading-50px 3xl:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                                Populer{" "}
-                                <span className="relative text-secondary">
-                                    Subjects
-                                </span>
+                            <h3 className="text-5xl md:text-size-35 2xl:text-size-38 3xl:text-size-42 leading-10 md:leading-45px 2xl:leading-50px 3xl:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
+                                Perfect Online Course Your Carrer
                             </h3>
                         </div>
 
-                        <div className="lg:col-star-5 lg:col-span-5">
+                        <div className="lg:col-start-5 lg:col-span-5">
                             <p className="text-sm md:text-base text-gray-900 dark:text-white mb-[10px] 2xl:mb-[50px] 2xl:pl-[50px]"></p>
                         </div>
+
                         <div className="lg:col-star-10 lg:col-span-3 flex lg:justify-end">
                             <div>
                                 <a className="btn btn-secondary" href="#">
@@ -237,9 +256,11 @@ export default function Home({ latest_courses, course_categories }) {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px]">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
                         {latest_courses.map((course) => (
-                            <CourseCard key={course.id} course={course} />
+                            <div data-aos="fade-up">
+                                <CourseCard key={course.id} course={course} />
+                            </div>
                         ))}
                     </div>
                 </div>

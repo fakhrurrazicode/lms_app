@@ -1,8 +1,10 @@
 import { minutesToHumanReadable, rupiah } from "@/bootstrap";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
+import axios from "axios";
 import React from "react";
 import { FaBook, FaClock, FaHeart, FaStar } from "react-icons/fa";
 import { FiCheck } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 export default function CourseCard({ course }) {
     return (
@@ -24,21 +26,57 @@ export default function CourseCard({ course }) {
                             Enrolled
                         </span>
                     ) : (
-                        <Link
-                            href={route("wishlist.toggle")}
-                            method="POST"
-                            data={{
-                                wishlistable_type: "App\\Models\\Course",
-                                wishlistable_id: course.id,
-                            }}
-                            className={
-                                course.is_on_wishlist
-                                    ? "text-white bg-pink-600 ease-in-out px-2 py-2 rounded-lg"
-                                    : "text-white bg-black/30 hover:bg-primary transition-all ease-in-out px-2 py-2 rounded-lg"
-                            }
-                        >
-                            <FaHeart />
-                        </Link>
+                        <>
+                            {/* <Link
+                                href={route("wishlist.toggle")}
+                                method="POST"
+                                data={{
+                                    wishlistable_type: "App\\Models\\Course",
+                                    wishlistable_id: course.id,
+                                }}
+                                className={
+                                    course.is_on_wishlist
+                                        ? "text-white bg-pink-600 ease-in-out px-2 py-2 rounded-lg"
+                                        : "text-white bg-black/30 hover:bg-primary transition-all ease-in-out px-2 py-2 rounded-lg"
+                                }
+                                onSuccess={() =>
+                                    toast(
+                                        "Berhasil di tambahkan ke daftar keinginan"
+                                    )
+                                }
+                            >
+                                <FaHeart />
+                            </Link> */}
+                            <button
+                                className={
+                                    course.is_on_wishlist
+                                        ? "text-white bg-pink-600 ease-in-out px-2 py-2 rounded-lg"
+                                        : "text-white bg-black/30 hover:bg-primary transition-all ease-in-out px-2 py-2 rounded-lg"
+                                }
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    axios
+                                        .post(route("wishlist.toggle"), {
+                                            wishlistable_type:
+                                                "App\\Models\\Course",
+                                            wishlistable_id: course.id,
+                                        })
+                                        .then((response) => {
+                                            course.is_on_wishlist =
+                                                !course.is_on_wishlist;
+                                            toast.success(
+                                                response.data.message
+                                            );
+                                            router.reload();
+                                        })
+                                        .catch((error) => {
+                                            console.log(error);
+                                        });
+                                }}
+                            >
+                                <FaHeart />
+                            </button>
+                        </>
                     )}
                 </div>
                 <Link

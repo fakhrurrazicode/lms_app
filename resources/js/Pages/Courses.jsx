@@ -2,7 +2,6 @@ import CourseCard from "@/Components/CourseCard";
 import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
 import React from "react";
-import { FaBook, FaClock, FaHeart } from "react-icons/fa";
 
 export default function Courses({ courses, course_categories, request }) {
     return (

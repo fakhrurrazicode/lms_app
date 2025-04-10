@@ -28,6 +28,8 @@ import {
     plyrLayoutIcons,
 } from "@vidstack/react/player/layouts/plyr";
 import { BiMoviePlay } from "react-icons/bi";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const AccordionItem = ({ header, ...rest }) => (
     <Item
@@ -61,6 +63,42 @@ const AccordionItem = ({ header, ...rest }) => (
 
 export default function Course() {
     const { course, auth } = usePage().props;
+
+    const addToCartHandler = (e) => {
+        e.preventDefault();
+        axios
+            .post(route("cart.store"), {
+                itemable_type: "App\\Models\\Course",
+                itemable_id: course.id,
+            })
+            .then((response) => {
+                const { status, message } = response.data;
+
+                if (status) {
+                    toast.success(message);
+                    router.reload();
+                }
+            });
+    };
+
+    const removeFromCartHandler = (e) => {
+        e.preventDefault();
+        axios
+            .delete(route("cart.destroy"), {
+                data: {
+                    itemable_type: "App\\Models\\Course",
+                    itemable_id: course.id,
+                },
+            })
+            .then((response) => {
+                const { status, message } = response.data;
+
+                if (status) {
+                    toast.success(message);
+                    router.reload();
+                }
+            });
+    };
 
     return (
         <FrontendLayout
@@ -531,48 +569,30 @@ export default function Course() {
                                                     course,
                                                     auth.cart
                                                 ) ? (
-                                                    <Link
-                                                        href={route(
-                                                            "cart.store"
-                                                        )}
-                                                        method="POST"
-                                                        preserveScroll={true}
-                                                        preserveState={true}
-                                                        data={{
-                                                            itemable_type:
-                                                                "App\\Models\\Course",
-                                                            itemable_id:
-                                                                course.id,
-                                                        }}
+                                                    <button
                                                         className="btn flex justify-center items-center btn-primary w-full mb-3"
+                                                        onClick={
+                                                            addToCartHandler
+                                                        }
                                                     >
                                                         <FaCartPlus />
                                                         <span>
                                                             Tambahkan ke
                                                             keranjang
                                                         </span>
-                                                    </Link>
+                                                    </button>
                                                 ) : (
-                                                    <Link
-                                                        href={route(
-                                                            "cart.destroy"
-                                                        )}
-                                                        method="DELETE"
-                                                        preserveScroll={true}
-                                                        preserveState={true}
-                                                        data={{
-                                                            itemable_type:
-                                                                "App\\Models\\Course",
-                                                            itemable_id:
-                                                                course.id,
-                                                        }}
+                                                    <button
                                                         className="btn flex justify-center items-center btn-error w-full mb-3"
+                                                        onClick={
+                                                            removeFromCartHandler
+                                                        }
                                                     >
                                                         <FaTrash />
                                                         <span>
                                                             Hapus Dari Keranjang
                                                         </span>
-                                                    </Link>
+                                                    </button>
                                                 )}
                                                 {/* <button className="btn flex justify-center items-center btn-secondary w-full">
                                                     <span>Beli Sekarang</span>

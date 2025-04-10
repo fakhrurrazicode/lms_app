@@ -40,6 +40,11 @@ class CartController extends Controller
             1,
             Auth::user()->id
         );
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Berhasil ditambahkan ke keranjang belanja'
+        ]);
     }
 
     /**
@@ -71,12 +76,18 @@ class CartController extends Controller
      */
     public function destroy(Request $request)
     {
+        // return $request->all();
         $cart = Cart::query()->firstOrCreate(['user_id' => Auth::user()->id]);
         CartItem::where([
             'itemable_type' => $request->itemable_type,
             'itemable_id' => $request->itemable_id,
             'cart_id' => $cart->id,
         ])->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Berhasil dihapus dari keranjang belanja'
+        ]);
     }
 
     public function empty_cart()
