@@ -79,13 +79,15 @@ export default function CourseCard({ course }) {
                         </>
                     )}
                 </div>
-                <Link
-                    href={"/course/" + course.slug}
-                    className={"w-full h-[200px] block relative bg-cover "}
-                    style={{
-                        backgroundImage: `url('${course.image_url}')`,
-                    }}
-                ></Link>
+                <div className="overflow-hidden">
+                    <Link
+                        href={"/course/" + course.slug}
+                        className="w-full h-[200px] block relative bg-cover hover:scale-[1.2] transition-all ease-in-out duration-500"
+                        style={{
+                            backgroundImage: `url('${course.image_url}')`,
+                        }}
+                    ></Link>
+                </div>
             </div>
             <div className="card-body px-4">
                 <div className="flex justify-between mb-2">
@@ -96,7 +98,7 @@ export default function CourseCard({ course }) {
 
                     <div className="flex justify-start items-center gap-2 text-xs">
                         <FaClock className="text-primary" />
-                        <span>{minutesToHumanReadable(course.duration)}</span>
+                        <span>{course.total_lecture_duration}</span>
                     </div>
                 </div>
                 <a
