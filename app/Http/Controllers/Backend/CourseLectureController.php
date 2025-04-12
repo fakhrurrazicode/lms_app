@@ -9,6 +9,8 @@ use App\Models\CourseSection;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseLectureStoreRequest;
 use App\Http\Requests\CourseLectureUpdateRequest;
+use FFMpeg\FFMpeg;
+use FFMpeg\FFProbe;
 use Inertia\Inertia;
 
 class CourseLectureController extends Controller
@@ -38,7 +40,24 @@ class CourseLectureController extends Controller
         unset($data['video']);
         if ($request->hasFile('video')) {
             $data['video'] = $request->file('video')->store('videos', 'public');
+            $full_path = storage_path('app/public/' . $data['video']);
+
+            $ffmpeg = FFMpeg::create([
+                'ffmpeg.binaries'  => 'C:\\ffmpeg\\bin\\ffmpeg.exe',
+                'ffprobe.binaries' => 'C:\\ffmpeg\\bin\\ffprobe.exe',
+                'timeout' => 3600, // optional
+            ]);
+            $video = $ffmpeg->open($full_path);
+
+            $ffprobe = FFProbe::create([
+                'ffprobe.binaries' => 'C:\\ffmpeg\\bin\\ffprobe.exe',
+            ]);
+            $duration = $ffprobe->format($full_path)->get('duration'); // in seconds
+
+            $data['video_duration'] = $duration;
         }
+
+        // dd($data);
         CourseLecture::create($data);
         return to_route('backend.course_section.index', [
             'course' => $course,

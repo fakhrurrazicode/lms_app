@@ -18,9 +18,9 @@ export default function Create({ instructors, course_categories }) {
             description: "",
             prerequisites: "",
             goals: "",
-            price: "",
+            price: 0,
             duration: "",
-            discount_percentage: "",
+            discount_percentage: 0,
             level: "",
             status: true,
         });

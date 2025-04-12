@@ -58,16 +58,21 @@ export default function Index({ course, course_sections }) {
                                                 Video
                                             </th>
                                             <th className="text-center">
-                                                Tetapkan sebagai video pratinjau
+                                                Tetapkan <br />
+                                                sebagai <br />
+                                                video <br />
+                                                pratinjau
                                             </th>
 
                                             <th className="text-center">
-                                                Tetapkan sebagai video unggulan
+                                                Tetapkan <br />
+                                                sebagai <br />
+                                                video unggulan <br />
                                                 (hanya 1)
                                             </th>
 
-                                            <th>Dibuat di</th>
-                                            <th>Diperbarui di</th>
+                                            {/* <th>Dibuat di</th>
+                                            <th>Diperbarui di</th> */}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -179,7 +184,7 @@ export default function Index({ course, course_sections }) {
                                                                 <td className="whitespace-nowrap"></td>
                                                                 <td className="whitespace-nowrap"></td>
                                                                 <td className="whitespace-nowrap"></td>
-                                                                <td className="whitespace-nowrap">
+                                                                {/* <td className="whitespace-nowrap">
                                                                     {
                                                                         course_section.created_at
                                                                     }
@@ -189,7 +194,7 @@ export default function Index({ course, course_sections }) {
                                                                     course_section.updated_at
                                                                         ? course_section.updated_at
                                                                         : ""}
-                                                                </td>
+                                                                </td> */}
                                                             </tr>
                                                             {course_section.course_lectures &&
                                                                 course_section.course_lectures.map(
@@ -386,7 +391,7 @@ export default function Index({ course, course_sections }) {
                                                                                     }}
                                                                                 />
                                                                             </td>
-                                                                            <td>
+                                                                            {/* <td>
                                                                                 {
                                                                                     course_lecture.created_at
                                                                                 }
@@ -396,7 +401,7 @@ export default function Index({ course, course_sections }) {
                                                                                 course_lecture.updated_at
                                                                                     ? course_lecture.updated_at
                                                                                     : ""}
-                                                                            </td>
+                                                                            </td> */}
                                                                         </tr>
                                                                     )
                                                                 )}
@@ -407,7 +412,7 @@ export default function Index({ course, course_sections }) {
                                         ) : (
                                             <tr>
                                                 <td
-                                                    colSpan={4}
+                                                    colSpan={7}
                                                     className="py-2 text-center"
                                                 >
                                                     No Data
