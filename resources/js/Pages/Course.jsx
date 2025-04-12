@@ -130,16 +130,28 @@ export default function Course() {
                     />
 
                     {previewCourseLecture ? (
-                        <MediaPlayer
-                            title={previewCourseLecture.title}
-                            src={previewCourseLecture.video_url}
-                        >
-                            <MediaProvider />
-                            <PlyrLayout
-                                // thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
-                                icons={plyrLayoutIcons}
-                            />
-                        </MediaPlayer>
+                        <>
+                            <div className="mb-6">
+                                <MediaPlayer
+                                    title={previewCourseLecture.title}
+                                    src={previewCourseLecture.video_url}
+                                >
+                                    <MediaProvider />
+                                    <PlyrLayout
+                                        // thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
+                                        icons={plyrLayoutIcons}
+                                    />
+                                </MediaPlayer>
+                            </div>
+                            <div className="mb-6">
+                                <h3>
+                                    <span className="font-bold text-secondary">
+                                        Preview:
+                                    </span>{" "}
+                                    {previewCourseLecture.title}
+                                </h3>
+                            </div>
+                        </>
                     ) : (
                         <></>
                     )}
