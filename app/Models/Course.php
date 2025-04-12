@@ -34,6 +34,7 @@ class Course extends BaseModel implements Cartable
         'enrollment_count',
         'progress_percentage',
         'course_review_recap',
+        'total_lecture_duration'
     ];
     protected $with = ['instructor', 'course_category'];
 
@@ -133,6 +134,12 @@ class Course extends BaseModel implements Cartable
     {
         return $this->hasMany(CourseLecture::class);
     }
+
+    public function getTotalLectureDurationAttribute()
+    {
+        return gmdate('H:i:s', CourseLecture::where('course_id', $this->id)->sum('video_duration'));
+    }
+
 
     public function course_tracks()
     {

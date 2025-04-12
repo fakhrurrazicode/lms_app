@@ -220,9 +220,9 @@ export default function Course() {
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Durasi :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    {minutesToHumanReadable(
-                                                        course.duration
-                                                    )}
+                                                    {
+                                                        course.total_lecture_duration
+                                                    }
                                                 </span>
                                             </p>
                                         </li>
@@ -339,9 +339,8 @@ export default function Course() {
                                                                                 <div className="flex justify-between items-center gap-2">
                                                                                     <FaClock />
                                                                                     {course_lecture.video_duration
-                                                                                        ? course_lecture.video_duration
+                                                                                        ? course_lecture.video_duration_human_readable
                                                                                         : 0}{" "}
-                                                                                    Minutes
                                                                                 </div>
                                                                                 <button className="btn btn-primary btn-sm">
                                                                                     <FaEye />
@@ -628,7 +627,7 @@ export default function Course() {
                                         <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">
                                             <span>Total Durasi:</span>
                                             <span className="bg-primary text-xs rounded-full px-3 py-1">
-                                                {course.duration} Menit
+                                                {course.total_lecture_duration}
                                             </span>
                                         </li>
                                         <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">

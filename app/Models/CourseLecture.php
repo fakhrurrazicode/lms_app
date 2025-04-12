@@ -11,11 +11,17 @@ class CourseLecture extends BaseModel
     protected $guarded = [];
     protected $appends = [
         'video_url',
+        'video_duration_human_readable',
     ];
 
     public function getVideoUrlAttribute()
     {
         return $this->video ? url('/storage/' . $this->video) : asset('videos/dummy/sample_video.mp4');
+    }
+
+    public function getVideoDurationHumanReadableAttribute()
+    {
+        return gmdate('H:i:s', $this->video_duration);
     }
 
     public function course_track()

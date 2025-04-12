@@ -282,7 +282,7 @@ export default function Index({ course, course_sections }) {
                                                                             </td>
                                                                             <td>
                                                                                 <a
-                                                                                    className="text-primary"
+                                                                                    className="text-primary flex gap-2 items-center"
                                                                                     href={
                                                                                         course_lecture.video_url
                                                                                     }
@@ -293,6 +293,11 @@ export default function Index({ course, course_sections }) {
                                                                                             16
                                                                                         }
                                                                                     />
+                                                                                    <span>
+                                                                                        {
+                                                                                            course_lecture.video_duration_human_readable
+                                                                                        }
+                                                                                    </span>
                                                                                 </a>
                                                                             </td>
                                                                             <td className="text-center">
