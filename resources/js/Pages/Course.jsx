@@ -4,7 +4,7 @@ import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
 import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion";
 import "react-tabs/style/react-tabs.css";
-import React from "react";
+import React, { useState } from "react";
 import {
     FaBook,
     FaCartPlus,
@@ -16,6 +16,7 @@ import {
     FaClock,
     FaEye,
     FaLock,
+    FaTimes,
 } from "react-icons/fa";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import {
@@ -36,6 +37,7 @@ import {
 import { BiMoviePlay } from "react-icons/bi";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Modal from "@/Components/Modal";
 
 const AccordionItem = ({ header, ...rest }) => (
     <Item
@@ -69,6 +71,16 @@ const AccordionItem = ({ header, ...rest }) => (
 
 export default function Course() {
     const { course, auth } = usePage().props;
+
+    const [showPreviewModal, setShowPreviewModal] = useState(false);
+
+    const [previewCourseLecture, setPreviewCourseLecture] = useState(null);
+
+    const onClosePreviewModalHandler = (e) => {
+        e.preventDefault();
+        setPreviewCourseLecture(null);
+        setShowPreviewModal(false);
+    };
 
     const addToCartHandler = (course_id) => {
         addToCart("App\\Models\\Course", course_id)
@@ -105,6 +117,34 @@ export default function Course() {
             }
         >
             <Head title="Course" />
+
+            <Modal
+                show={showPreviewModal}
+                closeable={true}
+                onClose={onClosePreviewModalHandler}
+            >
+                <div className="p-6 relative pt-16">
+                    <FaTimes
+                        className="absolute top-6 right-6 cursor-pointer"
+                        onClick={onClosePreviewModalHandler}
+                    />
+
+                    {previewCourseLecture ? (
+                        <MediaPlayer
+                            title={previewCourseLecture.title}
+                            src={previewCourseLecture.video_url}
+                        >
+                            <MediaProvider />
+                            <PlyrLayout
+                                // thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
+                                icons={plyrLayoutIcons}
+                            />
+                        </MediaPlayer>
+                    ) : (
+                        <></>
+                    )}
+                </div>
+            </Modal>
 
             <section className="container mx-auto px-4 py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-[30px]">
@@ -342,7 +382,17 @@ export default function Course() {
                                                                                         ? course_lecture.video_duration_human_readable
                                                                                         : 0}{" "}
                                                                                 </div>
-                                                                                <button className="btn btn-primary btn-sm">
+                                                                                <button
+                                                                                    onClick={() => {
+                                                                                        setPreviewCourseLecture(
+                                                                                            course_lecture
+                                                                                        );
+                                                                                        setShowPreviewModal(
+                                                                                            true
+                                                                                        );
+                                                                                    }}
+                                                                                    className="btn btn-primary btn-sm"
+                                                                                >
                                                                                     <FaEye />
                                                                                     <span>
                                                                                         Preview
@@ -500,7 +550,7 @@ export default function Course() {
                                 <></>
                             ) : (
                                 <MediaPlayer
-                                    title="Sprite Fight"
+                                    title={course.feature_course_lecture.title}
                                     src={
                                         course.feature_course_lecture.video_url
                                     }
