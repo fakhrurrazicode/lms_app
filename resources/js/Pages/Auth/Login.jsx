@@ -26,7 +26,7 @@ export default function Login({ status, canResetPassword }) {
         <FrontendLayout>
             <Head title="Log in" />
 
-            <div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0 dark:bg-gray-900">
+            <div className="flex min-h-[70vh] py-32 flex-col items-center bg-gray-100 sm:justify-center  dark:bg-gray-900">
                 <div>
                     <Link href="/">
                         <ApplicationLogo className="h-48 w-48 fill-current text-gray-500" />
@@ -34,7 +34,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-xl sm:rounded-lg dark:bg-gray-800 grid grid-cols-2">
-                    <div>
+                    <div className="col-span-2 lg:col-span-1">
                         {status && (
                             <div className="mb-4 text-sm font-medium text-green-600">
                                 {status}
@@ -126,7 +126,7 @@ export default function Login({ status, canResetPassword }) {
                         </form>
                     </div>
 
-                    <div>
+                    <div className="hidden lg:block">
                         <img
                             className="p-12"
                             src="/images/undraw_login_weas.svg"

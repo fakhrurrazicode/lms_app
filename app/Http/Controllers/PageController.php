@@ -70,4 +70,11 @@ class PageController extends Controller
         // return $course;
         return Inertia::render('Course', compact('course'));
     }
+
+    public function become_an_instructor()
+    {
+        return Inertia::render('BecomeAnInstructor');
+    }
+
+    public function submit_become_an_instructor(Request $request) {}
 }

@@ -1,0 +1,306 @@
+import CourseCard from "@/Components/CourseCard";
+import TiltElement from "@/Components/TiltElement";
+import FrontendLayout from "@/Layouts/FrontendLayout";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import React from "react";
+import { FaChartBar, FaChartLine } from "react-icons/fa6";
+import { FiArrowLeft, FiArrowRight, FiBookOpen } from "react-icons/fi";
+import { MdOutlineCheck } from "react-icons/md";
+import { RiTriangleLine } from "react-icons/ri";
+
+export default function BecomeAnInstructor({}) {
+    const { auth } = usePage().props;
+
+    let formField = {
+        name: auth.user ? auth.user.name : "",
+        username: auth.user ? auth.user.username : "",
+        email: auth.user ? auth.user.email : "",
+        bio: "",
+    };
+
+    if (auth.user) {
+        formField.password = "";
+        formField.password_confirmation = "";
+    }
+
+    const { data, setData, post, errors, reset } = useForm(formField);
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        post("/page/submit_become_an_instructor", {
+            // forceFormData: true,
+            preserveScroll: true,
+            preserveState: true,
+        });
+    };
+
+    return (
+        <FrontendLayout>
+            <Head title="BecomeAnInstructor" />
+
+            <section id="hero" className="">
+                <div className="container mx-auto px-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] py-16">
+                        <div data-aos="fade-up">
+                            <h6 className="font-semibold text-4xl mb-12 text-primary">
+                                Mendaftar Sebagai{" "}
+                                <span className="text-secondary font-bold">
+                                    Instruktur
+                                </span>
+                            </h6>
+                            <TiltElement className="relative mb-12 w-3/4 mx-auto">
+                                <img
+                                    className="z-10"
+                                    src="/images/abouts/about_10.png"
+                                    alt=""
+                                />
+                            </TiltElement>
+
+                            <p className="mb-6">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Doloribus blanditiis officiis
+                                vero fugiat inventore voluptates sint magnam,
+                                accusantium cupiditate odio dolore ipsam ut,
+                                corrupti quisquam veritatis pariatur harum
+                                labore voluptatibus consectetur dolorem aliquid
+                                soluta.
+                            </p>
+
+                            <h6 className="text-xl font-bold mb-6 text-secondary">
+                                Instructor Rules
+                            </h6>
+                            <p className="mb-6">
+                                Various versions have evolved over the years,
+                                sometimes by accident, sometimes on purpose
+                                (injected humour and the like).
+                            </p>
+
+                            <ul className="list-disc ml-6 mb-6">
+                                <li>
+                                    Basic knowledge and detailed understanding
+                                    of CSS3 to create.
+                                </li>
+
+                                <li>
+                                    Details Idea about HTMLS, Creating Basic Web
+                                    Pages using HTMLS
+                                </li>
+
+                                <li>
+                                    Web Page Layout Design and Slider Creation
+                                </li>
+
+                                <li>Image Insert method af web site</li>
+
+                                <li>Creating Styling Web Pages Using CSS3</li>
+                            </ul>
+
+                            <h6 className="text-xl text-secondary font-bold mb-6">
+                                Start With courses
+                            </h6>
+
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Numquam facilis inventore
+                                tempora maxime quibusdam cumque aperiam? Ducimus
+                                totam repellendus fugiat vel dolorum. Commodi,
+                                vel. Aliquid quia voluptas esse accusantium?
+                                Libero impedit, odit dolorum sint fugit error.
+                            </p>
+                        </div>
+
+                        <div data-aos="fade-up">
+                            <form
+                                onSubmit={onSubmitHandler}
+                                className="card bg-white dark:bg-slate-950 shadow-sm"
+                            >
+                                <div className="card-body">
+                                    {/* <h2 className="card-title">Card Title</h2> */}
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Nama
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Nama"
+                                            className="input input-bordered w-full"
+                                            name="name"
+                                            onChange={(e) => {
+                                                setData(
+                                                    e.target.name,
+                                                    e.target.value
+                                                );
+                                            }}
+                                            value={data.name}
+                                        />
+                                        {errors.name && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.name}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Username
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Username"
+                                            className="input input-bordered w-full"
+                                            name="username"
+                                            onChange={(e) => {
+                                                setData(
+                                                    e.target.name,
+                                                    e.target.value
+                                                );
+                                            }}
+                                            value={data.username}
+                                        />
+                                        {errors.username && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.username}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Email
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="email"
+                                            placeholder="Email"
+                                            className="input input-bordered w-full"
+                                            name="email"
+                                            onChange={(e) => {
+                                                setData(
+                                                    e.target.name,
+                                                    e.target.value
+                                                );
+                                            }}
+                                            value={data.email}
+                                        />
+                                        {errors.email && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.email}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Password
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="password"
+                                            placeholder="Password"
+                                            className="input input-bordered w-full"
+                                            name="password"
+                                            onChange={(e) => {
+                                                setData(
+                                                    e.target.name,
+                                                    e.target.value
+                                                );
+                                            }}
+                                            value={data.password}
+                                        />
+                                        {errors.password && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.password}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Password Confirmation
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="password"
+                                            placeholder="Password Confirmation"
+                                            className="input input-bordered w-full"
+                                            name="password_confirmation"
+                                            onChange={(e) => {
+                                                setData(
+                                                    e.target.name,
+                                                    e.target.value
+                                                );
+                                            }}
+                                            value={data.password_confirmation}
+                                        />
+                                        {errors.password_confirmation && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {
+                                                        errors.password_confirmation
+                                                    }
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Your bio
+                                            </span>
+                                        </div>
+                                        <textarea
+                                            className="textarea textarea-bordered h-24"
+                                            placeholder="Bio"
+                                        ></textarea>
+                                        <div className="label">
+                                            <span className="label-text-alt">
+                                                Your bio
+                                            </span>
+                                        </div>
+                                    </label>
+
+                                    <label
+                                        htmlFor="agree"
+                                        className="flex items-center gap-2 py-6"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            className="checkbox checkbox-primary"
+                                            name="agree"
+                                        />
+                                        <span>
+                                            You agree to our friendly{" "}
+                                            <span className="font-bold cursor-pointer">
+                                                Privacy policy.
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <div>
+                                        <button className="btn btn-secondary w-full">
+                                            Update Info
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </FrontendLayout>
+    );
+}

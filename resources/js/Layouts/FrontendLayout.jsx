@@ -75,8 +75,10 @@ export default function FrontendLayout({ header, children }) {
                                     </NavLink>
 
                                     <NavLink
-                                        href={route("courses")}
-                                        active={route().current("courses")}
+                                        href={route("become_an_instructor")}
+                                        active={route().current(
+                                            "become_an_instructor"
+                                        )}
                                     >
                                         Mendaftar Sebagai Instruktur
                                     </NavLink>
@@ -519,7 +521,7 @@ export default function FrontendLayout({ header, children }) {
                                     </ul>
                                 </div>
 
-                                <div className="col-start-1 col-span-12 md:col-start-7 lg:col-start-10 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-50px">
+                                {/* <div className="col-start-1 col-span-12 md:col-start-7 lg:col-start-10 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-50px">
                                     <h4 className="text-xl font-bold dark:text-white mb-3">
                                         Recent Post
                                     </h4>
@@ -583,7 +585,7 @@ export default function FrontendLayout({ header, children }) {
                                             </a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> */}
                             </div>
                         </section>
                     </div>
