@@ -129,7 +129,22 @@ export default function UserAreaLayout({ children }) {
                                         </li>
                                     </ul>
                                 ) : (
-                                    <></>
+                                    <ul className="mb-6">
+                                        <li className="text-xs font-semibold mb-4">
+                                            Pengajar
+                                        </li>
+                                        <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                            <Link
+                                                href={route(
+                                                    "user_area.become_instructor.create"
+                                                )}
+                                                className="text-primary dark:text-secondary leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                            >
+                                                <FiStar />
+                                                <span>Menjadi Pengajar</span>
+                                            </Link>
+                                        </li>
+                                    </ul>
                                 )}
 
                                 <ul className="mb-6">

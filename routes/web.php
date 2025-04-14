@@ -31,6 +31,7 @@ use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistControll
 use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseController;
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
 use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
+use App\Http\Controllers\UserArea\BecomeInstructorController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
 
@@ -71,6 +72,8 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => '/user_area', 'as' => 'user_area.'], function () {
         Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+        Route::resource('/become_instructor', BecomeInstructorController::class)->only(['create', 'store']);
 
         Route::resource('/wishlist', UserAreaWishlistController::class);
         Route::post('/wishlist/{wishlist}/add_to_cart', [UserAreaWishlistController::class, 'add_to_cart'])->name('wishlist.add-to-cart');

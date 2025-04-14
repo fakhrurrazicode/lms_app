@@ -26,7 +26,7 @@ class RolesTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => '2025-02-03 09:05:53',
                 'updated_at' => '2025-02-03 09:05:53',
-                'redirect_url' => '/dashboard',
+                'redirect_url' => '/backend/dashboard',
             ),
             1 => 
             array (
@@ -35,7 +35,7 @@ class RolesTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => '2025-02-03 09:06:00',
                 'updated_at' => '2025-02-03 09:06:00',
-                'redirect_url' => '/instructor-area',
+                'redirect_url' => '/user_area/dashboard',
             ),
             2 => 
             array (
@@ -44,7 +44,7 @@ class RolesTableSeeder extends Seeder
                 'guard_name' => 'web',
                 'created_at' => '2025-02-03 09:06:05',
                 'updated_at' => '2025-02-03 09:06:05',
-                'redirect_url' => '/student-area',
+                'redirect_url' => '/user_area/dashboard',
             ),
         ));
         

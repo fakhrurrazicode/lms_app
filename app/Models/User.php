@@ -17,7 +17,7 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles, LogsActivity;
 
-    protected $with = ['cart'];
+    protected $with = ['cart', 'instructor_info'];
 
     protected $appends = ['photo_url', 'role_name'];
 
@@ -83,5 +83,10 @@ class User extends Authenticatable
     public function cart()
     {
         return $this->hasOne(Cart::class);
+    }
+
+    public function instructor_info()
+    {
+        return $this->hasOne(InstructorInfo::class);
     }
 }

@@ -739,6 +739,30 @@ class CourseSectionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
+            90 => 
+            array (
+                'id' => 91,
+                'course_id' => 32,
+                'title' => 'Section 1 Update',
+                'created_at' => '2025-03-25 21:09:20',
+                'updated_at' => '2025-03-26 21:11:42',
+            ),
+            91 => 
+            array (
+                'id' => 92,
+                'course_id' => 33,
+                'title' => 'Introductions',
+                'created_at' => '2025-04-12 02:52:06',
+                'updated_at' => '2025-04-12 02:52:06',
+            ),
+            92 => 
+            array (
+                'id' => 93,
+                'course_id' => 33,
+                'title' => 'Basic Structure and Components',
+                'created_at' => '2025-04-12 02:52:46',
+                'updated_at' => '2025-04-12 02:52:46',
+            ),
         ));
         
         

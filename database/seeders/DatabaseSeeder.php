@@ -45,5 +45,16 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CoursesTableSeeder::class);
         $this->call(CartsTableSeeder::class);
+        $this->call(CartItemsTableSeeder::class);
+        $this->call(CouponsTableSeeder::class);
+        $this->call(CourseReviewsTableSeeder::class);
+        $this->call(CourseTracksTableSeeder::class);
+        $this->call(EnrollmentsTableSeeder::class);
+        $this->call(MidtransNotificationLogsTableSeeder::class);
+        $this->call(OrderItemsTableSeeder::class);
+        $this->call(OrdersTableSeeder::class);
+        $this->call(PersonalAccessTokensTableSeeder::class);
+        $this->call(TaggablesTableSeeder::class);
+        $this->call(WishlistsTableSeeder::class);
     }
 }
