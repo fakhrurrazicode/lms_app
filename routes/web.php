@@ -23,6 +23,7 @@ use App\Http\Controllers\UserArea\EnrollmentController;
 use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
+use App\Http\Controllers\Backend\InstructorInfoController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
 use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
@@ -121,6 +122,10 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/permission', PermissionController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::put('/permission/{permission}/set-role', [PermissionController::class, 'setRole'])->name('role.set-role');
+
+        Route::resource('/instructor_info', InstructorInfoController::class)->only(['index', 'destroy']);
+        Route::put('/instructor_info/{instructor_info}/approve', [InstructorInfoController::class, 'approve'])->name('instructor_info.approve');
+        Route::put('/instructor_info/{instructor_info}/reject', [InstructorInfoController::class, 'reject'])->name('instructor_info.reject');
 
         Route::resource('/user', UserController::class);
         Route::get('/user/{user}/edit_password', [UserController::class, 'editPassword'])->name('user.edit_password');

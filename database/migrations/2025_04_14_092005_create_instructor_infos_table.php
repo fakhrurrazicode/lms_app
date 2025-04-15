@@ -16,7 +16,8 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->string('id_card');
             $table->text('bio');
-            $table->boolean('verified')->default(false);
+            $table->tinyInteger('status')->default(0); // 0 : pending, 1: accepted, 2: reject
+            $table->text('verification_message')->nullable();
             $table->timestamps();
         });
     }

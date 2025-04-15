@@ -254,7 +254,7 @@ export default function BackendLayout({ header, children }) {
                                 preserveState={true}
                             >
                                 <UserCheck size={16} />
-                                <span>Manage Roles</span>
+                                <span>Pengelolaan Roles</span>
                             </Link>
                         </li>
 
@@ -264,7 +264,7 @@ export default function BackendLayout({ header, children }) {
                                 className="flex justify-start items-center "
                             >
                                 <UserCheck size={16} />
-                                <span>Manage Permissions</span>
+                                <span>Pengelolaan Permissions</span>
                             </Link>
                         </li>
 
@@ -274,7 +274,17 @@ export default function BackendLayout({ header, children }) {
                                 className="flex justify-start items-center "
                             >
                                 <Users size={16} />
-                                <span>Manage Users</span>
+                                <span>Pengelolaan Users</span>
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link
+                                href="/backend/instructor_info"
+                                className="flex justify-start items-center "
+                            >
+                                <Users size={16} />
+                                <span>Pengelolaan Users Instruktur</span>
                             </Link>
                         </li>
 
@@ -284,7 +294,7 @@ export default function BackendLayout({ header, children }) {
                                 className="flex justify-start items-center "
                             >
                                 <LayoutList size={16} />
-                                <span>Manage Tag</span>
+                                <span>Pengelolaan Tag</span>
                             </Link>
                         </li>
 
@@ -294,7 +304,7 @@ export default function BackendLayout({ header, children }) {
                                 className="flex justify-start items-center "
                             >
                                 <LayoutList size={16} />
-                                <span>Manage Course Categories</span>
+                                <span>Pengelolaan Course Categories</span>
                             </Link>
                         </li>
 
@@ -304,7 +314,7 @@ export default function BackendLayout({ header, children }) {
                                 className="flex justify-start items-center "
                             >
                                 <LayoutList size={16} />
-                                <span>Manage Course Sub Categories</span>
+                                <span>Pengelolaan Course Sub Categories</span>
                             </Link>
                         </li> */}
 
@@ -314,7 +324,7 @@ export default function BackendLayout({ header, children }) {
                                 className="flex justify-start items-center "
                             >
                                 <LayoutList size={16} />
-                                <span>Manage Courses</span>
+                                <span>Pengelolaan Courses</span>
                             </Link>
                         </li>
 
