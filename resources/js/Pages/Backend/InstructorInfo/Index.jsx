@@ -276,15 +276,18 @@ export default function Index({ request, instructor_infos }) {
                                                                         ) => {
                                                                             e.preventDefault();
                                                                             confirm(
-                                                                                "Anda yakin ingin menghapus data " +
-                                                                                    instructor_info.id +
-                                                                                    "?"
+                                                                                "Anda yakin ingin menyetujui user " +
+                                                                                    instructor_info
+                                                                                        .user
+                                                                                        .name +
+                                                                                    " menjadi pengajar ?"
                                                                             )
-                                                                                ? router.delete(
+                                                                                ? router.put(
                                                                                       route(
-                                                                                          "backend.instructor_info.destroy",
+                                                                                          "backend.instructor_info.approve",
                                                                                           {
-                                                                                              user: instructor_info.id,
+                                                                                              instructor_info:
+                                                                                                  instructor_info,
                                                                                           }
                                                                                       ),
                                                                                       {
