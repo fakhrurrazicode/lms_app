@@ -60,6 +60,7 @@ class InstructorInfoController extends Controller
             'status' => 1,
         ]);
 
+        $instructor_info->user->syncRoles([]);
         $instructor_info->user->assignRole('instructor');
 
         return to_route('backend.instructor_info.index');

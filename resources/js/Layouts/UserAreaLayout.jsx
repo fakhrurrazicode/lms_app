@@ -15,6 +15,8 @@ import {
 import { Link, usePage } from "@inertiajs/react";
 export default function UserAreaLayout({ children }) {
     const { auth } = usePage().props;
+
+    console.log(auth);
     return (
         <FrontendLayout>
             <div className="mx-auto max-w-[100rem] space-y-6 sm:px-6 lg:px-8 py-12">

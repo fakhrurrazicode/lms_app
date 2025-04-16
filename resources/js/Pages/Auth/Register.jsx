@@ -5,6 +5,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { FaGoogle } from "react-icons/fa";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -157,20 +158,30 @@ export default function Register() {
                             />
                         </div>
 
-                        <div className="mt-4 flex items-center justify-end">
+                        <div className="mt-4 mb-6 flex items-center justify-end">
                             <Link
                                 href={route("login")}
                                 className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
                             >
                                 Already registered?
                             </Link>
+                        </div>
 
-                            <PrimaryButton
-                                className="ms-4 bg-secondary"
+                        <div className="flex flex-col gap-2">
+                            <button
+                                type="submit"
                                 disabled={processing}
+                                className="btn btn-primary"
                             >
-                                Register
-                            </PrimaryButton>
+                                Sign Up
+                            </button>
+                            <a
+                                href="/auth/google/redirect"
+                                disabled={processing}
+                                className="btn btn-neutral bg-white hover:bg-gray-300 text-base-300"
+                            >
+                                <FaGoogle /> <span>Sign Up with Google</span>
+                            </a>
                         </div>
                     </form>
                 </div>

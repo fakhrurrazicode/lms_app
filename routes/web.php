@@ -10,14 +10,15 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CourseController;
+
 use App\Http\Controllers\Backend\PermissionController;
 
 use App\Http\Controllers\UserArea\DashboardController;
-
 use App\Http\Controllers\Backend\ActivityLogController;
 use App\Http\Controllers\UserArea\EnrollmentController;
 use App\Http\Controllers\Backend\CourseLectureController;
@@ -25,16 +26,16 @@ use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\InstructorInfoController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\UserArea\BecomeInstructorController;
 use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
 use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
 use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
 use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
 use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseController;
-use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
-use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
-use App\Http\Controllers\UserArea\BecomeInstructorController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
+use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
+use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -53,7 +54,8 @@ Route::get('/course/{slug}', [PageController::class, 'course'])->name('course');
 
 // Route::get('/dashboard', function () {})->middleware(['auth', 'verified'])->name('dashboard');
 
-
+Route::get('/auth/google/redirect', [GoogleController::class, 'redirect']);
+Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 
 
 Route::middleware('auth')->group(function () {
