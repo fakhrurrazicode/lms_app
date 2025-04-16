@@ -180,7 +180,8 @@ export default function Register() {
                                 disabled={processing}
                                 className="btn btn-neutral bg-white hover:bg-gray-300 text-base-300"
                             >
-                                <FaGoogle /> <span>Sign Up with Google</span>
+                                <FaGoogle />{" "}
+                                <span>Login/Register with Google</span>
                             </a>
                         </div>
                     </form>

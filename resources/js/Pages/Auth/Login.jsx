@@ -117,14 +117,15 @@ export default function Login({ status, canResetPassword }) {
                                 disabled={processing}
                                 className="btn btn-primary"
                             >
-                                Sign In
+                                Login
                             </button>
                             <a
                                 href="/auth/google/redirect"
                                 disabled={processing}
                                 className="btn btn-neutral bg-white hover:bg-gray-300 text-base-300"
                             >
-                                <FaGoogle /> <span>Sign In with Google</span>
+                                <FaGoogle />{" "}
+                                <span>Login/Register with Google</span>
                             </a>
                         </div>
                     </form>
