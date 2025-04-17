@@ -48,8 +48,8 @@ use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCou
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
-Route::get('/become_an_instructor', [PageController::class, 'become_an_instructor'])->name('become_an_instructor');
-Route::get('/submit_become_an_instructor', [PageController::class, 'submit_become_an_instructor'])->name('submit_become_an_instructor');
+Route::get('/become_instructor', [PageController::class, 'become_instructor'])->name('become_instructor');
+Route::post('/submit_become_instructor', [PageController::class, 'submit_become_instructor'])->name('submit_become_instructor');
 Route::get('/course/{slug}', [PageController::class, 'course'])->name('course');
 
 // Route::get('/dashboard', function () {})->middleware(['auth', 'verified'])->name('dashboard');

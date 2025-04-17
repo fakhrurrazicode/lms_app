@@ -14,6 +14,8 @@ import { Bounce, ToastContainer } from "react-toastify";
 export default function FrontendLayout({ header, children }) {
     const { user, role, cart } = usePage().props.auth;
 
+    console.log(user, role);
+
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
@@ -50,6 +52,7 @@ export default function FrontendLayout({ header, children }) {
                         </label>
                     </div>
                 </header>
+
                 <nav className="border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800 shadow-lg">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex h-16 justify-between">
@@ -74,14 +77,35 @@ export default function FrontendLayout({ header, children }) {
                                         Kursus
                                     </NavLink>
 
-                                    <NavLink
-                                        href={route("become_an_instructor")}
-                                        active={route().current(
-                                            "become_an_instructor"
-                                        )}
-                                    >
-                                        Mendaftar Sebagai Instruktur
-                                    </NavLink>
+                                    {user ? (
+                                        role.name == "student" ? (
+                                            <NavLink
+                                                href={route(
+                                                    "user_area.become_instructor.create"
+                                                )}
+                                                active={route().current(
+                                                    "user_area.become_instructor.create"
+                                                )}
+                                            >
+                                                <span className="text-secondary">
+                                                    Ingin Menjadi Pengajar?
+                                                </span>
+                                            </NavLink>
+                                        ) : (
+                                            <></>
+                                        )
+                                    ) : (
+                                        <NavLink
+                                            href={route("become_instructor")}
+                                            active={route().current(
+                                                "become_instructor"
+                                            )}
+                                        >
+                                            <span className="text-secondary">
+                                                Ingin Menjadi Pengajar?
+                                            </span>
+                                        </NavLink>
+                                    )}
                                 </div>
                             </div>
 
@@ -350,38 +374,128 @@ export default function FrontendLayout({ header, children }) {
                     >
                         <div className="space-y-1 pb-3 pt-2">
                             <ResponsiveNavLink
-                                href={route("backend.dashboard")}
-                                active={route().current("backend.dashboard")}
+                                href={route("home")}
+                                active={route().current("home")}
                             >
-                                Dashboard
+                                Home
                             </ResponsiveNavLink>
-                        </div>
+                            <ResponsiveNavLink
+                                href={route("courses")}
+                                active={route().current("courses")}
+                            >
+                                Kursus
+                            </ResponsiveNavLink>
 
-                        <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
-                            <div className="px-4">
-                                <div className="text-base font-medium text-gray-800 dark:text-gray-200">
-                                    {/* {user.name} */}
-                                    user.name
-                                </div>
-                                <div className="text-sm font-medium text-gray-500">
-                                    {/* {user.email} */}
-                                    user.email
-                                </div>
-                            </div>
-
-                            <div className="mt-3 space-y-1">
-                                <ResponsiveNavLink href={route("profile.edit")}>
-                                    Profile
-                                </ResponsiveNavLink>
+                            {user ? (
+                                role.name == "student" ? (
+                                    <ResponsiveNavLink
+                                        href={route(
+                                            "user_area.become_instructor.create"
+                                        )}
+                                        active={route().current(
+                                            "user_area.become_instructor.create"
+                                        )}
+                                        className="text-secondary"
+                                    >
+                                        <span className="text-secondary">
+                                            Ingin Menjadi Pengajar?
+                                        </span>
+                                    </ResponsiveNavLink>
+                                ) : (
+                                    <></>
+                                )
+                            ) : (
                                 <ResponsiveNavLink
-                                    method="post"
-                                    href={route("logout")}
-                                    as="button"
+                                    href={route("become_instructor")}
+                                    active={route().current(
+                                        "become_instructor"
+                                    )}
+                                    className="text-secondary"
                                 >
-                                    Log Out
+                                    <span className="text-secondary">
+                                        Ingin Menjadi Pengajar?
+                                    </span>
                                 </ResponsiveNavLink>
-                            </div>
+                            )}
                         </div>
+
+                        {!user ? (
+                            <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
+                                <div className="mt-3 space-y-1">
+                                    <ResponsiveNavLink
+                                        href={route("login")}
+                                        active={route().current("login")}
+                                    >
+                                        Sign in
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink
+                                        href={route("register")}
+                                        active={route().current("register")}
+                                    >
+                                        Sign out
+                                    </ResponsiveNavLink>
+                                </div>
+                            </div>
+                        ) : (
+                            <></>
+                        )}
+
+                        {user ? (
+                            <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
+                                <div className="px-4">
+                                    <div className="text-base font-medium text-gray-800 dark:text-gray-200">
+                                        {user.name}
+                                    </div>
+                                    <div className="text-sm font-medium text-gray-500">
+                                        {user.email}
+                                    </div>
+                                </div>
+
+                                <div className="mt-3 space-y-1">
+                                    <ResponsiveNavLink
+                                        href={route("cart.index")}
+                                    >
+                                        Shopping Cart
+                                    </ResponsiveNavLink>
+
+                                    {role.name == "instructor" ||
+                                    role.name == "student" ? (
+                                        <ResponsiveNavLink
+                                            href={route("user_area.dashboard")}
+                                        >
+                                            Dashboard
+                                        </ResponsiveNavLink>
+                                    ) : (
+                                        <></>
+                                    )}
+
+                                    {role.name == "administrator" ? (
+                                        <ResponsiveNavLink
+                                            href={route("backend.dashboard")}
+                                        >
+                                            Dashboard
+                                        </ResponsiveNavLink>
+                                    ) : (
+                                        <></>
+                                    )}
+
+                                    <ResponsiveNavLink
+                                        href={route("user_area.profile.edit")}
+                                    >
+                                        Profile
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink
+                                        method="post"
+                                        href={route("logout")}
+                                        as="button"
+                                    >
+                                        Log Out
+                                    </ResponsiveNavLink>
+                                </div>
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                     </div>
                 </nav>
 

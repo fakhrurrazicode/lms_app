@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BecomeInstructorRequest extends FormRequest
@@ -21,9 +24,21 @@ class BecomeInstructorRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'id_card' => ['required', 'image'],
-            'bio' => ['required'],
-        ];
+
+        if (Auth::check()) {
+            return [
+                'id_card' => ['required', 'image'],
+                'bio' => ['required'],
+            ];
+        } else {
+            return [
+                'name' => 'required|string|max:255',
+                'username' => 'required|string|max:255',
+                'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+                'password' => ['required', 'confirmed', Password::defaults()],
+                'id_card' => ['required', 'image'],
+                'bio' => ['required'],
+            ];
+        }
     }
 }

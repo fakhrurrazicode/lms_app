@@ -124,7 +124,10 @@ export default function Login({ status, canResetPassword }) {
                                 disabled={processing}
                                 className="btn btn-neutral bg-white hover:bg-gray-300 text-base-300"
                             >
-                                <FaGoogle />{" "}
+                                <img
+                                    src="/images/google-icon-logo.svg"
+                                    className="w-6"
+                                />
                                 <span>Login/Register with Google</span>
                             </a>
                         </div>

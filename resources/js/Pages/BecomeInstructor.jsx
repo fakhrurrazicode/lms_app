@@ -8,7 +8,7 @@ import { FiArrowLeft, FiArrowRight, FiBookOpen } from "react-icons/fi";
 import { MdOutlineCheck } from "react-icons/md";
 import { RiTriangleLine } from "react-icons/ri";
 
-export default function BecomeAnInstructor({}) {
+export default function BecomeInstructor({}) {
     const { auth } = usePage().props;
 
     let formField = {
@@ -27,16 +27,44 @@ export default function BecomeAnInstructor({}) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        post("/page/submit_become_an_instructor", {
+        post(route("submit_become_instructor"), {
             // forceFormData: true,
             preserveScroll: true,
             preserveState: true,
         });
     };
 
+    const inputChangeHandler = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        setData(name, value);
+
+        switch (name) {
+            case "id_card":
+                const file = e.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        previewImageRef.current.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImageRef.current.classList.add("hidden");
+                    previewImageRef.current.src = "";
+                }
+
+                setData("id_card", file);
+                break;
+        }
+    };
+
     return (
         <FrontendLayout>
-            <Head title="BecomeAnInstructor" />
+            <Head title="BecomeInstructor" />
 
             <section id="hero" className="">
                 <div className="container mx-auto px-4">
@@ -45,7 +73,7 @@ export default function BecomeAnInstructor({}) {
                             <h6 className="font-semibold text-4xl mb-12 text-primary">
                                 Mendaftar Sebagai{" "}
                                 <span className="text-secondary font-bold">
-                                    Instruktur
+                                    Pengajar
                                 </span>
                             </h6>
                             <TiltElement className="relative mb-12 w-3/4 mx-auto">
@@ -57,55 +85,43 @@ export default function BecomeAnInstructor({}) {
                             </TiltElement>
 
                             <p className="mb-6">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Doloribus blanditiis officiis
-                                vero fugiat inventore voluptates sint magnam,
-                                accusantium cupiditate odio dolore ipsam ut,
-                                corrupti quisquam veritatis pariatur harum
-                                labore voluptatibus consectetur dolorem aliquid
-                                soluta.
+                                Selamat datang di aplikasi LMS! Sebagai
+                                instruktur, Anda dapat mendaftar untuk mengajar
+                                kursus online dan berbagi pengetahuan dengan
+                                siswa. Silakan isi form registrasi berikut untuk
+                                memulai:
                             </p>
 
                             <h6 className="text-xl font-bold mb-6 text-secondary">
-                                Instructor Rules
+                                Informasi Pribadi
                             </h6>
-                            <p className="mb-6">
-                                Various versions have evolved over the years,
-                                sometimes by accident, sometimes on purpose
-                                (injected humour and the like).
-                            </p>
 
                             <ul className="list-disc ml-6 mb-6">
                                 <li>
-                                    Basic knowledge and detailed understanding
-                                    of CSS3 to create.
+                                    Nama Lengkap: Masukkan nama lengkap Anda.
                                 </li>
-
+                                <li>Username : Masukkan username Anda</li>
                                 <li>
-                                    Details Idea about HTMLS, Creating Basic Web
-                                    Pages using HTMLS
+                                    Email: Masukkan alamat email Anda yang
+                                    aktif.
                                 </li>
-
+                                <li>Password : masukkan Password Anda</li>
                                 <li>
-                                    Web Page Layout Design and Slider Creation
+                                    Password Konfirmasi : Ulangi Password Anda{" "}
                                 </li>
-
-                                <li>Image Insert method af web site</li>
-
-                                <li>Creating Styling Web Pages Using CSS3</li>
+                                <li>
+                                    Biografi Kamu : Masukkan Tentang Biografi
+                                    Anda
+                                </li>
                             </ul>
 
                             <h6 className="text-xl text-secondary font-bold mb-6">
-                                Start With courses
+                                Tombol Registrasi
                             </h6>
 
                             <p>
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Numquam facilis inventore
-                                tempora maxime quibusdam cumque aperiam? Ducimus
-                                totam repellendus fugiat vel dolorum. Commodi,
-                                vel. Aliquid quia voluptas esse accusantium?
-                                Libero impedit, odit dolorum sint fugit error.
+                                Registrasi: Klik tombol "Registrasi" untuk
+                                menyelesaikan proses registrasi.
                             </p>
                         </div>
 
@@ -127,12 +143,7 @@ export default function BecomeAnInstructor({}) {
                                             placeholder="Nama"
                                             className="input input-bordered w-full"
                                             name="name"
-                                            onChange={(e) => {
-                                                setData(
-                                                    e.target.name,
-                                                    e.target.value
-                                                );
-                                            }}
+                                            onChange={inputChangeHandler}
                                             value={data.name}
                                         />
                                         {errors.name && (
@@ -154,12 +165,7 @@ export default function BecomeAnInstructor({}) {
                                             placeholder="Username"
                                             className="input input-bordered w-full"
                                             name="username"
-                                            onChange={(e) => {
-                                                setData(
-                                                    e.target.name,
-                                                    e.target.value
-                                                );
-                                            }}
+                                            onChange={inputChangeHandler}
                                             value={data.username}
                                         />
                                         {errors.username && (
@@ -182,12 +188,7 @@ export default function BecomeAnInstructor({}) {
                                             placeholder="Email"
                                             className="input input-bordered w-full"
                                             name="email"
-                                            onChange={(e) => {
-                                                setData(
-                                                    e.target.name,
-                                                    e.target.value
-                                                );
-                                            }}
+                                            onChange={inputChangeHandler}
                                             value={data.email}
                                         />
                                         {errors.email && (
@@ -210,12 +211,7 @@ export default function BecomeAnInstructor({}) {
                                             placeholder="Password"
                                             className="input input-bordered w-full"
                                             name="password"
-                                            onChange={(e) => {
-                                                setData(
-                                                    e.target.name,
-                                                    e.target.value
-                                                );
-                                            }}
+                                            onChange={inputChangeHandler}
                                             value={data.password}
                                         />
                                         {errors.password && (
@@ -238,12 +234,7 @@ export default function BecomeAnInstructor({}) {
                                             placeholder="Password Confirmation"
                                             className="input input-bordered w-full"
                                             name="password_confirmation"
-                                            onChange={(e) => {
-                                                setData(
-                                                    e.target.name,
-                                                    e.target.value
-                                                );
-                                            }}
+                                            onChange={inputChangeHandler}
                                             value={data.password_confirmation}
                                         />
                                         {errors.password_confirmation && (
@@ -252,6 +243,33 @@ export default function BecomeAnInstructor({}) {
                                                     {
                                                         errors.password_confirmation
                                                     }
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
+                                    <label className="form-control mb-6 col-span-12 md:col-span-4">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Upload KTP
+                                            </span>
+                                            <span className="label-text-alt">
+                                                JPG, JPEG, PNG
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="file"
+                                            className="file-input file-input-bordered"
+                                            name="id_card"
+                                            accept="image/*"
+                                            onChange={inputChangeHandler}
+                                            // value={data.image.toString()}
+                                        />
+
+                                        {errors.id_card && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.id_card}
                                                 </span>
                                             </div>
                                         )}
@@ -266,12 +284,18 @@ export default function BecomeAnInstructor({}) {
                                         <textarea
                                             className="textarea textarea-bordered h-24"
                                             placeholder="Bio"
-                                        ></textarea>
-                                        <div className="label">
-                                            <span className="label-text-alt">
-                                                Your bio
-                                            </span>
-                                        </div>
+                                            name="bio"
+                                            onChange={inputChangeHandler}
+                                        >
+                                            {data.bio}
+                                        </textarea>
+                                        {errors.bio && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.bio}
+                                                </span>
+                                            </div>
+                                        )}
                                     </label>
 
                                     <label
@@ -292,7 +316,7 @@ export default function BecomeAnInstructor({}) {
                                     </label>
                                     <div>
                                         <button className="btn btn-secondary w-full">
-                                            Update Info
+                                            Daftar Sebagai Pengajar
                                         </button>
                                     </div>
                                 </div>

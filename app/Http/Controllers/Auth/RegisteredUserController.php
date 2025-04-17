@@ -54,7 +54,6 @@ class RegisteredUserController extends Controller
         Storage::disk('public')->put($path, base64_decode(str_replace('data:image/png;base64,', '', $avatar)));
 
 
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

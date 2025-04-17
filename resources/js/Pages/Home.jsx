@@ -148,15 +148,9 @@ export default function Home({ latest_courses, course_categories }) {
                                             <div className="bg-indigo-500/20 p-2 group-hover:text-white group-hover:bg-indigo-500 transition-all">
                                                 <MdOutlineCheck />
                                             </div>
-                                            <p>Lorem Ipsum is simply dummy</p>
-                                        </div>
-                                        <div className="flex items-center gap-4 mb-6 group">
-                                            <div className="bg-indigo-500/20 p-2 group-hover:text-white group-hover:bg-indigo-500 transition-all">
-                                                <MdOutlineCheck />
-                                            </div>
                                             <p>
-                                                Explore a variety of fresh
-                                                educational teachy
+                                                Belajar dari pada ahli di
+                                                bidangnya
                                             </p>
                                         </div>
                                         <div className="flex items-center gap-4 mb-6 group">
@@ -164,8 +158,7 @@ export default function Home({ latest_courses, course_categories }) {
                                                 <MdOutlineCheck />
                                             </div>
                                             <p>
-                                                Lorem Ipsum is simply dummy text
-                                                of
+                                                Jelajahi berbagai jenis keahlian
                                             </p>
                                         </div>
                                     </div>
@@ -183,25 +176,28 @@ export default function Home({ latest_courses, course_categories }) {
                                     Course List
                                 </span>
                                 <h3 className="text-5xl md:text-size-35 2xl:text-size-38 3xl:text-size-42 leading-10 md:leading-45px 2xl:leading-50px 3xl:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                                    Populer{" "}
+                                    Kursus{" "}
                                     <span className="relative text-secondary">
-                                        Subjects
+                                        Terpopuler
                                     </span>
                                 </h3>
                             </div>
 
                             <div className="lg:col-star-5 lg:col-span-5">
                                 <p className="text-sm md:text-base text-gray-900 dark:text-white mb-[10px] 2xl:mb-[50px] 2xl:pl-[50px]">
-                                    Forging relationships between multi to
-                                    national governments and global NGOs begins.
+                                    Bergabung dan belajar bersama pengajar
+                                    terbaik di bidangnya
                                 </p>
                             </div>
                             <div className="lg:col-star-10 lg:col-span-3 flex lg:justify-end">
                                 <div>
-                                    <a className="btn btn-secondary" href="#">
-                                        All Catagories
+                                    <Link
+                                        className="btn btn-secondary"
+                                        href={route("courses")}
+                                    >
+                                        Semua Kategori
                                         <FiArrowRight />
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -214,7 +210,14 @@ export default function Home({ latest_courses, course_categories }) {
                                             <RiTriangleLine className="text-warning text-4xl absolute right-[15%] opacity-0 rotate-0 group-hover:opacity-80 group-hover:rotate-45 group-hover:transition-all duration-500 group-hover:ease-in-out" />
                                             <FiBookOpen className="text-primary text-3xl mb-4 group-hover:text-black transition-all ease-in-out duration-500" />
                                             <h3 className="text-xl font-bold text-inherit ">
-                                                <Link className="hover:text-secondary">
+                                                <Link
+                                                    href={route("courses", {
+                                                        course_category_ids: [
+                                                            course_category.id,
+                                                        ],
+                                                    })}
+                                                    className="hover:text-secondary"
+                                                >
                                                     {course_category.name}
                                                 </Link>
                                             </h3>
@@ -232,14 +235,11 @@ export default function Home({ latest_courses, course_categories }) {
 
             <section id="popular" className="py-32 dark:bg-slate-900">
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[30px] mb-[65px]">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[30px] mb-6">
                         <div className="lg:col-start-1 lg:col-span-4">
                             <span className="text-sm font-semibold text-primary bg-white px-6 py-[5px] mb-5 rounded-full inline-block">
-                                Course List
+                                Daftar Kursus
                             </span>
-                            <h3 className="text-5xl md:text-size-35 2xl:text-size-38 3xl:text-size-42 leading-10 md:leading-45px 2xl:leading-50px 3xl:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                                Perfect Online Course Your Carrer
-                            </h3>
                         </div>
 
                         <div className="lg:col-start-5 lg:col-span-5">
@@ -248,12 +248,20 @@ export default function Home({ latest_courses, course_categories }) {
 
                         <div className="lg:col-star-10 lg:col-span-3 flex lg:justify-end">
                             <div>
-                                <a className="btn btn-secondary" href="#">
+                                <Link
+                                    href={route("courses")}
+                                    className="btn btn-secondary"
+                                >
                                     Lihat Lebih Banyak
                                     <FiArrowRight />
-                                </a>
+                                </Link>
                             </div>
                         </div>
+                    </div>
+                    <div className="mb-16">
+                        <h3 className="text-5xl md:text-size-35 2xl:text-size-38 3xl:text-size-42 leading-10 md:leading-45px 2xl:leading-50px 3xl:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
+                            Kursus Online Terbaik untuk Karier Anda
+                        </h3>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">

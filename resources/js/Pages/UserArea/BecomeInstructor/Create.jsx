@@ -103,59 +103,45 @@ export default function Dashboard() {
                                 </TiltElement>
 
                                 <p className="mb-6">
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Doloribus blanditiis
-                                    officiis vero fugiat inventore voluptates
-                                    sint magnam, accusantium cupiditate odio
-                                    dolore ipsam ut, corrupti quisquam veritatis
-                                    pariatur harum labore voluptatibus
-                                    consectetur dolorem aliquid soluta.
+                                    Selamat datang di aplikasi LMS! Sebagai
+                                    instruktur, Anda dapat mendaftar untuk
+                                    mengajar kursus online dan berbagi
+                                    pengetahuan dengan siswa. Silakan isi form
+                                    registrasi berikut untuk memulai:
                                 </p>
 
                                 <h6 className="text-xl font-bold mb-6 text-secondary">
-                                    Instructor Rules
+                                    Informasi Pribadi
                                 </h6>
-                                <p className="mb-6">
-                                    Various versions have evolved over the
-                                    years, sometimes by accident, sometimes on
-                                    purpose (injected humour and the like).
-                                </p>
 
                                 <ul className="list-disc ml-6 mb-6">
                                     <li>
-                                        Basic knowledge and detailed
-                                        understanding of CSS3 to create.
+                                        Nama Lengkap: Masukkan nama lengkap
+                                        Anda.
                                     </li>
-
+                                    <li>Username : Masukkan username Anda</li>
                                     <li>
-                                        Details Idea about HTMLS, Creating Basic
-                                        Web Pages using HTMLS
+                                        Email: Masukkan alamat email Anda yang
+                                        aktif.
                                     </li>
-
+                                    <li>Password : masukkan Password Anda</li>
                                     <li>
-                                        Web Page Layout Design and Slider
-                                        Creation
+                                        Password Konfirmasi : Ulangi Password
+                                        Anda{" "}
                                     </li>
-
-                                    <li>Image Insert method af web site</li>
-
                                     <li>
-                                        Creating Styling Web Pages Using CSS3
+                                        Biografi Kamu : Masukkan Tentang
+                                        Biografi Anda
                                     </li>
                                 </ul>
 
                                 <h6 className="text-xl text-secondary font-bold mb-6">
-                                    Start With courses
+                                    Tombol Registrasi
                                 </h6>
 
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Numquam facilis inventore
-                                    tempora maxime quibusdam cumque aperiam?
-                                    Ducimus totam repellendus fugiat vel
-                                    dolorum. Commodi, vel. Aliquid quia voluptas
-                                    esse accusantium? Libero impedit, odit
-                                    dolorum sint fugit error.
+                                    Registrasi: Klik tombol "Registrasi" untuk
+                                    menyelesaikan proses registrasi.
                                 </p>
                             </div>
 
@@ -203,7 +189,9 @@ export default function Dashboard() {
                                                 placeholder="Bio"
                                                 name="bio"
                                                 onChange={inputChangeHandler}
-                                            ></textarea>
+                                            >
+                                                {data.bio}
+                                            </textarea>
                                             {errors.bio && (
                                                 <div className="label">
                                                     <span className="label-text-alt text-error">

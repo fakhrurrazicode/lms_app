@@ -14,16 +14,18 @@ class GoogleController extends Controller
 {
     public function redirect()
     {
-        return Socialite::driver('google')->stateless()->redirect();
+        return Socialite::driver('google')->with(['prompt' => 'select_account'])->redirect();
     }
 
     public function callback()
     {
-        $googleUser = Socialite::driver('google')->stateless()->user();
+        $googleUser = Socialite::driver('google')->with(['prompt' => 'select_account'])->user();
 
         $google_id = $googleUser->getId();
 
         $user = User::where('google_id', $google_id)->first();
+
+
         if (!$user) {
             $user = User::create(
                 [
