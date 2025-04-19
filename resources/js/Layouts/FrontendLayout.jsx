@@ -570,7 +570,13 @@ export default function FrontendLayout({ header, children }) {
                                     <ResponsiveNavLink
                                         href={route("cart.index")}
                                     >
-                                        Shopping Cart
+                                        Keranjang Belanja
+                                    </ResponsiveNavLink>
+
+                                    <ResponsiveNavLink
+                                        href={route("notification.index")}
+                                    >
+                                        Pemberitahuan
                                     </ResponsiveNavLink>
 
                                     {role.name == "instructor" ||
@@ -598,6 +604,12 @@ export default function FrontendLayout({ header, children }) {
                                         href={route("user_area.profile.edit")}
                                     >
                                         Profile
+                                    </ResponsiveNavLink>
+
+                                    <ResponsiveNavLink
+                                        href={route("user_area.wishlist.index")}
+                                    >
+                                        Wishlist
                                     </ResponsiveNavLink>
                                     <ResponsiveNavLink
                                         method="post"

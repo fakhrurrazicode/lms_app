@@ -42,7 +42,7 @@ export default function Index({ notifications }) {
                                         className="card bg-base-100 hover:bg-base-200 transition-all ease-in-out"
                                     >
                                         <div className="card-body py-6">
-                                            <div className="flex justify-between">
+                                            <div className="space-y-2 md:flex justify-between">
                                                 <div className="text-sm">
                                                     {notification.data.message}
                                                 </div>
@@ -66,8 +66,7 @@ export default function Index({ notifications }) {
                                         className="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 mb-8"
                                     />
                                     <p className="mb-6">
-                                        Keranjang Anda kosong. Teruskan belanja
-                                        untuk menemukan kursus!
+                                        Belum ada pemberitahuan
                                     </p>
 
                                     <div>
