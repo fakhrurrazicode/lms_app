@@ -5,8 +5,8 @@ import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link } from "@inertiajs/react";
 
 import React from "react";
-import { FaStar } from "react-icons/fa";
-import { FiArrowRight } from "react-icons/fi";
+import { FaHeart, FaShoppingCart, FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export default function Cart({ cart }) {
     return (
@@ -28,12 +28,155 @@ export default function Cart({ cart }) {
                             <div className="col-span-2">
                                 <div className="card bg-base-100">
                                     <div className="card-body">
-                                        {cart.items.map((item) => (
-                                            <CartItemCard
-                                                cartItem={item}
-                                                key={item.id}
-                                            />
-                                        ))}
+                                        {cart.items.map((item) => {
+                                            const course = item.itemable;
+                                            return (
+                                                <div className="flex gap-4 py-4 border-b-2 border-b-base-200">
+                                                    <div className="avatar w-20 lg:w-28 self-start">
+                                                        <div className="mask rounded-xl">
+                                                            <img
+                                                                className=""
+                                                                src={
+                                                                    course.image_url
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex-1">
+                                                        <h1 className="text-primary text-xs lg:text-lg font-semibold mb-2">
+                                                            <Link
+                                                                href={route(
+                                                                    "course",
+                                                                    {
+                                                                        slug: course.slug,
+                                                                    }
+                                                                )}
+                                                            >
+                                                                {course.title}
+                                                            </Link>
+                                                        </h1>
+                                                        <div>
+                                                            <div className="text-xs mb-2">
+                                                                Instructor:{" "}
+                                                                <span className="text-primary">
+                                                                    {
+                                                                        course
+                                                                            .instructor
+                                                                            .name
+                                                                    }
+                                                                </span>
+                                                            </div>
+
+                                                            <div className="text-xs mb-2 gap-2 flex flex-wrap">
+                                                                <Link
+                                                                    href={route(
+                                                                        "cart.add_to_wishlist"
+                                                                    )}
+                                                                    method="POST"
+                                                                    data={{
+                                                                        itemable_type:
+                                                                            item.itemable_type,
+                                                                        itemable_id:
+                                                                            item.itemable_id,
+                                                                        cart_id:
+                                                                            item.cart_id,
+                                                                    }}
+                                                                    onSuccess={() => {
+                                                                        toast.success(
+                                                                            "Berhasil di pindahkan ke wishlist"
+                                                                        );
+                                                                    }}
+                                                                    onError={() => {
+                                                                        toast.error(
+                                                                            "Gagal memindahkan ke wishlist"
+                                                                        );
+                                                                    }}
+                                                                    preserveScroll={
+                                                                        true
+                                                                    }
+                                                                    preserveState={
+                                                                        true
+                                                                    }
+                                                                    className="btn btn-secondary btn-xs"
+                                                                >
+                                                                    <FaHeart
+                                                                        size={
+                                                                            12
+                                                                        }
+                                                                    />
+                                                                    <span>
+                                                                        Pindahkan
+                                                                        ke
+                                                                        wishlist
+                                                                    </span>
+                                                                </Link>
+                                                                <Link
+                                                                    href={route(
+                                                                        "cart.destroy"
+                                                                    )}
+                                                                    method="DELETE"
+                                                                    data={{
+                                                                        itemable_type:
+                                                                            item.itemable_type,
+                                                                        itemable_id:
+                                                                            item.itemable_id,
+                                                                        cart_id:
+                                                                            item.cart_id,
+                                                                    }}
+                                                                    preserveScroll={
+                                                                        true
+                                                                    }
+                                                                    preserveState={
+                                                                        true
+                                                                    }
+                                                                    onSuccess={() => {
+                                                                        toast.success(
+                                                                            "Berhasil di hapus dari keranjang"
+                                                                        );
+                                                                    }}
+                                                                    className="btn btn-error btn-xs"
+                                                                >
+                                                                    <FaTrash
+                                                                        size={
+                                                                            12
+                                                                        }
+                                                                    />
+                                                                    <span>
+                                                                        Hapus
+                                                                    </span>
+                                                                </Link>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="w-1/8 self-center">
+                                                        {course.discount_percentage ? (
+                                                            <div className="block md:flex md:gap-2 justify-end items-center">
+                                                                <div className="text-primary font-bold">
+                                                                    {rupiah(
+                                                                        course.discounted_price
+                                                                    )}
+                                                                </div>
+
+                                                                <div className="text-xs line-through">
+                                                                    {rupiah(
+                                                                        course.price
+                                                                    )}
+                                                                </div>
+                                                            </div>
+                                                        ) : (
+                                                            <div>
+                                                                <span className="text-primary font-bold">
+                                                                    {rupiah(
+                                                                        course.price
+                                                                    )}
+                                                                </span>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             </div>
@@ -46,20 +189,13 @@ export default function Cart({ cart }) {
                                                     Total:
                                                 </h3>
                                                 <h1 className="text-3xl font-bold">
-                                                    {rupiah(cart.total_price)}
+                                                    {rupiah(
+                                                        cart.total_discounted_price
+                                                    )}
                                                 </h1>
                                                 <h3 className="line-through">
-                                                    {rupiah(
-                                                        cart.total_real_price
-                                                    )}
+                                                    {rupiah(cart.total_price)}
                                                 </h3>
-                                                <p>
-                                                    Diskon{" "}
-                                                    {
-                                                        cart.total_discount_percentage
-                                                    }
-                                                    %
-                                                </p>
                                             </div>
 
                                             <CheckoutButton />

@@ -6,10 +6,11 @@ import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { FaCartArrowDown, FaTimes } from "react-icons/fa";
+import { IoMdNotifications } from "react-icons/io";
 
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import file CSS AOS
-import { Bounce, ToastContainer } from "react-toastify";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 export default function FrontendLayout({ header, children }) {
     const { user, role, cart } = usePage().props.auth;
@@ -79,18 +80,7 @@ export default function FrontendLayout({ header, children }) {
 
                                     {user ? (
                                         role.name == "student" ? (
-                                            <NavLink
-                                                href={route(
-                                                    "user_area.become_instructor.create"
-                                                )}
-                                                active={route().current(
-                                                    "user_area.become_instructor.create"
-                                                )}
-                                            >
-                                                <span className="text-secondary">
-                                                    Ingin Menjadi Pengajar?
-                                                </span>
-                                            </NavLink>
+                                            <></>
                                         ) : (
                                             <></>
                                         )
@@ -145,6 +135,148 @@ export default function FrontendLayout({ header, children }) {
                                                         className="inline-flex relative items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
                                                     >
                                                         <FaCartArrowDown
+                                                            size={22}
+                                                        />
+                                                        <div className="badge badge-secondary scale-75 absolute -top-1 -right-6 z-50 ">
+                                                            {cart.items.length}
+                                                        </div>
+                                                    </button>
+                                                </span>
+                                            </Dropdown.Trigger>
+
+                                            <Dropdown.Content width="80">
+                                                {cart.items.length ? (
+                                                    <>
+                                                        <div>
+                                                            {cart.items.map(
+                                                                (item) => {
+                                                                    let itemable =
+                                                                        item.itemable;
+                                                                    return (
+                                                                        <div
+                                                                            key={
+                                                                                item.id
+                                                                            }
+                                                                            className="flex px-4 py-4 gap-4 relative hover:bg-base-100 transition-all ease-in-out"
+                                                                        >
+                                                                            <Link
+                                                                                className="absolute right-0 top-0 m-4"
+                                                                                href={route(
+                                                                                    "cart.destroy"
+                                                                                )}
+                                                                                method="DELETE"
+                                                                                preserveScroll={
+                                                                                    true
+                                                                                }
+                                                                                preserveState={
+                                                                                    true
+                                                                                }
+                                                                                data={{
+                                                                                    itemable_type:
+                                                                                        "App\\Models\\Course",
+                                                                                    itemable_id:
+                                                                                        itemable.id,
+                                                                                }}
+                                                                            >
+                                                                                <FaTimes className="text-error" />
+                                                                            </Link>
+                                                                            <div>
+                                                                                <Link
+                                                                                    href={route(
+                                                                                        "course",
+                                                                                        {
+                                                                                            slug: itemable.slug,
+                                                                                        }
+                                                                                    )}
+                                                                                >
+                                                                                    <div className="avatar w-20 lg:w-16 self-start">
+                                                                                        <div className="mask rounded-xl">
+                                                                                            <img
+                                                                                                src={
+                                                                                                    itemable.image_url
+                                                                                                }
+                                                                                            />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </Link>
+                                                                            </div>
+                                                                            <div className="col-span-2 pr-4">
+                                                                                <Link
+                                                                                    href={route(
+                                                                                        "course",
+                                                                                        {
+                                                                                            slug: itemable.slug,
+                                                                                        }
+                                                                                    )}
+                                                                                    className="text-primary font-bold"
+                                                                                >
+                                                                                    {
+                                                                                        itemable.title
+                                                                                    }
+                                                                                </Link>
+
+                                                                                <div>
+                                                                                    {itemable.discount_percentage ? (
+                                                                                        <>
+                                                                                            <span className="block">
+                                                                                                {rupiah(
+                                                                                                    itemable.discounted_price
+                                                                                                )}
+                                                                                            </span>
+
+                                                                                            <span className="block text-xs text-gray-500 font-semibold line-through">
+                                                                                                {rupiah(
+                                                                                                    itemable.price
+                                                                                                )}
+                                                                                            </span>
+                                                                                        </>
+                                                                                    ) : (
+                                                                                        <span className="block">
+                                                                                            {rupiah(
+                                                                                                itemable.price
+                                                                                            )}
+                                                                                        </span>
+                                                                                    )}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    );
+                                                                }
+                                                            )}
+                                                        </div>
+                                                        <Dropdown.Link
+                                                            href={route(
+                                                                "cart.index"
+                                                            )}
+                                                            as="button"
+                                                        >
+                                                            View Cart
+                                                        </Dropdown.Link>
+                                                    </>
+                                                ) : (
+                                                    <div className="px-[16px] py-[8px] flex flex-col items-center gap-4 border-b border-b-base-100/30">
+                                                        <img
+                                                            className="w-1/2 py-4"
+                                                            src="/images/undraw_empty-cart_574u.svg"
+                                                        />
+                                                        <p className="text-sm py-4">
+                                                            Keranjang Masih
+                                                            Kosong
+                                                        </p>
+                                                    </div>
+                                                )}
+                                            </Dropdown.Content>
+                                        </Dropdown>
+                                    </div>
+                                    <div className="relative ms-3">
+                                        <Dropdown>
+                                            <Dropdown.Trigger>
+                                                <span className="inline-flex rounded-md">
+                                                    <button
+                                                        type="button"
+                                                        className="inline-flex relative items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
+                                                    >
+                                                        <IoMdNotifications
                                                             size={22}
                                                         />
                                                         <div className="badge badge-secondary scale-75 absolute -top-1 -right-6 z-50 ">
@@ -388,19 +520,7 @@ export default function FrontendLayout({ header, children }) {
 
                             {user ? (
                                 role.name == "student" ? (
-                                    <ResponsiveNavLink
-                                        href={route(
-                                            "user_area.become_instructor.create"
-                                        )}
-                                        active={route().current(
-                                            "user_area.become_instructor.create"
-                                        )}
-                                        className="text-secondary"
-                                    >
-                                        <span className="text-secondary">
-                                            Ingin Menjadi Pengajar?
-                                        </span>
-                                    </ResponsiveNavLink>
+                                    <></>
                                 ) : (
                                     <></>
                                 )
@@ -432,7 +552,7 @@ export default function FrontendLayout({ header, children }) {
                                         href={route("register")}
                                         active={route().current("register")}
                                     >
-                                        Sign out
+                                        Sign up
                                     </ResponsiveNavLink>
                                 </div>
                             </div>

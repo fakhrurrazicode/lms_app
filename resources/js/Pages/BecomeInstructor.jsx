@@ -23,7 +23,8 @@ export default function BecomeInstructor({}) {
         formField.password_confirmation = "";
     }
 
-    const { data, setData, post, errors, reset } = useForm(formField);
+    const { data, setData, post, errors, reset, processing } =
+        useForm(formField);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -314,10 +315,24 @@ export default function BecomeInstructor({}) {
                                             </span>
                                         </span>
                                     </label>
-                                    <div>
+                                    <div className="flex flex-col gap-2">
                                         <button className="btn btn-secondary w-full">
                                             Daftar Sebagai Pengajar
                                         </button>
+                                        <a
+                                            href="/auth/google/redirect/1"
+                                            disabled={processing}
+                                            className="btn btn-neutral bg-white hover:bg-gray-300 text-base-300"
+                                        >
+                                            <img
+                                                src="/images/google-icon-logo.svg"
+                                                className="w-6"
+                                            />
+                                            <span>
+                                                Daftar Sebagai Pengajar dengan
+                                                Google
+                                            </span>
+                                        </a>
                                     </div>
                                 </div>
                             </form>

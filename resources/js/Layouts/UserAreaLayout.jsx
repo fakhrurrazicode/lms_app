@@ -19,7 +19,7 @@ export default function UserAreaLayout({ children }) {
     console.log(auth);
     return (
         <FrontendLayout>
-            <div className="mx-auto max-w-[100rem] space-y-6 sm:px-6 lg:px-8 py-12">
+            <div className="mx-auto max-w-[100rem] space-y-6 px-6 lg:px-8 py-12">
                 <div className="card shadow-lg bg-info text-white">
                     <div className="card-body">
                         <div className="block md:flex justify-between items-center">
@@ -60,7 +60,7 @@ export default function UserAreaLayout({ children }) {
                                         </Link>
                                     </li>
 
-                                    <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                    {/* <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                         <a
                                             href=""
                                             className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
@@ -68,7 +68,7 @@ export default function UserAreaLayout({ children }) {
                                             <FiMessageSquare />
                                             <span>Pesan</span>
                                         </a>
-                                    </li>
+                                    </li> */}
                                     <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                         <Link
                                             href={route(

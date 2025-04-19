@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,8 +26,8 @@ class RegisteredUserController extends Controller
     public function create(): Response
     {
         return Inertia::render('Auth/Register', [
-            // 'canResetPassword' => Route::has('password.request'),
-            // 'status' => session('status'),
+            'canResetPassword' => Route::has('password.request'),
+            'status' => session('status'),
         ]);
     }
 

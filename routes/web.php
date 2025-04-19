@@ -46,6 +46,8 @@ use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCou
 //     ]);
 // });
 
+
+
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
 Route::get('/become_instructor', [PageController::class, 'become_instructor'])->name('become_instructor');
@@ -54,29 +56,37 @@ Route::get('/course/{slug}', [PageController::class, 'course'])->name('course');
 
 // Route::get('/dashboard', function () {})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/auth/google/redirect', [GoogleController::class, 'redirect']);
+Route::get('/auth/google/redirect/{as_instructor?}', [GoogleController::class, 'redirect']);
 Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 
 
-Route::middleware('auth')->group(function () {
+
+
+Route::middleware(['auth'])->group(function () {
+
+
 
     Route::resource('/cart', CartController::class)->only(['index', 'store']);
     Route::delete('/cart', [CartController::class, 'destroy'])->name('cart.destroy');
     Route::delete('/cart/empty', [CartController::class, 'empty_cart'])->name('cart.empty');
-
-    // Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
-    Route::post('/midtrans/token', [PaymentController::class, 'token'])->name('midtrans.token');
-
-    Route::get('/payment/finish', [PaymentController::class, 'finish'])->name('payment.finish');
-    Route::get('/payment/unfinish', [PaymentController::class, 'unfinish'])->name('payment.unfinish');
-    Route::get('/payment/error', [PaymentController::class, 'error'])->name('payment.error');
+    Route::post('/cart/add_to_wishlist', [CartController::class, 'add_to_wishlist'])->name('cart.add_to_wishlist');
 
     Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 
+    // Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+    Route::post('/midtrans/token', [PaymentController::class, 'token'])->name('midtrans.token')->middleware('verified');
+
+    Route::get('/payment/finish', [PaymentController::class, 'finish'])->name('payment.finish')->middleware('verified');
+    Route::get('/payment/unfinish', [PaymentController::class, 'unfinish'])->name('payment.unfinish')->middleware('verified');
+    Route::get('/payment/error', [PaymentController::class, 'error'])->name('payment.error')->middleware('verified');
+
+
+
     Route::group(['prefix' => '/user_area', 'as' => 'user_area.'], function () {
+
         Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-        Route::resource('/become_instructor', BecomeInstructorController::class)->only(['create', 'store']);
+        Route::resource('/become_instructor', BecomeInstructorController::class)->only(['create', 'store'])->middleware('verified');;
 
         Route::resource('/wishlist', UserAreaWishlistController::class);
         Route::post('/wishlist/{wishlist}/add_to_cart', [UserAreaWishlistController::class, 'add_to_cart'])->name('wishlist.add-to-cart');
@@ -88,6 +98,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/profile', [UserAreaProfileController::class, 'destroy'])->name('profile.destroy');
 
         Route::resource('/enrollment', EnrollmentController::class);
+        // ->middleware('verified');
 
         Route::resource('/course', UserAreaCourseController::class)->except(['update']);
         Route::post('/course/{course}', [UserAreaCourseController::class, 'update'])->name('course.update');

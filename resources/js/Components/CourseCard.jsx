@@ -123,10 +123,10 @@ export default function CourseCard({ course }) {
                         {course.discount_percentage ? (
                             <>
                                 <span className="text-primary">
-                                    {rupiah(course.price)}
+                                    {rupiah(course.discounted_price)}
                                 </span>{" "}
                                 <span className="text-gray-400 line-through">
-                                    / {rupiah(course.real_price)}
+                                    / {rupiah(course.price)}
                                 </span>
                             </>
                         ) : (

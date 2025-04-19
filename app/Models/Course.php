@@ -27,9 +27,9 @@ class Course extends BaseModel implements Cartable
         'average_stars',
         'is_on_wishlist',
         'enrolled',
+        'discounted_price',
         'course_section_count',
         'course_lecture_count',
-        'real_price',
         'feature_course_lecture',
         'enrollment_count',
         'progress_percentage',
@@ -43,17 +43,9 @@ class Course extends BaseModel implements Cartable
         return $this->price;
     }
 
-    public function getPriceAttribute(): float
+    public function getDiscountedPriceAttribute()
     {
-        if ($this->attributes['discount_percentage']) {
-            return $this->attributes['price'] - ($this->attributes['price'] * ($this->attributes['discount_percentage'] / 100));
-        }
-        return $this->attributes['price'];
-    }
-
-    public function getRealPriceAttribute()
-    {
-        return $this->attributes['price'];
+        return $this->discount_percentage ? $this->price - ($this->price * ($this->discount_percentage / 100)) : $this->price;
     }
 
     public function getImageUrlAttribute()

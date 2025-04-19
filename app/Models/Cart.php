@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends BaseCart
 {
 
-    public $appends = ['total_price', 'total_real_price', 'total_discount_percentage'];
+    public $appends = ['total_price', 'total_discounted_price', 'total_discount_percentage'];
     /**
      * Relation one-to-many, CartItem model.
      */
@@ -35,23 +35,22 @@ class Cart extends BaseCart
         return $total_price;
     }
 
-    public function getTotalRealPriceAttribute()
+    public function getTotalDiscountedPriceAttribute()
     {
-        $total_real_price = 0;
+        $total_discounted_price = 0;
         $items = $this->items;
 
-
         foreach ($items as $item) {
-            $total_real_price += $item->itemable->real_price * $item->quantity;
+            $total_discounted_price += $item->itemable->discounted_price * $item->quantity;
         }
 
-        return $total_real_price;
+        return $total_discounted_price;
     }
 
     public function getTotalDiscountPercentageAttribute()
     {
-        if ($this->total_real_price) {
-            return round((($this->total_real_price - $this->total_price) / $this->total_real_price) * 100, 2);
+        if ($this->total_discounted_price) {
+            return round((($this->total_discounted_price - $this->total_price) / $this->total_discounted_price) * 100, 2);
         } else {
             return 0;
         }

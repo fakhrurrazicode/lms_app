@@ -12,6 +12,8 @@ use App\Http\Requests\InstructorInfoStoreRequest;
 use App\Http\Requests\InstructorInfoRejectRequest;
 use App\Http\Requests\InstructorInfoUpdateRequest;
 use App\Http\Requests\InstructorInfoVerifyRequest;
+use App\Notifications\BecomeInstructorRejected;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
@@ -80,6 +82,7 @@ class InstructorInfoController extends Controller
             $instructor_info->user->removeRole('instructor');
         }
 
+        $instructor_info->user->notify(new BecomeInstructorRejected($instructor_info));
 
         return to_route('backend.instructor_info.index');
     }

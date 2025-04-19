@@ -202,16 +202,26 @@ export default function Course() {
                                         <span>Enrolled</span>
                                     </div>
                                 ) : (
-                                    <div className="text-xl font-medium text-primary leading-[25px]">
-                                        <span>{rupiah(course.price)}</span>
+                                    <>
                                         {course.discount_percentage ? (
-                                            <del className="text-sm text-gray-500 font-semibold">
-                                                / {rupiah(course.real_price)}
-                                            </del>
+                                            <div className="text-xl font-bold text-primary leading-[25px]">
+                                                <span>
+                                                    {rupiah(
+                                                        course.discounted_price
+                                                    )}
+                                                </span>
+                                                <del className="text-sm text-gray-500 font-semibold">
+                                                    / {rupiah(course.price)}
+                                                </del>
+                                            </div>
                                         ) : (
-                                            <></>
+                                            <div className="text-3xl font-bold text-primary leading-[25px]">
+                                                <span>
+                                                    {rupiah(course.price)}
+                                                </span>
+                                            </div>
                                         )}
-                                    </div>
+                                    </>
                                 )}
 
                                 <div className="flex items-center gap-2">
@@ -581,25 +591,38 @@ export default function Course() {
                                         <span>Enrolled</span>
                                     </div>
                                 ) : (
-                                    <div className=" mb-6 flex justify-between">
-                                        <div className="text-xl font-bold text-primary leading-[25px]">
-                                            <span>{rupiah(course.price)}</span>{" "}
-                                            {course.discount_percentage ? (
-                                                <span className="text-sm text-gray-500 font-semibold line-through">
-                                                    /{" "}
-                                                    {rupiah(course.real_price)}
-                                                </span>
-                                            ) : (
-                                                <></>
-                                            )}
-                                        </div>
-                                        <div>
-                                            <span className="bg-secondary text-xs rounded-full px-3 py-1 text-white">
-                                                {course.discount_percentage}%
-                                                OFF
-                                            </span>
-                                        </div>
-                                    </div>
+                                    <>
+                                        {course.discount_percentage ? (
+                                            <div className="mb-6 flex justify-between">
+                                                <div className="text-xl font-bold text-primary leading-[25px]">
+                                                    <span>
+                                                        {rupiah(
+                                                            course.discounted_price
+                                                        )}
+                                                    </span>{" "}
+                                                    <span className="text-sm text-gray-500 font-semibold line-through">
+                                                        / {rupiah(course.price)}
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span className="bg-secondary text-xs rounded-full px-3 py-1 text-white">
+                                                        {
+                                                            course.discount_percentage
+                                                        }
+                                                        % OFF
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div className="mb-6 flex justify-between">
+                                                <div className="text-3xl font-bold text-primary leading-[25px]">
+                                                    <span>
+                                                        {rupiah(course.price)}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </>
                                 )}
 
                                 {auth.user ? (

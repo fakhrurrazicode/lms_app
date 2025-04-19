@@ -6,6 +6,7 @@ use App\Models\Cart;
 
 use Inertia\Inertia;
 use App\Models\CartItem;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -76,18 +77,18 @@ class CartController extends Controller
      */
     public function destroy(Request $request)
     {
-        // return $request->all();
+
         $cart = Cart::query()->firstOrCreate(['user_id' => Auth::user()->id]);
-        CartItem::where([
+        $cart_item = CartItem::where([
             'itemable_type' => $request->itemable_type,
             'itemable_id' => $request->itemable_id,
             'cart_id' => $cart->id,
         ])->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Berhasil dihapus dari keranjang belanja'
-        ]);
+        // return response()->json([
+        //     'status' => true,
+        //     'message' => 'Berhasil dihapus dari keranjang belanja'
+        // ]);
     }
 
     public function empty_cart()
@@ -99,5 +100,22 @@ class CartController extends Controller
             'status' => true,
             'message' => 'Keranjang belanja berhasil di kosongkan',
         ]);
+    }
+
+    public function add_to_wishlist(Request $request)
+    {
+        $cart = Cart::query()->firstOrCreate(['user_id' => Auth::user()->id]);
+
+        Wishlist::create([
+            'user_id' => Auth::user()->id,
+            'wishlistable_type' => $request->itemable_type,
+            'wishlistable_id' => $request->itemable_id,
+        ]);
+
+        $cart_item = CartItem::where([
+            'itemable_type' => $request->itemable_type,
+            'itemable_id' => $request->itemable_id,
+            'cart_id' => $cart->id,
+        ])->delete();
     }
 }

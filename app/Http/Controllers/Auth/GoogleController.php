@@ -12,8 +12,11 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
-    public function redirect()
+    public function redirect($as_instructor = 0)
     {
+
+        session(['as_instructor' => $as_instructor]);
+
         return Socialite::driver('google')->with(['prompt' => 'select_account'])->redirect();
     }
 
@@ -43,6 +46,11 @@ class GoogleController extends Controller
         }
 
         Auth::login($user);
-        return redirect(route('home', absolute: false));
+
+        if (session('as_instructor', 0)) {
+            return redirect(route('user_area.become_instructor.create', absolute: false));
+        } else {
+            return redirect(route('home', absolute: false));
+        }
     }
 }

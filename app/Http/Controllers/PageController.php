@@ -74,9 +74,6 @@ class PageController extends Controller
         ])->firstOrFail();
 
         // return $course;
-
-
-        // return $course;
         return Inertia::render('Course', compact('course'));
     }
 
