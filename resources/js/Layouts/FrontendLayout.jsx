@@ -357,7 +357,9 @@ export default function FrontendLayout({ header, children }) {
                                                     </div>
                                                 )}
                                                 <Dropdown.Link
-                                                    href={route("cart.index")}
+                                                    href={route(
+                                                        "notification.index"
+                                                    )}
                                                     as="button"
                                                     className="!text-center bg-secondary hover:!bg-secondary/80 !text-white text-xs font-bold"
                                                 >

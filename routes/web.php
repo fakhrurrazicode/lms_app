@@ -81,6 +81,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/unfinish', [PaymentController::class, 'unfinish'])->name('payment.unfinish')->middleware('verified');
     Route::get('/payment/error', [PaymentController::class, 'error'])->name('payment.error')->middleware('verified');
 
+    Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index')->middleware('verified');
     Route::get('/notification/open_notification/{notification}', [NotificationController::class, 'open_notification'])->name('notification.open_notification')->middleware('verified');
 
 
