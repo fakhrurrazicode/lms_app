@@ -29,7 +29,7 @@ class BecomeInstructorRejected extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database', 'email'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -41,7 +41,7 @@ class BecomeInstructorRejected extends Notification
             ->greeting('Hello!')
             ->line('Pengajuanmu untuk menjadi pengajar telah di setujui. dengan alasan:')
             ->line($this->instructor_info->verification_message)
-            ->action('Lanjutkan', url('/'))
+            ->action('Lanjutkan', route('user_area.become_instructor.status'))
             ->line('Terima kasih telah menggunakan guruteknik.com');
     }
 
@@ -54,7 +54,7 @@ class BecomeInstructorRejected extends Notification
     {
         return [
             'message' => 'Pengajuanmu untuk menjadi pengajar telah di tolak',
-            'action_url' => route('user_area.become_instructor.create'),
+            'action_url' => route('user_area.become_instructor.status'),
         ];
     }
 }

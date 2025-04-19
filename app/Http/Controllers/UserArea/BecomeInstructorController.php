@@ -15,15 +15,45 @@ class BecomeInstructorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
+    public function index()
+    {
+
+        $user = Auth::user();
+        $instructor_info = $user->instructor_info;
+
+        if ($instructor_info) {
+            if ($instructor_info->status === 1) {
+                return to_route('user_area.become_instructor.approved');
+            }
+        } else {
+            return Inertia::render('UserArea/BecomeInstructor/Create');
+            switch ($instructor_info->status) {
+                case 0:
+                    return to_route('user_area.become_instructor.pending');
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+                    return Inertia::render('UserArea/BecomeInstructor/Create');
+                    break;
+            }
+        }
+    }
+
+    public function status()
+    {
+        $user = Auth::user();
+        $instructor_info = $user->instructor_info;
+        return Inertia::render('UserArea/BecomeInstructor/Status', [
+            'instructor_info' => $instructor_info
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return Inertia::render('UserArea/BecomeInstructor/Create');
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.

@@ -138,7 +138,7 @@ export default function UserAreaLayout({ children }) {
                                         <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
                                             <Link
                                                 href={route(
-                                                    "user_area.become_instructor.create"
+                                                    "user_area.become_instructor.index"
                                                 )}
                                                 className="text-primary dark:text-secondary leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                             >

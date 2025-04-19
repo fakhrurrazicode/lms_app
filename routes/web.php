@@ -86,7 +86,11 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-        Route::resource('/become_instructor', BecomeInstructorController::class)->only(['create', 'store'])->middleware('verified');;
+        Route::resource('/become_instructor', BecomeInstructorController::class)->only(['index'])->middleware('verified');
+        Route::get('/become_instructor/status', [BecomeInstructorController::class, 'status'])->name('become_instructor.status');
+        // Route::get('/become_instructor/pending', [BecomeInstructorController::class, 'pending'])->name('become_instructor.pending');
+        // Route::get('/become_instructor/approved', [BecomeInstructorController::class, 'approved'])->name('become_instructor.approved');
+        // Route::get('/become_instructor/reject', [BecomeInstructorController::class, 'reject'])->name('become_instructor.reject');
 
         Route::resource('/wishlist', UserAreaWishlistController::class);
         Route::post('/wishlist/{wishlist}/add_to_cart', [UserAreaWishlistController::class, 'add_to_cart'])->name('wishlist.add-to-cart');

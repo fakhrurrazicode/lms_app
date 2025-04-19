@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
             $table->string('code');
             $table->string('discount');
             $table->boolean('status')->default(false);
+            $table->integer('usage_limits')->nullable(); // null arti nya unlimitted
             $table->timestamps();
         });
     }

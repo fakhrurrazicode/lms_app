@@ -75,7 +75,7 @@ export default function FrontendLayout({ header, children }) {
                                         href={route("courses")}
                                         active={route().current("courses")}
                                     >
-                                        Kursus
+                                        Daftar Kursus
                                     </NavLink>
 
                                     {user ? (
@@ -441,6 +441,13 @@ export default function FrontendLayout({ header, children }) {
                                                     Profile
                                                 </Dropdown.Link>
                                                 <Dropdown.Link
+                                                    href={route(
+                                                        "user_area.wishlist.index"
+                                                    )}
+                                                >
+                                                    Wishlist
+                                                </Dropdown.Link>
+                                                <Dropdown.Link
                                                     href={route("logout")}
                                                     method="post"
                                                     as="button"
@@ -515,7 +522,7 @@ export default function FrontendLayout({ header, children }) {
                                 href={route("courses")}
                                 active={route().current("courses")}
                             >
-                                Kursus
+                                Daftar Kursus
                             </ResponsiveNavLink>
 
                             {user ? (

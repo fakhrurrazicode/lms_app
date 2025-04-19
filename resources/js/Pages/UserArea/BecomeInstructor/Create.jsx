@@ -6,7 +6,7 @@ import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import React from "react";
 import { FiCheckSquare, FiClock } from "react-icons/fi";
 
-export default function Dashboard() {
+export default function Create() {
     const { auth } = usePage().props;
 
     console.log("auth", auth);
