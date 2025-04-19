@@ -37,6 +37,12 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
                 'role' => Auth::check() ? Auth::user()->roles[0] : null,
                 'cart' => Auth::check() ? Cart::query()->firstOrCreate(['user_id' => $request->user()->id]) : null,
+                'unread_notifications_count' => Auth::check()
+                    ? Auth::user()->unreadNotifications->count()
+                    : 0,
+                'unread_notifications' => Auth::check()
+                    ? Auth::user()->unreadNotifications
+                    : [],
             ],
         ];
     }

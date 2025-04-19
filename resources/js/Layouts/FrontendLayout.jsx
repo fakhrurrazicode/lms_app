@@ -11,9 +11,20 @@ import { IoMdNotifications } from "react-icons/io";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import file CSS AOS
 import { Bounce, toast, ToastContainer } from "react-toastify";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
 
 export default function FrontendLayout({ header, children }) {
-    const { user, role, cart } = usePage().props.auth;
+    console.log("usePage().props.auth", usePage().props.auth);
+    const {
+        user,
+        role,
+        cart,
+        unread_notifications,
+        unread_notifications_count,
+    } = usePage().props.auth;
 
     console.log(user, role);
 
@@ -137,7 +148,7 @@ export default function FrontendLayout({ header, children }) {
                                                         <FaCartArrowDown
                                                             size={22}
                                                         />
-                                                        <div className="badge badge-secondary scale-75 absolute -top-1 -right-6 z-50 ">
+                                                        <div className="badge badge-primary scale-75 absolute -top-1 -right-6 z-50 ">
                                                             {cart.items.length}
                                                         </div>
                                                     </button>
@@ -249,6 +260,7 @@ export default function FrontendLayout({ header, children }) {
                                                                 "cart.index"
                                                             )}
                                                             as="button"
+                                                            className="!text-center bg-primary hover:!bg-primary/80 !text-white text-xs font-bold"
                                                         >
                                                             View Cart
                                                         </Dropdown.Link>
@@ -280,102 +292,65 @@ export default function FrontendLayout({ header, children }) {
                                                             size={22}
                                                         />
                                                         <div className="badge badge-secondary scale-75 absolute -top-1 -right-6 z-50 ">
-                                                            {cart.items.length}
+                                                            {
+                                                                unread_notifications_count
+                                                            }
                                                         </div>
                                                     </button>
                                                 </span>
                                             </Dropdown.Trigger>
 
                                             <Dropdown.Content width="80">
-                                                <div>
-                                                    {cart.items.map((item) => {
-                                                        let itemable =
-                                                            item.itemable;
-                                                        return (
-                                                            <div
-                                                                key={item.id}
-                                                                className="grid grid-cols-3 px-4 py-4 gap-4 relative hover:bg-base-100 transition-all ease-in-out"
-                                                            >
-                                                                <Link
-                                                                    className="absolute right-0 top-0 m-4"
-                                                                    href={route(
-                                                                        "cart.destroy"
-                                                                    )}
-                                                                    method="DELETE"
-                                                                    preserveScroll={
-                                                                        true
-                                                                    }
-                                                                    preserveState={
-                                                                        true
-                                                                    }
-                                                                    data={{
-                                                                        itemable_type:
-                                                                            "App\\Models\\Course",
-                                                                        itemable_id:
-                                                                            itemable.id,
-                                                                    }}
-                                                                >
-                                                                    <FaTimes className="text-error" />
-                                                                </Link>
-                                                                <div>
-                                                                    <Link
-                                                                        href={route(
-                                                                            "course",
-                                                                            {
-                                                                                slug: itemable.slug,
+                                                {unread_notifications.length ? (
+                                                    <>
+                                                        <div className="divide-y-2 divide-gray-800/30">
+                                                            {unread_notifications.map(
+                                                                (
+                                                                    notification
+                                                                ) => {
+                                                                    return (
+                                                                        <div
+                                                                            key={
+                                                                                notification.id
                                                                             }
-                                                                        )}
-                                                                    >
-                                                                        <img
-                                                                            src={
-                                                                                itemable.image_url
-                                                                            }
-                                                                        />
-                                                                    </Link>
-                                                                </div>
-                                                                <div className="col-span-2 pr-4">
-                                                                    <Link
-                                                                        href={route(
-                                                                            "course",
-                                                                            {
-                                                                                slug: itemable.slug,
-                                                                            }
-                                                                        )}
-                                                                        className="text-primary font-bold"
-                                                                    >
-                                                                        {
-                                                                            itemable.title
-                                                                        }
-                                                                    </Link>
-
-                                                                    <div>
-                                                                        <span className="block">
-                                                                            {rupiah(
-                                                                                itemable.price
-                                                                            )}
-                                                                        </span>
-                                                                        {itemable.discount_percentage ? (
-                                                                            <span className="block text-xs text-gray-500 font-semibold line-through">
-                                                                                {rupiah(
-                                                                                    itemable.real_price
-                                                                                )}
-                                                                            </span>
-                                                                        ) : (
-                                                                            <>
-
-                                                                            </>
-                                                                        )}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
+                                                                            className=" flex px-4 py-2 text-xs gap-4 relative hover:bg-base-100 transition-all ease-in-out"
+                                                                        >
+                                                                            <Link
+                                                                                href={
+                                                                                    notification
+                                                                                        .data
+                                                                                        .action_url
+                                                                                }
+                                                                                className="space-y-1"
+                                                                            >
+                                                                                <div className="font-bold">
+                                                                                    {
+                                                                                        notification
+                                                                                            .data
+                                                                                            .message
+                                                                                    }
+                                                                                </div>
+                                                                                <div>
+                                                                                    {dayjs(
+                                                                                        notification.created_at
+                                                                                    ).fromNow()}
+                                                                                </div>
+                                                                            </Link>
+                                                                        </div>
+                                                                    );
+                                                                }
+                                                            )}
+                                                        </div>
+                                                    </>
+                                                ) : (
+                                                    <></>
+                                                )}
                                                 <Dropdown.Link
                                                     href={route("cart.index")}
                                                     as="button"
+                                                    className="!text-center bg-secondary hover:!bg-secondary/80 !text-white text-xs font-bold"
                                                 >
-                                                    View Cart
+                                                    View All Notification
                                                 </Dropdown.Link>
                                             </Dropdown.Content>
                                         </Dropdown>
