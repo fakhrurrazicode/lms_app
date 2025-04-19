@@ -41,11 +41,6 @@ class CartController extends Controller
             1,
             Auth::user()->id
         );
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Berhasil ditambahkan ke keranjang belanja'
-        ]);
     }
 
     /**

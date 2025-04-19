@@ -653,36 +653,68 @@ export default function Course() {
                                                     course,
                                                     auth.cart
                                                 ) ? (
-                                                    <button
-                                                        className="btn flex justify-center items-center btn-primary w-full mb-3"
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            addToCartHandler(
-                                                                course.id
+                                                    <Link
+                                                        href={route(
+                                                            "cart.store"
+                                                        )}
+                                                        data={{
+                                                            itemable_type:
+                                                                "App\\Models\\Course",
+                                                            itemable_id:
+                                                                course.id,
+                                                        }}
+                                                        method="POST"
+                                                        onSuccess={() => {
+                                                            toast.success(
+                                                                "Berhasil di tambahkan ke keranjang"
                                                             );
                                                         }}
+                                                        onError={() => {
+                                                            toast.error(
+                                                                "Gagal menambahkan ke keranjang"
+                                                            );
+                                                        }}
+                                                        preserveScroll={true}
+                                                        preserveState={true}
+                                                        className="btn flex justify-center items-center btn-primary w-full mb-3"
                                                     >
                                                         <FaCartPlus />
                                                         <span>
                                                             Tambahkan ke
                                                             keranjang
                                                         </span>
-                                                    </button>
+                                                    </Link>
                                                 ) : (
-                                                    <button
-                                                        className="btn flex justify-center items-center btn-error w-full mb-3"
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            removeFromCartHandler(
-                                                                course.id
+                                                    <Link
+                                                        href={route(
+                                                            "cart.destroy"
+                                                        )}
+                                                        data={{
+                                                            itemable_type:
+                                                                "App\\Models\\Course",
+                                                            itemable_id:
+                                                                course.id,
+                                                        }}
+                                                        method="DELETE"
+                                                        onSuccess={() => {
+                                                            toast.success(
+                                                                "Berhasil di hapus dari keranjang"
                                                             );
                                                         }}
+                                                        onError={() => {
+                                                            toast.error(
+                                                                "Gagal menghapus dari keranjang"
+                                                            );
+                                                        }}
+                                                        preserveScroll={true}
+                                                        preserveState={true}
+                                                        className="btn flex justify-center items-center btn-error w-full mb-3"
                                                     >
                                                         <FaTrash />
                                                         <span>
                                                             Hapus Dari Keranjang
                                                         </span>
-                                                    </button>
+                                                    </Link>
                                                 )}
                                                 {/* <button className="btn flex justify-center items-center btn-secondary w-full">
                                                     <span>Beli Sekarang</span>
