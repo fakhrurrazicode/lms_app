@@ -36,6 +36,7 @@ use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectu
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
 use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
+use App\Http\Controllers\NotificationController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -79,6 +80,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/finish', [PaymentController::class, 'finish'])->name('payment.finish')->middleware('verified');
     Route::get('/payment/unfinish', [PaymentController::class, 'unfinish'])->name('payment.unfinish')->middleware('verified');
     Route::get('/payment/error', [PaymentController::class, 'error'])->name('payment.error')->middleware('verified');
+
+    Route::get('/notification/open_notification/{notification}', [NotificationController::class, 'open_notification'])->name('notification.open_notification')->middleware('verified');
 
 
 

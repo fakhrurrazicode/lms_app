@@ -316,11 +316,13 @@ export default function FrontendLayout({ header, children }) {
                                                                             className=" flex px-4 py-2 text-xs gap-4 relative hover:bg-base-100 transition-all ease-in-out"
                                                                         >
                                                                             <Link
-                                                                                href={
-                                                                                    notification
-                                                                                        .data
-                                                                                        .action_url
-                                                                                }
+                                                                                href={route(
+                                                                                    "notification.open_notification",
+                                                                                    {
+                                                                                        notification:
+                                                                                            notification.id,
+                                                                                    }
+                                                                                )}
                                                                                 className="space-y-1"
                                                                             >
                                                                                 <div className="font-bold">
@@ -343,14 +345,23 @@ export default function FrontendLayout({ header, children }) {
                                                         </div>
                                                     </>
                                                 ) : (
-                                                    <></>
+                                                    <div className="px-[16px] py-[8px] flex flex-col items-center gap-4 border-b border-b-base-100/30">
+                                                        <img
+                                                            className="w-1/2 py-4"
+                                                            src="/images/undraw_empty-cart_574u.svg"
+                                                        />
+                                                        <p className="text-sm py-4">
+                                                            Belum ada
+                                                            pemberitahuan
+                                                        </p>
+                                                    </div>
                                                 )}
                                                 <Dropdown.Link
                                                     href={route("cart.index")}
                                                     as="button"
                                                     className="!text-center bg-secondary hover:!bg-secondary/80 !text-white text-xs font-bold"
                                                 >
-                                                    View All Notification
+                                                    LIhat Semua Pemberitahuan
                                                 </Dropdown.Link>
                                             </Dropdown.Content>
                                         </Dropdown>
