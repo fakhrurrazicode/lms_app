@@ -22,23 +22,12 @@ class BecomeInstructorController extends Controller
         $instructor_info = $user->instructor_info;
 
         if ($instructor_info) {
-            if ($instructor_info->status === 1) {
-                return to_route('user_area.become_instructor.approved');
-            }
-        } else {
-            return Inertia::render('UserArea/BecomeInstructor/Create');
-            switch ($instructor_info->status) {
-                case 0:
-                    return to_route('user_area.become_instructor.pending');
-                    break;
-                case 1:
-
-                    break;
-                case 2:
-                    return Inertia::render('UserArea/BecomeInstructor/Create');
-                    break;
+            if ($instructor_info->status == 0 or $instructor_info->status == 1) {
+                return to_route('user_area.become_instructor.status');
             }
         }
+
+        return Inertia::render('UserArea/BecomeInstructor/Index');
     }
 
     public function status()
@@ -66,9 +55,15 @@ class BecomeInstructorController extends Controller
             $data['id_card'] = $request->file('id_card')->store('id_card', 'public');
         }
 
+        $user = Auth::user();
+        $instructor_info = $user->instructor_info;
+        if ($instructor_info) {
+            $instructor_info->delete();
+        }
         $data['user_id'] = Auth::user()->id;
+        $data['status'] = 0;
         InstructorInfo::create($data);
-        return to_route('user_area.become_instructor.create');
+        return to_route('user_area.become_instructor.index');
     }
 
     /**

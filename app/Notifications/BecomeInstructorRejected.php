@@ -39,7 +39,7 @@ class BecomeInstructorRejected extends Notification
     {
         return (new MailMessage)
             ->greeting('Hello!')
-            ->line('Pengajuanmu untuk menjadi pengajar telah di setujui. dengan alasan:')
+            ->line('Pengajuanmu untuk menjadi pengajar telah di tolak. dengan alasan:')
             ->line($this->instructor_info->verification_message)
             ->action('Lanjutkan', route('user_area.become_instructor.status'))
             ->line('Terima kasih telah menggunakan guruteknik.com');

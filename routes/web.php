@@ -86,7 +86,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-        Route::resource('/become_instructor', BecomeInstructorController::class)->only(['index'])->middleware('verified');
+        Route::resource('/become_instructor', BecomeInstructorController::class)->only(['index', 'store'])->middleware('verified');
         Route::get('/become_instructor/status', [BecomeInstructorController::class, 'status'])->name('become_instructor.status');
         // Route::get('/become_instructor/pending', [BecomeInstructorController::class, 'pending'])->name('become_instructor.pending');
         // Route::get('/become_instructor/approved', [BecomeInstructorController::class, 'approved'])->name('become_instructor.approved');

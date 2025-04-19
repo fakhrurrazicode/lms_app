@@ -62,6 +62,7 @@ export default function Status({ instructor_info }) {
                                                 Anda dapat memulai mengelola
                                                 kursus anda sendiri{" "}
                                                 <Link
+                                                    className="text-primary font-bold"
                                                     href={route(
                                                         "user_area.course.index"
                                                     )}

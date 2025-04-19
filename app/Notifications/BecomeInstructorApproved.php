@@ -3,21 +3,25 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use App\Models\InstructorInfo;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class BecomeInstructorApproved extends Notification
 {
     use Queueable;
 
+    public InstructorInfo $instructor_info;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(InstructorInfo $instructor_info)
     {
-        //
+        $this->instructor_info = $instructor_info;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -37,7 +41,8 @@ class BecomeInstructorApproved extends Notification
         return (new MailMessage)
             ->greeting('Hello!')
             ->line('Pengajuanmu untuk menjadi pengajar telah di setujui.')
-            ->action('Lanjutkan', route('user_area.become_instructor.create'))
+            ->line($this->instructor_info->verification_message)
+            ->action('Lanjutkan', route('user_area.become_instructor.status'))
             ->line('Terima kasih telah menggunakan guruteknik.com');
     }
 
@@ -50,7 +55,7 @@ class BecomeInstructorApproved extends Notification
     {
         return [
             'message' => 'Pengajuanmu untuk menjadi pengajar telah di setujui.',
-            'action_url' => route('user_area.become_instructor.create'),
+            'action_url' => route('user_area.become_instructor.status'),
         ];
     }
 }

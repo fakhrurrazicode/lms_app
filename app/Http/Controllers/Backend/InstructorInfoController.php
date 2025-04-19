@@ -12,6 +12,7 @@ use App\Http\Requests\InstructorInfoStoreRequest;
 use App\Http\Requests\InstructorInfoRejectRequest;
 use App\Http\Requests\InstructorInfoUpdateRequest;
 use App\Http\Requests\InstructorInfoVerifyRequest;
+use App\Notifications\BecomeInstructorApproved;
 use App\Notifications\BecomeInstructorRejected;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -64,6 +65,8 @@ class InstructorInfoController extends Controller
 
         $instructor_info->user->syncRoles([]);
         $instructor_info->user->assignRole('instructor');
+
+        $instructor_info->user->notify(new BecomeInstructorApproved($instructor_info));
 
         return to_route('backend.instructor_info.index');
     }
