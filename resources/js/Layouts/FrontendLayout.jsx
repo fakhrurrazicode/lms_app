@@ -219,7 +219,7 @@ export default function FrontendLayout({ header, children }) {
                                                                                             slug: itemable.slug,
                                                                                         }
                                                                                     )}
-                                                                                    className="text-primary font-bold"
+                                                                                    className="text-primary font-bold text-sm"
                                                                                 >
                                                                                     {
                                                                                         itemable.title
@@ -228,8 +228,8 @@ export default function FrontendLayout({ header, children }) {
 
                                                                                 <div>
                                                                                     {itemable.discount_percentage ? (
-                                                                                        <>
-                                                                                            <span className="block">
+                                                                                        <div className="flex items-end gap-1">
+                                                                                            <span className="block text-sm">
                                                                                                 {rupiah(
                                                                                                     itemable.discounted_price
                                                                                                 )}
@@ -240,9 +240,9 @@ export default function FrontendLayout({ header, children }) {
                                                                                                     itemable.price
                                                                                                 )}
                                                                                             </span>
-                                                                                        </>
+                                                                                        </div>
                                                                                     ) : (
-                                                                                        <span className="block">
+                                                                                        <span className="block text-sm">
                                                                                             {rupiah(
                                                                                                 itemable.price
                                                                                             )}

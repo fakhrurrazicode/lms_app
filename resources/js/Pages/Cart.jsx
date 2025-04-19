@@ -202,11 +202,16 @@ export default function Cart({ cart }) {
                                                             <FaCheck />
                                                         </button>
                                                     </div>
-                                                    <div className="label">
-                                                        <span className="label-text-alt">
-                                                            Bottom Left label
-                                                        </span>
-                                                    </div>
+                                                    {false ? (
+                                                        <div className="label">
+                                                            <span className="label-text-alt">
+                                                                Bottom Left
+                                                                label
+                                                            </span>
+                                                        </div>
+                                                    ) : (
+                                                        <></>
+                                                    )}
                                                 </label>
                                             </div>
                                             <div className="mb-6">
