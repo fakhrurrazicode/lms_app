@@ -5,7 +5,7 @@ import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link } from "@inertiajs/react";
 
 import React from "react";
-import { FaHeart, FaShoppingCart, FaTrash } from "react-icons/fa";
+import { FaCheck, FaHeart, FaShoppingCart, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 export default function Cart({ cart }) {
@@ -22,7 +22,7 @@ export default function Cart({ cart }) {
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold">Shopping Cart</h1>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 space-y-4 md:space-y-0 space-x-0 md:space-x-4">
                     {cart && cart.items.length > 0 ? (
                         <>
                             <div className="col-span-2">
@@ -184,6 +184,31 @@ export default function Cart({ cart }) {
                                 <div className="card bg-base-100">
                                     <div className="card">
                                         <div className="card-body">
+                                            <div className="mb-6">
+                                                <label className="form-control w-full ">
+                                                    <div className="label">
+                                                        <span className="label-text">
+                                                            Punya Kode Referral
+                                                            ?
+                                                        </span>
+                                                    </div>
+                                                    <div className="flex justify-between gap-2">
+                                                        <input
+                                                            type="text"
+                                                            placeholder="Kode Referral"
+                                                            className="input input-bordered w-full "
+                                                        />
+                                                        <button className="btn btn-primary">
+                                                            <FaCheck />
+                                                        </button>
+                                                    </div>
+                                                    <div className="label">
+                                                        <span className="label-text-alt">
+                                                            Bottom Left label
+                                                        </span>
+                                                    </div>
+                                                </label>
+                                            </div>
                                             <div className="mb-6">
                                                 <h3 className="font-bold">
                                                     Total:

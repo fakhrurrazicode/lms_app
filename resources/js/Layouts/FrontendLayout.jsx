@@ -148,7 +148,7 @@ export default function FrontendLayout({ header, children }) {
                                                         <FaCartArrowDown
                                                             size={22}
                                                         />
-                                                        <div className="badge badge-primary scale-75 absolute -top-1 -right-6 z-50 ">
+                                                        <div className="badge badge-primary scale-75 absolute -top-1 -right-2 z-50 ">
                                                             {cart.items.length}
                                                         </div>
                                                     </button>
@@ -291,7 +291,7 @@ export default function FrontendLayout({ header, children }) {
                                                         <IoMdNotifications
                                                             size={22}
                                                         />
-                                                        <div className="badge badge-secondary scale-75 absolute -top-1 -right-6 z-50 ">
+                                                        <div className="badge badge-secondary scale-75 absolute -top-1 -right-2 z-50 ">
                                                             {
                                                                 unread_notifications_count
                                                             }
