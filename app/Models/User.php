@@ -8,7 +8,9 @@ use Binafy\LaravelCart\Models\Cart;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
+use App\Notifications\VerifyEmailNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -21,6 +23,16 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $with = ['cart', 'instructor_info'];
 
     protected $appends = ['photo_url', 'role_name'];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailNotification());
+    }
 
     public function getPhotoUrlAttribute()
     {

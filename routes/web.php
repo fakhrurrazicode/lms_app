@@ -74,48 +74,54 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 
-    // Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
-    Route::post('/midtrans/token', [PaymentController::class, 'token'])->name('midtrans.token')->middleware('verified');
-
-    Route::get('/payment/finish', [PaymentController::class, 'finish'])->name('payment.finish')->middleware('verified');
-    Route::get('/payment/unfinish', [PaymentController::class, 'unfinish'])->name('payment.unfinish')->middleware('verified');
-    Route::get('/payment/error', [PaymentController::class, 'error'])->name('payment.error')->middleware('verified');
-
-    Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index')->middleware('verified');
-    Route::get('/notification/open_notification/{notification}', [NotificationController::class, 'open_notification'])->name('notification.open_notification')->middleware('verified');
 
 
+    Route::middleware(['verified'])->group(function () {
+        // Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+        Route::post('/midtrans/token', [PaymentController::class, 'token'])->name('midtrans.token');
 
-    Route::group(['prefix' => '/user_area', 'as' => 'user_area.'], function () {
+        Route::get('/payment/finish', [PaymentController::class, 'finish'])->name('payment.finish');
+        Route::get('/payment/unfinish', [PaymentController::class, 'unfinish'])->name('payment.unfinish');
+        Route::get('/payment/error', [PaymentController::class, 'error'])->name('payment.error');
 
-        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index');
+        Route::get('/notification/open_notification/{notification}', [NotificationController::class, 'open_notification'])->name('notification.open_notification');
 
-        Route::resource('/become_instructor', BecomeInstructorController::class)->only(['index', 'store'])->middleware('verified');
-        Route::get('/become_instructor/status', [BecomeInstructorController::class, 'status'])->name('become_instructor.status');
-        // Route::get('/become_instructor/pending', [BecomeInstructorController::class, 'pending'])->name('become_instructor.pending');
-        // Route::get('/become_instructor/approved', [BecomeInstructorController::class, 'approved'])->name('become_instructor.approved');
-        // Route::get('/become_instructor/reject', [BecomeInstructorController::class, 'reject'])->name('become_instructor.reject');
 
-        Route::resource('/wishlist', UserAreaWishlistController::class);
-        Route::post('/wishlist/{wishlist}/add_to_cart', [UserAreaWishlistController::class, 'add_to_cart'])->name('wishlist.add-to-cart');
+        Route::group(['prefix' => '/user_area', 'as' => 'user_area.'], function () {
 
-        Route::resource('/order', UserAreaOrderController::class);
+            Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-        Route::get('/profile', [UserAreaProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [UserAreaProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [UserAreaProfileController::class, 'destroy'])->name('profile.destroy');
+            Route::resource('/become_instructor', BecomeInstructorController::class)->only(['index', 'store']);
+            Route::get('/become_instructor/status', [BecomeInstructorController::class, 'status'])->name('become_instructor.status');
+            // Route::get('/become_instructor/pending', [BecomeInstructorController::class, 'pending'])->name('become_instructor.pending');
+            // Route::get('/become_instructor/approved', [BecomeInstructorController::class, 'approved'])->name('become_instructor.approved');
+            // Route::get('/become_instructor/reject', [BecomeInstructorController::class, 'reject'])->name('become_instructor.reject');
 
-        Route::resource('/enrollment', EnrollmentController::class);
-        // ->middleware('verified');
+            Route::resource('/wishlist', UserAreaWishlistController::class);
+            Route::post('/wishlist/{wishlist}/add_to_cart', [UserAreaWishlistController::class, 'add_to_cart'])->name('wishlist.add-to-cart');
 
-        Route::resource('/course', UserAreaCourseController::class)->except(['update']);
-        Route::post('/course/{course}', [UserAreaCourseController::class, 'update'])->name('course.update');
-        Route::resource('/course/{course}/course_section', UserAreaCourseSectionController::class);
-        Route::resource('/course/{course}/course_section/{course_section}/course_lecture', UserAreaCourseLectureController::class)->except(['index', 'update']);
-        Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [UserAreaCourseLectureController::class, 'update'])->name('course_lecture.update');
-        Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_preview', [UserAreaCourseLectureController::class, 'set_as_preview'])->name('course.set_as_preview');
-        Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_featured', [UserAreaCourseLectureController::class, 'set_as_featured'])->name('course.set_as_featured');
+            Route::resource('/order', UserAreaOrderController::class);
+
+            Route::get('/profile', [UserAreaProfileController::class, 'edit'])->name('profile.edit');
+            Route::patch('/profile', [UserAreaProfileController::class, 'update'])->name('profile.update');
+            Route::delete('/profile', [UserAreaProfileController::class, 'destroy'])->name('profile.destroy');
+
+            Route::resource('/enrollment', EnrollmentController::class);
+            // ->middleware('verified');
+
+            Route::resource('/course', UserAreaCourseController::class)->except(['update']);
+            Route::post('/course/{course}', [UserAreaCourseController::class, 'update'])->name('course.update');
+            Route::resource('/course/{course}/course_section', UserAreaCourseSectionController::class);
+            Route::resource('/course/{course}/course_section/{course_section}/course_lecture', UserAreaCourseLectureController::class)->except(['index', 'update']);
+            Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [UserAreaCourseLectureController::class, 'update'])->name('course_lecture.update');
+            Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_preview', [UserAreaCourseLectureController::class, 'set_as_preview'])->name('course.set_as_preview');
+            Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_featured', [UserAreaCourseLectureController::class, 'set_as_featured'])->name('course.set_as_featured');
+        });
     });
+
+
+
 
     Route::group(['prefix' => '/learning_area/{course}', 'as' => 'learning_area.'], function () {
         Route::get('/course', [LearningAreaCourseController::class, 'index'])->name('course.index');

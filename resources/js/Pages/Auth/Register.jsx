@@ -43,7 +43,7 @@ export default function Register() {
 
                     <form onSubmit={submit}>
                         <div>
-                            <InputLabel htmlFor="name" value="Name" />
+                            <InputLabel htmlFor="name" value="Nama" />
 
                             <TextInput
                                 id="name"
@@ -73,7 +73,6 @@ export default function Register() {
                                 value={data.username}
                                 className="mt-1 block w-full"
                                 autoComplete="username"
-                                isFocused={true}
                                 onChange={(e) =>
                                     setData("username", e.target.value)
                                 }
@@ -87,7 +86,7 @@ export default function Register() {
                         </div>
 
                         <div className="mt-4">
-                            <InputLabel htmlFor="email" value="Email" />
+                            <InputLabel htmlFor="email" value="Alamat Email" />
 
                             <TextInput
                                 id="email"
@@ -109,7 +108,7 @@ export default function Register() {
                         </div>
 
                         <div className="mt-4">
-                            <InputLabel htmlFor="password" value="Password" />
+                            <InputLabel htmlFor="password" value="Kata Sandi" />
 
                             <TextInput
                                 id="password"
@@ -133,7 +132,7 @@ export default function Register() {
                         <div className="mt-4">
                             <InputLabel
                                 htmlFor="password_confirmation"
-                                value="Confirm Password"
+                                value="Konfirmasi Kata Sandi"
                             />
 
                             <TextInput
@@ -163,7 +162,7 @@ export default function Register() {
                                 href={route("login")}
                                 className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
                             >
-                                Already registered?
+                                Sudah terdaftar?
                             </Link>
                         </div>
 
@@ -175,7 +174,7 @@ export default function Register() {
                             >
                                 Register
                             </button>
-                            {/* <a
+                            <a
                                 href="/auth/google/redirect"
                                 disabled={processing}
                                 className="btn btn-neutral bg-white hover:bg-gray-300 text-base-300"
@@ -185,7 +184,7 @@ export default function Register() {
                                     className="w-6"
                                 />
                                 <span>Login/Register with Google</span>
-                            </a> */}
+                            </a>
                         </div>
                     </form>
                 </div>

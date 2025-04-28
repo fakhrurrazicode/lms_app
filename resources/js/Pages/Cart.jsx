@@ -146,10 +146,44 @@ export default function Cart({ cart }) {
                                                                     </span>
                                                                 </Link>
                                                             </div>
+
+                                                            <div className="mb-6">
+                                                                <label className="form-control w-full ">
+                                                                    <div className="label">
+                                                                        <span className="label-text">
+                                                                            Punya
+                                                                            Kode
+                                                                            Referral
+                                                                            ?
+                                                                        </span>
+                                                                    </div>
+                                                                    <div className="flex justify-between gap-2">
+                                                                        <input
+                                                                            type="text"
+                                                                            placeholder="Kode Referral"
+                                                                            className="input input-bordered input-sm w-full "
+                                                                        />
+                                                                        <button className="btn btn-sm btn-primary">
+                                                                            <FaCheck />
+                                                                        </button>
+                                                                    </div>
+                                                                    {false ? (
+                                                                        <div className="label">
+                                                                            <span className="label-text-alt">
+                                                                                Bottom
+                                                                                Left
+                                                                                label
+                                                                            </span>
+                                                                        </div>
+                                                                    ) : (
+                                                                        <></>
+                                                                    )}
+                                                                </label>
+                                                            </div>
                                                         </div>
                                                     </div>
 
-                                                    <div className="w-1/8 self-center">
+                                                    <div className="w-1/5">
                                                         {course.discount_percentage ? (
                                                             <div className="block md:flex md:gap-2 justify-end items-center">
                                                                 <div className="text-primary font-bold">
@@ -184,7 +218,7 @@ export default function Cart({ cart }) {
                                 <div className="card bg-base-100">
                                     <div className="card">
                                         <div className="card-body">
-                                            <div className="mb-6">
+                                            <div className="mb-6 hidden">
                                                 <label className="form-control w-full ">
                                                     <div className="label">
                                                         <span className="label-text">
