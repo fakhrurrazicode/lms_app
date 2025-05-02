@@ -55,12 +55,14 @@ Route::get('/become_instructor', [PageController::class, 'become_instructor'])->
 Route::post('/submit_become_instructor', [PageController::class, 'submit_become_instructor'])->name('submit_become_instructor');
 Route::get('/course/{slug}', [PageController::class, 'course'])->name('course');
 
+Route::get('/instructor_info/{instructor_info}', [PageController::class, 'instructor_info'])->name('instructor_info');
+
 // Route::get('/dashboard', function () {})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/auth/google/redirect/{as_instructor?}', [GoogleController::class, 'redirect']);
 Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 
-
+// Route::post('/payment/notification', [PaymentController::class, 'notification'])->name('payment.notification');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -84,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/payment/unfinish', [PaymentController::class, 'unfinish'])->name('payment.unfinish');
         Route::get('/payment/error', [PaymentController::class, 'error'])->name('payment.error');
 
+
         Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index');
         Route::get('/notification/open_notification/{notification}', [NotificationController::class, 'open_notification'])->name('notification.open_notification');
 
@@ -106,6 +109,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/profile', [UserAreaProfileController::class, 'edit'])->name('profile.edit');
             Route::patch('/profile', [UserAreaProfileController::class, 'update'])->name('profile.update');
             Route::delete('/profile', [UserAreaProfileController::class, 'destroy'])->name('profile.destroy');
+            Route::post('/profile/update_photo', [UserAreaProfileController::class, 'update_photo'])->name('profile.update_photo');
 
             Route::resource('/enrollment', EnrollmentController::class);
             // ->middleware('verified');

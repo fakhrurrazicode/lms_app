@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Http\Requests\ProfilePhotoUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -23,6 +25,25 @@ class ProfileController extends Controller
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
         ]);
+    }
+
+    public function update_photo(ProfilePhotoUpdateRequest $request)
+    {
+        $user = $request->user();
+
+        if ($request->hasFile('photo')) {
+            // Hapus foto lama kalau ada
+            if ($user->photo) {
+                Storage::disk('public')->delete($user->photo);
+            }
+
+            $path = $request->file('photo')->store('avatars', 'public');
+            $validated['photo'] = $path;
+        }
+
+        $user->update($validated);
+
+        return Redirect::route('user_area.profile.edit');
     }
 
     /**
