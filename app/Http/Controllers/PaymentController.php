@@ -36,9 +36,18 @@ class PaymentController extends Controller
             $item_details[] = [
                 'id' => $itemable->id,
                 'price' => $itemable->price,
-                'name' => $itemable->title . ' ' . ($itemable->discount_percentage ? ' Disc. ' . $itemable->discount_percentage . '%' : ''),
+                'name' => $itemable->title,
                 'quantity' => $item->quantity,
             ];
+
+            if ($itemable->discount_percentage) {
+                $item_details[] = [
+                    'id' => 'disc-' . $itemable->id,
+                    'price' => ($itemable->price - $itemable->discounted_price) * -1,
+                    'name' => 'Discount ' . $itemable->discount_percentage . '% for : ' .   $itemable->title,
+                    'quantity' => $item->quantity,
+                ];
+            }
         }
 
         $user = $cart->user;
@@ -49,7 +58,7 @@ class PaymentController extends Controller
         $params = [
             'transaction_details' => [
                 'order_id' => $order_id,
-                'gross_amount' => $cart->total_price, // Adjust price as needed
+                'gross_amount' => $cart->total_discounted_price, // Adjust price as needed
             ],
             'customer_details' => [
                 'first_name' => $first_name,
@@ -60,13 +69,14 @@ class PaymentController extends Controller
         ];
 
         try {
-            $snapToken = Snap::getSnapToken($params);
+            $snap_token = Snap::getSnapToken($params);
             // $cart->emptyCart();
 
             $order = Order::create([
                 'order_id' => $order_id,
-                'gross_amount' => $cart->total_price,
+                'gross_amount' => $cart->total_discounted_price,
                 'user_id' => $user->id,
+                'snap_token' => $snap_token,
             ]);
 
             $order_items = [];
@@ -88,7 +98,7 @@ class PaymentController extends Controller
                 'order_id' => $order->id,
             ]);
 
-            return response()->json(['token' => $snapToken]);
+            return response()->json(['token' => $snap_token]);
 
             // Finish URL https://guruteknik.com/payment/finish?order_id=ORDER-GRTKNK-20250315090624-67d543105e67d&status_code=200&transaction_status=settlement
             // Finish URL https://guruteknik.com/payment/finish?order_id=ORDER-GRTKNK-20250315090624-67d543105e67d&status_code=200&transaction_status=settlement
@@ -121,21 +131,70 @@ class PaymentController extends Controller
 
         // Contoh akses data tertentu
         // $transactionId = $data['transaction_id'] ?? null;
-        $status = $data['status'] ?? null;
+        $transaction_status = $data['transaction_status'] ?? null;
+        $fraud_status = $data['fraud_status'] ?? null;
+
         MidtransNotificationLog::create([
             'json' => json_encode($data),
         ]);
 
-        Order::where([
+        $order = Order::with(['order_items'])->where([
             'order_id' => $data['order_id']
-        ])->update([
+        ])->first();
+
+        // dd($order);
+
+        $order->update([
             'transaction_id' => $data['transaction_id'],
             'transaction_status' => $data['transaction_status'],
         ]);
 
         // Lakukan sesuatu berdasarkan status transaksi
-        if (in_array($status, ['settlement'])) {
-            // Update database atau kirim notifikasi
+        if (in_array($transaction_status, ['settlement'])) {
+            $order_items = $order->order_items;
+            foreach ($order_items as $order_item) {
+
+                $enrollment_exists = Enrollment::where([
+                    'course_id' => $order_item->itemable->id,
+                    'user_id' => $order->user_id,
+                    'order_id' => $order->id,
+                    'order_item_id' => $order_item->id
+                ])->first();
+
+
+                if (!$enrollment_exists) {
+                    Enrollment::create([
+                        'course_id' => $order_item->itemable->id,
+                        'user_id' => $order->user_id,
+                        'order_id' => $order->id,
+                        'order_item_id' => $order_item->id,
+                    ]);
+                }
+            }
+        }
+
+        if (in_array($transaction_status, ['capture'])) {
+            if ($fraud_status === "accept") {
+                $order_items = $order->order_items;
+                foreach ($order_items as $order_item) {
+                    $enrollment_exists = Enrollment::where([
+                        'course_id' => $order_item->itemable->id,
+                        'user_id' => $order->user_id,
+                        'order_id' => $order->id,
+                        'order_item_id' => $order_item->id
+                    ])->first();
+
+
+                    if (!$enrollment_exists) {
+                        Enrollment::create([
+                            'course_id' => $order_item->itemable->id,
+                            'user_id' => $order->user_id,
+                            'order_id' => $order->id,
+                            'order_item_id' => $order_item->id,
+                        ]);
+                    }
+                }
+            }
         }
 
         // Berikan respon ke pengirim webhook

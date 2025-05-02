@@ -3,7 +3,72 @@ import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link, router } from "@inertiajs/react";
 import classNames from "classnames";
 import { Plus } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
+
+export const ContinuePaymentButton = ({ order }) => {
+    useEffect(() => {
+        const midtransScriptUrl =
+            "https://app.sandbox.midtrans.com/snap/snap.js";
+        const clientKey = import.meta.env.MIDTRANS_CLIENT_KEY;
+
+        let scriptTag = document.createElement("script");
+        scriptTag.src = midtransScriptUrl;
+        scriptTag.setAttribute("data-client-key", clientKey);
+        scriptTag.onload = () => {
+            console.log("Midtrans Snap.js loaded successfully");
+        };
+
+        document.body.appendChild(scriptTag);
+
+        return () => {
+            document.body.removeChild(scriptTag);
+        };
+    }, []);
+
+    const handleContinue = () => {
+        if (order.snap_token) {
+            window.snap.pay(order.snap_token, {
+                onSuccess: function (result) {
+                    console.log("Success:", result);
+                    router.get(route("payment.finish"), {
+                        order_id: result.order_id,
+                        transaction_status: result.transaction_status,
+                    });
+                },
+                onPending: (result) => {
+                    // handle pending
+                    console.log("Pending:", result);
+                    router.get(route("payment.unfinish"), {
+                        order_id: result.order_id,
+                        transaction_status: result.transaction_status,
+                    });
+                },
+                onError: (error) => {
+                    // handle error
+                    console.error("Error:", error);
+                    router.get(route("payment.error"), {
+                        order_id: result.order_id,
+                        transaction_status: result.transaction_status,
+                    });
+                },
+                onClose: () => {
+                    console.log("Close");
+                    console.log(
+                        "Customer closed the popup without finishing the payment"
+                    );
+                },
+            });
+        } else {
+            alert("Payment error: " + data.error);
+        }
+    };
+
+    return (
+        <button onClick={handleContinue} className="btn btn-primary btn-xs">
+            Lanjutkan Pembayaran
+        </button>
+    );
+};
 
 export default function Index({ orders, request }) {
     const orderByOnClickHandler = (e) =>
@@ -144,20 +209,37 @@ export default function Index({ orders, request }) {
                                                     ].includes(
                                                         order.transaction_status
                                                     ),
+                                                    "text-warning": [
+                                                        "pending",
+                                                    ].includes(
+                                                        order.transaction_status
+                                                    ),
                                                 })}
                                             >
                                                 <td>
-                                                    <Link
-                                                        href={route(
-                                                            "user_area.order.show",
-                                                            {
-                                                                order: order.id,
-                                                            }
+                                                    <div className="flex gap-2">
+                                                        <Link
+                                                            href={route(
+                                                                "user_area.order.show",
+                                                                {
+                                                                    order: order.id,
+                                                                }
+                                                            )}
+                                                            className="btn btn-neutral btn-xs"
+                                                        >
+                                                            Order Details
+                                                        </Link>
+
+                                                        {order.transaction_status ===
+                                                            "pending" &&
+                                                        order.snap_token ? (
+                                                            <ContinuePaymentButton
+                                                                order={order}
+                                                            />
+                                                        ) : (
+                                                            <></>
                                                         )}
-                                                        className="btn btn-neutral btn-sm"
-                                                    >
-                                                        Order Details
-                                                    </Link>
+                                                    </div>
                                                 </td>
                                                 <td>{order.order_id}</td>
                                                 <td>{order.created_at}</td>

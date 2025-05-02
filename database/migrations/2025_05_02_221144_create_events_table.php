@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
-            $table->morphs('itemable');
-            $table->integer('quantity')->default(1);
-            $table->double('price')->default(0);
-            $table->double('discount_percentage')->nullable()->default(0);
-            $table->json('options')->nullable();
+            $table->string('title');
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
+        Schema::dropIfExists('events');
     }
 };

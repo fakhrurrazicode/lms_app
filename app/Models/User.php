@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Spatie\Activitylog\LogOptions;
+use App\Models\Coin;
 // use Illuminate\Auth\MustVerifyEmail;
+use App\Models\Enrollment;
+use Spatie\Activitylog\LogOptions;
 use Binafy\LaravelCart\Models\Cart;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -20,9 +22,9 @@ class User extends Authenticatable implements MustVerifyEmail
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles, LogsActivity;
 
-    protected $with = ['cart', 'instructor_info'];
+    protected $with = ['cart', 'instructor_info', 'enrollments'];
 
-    protected $appends = ['photo_url', 'role_name'];
+    protected $appends = ['photo_url', 'role_name', 'coin_balance'];
 
     public function sendPasswordResetNotification($token)
     {
@@ -36,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getPhotoUrlAttribute()
     {
-        return $this->photo ? url('/storage/' . $this->photo) : asset('assets/images/no-image.jpeg');
+        return $this->photo ? url('/storage/' . $this->photo) : asset('images/dummy/no-image.jpeg');
     }
 
     public function getRoleNameAttribute()
@@ -103,5 +105,31 @@ class User extends Authenticatable implements MustVerifyEmail
     public function instructor_info()
     {
         return $this->hasOne(InstructorInfo::class);
+    }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
+
+
+    public function courses()
+    {
+        // return $this->
+    }
+
+    public function coins()
+    {
+        return $this->hasMany(Coin::class);
+    }
+
+    public function getCoinBalanceAttribute()
+    {
+        return $this->coins()
+            ->where(function ($q) {
+                $q->whereNull('expired_at')
+                    ->orWhere('expired_at', '>', now());
+            })
+            ->sum('amount');
     }
 }

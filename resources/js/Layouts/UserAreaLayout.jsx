@@ -17,23 +17,32 @@ export default function UserAreaLayout({ children }) {
     const { auth } = usePage().props;
 
     console.log(auth);
+
     return (
         <FrontendLayout>
             <div className="mx-auto max-w-[100rem] space-y-6 px-6 lg:px-8 py-12">
                 <div className="card shadow-lg bg-info text-white">
                     <div className="card-body">
                         <div className="block md:flex justify-between items-center">
-                            <div className="flex">
-                                <div></div>
+                            <div className="flex gap-6 items-center">
+                                <div>
+                                    <div className="avatar">
+                                        <div className="w-24 border-4 rounded-full">
+                                            <img src={auth.user.photo_url} />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div>
                                     <h3 className="text-xl font-bold mb-2">
                                         Hello, {auth.user.name}
                                     </h3>
                                     <div className="flex">
                                         <div className="me-4">
-                                            9 Daftar Kursus
+                                            Terdaftar pada{" "}
+                                            {auth.user.enrollments.length}{" "}
+                                            Kursus
                                         </div>
-                                        <div className="me-4">3 Sertifikat</div>
+                                        <div className="me-4">0 Sertifikat</div>
                                     </div>
                                 </div>
                             </div>

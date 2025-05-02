@@ -14,7 +14,7 @@
 <tr>
     <td class="header">
         <a href="{{ config('app.url') }}" style="display: inline-block;">
-            <img src="{{ asset('images/logo-light.svg') }}" alt="{{ config('app.name') }}" style="height: 50px;">
+            <img src="{{ asset('images/logo-light.png') }}" alt="{{ config('app.name') }}" style="height: 50px;">
         </a>
     </td>
 </tr>

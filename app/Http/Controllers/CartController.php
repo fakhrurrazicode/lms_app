@@ -91,10 +91,10 @@ class CartController extends Controller
         $cart = Cart::query()->firstOrCreate(['user_id' => Auth::user()->id]);
         $cart->emptyCart();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Keranjang belanja berhasil di kosongkan',
-        ]);
+        // return response()->json([
+        //     'status' => true,
+        //     'message' => 'Keranjang belanja berhasil di kosongkan',
+        // ]);
     }
 
     public function add_to_wishlist(Request $request)

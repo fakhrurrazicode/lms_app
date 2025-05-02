@@ -72,6 +72,7 @@ export default function CheckoutButton() {
                         });
                     },
                     onClose: function () {
+                        console.log("Close");
                         console.log(
                             "Customer closed the popup without finishing the payment"
                         );

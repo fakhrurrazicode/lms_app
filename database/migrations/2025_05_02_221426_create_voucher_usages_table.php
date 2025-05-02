@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
+        Schema::create('voucher_usages', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
-            $table->morphs('itemable');
-            $table->integer('quantity')->default(1);
-            $table->double('price')->default(0);
-            $table->double('discount_percentage')->nullable()->default(0);
-            $table->json('options')->nullable();
+            $table->foreignId('voucher_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // yang menggunakan voucher
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
+        Schema::dropIfExists('voucher_usages');
     }
 };

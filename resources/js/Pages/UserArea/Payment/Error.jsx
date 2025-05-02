@@ -42,7 +42,10 @@ export default function Unfinish({ cart }) {
                                 </p>
 
                                 <div>
-                                    <Link href="#" className="btn btn-primary">
+                                    <Link
+                                        href={route("courses")}
+                                        className="btn btn-primary"
+                                    >
                                         Belanja kembali
                                     </Link>
                                 </div>

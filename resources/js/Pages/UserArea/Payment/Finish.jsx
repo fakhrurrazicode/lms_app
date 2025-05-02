@@ -37,7 +37,10 @@ export default function Finish({ cart }) {
                                 </p>
 
                                 <div>
-                                    <Link href="#" className="btn btn-primary">
+                                    <Link
+                                        href={route("user_area.order.index")}
+                                        className="btn btn-primary"
+                                    >
                                         Lihat Order
                                     </Link>
                                 </div>

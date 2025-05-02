@@ -70,7 +70,7 @@ const AccordionItem = ({ header, ...rest }) => (
 );
 
 export default function Course() {
-    const { course, auth } = usePage().props;
+    const { course, auth, more_courses } = usePage().props;
 
     const [showPreviewModal, setShowPreviewModal] = useState(false);
 
@@ -166,7 +166,7 @@ export default function Course() {
                         </div>
 
                         <div>
-                            <div className="flex items-center justify-between flex-wrap gap-6 mb-[30px]">
+                            <div className="flex items-center justify-between flex-wrap gap-6 mb-6">
                                 <div className="flex items-center gap-6">
                                     <span
                                         href="#"
@@ -236,13 +236,22 @@ export default function Course() {
                                     </div>
                                 </div>
                                 <div className="text-start md:text-end flex justify-end gap-1 items-center">
-                                    <FaStar className="text-xs text-yellow-400" />
-                                    <FaStar className="text-xs text-yellow-400" />
-                                    <FaStar className="text-xs text-yellow-400" />
-                                    <FaStar className="text-xs text-yellow-400" />
-                                    <FaStar className="text-xs text-yellow-400" />
-                                    <span className="text-xs text-lightGrey6">
-                                        (44)
+                                    {[...Array(5)].map((_, index) => {
+                                        if (
+                                            index + 1 <=
+                                            course.course_review_recap.avg
+                                        ) {
+                                            return (
+                                                <FaStar className="text-xs text-yellow-400" />
+                                            );
+                                        } else {
+                                            return (
+                                                <FaStar className="text-xs text-gray-700" />
+                                            );
+                                        }
+                                    })}
+                                    <span className="text-xs text-gray-300">
+                                        ({course.course_review_recap.total})
                                     </span>
                                 </div>
                             </div>
@@ -308,23 +317,42 @@ export default function Course() {
                                                 </span>
                                             </p>
                                         </li>
-                                        <li>
-                                            <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Diskon :
-                                                <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    {course.discount_percentage}
-                                                    %
-                                                </span>
-                                            </p>
-                                        </li>
+
                                         <li>
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Harga Normal:
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    {rupiah(course.real_price)}
+                                                    {rupiah(course.price)}
                                                 </span>
                                             </p>
                                         </li>
+                                        {course.discount_percentage ? (
+                                            <>
+                                                <li>
+                                                    <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
+                                                        Diskon :
+                                                        <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
+                                                            {
+                                                                course.discount_percentage
+                                                            }
+                                                            %
+                                                        </span>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
+                                                        Harga Setelah Diskon :
+                                                        <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
+                                                            {rupiah(
+                                                                course.discounted_price
+                                                            )}
+                                                        </span>
+                                                    </p>
+                                                </li>
+                                            </>
+                                        ) : (
+                                            <></>
+                                        )}
                                     </ul>
                                 </div>
                             </div>
@@ -469,103 +497,166 @@ export default function Course() {
                                 </TabPanel>
                                 <TabPanel>
                                     <div className="py-8">
-                                        <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-x-30px gap-y-5">
-                                            <div class="lg:col-start-1 lg:col-span-4 px-10px py-30px bg-whiteColor dark:bg-whiteColor-dark shadow-review text-center">
-                                                <p class="text-7xl font-extrabold text-blackColor dark:text-blackColor-dark leading-90px">
-                                                    {
-                                                        course
-                                                            .course_review_recap
-                                                            .avg
-                                                    }
-                                                </p>
-                                                <div class="text-secondary">
-                                                    <FaStar className="inline-block" />
-                                                    <FaStar className="inline-block" />
-                                                    <FaStar className="inline-block" />
-                                                    <FaStar className="inline-block" />
-                                                    <FaStar className="inline-block" />
-                                                </div>
-                                                <p class="text-blackColor dark:text-blackColor-dark leading-26px font-medium">
-                                                    (
-                                                    {
-                                                        course
-                                                            .course_review_recap
-                                                            .total
-                                                    }{" "}
-                                                    Reviews)
-                                                </p>
-                                            </div>
-
-                                            <div class="lg:col-start-5 lg:col-span-8 px-15px">
-                                                <ul class="flex flex-col gap-y-3">
-                                                    {[5, 4, 3, 2, 1].map(
-                                                        (i) => {
-                                                            let total =
+                                        <div className="card bg-base-100 rounded-none">
+                                            <div className="card-body">
+                                                <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-x-30px gap-y-5">
+                                                    <div class="lg:col-start-1 lg:col-span-4 px-10px py-30px bg-whiteColor dark:bg-whiteColor-dark shadow-review text-center">
+                                                        <p class="text-7xl font-extrabold text-blackColor dark:text-blackColor-dark leading-90px">
+                                                            {
                                                                 course
                                                                     .course_review_recap
-                                                                    .total;
-                                                            let star_counts =
-                                                                course.course_review_recap.star_counts.hasOwnProperty(
-                                                                    i
-                                                                )
-                                                                    ? course
-                                                                          .course_review_recap
-                                                                          .star_counts[
-                                                                          i
-                                                                      ]
-                                                                    : 0;
+                                                                    .avg
+                                                            }
+                                                        </p>
+                                                        <div class="text-secondary">
+                                                            <FaStar className="inline-block" />
+                                                            <FaStar className="inline-block" />
+                                                            <FaStar className="inline-block" />
+                                                            <FaStar className="inline-block" />
+                                                            <FaStar className="inline-block" />
+                                                        </div>
+                                                        <p class="text-blackColor dark:text-blackColor-dark leading-26px font-medium">
+                                                            (
+                                                            {
+                                                                course
+                                                                    .course_review_recap
+                                                                    .total
+                                                            }{" "}
+                                                            Reviews)
+                                                        </p>
+                                                    </div>
 
-                                                            let percentage =
-                                                                (star_counts /
-                                                                    total) *
-                                                                100;
+                                                    <div class="lg:col-start-5 lg:col-span-8 px-15px">
+                                                        <ul class="flex flex-col gap-y-3">
+                                                            {[
+                                                                5, 4, 3, 2, 1,
+                                                            ].map((i) => {
+                                                                let total =
+                                                                    course
+                                                                        .course_review_recap
+                                                                        .total;
+                                                                let star_counts =
+                                                                    course.course_review_recap.star_counts.hasOwnProperty(
+                                                                        i
+                                                                    )
+                                                                        ? course
+                                                                              .course_review_recap
+                                                                              .star_counts[
+                                                                              i
+                                                                          ]
+                                                                        : 0;
 
-                                                            return (
-                                                                <li
-                                                                    key={i}
-                                                                    class="flex items-center text-blackColor dark:text-blackColor-dark"
-                                                                >
-                                                                    <div className="flex w-[10%] justify-between items-center gap-2">
-                                                                        <span>
-                                                                            {i}
-                                                                        </span>
-                                                                        <span>
-                                                                            <FaStar className="text-secondary" />
-                                                                        </span>
-                                                                    </div>
-                                                                    <div class="w-[80%] mx-6">
-                                                                        <progress
-                                                                            className="progress progress-secondary w-full"
-                                                                            value={
-                                                                                percentage
-                                                                            }
-                                                                            max={
-                                                                                percentage
-                                                                            }
-                                                                        ></progress>
-                                                                    </div>
-                                                                    <div className="w-[10%]">
-                                                                        <span className="text-end block w-full">
-                                                                            {
-                                                                                star_counts
-                                                                            }
-                                                                        </span>
-                                                                    </div>
-                                                                </li>
-                                                            );
-                                                        }
-                                                    )}
-                                                </ul>
+                                                                let percentage =
+                                                                    (star_counts /
+                                                                        total) *
+                                                                    100;
+
+                                                                return (
+                                                                    <li
+                                                                        key={i}
+                                                                        class="flex items-center text-blackColor dark:text-blackColor-dark"
+                                                                    >
+                                                                        <div className="flex w-[10%] justify-between items-center gap-2">
+                                                                            <span>
+                                                                                {
+                                                                                    i
+                                                                                }
+                                                                            </span>
+                                                                            <span>
+                                                                                <FaStar className="text-secondary" />
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="w-[80%] mx-6">
+                                                                            <progress
+                                                                                className="progress progress-secondary w-full"
+                                                                                value={
+                                                                                    percentage
+                                                                                }
+                                                                                max={
+                                                                                    percentage
+                                                                                }
+                                                                            ></progress>
+                                                                        </div>
+                                                                        <div className="w-[10%]">
+                                                                            <span className="text-end block w-full">
+                                                                                {
+                                                                                    star_counts
+                                                                                }
+                                                                            </span>
+                                                                        </div>
+                                                                    </li>
+                                                                );
+                                                            })}
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
-                                    <div className="py-8">Instruktur</div>
+                                    <div className="py-8">
+                                        <div className="card bg-base-100 rounded-none">
+                                            <div className="card-body">
+                                                <div className="flex gap-4">
+                                                    <div className="avatar">
+                                                        <div className="w-24 h-24 rounded-full">
+                                                            <img
+                                                                src={
+                                                                    course
+                                                                        .instructor
+                                                                        .photo_url
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div>
+                                                        <h3 className="mb-2 font-bold text-xl">
+                                                            {
+                                                                course
+                                                                    .instructor
+                                                                    .name
+                                                            }
+                                                        </h3>
+                                                        <div className="text-sm">
+                                                            {course.instructor
+                                                                .instructor_info
+                                                                ? course
+                                                                      .instructor
+                                                                      .instructor_info
+                                                                      .bio
+                                                                : ""}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </TabPanel>
                             </Tabs>
                         </div>
+
+                        <div>
+                            <div className="flex justify-between items-center mb-8">
+                                <h3 className="text-3xl font-bold">
+                                    Kursus dari Instruktur{" "}
+                                    {course.instructor.name}
+                                </h3>
+                                <div>
+                                    <Link>Lebih Banyak...</Link>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-[30px]">
+                                    {more_courses.map((course) => (
+                                        <CourseCard course={course} />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div className="lg:col-start-9 lg:col-span-4">
                         <div className="card bg-base-100 shadow-xl">
                             {!course.feature_course_lecture ? (

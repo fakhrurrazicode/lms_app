@@ -63,9 +63,8 @@ class PageController extends Controller
 
     public function course($slug)
     {
-
         $course = Course::where('slug', $slug)->with([
-            'instructor',
+            'instructor.instructor_info',
             'course_category',
             'course_reviews',
             'course_sections.course_lectures',
@@ -73,8 +72,10 @@ class PageController extends Controller
             'course_reviews'
         ])->firstOrFail();
 
+        $more_courses = Course::where('instructor_id', $course->instructor_id)->inRandomOrder()->limit(2)->get();
+
         // return $course;
-        return Inertia::render('Course', compact('course'));
+        return Inertia::render('Course', compact('course', 'more_courses'));
     }
 
     public function become_instructor()
@@ -123,5 +124,12 @@ class PageController extends Controller
             'bio' => $data['bio'],
         ]);
         return to_route('user_area.become_instructor.create');
+    }
+
+    public function instructor_info(InstructorInfo $instructor_info)
+    {
+        $instructor_info->load(['user']);
+        // return $instructor_info;
+        return Inertia::render('InstructorInfo', ['instructor_info' => $instructor_info]);
     }
 }

@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
+        Schema::create('coins', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
-            $table->morphs('itemable');
-            $table->integer('quantity')->default(1);
-            $table->double('price')->default(0);
-            $table->double('discount_percentage')->nullable()->default(0);
-            $table->json('options')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->integer('amount'); // positif = earn, negatif = spend
+            $table->string('source')->nullable(); // ex: 'cashback order #123'
+            $table->timestamp('expired_at')->nullable(); // 
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
+        Schema::dropIfExists('coins');
     }
 };

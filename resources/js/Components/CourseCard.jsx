@@ -146,7 +146,7 @@ export default function CourseCard({ course }) {
                             >
                                 <img
                                     className="w-[30px] h-[30px] rounded-full mr-[15px]"
-                                    src="/images/grids/grid_small_1.jpg"
+                                    src={course.instructor.photo_url}
                                     alt=""
                                 />
                                 <span className="flex text-sm">
@@ -158,12 +158,20 @@ export default function CourseCard({ course }) {
                         )}
                     </div>
                     <div className="text-start md:text-end flex justify-end gap-1 items-center">
-                        <FaStar className="text-xs text-yellow-400" />
-                        <FaStar className="text-xs text-yellow-400" />
-                        <FaStar className="text-xs text-yellow-400" />
-                        <FaStar className="text-xs text-yellow-400" />
-                        <FaStar className="text-xs text-yellow-400" />
-                        <span className="text-xs text-lightGrey6">(44)</span>
+                        {[...Array(5)].map((_, index) => {
+                            if (index + 1 <= course.course_review_recap.avg) {
+                                return (
+                                    <FaStar className="text-xs text-yellow-400" />
+                                );
+                            } else {
+                                return (
+                                    <FaStar className="text-xs text-gray-700" />
+                                );
+                            }
+                        })}
+                        <span className="text-xs text-gray-300">
+                            ({course.course_review_recap.total})
+                        </span>
                     </div>
                 </div>
                 {/* <div className="card-actions justify-end">

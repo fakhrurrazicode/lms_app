@@ -1,4 +1,4 @@
-import { rupiah } from "@/bootstrap";
+import { number_format, rupiah } from "@/bootstrap";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
@@ -7,6 +7,7 @@ import { Link, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { FaCartArrowDown, FaTimes } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
+import { PiCoinDuotone } from "react-icons/pi";
 
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import file CSS AOS
@@ -137,6 +138,17 @@ export default function FrontendLayout({ header, children }) {
 
                             {user ? (
                                 <div className="hidden sm:ms-6 sm:flex sm:items-center">
+                                    <div className="py-[8px] px-[12px] ml-[12px] text-sm">
+                                        <div className="flex items-center gap-2">
+                                            <PiCoinDuotone className="text-yellow-500 text-xl" />
+                                            <span className="">Coins</span>
+                                            <span className="font-bold text-yellow-500">
+                                                {number_format(
+                                                    user.coin_balance
+                                                )}
+                                            </span>
+                                        </div>
+                                    </div>
                                     <div className="relative ms-3">
                                         <Dropdown>
                                             <Dropdown.Trigger>
@@ -368,6 +380,7 @@ export default function FrontendLayout({ header, children }) {
                                             </Dropdown.Content>
                                         </Dropdown>
                                     </div>
+
                                     <div className="relative ms-3">
                                         <Dropdown>
                                             <Dropdown.Trigger>

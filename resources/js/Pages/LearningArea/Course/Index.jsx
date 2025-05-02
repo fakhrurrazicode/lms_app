@@ -162,7 +162,7 @@ export default function Index({ course }) {
                                 <h3 className="border-l-4 border-primary pl-3 mb-[30px]">
                                     Detail Kursus
                                 </h3>
-                                <div className="card bg-base-200 mb-[30px] grid grid-cols-1 md:grid-cols-2">
+                                <div className="card bg-base-100 mb-[30px] grid grid-cols-1 md:grid-cols-2">
                                     <ul className="p-10px md:py-[55px] md:pl-[50px] md:pr-[70px] lg:py-[35px] lg:px-[30px] 2xl:py-[55px] 2xl:pl-[50px] 2xl:pr-[70px] border-r-2 border-base-200 space-y-[10px]">
                                         <li>
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
@@ -189,9 +189,9 @@ export default function Index({ course }) {
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Durasi :
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    {minutesToHumanReadable(
-                                                        course.duration
-                                                    )}
+                                                    {
+                                                        course.total_lecture_duration
+                                                    }
                                                 </span>
                                             </p>
                                         </li>
@@ -215,23 +215,42 @@ export default function Index({ course }) {
                                                 </span>
                                             </p>
                                         </li>
-                                        <li>
-                                            <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Diskon :
-                                                <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    {course.discount_percentage}
-                                                    %
-                                                </span>
-                                            </p>
-                                        </li>
+
                                         <li>
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Harga Normal:
                                                 <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    {rupiah(course.real_price)}
+                                                    {rupiah(course.price)}
                                                 </span>
                                             </p>
                                         </li>
+                                        {course.discount_percentage ? (
+                                            <>
+                                                <li>
+                                                    <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
+                                                        Diskon :
+                                                        <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
+                                                            {
+                                                                course.discount_percentage
+                                                            }
+                                                            %
+                                                        </span>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
+                                                        Harga Setelah Diskon :
+                                                        <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
+                                                            {rupiah(
+                                                                course.discounted_price
+                                                            )}
+                                                        </span>
+                                                    </p>
+                                                </li>
+                                            </>
+                                        ) : (
+                                            <></>
+                                        )}
                                     </ul>
                                 </div>
                             </div>
@@ -256,7 +275,7 @@ export default function Index({ course }) {
 
                                 <TabPanel>
                                     <div className="py-8">
-                                        <div className="card bg-base-200 rounded-none">
+                                        <div className="card bg-base-100 rounded-none">
                                             <div className="card-body">
                                                 <div className="mb-10">
                                                     <h3 className="text-3xl font-bold mb-4 text-primary">
@@ -287,7 +306,44 @@ export default function Index({ course }) {
                                 </TabPanel>
 
                                 <TabPanel>
-                                    <div className="py-8">Instruktur</div>
+                                    <div className="py-8">
+                                        <div className="card bg-base-100 rounded-none">
+                                            <div className="card-body">
+                                                <div className="flex gap-4">
+                                                    <div className="avatar">
+                                                        <div className="w-24 h-24 rounded-full">
+                                                            <img
+                                                                src={
+                                                                    course
+                                                                        .instructor
+                                                                        .photo_url
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div>
+                                                        <h3 className="mb-2 font-bold text-xl">
+                                                            {
+                                                                course
+                                                                    .instructor
+                                                                    .name
+                                                            }
+                                                        </h3>
+                                                        <div className="text-sm">
+                                                            {course.instructor
+                                                                .instructor_info
+                                                                ? course
+                                                                      .instructor
+                                                                      .instructor_info
+                                                                      .bio
+                                                                : ""}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </TabPanel>
                             </Tabs>
                         </div>

@@ -5,7 +5,13 @@ import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link } from "@inertiajs/react";
 
 import React from "react";
-import { FaCheck, FaHeart, FaShoppingCart, FaTrash } from "react-icons/fa";
+import {
+    FaCheck,
+    FaHeart,
+    FaShoppingCart,
+    FaStar,
+    FaTrash,
+} from "react-icons/fa";
 import { toast } from "react-toastify";
 
 export default function Cart({ cart }) {
@@ -65,6 +71,43 @@ export default function Cart({ cart }) {
                                                                             .name
                                                                     }
                                                                 </span>
+                                                            </div>
+
+                                                            <div className="text-xs mb-4 flex items-center gap-2">
+                                                                Reviews:
+                                                                <div className="flex gap-1 items-center">
+                                                                    {Array.from(
+                                                                        {
+                                                                            length: Math.round(
+                                                                                course.average_stars
+                                                                            ),
+                                                                        },
+                                                                        (
+                                                                            _,
+                                                                            i
+                                                                        ) => i
+                                                                    ).map(
+                                                                        (i) => {
+                                                                            return (
+                                                                                <FaStar
+                                                                                    className={
+                                                                                        i <=
+                                                                                        course.average_stars
+                                                                                            ? "text-yellow-500"
+                                                                                            : ""
+                                                                                    }
+                                                                                />
+                                                                            );
+                                                                        }
+                                                                    )}
+                                                                    <span>
+                                                                        (
+                                                                        {
+                                                                            course.average_stars
+                                                                        }
+                                                                        )
+                                                                    </span>
+                                                                </div>
                                                             </div>
 
                                                             <div className="text-xs mb-2 gap-2 flex flex-wrap">
@@ -146,46 +189,12 @@ export default function Cart({ cart }) {
                                                                     </span>
                                                                 </Link>
                                                             </div>
-
-                                                            <div className="mb-6">
-                                                                <label className="form-control w-full ">
-                                                                    <div className="label">
-                                                                        <span className="label-text">
-                                                                            Punya
-                                                                            Kode
-                                                                            Referral
-                                                                            ?
-                                                                        </span>
-                                                                    </div>
-                                                                    <div className="flex justify-between gap-2">
-                                                                        <input
-                                                                            type="text"
-                                                                            placeholder="Kode Referral"
-                                                                            className="input input-bordered input-sm w-full "
-                                                                        />
-                                                                        <button className="btn btn-sm btn-primary">
-                                                                            <FaCheck />
-                                                                        </button>
-                                                                    </div>
-                                                                    {false ? (
-                                                                        <div className="label">
-                                                                            <span className="label-text-alt">
-                                                                                Bottom
-                                                                                Left
-                                                                                label
-                                                                            </span>
-                                                                        </div>
-                                                                    ) : (
-                                                                        <></>
-                                                                    )}
-                                                                </label>
-                                                            </div>
                                                         </div>
                                                     </div>
 
-                                                    <div className="w-1/5">
+                                                    <div className="w-1/4">
                                                         {course.discount_percentage ? (
-                                                            <div className="block md:flex md:gap-2 justify-end items-center">
+                                                            <div className="block text-end justify-end items-center">
                                                                 <div className="text-primary font-bold">
                                                                     {rupiah(
                                                                         course.discounted_price
@@ -199,7 +208,7 @@ export default function Cart({ cart }) {
                                                                 </div>
                                                             </div>
                                                         ) : (
-                                                            <div>
+                                                            <div className="text-end">
                                                                 <span className="text-primary font-bold">
                                                                     {rupiah(
                                                                         course.price
@@ -218,36 +227,6 @@ export default function Cart({ cart }) {
                                 <div className="card bg-base-100">
                                     <div className="card">
                                         <div className="card-body">
-                                            <div className="mb-6 hidden">
-                                                <label className="form-control w-full ">
-                                                    <div className="label">
-                                                        <span className="label-text">
-                                                            Punya Kode Referral
-                                                            ?
-                                                        </span>
-                                                    </div>
-                                                    <div className="flex justify-between gap-2">
-                                                        <input
-                                                            type="text"
-                                                            placeholder="Kode Referral"
-                                                            className="input input-bordered w-full "
-                                                        />
-                                                        <button className="btn btn-primary">
-                                                            <FaCheck />
-                                                        </button>
-                                                    </div>
-                                                    {false ? (
-                                                        <div className="label">
-                                                            <span className="label-text-alt">
-                                                                Bottom Left
-                                                                label
-                                                            </span>
-                                                        </div>
-                                                    ) : (
-                                                        <></>
-                                                    )}
-                                                </label>
-                                            </div>
                                             <div className="mb-6">
                                                 <h3 className="font-bold">
                                                     Total:

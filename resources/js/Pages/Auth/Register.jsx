@@ -34,7 +34,7 @@ export default function Register() {
                     </Link>
                 </div>
 
-                <div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg dark:bg-gray-800">
+                <div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg dark:bg-gray-800 mb-16">
                     {status && (
                         <div className="mb-4 text-sm font-medium text-green-600">
                             {status}
@@ -153,6 +153,30 @@ export default function Register() {
 
                             <InputError
                                 message={errors.password_confirmation}
+                                className="mt-2"
+                            />
+                        </div>
+
+                        <div className="mt-4">
+                            <InputLabel
+                                htmlFor="voucher_code"
+                                value="Kode Voucher"
+                            />
+
+                            <TextInput
+                                id="voucher_code"
+                                name="voucher_code"
+                                value={data.voucher_code}
+                                className="mt-1 block w-full"
+                                autoComplete="voucher_code"
+                                onChange={(e) =>
+                                    setData("voucher_code", e.target.value)
+                                }
+                                required
+                            />
+
+                            <InputError
+                                message={errors.voucher_code}
                                 className="mt-2"
                             />
                         </div>

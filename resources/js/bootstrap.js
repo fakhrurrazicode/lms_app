@@ -26,6 +26,13 @@ export const rupiah = (number) => {
     }).format(number);
 };
 
+export const number_format = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+        style: "decimal",
+        maximumFractionDigits: 0,
+    }).format(number);
+};
+
 export const itemIsExitsOnCart = (item, cart) => {
     return cart.items.some((_item) => {
         return (
