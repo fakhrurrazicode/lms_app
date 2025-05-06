@@ -316,7 +316,10 @@ export default function BecomeInstructor({}) {
                                         </span>
                                     </label>
                                     <div className="flex flex-col gap-2">
-                                        <button className="btn btn-secondary w-full">
+                                        <button
+                                            disabled={processing}
+                                            className="btn btn-secondary w-full"
+                                        >
                                             Daftar Sebagai Pengajar
                                         </button>
                                         <a

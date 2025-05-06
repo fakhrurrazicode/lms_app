@@ -77,9 +77,9 @@ class GoogleController extends Controller
         Auth::login($user);
 
         if (session('as_instructor', 0)) {
-            return redirect(route('user_area.become_instructor.create', absolute: false));
+            return redirect(route('user_area.become_instructor.index', absolute: false));
         } else {
-            return redirect(route('home', absolute: false));
+            return redirect(route('user_area.dashboard', absolute: false));
         }
     }
 }

@@ -122,14 +122,18 @@ class PageController extends Controller
             'user_id' => $data['user_id'],
             'id_card' => $data['id_card'],
             'bio' => $data['bio'],
+            'status' => 0,
         ]);
-        return to_route('user_area.become_instructor.create');
+
+        return to_route('user_area.become_instructor.status');
     }
 
-    public function instructor_info(InstructorInfo $instructor_info)
+    public function instructor_info(User $user)
     {
-        $instructor_info->load(['user']);
-        // return $instructor_info;
-        return Inertia::render('InstructorInfo', ['instructor_info' => $instructor_info]);
+        // return $user;
+        $instructor = $user->load(['courses', 'instructor_info']);
+        // return $instructor;
+
+        return Inertia::render('InstructorInfo', ['instructor' => $instructor]);
     }
 }

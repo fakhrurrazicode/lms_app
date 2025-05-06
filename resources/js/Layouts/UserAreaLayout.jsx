@@ -149,10 +149,13 @@ export default function UserAreaLayout({ children }) {
                                                 href={route(
                                                     "user_area.become_instructor.index"
                                                 )}
-                                                className="text-primary dark:text-secondary leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                                className="text-primary dark:text-secondary relative leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                             >
                                                 <FiStar />
                                                 <span>Menjadi Pengajar</span>
+                                                <div className="badge badge-warning text-[10px] absolute right-0">
+                                                    Menunggu Persetujuan
+                                                </div>
                                             </Link>
                                         </li>
                                     </ul>

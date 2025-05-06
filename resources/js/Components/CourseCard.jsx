@@ -140,8 +140,12 @@ export default function CourseCard({ course }) {
                 <div className="grid grid-cols-1 md:grid-cols-2 pt-[15px] border-t border-gray-700">
                     <div>
                         {course.instructor ? (
-                            <a
-                                href="instructor-details.html"
+                            <Link
+                                href={route("instructor_info", {
+                                    user: course.instructor.id,
+                                })}
+                                preserveState={true}
+                                // preserveScroll={true}
                                 className="text-base font-bold font-hind flex items-center hover:text-primary dark:text-blackColor-dark dark:hover:text-primary"
                             >
                                 <img
@@ -152,7 +156,7 @@ export default function CourseCard({ course }) {
                                 <span className="flex text-sm">
                                     {course.instructor.name}
                                 </span>
-                            </a>
+                            </Link>
                         ) : (
                             <></>
                         )}

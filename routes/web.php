@@ -55,7 +55,7 @@ Route::get('/become_instructor', [PageController::class, 'become_instructor'])->
 Route::post('/submit_become_instructor', [PageController::class, 'submit_become_instructor'])->name('submit_become_instructor');
 Route::get('/course/{slug}', [PageController::class, 'course'])->name('course');
 
-Route::get('/instructor_info/{instructor_info}', [PageController::class, 'instructor_info'])->name('instructor_info');
+Route::get('/instructor_info/{user}', [PageController::class, 'instructor_info'])->name('instructor_info');
 
 // Route::get('/dashboard', function () {})->middleware(['auth', 'verified'])->name('dashboard');
 
