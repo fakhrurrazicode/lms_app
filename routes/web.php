@@ -24,6 +24,7 @@ use App\Http\Controllers\UserArea\EnrollmentController;
 use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
+use App\Http\Controllers\Backend\EventController;
 use App\Http\Controllers\Backend\InstructorInfoController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\UserArea\BecomeInstructorController;
@@ -168,6 +169,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/course', CourseController::class);
         Route::post('/course/{course}', [CourseController::class, 'update'])->name('course.update');
 
+        Route::resource('/event', EventController::class);
 
         Route::resource('/course/{course}/course_section', CourseSectionController::class);
         Route::resource('/course/{course}/course_section/{course_section}/course_lecture', CourseLectureController::class)->except(['index', 'update']);

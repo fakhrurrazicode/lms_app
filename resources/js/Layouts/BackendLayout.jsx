@@ -330,6 +330,16 @@ export default function BackendLayout({ header, children }) {
 
                         <li>
                             <Link
+                                href="/backend/event"
+                                className="flex justify-start items-center "
+                            >
+                                <LayoutList size={16} />
+                                <span>Pengelolaan Event</span>
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link
                                 href="/profile"
                                 className="flex justify-start items-center "
                             >
