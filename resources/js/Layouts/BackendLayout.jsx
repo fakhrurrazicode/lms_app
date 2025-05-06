@@ -18,6 +18,7 @@ import {
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { RiMenuFill } from "react-icons/ri";
+import { FaCalendar, FaGraduationCap, FaTag } from "react-icons/fa";
 
 export default function BackendLayout({ header, children }) {
     const { user, permissions } = usePage().props.auth;
@@ -254,7 +255,7 @@ export default function BackendLayout({ header, children }) {
                                 preserveState={true}
                             >
                                 <UserCheck size={16} />
-                                <span>Pengelolaan Roles</span>
+                                <span>Data Roles</span>
                             </Link>
                         </li>
 
@@ -264,7 +265,7 @@ export default function BackendLayout({ header, children }) {
                                 className="flex justify-start items-center "
                             >
                                 <UserCheck size={16} />
-                                <span>Pengelolaan Permissions</span>
+                                <span>Data Permissions</span>
                             </Link>
                         </li>
 
@@ -274,7 +275,7 @@ export default function BackendLayout({ header, children }) {
                                 className="flex justify-start items-center "
                             >
                                 <Users size={16} />
-                                <span>Pengelolaan Users</span>
+                                <span>Data Users</span>
                             </Link>
                         </li>
 
@@ -284,7 +285,7 @@ export default function BackendLayout({ header, children }) {
                                 className="flex justify-start items-center "
                             >
                                 <Users size={16} />
-                                <span>Pengelolaan Users Instruktur</span>
+                                <span>Data Users Instruktur</span>
                             </Link>
                         </li>
 
@@ -293,8 +294,8 @@ export default function BackendLayout({ header, children }) {
                                 href="/backend/tag"
                                 className="flex justify-start items-center "
                             >
-                                <LayoutList size={16} />
-                                <span>Pengelolaan Tag</span>
+                                <FaTag size={16} />
+                                <span>Data Tag</span>
                             </Link>
                         </li>
 
@@ -304,7 +305,7 @@ export default function BackendLayout({ header, children }) {
                                 className="flex justify-start items-center "
                             >
                                 <LayoutList size={16} />
-                                <span>Pengelolaan Course Categories</span>
+                                <span>Data Kategori Kursus</span>
                             </Link>
                         </li>
 
@@ -314,7 +315,7 @@ export default function BackendLayout({ header, children }) {
                                 className="flex justify-start items-center "
                             >
                                 <LayoutList size={16} />
-                                <span>Pengelolaan Course Sub Categories</span>
+                                <span>Data Course Sub Categories</span>
                             </Link>
                         </li> */}
 
@@ -323,8 +324,8 @@ export default function BackendLayout({ header, children }) {
                                 href="/backend/course"
                                 className="flex justify-start items-center "
                             >
-                                <LayoutList size={16} />
-                                <span>Pengelolaan Courses</span>
+                                <FaGraduationCap size={16} />
+                                <span>Data Kursus</span>
                             </Link>
                         </li>
 
@@ -333,8 +334,8 @@ export default function BackendLayout({ header, children }) {
                                 href="/backend/event"
                                 className="flex justify-start items-center "
                             >
-                                <LayoutList size={16} />
-                                <span>Pengelolaan Event</span>
+                                <FaCalendar size={16} />
+                                <span>Data Event</span>
                             </Link>
                         </li>
 
