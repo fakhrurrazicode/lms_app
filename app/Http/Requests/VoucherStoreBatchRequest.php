@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VoucherStoreRequest extends FormRequest
+class VoucherStoreBatchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,10 @@ class VoucherStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => ['required'],
+            // 'code' => ['required'],
             'event_id' => ['required'],
-            'owner_id' => ['required'],
+            'prefix_code' => ['required'],
+            // 'owner_id' => ['required'],
             'customer_coin_reward' => ['required'],
             'owner_coin_reward' => ['required'],
             'usage_limit' => ['required'],

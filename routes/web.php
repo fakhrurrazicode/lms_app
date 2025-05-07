@@ -173,6 +173,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/event', EventController::class)->except(['update']);
         Route::post('/event/{event}', [EventController::class, 'update'])->name('event.update');
 
+        Route::get('/voucher/create_batch', [VoucherController::class, 'create_batch'])->name('voucher.create_batch');
+        Route::post('/voucher/store_batch', [VoucherController::class, 'store_batch'])->name('voucher.store_batch');
         Route::resource('/voucher', VoucherController::class);
 
         Route::resource('/course/{course}/course_section', CourseSectionController::class);

@@ -57,3 +57,14 @@ export const removeFromCart = async (itemable_type, itemable_id) => {
         },
     });
 };
+
+export const generateSingkatan = (name, minLength = 2) => {
+    const words = name.trim().split(/\s+/);
+    let singkatan = words.map((word) => word[0].toUpperCase()).join("");
+
+    if (words.length === 1) {
+        singkatan = words[0].substring(0, minLength).toUpperCase();
+    }
+
+    return singkatan;
+};

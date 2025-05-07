@@ -27,6 +27,7 @@ class VoucherUpdateRequest extends FormRequest
             'owner_id' => ['required'],
             'customer_coin_reward' => ['required'],
             'owner_coin_reward' => ['required'],
+            'usage_limit' => ['required'],
             'expires_at' => ['required'],
         ];
     }

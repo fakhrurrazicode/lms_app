@@ -43,7 +43,7 @@ export default function Index({ request, vouchers }) {
 
                             <div className="overflow-x-auto">
                                 <div className="mb-6 flex justify-between items-center">
-                                    <div>
+                                    <div className="flex justify-start gap-2">
                                         <Link
                                             href={route(
                                                 "backend.voucher.create"
@@ -52,6 +52,16 @@ export default function Index({ request, vouchers }) {
                                         >
                                             <Plus size={16} />
                                             <span>Create new</span>
+                                        </Link>
+
+                                        <Link
+                                            href={route(
+                                                "backend.voucher.create_batch"
+                                            )}
+                                            className="btn btn-primary"
+                                        >
+                                            <Plus size={16} />
+                                            <span>Create Batch</span>
                                         </Link>
                                     </div>
                                     <div className="flex gap-2">
