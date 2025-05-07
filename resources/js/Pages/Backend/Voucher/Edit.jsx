@@ -1,30 +1,28 @@
 import BackendLayout from "@/Layouts/BackendLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { Save } from "lucide-react";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import slugify from "slugify";
 
-export default function Edit({ event }) {
-    const previewImageRef = useRef(null);
-
-    useEffect(() => {
-        previewImageRef.current.src = event.image_url;
-    }, []);
-
-    const { data, setData, post, errors, reset, processing, progress } =
-        useForm({
-            title: event.title,
-            description: event.description,
-            image: null,
-            start_date: event.start_date,
-            end_date: event.end_date,
-        });
+export default function Edit({ voucher, events, owners }) {
+    const { data, setData, put, errors, reset, processing, progress } = useForm(
+        {
+            code: voucher.code,
+            event_id: voucher.event_id,
+            owner_id: voucher.owner_id,
+            customer_coin_reward: voucher.customer_coin_reward,
+            owner_coin_reward: voucher.owner_coin_reward,
+            usage_limit: voucher.usage_limit,
+            used_count: voucher.used_count,
+            expires_at: voucher.expires_at,
+        }
+    );
 
     const submitHandler = (e) => {
         e.preventDefault();
-        post(
-            route("backend.event.update", {
-                event: event,
+        put(
+            route("backend.voucher.update", {
+                voucher: voucher.id,
             }),
             {
                 preserveScroll: true,
@@ -37,26 +35,9 @@ export default function Edit({ event }) {
         const name = e.target.name;
         const value = e.target.value;
 
+        console.log(name, value);
+
         switch (name) {
-            case "image":
-                console.log(e.target.files);
-                const file = e.target.files[0];
-
-                if (file) {
-                    const reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        previewImageRef.current.src = e.target.result;
-                    };
-
-                    reader.readAsDataURL(file);
-                } else {
-                    previewImageRef.current.classList.add("hidden");
-                    previewImageRef.current.src = "";
-                }
-
-                setData("image", file);
-                break;
             default:
                 setData(name, value);
                 break;
@@ -67,38 +48,48 @@ export default function Edit({ event }) {
         <BackendLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Events
+                    Voucher
                 </h2>
             }
         >
-            <Head title="Events" />
+            <Head title="Voucher" />
 
             <div className="py-12">
                 <div className="w-full lg:w-3/4 xl:w-1/2 px-6 lg:px-8 mx-auto">
                     <form onSubmit={submitHandler}>
                         <div className="card bg-base-100 shadow-xl">
                             <div className="card-body">
-                                <h2 className="card-title mb-6">Edit Event</h2>
+                                <h2 className="card-title mb-6">
+                                    Edit Voucher
+                                </h2>
 
                                 <div className="mb-6">
                                     <label className="form-control w-full mb-6">
                                         <div className="label">
                                             <span className="label-text">
-                                                Title
+                                                Event
                                             </span>
                                         </div>
-                                        <input
-                                            type="text"
-                                            placeholder="Title"
-                                            className="input input-bordered w-full"
-                                            name="title"
+
+                                        <select
+                                            className="select select-bordered"
+                                            name="event_id"
                                             onChange={inputChangeHandler}
-                                            value={data.title}
-                                        />
-                                        {errors.title && (
+                                            value={data.event_id}
+                                        >
+                                            <option>Pilih Event</option>
+                                            {events.map((event) => (
+                                                <option value={event.id}>
+                                                    {event.title} (
+                                                    {event.start_date} -{" "}
+                                                    {event.end_date})
+                                                </option>
+                                            ))}
+                                        </select>
+                                        {errors.event_id && (
                                             <div className="label">
                                                 <span className="label-text-alt text-error">
-                                                    {errors.title}
+                                                    {errors.event_id}
                                                 </span>
                                             </div>
                                         )}
@@ -107,84 +98,79 @@ export default function Edit({ event }) {
                                     <label className="form-control w-full mb-6">
                                         <div className="label">
                                             <span className="label-text">
-                                                Description
+                                                Owner
                                             </span>
                                         </div>
 
-                                        <textarea
-                                            className="textarea textarea-bordered h-24"
-                                            placeholder="Description"
-                                            name="description"
+                                        <select
+                                            className="select select-bordered"
+                                            name="owner_id"
                                             onChange={inputChangeHandler}
-                                            value={data.description}
-                                        ></textarea>
-                                        {errors.description && (
+                                            value={data.owner_id}
+                                        >
+                                            <option>Pilih Owner</option>
+                                            {owners.map((owner) => (
+                                                <option value={owner.id}>
+                                                    {owner.name} - (
+                                                    {owner.email})
+                                                </option>
+                                            ))}
+                                        </select>
+                                        {errors.owner_id && (
                                             <div className="label">
                                                 <span className="label-text-alt text-error">
-                                                    {errors.description}
+                                                    {errors.owner_id}
                                                 </span>
                                             </div>
                                         )}
                                     </label>
 
-                                    <div className="mb-6">
-                                        <label className="form-control flex-1 mb-6">
+                                    <label className="form-control w-full mb-6">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Voucher Code
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Voucher Code"
+                                            className="input input-bordered w-full"
+                                            name="code"
+                                            onChange={inputChangeHandler}
+                                            value={data.code}
+                                        />
+                                        {errors.code && (
                                             <div className="label">
-                                                <span className="label-text">
-                                                    Image
+                                                <span className="label-text-alt text-error">
+                                                    {errors.code}
                                                 </span>
                                             </div>
-
-                                            <input
-                                                type="file"
-                                                placeholder="Image"
-                                                className="file-input file-input-bordered w-full"
-                                                name="image"
-                                                accept="image/*"
-                                                onChange={inputChangeHandler}
-                                            />
-                                            {errors.image && (
-                                                <div className="label">
-                                                    <span className="label-text-alt text-error">
-                                                        {errors.image}
-                                                    </span>
-                                                </div>
-                                            )}
-                                        </label>
-                                        <div className="w-full lg:w-1/4">
-                                            <img
-                                                ref={previewImageRef}
-                                                src=""
-                                                alt=""
-                                                className="w-full"
-                                            />
-                                        </div>
-                                    </div>
+                                        )}
+                                    </label>
 
                                     <div className="block lg:flex gap-2">
                                         <label className="form-control w-full mb-6">
                                             <div className="label">
                                                 <span className="label-text">
-                                                    Start Date
+                                                    Customer Coin Reward
                                                 </span>
                                             </div>
                                             <input
-                                                type="date"
-                                                placeholder="Start Date"
+                                                type="number"
+                                                // placeholder="Customer Coin Reward"
                                                 className="input input-bordered w-full"
-                                                name="start_date"
-                                                onChange={(e) => {
-                                                    setData(
-                                                        e.target.name,
-                                                        e.target.value
-                                                    );
-                                                }}
-                                                value={data.start_date}
+                                                name="customer_coin_reward"
+                                                onChange={inputChangeHandler}
+                                                value={
+                                                    data.customer_coin_reward
+                                                }
                                             />
-                                            {errors.start_date && (
+                                            {errors.customer_coin_reward && (
                                                 <div className="label">
                                                     <span className="label-text-alt text-error">
-                                                        {errors.start_date}
+                                                        {
+                                                            errors.customer_coin_reward
+                                                        }
                                                     </span>
                                                 </div>
                                             )}
@@ -193,31 +179,51 @@ export default function Edit({ event }) {
                                         <label className="form-control w-full mb-6">
                                             <div className="label">
                                                 <span className="label-text">
-                                                    End Date
+                                                    Owner Coin Reward
                                                 </span>
                                             </div>
                                             <input
-                                                type="date"
-                                                placeholder="End Date"
+                                                type="number"
+                                                // placeholder="Customer Coin Reward"
                                                 className="input input-bordered w-full"
-                                                name="end_date"
-                                                onChange={(e) => {
-                                                    setData(
-                                                        e.target.name,
-                                                        e.target.value
-                                                    );
-                                                }}
-                                                value={data.end_date}
+                                                name="owner_coin_reward"
+                                                onChange={inputChangeHandler}
+                                                value={data.owner_coin_reward}
                                             />
-                                            {errors.end_date && (
+                                            {errors.owner_coin_reward && (
                                                 <div className="label">
                                                     <span className="label-text-alt text-error">
-                                                        {errors.end_date}
+                                                        {
+                                                            errors.owner_coin_reward
+                                                        }
                                                     </span>
                                                 </div>
                                             )}
                                         </label>
                                     </div>
+
+                                    <label className="form-control w-full mb-6">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Tanggal Expired
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="datetime-local"
+                                            placeholder="Tanggal Expired"
+                                            className="input input-bordered w-full"
+                                            name="expires_at"
+                                            onChange={inputChangeHandler}
+                                            value={data.expires_at}
+                                        />
+                                        {errors.expires_at && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.expires_at}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
                                 </div>
 
                                 <div className="flex justify-end gap-2">
@@ -229,7 +235,7 @@ export default function Edit({ event }) {
                                         <span>Save</span>
                                     </button>
                                     <Link
-                                        href={route("backend.event.index")}
+                                        href={route("backend.voucher.index")}
                                         className="btn btn-neutral"
                                     >
                                         Cancel

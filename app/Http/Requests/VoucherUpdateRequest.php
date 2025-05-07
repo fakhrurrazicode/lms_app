@@ -11,7 +11,7 @@ class VoucherUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class VoucherUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'code' => ['required'],
+            'event_id' => ['required'],
+            'owner_id' => ['required'],
+            'customer_coin_reward' => ['required'],
+            'owner_coin_reward' => ['required'],
+            'expires_at' => ['required'],
         ];
     }
 }

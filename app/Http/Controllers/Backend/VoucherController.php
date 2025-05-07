@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginateRequest;
 use App\Http\Requests\VoucherStoreRequest;
+use App\Http\Requests\VoucherUpdateRequest;
 use App\Models\Event;
 use App\Models\User;
 use App\Models\Voucher;
@@ -75,15 +76,23 @@ class VoucherController extends Controller
      */
     public function edit(Voucher $voucher)
     {
-        //
+        // return $voucher;
+        $events = Event::all();
+        $owners = User::role('instructor')->get();
+        return Inertia::render('Backend/Voucher/Edit', [
+            'voucher' => $voucher,
+            'events' => $events,
+            'owners' => $owners
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Voucher $voucher)
+    public function update(VoucherUpdateRequest $request, Voucher $voucher)
     {
-        //
+        $voucher->update($request->validated());
+        return to_route('backend.voucher.index');
     }
 
     /**
@@ -91,6 +100,7 @@ class VoucherController extends Controller
      */
     public function destroy(Voucher $voucher)
     {
-        //
+        $voucher->delete();
+        return to_route('backend.voucher.index');
     }
 }

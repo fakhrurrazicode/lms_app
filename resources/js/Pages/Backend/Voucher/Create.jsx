@@ -5,7 +5,6 @@ import React, { useRef } from "react";
 import slugify from "slugify";
 
 export default function Create({ events, owners }) {
-    const previewImageRef = useRef(null);
     const { data, setData, post, errors, reset, processing, progress } =
         useForm({
             code: "",
@@ -204,7 +203,7 @@ export default function Create({ events, owners }) {
                                             </span>
                                         </div>
                                         <input
-                                            type="date"
+                                            type="datetime-local"
                                             placeholder="Tanggal Expired"
                                             className="input input-bordered w-full"
                                             name="expires_at"
