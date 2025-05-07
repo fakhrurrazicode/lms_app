@@ -11,6 +11,8 @@ class Voucher extends Model
 {
     protected $guarded = [];
 
+    public $appends = ['usage_count'];
+
     public function event()
     {
         return $this->belongsTo(Event::class);
@@ -24,5 +26,10 @@ class Voucher extends Model
     public function usages()
     {
         return $this->hasMany(VoucherUsage::class);
+    }
+
+    public function getUsageCountAttribute()
+    {
+        return $this->usages()->count();
     }
 }

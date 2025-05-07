@@ -170,6 +170,26 @@ export default function Index({ request, vouchers }) {
                                                 >
                                                     Owner Coin Reward
                                                 </th>
+
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="usage_limit"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Batas Penggunaan
+                                                </th>
+
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="usage_limit"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Telah Digunakan
+                                                </th>
                                                 <th
                                                     className="cursor-pointer"
                                                     data-columnname="expired_at"
@@ -276,6 +296,17 @@ export default function Index({ request, vouchers }) {
                                                         <td>
                                                             {number_format(
                                                                 voucher.owner_coin_reward
+                                                            )}
+                                                        </td>
+
+                                                        <td>
+                                                            {number_format(
+                                                                voucher.usage_limit
+                                                            )}
+                                                        </td>
+                                                        <td>
+                                                            {number_format(
+                                                                voucher.usage_count
                                                             )}
                                                         </td>
 
