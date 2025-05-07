@@ -1,3 +1,4 @@
+import { number_format } from "@/bootstrap";
 import BackendLayout from "@/Layouts/BackendLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
@@ -5,7 +6,7 @@ import { Edit, KeyRound, ListCollapse, Plus, Trash } from "lucide-react";
 import { useRef, useState } from "react";
 import { FaTicket } from "react-icons/fa6";
 
-export default function Index({ request, events }) {
+export default function Index({ request, vouchers }) {
     const orderByOnClickHandler = (e) =>
         router.reload({
             preserveScroll: true,
@@ -28,7 +29,7 @@ export default function Index({ request, events }) {
         <BackendLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Events
+                    Vouchers
                 </h2>
             }
         >
@@ -38,13 +39,15 @@ export default function Index({ request, events }) {
                 <div className="w-full px-6 lg:px-8 mx-auto">
                     <div className="card bg-base-100 shadow-xl">
                         <div className="card-body">
-                            <h2 className="card-title mb-6">All Events</h2>
+                            <h2 className="card-title mb-6">All Vouchers</h2>
 
                             <div className="overflow-x-auto">
                                 <div className="mb-6 flex justify-between items-center">
                                     <div>
                                         <Link
-                                            href={route("backend.event.create")}
+                                            href={route(
+                                                "backend.voucher.create"
+                                            )}
                                             className="btn btn-primary"
                                         >
                                             <Plus size={16} />
@@ -112,40 +115,59 @@ export default function Index({ request, events }) {
                                                 <th className="whitespace-nowrap"></th>
                                                 <th
                                                     className="cursor-pointer"
-                                                    data-columnname="name"
+                                                    data-columnname="events.title"
                                                     onClick={
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    Image
-                                                </th>
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="name"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Title
+                                                    Event
                                                 </th>
 
                                                 <th
                                                     className="cursor-pointer"
-                                                    data-columnname="start_date"
+                                                    data-columnname="users.name"
                                                     onClick={
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    Start Date
+                                                    Owner
                                                 </th>
                                                 <th
                                                     className="cursor-pointer"
-                                                    data-columnname="end_date"
+                                                    data-columnname="code"
                                                     onClick={
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    End Date
+                                                    Code
+                                                </th>
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="customer_coin_reward"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Customer Coin Reward
+                                                </th>
+
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="owner_coin_reward"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Owner Coin Reward
+                                                </th>
+                                                <th
+                                                    className="cursor-pointer"
+                                                    data-columnname="expired_at"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Expired at
                                                 </th>
 
                                                 <th
@@ -169,17 +191,17 @@ export default function Index({ request, events }) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {events.data.length > 0 ? (
-                                                events.data.map((event) => (
+                                            {vouchers.data.length > 0 ? (
+                                                vouchers.data.map((voucher) => (
                                                     <tr
-                                                        key={event.id}
+                                                        key={voucher.id}
                                                         className="hover"
                                                     >
                                                         <th className="whitespace-nowrap">
                                                             <Link
                                                                 href={route(
-                                                                    "backend.event.edit",
-                                                                    event.id
+                                                                    "backend.voucher.edit",
+                                                                    voucher.id
                                                                 )}
                                                                 className="btn btn-accent btn-sm"
                                                             >
@@ -201,14 +223,14 @@ export default function Index({ request, events }) {
                                                                     if (
                                                                         confirm(
                                                                             "Anda yakin ingin menghapus data " +
-                                                                                event.title +
+                                                                                voucher.title +
                                                                                 " ?"
                                                                         )
                                                                     ) {
                                                                         router.delete(
                                                                             route(
-                                                                                "backend.event.destroy",
-                                                                                event.id
+                                                                                "backend.voucher.destroy",
+                                                                                voucher.id
                                                                             ),
                                                                             {
                                                                                 preserveState: true,
@@ -224,42 +246,34 @@ export default function Index({ request, events }) {
                                                                     Delete
                                                                 </span>
                                                             </button>
-
-                                                            <button className="btn btn-info btn-sm ml-1">
-                                                                <FaTicket />
-                                                                <span>
-                                                                    Kelola
-                                                                    Voucher
-                                                                </span>
-                                                            </button>
                                                         </th>
-                                                        <td className="whitespace-nowrap">
-                                                            {event.image_url !==
-                                                            null ? (
-                                                                <img
-                                                                    src={
-                                                                        event.image_url
-                                                                    }
-                                                                    className="w-32 px-4"
-                                                                />
-                                                            ) : (
-                                                                "No Image"
+
+                                                        <td>
+                                                            {
+                                                                voucher.event_title
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            {voucher.owner_name}
+                                                        </td>
+                                                        <td>{voucher.code}</td>
+
+                                                        <td>
+                                                            {number_format(
+                                                                voucher.customer_coin_reward
                                                             )}
                                                         </td>
-                                                        <td>{event.title}</td>
-
                                                         <td>
-                                                            {event.start_date}
-                                                        </td>
-                                                        <td>
-                                                            {event.end_date}
+                                                            {number_format(
+                                                                voucher.owner_coin_reward
+                                                            )}
                                                         </td>
 
                                                         <td>
-                                                            {event.created_at}
+                                                            {voucher.created_at}
                                                         </td>
                                                         <td>
-                                                            {event.updated_at}
+                                                            {voucher.updated_at}
                                                         </td>
                                                     </tr>
                                                 ))
@@ -283,19 +297,27 @@ export default function Index({ request, events }) {
                                     <div></div>
                                     <div>
                                         <div className="join">
-                                            {events.links.map((link, index) => (
-                                                <Link
-                                                    preserveScroll={true}
-                                                    preserveState={true}
-                                                    key={index}
-                                                    href={link.url}
-                                                    className="join-item btn"
-                                                >
-                                                    {link.label
-                                                        .replace("&laquo;", "")
-                                                        .replace("&raquo;", "")}
-                                                </Link>
-                                            ))}
+                                            {vouchers.links.map(
+                                                (link, index) => (
+                                                    <Link
+                                                        preserveScroll={true}
+                                                        preserveState={true}
+                                                        key={index}
+                                                        href={link.url}
+                                                        className="join-item btn"
+                                                    >
+                                                        {link.label
+                                                            .replace(
+                                                                "&laquo;",
+                                                                ""
+                                                            )
+                                                            .replace(
+                                                                "&raquo;",
+                                                                ""
+                                                            )}
+                                                    </Link>
+                                                )
+                                            )}
                                         </div>
                                     </div>
                                 </div>

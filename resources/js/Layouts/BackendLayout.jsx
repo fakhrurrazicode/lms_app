@@ -19,6 +19,7 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { RiMenuFill } from "react-icons/ri";
 import { FaCalendar, FaGraduationCap, FaTag } from "react-icons/fa";
+import { FaTicket } from "react-icons/fa6";
 
 export default function BackendLayout({ header, children }) {
     const { user, permissions } = usePage().props.auth;
@@ -336,6 +337,16 @@ export default function BackendLayout({ header, children }) {
                             >
                                 <FaCalendar size={16} />
                                 <span>Data Event</span>
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link
+                                href="/backend/voucher"
+                                className="flex justify-start items-center "
+                            >
+                                <FaTicket size={16} />
+                                <span>Data Voucher</span>
                             </Link>
                         </li>
 

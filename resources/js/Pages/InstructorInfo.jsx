@@ -16,17 +16,22 @@ export default function InstructorInfo() {
 
             <section id="hero" className="">
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 py-16">
-                        <div className="col-span-1">
-                            {/* <div className="avatar">
-                                <div className="w-full rounded">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-10 py-16">
+                        <div className="col-span-1 relative mb-6">
+                            <img
+                                className=" absolute -left-6 -top-6"
+                                src="/images/abouts/about_4.png"
+                                alt=""
+                            />
+                            <div className="avatar w-full">
+                                <div className="w-full rounded z-10">
                                     <img src={instructor.photo_url} />
                                 </div>
-                            </div> */}
+                            </div>
 
-                            <div className="relative">
+                            {/* <div className="relative">
                                 <img
-                                    className="absolute z-10 left-1/2 -translate-x-1/2"
+                                    className="absolute z-10 left-1/2 -translate-x-1/2 w-full"
                                     src={instructor.photo_url}
                                     alt=""
                                 />
@@ -35,7 +40,7 @@ export default function InstructorInfo() {
                                     src="/images/abouts/about_4.png"
                                     alt=""
                                 />
-                            </div>
+                            </div> */}
                         </div>
                         <div className="col-span-2">
                             <div className="flex justify-between gap-2 items-center mb-6">
