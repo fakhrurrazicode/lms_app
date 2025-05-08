@@ -165,7 +165,8 @@ export default function Index({ vouchers, request }) {
                                                             href={route(
                                                                 "user_area.voucher.show",
                                                                 {
-                                                                    order: voucher.id,
+                                                                    voucher:
+                                                                        voucher.id,
                                                                 }
                                                             )}
                                                             className="btn btn-neutral btn-xs"
