@@ -39,6 +39,7 @@ use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSecti
 use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UserArea\VoucherController as UserAreaVoucherController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -108,6 +109,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/wishlist/{wishlist}/add_to_cart', [UserAreaWishlistController::class, 'add_to_cart'])->name('wishlist.add-to-cart');
 
             Route::resource('/order', UserAreaOrderController::class);
+            Route::resource('/voucher', UserAreaVoucherController::class);
 
             Route::get('/profile', [UserAreaProfileController::class, 'edit'])->name('profile.edit');
             Route::patch('/profile', [UserAreaProfileController::class, 'update'])->name('profile.update');

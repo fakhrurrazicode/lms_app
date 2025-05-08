@@ -12,6 +12,7 @@ class Voucher extends Model
     protected $guarded = [];
 
     public $appends = ['usage_count'];
+    // public $with = ['owner', 'event'];
 
     public function event()
     {

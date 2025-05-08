@@ -13,8 +13,8 @@ use App\Http\Requests\PaginateRequest;
 use App\Http\Requests\VoucherStoreRequest;
 use App\Http\Requests\VoucherUpdateRequest;
 use App\Http\Requests\VoucherStoreBatchRequest;
-
-
+use App\Notifications\NewVoucherDistributed;
+use Illuminate\Support\Facades\Notification;
 
 class VoucherController extends Controller
 {
@@ -126,9 +126,20 @@ class VoucherController extends Controller
             }
         })->filter()->toArray();
 
-        // dd($data);
 
-        DB::table('vouchers')->insert($data);
+        Voucher::insert($data);
+
+        $insertedVouchers = Voucher::whereBetween('created_at', [now()->subMinutes(5), now()])->get();
+
+        foreach ($insertedVouchers as $insertedVoucher) {
+            $insertedVoucher->load(['owner']);
+            $voucher_owner = $insertedVoucher->owner;
+
+            $voucher_owner->notify(new NewVoucherDistributed($insertedVoucher));
+        }
+
+
+        // DB::table('vouchers')->insert($data);
 
         return to_route('backend.voucher.index');
     }

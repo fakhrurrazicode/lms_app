@@ -13,6 +13,7 @@ import {
     FiUser,
 } from "react-icons/fi";
 import { Link, usePage } from "@inertiajs/react";
+import { FaTicket } from "react-icons/fa6";
 export default function UserAreaLayout({ children }) {
     const { auth } = usePage().props;
 
@@ -136,6 +137,18 @@ export default function UserAreaLayout({ children }) {
                                             >
                                                 <FiMonitor />
                                                 <span>Managemen Kursus</span>
+                                            </Link>
+                                        </li>
+
+                                        <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                            <Link
+                                                href={route(
+                                                    "user_area.voucher.index"
+                                                )}
+                                                className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                            >
+                                                <FaTicket />
+                                                <span>Voucher Afiliasi</span>
                                             </Link>
                                         </li>
                                     </ul>
