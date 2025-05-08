@@ -225,13 +225,13 @@ export default function Index({ request, events }) {
                                                                 </span>
                                                             </button>
 
-                                                            <button className="btn btn-info btn-sm ml-1">
+                                                            {/* <button className="btn btn-info btn-sm ml-1">
                                                                 <FaTicket />
                                                                 <span>
                                                                     Kelola
                                                                     Voucher
                                                                 </span>
-                                                            </button>
+                                                            </button> */}
                                                         </th>
                                                         <td className="whitespace-nowrap">
                                                             {event.image_url !==

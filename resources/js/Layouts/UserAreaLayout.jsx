@@ -140,6 +140,10 @@ export default function UserAreaLayout({ children }) {
                                         </li>
                                     </ul>
                                 ) : (
+                                    <></>
+                                )}
+
+                                {auth.role.name == "student" ? (
                                     <ul className="mb-6">
                                         <li className="text-xs font-semibold mb-4">
                                             Pengajar
@@ -153,12 +157,38 @@ export default function UserAreaLayout({ children }) {
                                             >
                                                 <FiStar />
                                                 <span>Menjadi Pengajar</span>
-                                                <div className="badge badge-warning text-[10px] absolute right-0">
-                                                    Menunggu Persetujuan
-                                                </div>
+                                                {auth.user.instructor_info ? (
+                                                    <>
+                                                        {auth.user
+                                                            .instructor_info
+                                                            .status == 0 ? (
+                                                            <div className="badge badge-warning text-[10px] absolute right-0">
+                                                                Menunggu
+                                                                Persetujuan
+                                                            </div>
+                                                        ) : (
+                                                            <></>
+                                                        )}
+
+                                                        {auth.user
+                                                            .instructor_info
+                                                            .status == 2 ? (
+                                                            <div className="badge badge-error text-[10px] absolute right-0">
+                                                                Pengajuan
+                                                                Ditolak
+                                                            </div>
+                                                        ) : (
+                                                            <></>
+                                                        )}
+                                                    </>
+                                                ) : (
+                                                    <></>
+                                                )}
                                             </Link>
                                         </li>
                                     </ul>
+                                ) : (
+                                    <></>
                                 )}
 
                                 <ul className="mb-6">
