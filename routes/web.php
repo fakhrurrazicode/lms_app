@@ -59,6 +59,7 @@ Route::get('/course/{slug}', [PageController::class, 'course'])->name('course');
 
 Route::get('/instructor_info/{user}', [PageController::class, 'instructor_info'])->name('instructor_info');
 
+
 // Route::get('/dashboard', function () {})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/auth/google/redirect/{as_instructor?}', [GoogleController::class, 'redirect']);

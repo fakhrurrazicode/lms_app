@@ -311,6 +311,9 @@ export default function Index({ request, vouchers }) {
                                                         </td>
 
                                                         <td>
+                                                            {voucher.expires_at}
+                                                        </td>
+                                                        <td>
                                                             {voucher.created_at}
                                                         </td>
                                                         <td>

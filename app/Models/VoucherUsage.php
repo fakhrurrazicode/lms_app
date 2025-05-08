@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class VoucherUsage extends Model
 {
-    //
+    protected $guarded = [];
 }

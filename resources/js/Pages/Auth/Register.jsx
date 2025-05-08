@@ -5,6 +5,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 
 export default function Register() {
@@ -19,8 +20,39 @@ export default function Register() {
         e.preventDefault();
 
         post(route("register"), {
+            preserveScroll: true,
+            preserveState: true,
             onFinish: () => reset("password", "password_confirmation"),
         });
+    };
+
+    const [voucherChecking, setVoucherChecking] = useState(false);
+    const [voucherMessage, setVoucherMessage] = useState("");
+    const [voucherValid, setVoucherValid] = useState(null);
+
+    const checkVoucher = () => {
+        if (!data.voucher_code) {
+            setVoucherMessage("Please enter a voucher code.");
+            setVoucherValid(false);
+            return;
+        }
+
+        setVoucherChecking(true);
+        axios
+            .post("/api/check_voucher", { code: data.voucher_code })
+            .then((res) => {
+                setVoucherMessage(res.data.message);
+                setVoucherValid(true);
+            })
+            .catch((err) => {
+                if (err.response) {
+                    setVoucherMessage(err.response.data.message);
+                    setVoucherValid(false);
+                }
+            })
+            .finally(() => {
+                setVoucherChecking(false);
+            });
     };
 
     return (
@@ -163,22 +195,40 @@ export default function Register() {
                                 value="Kode Voucher"
                             />
 
-                            <TextInput
-                                id="voucher_code"
-                                name="voucher_code"
-                                value={data.voucher_code}
-                                className="mt-1 block w-full"
-                                autoComplete="voucher_code"
-                                onChange={(e) =>
-                                    setData("voucher_code", e.target.value)
-                                }
-                                required
-                            />
+                            <div className="flex gap-2">
+                                <TextInput
+                                    id="voucher_code"
+                                    name="voucher_code"
+                                    value={data.voucher_code}
+                                    className="mt-1 block w-full"
+                                    autoComplete="voucher_code"
+                                    onChange={(e) =>
+                                        setData("voucher_code", e.target.value)
+                                    }
+                                />
+                                <PrimaryButton
+                                    type="button"
+                                    onClick={checkVoucher}
+                                    disabled={voucherChecking}
+                                >
+                                    {voucherChecking ? "Checking..." : "Check"}
+                                </PrimaryButton>
+                            </div>
 
                             <InputError
                                 message={errors.voucher_code}
                                 className="mt-2"
                             />
+
+                            {voucherValid ? (
+                                <span className="text-success mt-2">
+                                    {voucherMessage}
+                                </span>
+                            ) : (
+                                <span className="text-error mt-2">
+                                    {voucherMessage}
+                                </span>
+                            )}
                         </div>
 
                         <div className="mt-4 mb-6 flex items-center justify-end">

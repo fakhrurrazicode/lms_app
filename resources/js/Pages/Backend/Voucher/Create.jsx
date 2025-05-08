@@ -12,7 +12,7 @@ export default function Create({ events, owners }) {
             owner_id: "",
             customer_coin_reward: 0,
             owner_coin_reward: 0,
-            usage_limit: "",
+            usage_limit: 0,
             used_count: "",
             expires_at: "",
         });
@@ -190,6 +190,31 @@ export default function Create({ events, owners }) {
                                                         {
                                                             errors.owner_coin_reward
                                                         }
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </label>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 gap-0 lg:gap-2 xl:gap-2 lg:grid-cols-2 xl:grid-cols-2">
+                                        <label className="form-control w-full mb-6 col-span-1">
+                                            <div className="label">
+                                                <span className="label-text">
+                                                    Batas Penggunaan
+                                                </span>
+                                            </div>
+                                            <input
+                                                type="number"
+                                                // placeholder="Batas Penggunaan"
+                                                className="input input-bordered w-full"
+                                                name="usage_limit"
+                                                onChange={inputChangeHandler}
+                                                value={data.usage_limit}
+                                            />
+                                            {errors.usage_limit && (
+                                                <div className="label">
+                                                    <span className="label-text-alt text-error">
+                                                        {errors.usage_limit}
                                                     </span>
                                                 </div>
                                             )}

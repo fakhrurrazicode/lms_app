@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Course;
+use App\Models\Voucher;
 use App\Models\Enrollment;
 use Illuminate\Support\Str;
 use Laravolt\Avatar\Avatar;
@@ -135,5 +136,42 @@ class PageController extends Controller
         // return $instructor;
 
         return Inertia::render('InstructorInfo', ['instructor' => $instructor]);
+    }
+
+    public function check_voucher(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|string',
+        ]);
+
+        $voucher = Voucher::where('code', $request->code)->first();
+
+        if (!$voucher) {
+            return response()->json([
+                'valid' => false,
+                'message' => 'Kode voucher tidak valid.',
+            ], 404);
+        }
+
+        if ($voucher->expires_at && now()->greaterThan($voucher->expires_at)) {
+            return response()->json([
+                'valid' => false,
+                'message' => 'Kode voucher telah kedaluwarsa.',
+            ], 422);
+        }
+
+        if ($voucher->used_count >= $voucher->usage_limit) {
+            return response()->json([
+                'valid' => false,
+                'message' => 'Kode voucher telah mencapai batas penggunaannya.',
+            ], 422);
+        }
+
+        // Success - valid
+        return response()->json([
+            'valid' => true,
+            'message' => 'Kode voucher valid. anda akan mendapatkan coin senilai ' . $voucher->customer_coin_reward . ' setelah proses registrasi berhasil',
+            'voucher' => $voucher,
+        ]);
     }
 }
