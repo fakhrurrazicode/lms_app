@@ -6,15 +6,16 @@ use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Event;
 use App\Models\Voucher;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginateRequest;
 use App\Http\Requests\VoucherStoreRequest;
 use App\Http\Requests\VoucherUpdateRequest;
-use App\Http\Requests\VoucherStoreBatchRequest;
 use App\Notifications\NewVoucherDistributed;
 use Illuminate\Support\Facades\Notification;
+use App\Http\Requests\VoucherStoreBatchRequest;
 
 class VoucherController extends Controller
 {
@@ -113,7 +114,7 @@ class VoucherController extends Controller
 
             if (!$voucher_exists) {
                 return [
-                    'code' => $validated['prefix_code'] . $this->generateSingkatan($user->name, 4),
+                    'code' => $validated['prefix_code'] . $this->generateSingkatan($user->name, 4) . strtoupper(Str::random(4)),
                     'event_id' => $validated['event_id'],
                     'owner_id' => $user->id,
                     'customer_coin_reward' => $validated['customer_coin_reward'],
