@@ -1,4 +1,4 @@
-import { rupiah } from "@/bootstrap";
+import { number_format, rupiah } from "@/bootstrap";
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link, router } from "@inertiajs/react";
 import classNames from "classnames";
@@ -115,24 +115,38 @@ export default function Index({ vouchers, request }) {
 
                                         <th
                                             className="cursor-pointer"
-                                            data-columnname="created_at"
+                                            data-columnname="customer_coin_reward"
                                             onClick={orderByOnClickHandler}
                                         >
-                                            Created at
+                                            Hadiah Koin Pelanggan
                                         </th>
                                         <th
                                             className="cursor-pointer"
-                                            data-columnname="gross_amount"
+                                            data-columnname="owner_coin_reward"
                                             onClick={orderByOnClickHandler}
                                         >
-                                            Gross Amount
+                                            Hadiah Coin Pemilik
                                         </th>
                                         <th
                                             className="cursor-pointer"
-                                            data-columnname="transaction_status"
+                                            data-columnname="usage_limit"
                                             onClick={orderByOnClickHandler}
                                         >
-                                            Transaction Status
+                                            Batas Penggunaan
+                                        </th>
+                                        <th
+                                            className="cursor-pointer"
+                                            data-columnname="usage_limit"
+                                            onClick={orderByOnClickHandler}
+                                        >
+                                            Jumlah Penggunaan
+                                        </th>
+                                        <th
+                                            className="cursor-pointer"
+                                            data-columnname="usage_limit"
+                                            onClick={orderByOnClickHandler}
+                                        >
+                                            Berakhir Pada
                                         </th>
                                     </tr>
                                 </thead>
@@ -175,16 +189,21 @@ export default function Index({ vouchers, request }) {
                                                         </Link>
                                                     </div>
                                                 </td>
+                                                <td>{voucher.event.title}</td>
                                                 <td>{voucher.code}</td>
-                                                <td>{voucher.created_at}</td>
                                                 <td>
-                                                    {/* {rupiah(
-                                                        voucher.gross_amount
-                                                    )} */}
+                                                    {number_format(
+                                                        voucher.customer_coin_reward
+                                                    )}
                                                 </td>
                                                 <td>
-                                                    {/* {voucher.transaction_status} */}
+                                                    {number_format(
+                                                        voucher.owner_coin_reward
+                                                    )}
                                                 </td>
+                                                <td>{voucher.usage_limit}</td>
+                                                <td>{voucher.used_count}</td>
+                                                <td>{voucher.expires_at}</td>
                                             </tr>
                                         ))
                                     ) : (

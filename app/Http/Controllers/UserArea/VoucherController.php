@@ -16,7 +16,7 @@ class VoucherController extends Controller
      */
     public function index(PaginateRequest $request)
     {
-        $vouchers = Voucher::orWhere([
+        $vouchers = Voucher::with(['event'])->orWhere([
             ['code', 'LIKE', '%' . $request->search . '%'],
         ])->where('owner_id', Auth::user()->id)->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
