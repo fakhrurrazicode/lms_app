@@ -32,6 +32,12 @@ export default function Index({ course, course_sections }) {
         setSelectedCourseSection(course_section);
         setModalFormIsOpen(true);
     };
+
+    const courseLectureEditHandler = (course_section, course_lecture) => {
+        setSelectedCourseSection(course_section);
+        setSelectedCourseLecture(course_lecture);
+        setModalFormCourseLectureIsOpen(true);
+    };
     const courseSectionDeleteHandler = (course_section) => {
         if (
             confirm(
@@ -332,8 +338,9 @@ export default function Index({ course, course_sections }) {
                                                                                     e
                                                                                 ) => {
                                                                                     e.preventDefault();
-                                                                                    courseSectionEditHandler(
-                                                                                        course_section
+                                                                                    courseLectureEditHandler(
+                                                                                        course_section,
+                                                                                        course_lecture
                                                                                     );
                                                                                 }}
                                                                             >

@@ -128,7 +128,7 @@ class CourseLectureController extends Controller
     public function set_as_featured(Request $request, Course $course, CourseSection $course_section, CourseLecture $course_lecture)
     {
 
-        CourseLecture::where('course_section_id', $course_section->id)->update([
+        CourseLecture::where('course_id', $course->id)->update([
             'set_as_featured' => 0,
         ]);
 

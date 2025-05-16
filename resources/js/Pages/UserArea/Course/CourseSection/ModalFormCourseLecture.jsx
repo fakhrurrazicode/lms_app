@@ -136,10 +136,21 @@ export default function ModalFormCourseLecture({
                     </button>
                 </form>
                 <h3 className="font-bold text-lg mb-6">
-                    Buat Lecture baru untuk section{" "}
-                    <span className="text-primary">
-                        {course_section ? course_section.title : ""}
-                    </span>
+                    {course_lecture ? (
+                        <>
+                            Ubah Lecture{" "}
+                            <span className="text-primary">
+                                {course_lecture.title}
+                            </span>
+                        </>
+                    ) : (
+                        <>
+                            Buat Lecture baru untuk section{" "}
+                            <span className="text-primary">
+                                {course_section ? course_section.title : ""}
+                            </span>
+                        </>
+                    )}
                 </h3>
 
                 <form onSubmit={onSubmitHandler}>
@@ -224,7 +235,7 @@ export default function ModalFormCourseLecture({
                             ) : (
                                 <Save size={16} />
                             )}
-                            <span>Simpan</span>
+                            <span>{course_lecture ? "Ubah" : "Simpan"}</span>
                         </button>
                         <button
                             className="btn btn-neutral"

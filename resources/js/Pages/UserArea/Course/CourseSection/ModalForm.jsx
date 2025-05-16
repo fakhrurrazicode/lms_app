@@ -99,7 +99,9 @@ export default function ModalForm({
                         ✕
                     </button>
                 </form>
-                <h3 className="font-bold text-lg mb-6">Buat Section Baru</h3>
+                <h3 className="font-bold text-lg mb-6">
+                    {course_section ? "Ubah Section" : "Buat Section Baru"}
+                </h3>
 
                 <form onSubmit={onSubmitHandler}>
                     <div className="mb-6">
