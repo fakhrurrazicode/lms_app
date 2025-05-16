@@ -33,9 +33,6 @@ export default function ModalForm({
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        // data.course_id = course.id;
-
-        console.log("course_section", course_section);
 
         if (course_section) {
             put(

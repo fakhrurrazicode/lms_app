@@ -66,20 +66,6 @@ export default function Create({ course, course_section }) {
         switch (name) {
             case "video":
                 const file = e.target.files[0];
-
-                // if (file) {
-                //     const reader = new FileReader();
-
-                //     reader.onload = function (e) {
-                //         previewImageRef.current.src = e.target.result;
-                //     };
-
-                //     reader.readAsDataURL(file);
-                // } else {
-                //     previewImageRef.current.classList.add("hidden");
-                //     previewImageRef.current.src = "";
-                // }
-
                 setData(name, file);
                 break;
 

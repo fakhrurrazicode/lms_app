@@ -64,10 +64,10 @@ class CourseLectureController extends Controller
             $data['set_as_featured'] = 1;
         }
         CourseLecture::create($data);
-        return to_route('user_area.course_section.index', [
-            'course' => $course,
-            'course_section' => $course_section,
-        ]);
+        // return to_route('user_area.course_section.index', [
+        //     'course' => $course,
+        //     'course_section' => $course_section,
+        // ]);
     }
 
     /**

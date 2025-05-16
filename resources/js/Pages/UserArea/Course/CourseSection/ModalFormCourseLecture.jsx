@@ -13,11 +13,12 @@ export default function ModalFormCourseLecture({
     course_section = null,
     course_lecture = null,
 }) {
-    const { data, setData, post, put, errors, reset, clearErrors, processing } =
-        useForm({
-            course_id: course_section ? course_section.course_id : course.id,
-            title: course_section ? course_section.title : "",
+    console.log("course", course);
+    console.log("course_section", course_section);
+    console.log("course_lecture", course_lecture);
 
+    const { data, setData, post, errors, reset, clearErrors, processing } =
+        useForm({
             course_id: course_lecture ? course_lecture.course_id : course.id,
             course_section_id: course_lecture
                 ? course_lecture.course_section_id
@@ -31,10 +32,17 @@ export default function ModalFormCourseLecture({
 
     useEffect(() => {
         setData({
-            course_id: course_section ? course_section.course_id : course.id,
-            title: course_section ? course_section.title : "",
+            course_id: course_lecture ? course_lecture.course_id : course.id,
+            course_section_id: course_lecture
+                ? course_lecture.course_section_id
+                : course_section
+                ? course_section.id
+                : "",
+            title: course_lecture ? course_lecture.title : "",
+            video: course_lecture ? course_lecture.video : "",
+            description: course_lecture ? course_lecture.description : "",
         });
-    }, [course_section]);
+    }, [course, course_lecture, course_section, isOpen]);
 
     useEffect(() => {
         if (isOpen == false) {
@@ -44,14 +52,11 @@ export default function ModalFormCourseLecture({
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        // data.course_id = course.id;
 
-        console.log("course_section", course_section);
-
-        if (course_section) {
-            put(
-                route("user_area.course_section.update", {
-                    course_section,
+        if (course_lecture) {
+            post(
+                route("user_area.course_lecture.update", {
+                    course_lecture,
                 }),
                 {
                     preserveScroll: true,
@@ -67,9 +72,11 @@ export default function ModalFormCourseLecture({
                 }
             );
         } else {
+            console.log("data", data);
             post(
-                route("user_area.course.course_section.store", {
+                route("user_area.course.course_section.course_lecture.store", {
                     course: course,
+                    course_section: course_section,
                 }),
                 {
                     preserveScroll: true,
@@ -92,7 +99,16 @@ export default function ModalFormCourseLecture({
         const name = e.target.name;
         const value = e.target.value;
 
-        setData(name, value);
+        switch (name) {
+            case "video":
+                const file = e.target.files[0];
+                setData(name, file);
+                break;
+
+            default:
+                setData(name, value);
+                break;
+        }
     };
     return (
         <dialog
