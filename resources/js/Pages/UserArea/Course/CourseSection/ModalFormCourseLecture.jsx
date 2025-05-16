@@ -1,5 +1,5 @@
 import { Link, useForm } from "@inertiajs/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { Save } from "lucide-react";
 import ReactModal from "react-modal";
@@ -16,6 +16,9 @@ export default function ModalFormCourseLecture({
     console.log("course", course);
     console.log("course_section", course_section);
     console.log("course_lecture", course_lecture);
+
+    const formRef = useRef(null);
+    const fileInputRef = useRef(null);
 
     const { data, setData, post, errors, reset, clearErrors, processing } =
         useForm({
@@ -47,6 +50,9 @@ export default function ModalFormCourseLecture({
     useEffect(() => {
         if (isOpen == false) {
             reset();
+            clearErrors();
+            if (formRef.current) formRef.current.reset();
+            if (fileInputRef.current) fileInputRef.current.value = "";
         }
     }, [isOpen]);
 
@@ -117,7 +123,7 @@ export default function ModalFormCourseLecture({
             open={isOpen}
         >
             <div className="modal-box">
-                <form method="dialog">
+                <form method="dialog" ref={formRef}>
                     {/* if there is a button in form, it will close the modal */}
                     <button
                         onClick={(e) => {
@@ -149,6 +155,7 @@ export default function ModalFormCourseLecture({
                                 className="file-input file-input-bordered w-full max-w-xs"
                                 name="video"
                                 onChange={inputChangeHandler}
+                                ref={fileInputRef}
                                 // value={data.video}
                             />
                             {errors.video && (
