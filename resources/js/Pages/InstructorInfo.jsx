@@ -8,8 +8,6 @@ import { FaStar } from "react-icons/fa";
 export default function InstructorInfo() {
     const { auth, instructor } = usePage().props;
 
-    console.log(instructor);
-
     return (
         <FrontendLayout>
             <Head title="InstructorInfo" />

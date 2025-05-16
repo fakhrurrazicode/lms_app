@@ -189,7 +189,7 @@ export default function Index({ vouchers, request }) {
                                                         </Link>
                                                     </div>
                                                 </td>
-                                                <td>{voucher.event.title}</td>
+                                                <td>{voucher.event_id}</td>
                                                 <td>{voucher.code}</td>
                                                 <td>
                                                     {number_format(

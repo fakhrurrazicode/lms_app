@@ -12,8 +12,6 @@ export default function EditModal({
     setCourseSubCategory,
     courseCategories,
 }) {
-    console.log("courseSubCategory", courseSubCategory);
-
     const { data, setData, put, errors, reset } = useForm({
         course_category_id: courseSubCategory
             ? courseSubCategory.course_category_id

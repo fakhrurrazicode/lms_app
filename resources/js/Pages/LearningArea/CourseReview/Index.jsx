@@ -98,7 +98,6 @@ export default function Index({ course }) {
                                                 className="mask mask-star-2 bg-orange-400"
                                                 defaultChecked={true}
                                                 onClick={(e) => {
-                                                    console.log(e.target.value);
                                                     setData(
                                                         e.target.name,
                                                         e.target.value
@@ -111,7 +110,6 @@ export default function Index({ course }) {
                                                 value={2}
                                                 className="mask mask-star-2 bg-orange-400"
                                                 onClick={(e) => {
-                                                    console.log(e.target.value);
                                                     setData(
                                                         e.target.name,
                                                         e.target.value
@@ -124,7 +122,6 @@ export default function Index({ course }) {
                                                 value={3}
                                                 className="mask mask-star-2 bg-orange-400"
                                                 onClick={(e) => {
-                                                    console.log(e.target.value);
                                                     setData(
                                                         e.target.name,
                                                         e.target.value
@@ -137,7 +134,6 @@ export default function Index({ course }) {
                                                 value={4}
                                                 className="mask mask-star-2 bg-orange-400"
                                                 onClick={(e) => {
-                                                    console.log(e.target.value);
                                                     setData(
                                                         e.target.name,
                                                         e.target.value
@@ -150,7 +146,6 @@ export default function Index({ course }) {
                                                 value={5}
                                                 className="mask mask-star-2 bg-orange-400"
                                                 onClick={(e) => {
-                                                    console.log(e.target.value);
                                                     setData(
                                                         e.target.name,
                                                         e.target.value

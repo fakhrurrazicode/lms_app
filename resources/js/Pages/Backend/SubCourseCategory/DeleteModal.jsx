@@ -9,12 +9,6 @@ export default function DeleteModal({
     subCourseCategory,
     setSubCourseCategory,
 }) {
-    // console.log(subCourseCategory);
-
-    useEffect(() => {
-        console.log("subCourseCategory", subCourseCategory);
-    }, [subCourseCategory]);
-
     return (
         <ReactModal
             closeTimeoutMS={200}

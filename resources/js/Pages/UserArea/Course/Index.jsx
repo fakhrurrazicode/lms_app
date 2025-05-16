@@ -1,44 +1,12 @@
 import { rupiah } from "@/bootstrap";
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
-import { Head, Link, router } from "@inertiajs/react";
+import { Head, Link, router, useForm } from "@inertiajs/react";
 
 import { Edit, KeyRound, ListCollapse, Plus, Trash } from "lucide-react";
 import { useRef, useState } from "react";
 import { CourseDetail } from "./CourseCardDetail";
 
-export default function Index({
-    request,
-    courses,
-    courseCategories,
-    courseSubCategories,
-    instructors,
-    courseSections,
-}) {
-    console.log("courseSections", courseSections);
-    const [selectedCourse, setSelectedCourse] = useState(null);
-
-    const [manageLectureIsOpen, setManageLectureIsOpen] = useState(false);
-
-    const buttonOpenManageLectureRef = useRef(null);
-
-    const orderByOnClickHandler = (e) =>
-        router.reload({
-            preserveScroll: true,
-            preserveState: true,
-            data: {
-                ...request,
-                orderby: e.target.getAttribute("data-columnname"),
-                ordermethod: (() => {
-                    if (request.ordermethod) {
-                        if (request.ordermethod == "asc") return "desc";
-
-                        if (request.ordermethod == "desc") return "asc";
-                    } else {
-                        return "desc";
-                    }
-                })(),
-            },
-        });
+export default function Index({ request, courses }) {
     return (
         <UserAreaLayout
             header={
@@ -65,7 +33,7 @@ export default function Index({
                                             className="btn btn-primary"
                                         >
                                             <Plus size={16} />
-                                            <span>Create new</span>
+                                            <span>Buat Kursus Baru</span>
                                         </Link>
                                     </div>
                                     <div className="flex gap-2">
@@ -122,283 +90,60 @@ export default function Index({
                                         </label>
                                     </div>
                                 </div>
-                                <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-                                    {courses.data.length > 0 ? (
-                                        courses.data.map((course) => (
-                                            <div className="card card-side bg-base-100 border border-base-200 shadow-xl items-start">
-                                                <div className="card-body">
-                                                    <h2 className="card-title text-md mb-6 text-primary">
-                                                        <Link href="#">
-                                                            {course.title}
-                                                        </Link>
-                                                    </h2>
-                                                    <div className="mb-6">
-                                                        <CourseDetail
-                                                            course={course}
-                                                        />
-                                                    </div>
-
-                                                    <div className="card-actions justify-end">
-                                                        <Link
-                                                            href={route(
-                                                                "user_area.course.edit",
-                                                                course.id
-                                                            )}
-                                                            className="btn btn-sm btn-accent"
-                                                        >
-                                                            <Edit size={16} />
-                                                            <span>Edit</span>
-                                                        </Link>
-
-                                                        <button
-                                                            className="btn btn-sm btn-error ml-1"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-
-                                                                if (
-                                                                    confirm(
-                                                                        "Anda yakin ingin menghapus data " +
-                                                                            course.title +
-                                                                            " ?"
-                                                                    )
-                                                                ) {
-                                                                    router.delete(
-                                                                        route(
-                                                                            "user_area.course.destroy",
-                                                                            course.id
-                                                                        ),
-                                                                        {
-                                                                            preserveState: true,
-                                                                        }
-                                                                    );
-                                                                }
-                                                            }}
-                                                        >
-                                                            <Trash size={16} />
-                                                            <span>Delete</span>
-                                                        </button>
-
-                                                        <Link
-                                                            href={route(
-                                                                "user_area.course_section.index",
-                                                                {
-                                                                    course: course,
-                                                                }
-                                                            )}
-                                                            className="btn btn-sm btn-secondary ml-1 mr-2"
-                                                        >
-                                                            <ListCollapse
-                                                                size={16}
-                                                            />
-                                                            <span>
-                                                                Sections &
-                                                                Lectures
-                                                            </span>
-                                                        </Link>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <p className="py-4">No Data.</p>
-                                    )}
-                                    {/* <table className="table table-xs mb-6">
-                                        <thead>
-                                            <tr>
-                                                <th className="whitespace-nowrap"></th>
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="name"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Image
-                                                </th>
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="name"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Title
-                                                </th>
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="email"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Slug
-                                                </th>
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="email"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Instructor
-                                                </th>
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="email"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Category
-                                                </th>
-
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="created_at"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Created at
-                                                </th>
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="updated_at"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Updated at
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {courses.data.length > 0 ? (
-                                                courses.data.map((course) => (
-                                                    <tr
-                                                        key={course.id}
-                                                        className="hover"
-                                                    >
-                                                        <th className="whitespace-nowrap">
-                                                            <Link
-                                                                href={route(
-                                                                    "user_area.course.edit",
-                                                                    course.id
-                                                                )}
-                                                                className="btn btn-xs btn-accent"
-                                                            >
-                                                                <Edit
-                                                                    size={16}
-                                                                />
-                                                                <span>
-                                                                    Edit
-                                                                </span>
-                                                            </Link>
-
-                                                            <button
-                                                                className="btn btn-xs btn-error ml-1"
-                                                                onClick={(
-                                                                    e
-                                                                ) => {
-                                                                    e.preventDefault();
-
-                                                                    if (
-                                                                        confirm(
-                                                                            "Anda yakin ingin menghapus data " +
-                                                                                course.title +
-                                                                                " ?"
-                                                                        )
-                                                                    ) {
-                                                                        router.delete(
-                                                                            route(
-                                                                                "user_area.course.destroy",
-                                                                                course.id
-                                                                            ),
-                                                                            {
-                                                                                preserveState: true,
-                                                                            }
-                                                                        );
-                                                                    }
-                                                                }}
-                                                            >
-                                                                <Trash
-                                                                    size={16}
-                                                                />
-                                                                <span>
-                                                                    Delete
-                                                                </span>
-                                                            </button>
-
-                                                            <Link
-                                                                href={route(
-                                                                    "user_area.course_section.index",
-                                                                    {
-                                                                        course: course,
-                                                                    }
-                                                                )}
-                                                                className="btn btn-xs btn-secondary ml-1 mr-2"
-                                                            >
-                                                                <ListCollapse
-                                                                    size={16}
-                                                                />
-                                                                <span>
-                                                                    Sections &
-                                                                    Lectures
-                                                                </span>
-                                                            </Link>
-                                                        </th>
-                                                        <td className="whitespace-nowrap">
-                                                            {course.image_url !==
-                                                            null ? (
-                                                                <img
-                                                                    src={
-                                                                        course.image_url
-                                                                    }
-                                                                    className="w-32 px-4"
-                                                                />
-                                                            ) : (
-                                                                "No Image"
-                                                            )}
-                                                        </td>
-                                                        <td>{course.title}</td>
-                                                        <td>{course.slug}</td>
-                                                        <td>
-                                                            {course.instructor
-                                                                ? course
-                                                                      .instructor
-                                                                      .name
-                                                                : "-"}
-                                                        </td>
-                                                        <td>
-                                                            {
-                                                                course
-                                                                    .course_category
-                                                                    .name
-                                                            }
-                                                        </td>
-
-                                                        <td>
-                                                            {course.created_at}
-                                                        </td>
-                                                        <td>
-                                                            {course.updated_at}
-                                                        </td>
-                                                    </tr>
-                                                ))
-                                            ) : (
+                                <div className="mb-6">
+                                    <div className="overflow-x-auto">
+                                        <table className="table">
+                                            {/* head */}
+                                            <thead>
                                                 <tr>
-                                                    <td
-                                                        colSpan={9}
-                                                        className="text-center text-xs italic"
-                                                    >
-                                                        <p className="py-4">
-                                                            No Data.
-                                                        </p>
-                                                    </td>
+                                                    <th></th>
+                                                    <th>Judul</th>
+                                                    <th>Level</th>
+                                                    <th>Active</th>
                                                 </tr>
-                                            )}
-                                        </tbody>
-                                    </table> */}
+                                            </thead>
+                                            <tbody>
+                                                {courses.data.length ? (
+                                                    courses.data.map(
+                                                        (course) => (
+                                                            <tr className="hover">
+                                                                <th>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "user_area.course.edit",
+                                                                            {
+                                                                                course,
+                                                                            }
+                                                                        )}
+                                                                        className="btn btn-secondary btn-sm"
+                                                                    >
+                                                                        Manage
+                                                                    </Link>
+                                                                </th>
+                                                                <td>
+                                                                    {
+                                                                        course.title
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    {
+                                                                        course.level
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    {
+                                                                        course.status
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    )
+                                                ) : (
+                                                    <></>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
 
                                 <div className="flex justify-between">

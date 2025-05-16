@@ -26,7 +26,10 @@ class CourseController extends Controller
     public function index(PaginateRequest $request)
     {
 
-        $courses = Course::orWhere([
+        $selected_course_id = $request->get('selected_course_id');
+        $selected_course_category_id = $request->get('selected_course_category_id');
+
+        $courses = Course::with(['instructor', 'course_category'])->orWhere([
             ['title', 'LIKE', '%' . $request->search . '%'],
             ['slug', 'LIKE', '%' . $request->search . '%'],
         ])->where([
@@ -40,8 +43,8 @@ class CourseController extends Controller
 
         return Inertia::render('UserArea/Course/Index', [
             'courses' => $courses,
-            'course_categories' => CourseCategory::all(),
             'request' => $request,
+            'courseSections' => fn() => CourseSection::with(['course_lectures'])->where('course_id', $selected_course_id)->get() ?? [],
         ]);
     }
 
@@ -66,6 +69,7 @@ class CourseController extends Controller
             $data['image'] = $request->file('image')->store('images', 'public');
         }
         Course::create($data);
+        return to_route('user_area.course.index');
     }
 
     /**
@@ -97,7 +101,7 @@ class CourseController extends Controller
             $data['image'] = $request->file('image')->store('images', 'public');
         }
         $course->update($data);
-        // return to_route('user_area.course.index');
+        return to_route('user_area.course.index');
     }
 
     /**

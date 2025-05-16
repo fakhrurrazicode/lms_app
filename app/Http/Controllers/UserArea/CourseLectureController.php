@@ -44,19 +44,20 @@ class CourseLectureController extends Controller
             $data['video'] = $request->file('video')->store('videos', 'public');
             $full_path = storage_path('app/public/' . $data['video']);
 
-            $ffmpeg = FFMpeg::create([
-                'ffmpeg.binaries'  => 'C:\\ffmpeg\\bin\\ffmpeg.exe',
-                'ffprobe.binaries' => 'C:\\ffmpeg\\bin\\ffprobe.exe',
-                'timeout' => 3600, // optional
-            ]);
-            $video = $ffmpeg->open($full_path);
+            // $ffmpeg = FFMpeg::create([
+            //     'ffmpeg.binaries'  => 'C:\\ffmpeg\\bin\\ffmpeg.exe',
+            //     'ffprobe.binaries' => 'C:\\ffmpeg\\bin\\ffprobe.exe',
+            //     'timeout' => 3600, // optional
+            // ]);
+            // $video = $ffmpeg->open($full_path);
 
-            $ffprobe = FFProbe::create([
-                'ffprobe.binaries' => 'C:\\ffmpeg\\bin\\ffprobe.exe',
-            ]);
-            $duration = $ffprobe->format($full_path)->get('duration'); // in seconds
+            // $ffprobe = FFProbe::create([
+            //     'ffprobe.binaries' => 'C:\\ffmpeg\\bin\\ffprobe.exe',
+            // ]);
+            // $duration = $ffprobe->format($full_path)->get('duration'); // in seconds
 
-            $data['video_duration'] = $duration;
+            // $data['video_duration'] = $duration;
+            $data['video_duration'] = 0;
         }
 
         if ($course->course_lectures->count() == 0) {

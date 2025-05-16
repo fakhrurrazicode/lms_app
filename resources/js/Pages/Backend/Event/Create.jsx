@@ -29,7 +29,6 @@ export default function Create() {
 
         switch (name) {
             case "image":
-                console.log(e.target.files);
                 const file = e.target.files[0];
 
                 if (file) {

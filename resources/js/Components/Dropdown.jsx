@@ -53,11 +53,7 @@ const Content = ({
 
     let widthClasses = "";
 
-    // if (width === '48') {
     widthClasses = "w-" + width;
-    // }
-    console.log("widthClasses", widthClasses);
-
     return (
         <>
             <Transition

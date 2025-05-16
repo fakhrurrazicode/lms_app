@@ -593,7 +593,7 @@ class CoursesTableSeeder extends Seeder
             array (
                 'id' => 33,
                 'course_category_id' => 2,
-                'instructor_id' => 10,
+                'instructor_id' => 11,
                 'image' => 'images/arUQzEnCpt3BgoijRFYOmzXX6CLLT5PuebwVCGfF.png',
                 'title' => 'ReactJS Tutorial for Beginners',
                 'slug' => 'reactjs-tutorial-for-beginners',

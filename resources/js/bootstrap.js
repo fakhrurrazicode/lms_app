@@ -1,6 +1,7 @@
 import { router } from "@inertiajs/react";
 import axios from "axios";
 import { toast } from "react-toastify";
+
 window.axios = axios;
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";

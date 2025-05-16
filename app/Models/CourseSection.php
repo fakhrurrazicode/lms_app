@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Evaluation;
 use App\Models\CourseLecture;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,5 +14,10 @@ class CourseSection extends BaseModel
     public function course_lectures()
     {
         return $this->hasMany(CourseLecture::class, 'course_section_id', 'id');
+    }
+
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
     }
 }

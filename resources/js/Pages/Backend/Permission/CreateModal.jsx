@@ -65,7 +65,6 @@ export default function CreateModal({ isOpen, setIsOpen }) {
                         <a
                             className="btn btn-neutral"
                             onClick={(e) => {
-                                console.log("button cancel");
                                 e.preventDefault;
                                 reset();
                                 setIsOpen(false);

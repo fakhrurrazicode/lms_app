@@ -10,7 +10,7 @@ import { RiTriangleLine } from "react-icons/ri";
 
 export default function Home({ latest_courses, course_categories }) {
     const page = usePage();
-    console.log("page", page);
+
     return (
         <FrontendLayout>
             <Head title="Home" />

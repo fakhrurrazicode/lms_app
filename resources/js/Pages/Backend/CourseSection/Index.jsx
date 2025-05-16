@@ -79,10 +79,6 @@ export default function Index({ course, course_sections }) {
                                         {course_sections.length > 0 ? (
                                             course_sections.map(
                                                 (course_section, index) => {
-                                                    console.log(
-                                                        "CourseSectionsTable.course_sections.course_lectures",
-                                                        course_sections
-                                                    );
                                                     return (
                                                         <React.Fragment
                                                             key={index}
@@ -310,17 +306,6 @@ export default function Index({ course, course_sections }) {
                                                                                     onChange={(
                                                                                         e
                                                                                     ) => {
-                                                                                        console.log(
-                                                                                            e
-                                                                                                .target
-                                                                                                .value
-                                                                                        );
-                                                                                        console.log(
-                                                                                            e
-                                                                                                .target
-                                                                                                .checked
-                                                                                        );
-
                                                                                         router.put(
                                                                                             route(
                                                                                                 "backend.course.set_as_preview",
@@ -358,17 +343,6 @@ export default function Index({ course, course_sections }) {
                                                                                     onChange={(
                                                                                         e
                                                                                     ) => {
-                                                                                        console.log(
-                                                                                            e
-                                                                                                .target
-                                                                                                .value
-                                                                                        );
-                                                                                        console.log(
-                                                                                            e
-                                                                                                .target
-                                                                                                .checked
-                                                                                        );
-
                                                                                         router.put(
                                                                                             route(
                                                                                                 "backend.course.set_as_featured",

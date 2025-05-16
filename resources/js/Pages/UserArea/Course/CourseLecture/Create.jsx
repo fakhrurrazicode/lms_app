@@ -96,7 +96,7 @@ export default function Create({ course, course_section }) {
                 </h2>
             }
         >
-            <Head title="CBuat Lecture Baru" />
+            <Head title="Buat Lecture Baru" />
 
             <div className="">
                 <div className="w-full">

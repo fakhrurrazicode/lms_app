@@ -24,6 +24,18 @@
     },
     "dependencies": {
         "@szhsin/react-accordion": "^1.4.0",
+        "@tailwindcss/typography": "^0.5.16",
+        "@tinymce/tinymce-react": "^6.1.0",
+        "@tiptap/extension-blockquote": "^2.12.0",
+        "@tiptap/extension-bullet-list": "^2.12.0",
+        "@tiptap/extension-code-block": "^2.12.0",
+        "@tiptap/extension-hard-break": "^2.12.0",
+        "@tiptap/extension-history": "^2.12.0",
+        "@tiptap/extension-horizontal-rule": "^2.12.0",
+        "@tiptap/extension-ordered-list": "^2.12.0",
+        "@tiptap/extension-underline": "^2.12.0",
+        "@tiptap/react": "^2.12.0",
+        "@tiptap/starter-kit": "^2.12.0",
         "@vidstack/react": "^1.12.13",
         "aos": "^2.3.4",
         "classnames": "^2.5.1",
@@ -40,6 +52,7 @@
         "react-toastify": "^11.0.5",
         "redux": "^5.0.1",
         "slugify": "^1.6.6",
+        "tinymce": "^7.8.0",
         "vanilla-tilt": "^1.8.1",
         "video-react": "^0.16.0"
     }

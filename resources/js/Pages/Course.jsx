@@ -55,7 +55,6 @@ const AccordionItem = ({ header, ...rest }) => (
         className="shadow-md"
         buttonProps={{
             className: (param) => {
-                console.log("param", param);
                 return `flex w-full p-6 text-left bg-primary/90 text-white ${
                     param.isEnter && "bg-primary/100"
                 }`;
