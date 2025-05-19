@@ -16,8 +16,8 @@ class CourseSection extends BaseModel
         return $this->hasMany(CourseLecture::class, 'course_section_id', 'id');
     }
 
-    public function evaluations()
+    public function evaluation()
     {
-        return $this->hasMany(Evaluation::class);
+        return $this->hasOne(Evaluation::class);
     }
 }

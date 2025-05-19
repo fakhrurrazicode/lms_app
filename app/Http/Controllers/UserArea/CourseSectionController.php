@@ -22,13 +22,7 @@ class CourseSectionController extends Controller
         $course_sections = CourseSection::where([
             'course_id' => $course->id,
         ])->orderBy('id', 'ASC')
-            ->with(['course_lectures'])
             ->get();
-
-
-        // return $course_sections;
-
-
 
         return Inertia::render('UserArea/Course/CourseSection/Index', [
             'course' => $course,

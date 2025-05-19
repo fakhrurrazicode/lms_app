@@ -2,33 +2,64 @@
 
 namespace App\Http\Controllers\UserArea;
 
-use App\Http\Controllers\Controller;
+use FFMpeg\FFMpeg;
+use FFMpeg\FFProbe;
+use Inertia\Inertia;
+use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Models\Evaluation;
+use App\Models\CourseSection;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\EvaluationStoreRequest;
+use App\Http\Requests\EvaluationUpdateRequest;
 
 class EvaluationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request, Course $course)
     {
-        //
+        $course->load(['course_sections' => function ($query) {
+            $query->orderBy('id', 'ASC');
+        }]);
+
+        $course_sections = CourseSection::has('evaluation')->where([
+            'course_id' => $course->id,
+        ])->orderBy('id', 'ASC')
+            ->with(['evaluation.questions.choices'])
+            ->get();
+
+        // return $course_sections;
+
+        return Inertia::render('UserArea/Course/Evaluation/Index', [
+            'course' => $course,
+            'course_sections' => $course_sections,
+        ]);
+        // return Inertia::render('UserArea/CourseSection/Index', compact('course', 'course_section'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Course $course, CourseSection $course_section)
     {
-        //
+        return Inertia::render('UserArea/Evaluation/Create', compact('course', 'course_section'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EvaluationStoreRequest $request, Course $course, CourseSection $course_section)
     {
-        //
+
+
+        $data = $request->validated();
+        Evaluation::create($data);
+        // return to_route('user_area.course_section.index', [
+        //     'course' => $course,
+        //     'course_section' => $course_section,
+        // ]);
     }
 
     /**
@@ -42,24 +73,57 @@ class EvaluationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Course $course, CourseSection $course_section, Evaluation $course_lecture)
     {
-        //
+        return Inertia::render('UserArea/Evaluation/Edit', compact('course', 'course_section', 'course_lecture'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EvaluationUpdateRequest $request, Course $course, CourseSection $course_section, Evaluation $course_lecture)
     {
-        //
+        $data = $request->validated();
+        $course_lecture->update($data);
+        // return to_route('user_area.course_section.index', [
+        //     'course' => $course,
+        //     'course_section' => $course_section,
+        // ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Course $course, CourseSection $course_section, Evaluation $course_lecture)
     {
-        //
+        $course_lecture->delete();
+        // return to_route('user_area.course_section.index', [
+        //     'course' => $course,
+        //     'course_section' => $course_section,
+        // ]);
+    }
+
+    public function set_as_preview(Request $request, Course $course, CourseSection $course_section, Evaluation $course_lecture)
+    {
+        $set_as_preview = $request->set_as_preview;
+
+        $course_lecture->update([
+            'set_as_preview' => $set_as_preview
+        ]);
+    }
+
+
+    public function set_as_featured(Request $request, Course $course, CourseSection $course_section, Evaluation $course_lecture)
+    {
+
+        Evaluation::where('course_id', $course->id)->update([
+            'set_as_featured' => 0,
+        ]);
+
+        $set_as_featured = $request->set_as_featured;
+
+        $course_lecture->update([
+            'set_as_featured' => $set_as_featured
+        ]);
     }
 }

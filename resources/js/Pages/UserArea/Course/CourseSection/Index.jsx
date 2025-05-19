@@ -11,7 +11,7 @@ import {
     Trash,
     Video,
 } from "lucide-react";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaQuestion } from "react-icons/fa";
 import CourseManageTab from "../CourseManageTab";
 import ReactModal from "react-modal";
 import Form from "./ModalForm";
@@ -112,9 +112,7 @@ export default function Index({ course, course_sections }) {
                                         <thead>
                                             <tr>
                                                 <th>Judul Section/Lecture</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
+
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -136,9 +134,7 @@ export default function Index({ course, course_sections }) {
                                                                         course_section.title
                                                                     }
                                                                 </td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
+
                                                                 <td className="flex gap-1">
                                                                     <button
                                                                         className="btn btn-secondary btn-xs"
@@ -180,203 +176,8 @@ export default function Index({ course, course_sections }) {
                                                                             Hapus
                                                                         </span>
                                                                     </button>
-                                                                    <button
-                                                                        className="btn btn-info btn-xs"
-                                                                        onClick={() => {
-                                                                            setSelectedCourseSection(
-                                                                                course_section
-                                                                            );
-                                                                            setModalFormCourseLectureIsOpen(
-                                                                                true
-                                                                            );
-                                                                        }}
-                                                                    >
-                                                                        <span>
-                                                                            Tambah
-                                                                            Lecture
-                                                                        </span>
-                                                                        <AiOutlineEnter
-                                                                            size={
-                                                                                16
-                                                                            }
-                                                                            className="-rotate-90"
-                                                                        />
-                                                                    </button>
                                                                 </td>
                                                             </tr>
-
-                                                            {course_section.course_lectures.map(
-                                                                (
-                                                                    course_lecture
-                                                                ) => (
-                                                                    <tr className="hover">
-                                                                        <td className="pl-10">
-                                                                            {
-                                                                                course_lecture.title
-                                                                            }
-                                                                        </td>
-                                                                        <td>
-                                                                            <a
-                                                                                className="text-primary flex gap-2 items-center"
-                                                                                href={
-                                                                                    course_lecture.video_url
-                                                                                }
-                                                                                target="_blank"
-                                                                            >
-                                                                                <Video
-                                                                                    size={
-                                                                                        16
-                                                                                    }
-                                                                                />
-                                                                                <span>
-                                                                                    {
-                                                                                        course_lecture.video_duration_human_readable
-                                                                                    }
-                                                                                </span>
-                                                                            </a>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input
-                                                                                type="checkbox"
-                                                                                className="toggle toggle-primary toggle-xs"
-                                                                                checked={
-                                                                                    course_lecture.set_as_preview
-                                                                                }
-                                                                                onChange={(
-                                                                                    e
-                                                                                ) => {
-                                                                                    console.log(
-                                                                                        e
-                                                                                            .target
-                                                                                            .value
-                                                                                    );
-                                                                                    console.log(
-                                                                                        e
-                                                                                            .target
-                                                                                            .checked
-                                                                                    );
-
-                                                                                    router.put(
-                                                                                        route(
-                                                                                            "user_area.course.set_as_preview",
-                                                                                            {
-                                                                                                course: course.id,
-                                                                                                course_section:
-                                                                                                    course_section.id,
-                                                                                                course_lecture:
-                                                                                                    course_lecture.id,
-                                                                                            }
-                                                                                        ),
-                                                                                        {
-                                                                                            set_as_preview:
-                                                                                                e
-                                                                                                    .target
-                                                                                                    .checked
-                                                                                                    ? 1
-                                                                                                    : 0,
-                                                                                        },
-                                                                                        {
-                                                                                            preserveScroll: true,
-                                                                                            preserveState: true,
-                                                                                        }
-                                                                                    );
-                                                                                }}
-                                                                            />
-                                                                        </td>
-                                                                        <td>
-                                                                            <input
-                                                                                type="checkbox"
-                                                                                className="toggle toggle-primary toggle-xs"
-                                                                                checked={
-                                                                                    course_lecture.set_as_featured
-                                                                                }
-                                                                                onChange={(
-                                                                                    e
-                                                                                ) => {
-                                                                                    console.log(
-                                                                                        e
-                                                                                            .target
-                                                                                            .value
-                                                                                    );
-                                                                                    console.log(
-                                                                                        e
-                                                                                            .target
-                                                                                            .checked
-                                                                                    );
-
-                                                                                    router.put(
-                                                                                        route(
-                                                                                            "user_area.course.set_as_featured",
-                                                                                            {
-                                                                                                course: course.id,
-                                                                                                course_section:
-                                                                                                    course_section.id,
-                                                                                                course_lecture:
-                                                                                                    course_lecture.id,
-                                                                                            }
-                                                                                        ),
-                                                                                        {
-                                                                                            set_as_featured:
-                                                                                                e
-                                                                                                    .target
-                                                                                                    .checked
-                                                                                                    ? 1
-                                                                                                    : 0,
-                                                                                        },
-                                                                                        {
-                                                                                            preserveScroll: true,
-                                                                                            preserveState: true,
-                                                                                        }
-                                                                                    );
-                                                                                }}
-                                                                            />
-                                                                        </td>
-                                                                        <td className="flex gap-1">
-                                                                            <button
-                                                                                className="btn btn-secondary btn-xs"
-                                                                                onClick={(
-                                                                                    e
-                                                                                ) => {
-                                                                                    e.preventDefault();
-                                                                                    courseLectureEditHandler(
-                                                                                        course_section,
-                                                                                        course_lecture
-                                                                                    );
-                                                                                }}
-                                                                            >
-                                                                                <Edit
-                                                                                    size={
-                                                                                        16
-                                                                                    }
-                                                                                />
-                                                                                <span>
-                                                                                    Ubah
-                                                                                </span>
-                                                                            </button>
-                                                                            <button
-                                                                                className="btn btn-error btn-xs"
-                                                                                onClick={(
-                                                                                    e
-                                                                                ) => {
-                                                                                    e.preventDefault();
-                                                                                    courseSectionDeleteHandler(
-                                                                                        course_section
-                                                                                    );
-                                                                                }}
-                                                                            >
-                                                                                <Trash
-                                                                                    size={
-                                                                                        16
-                                                                                    }
-                                                                                />
-                                                                                <span>
-                                                                                    Hapus
-                                                                                </span>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                )
-                                                            )}
                                                         </>
                                                     )
                                                 )

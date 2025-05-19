@@ -14,6 +14,11 @@ class CourseLecture extends BaseModel
         'video_duration_human_readable',
     ];
 
+    public function course_section()
+    {
+        return $this->belongsTo(CourseSection::class);
+    }
+
     public function getVideoUrlAttribute()
     {
         return $this->video ? url('/storage/' . $this->video) : asset('videos/dummy/sample_video.mp4');

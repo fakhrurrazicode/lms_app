@@ -53,22 +53,21 @@ export default function CourseManageTab({ course }) {
                         }
                     )}
                 >
-                    Sections & Lectures
+                    Sections
                 </Link>
 
                 <Link
                     preserveScroll={true}
                     preserveState={true}
-                    href={route("user_area.course.course_section.index", {
+                    href={route("user_area.course.course_lecture.index", {
                         course: course,
                     })}
                     className={classNames(
                         "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
                         {
                             "!bg-base-100": route().current(
-                                "user_area.course.course_section.course_lecture.index",
+                                "user_area.course.course_lecture.index",
                                 {
-                                    course: course,
                                     course: course,
                                 }
                             ),
@@ -76,6 +75,27 @@ export default function CourseManageTab({ course }) {
                     )}
                 >
                     Lectures
+                </Link>
+
+                <Link
+                    preserveScroll={true}
+                    preserveState={true}
+                    href={route("user_area.course.evaluation.index", {
+                        course: course,
+                    })}
+                    className={classNames(
+                        "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
+                        {
+                            "!bg-base-100": route().current(
+                                "user_area.course.evaluation.index",
+                                {
+                                    course: course,
+                                }
+                            ),
+                        }
+                    )}
+                >
+                    Evaluations
                 </Link>
             </div>
         </div>

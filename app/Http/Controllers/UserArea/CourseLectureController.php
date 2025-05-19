@@ -18,8 +18,22 @@ class CourseLectureController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Course $course, CourseSection $course_section)
+    public function index(Request $request, Course $course)
     {
+        $course->load(['course_sections' => function ($query) {
+            $query->orderBy('id', 'ASC');
+        }]);
+
+        $course_sections = CourseSection::where([
+            'course_id' => $course->id,
+        ])->orderBy('id', 'ASC')
+            ->with(['course_lectures'])
+            ->get();
+
+        return Inertia::render('UserArea/Course/CourseLecture/Index', [
+            'course' => $course,
+            'course_sections' => $course_sections,
+        ]);
         // return Inertia::render('UserArea/CourseSection/Index', compact('course', 'course_section'));
     }
 
@@ -93,14 +107,30 @@ class CourseLectureController extends Controller
     {
         $data = $request->validated();
         unset($data['video']);
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('images', 'public');
+        if ($request->hasFile('video')) {
+            $data['video'] = $request->file('video')->store('videos', 'public');
+            $full_path = storage_path('app/public/' . $data['video']);
+
+            // $ffmpeg = FFMpeg::create([
+            //     'ffmpeg.binaries'  => 'C:\\ffmpeg\\bin\\ffmpeg.exe',
+            //     'ffprobe.binaries' => 'C:\\ffmpeg\\bin\\ffprobe.exe',
+            //     'timeout' => 3600, // optional
+            // ]);
+            // $video = $ffmpeg->open($full_path);
+
+            // $ffprobe = FFProbe::create([
+            //     'ffprobe.binaries' => 'C:\\ffmpeg\\bin\\ffprobe.exe',
+            // ]);
+            // $duration = $ffprobe->format($full_path)->get('duration'); // in seconds
+
+            // $data['video_duration'] = $duration;
+            $data['video_duration'] = 0;
         }
         $course_lecture->update($data);
-        return to_route('user_area.course_section.index', [
-            'course' => $course,
-            'course_section' => $course_section,
-        ]);
+        // return to_route('user_area.course_section.index', [
+        //     'course' => $course,
+        //     'course_section' => $course_section,
+        // ]);
     }
 
     /**
@@ -109,10 +139,10 @@ class CourseLectureController extends Controller
     public function destroy(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
     {
         $course_lecture->delete();
-        return to_route('user_area.course_section.index', [
-            'course' => $course,
-            'course_section' => $course_section,
-        ]);
+        // return to_route('user_area.course_section.index', [
+        //     'course' => $course,
+        //     'course_section' => $course_section,
+        // ]);
     }
 
     public function set_as_preview(Request $request, Course $course, CourseSection $course_section, CourseLecture $course_lecture)
