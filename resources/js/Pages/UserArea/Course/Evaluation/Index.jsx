@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import { AiOutlineEnter } from "react-icons/ai";
 import ModalForm from "./ModalForm";
 import ModalFormQuestion from "./ModalFormQuestion";
+import classNames from "classnames";
 
 export default function Index({ course, course_sections }) {
     const [modalFormIsOpen, setModalFormIsOpen] = useState(false);
@@ -49,6 +50,20 @@ export default function Index({ course, course_sections }) {
                     },
                 }
             );
+    };
+
+    const onDeleteQuestionHandler = (question) => {
+        if (!confirm("Yakin ingin menghapus pertanyaan ini?")) return;
+
+        router.delete(route("user_area.question.destroy", question.id), {
+            preserveScroll: true,
+            onSuccess: () => {
+                toast.success("Pertanyaan berhasil dihapus");
+            },
+            onError: () => {
+                toast.error("Gagal menghapus pertanyaan");
+            },
+        });
     };
 
     useEffect(() => {
@@ -142,97 +157,218 @@ export default function Index({ course, course_sections }) {
                                                                     course_section.evaluation;
 
                                                                 return evaluation ? (
-                                                                    <tr
-                                                                        key={
-                                                                            evaluation.id +
-                                                                            "-" +
-                                                                            index
-                                                                        }
-                                                                        className="hover"
-                                                                    >
-                                                                        <td className="pl-10">
-                                                                            {
-                                                                                evaluation.title
+                                                                    <>
+                                                                        <tr>
+                                                                            <td
+                                                                                colSpan={
+                                                                                    4
+                                                                                }
+                                                                                className="text-center italic bg-base-200"
+                                                                            >
+                                                                                Evaluasi
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr
+                                                                            key={
+                                                                                evaluation.id +
+                                                                                "-" +
+                                                                                index
                                                                             }
-                                                                        </td>
+                                                                            className="hover"
+                                                                        >
+                                                                            <td className="pl-10">
+                                                                                {
+                                                                                    evaluation.title
+                                                                                }
+                                                                            </td>
 
-                                                                        <td>
-                                                                            {
-                                                                                evaluation.instructions
-                                                                            }
-                                                                        </td>
-                                                                        <td>
-                                                                            {
-                                                                                evaluation.duration
-                                                                            }
-                                                                        </td>
+                                                                            <td>
+                                                                                {
+                                                                                    evaluation.instructions
+                                                                                }
+                                                                            </td>
+                                                                            <td>
+                                                                                {
+                                                                                    evaluation.duration
+                                                                                }
+                                                                            </td>
 
-                                                                        <td className="flex gap-1">
-                                                                            <button
-                                                                                className="btn btn-secondary btn-xs"
-                                                                                onClick={(
-                                                                                    e
-                                                                                ) => {
-                                                                                    e.preventDefault();
-                                                                                    onEditHandler(
-                                                                                        course_section,
-                                                                                        evaluation
-                                                                                    );
-                                                                                }}
-                                                                            >
-                                                                                <Edit
-                                                                                    size={
-                                                                                        16
-                                                                                    }
-                                                                                />
-                                                                                <span>
-                                                                                    Ubah
-                                                                                </span>
-                                                                            </button>
-                                                                            <button
-                                                                                className="btn btn-error btn-xs"
-                                                                                onClick={(
-                                                                                    e
-                                                                                ) => {
-                                                                                    e.preventDefault();
-                                                                                    onDeleteHandler(
-                                                                                        evaluation
-                                                                                    );
-                                                                                }}
-                                                                            >
-                                                                                <Trash
-                                                                                    size={
-                                                                                        16
-                                                                                    }
-                                                                                />
-                                                                                <span>
-                                                                                    Hapus
-                                                                                </span>
-                                                                            </button>
-                                                                            <button
-                                                                                className="btn btn-info btn-xs"
-                                                                                onClick={() => {
-                                                                                    setSelectedEvaluation(
-                                                                                        evaluation
-                                                                                    );
-                                                                                    setModalFormQuestionIsOpen(
-                                                                                        true
-                                                                                    );
-                                                                                }}
-                                                                            >
-                                                                                <span>
-                                                                                    Tambah
-                                                                                    Pertanyaan
-                                                                                </span>
-                                                                                <AiOutlineEnter
-                                                                                    size={
-                                                                                        16
-                                                                                    }
-                                                                                    className="-rotate-90"
-                                                                                />
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
+                                                                            <td className="flex gap-1">
+                                                                                <button
+                                                                                    className="btn btn-secondary btn-xs"
+                                                                                    onClick={(
+                                                                                        e
+                                                                                    ) => {
+                                                                                        e.preventDefault();
+                                                                                        onEditHandler(
+                                                                                            course_section,
+                                                                                            evaluation
+                                                                                        );
+                                                                                    }}
+                                                                                >
+                                                                                    <Edit
+                                                                                        size={
+                                                                                            16
+                                                                                        }
+                                                                                    />
+                                                                                    <span>
+                                                                                        Ubah
+                                                                                    </span>
+                                                                                </button>
+                                                                                <button
+                                                                                    className="btn btn-error btn-xs"
+                                                                                    onClick={(
+                                                                                        e
+                                                                                    ) => {
+                                                                                        e.preventDefault();
+                                                                                        onDeleteHandler(
+                                                                                            evaluation
+                                                                                        );
+                                                                                    }}
+                                                                                >
+                                                                                    <Trash
+                                                                                        size={
+                                                                                            16
+                                                                                        }
+                                                                                    />
+                                                                                    <span>
+                                                                                        Hapus
+                                                                                    </span>
+                                                                                </button>
+                                                                                <button
+                                                                                    className="btn btn-info btn-xs"
+                                                                                    onClick={() => {
+                                                                                        setSelectedEvaluation(
+                                                                                            evaluation
+                                                                                        );
+                                                                                        setModalFormQuestionIsOpen(
+                                                                                            true
+                                                                                        );
+                                                                                    }}
+                                                                                >
+                                                                                    <span>
+                                                                                        Tambah
+                                                                                        Pertanyaan
+                                                                                    </span>
+                                                                                    <AiOutlineEnter
+                                                                                        size={
+                                                                                            16
+                                                                                        }
+                                                                                        className="-rotate-90"
+                                                                                    />
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                        {evaluation
+                                                                            .questions
+                                                                            ?.length >
+                                                                            0 && (
+                                                                            <>
+                                                                                <tr>
+                                                                                    <td
+                                                                                        colSpan={
+                                                                                            4
+                                                                                        }
+                                                                                        className="text-center italic bg-base-200"
+                                                                                    >
+                                                                                        Pertanyaan
+                                                                                    </td>
+                                                                                </tr>
+                                                                                {evaluation.questions.map(
+                                                                                    (
+                                                                                        question,
+                                                                                        qIndex
+                                                                                    ) => (
+                                                                                        <tr>
+                                                                                            <td className="pl-16">
+                                                                                                <div>
+                                                                                                    {
+                                                                                                        question.question
+                                                                                                    }
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <ol
+                                                                                                    type="A"
+                                                                                                    className="list-decimal list-inside"
+                                                                                                >
+                                                                                                    {question.choices.map(
+                                                                                                        (
+                                                                                                            choice,
+                                                                                                            cIndex
+                                                                                                        ) => (
+                                                                                                            <li
+                                                                                                                key={
+                                                                                                                    choice.id +
+                                                                                                                    "-c-" +
+                                                                                                                    cIndex
+                                                                                                                }
+                                                                                                                className={classNames(
+                                                                                                                    {
+                                                                                                                        "text-success font-semibold":
+                                                                                                                            choice.is_correct,
+                                                                                                                    }
+                                                                                                                )}
+                                                                                                            >
+                                                                                                                {
+                                                                                                                    choice.text
+                                                                                                                }
+                                                                                                            </li>
+                                                                                                        )
+                                                                                                    )}
+                                                                                                </ol>
+                                                                                            </td>
+                                                                                            <td></td>
+                                                                                            <td className="flex gap-1">
+                                                                                                <button
+                                                                                                    className="btn btn-xs btn-secondary"
+                                                                                                    onClick={() => {
+                                                                                                        setSelectedEvaluation(
+                                                                                                            evaluation
+                                                                                                        );
+                                                                                                        setSelectedQuestion(
+                                                                                                            question
+                                                                                                        );
+                                                                                                        setModalFormQuestionIsOpen(
+                                                                                                            true
+                                                                                                        );
+                                                                                                    }}
+                                                                                                >
+                                                                                                    <Edit
+                                                                                                        size={
+                                                                                                            14
+                                                                                                        }
+                                                                                                    />
+                                                                                                    <span>
+                                                                                                        Ubah
+                                                                                                    </span>
+                                                                                                </button>
+
+                                                                                                <button
+                                                                                                    className="btn btn-xs btn-error"
+                                                                                                    onClick={() =>
+                                                                                                        onDeleteQuestionHandler(
+                                                                                                            question
+                                                                                                        )
+                                                                                                    }
+                                                                                                >
+                                                                                                    <Trash
+                                                                                                        size={
+                                                                                                            14
+                                                                                                        }
+                                                                                                    />
+                                                                                                    <span>
+                                                                                                        Hapus
+                                                                                                    </span>
+                                                                                                </button>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    )
+                                                                                )}
+                                                                            </>
+                                                                        )}
+                                                                    </>
                                                                 ) : (
                                                                     <></>
                                                                 );

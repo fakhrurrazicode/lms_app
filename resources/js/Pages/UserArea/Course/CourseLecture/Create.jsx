@@ -1,7 +1,7 @@
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import React, { useEffect } from "react";
-import CourseCardDetail from "../Course/CourseCardDetail";
+
 import { FiArrowLeft } from "react-icons/fi";
 import { Save } from "lucide-react";
 
@@ -97,9 +97,6 @@ export default function Create({ course, course_section }) {
                             <FiArrowLeft />
                             Kembali ke Section
                         </Link>
-                    </div>
-                    <div className="mb-6">
-                        <CourseCardDetail course={course} />
                     </div>
 
                     <div className="card bg-base-100 shadow-xl">

@@ -25,13 +25,15 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Fakhrurrazi',
                 'username' => 'fakhrurrazi.code',
                 'email' => 'fakhrurrazi.code@gmail.com',
-                'email_verified_at' => NULL,
+                'email_verified_at' => '2025-05-20 20:42:23',
                 'password' => '$2y$12$4tF.dUofG6aHhgJVSBc50O6CsYnl7U4Q995smlQsPOXPpNGt42TgG',
                 'remember_token' => NULL,
                 'created_at' => '2025-04-14 07:45:50',
-                'updated_at' => '2025-04-14 07:45:50',
+                'updated_at' => '2025-05-20 20:42:23',
                 'photo' => 'avatars/qfkDFjj7QP.png',
                 'bio' => NULL,
+                'verified_as_instructor' => 0,
+                'google_id' => NULL,
             ),
             1 => 
             array (
@@ -46,6 +48,8 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2025-02-11 02:57:57',
                 'photo' => NULL,
                 'bio' => NULL,
+                'verified_as_instructor' => 0,
+                'google_id' => NULL,
             ),
             2 => 
             array (
@@ -60,6 +64,8 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2025-02-11 02:58:19',
                 'photo' => NULL,
                 'bio' => NULL,
+                'verified_as_instructor' => 0,
+                'google_id' => NULL,
             ),
             3 => 
             array (
@@ -74,6 +80,8 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2025-02-11 02:58:36',
                 'photo' => NULL,
                 'bio' => NULL,
+                'verified_as_instructor' => 0,
+                'google_id' => NULL,
             ),
             4 => 
             array (
@@ -88,6 +96,8 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2025-02-14 07:37:34',
                 'photo' => NULL,
                 'bio' => NULL,
+                'verified_as_instructor' => 0,
+                'google_id' => NULL,
             ),
             5 => 
             array (
@@ -102,6 +112,8 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2025-02-14 07:37:57',
                 'photo' => NULL,
                 'bio' => NULL,
+                'verified_as_instructor' => 0,
+                'google_id' => NULL,
             ),
             6 => 
             array (
@@ -116,6 +128,8 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2025-04-12 02:40:52',
                 'photo' => NULL,
                 'bio' => NULL,
+                'verified_as_instructor' => 0,
+                'google_id' => NULL,
             ),
         ));
         

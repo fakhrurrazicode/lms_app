@@ -56,5 +56,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PersonalAccessTokensTableSeeder::class);
         $this->call(TaggablesTableSeeder::class);
         $this->call(WishlistsTableSeeder::class);
+        $this->call(InstructorInfosTableSeeder::class);
+        $this->call(EvaluationsTableSeeder::class);
+        $this->call(QuestionsTableSeeder::class);
+        $this->call(ChoicesTableSeeder::class);
     }
 }
