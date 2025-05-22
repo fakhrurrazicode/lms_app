@@ -18,7 +18,7 @@ export default function EnrolledCourseCard({ enrollment }) {
                     </span>
                 </div>
                 <Link
-                    href={route("learning_area.course.index", {
+                    href={route("learning_area.course.show", {
                         course: course,
                     })}
                     preserveScroll={true}
@@ -42,7 +42,7 @@ export default function EnrolledCourseCard({ enrollment }) {
                     </div>
                 </div>
                 <a
-                    href={route("learning_area.course.index", {
+                    href={route("learning_area.course.show", {
                         course: course,
                     })}
                     preserveScroll={true}
@@ -98,7 +98,7 @@ export default function EnrolledCourseCard({ enrollment }) {
                     </div>
 
                     <Link
-                        href={route("learning_area.course.index", {
+                        href={route("learning_area.course.show", {
                             course: course,
                         })}
                         preserveScroll={true}
@@ -109,9 +109,9 @@ export default function EnrolledCourseCard({ enrollment }) {
                         <span>Belajar Sekarang</span>
                     </Link>
                     <Link
-                        href={route("learning_area.course_review.index", {
-                            course: course,
-                        })}
+                        // href={route("learning_area.course_review.index", {
+                        //     course: course,
+                        // })}
                         preserveScroll={true}
                         preserveState={true}
                         className="btn btn-warning w-full"

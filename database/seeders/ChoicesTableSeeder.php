@@ -21,39 +21,39 @@ class ChoicesTableSeeder extends Seeder
         \DB::table('choices')->insert(array (
             0 => 
             array (
-                'id' => 1,
-                'question_id' => 1,
-                'text' => 'Jawaban 1 untuk Pertanyaan 1 untuk Evaluasi untuk basic structure and components',
-                'is_correct' => 0,
-                'created_at' => '2025-05-20 20:45:21',
-                'updated_at' => '2025-05-20 20:45:21',
-            ),
-            1 => 
-            array (
-                'id' => 2,
-                'question_id' => 1,
-                'text' => 'Jawaban 2 untuk Pertanyaan 1 untuk Evaluasi untuk basic structure and components',
-                'is_correct' => 1,
-                'created_at' => '2025-05-20 20:45:21',
-                'updated_at' => '2025-05-20 20:45:21',
-            ),
-            2 => 
-            array (
-                'id' => 3,
-                'question_id' => 1,
-                'text' => 'Jawaban 3 untuk Pertanyaan 1 untuk Evaluasi untuk basic structure and components',
-                'is_correct' => 0,
-                'created_at' => '2025-05-20 20:45:21',
-                'updated_at' => '2025-05-20 20:45:21',
-            ),
-            3 => 
-            array (
-                'id' => 4,
+                'id' => 20,
                 'question_id' => 1,
                 'text' => 'Jawaban 4 untuk Pertanyaan 1 untuk Evaluasi untuk basic structure and components',
                 'is_correct' => 0,
-                'created_at' => '2025-05-20 20:45:21',
-                'updated_at' => '2025-05-20 20:45:21',
+                'created_at' => '2025-05-21 03:50:43',
+                'updated_at' => '2025-05-21 03:50:43',
+            ),
+            1 => 
+            array (
+                'id' => 19,
+                'question_id' => 1,
+                'text' => 'Jawaban 3 untuk Pertanyaan 1 untuk Evaluasi untuk basic structure and components',
+                'is_correct' => 1,
+                'created_at' => '2025-05-21 03:50:43',
+                'updated_at' => '2025-05-21 03:50:43',
+            ),
+            2 => 
+            array (
+                'id' => 18,
+                'question_id' => 1,
+                'text' => 'Jawaban 2 untuk Pertanyaan 1 untuk Evaluasi untuk basic structure and components',
+                'is_correct' => 0,
+                'created_at' => '2025-05-21 03:50:43',
+                'updated_at' => '2025-05-21 03:50:43',
+            ),
+            3 => 
+            array (
+                'id' => 17,
+                'question_id' => 1,
+                'text' => 'Jawaban 1 untuk Pertanyaan 1 untuk Evaluasi untuk basic structure and components',
+                'is_correct' => 0,
+                'created_at' => '2025-05-21 03:50:43',
+                'updated_at' => '2025-05-21 03:50:43',
             ),
             4 => 
             array (

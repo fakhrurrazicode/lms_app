@@ -15,7 +15,7 @@ export default function ModalFormQuestion({
 }) {
     const formRef = useRef(null);
 
-    const { data, setData, post, errors, reset, clearErrors, processing } =
+    const { data, setData, post, put, errors, reset, clearErrors, processing } =
         useForm({
             evaluation_id: question
                 ? question.evaluation_id
@@ -101,7 +101,7 @@ export default function ModalFormQuestion({
         e.preventDefault();
 
         if (question) {
-            post(
+            put(
                 route("user_area.question.update", {
                     question,
                 }),

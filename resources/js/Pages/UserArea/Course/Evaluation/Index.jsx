@@ -30,7 +30,7 @@ export default function Index({ course, course_sections }) {
     const onDeleteHandler = (evaluation) => {
         if (
             confirm(
-                "Apakah anda yakin ingin menghapus data lecture " +
+                "Apakah anda yakin ingin menghapus data evaluasi " +
                     evaluation.title +
                     "?"
             )
@@ -72,6 +72,14 @@ export default function Index({ course, course_sections }) {
             setSelectedEvaluation(null);
         }
     }, [modalFormIsOpen]);
+
+    useEffect(() => {
+        if (modalFormQuestionIsOpen == false) {
+            setSelectedCourseSection(null);
+            setSelectedEvaluation(null);
+            setSelectedQuestion(null);
+        }
+    }, [modalFormQuestionIsOpen]);
 
     return (
         <UserAreaLayout
@@ -121,7 +129,9 @@ export default function Index({ course, course_sections }) {
                                         {/* head */}
                                         <thead>
                                             <tr>
-                                                <th>Judul/Evaluation</th>
+                                                <th>
+                                                    Judul Section/Evaluation
+                                                </th>
                                                 <th>Instruksi</th>
                                                 <th>Durasi</th>
                                                 <th></th>
@@ -307,7 +317,9 @@ export default function Index({ course, course_sections }) {
                                                                                                                 className={classNames(
                                                                                                                     {
                                                                                                                         "text-success font-semibold":
-                                                                                                                            choice.is_correct,
+                                                                                                                            choice.is_correct
+                                                                                                                                ? true
+                                                                                                                                : false,
                                                                                                                     }
                                                                                                                 )}
                                                                                                             >
@@ -370,7 +382,20 @@ export default function Index({ course, course_sections }) {
                                                                         )}
                                                                     </>
                                                                 ) : (
-                                                                    <></>
+                                                                    <>
+                                                                        <tr className="hover">
+                                                                            <td
+                                                                                className="text-center italic"
+                                                                                colSpan={
+                                                                                    4
+                                                                                }
+                                                                            >
+                                                                                Belum
+                                                                                memiliki
+                                                                                evaluasi
+                                                                            </td>
+                                                                        </tr>
+                                                                    </>
                                                                 );
                                                             })()}
                                                         </>

@@ -60,5 +60,13 @@ class DatabaseSeeder extends Seeder
         $this->call(EvaluationsTableSeeder::class);
         $this->call(QuestionsTableSeeder::class);
         $this->call(ChoicesTableSeeder::class);
+        $this->call(AnswersTableSeeder::class);
+        $this->call(CoinsTableSeeder::class);
+        $this->call(EvaluationAttemptsTableSeeder::class);
+        $this->call(EventsTableSeeder::class);
+        $this->call(NotificationsTableSeeder::class);
+        $this->call(UsersCouponsTableSeeder::class);
+        $this->call(VoucherUsagesTableSeeder::class);
+        $this->call(VouchersTableSeeder::class);
     }
 }

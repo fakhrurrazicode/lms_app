@@ -25,75 +25,58 @@ export default function Show({
 
             <div className="card">
                 <div className="card-body bg-base-100">
-                    <div className="mb-6">
-                        <div className="breadcrumbs text-sm mb-6">
-                            <ul>
-                                <li>
-                                    <Link
-                                        href={route(
-                                            "learning_area.course.show",
-                                            {
-                                                course: course,
-                                            }
-                                        )}
-                                        className="gap-2 items-center"
+                    <div className="breadcrumbs text-sm mb-6">
+                        <ul>
+                            <li>
+                                <Link
+                                    href={route("learning_area.course.show", {
+                                        course: course,
+                                    })}
+                                    className="gap-2 items-center"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        className="h-4 w-4 stroke-current"
                                     >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            className="h-4 w-4 stroke-current"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                                            ></path>
-                                        </svg>
-                                        {course.title}
-                                    </Link>
-                                </li>
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                                        ></path>
+                                    </svg>
+                                    {course.title}
+                                </Link>
+                            </li>
 
-                                <li>
-                                    <span className="inline-flex items-center gap-2">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            className="h-4 w-4 stroke-current"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                                            ></path>
-                                        </svg>
-                                        {course_lecture.title}
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <h1 className="text-5xl font-bold mb-6">
-                            {course_lecture.title}
-                        </h1>
-                    </div>
-                    <div className="mb-6">
-                        <MediaPlayer
-                            title="Sprite Fight"
-                            src={course_lecture.video_url}
-                        >
-                            <MediaProvider />
-                            <PlyrLayout
-                                // thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
-                                icons={plyrLayoutIcons}
-                            />
-                        </MediaPlayer>
+                            <li>
+                                <span className="inline-flex items-center gap-2">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        className="h-4 w-4 stroke-current"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                                        ></path>
+                                    </svg>
+                                    {evaluation.title}
+                                </span>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div className="mb-6">{course_lecture.description}</div>
+                    <h1 className="text-5xl font-bold mb-6">
+                        {evaluation.title}
+                    </h1>
+
+                    <div className="mb-6">{evaluation.instructions}</div>
 
                     <div className="flex justify-between">
                         <div>
@@ -124,9 +107,11 @@ export default function Show({
                                     href={route(
                                         "learning_area.course.course_section.course_lecture.finish",
                                         {
-                                            course: course.id,
-                                            course_section: course_section.id,
-                                            course_lecture: course_lecture.id,
+                                            course: next_course_lecture.course_id,
+                                            course_section:
+                                                next_course_lecture.course_id,
+                                            course_lecture:
+                                                next_course_lecture.id,
                                         }
                                     )}
                                     // preserveScroll={true}
@@ -158,13 +143,13 @@ export default function Show({
                                     ) : (
                                         <Link
                                             href={route(
-                                                "learning_area.course.course_section.course_lecture.finish",
+                                                "learning_area.course.course_section.evaluation.finish",
                                                 {
                                                     course: course.id,
                                                     course_section:
                                                         course_section.id,
                                                     course_lecture:
-                                                        course_lecture.id,
+                                                        evaluation.id,
                                                 }
                                             )}
                                             // preserveScroll={true}

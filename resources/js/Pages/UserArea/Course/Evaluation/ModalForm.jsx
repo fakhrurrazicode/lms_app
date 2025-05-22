@@ -29,7 +29,32 @@ export default function ModalForm({
             passing_score: evaluation ? evaluation.passing_score : "",
         });
 
+    // useEffect(() => {
+    //     setData({
+    //         course_section_id: evaluation
+    //             ? evaluation.course_section_id
+    //             : course_section
+    //             ? course_section.id
+    //             : "",
+    //         title: evaluation ? evaluation.title : "",
+    //         instructions: evaluation ? evaluation.instructions : "",
+    //         duration: evaluation ? evaluation.duration : "",
+    //         passing_score: evaluation ? evaluation.passing_score : "",
+    //     });
+    // }, [course, evaluation, course_section, isOpen]);
+
     useEffect(() => {
+        if (!isOpen) return;
+
+        // Cegah reset kalau user sudah mulai isi data
+        if (
+            data.title ||
+            data.instructions ||
+            data.duration ||
+            data.passing_score
+        )
+            return;
+
         setData({
             course_section_id: evaluation
                 ? evaluation.course_section_id
@@ -41,7 +66,7 @@ export default function ModalForm({
             duration: evaluation ? evaluation.duration : "",
             passing_score: evaluation ? evaluation.passing_score : "",
         });
-    }, [course, evaluation, course_section, isOpen]);
+    }, [isOpen]);
 
     useEffect(() => {
         if (isOpen == false) {

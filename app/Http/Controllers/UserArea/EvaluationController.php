@@ -24,7 +24,7 @@ class EvaluationController extends Controller
             $query->orderBy('id', 'ASC');
         }]);
 
-        $course_sections = CourseSection::has('evaluation')->where([
+        $course_sections = CourseSection::where([
             'course_id' => $course->id,
         ])->orderBy('id', 'ASC')
             ->with(['evaluation.questions.choices'])
@@ -81,10 +81,10 @@ class EvaluationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(EvaluationUpdateRequest $request, Course $course, CourseSection $course_section, Evaluation $course_lecture)
+    public function update(EvaluationUpdateRequest $request, Course $course, CourseSection $course_section, Evaluation $evaluation)
     {
         $data = $request->validated();
-        $course_lecture->update($data);
+        $evaluation->update($data);
         // return to_route('user_area.course_section.index', [
         //     'course' => $course,
         //     'course_section' => $course_section,
@@ -94,26 +94,26 @@ class EvaluationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Course $course, CourseSection $course_section, Evaluation $course_lecture)
+    public function destroy(Course $course, CourseSection $course_section, Evaluation $evaluation)
     {
-        $course_lecture->delete();
+        $evaluation->delete();
         // return to_route('user_area.course_section.index', [
         //     'course' => $course,
         //     'course_section' => $course_section,
         // ]);
     }
 
-    public function set_as_preview(Request $request, Course $course, CourseSection $course_section, Evaluation $course_lecture)
+    public function set_as_preview(Request $request, Course $course, CourseSection $course_section, Evaluation $evaluation)
     {
         $set_as_preview = $request->set_as_preview;
 
-        $course_lecture->update([
+        $evaluation->update([
             'set_as_preview' => $set_as_preview
         ]);
     }
 
 
-    public function set_as_featured(Request $request, Course $course, CourseSection $course_section, Evaluation $course_lecture)
+    public function set_as_featured(Request $request, Course $course, CourseSection $course_section, Evaluation $evaluation)
     {
 
         Evaluation::where('course_id', $course->id)->update([
@@ -122,7 +122,7 @@ class EvaluationController extends Controller
 
         $set_as_featured = $request->set_as_featured;
 
-        $course_lecture->update([
+        $evaluation->update([
             'set_as_featured' => $set_as_featured
         ]);
     }

@@ -21,7 +21,7 @@ class CourseSectionController extends Controller
     {
         $course_sections = CourseSection::where([
             'course_id' => $course->id,
-        ])->orderBy('id', 'ASC')
+        ])->orderBy('order_column', 'ASC')
             ->get();
 
         return Inertia::render('UserArea/Course/CourseSection/Index', [

@@ -5,11 +5,22 @@ namespace App\Models;
 use App\Models\Evaluation;
 use App\Models\CourseLecture;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
-class CourseSection extends BaseModel
+class CourseSection extends BaseModel implements Sortable
 {
 
+    use SortableTrait;
+
     protected $guarded = [];
+
+    public $appends = ['has_evaluation'];
+
+    public function getHasEvaluationAttribute()
+    {
+        return $this->evaluation ? true : false;
+    }
 
     public function course_lectures()
     {

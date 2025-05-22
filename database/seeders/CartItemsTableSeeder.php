@@ -30,6 +30,17 @@ class CartItemsTableSeeder extends Seeder
                 'created_at' => '2025-04-12 12:16:03',
                 'updated_at' => '2025-04-12 12:16:03',
             ),
+            1 => 
+            array (
+                'id' => 18,
+                'cart_id' => 5,
+                'itemable_type' => 'App\\Models\\Course',
+                'itemable_id' => 33,
+                'quantity' => 1,
+                'options' => NULL,
+                'created_at' => '2025-05-21 04:11:06',
+                'updated_at' => '2025-05-21 04:11:06',
+            ),
         ));
         
         

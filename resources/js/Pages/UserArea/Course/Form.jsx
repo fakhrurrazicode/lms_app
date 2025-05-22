@@ -3,6 +3,7 @@ import { Save } from "lucide-react";
 import React, { useEffect } from "react";
 import { useRef } from "react";
 import { toast } from "react-toastify";
+import slugify from "slugify";
 
 export default function FormCourse({ course = null, course_categories }) {
     const { auth } = usePage().props;
@@ -99,7 +100,7 @@ export default function FormCourse({ course = null, course_categories }) {
     };
     return (
         <form onSubmit={onSubmitHandler} className="card-body">
-            <h2 className="card-title mb-6">Edit Kursus</h2>
+            <h2 className="card-title mb-6">Buat Kursus</h2>
             <div className="mb-6">
                 <div className="grid grid-cols-12 gap-6">
                     <label className="form-control mb-6 col-span-12 md:col-span-6">

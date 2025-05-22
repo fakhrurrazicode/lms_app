@@ -3,6 +3,7 @@ import FrontendLayout from "./FrontendLayout";
 import { FaCertificate, FaChevronDown, FaClock, FaStar } from "react-icons/fa";
 
 import { BiCheck, BiHome, BiMoviePlay, BiStar } from "react-icons/bi";
+import { MdQuiz } from "react-icons/md";
 import { Link, usePage } from "@inertiajs/react";
 import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion";
 
@@ -34,8 +35,8 @@ const AccordionItem = ({ header, ...rest }) => (
     />
 );
 
-export default function LearningAreaLayout({ children }) {
-    const { auth, course } = usePage().props;
+export default function LearningAreaLayout({ children, course }) {
+    const { auth } = usePage().props;
 
     return (
         <FrontendLayout>
@@ -49,9 +50,9 @@ export default function LearningAreaLayout({ children }) {
                                         preserveScroll={true}
                                         preserveState={true}
                                         href={route(
-                                            "learning_area.course.index",
+                                            "learning_area.course.show",
                                             {
-                                                course: course.id,
+                                                course: course,
                                             }
                                         )}
                                         className="text-gray-600 border-b border-base-300 dark:border-gray-700 py-[10px] dark:text-white leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
@@ -64,12 +65,7 @@ export default function LearningAreaLayout({ children }) {
                                     <Link
                                         preserveScroll={true}
                                         preserveState={true}
-                                        href={route(
-                                            "learning_area.course_review.index",
-                                            {
-                                                course: course.id,
-                                            }
-                                        )}
+                                        href="#"
                                         className="text-gray-600 border-b border-base-300 dark:border-gray-700 py-[10px] dark:text-white leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                     >
                                         <div className="flex items-center gap-4">
@@ -107,9 +103,11 @@ export default function LearningAreaLayout({ children }) {
                                                                         true
                                                                     }
                                                                     href={route(
-                                                                        "learning_area.course_lecture.show",
+                                                                        "learning_area.course.course_section.course_lecture.show",
                                                                         {
                                                                             course: course.id,
+                                                                            course_section:
+                                                                                course_section.id,
                                                                             course_lecture:
                                                                                 course_lecture.id,
                                                                         }
@@ -120,9 +118,11 @@ export default function LearningAreaLayout({ children }) {
                                                                             : "text-gray-600 dark:text-white"
                                                                     } ${
                                                                         route().current(
-                                                                            "learning_area.course_lecture.show",
+                                                                            "learning_area.course.course_section.course_lecture.show",
                                                                             {
                                                                                 course: course.id,
+                                                                                course_section:
+                                                                                    course_section.id,
                                                                                 course_lecture:
                                                                                     course_lecture.id,
                                                                             }
@@ -161,6 +161,70 @@ export default function LearningAreaLayout({ children }) {
                                                                 </Link>
                                                             </li>
                                                         )
+                                                    )}
+
+                                                    {course_section.evaluation ? (
+                                                        <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                                            <Link
+                                                                preserveScroll={
+                                                                    true
+                                                                }
+                                                                preserveState={
+                                                                    true
+                                                                }
+                                                                // href={route(
+                                                                //     "learning_area.course.course_section.course_lecture.show",
+                                                                //     {
+                                                                //         course: course_lecture.course_id,
+                                                                //         course_section:
+                                                                //             course_lecture.course_section_id,
+                                                                //         course_lecture:
+                                                                //             course_lecture.id,
+                                                                //     }
+                                                                // )}
+                                                                className={`
+                                                                    ${
+                                                                        course_section
+                                                                            .evaluation
+                                                                            .attempts
+                                                                            ? "text-success font-bold"
+                                                                            : "text-gray-600 dark:text-white"
+                                                                    } active:text-primary leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out`}
+                                                            >
+                                                                <div className="flex items-center gap-4">
+                                                                    {course_section
+                                                                        .evaluation
+                                                                        .attempts ? (
+                                                                        <BiCheck
+                                                                            size={
+                                                                                22
+                                                                            }
+                                                                        />
+                                                                    ) : (
+                                                                        <MdQuiz
+                                                                            size={
+                                                                                22
+                                                                            }
+                                                                        />
+                                                                    )}
+                                                                    <span>
+                                                                        {
+                                                                            course_section
+                                                                                .evaluation
+                                                                                .title
+                                                                        }
+                                                                    </span>
+                                                                </div>
+                                                                <div className="flex items-center gap-2">
+                                                                    <FaClock />{" "}
+                                                                    <span>
+                                                                        3.37
+                                                                    </span>
+                                                                </div>
+                                                            </Link>
+                                                        </li>
+                                                    ) : (
+                                                        <></>
                                                     )}
                                                 </ul>
                                             </AccordionItem>

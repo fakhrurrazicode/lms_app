@@ -29,7 +29,26 @@ export default function ModalForm({
             description: course_lecture ? course_lecture.description : "",
         });
 
+    // useEffect(() => {
+    //     setData({
+    //         course_id: course_lecture ? course_lecture.course_id : course.id,
+    //         course_section_id: course_lecture
+    //             ? course_lecture.course_section_id
+    //             : course_section
+    //             ? course_section.id
+    //             : "",
+    //         title: course_lecture ? course_lecture.title : "",
+    //         video: null,
+    //         description: course_lecture ? course_lecture.description : "",
+    //     });
+    // }, [course, course_lecture, course_section, isOpen]);
+
     useEffect(() => {
+        if (!isOpen) return;
+
+        // Cegah reset jika user sudah mulai input data
+        if (data.title || data.description || data.course_section_id) return;
+
         setData({
             course_id: course_lecture ? course_lecture.course_id : course.id,
             course_section_id: course_lecture
@@ -41,7 +60,7 @@ export default function ModalForm({
             video: null,
             description: course_lecture ? course_lecture.description : "",
         });
-    }, [course, course_lecture, course_section, isOpen]);
+    }, [isOpen]);
 
     useEffect(() => {
         if (isOpen == false) {

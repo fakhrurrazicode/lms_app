@@ -724,6 +724,21 @@ class ActivityLogTableSeeder extends Seeder
                 'created_at' => '2025-04-14 07:45:50',
                 'updated_at' => '2025-04-14 07:45:50',
             ),
+            47 => 
+            array (
+                'id' => 48,
+                'log_name' => 'default',
+                'description' => 'updated',
+                'subject_type' => 'App\\Models\\User',
+                'event' => 'updated',
+                'subject_id' => 11,
+                'causer_type' => 'App\\Models\\User',
+                'causer_id' => 11,
+                'properties' => '{"old": {"id": 11, "bio": null, "name": "Fakhrurrazi", "email": "fakhrurrazi.code@gmail.com", "photo": "avatars/qfkDFjj7QP.png", "password": "$2y$12$4tF.dUofG6aHhgJVSBc50O6CsYnl7U4Q995smlQsPOXPpNGt42TgG", "username": "fakhrurrazi.code", "google_id": null, "created_at": "2025-04-14 07:45:50", "updated_at": "2025-04-14 07:45:50", "remember_token": null, "email_verified_at": null, "verified_as_instructor": 0}, "attributes": {"id": 11, "bio": null, "name": "Fakhrurrazi", "email": "fakhrurrazi.code@gmail.com", "photo": "avatars/qfkDFjj7QP.png", "password": "$2y$12$4tF.dUofG6aHhgJVSBc50O6CsYnl7U4Q995smlQsPOXPpNGt42TgG", "username": "fakhrurrazi.code", "google_id": null, "created_at": "2025-04-14 07:45:50", "updated_at": "2025-05-20 20:42:23", "remember_token": null, "email_verified_at": "2025-05-20 20:42:23", "verified_as_instructor": 0}}',
+                'batch_uuid' => NULL,
+                'created_at' => '2025-05-20 20:42:23',
+                'updated_at' => '2025-05-20 20:42:23',
+            ),
         ));
         
         

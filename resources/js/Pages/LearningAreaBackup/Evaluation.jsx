@@ -3,6 +3,7 @@ import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
 import { FaCheck, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { MdQuiz } from "react-icons/md";
 import "@vidstack/react/player/styles/base.css";
 import "@vidstack/react/player/styles/plyr/theme.css";
 import { MediaPlayer, MediaProvider } from "@vidstack/react";
@@ -11,16 +12,15 @@ import {
     plyrLayoutIcons,
 } from "@vidstack/react/player/layouts/plyr";
 
-export default function Show({
-    course,
-    course_section,
-    course_lecture,
-    prev_course_lecture,
-    next_course_lecture,
-    evaluation,
-}) {
+export default function Learn({ course, course_section }) {
     return (
-        <LearningAreaLayout course={course}>
+        <LearningAreaLayout
+            header={
+                <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    Courses
+                </h2>
+            }
+        >
             <Head title="Dashboard" />
 
             <div className="card">
@@ -31,9 +31,11 @@ export default function Show({
                                 <li>
                                     <Link
                                         href={route(
-                                            "learning_area.course.show",
+                                            "learning_area.course.index",
                                             {
-                                                course: course,
+                                                course: course.id,
+                                                course_lecture:
+                                                    course_lecture.id,
                                             }
                                         )}
                                         className="gap-2 items-center"
@@ -99,16 +101,12 @@ export default function Show({
                         <div>
                             {prev_course_lecture ? (
                                 <Link
-                                    href={route(
-                                        "learning_area.course.course_section.course_lecture.show",
-                                        {
-                                            course: prev_course_lecture.course_id,
-                                            course_section:
-                                                prev_course_lecture.course_id,
-                                            course_lecture:
-                                                prev_course_lecture.id,
-                                        }
-                                    )}
+                                    href={route("learning_area.learn", {
+                                        course: prev_course_lecture.course_id,
+                                        course_section:
+                                            prev_course_lecture.course_section_id,
+                                        course_lecture: prev_course_lecture.id,
+                                    })}
                                     className="btn btn-accent"
                                 >
                                     <FaChevronLeft />
@@ -122,16 +120,15 @@ export default function Show({
                             {next_course_lecture ? (
                                 <Link
                                     href={route(
-                                        "learning_area.course.course_section.course_lecture.finish",
+                                        "learning_area.finish_lecture",
                                         {
                                             course: course.id,
-                                            course_section: course_section.id,
                                             course_lecture: course_lecture.id,
                                         }
                                     )}
                                     // preserveScroll={true}
                                     preserveState={true}
-                                    method="PUT"
+                                    method="POST"
                                     className="btn btn-accent"
                                 >
                                     Selanjutnya <FaChevronRight />
@@ -141,38 +138,36 @@ export default function Show({
                                     {evaluation ? (
                                         <Link
                                             href={route(
-                                                "learning_area.course.course_section.evaluation.show",
+                                                "learning_area.finish_lecture",
                                                 {
                                                     course: course.id,
-                                                    course_section:
-                                                        course_section.id,
-                                                    evaluation: evaluation.id,
-                                                }
-                                            )}
-                                            // preserveScroll={true}
-                                            preserveState={true}
-                                            className="btn btn-accent"
-                                        >
-                                            Kerjakan Evaluasi <FaChevronRight />
-                                        </Link>
-                                    ) : (
-                                        <Link
-                                            href={route(
-                                                "learning_area.course.course_section.course_lecture.finish",
-                                                {
-                                                    course: course.id,
-                                                    course_section:
-                                                        course_section.id,
                                                     course_lecture:
                                                         course_lecture.id,
                                                 }
                                             )}
                                             // preserveScroll={true}
                                             preserveState={true}
-                                            method="PUT"
+                                            method="POST"
                                             className="btn btn-accent"
                                         >
-                                            Selanjutnya <FaChevronRight />
+                                            Kerjakan Evaluasi <MdQuiz />
+                                        </Link>
+                                    ) : (
+                                        <Link
+                                            href={route(
+                                                "learning_area.course_lecture.finish_lecture",
+                                                {
+                                                    course: course.id,
+                                                    course_lecture:
+                                                        course_lecture.id,
+                                                }
+                                            )}
+                                            // preserveScroll={true}
+                                            preserveState={true}
+                                            method="POST"
+                                            className="btn btn-accent"
+                                        >
+                                            Selesai <FaCheck />
                                         </Link>
                                     )}
                                 </>

@@ -73,7 +73,9 @@ class PageController extends Controller
             'course_reviews'
         ])->firstOrFail();
 
-        $more_courses = Course::where('instructor_id', $course->instructor_id)->inRandomOrder()->limit(2)->get();
+        // return $course;
+
+        $more_courses = Course::with(['course_category'])->where('instructor_id', $course->instructor_id)->inRandomOrder()->limit(2)->get();
 
         // return $course;
         return Inertia::render('Course', compact('course', 'more_courses'));

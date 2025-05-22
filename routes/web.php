@@ -14,34 +14,37 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\NotificationController;
+
+use App\Http\Controllers\Backend\EventController;
+
 use App\Http\Controllers\Backend\CourseController;
-
+use App\Http\Controllers\Backend\VoucherController;
 use App\Http\Controllers\Backend\PermissionController;
-
 use App\Http\Controllers\UserArea\DashboardController;
 use App\Http\Controllers\Backend\ActivityLogController;
 use App\Http\Controllers\UserArea\EnrollmentController;
 use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
-use App\Http\Controllers\Backend\EventController;
 use App\Http\Controllers\Backend\InstructorInfoController;
-use App\Http\Controllers\Backend\VoucherController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\LearningArea\LearningAreaController;
 use App\Http\Controllers\UserArea\BecomeInstructorController;
 use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
 use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
 use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
+use App\Http\Controllers\UserArea\VoucherController as UserAreaVoucherController;
+use App\Http\Controllers\UserArea\QuestionController as UserAreaQuestionController;
 use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
 use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseController;
-use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
+use App\Http\Controllers\LearningArea\EvaluationController as LearningAreaEvaluationController;
 use App\Http\Controllers\UserArea\EvaluationController as UserAreaEvaluationController;
-use App\Http\Controllers\UserArea\QuestionController as UserAreaQuestionController;
+use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
 use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\UserArea\VoucherController as UserAreaVoucherController;
+use App\Http\Controllers\LearningArea\EvaluationController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -140,12 +143,11 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-    Route::group(['prefix' => '/learning_area/{course}', 'as' => 'learning_area.'], function () {
-        Route::get('/course', [LearningAreaCourseController::class, 'index'])->name('course.index');
-        Route::get('/course_lecture/{course_lecture}', [LearningAreaCourseLectureController::class, 'show'])->name('course_lecture.show');
-        Route::post('/course_lecture/{course_lecture}/finish_lecture', [LearningAreaCourseLectureController::class, 'finish_lecture'])->name('course_lecture.finish_lecture');
-
-        Route::resource('/course_review', LearningAreaCourseReviewController::class);
+    Route::group(['prefix' => '/learning_area', 'as' => 'learning_area.'], function () {
+        Route::resource('course', LearningAreaCourseController::class)->only(['show']);
+        Route::resource('course.course_section.course_lecture', LearningAreaCourseLectureController::class)->only(['show']);
+        Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish', [LearningAreaCourseLectureController::class, 'finish'])->name('course.course_section.course_lecture.finish');
+        Route::resource('course.course_section.evaluation', LearningAreaEvaluationController::class)->only(['index', 'show']);
     });
 
     // backend area
