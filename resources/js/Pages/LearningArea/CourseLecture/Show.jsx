@@ -141,12 +141,11 @@ export default function Show({
                                     {evaluation ? (
                                         <Link
                                             href={route(
-                                                "learning_area.course.course_section.evaluation.show",
+                                                "learning_area.course.course_section.evaluation.index",
                                                 {
                                                     course: course.id,
                                                     course_section:
                                                         course_section.id,
-                                                    evaluation: evaluation.id,
                                                 }
                                             )}
                                             // preserveScroll={true}

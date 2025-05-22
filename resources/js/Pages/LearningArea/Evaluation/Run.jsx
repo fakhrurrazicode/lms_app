@@ -11,14 +11,14 @@ import {
     plyrLayoutIcons,
 } from "@vidstack/react/player/layouts/plyr";
 
-export default function Show({
+export default function Run({
     course,
     course_section,
-    course_lecture,
-    prev_course_lecture,
-    next_course_lecture,
     evaluation,
+    evaluation_attempt,
+    questions,
 }) {
+    console.log("questions", questions);
     return (
         <LearningAreaLayout course={course}>
             <Head title="Dashboard" />
@@ -76,32 +76,36 @@ export default function Show({
                         {evaluation.title}
                     </h1>
 
-                    <div className="mb-12">{evaluation.instructions}</div>
+                    <div className="mb-6">{evaluation.instructions}</div>
+
+                    <div className="mb-12">
+                        {questions.map((question) => (
+                            <div className="card bg-base-200 mb-6">
+                                <div className="card-body">
+                                    <div className="mb-6">
+                                        {question.question}
+                                    </div>
+
+                                    <div className="grid grid-cols-2">
+                                        {question.choices.map((choice) => (
+                                            <label className="mb-4">
+                                                <input
+                                                    type="radio"
+                                                    name="radio-1"
+                                                    className="radio"
+                                                />
+                                                <span className="ml-6">
+                                                    {choice.text}
+                                                </span>
+                                            </label>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
 
                     <div className="flex justify-between">
-                        <div>
-                            {prev_course_lecture ? (
-                                <Link
-                                    href={route(
-                                        "learning_area.course.course_section.course_lecture.show",
-                                        {
-                                            course: prev_course_lecture.course_id,
-                                            course_section:
-                                                prev_course_lecture.course_id,
-                                            course_lecture:
-                                                prev_course_lecture.id,
-                                        }
-                                    )}
-                                    className="btn btn-accent"
-                                >
-                                    <FaChevronLeft />
-                                    Sebelumnya
-                                </Link>
-                            ) : (
-                                <></>
-                            )}
-                        </div>
-
                         <div>
                             <Link
                                 href={route(
@@ -117,30 +121,6 @@ export default function Show({
                             >
                                 <FaPlay /> Mulai Evaluasi
                             </Link>
-                        </div>
-                        <div>
-                            {next_course_lecture ? (
-                                <Link
-                                    href={route(
-                                        "learning_area.course.course_section.course_lecture.finish",
-                                        {
-                                            course: next_course_lecture.course_id,
-                                            course_section:
-                                                next_course_lecture.course_id,
-                                            course_lecture:
-                                                next_course_lecture.id,
-                                        }
-                                    )}
-                                    // preserveScroll={true}
-                                    preserveState={true}
-                                    method="PUT"
-                                    className="btn btn-accent"
-                                >
-                                    Selanjutnya <FaChevronRight />
-                                </Link>
-                            ) : (
-                                <></>
-                            )}
                         </div>
                     </div>
                 </div>

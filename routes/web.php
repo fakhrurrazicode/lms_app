@@ -147,7 +147,16 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('course', LearningAreaCourseController::class)->only(['show']);
         Route::resource('course.course_section.course_lecture', LearningAreaCourseLectureController::class)->only(['show']);
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish', [LearningAreaCourseLectureController::class, 'finish'])->name('course.course_section.course_lecture.finish');
+
         Route::resource('course.course_section.evaluation', LearningAreaEvaluationController::class)->only(['index', 'show']);
+        Route::post(
+            'course/{course}/course_section/{course_section}/evaluation/{evaluation}/start',
+            [LearningAreaEvaluationController::class, 'start']
+        )->name('course.course_section.evaluation.start');
+        Route::get(
+            'course/{course}/course_section/{course_section}/evaluation/{evaluation}/evaluation_attempt/{evaluation_attempt}/run',
+            [LearningAreaEvaluationController::class, 'run']
+        )->name('course.course_section.evaluation.run');
     });
 
     // backend area
