@@ -2,7 +2,13 @@ import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
-import { FaCheck, FaChevronLeft, FaChevronRight, FaPlay } from "react-icons/fa";
+import {
+    FaCheck,
+    FaChevronLeft,
+    FaChevronRight,
+    FaPlay,
+    FaSave,
+} from "react-icons/fa";
 import "@vidstack/react/player/styles/base.css";
 import "@vidstack/react/player/styles/plyr/theme.css";
 import { MediaPlayer, MediaProvider } from "@vidstack/react";
@@ -105,7 +111,7 @@ export default function Run({
                         ))}
                     </div>
 
-                    <div className="flex justify-between">
+                    <div className="flex justify-center">
                         <div>
                             <Link
                                 href={route(
@@ -119,7 +125,7 @@ export default function Run({
                                 method="POST"
                                 className="btn btn-primary"
                             >
-                                <FaPlay /> Mulai Evaluasi
+                                <FaSave /> Submit Hasil Evaluasi
                             </Link>
                         </div>
                     </div>
