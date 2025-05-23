@@ -1,7 +1,7 @@
 import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 
 import { Head, Link, useForm } from "@inertiajs/react";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
     FaCheck,
     FaChevronLeft,
@@ -24,10 +24,37 @@ export default function Run({
     evaluation_attempt,
     questions,
 }) {
+    const formRef = useRef(null);
+    const [secondsLeft, setSecondsLeft] = useState(evaluation.duration);
     // const [answers, setAnswers] = useState({});
     const { data, setData, post, processing, errors } = useForm({
         answers: {},
     });
+
+    useEffect(() => {
+        if (secondsLeft <= 0) {
+            // Auto-submit saat waktu habis
+            formRef.current?.dispatchEvent(
+                new Event("submit", { cancelable: true, bubbles: true })
+            );
+            return;
+        }
+
+        const interval = setInterval(() => {
+            setSecondsLeft((prev) => prev - 1);
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [secondsLeft]);
+
+    const formatTime = (totalSeconds) => {
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+            2,
+            "0"
+        )}`;
+    };
 
     const handleAnswerChange = (questionId, choiceId) => {
         setData("answers", {
@@ -119,7 +146,10 @@ export default function Run({
 
                     <div className="mb-6">{evaluation.instructions}</div>
 
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} ref={formRef}>
+                        <div className="text-right text-lg font-bold text-red-500 mb-4">
+                            Sisa waktu: {formatTime(secondsLeft)}
+                        </div>
                         <div className="mb-12">
                             {questions.map((question) => (
                                 <div className="card bg-base-200 mb-6">

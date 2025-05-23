@@ -14,6 +14,11 @@ class CourseLecture extends BaseModel
         'video_duration_human_readable',
     ];
 
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
+    }
+
     public function course_section()
     {
         return $this->belongsTo(CourseSection::class);

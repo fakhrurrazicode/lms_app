@@ -79,10 +79,15 @@ export default function Show({
 
                     <div className="mb-12">{evaluation.instructions}</div>
 
-                    <div className="mb-12">
-                        {evaluation_attempt
-                            ? "has evaluation attempt"
-                            : "has no evaluation attempt"}
+                    <div className="mb-12 text-center">
+                        {evaluation_attempt ? (
+                            <span className="text-success">
+                                Kamu telah berhasil menjawab benar 10 dari 10
+                                pertanyaan
+                            </span>
+                        ) : (
+                            "has no evaluation attempt"
+                        )}
                     </div>
 
                     <div className="flex justify-between">
@@ -133,7 +138,7 @@ export default function Show({
                                         {
                                             course: next_course_lecture.course_id,
                                             course_section:
-                                                next_course_lecture.course_id,
+                                                next_course_lecture.course_section_id,
                                             course_lecture:
                                                 next_course_lecture.id,
                                         }

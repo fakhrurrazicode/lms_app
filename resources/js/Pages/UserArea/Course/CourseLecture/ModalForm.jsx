@@ -5,6 +5,7 @@ import { Save } from "lucide-react";
 import ReactModal from "react-modal";
 import { toast } from "react-toastify";
 import classNames from "classnames";
+import ReactQuill from "react-quill";
 
 export default function ModalForm({
     isOpen = false,
@@ -243,13 +244,18 @@ export default function ModalForm({
                                     Deskripsi Lecture
                                 </span>
                             </div>
-                            <textarea
-                                className="textarea textarea-bordered h-64"
-                                placeholder="Deskripsi Lecture"
-                                name="description"
-                                onChange={inputChangeHandler}
+                            <ReactQuill
+                                theme="snow"
                                 value={data.description}
-                            ></textarea>
+                                onChange={(value) =>
+                                    setData("description", value)
+                                }
+                                className="bg-white rounded-box border border-base-300"
+                                style={{
+                                    height: "16rem",
+                                    marginBottom: "1rem",
+                                }}
+                            />
                             {errors.description && (
                                 <div className="label">
                                     <span className="label-text-alt text-error">

@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useRef } from "react";
 import { toast } from "react-toastify";
 import slugify from "slugify";
+import ReactQuill from "react-quill";
 
 export default function FormCourse({ course = null, course_categories }) {
     const { auth } = usePage().props;
@@ -210,19 +211,30 @@ export default function FormCourse({ course = null, course_categories }) {
                     </label>
                 </div>
 
-                <div className="grid grid-cols-12 gap-6">
+                <div className="grid grid-cols-12 gap-6 mb-8">
                     <label className="form-control mb-6 col-span-12 md:col-span-10">
                         <div className="label">
                             <span className="label-text">Keterangan</span>
                         </div>
 
-                        <textarea
+                        {/* <textarea
                             className="textarea textarea-bordered h-24"
                             placeholder="Keterangan"
                             name="description"
                             value={data.description}
                             onChange={inputChangeHandler}
-                        ></textarea>
+                        ></textarea> */}
+
+                        <ReactQuill
+                            theme="snow"
+                            value={data.description}
+                            onChange={(value) => setData("description", value)}
+                            className="bg-base-100 rounded-box border border-base-300"
+                            style={{
+                                height: "16rem",
+                                marginBottom: "1rem",
+                            }}
+                        />
                         {errors.description && (
                             <div className="label">
                                 <span className="label-text-alt text-error">
