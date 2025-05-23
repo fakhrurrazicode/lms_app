@@ -18,6 +18,7 @@ export default function Show({
     prev_course_lecture,
     next_course_lecture,
     evaluation,
+    evaluation_attempt,
 }) {
     return (
         <LearningAreaLayout course={course}>
@@ -77,6 +78,12 @@ export default function Show({
                     </h1>
 
                     <div className="mb-12">{evaluation.instructions}</div>
+
+                    <div className="mb-12">
+                        {evaluation_attempt
+                            ? "has evaluation attempt"
+                            : "has no evaluation attempt"}
+                    </div>
 
                     <div className="flex justify-between">
                         <div>

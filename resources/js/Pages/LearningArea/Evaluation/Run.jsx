@@ -1,6 +1,6 @@
 import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, useForm } from "@inertiajs/react";
 import React, { useState } from "react";
 import {
     FaCheck,
@@ -24,23 +24,39 @@ export default function Run({
     evaluation_attempt,
     questions,
 }) {
-    const [answers, setAnswers] = useState({});
+    // const [answers, setAnswers] = useState({});
+    const { data, setData, post, processing, errors } = useForm({
+        answers: {},
+    });
 
     const handleAnswerChange = (questionId, choiceId) => {
-        setAnswers((prev) => ({
-            ...prev,
+        setData("answers", {
+            ...data.answers,
             [questionId]: choiceId,
-        }));
+        });
     };
 
-    const handleSubmit = () => {
-        Inertia.post(
+    // const handleSubmit = () => {
+    //     Inertia.post(
+    //         route("learning_area.course.course_section.evaluation.submit", {
+    //             course: course,
+    //             course_section: course_section,
+    //             evaluation: evaluation,
+    //             evaluation_attempt: evaluation_attempt,
+    //         }),
+    //         { answers: answers }
+    //     );
+    // };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        post(
             route("learning_area.course.course_section.evaluation.submit", {
                 course: course,
                 course_section: course_section,
                 evaluation: evaluation,
-            }),
-            { answers: answers }
+                evaluation_attempt: evaluation_attempt,
+            })
         );
     };
 
@@ -103,18 +119,19 @@ export default function Run({
 
                     <div className="mb-6">{evaluation.instructions}</div>
 
-                    <div className="mb-12">
-                        {questions.map((question) => (
-                            <div className="card bg-base-200 mb-6">
-                                <div className="card-body">
-                                    <div className="mb-6">
-                                        {question.question}
-                                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-12">
+                            {questions.map((question) => (
+                                <div className="card bg-base-200 mb-6">
+                                    <div className="card-body">
+                                        <div className="mb-6">
+                                            {question.question}
+                                        </div>
 
-                                    <div className="grid grid-cols-2">
-                                        {question.choices.map((choice) => (
-                                            <label className="mb-4">
-                                                <input
+                                        <div className="grid grid-cols-2">
+                                            {question.choices.map((choice) => (
+                                                <label className="mb-4">
+                                                    {/* <input
                                                     type="radio"
                                                     name={`question-${question.id}`} // agar unik per pertanyaan
                                                     value={choice.id}
@@ -127,28 +144,48 @@ export default function Run({
                                                             )
                                                         )
                                                     }
-                                                />
-                                                <span className="ml-6">
-                                                    {choice.text}
-                                                </span>
-                                            </label>
-                                        ))}
+                                                /> */}
+                                                    <input
+                                                        type="radio"
+                                                        name={`question-${question.id}`}
+                                                        value={choice.id}
+                                                        className="radio"
+                                                        checked={
+                                                            data.answers[
+                                                                question.id
+                                                            ] === choice.id
+                                                        }
+                                                        onChange={() =>
+                                                            handleAnswerChange(
+                                                                question.id,
+                                                                choice.id
+                                                            )
+                                                        }
+                                                    />
+                                                    <span className="ml-6">
+                                                        {choice.text}
+                                                    </span>
+                                                </label>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="flex justify-center">
-                        <div>
-                            <button
-                                onClick={handleSubmit}
-                                className="btn btn-primary"
-                            >
-                                <FaSave /> Submit Hasil Evaluasi
-                            </button>
+                            ))}
                         </div>
-                    </div>
+
+                        <div className="flex justify-center">
+                            <div>
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                    disabled={processing}
+                                >
+                                    <FaSave className="mr-2" /> Submit Hasil
+                                    Evaluasi
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </LearningAreaLayout>

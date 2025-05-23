@@ -12,6 +12,7 @@ use App\Models\CourseLecture;
 use App\Models\CourseSection;
 use App\Models\EvaluationAttempt;
 use App\Http\Controllers\Controller;
+use App\Models\Choice;
 use Illuminate\Support\Facades\Auth;
 
 class EvaluationController extends Controller
@@ -21,7 +22,15 @@ class EvaluationController extends Controller
      */
     public function index(Course $course, CourseSection $course_section)
     {
+        $user = Auth::user();
+
         $evaluation = $course_section->evaluation;
+        $evaluation_attempt = EvaluationAttempt::where([
+            ['user_id', '=', $user->id],
+            ['evaluation_id', '=', $evaluation->id],
+        ])->first();
+
+        // return [$evaluation, $evaluation_attempt];
 
         $course = Course::with(['course_sections' => function ($query) {
             $query->with(['course_lectures', 'evaluation']);
@@ -51,6 +60,7 @@ class EvaluationController extends Controller
             'prev_course_lecture',
             'next_course_lecture',
             'evaluation',
+            'evaluation_attempt'
         ));
     }
 
@@ -74,6 +84,10 @@ class EvaluationController extends Controller
     {
         $user = Auth::user();
 
+        EvaluationAttempt::where([
+            ['user_id', '=', $user->id],
+            ['evaluation_id', '=', $evaluation->id],
+        ])->delete();
 
         $evaluation_attempt = EvaluationAttempt::create([
             'user_id' => $user->id,
@@ -117,13 +131,22 @@ class EvaluationController extends Controller
     {
         $answers = $request->input('answers'); // associative array: question_id => choice_id
 
+        // Answer::where('evaluation_id', $evaluation->id)->delete();
+
         foreach ($answers as $question_id => $choice_id) {
+            $choice = Choice::find($choice_id);
             Answer::create([
                 'evaluation_attempt_id' => $evaluation_attempt->id,
                 'question_id' => $question_id,
                 'choice_id' => $choice_id,
+                'is_correct' => $choice->is_correct
             ]);
         }
+
+        return to_route('learning_area.course.course_section.evaluation.index', [
+            'course' => $course,
+            'course_section' => $course_section,
+        ]);
     }
 
     /**

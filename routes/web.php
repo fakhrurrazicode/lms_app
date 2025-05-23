@@ -157,6 +157,11 @@ Route::middleware(['auth'])->group(function () {
             'course/{course}/course_section/{course_section}/evaluation/{evaluation}/evaluation_attempt/{evaluation_attempt}/run',
             [LearningAreaEvaluationController::class, 'run']
         )->name('course.course_section.evaluation.run');
+
+        Route::post(
+            'course/{course}/course_section/{course_section}/evaluation/{evaluation}/evaluation_attempt/{evaluation_attempt}/submit',
+            [LearningAreaEvaluationController::class, 'submit']
+        )->name('course.course_section.evaluation.submit');
     });
 
     // backend area
