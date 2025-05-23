@@ -319,6 +319,7 @@ export default function Index({ course, course_sections }) {
                                                                                 />
                                                                                 <span>
                                                                                     Ubah
+                                                                                    Lecture
                                                                                 </span>
                                                                             </button>
                                                                             <button

@@ -1,4 +1,5 @@
 import { Link, useForm } from "@inertiajs/react";
+
 import React, { useEffect, useRef } from "react";
 
 import { Save } from "lucide-react";
@@ -11,7 +12,7 @@ export default function ModalForm({
     isOpen = false,
     setIsOpen,
     course,
-    course_section = null,
+    course_section,
     course_lecture = null,
 }) {
     const formRef = useRef(null);
@@ -28,40 +29,21 @@ export default function ModalForm({
             title: course_lecture ? course_lecture.title : "",
             video: null,
             description: course_lecture ? course_lecture.description : "",
+            attachments: [],
         });
-
-    // useEffect(() => {
-    //     setData({
-    //         course_id: course_lecture ? course_lecture.course_id : course.id,
-    //         course_section_id: course_lecture
-    //             ? course_lecture.course_section_id
-    //             : course_section
-    //             ? course_section.id
-    //             : "",
-    //         title: course_lecture ? course_lecture.title : "",
-    //         video: null,
-    //         description: course_lecture ? course_lecture.description : "",
-    //     });
-    // }, [course, course_lecture, course_section, isOpen]);
 
     useEffect(() => {
-        if (!isOpen) return;
-
-        // Cegah reset jika user sudah mulai input data
-        if (data.title || data.description || data.course_section_id) return;
-
-        setData({
-            course_id: course_lecture ? course_lecture.course_id : course.id,
-            course_section_id: course_lecture
-                ? course_lecture.course_section_id
-                : course_section
-                ? course_section.id
-                : "",
-            title: course_lecture ? course_lecture.title : "",
-            video: null,
-            description: course_lecture ? course_lecture.description : "",
-        });
-    }, [isOpen]);
+        if (course_lecture) {
+            setData({
+                course_id: course_lecture.course_id,
+                course_section_id: course_lecture.course_section_id,
+                title: course_lecture.title,
+                video: null,
+                description: course_lecture.description || "",
+                attachments: [],
+            });
+        }
+    }, [course_lecture]);
 
     useEffect(() => {
         if (isOpen == false) {
@@ -75,44 +57,31 @@ export default function ModalForm({
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        if (course_lecture) {
-            post(
-                route("user_area.course_lecture.update", {
-                    course_lecture,
-                }),
-                {
-                    preserveScroll: true,
-                    preserveState: true,
-                    onSuccess: () => {
-                        toast.success("Course Lecture berhasil di ubah");
-                        reset();
-                        setIsOpen(false);
-                    },
-                    onError: () => {
-                        toast.success("Course Lecture gagal di ubah");
-                    },
-                }
-            );
-        } else {
-            console.log("data", data);
-            post(
-                route("user_area.course.course_lecture.store", {
-                    course: course,
-                }),
-                {
-                    preserveScroll: true,
-                    preserveState: true,
-                    onSuccess: () => {
-                        toast.success("Course Lecture berhasil di simpan");
-                        reset();
-                        setIsOpen(false);
-                    },
-                    onError: () => {
-                        toast.success("Course Lecture gagal di simpan");
-                    },
-                }
-            );
-        }
+        const url = course_lecture
+            ? route("user_area.course_lecture.update", { course_lecture })
+            : route("user_area.course.course_lecture.store", { course });
+
+        post(url, {
+            forceFormData: true,
+            preserveScroll: true,
+            preserveState: true,
+            onSuccess: () => {
+                toast.success(
+                    `Course Lecture berhasil di ${
+                        course_lecture ? "ubah" : "simpan"
+                    }`
+                );
+                reset();
+                setIsOpen(false);
+            },
+            onError: () => {
+                toast.error(
+                    `Course Lecture gagal di ${
+                        course_lecture ? "ubah" : "simpan"
+                    }`
+                );
+            },
+        });
     };
 
     const inputChangeHandler = (e) => {
@@ -250,9 +219,9 @@ export default function ModalForm({
                                 onChange={(value) =>
                                     setData("description", value)
                                 }
-                                className="bg-white rounded-box border border-base-300"
+                                className="input input-bordered"
                                 style={{
-                                    height: "16rem",
+                                    minHeight: "16rem",
                                     marginBottom: "1rem",
                                 }}
                             />
@@ -260,6 +229,33 @@ export default function ModalForm({
                                 <div className="label">
                                     <span className="label-text-alt text-error">
                                         {errors.description}
+                                    </span>
+                                </div>
+                            )}
+                        </label>
+
+                        <label className="form-control w-full mb-6">
+                            <div className="label">
+                                <span className="label-text">
+                                    Attachments (optional)
+                                </span>
+                            </div>
+                            <input
+                                type="file"
+                                className="file-input file-input-bordered w-full"
+                                name="attachments"
+                                multiple
+                                onChange={(e) => {
+                                    setData(
+                                        "attachments",
+                                        Array.from(e.target.files)
+                                    );
+                                }}
+                            />
+                            {errors.attachments && (
+                                <div className="label">
+                                    <span className="label-text-alt text-error">
+                                        {errors.attachments}
                                     </span>
                                 </div>
                             )}

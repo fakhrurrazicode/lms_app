@@ -30,3 +30,18 @@
     display: none !important;
     pointer-events: none !important;
 } */
+
+.ql-toolbar.ql-snow {
+    border: transparent !important;
+    box-sizing: border-box;
+    font-family: inherit !important;
+    padding: 8px 0px !important;
+}
+
+.ql-container.ql-snow{
+    border: transparent !important;
+}
+
+.ql-editor{
+    padding: 12px 0px !important;
+}

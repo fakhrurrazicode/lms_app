@@ -50,39 +50,35 @@ class CourseLectureController extends Controller
      */
     public function store(CourseLectureStoreRequest $request, Course $course, CourseSection $course_section)
     {
-
-
         $data = $request->validated();
-        unset($data['video']);
+        unset($data['video'], $data['attachments']); // Remove file from mass-assignment
+
+        // Upload video
         if ($request->hasFile('video')) {
             $data['video'] = $request->file('video')->store('videos', 'public');
-            $full_path = storage_path('app/public/' . $data['video']);
-
-            // $ffmpeg = FFMpeg::create([
-            //     'ffmpeg.binaries'  => 'C:\\ffmpeg\\bin\\ffmpeg.exe',
-            //     'ffprobe.binaries' => 'C:\\ffmpeg\\bin\\ffprobe.exe',
-            //     'timeout' => 3600, // optional
-            // ]);
-            // $video = $ffmpeg->open($full_path);
-
-            // $ffprobe = FFProbe::create([
-            //     'ffprobe.binaries' => 'C:\\ffmpeg\\bin\\ffprobe.exe',
-            // ]);
-            // $duration = $ffprobe->format($full_path)->get('duration'); // in seconds
-
-            // $data['video_duration'] = $duration;
-            $data['video_duration'] = 0;
+            $data['video_duration'] = 0; // TODO: calculate duration if needed
         }
 
-        if ($course->course_lectures->count() == 0) {
+        if ($course->course_lectures->count() === 0) {
             $data['set_as_featured'] = 1;
         }
-        CourseLecture::create($data);
-        // return to_route('user_area.course_section.index', [
-        //     'course' => $course,
-        //     'course_section' => $course_section,
-        // ]);
+
+        $course_lecture = CourseLecture::create($data);
+
+        // Upload and attach files (attachments)
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $file) {
+                $path = $file->store('attachments', 'public');
+
+                $course_lecture->attachments()->create([
+                    'file' => $path,
+                ]);
+            }
+        }
+
+        // return response or redirect if needed
     }
+
 
     /**
      * Display the specified resource.

@@ -217,19 +217,11 @@ export default function FormCourse({ course = null, course_categories }) {
                             <span className="label-text">Keterangan</span>
                         </div>
 
-                        {/* <textarea
-                            className="textarea textarea-bordered h-24"
-                            placeholder="Keterangan"
-                            name="description"
-                            value={data.description}
-                            onChange={inputChangeHandler}
-                        ></textarea> */}
-
                         <ReactQuill
                             theme="snow"
                             value={data.description}
                             onChange={(value) => setData("description", value)}
-                            className="bg-base-100 rounded-box border border-base-300"
+                            className="input input-bordered"
                             style={{
                                 height: "16rem",
                                 marginBottom: "1rem",
@@ -245,18 +237,24 @@ export default function FormCourse({ course = null, course_categories }) {
                     </label>
                 </div>
 
-                <div className="grid grid-cols-12 gap-6">
+                <div className="grid grid-cols-12 gap-6 mb-8">
                     <label className="form-control mb-6 col-span-12 md:col-span-10">
                         <div className="label">
                             <span className="label-text">Prasyarat</span>
                         </div>
-                        <textarea
-                            className="textarea textarea-bordered h-24"
-                            placeholder="Prasyarat"
-                            name="prerequisites"
+
+                        <ReactQuill
+                            theme="snow"
                             value={data.prerequisites}
-                            onChange={inputChangeHandler}
-                        ></textarea>
+                            onChange={(value) =>
+                                setData("prerequisites", value)
+                            }
+                            className="input input-bordered"
+                            style={{
+                                height: "16rem",
+                                marginBottom: "1rem",
+                            }}
+                        />
                         {errors.prerequisites && (
                             <div className="label">
                                 <span className="label-text-alt text-error">
@@ -267,18 +265,22 @@ export default function FormCourse({ course = null, course_categories }) {
                     </label>
                 </div>
 
-                <div className="grid grid-cols-12 gap-6">
+                <div className="grid grid-cols-12 gap-6 mb-8">
                     <label className="form-control mb-6 col-span-12 md:col-span-10">
                         <div className="label">
-                            <span className="label-text">Sasaranan</span>
+                            <span className="label-text">Sasaran</span>
                         </div>
-                        <textarea
-                            className="textarea textarea-bordered h-24"
-                            placeholder="Sasaranan"
-                            name="goals"
+
+                        <ReactQuill
+                            theme="snow"
                             value={data.goals}
-                            onChange={inputChangeHandler}
-                        ></textarea>
+                            onChange={(value) => setData("goals", value)}
+                            className="input input-bordered"
+                            style={{
+                                height: "16rem",
+                                marginBottom: "1rem",
+                            }}
+                        />
                         {errors.goals && (
                             <div className="label">
                                 <span className="label-text-alt text-error">
