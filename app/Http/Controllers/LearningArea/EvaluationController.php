@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\LearningArea;
 
+use Inertia\Inertia;
+use App\Models\Answer;
 use App\Models\Course;
+use App\Models\Question;
 use App\Models\Evaluation;
 use Illuminate\Http\Request;
 use App\Models\CourseLecture;
 use App\Models\CourseSection;
-use App\Http\Controllers\Controller;
 use App\Models\EvaluationAttempt;
-use App\Models\Question;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
 
 class EvaluationController extends Controller
 {
@@ -110,6 +111,19 @@ class EvaluationController extends Controller
             'evaluation_attempt',
             'questions'
         ));
+    }
+
+    public function submit(Request $request, Course $course, CourseSection $course_section, Evaluation $evaluation, EvaluationAttempt $evaluation_attempt)
+    {
+        $answers = $request->input('answers'); // associative array: question_id => choice_id
+
+        foreach ($answers as $question_id => $choice_id) {
+            Answer::create([
+                'evaluation_attempt_id' => $evaluation_attempt->id,
+                'question_id' => $question_id,
+                'choice_id' => $choice_id,
+            ]);
+        }
     }
 
     /**

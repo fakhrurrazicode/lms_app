@@ -1,7 +1,7 @@
 import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 
 import { Head, Link } from "@inertiajs/react";
-import React from "react";
+import React, { useState } from "react";
 import {
     FaCheck,
     FaChevronLeft,
@@ -24,7 +24,26 @@ export default function Run({
     evaluation_attempt,
     questions,
 }) {
-    console.log("questions", questions);
+    const [answers, setAnswers] = useState({});
+
+    const handleAnswerChange = (questionId, choiceId) => {
+        setAnswers((prev) => ({
+            ...prev,
+            [questionId]: choiceId,
+        }));
+    };
+
+    const handleSubmit = () => {
+        Inertia.post(
+            route("learning_area.course.course_section.evaluation.submit", {
+                course: course,
+                course_section: course_section,
+                evaluation: evaluation,
+            }),
+            { answers: answers }
+        );
+    };
+
     return (
         <LearningAreaLayout course={course}>
             <Head title="Dashboard" />
@@ -97,8 +116,17 @@ export default function Run({
                                             <label className="mb-4">
                                                 <input
                                                     type="radio"
-                                                    name="radio-1"
+                                                    name={`question-${question.id}`} // agar unik per pertanyaan
+                                                    value={choice.id}
                                                     className="radio"
+                                                    onChange={(e) =>
+                                                        handleAnswerChange(
+                                                            question.id,
+                                                            parseInt(
+                                                                e.target.value
+                                                            )
+                                                        )
+                                                    }
                                                 />
                                                 <span className="ml-6">
                                                     {choice.text}
@@ -113,20 +141,12 @@ export default function Run({
 
                     <div className="flex justify-center">
                         <div>
-                            <Link
-                                href={route(
-                                    "learning_area.course.course_section.evaluation.start",
-                                    {
-                                        course: course,
-                                        course_section: course_section,
-                                        evaluation: evaluation,
-                                    }
-                                )}
-                                method="POST"
+                            <button
+                                onClick={handleSubmit}
                                 className="btn btn-primary"
                             >
                                 <FaSave /> Submit Hasil Evaluasi
-                            </Link>
+                            </button>
                         </div>
                     </div>
                 </div>
