@@ -97,6 +97,27 @@ export default function CourseManageTab({ course }) {
                 >
                     Evaluations
                 </Link>
+
+                <Link
+                    preserveScroll={true}
+                    preserveState={true}
+                    href={route("user_area.course.evaluation.index", {
+                        course: course,
+                    })}
+                    className={classNames(
+                        "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
+                        {
+                            "!bg-base-100": route().current(
+                                "user_area.course.evaluation.index",
+                                {
+                                    course: course,
+                                }
+                            ),
+                        }
+                    )}
+                >
+                    Enrollments
+                </Link>
             </div>
         </div>
     );
