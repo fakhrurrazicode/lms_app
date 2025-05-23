@@ -12,7 +12,7 @@ export default function ModalForm({
     isOpen = false,
     setIsOpen,
     course,
-    course_section,
+    course_section = null,
     course_lecture = null,
 }) {
     const formRef = useRef(null);
@@ -43,7 +43,7 @@ export default function ModalForm({
                 attachments: [],
             });
         }
-    }, [course_lecture]);
+    }, [course_section, course_lecture]);
 
     useEffect(() => {
         if (isOpen == false) {

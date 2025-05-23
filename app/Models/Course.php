@@ -84,6 +84,8 @@ class Course extends BaseModel implements Cartable
         return $this->belongsTo(User::class, 'instructor_id', 'id');
     }
 
+
+
     public function course_category()
     {
         return $this->belongsTo(CourseCategory::class);

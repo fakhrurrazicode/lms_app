@@ -140,7 +140,7 @@ export default function Index({ course, course_sections }) {
                                                                 <td></td>
 
                                                                 <td className="flex gap-1">
-                                                                    <button
+                                                                    {/* <button
                                                                         className="btn btn-info btn-xs"
                                                                         onClick={() => {
                                                                             setSelectedCourseSection(
@@ -161,7 +161,7 @@ export default function Index({ course, course_sections }) {
                                                                             }
                                                                             className="-rotate-90"
                                                                         />
-                                                                    </button>
+                                                                    </button> */}
                                                                 </td>
                                                             </tr>
 
@@ -319,7 +319,6 @@ export default function Index({ course, course_sections }) {
                                                                                 />
                                                                                 <span>
                                                                                     Ubah
-                                                                                    Lecture
                                                                                 </span>
                                                                             </button>
                                                                             <button
