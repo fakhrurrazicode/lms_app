@@ -68,47 +68,54 @@ export default function Show({ course }) {
         <LearningAreaLayout course={course}>
             <Head title="Dashboard" />
             <>
-                <div className="mb-6">
-                    <div role="alert" className="alert alert-success">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-14 w-14 shrink-0 stroke-current"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                            />
-                        </svg>
-                        <span>
-                            <span className="block mb-2">
-                                Selamat! Anda telah menyelesaikan kursus{" "}
-                                <b>{course.title}</b>. selanjutnya anda dapat
-                                mencetak sertifikat sebagai bukti anda telah
-                                menyelesaikan proses belajar.
+                {false ? (
+                    <div className="mb-6">
+                        <div role="alert" className="alert alert-success">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-14 w-14 shrink-0 stroke-current"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
+                            </svg>
+                            <span>
+                                <span className="block mb-2">
+                                    Selamat! Anda telah menyelesaikan kursus{" "}
+                                    <b>{course.title}</b>. selanjutnya anda
+                                    dapat mencetak sertifikat sebagai bukti anda
+                                    telah menyelesaikan proses belajar.
+                                </span>
+                                <span className="block mb-2">
+                                    Kami harap anda juga dapat meninggalkan{" "}
+                                    <b>Review</b>, Review dan Komentar anda
+                                    sangatlah berarti bagi kami untuk kemajuan
+                                    di masa depan
+                                </span>
                             </span>
-                            <span className="block mb-2">
-                                Kami harap anda juga dapat meninggalkan{" "}
-                                <b>Review</b>, Review dan Komentar anda
-                                sangatlah berarti bagi kami untuk kemajuan di
-                                masa depan
-                            </span>
-                        </span>
+                        </div>
                     </div>
-                </div>
-
-                <div className="mb-6 grid grid-cols-2 gap-4">
-                    <Link href="#" className="btn btn-warning">
+                ) : (
+                    <></>
+                )}
+                <div className="mb-6 flex justify-stretch">
+                    {/* <Link href="#" className="btn btn-warning">
                         <FaStar />
                         <span>Review</span>
-                    </Link>
-                    <button className="btn btn-secondary">
-                        <FaCertificate />
-                        <span>Cetak Sertifikat</span>
-                    </button>
+                    </Link> */}
+                    {false ? (
+                        <button className="btn btn-secondary">
+                            <FaCertificate />
+                            <span>Cetak Sertifikat</span>
+                        </button>
+                    ) : (
+                        <></>
+                    )}
                 </div>
                 <div className="card bg-base-100 py-8">
                     <div className="card-body py-0">

@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
-class CourseSection extends BaseModel implements Sortable
+class CourseSection extends BaseModel
 {
 
-    use SortableTrait;
+
 
     protected $guarded = [];
 

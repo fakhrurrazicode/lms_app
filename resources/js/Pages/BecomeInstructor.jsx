@@ -7,6 +7,7 @@ import { FaChartBar, FaChartLine } from "react-icons/fa6";
 import { FiArrowLeft, FiArrowRight, FiBookOpen } from "react-icons/fi";
 import { MdOutlineCheck } from "react-icons/md";
 import { RiTriangleLine } from "react-icons/ri";
+import ReactQuill from "react-quill";
 
 export default function BecomeInstructor({}) {
     const { auth } = usePage().props;
@@ -282,14 +283,26 @@ export default function BecomeInstructor({}) {
                                                 Your bio
                                             </span>
                                         </div>
-                                        <textarea
+                                        {/* <textarea
                                             className="textarea textarea-bordered h-24"
                                             placeholder="Bio"
                                             name="bio"
                                             onChange={inputChangeHandler}
                                         >
                                             {data.bio}
-                                        </textarea>
+                                        </textarea> */}
+                                        <ReactQuill
+                                            theme="snow"
+                                            value={data.bio}
+                                            onChange={(value) =>
+                                                setData("bio", value)
+                                            }
+                                            className="input input-bordered"
+                                            style={{
+                                                height: "16rem",
+                                                marginBottom: "1rem",
+                                            }}
+                                        />
                                         {errors.bio && (
                                             <div className="label">
                                                 <span className="label-text-alt text-error">

@@ -17,6 +17,17 @@ import { FaTicket } from "react-icons/fa6";
 export default function UserAreaLayout({ children }) {
     const { auth } = usePage().props;
 
+    // Fungsi untuk memeriksa apakah route aktif
+    const isActive = (routeName) => route().current(routeName);
+
+    // Fungsi styling link
+    const navClass = (routeName) =>
+        `leading-1.8 flex gap-3 text-nowrap items-center text-sm transition-all ease-in-out py-[10px] border-b border-base-300 dark:border-gray-700 ${
+            isActive(routeName)
+                ? "text-primary font-semibold"
+                : "text-gray-600 dark:text-white hover:text-primary"
+        }`;
+
     console.log(auth);
 
     return (
@@ -60,67 +71,75 @@ export default function UserAreaLayout({ children }) {
                                     <li className="text-xs font-semibold mb-4">
                                         Selamat datang, {auth.user.name}
                                     </li>
-                                    <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                    <li>
                                         <Link
                                             href={route("user_area.dashboard")}
-                                            className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                            className={navClass(
+                                                "user_area.dashboard"
+                                            )}
                                         >
                                             <FiHome />
                                             <span>Dashboard</span>
                                         </Link>
                                     </li>
 
-                                    {/* <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                    {/* <li >
                                         <a
                                             href=""
-                                            className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                            
                                         >
                                             <FiMessageSquare />
                                             <span>Pesan</span>
                                         </a>
                                     </li> */}
-                                    <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                    <li>
                                         <Link
                                             href={route(
                                                 "user_area.enrollment.index"
                                             )}
-                                            className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                            className={navClass(
+                                                "user_area.enrollment.index"
+                                            )}
                                         >
                                             <FiBookmark />
                                             <span>Kursus terdaftar</span>
                                         </Link>
                                     </li>
-                                    <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                    <li>
                                         <Link
                                             href={route(
                                                 "user_area.wishlist.index"
                                             )}
-                                            className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                            className={navClass(
+                                                "user_area.wishlist.index"
+                                            )}
                                         >
                                             <FiBookmark />
                                             <span>Daftar Keinginan</span>
                                         </Link>
                                     </li>
-                                    <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                    <li>
                                         <Link
                                             href={route(
                                                 "user_area.order.index"
                                             )}
-                                            className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                            className={navClass(
+                                                "user_area.order.index"
+                                            )}
                                         >
                                             <FiShoppingBag />
                                             <span>Riwayat pesanan</span>
                                         </Link>
                                     </li>
-                                    <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                    {/* <li>
                                         <a
                                             href=""
-                                            className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                            
                                         >
                                             <FiStar />
                                             <span>Ulasan</span>
                                         </a>
-                                    </li>
+                                    </li> */}
                                 </ul>
 
                                 {auth.role.name == "instructor" ? (
@@ -128,24 +147,28 @@ export default function UserAreaLayout({ children }) {
                                         <li className="text-xs font-semibold mb-4">
                                             Pengajar
                                         </li>
-                                        <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                        <li>
                                             <Link
                                                 href={route(
                                                     "user_area.course.index"
                                                 )}
-                                                className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                                className={navClass(
+                                                    "user_area.course.index"
+                                                )}
                                             >
                                                 <FiMonitor />
                                                 <span>Managemen Kursus</span>
                                             </Link>
                                         </li>
 
-                                        <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                        <li>
                                             <Link
                                                 href={route(
                                                     "user_area.voucher.index"
                                                 )}
-                                                className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                                className={navClass(
+                                                    "user_area.voucher.index"
+                                                )}
                                             >
                                                 <FaTicket />
                                                 <span>Voucher Afiliasi</span>
@@ -161,12 +184,14 @@ export default function UserAreaLayout({ children }) {
                                         <li className="text-xs font-semibold mb-4">
                                             Pengajar
                                         </li>
-                                        <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                        <li>
                                             <Link
                                                 href={route(
                                                     "user_area.become_instructor.index"
                                                 )}
-                                                className="text-primary dark:text-secondary relative leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                                className={navClass(
+                                                    "user_area.become_instructor.index"
+                                                )}
                                             >
                                                 <FiStar />
                                                 <span>Menjadi Pengajar</span>
@@ -208,23 +233,25 @@ export default function UserAreaLayout({ children }) {
                                     <li className="text-xs font-semibold mb-4">
                                         Pengguna
                                     </li>
-                                    <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                    <li>
                                         <Link
                                             href={route(
                                                 "user_area.profile.edit"
                                             )}
-                                            className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                            className={navClass(
+                                                "user_area.profile.edit"
+                                            )}
                                         >
                                             <FiSettings />
                                             <span>Pengaturan</span>
                                         </Link>
                                     </li>
-                                    <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
+                                    <li>
                                         <Link
                                             href={route("logout")}
                                             method="post"
                                             as="button"
-                                            className="text-gray-600 dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
+                                            className="text-gray-600  dark:text-white leading-1.8 flex gap-3 text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
                                         >
                                             <FiLogOut />
                                             <span>Keluar</span>
