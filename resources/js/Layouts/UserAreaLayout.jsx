@@ -131,6 +131,20 @@ export default function UserAreaLayout({ children }) {
                                             <span>Riwayat pesanan</span>
                                         </Link>
                                     </li>
+
+                                    <li>
+                                        <Link
+                                            href={route(
+                                                "user_area.ticket.index"
+                                            )}
+                                            className={navClass(
+                                                "user_area.ticket.index"
+                                            )}
+                                        >
+                                            <FaTicket />
+                                            <span>Ticket Support</span>
+                                        </Link>
+                                    </li>
                                     {/* <li>
                                         <a
                                             href=""

@@ -7,28 +7,33 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PageController;
 
+
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Backend\TagController;
+
 use App\Http\Controllers\Backend\RoleController;
+
 use App\Http\Controllers\Backend\UserController;
+
 use App\Http\Controllers\NotificationController;
-
 use App\Http\Controllers\Backend\EventController;
-
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\VoucherController;
+use App\Http\Controllers\UserArea\TicketController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\UserArea\DashboardController;
 use App\Http\Controllers\Backend\ActivityLogController;
 use App\Http\Controllers\UserArea\EnrollmentController;
+use App\Http\Controllers\UserArea\TicketReplyController;
 use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\InstructorInfoController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\LearningArea\EvaluationController;
 use App\Http\Controllers\LearningArea\LearningAreaController;
 use App\Http\Controllers\UserArea\BecomeInstructorController;
 use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
@@ -38,14 +43,13 @@ use App\Http\Controllers\UserArea\VoucherController as UserAreaVoucherController
 use App\Http\Controllers\UserArea\QuestionController as UserAreaQuestionController;
 use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
 use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseController;
-use App\Http\Controllers\LearningArea\EvaluationController as LearningAreaEvaluationController;
 use App\Http\Controllers\UserArea\EvaluationController as UserAreaEvaluationController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
-use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEnrollmentController;
+use App\Http\Controllers\LearningArea\EvaluationController as LearningAreaEvaluationController;
 use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
+use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEnrollmentController;
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
-use App\Http\Controllers\LearningArea\EvaluationController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -79,6 +83,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 
+
+
     Route::resource('/cart', CartController::class)->only(['index', 'store']);
     Route::delete('/cart', [CartController::class, 'destroy'])->name('cart.destroy');
     Route::delete('/cart/empty', [CartController::class, 'empty_cart'])->name('cart.empty');
@@ -101,7 +107,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/notification/open_notification/{notification}', [NotificationController::class, 'open_notification'])->name('notification.open_notification');
 
 
+
+
         Route::group(['prefix' => '/user_area', 'as' => 'user_area.'], function () {
+
+            Route::resource('/ticket', TicketController::class);
+            Route::post('/ticket/{ticket}/reply', [TicketReplyController::class, 'store']);
 
             Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
