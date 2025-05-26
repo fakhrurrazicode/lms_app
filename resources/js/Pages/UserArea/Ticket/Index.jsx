@@ -13,9 +13,7 @@ export default function Index({ tickets }) {
             <Head title="Wishlist" />
             <div className="card bg-base-100">
                 <div className="card-body">
-                    <h1 className="text-xl font-bold mb-4">
-                        Ticket <Support></Support>
-                    </h1>
+                    <h1 className="text-xl font-bold mb-4">Ticket Support</h1>
 
                     {tickets.length ? (
                         <>
