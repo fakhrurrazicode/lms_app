@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PaginateRequest;
 use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
@@ -14,12 +15,21 @@ class TicketController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PaginateRequest $request)
     {
-        $tickets = Ticket::where('user_id', Auth::id())
-            ->latest()
-            ->paginate(10);
-        // return $tickets;
+        $tickets = Ticket::orWhere([
+            ['subject', 'LIKE', '%' . $request->search . '%'],
+            ['description', 'LIKE', '%' . $request->search . '%'],
+        ])->where([
+            'user_id' => Auth::user()->id,
+        ])->orderBy($request->orderby, $request->ordermethod)
+            ->paginate($request->perpage)
+            ->withQueryString();
+
+        return Inertia::render('UserArea/Ticket/Index', [
+            'tickets' => $tickets,
+            'request' => $request,
+        ]);
 
 
         return Inertia::render('UserArea/Ticket/Index', [

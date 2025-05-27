@@ -369,6 +369,18 @@ export default function BackendLayout({ header, children }) {
                                 <span>Activity Logs</span>
                             </Link>
                         </li>
+
+                        <li>
+                            <Link
+                                href="/backend/ticket"
+                                className="flex justify-start items-center "
+                                preserveScroll={true}
+                                preserveState={true}
+                            >
+                                <FaTicket size={16} />
+                                <span>Ticket Support</span>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>

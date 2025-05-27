@@ -2,6 +2,7 @@
 import React from "react";
 import { useForm, Link, Head } from "@inertiajs/react";
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
+import ReactQuill from "react-quill";
 
 export default function Create() {
     const { data, setData, post, processing, errors } = useForm({
@@ -45,7 +46,7 @@ export default function Create() {
 
                                 <div>
                                     <label className="label">Deskripsi</label>
-                                    <textarea
+                                    {/* <textarea
                                         className="textarea textarea-bordered w-full h-32"
                                         value={data.description}
                                         onChange={(e) =>
@@ -54,6 +55,18 @@ export default function Create() {
                                                 e.target.value
                                             )
                                         }
+                                    /> */}
+                                    <ReactQuill
+                                        theme="snow"
+                                        value={data.description}
+                                        onChange={(value) =>
+                                            setData("description", value)
+                                        }
+                                        className="input input-bordered"
+                                        style={{
+                                            minHeight: "16rem",
+                                            marginBottom: "1rem",
+                                        }}
                                     />
                                     {errors.description && (
                                         <p className="text-error text-sm">

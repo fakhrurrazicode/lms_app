@@ -32,6 +32,7 @@ use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\InstructorInfoController;
+use App\Http\Controllers\Backend\TicketController as BackendTicketController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\LearningArea\EvaluationController;
 use App\Http\Controllers\LearningArea\LearningAreaController;
@@ -112,7 +113,8 @@ Route::middleware(['auth'])->group(function () {
         Route::group(['prefix' => '/user_area', 'as' => 'user_area.'], function () {
 
             Route::resource('/ticket', TicketController::class);
-            Route::post('/ticket/{ticket}/reply', [TicketReplyController::class, 'store'])->name('ticket_reply.store');
+            Route::resource('ticket.ticket_reply', TicketReplyController::class)->only('store');
+            // Route::post('/ticket/{ticket}/reply', [TicketReplyController::class, 'store'])->name('ticket_reply.store');
 
             Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
@@ -189,6 +191,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', function () {
             return Inertia::render('Backend/Dashboard');
         })->name('dashboard');
+
+        Route::resource('/ticket', BackendTicketController::class);
 
         Route::resource('/role', RoleController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::put('/role/{role}/set-permission', [RoleController::class, 'setPermission'])->name('role.set-permission');
