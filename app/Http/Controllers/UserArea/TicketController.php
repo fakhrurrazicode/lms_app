@@ -19,6 +19,7 @@ class TicketController extends Controller
         $tickets = Ticket::where('user_id', Auth::id())
             ->latest()
             ->paginate(10);
+        // return $tickets;
 
 
         return Inertia::render('UserArea/Ticket/Index', [

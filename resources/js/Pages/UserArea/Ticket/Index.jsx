@@ -1,5 +1,6 @@
 import { rupiah } from "@/bootstrap";
 import CourseCard from "@/Components/CourseCard";
+import Pagination from "@/Components/Pagination";
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link } from "@inertiajs/react";
 
@@ -10,19 +11,27 @@ import { toast } from "react-toastify";
 export default function Index({ tickets }) {
     return (
         <UserAreaLayout>
-            <Head title="Wishlist" />
+            <Head title="Ticket" />
             <div className="card bg-base-100">
                 <div className="card-body">
-                    <h1 className="text-xl font-bold mb-4">Ticket Support</h1>
+                    <div className="flex justify-between items-center mb-16">
+                        <h1 className="text-2xl font-bold">Daftar Tiket</h1>
+                        <Link
+                            href={route("user_area.ticket.create")}
+                            className="btn btn-primary btn-sm"
+                        >
+                            Buat Tiket
+                        </Link>
+                    </div>
 
-                    {tickets.length ? (
+                    {tickets.data.length ? (
                         <>
                             <div className="">
-                                {tickets.map((ticket) => {
+                                {tickets.data.map((ticket) => {
                                     return (
                                         <div
                                             key={ticket.id}
-                                            className="card bg-base-100 shadow-md"
+                                            className="card bg-base-200 shadow-md mb-6"
                                         >
                                             <div className="card-body">
                                                 <h2 className="card-title">
@@ -37,21 +46,29 @@ export default function Index({ tickets }) {
                                                 </p>
                                                 <div className="flex justify-between mt-2">
                                                     <span
-                                                        className={`badge badge-${getPriorityColor(
+                                                        className={`badge font-medium ${getPriorityColor(
                                                             ticket.priority
                                                         )}`}
                                                     >
                                                         {ticket.priority}
                                                     </span>
                                                     <span
-                                                        className={`badge badge-outline`}
+                                                        className={`badge font-medium ${getStatusColor(
+                                                            ticket.status
+                                                        )}`}
                                                     >
                                                         {ticket.status}
                                                     </span>
                                                 </div>
                                                 <div className="mt-2">
                                                     <Link
-                                                        href={`/tickets/${ticket.id}`}
+                                                        // href={`/tickets/${ticket.id}`}
+                                                        href={route(
+                                                            "user_area.ticket.show",
+                                                            {
+                                                                ticket,
+                                                            }
+                                                        )}
                                                         className="link link-primary text-sm"
                                                     >
                                                         Lihat Detail
@@ -61,6 +78,8 @@ export default function Index({ tickets }) {
                                         </div>
                                     );
                                 })}
+
+                                <Pagination links={tickets.links} />
                             </div>
                         </>
                     ) : (
@@ -77,5 +96,25 @@ export default function Index({ tickets }) {
                 </div>
             </div>
         </UserAreaLayout>
+    );
+}
+
+function getStatusColor(status) {
+    return (
+        {
+            open: "badge-success",
+            pending: "badge-warning",
+            closed: "badge-neutral",
+        }[status] || "badge-ghost"
+    );
+}
+
+function getPriorityColor(priority) {
+    return (
+        {
+            low: "badge-success",
+            medium: "badge-warning",
+            high: "badge-error",
+        }[priority] || "badge-neutral"
     );
 }

@@ -112,7 +112,7 @@ Route::middleware(['auth'])->group(function () {
         Route::group(['prefix' => '/user_area', 'as' => 'user_area.'], function () {
 
             Route::resource('/ticket', TicketController::class);
-            Route::post('/ticket/{ticket}/reply', [TicketReplyController::class, 'store']);
+            Route::post('/ticket/{ticket}/reply', [TicketReplyController::class, 'store'])->name('ticket_reply.store');
 
             Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
