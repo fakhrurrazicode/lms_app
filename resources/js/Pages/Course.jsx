@@ -678,7 +678,9 @@ export default function Course() {
                                     {course.instructor.name}
                                 </h3>
                                 <div>
-                                    <Link>Lebih Banyak...</Link>
+                                    <Link className="text-primary font-bold">
+                                        Lebih Banyak...
+                                    </Link>
                                 </div>
                             </div>
                             <div>
@@ -862,31 +864,31 @@ export default function Course() {
                                     <ul>
                                         <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">
                                             <span>Instruktur:</span>
-                                            <span className="bg-primary text-xs rounded-full px-3 py-1">
+                                            <span className="bg-primary text-white text-xs rounded-full px-3 py-1">
                                                 {course.instructor.name}
                                             </span>
                                         </li>
                                         <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">
                                             <span>Total Durasi:</span>
-                                            <span className="bg-primary text-xs rounded-full px-3 py-1">
+                                            <span className="bg-primary text-white text-xs rounded-full px-3 py-1">
                                                 {course.total_lecture_duration}
                                             </span>
                                         </li>
                                         <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">
                                             <span>Jumlah Section:</span>
-                                            <span className="bg-primary text-xs rounded-full px-3 py-1">
+                                            <span className="bg-primary text-white text-xs rounded-full px-3 py-1">
                                                 {course.course_section_count}
                                             </span>
                                         </li>
                                         <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">
                                             <span>Jumlah Lecture:</span>
-                                            <span className="bg-primary text-xs rounded-full px-3 py-1">
+                                            <span className="bg-primary text-white text-xs rounded-full px-3 py-1">
                                                 {course.course_lecture_count}
                                             </span>
                                         </li>
                                         <li className="flex text-gray-800 dark:text-gray-200 text-sm border-b border-gray-200 dark:border-gray-700 py-4 justify-between">
                                             <span>Level</span>
-                                            <span className="bg-primary text-xs rounded-full px-3 py-1">
+                                            <span className="bg-primary text-white text-xs rounded-full px-3 py-1">
                                                 {course.level}
                                             </span>
                                         </li>
