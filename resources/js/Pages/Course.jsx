@@ -611,9 +611,19 @@ export default function Course() {
                                     <div className="py-8">
                                         <div className="card bg-base-100 rounded-none">
                                             <div className="card-body">
-                                                <div className="flex gap-4">
+                                                <div className="flex items-center gap-4">
                                                     <div className="avatar">
-                                                        <div className="w-24 h-24 rounded-full">
+                                                        <Link
+                                                            href={route(
+                                                                "instructor_info",
+                                                                {
+                                                                    user: course
+                                                                        .instructor
+                                                                        .id,
+                                                                }
+                                                            )}
+                                                            className="w-24 h-24 rounded-full"
+                                                        >
                                                             <img
                                                                 src={
                                                                     course
@@ -621,18 +631,29 @@ export default function Course() {
                                                                         .photo_url
                                                                 }
                                                             />
-                                                        </div>
+                                                        </Link>
                                                     </div>
 
                                                     <div>
                                                         <h3 className="mb-2 font-bold text-xl">
-                                                            {
-                                                                course
-                                                                    .instructor
-                                                                    .name
-                                                            }
+                                                            <Link
+                                                                href={route(
+                                                                    "instructor_info",
+                                                                    {
+                                                                        user: course
+                                                                            .instructor
+                                                                            .id,
+                                                                    }
+                                                                )}
+                                                            >
+                                                                {
+                                                                    course
+                                                                        .instructor
+                                                                        .name
+                                                                }
+                                                            </Link>
                                                         </h3>
-                                                        <div className="text-sm">
+                                                        <div className="prose text-sm">
                                                             {course.instructor
                                                                 .instructor_info
                                                                 ? course
