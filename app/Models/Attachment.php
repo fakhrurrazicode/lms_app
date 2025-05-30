@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Attachment extends Model
+class Attachment extends BaseModel
 {
 
     protected $guarded = [];

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MidtransNotificationLog extends Model
+class MidtransNotificationLog extends BaseModel
 {
     protected $guarded = [];
 }

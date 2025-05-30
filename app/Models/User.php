@@ -26,6 +26,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $appends = ['photo_url', 'role_name', 'coin_balance'];
 
+
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
@@ -56,7 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected function serializeDate(\DateTimeInterface $date)
     {
-        return $date->format('Y-m-d H:i:s');
+        return $date->format('d-m-Y H:i:s');
     }
 
     /**

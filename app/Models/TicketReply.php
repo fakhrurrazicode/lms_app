@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TicketReply extends Model
+class TicketReply extends BaseModel
 {
     protected $fillable = [
         'ticket_id',

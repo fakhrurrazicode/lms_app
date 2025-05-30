@@ -7,7 +7,7 @@ use App\Models\Event;
 use App\Models\VoucherUsage;
 use Illuminate\Database\Eloquent\Model;
 
-class Voucher extends Model
+class Voucher extends BaseModel
 {
     protected $guarded = [];
 

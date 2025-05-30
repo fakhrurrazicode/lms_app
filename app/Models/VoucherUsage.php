@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VoucherUsage extends Model
+class VoucherUsage extends BaseModel
 {
     protected $guarded = [];
 }

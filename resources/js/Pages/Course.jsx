@@ -255,9 +255,12 @@ export default function Course() {
                                 </div>
                             </div>
 
-                            <div className="text-gray-800 dark:text-gray-200 font-normal text-lg mb-[30px]">
-                                {course.description}
-                            </div>
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: course.description,
+                                }}
+                                className="text-gray-800 dark:text-gray-200 font-normal text-lg mb-[30px]"
+                            ></div>
 
                             <div>
                                 <h3 className="border-l-4 border-primary pl-3 mb-[30px]">
@@ -471,24 +474,35 @@ export default function Course() {
                                                     <h3 className="text-3xl font-bold mb-4 text-primary">
                                                         Deskripsi
                                                     </h3>{" "}
-                                                    <div>
-                                                        {course.description}
-                                                    </div>
+                                                    <div
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: course.description,
+                                                        }}
+                                                        className="prose"
+                                                    ></div>
                                                 </div>
                                                 <div className="mb-10">
                                                     <h3 className="text-xl font-bold mb-4 text-primary">
                                                         Prasyarat
                                                     </h3>{" "}
-                                                    <div>
-                                                        {course.prerequisites}
-                                                    </div>
+                                                    <div
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: course.prerequisites,
+                                                        }}
+                                                        className="prose"
+                                                    ></div>
                                                 </div>
 
                                                 <div className="mb-10">
                                                     <h3 className="text-xl font-bold mb-4 text-primary">
                                                         Tujuan
                                                     </h3>{" "}
-                                                    <div>{course.goals}</div>
+                                                    <div
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: course.goals,
+                                                        }}
+                                                        className="prose"
+                                                    ></div>
                                                 </div>
                                             </div>
                                         </div>

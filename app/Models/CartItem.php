@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class CartItem extends BaseCartItem
 {
     public $with = ['itemable'];
+
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('d-m-Y H:i:s');
+    }
 }

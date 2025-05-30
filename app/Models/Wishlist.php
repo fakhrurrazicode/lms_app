@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Wishlist extends Model
+class Wishlist extends BaseModel
 {
     protected $table = 'wishlists';
     protected $guarded = [];

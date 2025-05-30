@@ -13,6 +13,12 @@ class Cart extends BaseCart
     /**
      * Relation one-to-many, CartItem model.
      */
+
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('d-m-Y H:i:s');
+    }
+
     public function items(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(CartItem::class);

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Cart;
+use App\Models\CourseCategory;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,9 @@ class HandleInertiaRequests extends Middleware
                 'unread_notifications' => Auth::check()
                     ? Auth::user()->unreadNotifications
                     : [],
+                'footer' => [
+                    'course_categories' => CourseCategory::inRandomOrder()->limit(5)->get(),
+                ]
             ],
         ];
     }
