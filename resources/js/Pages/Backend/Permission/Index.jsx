@@ -8,6 +8,7 @@ import CreateModal from "./CreateModal";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
 import ManageRoleModal from "./ManageRoleModal";
+import { FaChevronDown } from "react-icons/fa";
 
 export default function Index({ request, permissions, roles }) {
     const [selectedPermission, setSelectedPermission] = useState(null);
@@ -160,72 +161,86 @@ export default function Index({ request, permissions, roles }) {
                                                         key={permission.id}
                                                         className="hover"
                                                     >
-                                                        <th>
-                                                            <button
-                                                                className="btn btn-accent btn-sm"
-                                                                onClick={(
-                                                                    e
-                                                                ) => {
-                                                                    e.preventDefault();
-                                                                    setSelectedPermission(
-                                                                        permission
-                                                                    );
-                                                                    setEditModalIsOpen(
-                                                                        true
-                                                                    );
-                                                                }}
-                                                            >
-                                                                <Edit
-                                                                    size={16}
-                                                                />
-                                                                <span>
-                                                                    Edit
-                                                                </span>
-                                                            </button>
-
-                                                            <button
-                                                                className="btn btn-secondary btn-sm ml-1"
-                                                                onClick={(
-                                                                    e
-                                                                ) => {
-                                                                    e.preventDefault();
-                                                                    setSelectedPermission(
-                                                                        permission
-                                                                    );
-                                                                    setManageRoleModalIsOpen(
-                                                                        true
-                                                                    );
-                                                                }}
-                                                            >
-                                                                <ListCheck
-                                                                    size={16}
-                                                                />
-                                                                <span>
-                                                                    Manage Roles
-                                                                </span>
-                                                            </button>
-                                                            <button
-                                                                className="btn btn-error btn-sm ml-1"
-                                                                onClick={(
-                                                                    e
-                                                                ) => {
-                                                                    e.preventDefault();
-                                                                    setSelectedPermission(
-                                                                        permission
-                                                                    );
-                                                                    setDeleteModalIsOpen(
-                                                                        true
-                                                                    );
-                                                                }}
-                                                            >
-                                                                <Trash
-                                                                    size={16}
-                                                                />
-                                                                <span>
-                                                                    Delete
-                                                                </span>
-                                                            </button>
-                                                        </th>
+                                                        <td>
+                                                            <div className="dropdown">
+                                                                <div
+                                                                    tabIndex={0}
+                                                                    role="button"
+                                                                    className="btn btn-sm m-1 flex"
+                                                                >
+                                                                    <div className="flex gap-2">
+                                                                        <span>
+                                                                            Aksi
+                                                                        </span>
+                                                                        <FaChevronDown
+                                                                            size={
+                                                                                16
+                                                                            }
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                                <ul
+                                                                    tabIndex={0}
+                                                                    className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                                                                >
+                                                                    <li>
+                                                                        <a
+                                                                            className="text-info"
+                                                                            onClick={(
+                                                                                e
+                                                                            ) => {
+                                                                                e.preventDefault();
+                                                                                setSelectedPermission(
+                                                                                    permission
+                                                                                );
+                                                                                setEditModalIsOpen(
+                                                                                    true
+                                                                                );
+                                                                            }}
+                                                                        >
+                                                                            Ubah
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a
+                                                                            className="text-secondary"
+                                                                            onClick={(
+                                                                                e
+                                                                            ) => {
+                                                                                e.preventDefault();
+                                                                                setSelectedPermission(
+                                                                                    permission
+                                                                                );
+                                                                                setManageRoleModalIsOpen(
+                                                                                    true
+                                                                                );
+                                                                            }}
+                                                                        >
+                                                                            Atur
+                                                                            Roles
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a
+                                                                            className="text-error"
+                                                                            onClick={(
+                                                                                e
+                                                                            ) => {
+                                                                                e.preventDefault();
+                                                                                setSelectedPermission(
+                                                                                    permission
+                                                                                );
+                                                                                setDeleteModalIsOpen(
+                                                                                    true
+                                                                                );
+                                                                            }}
+                                                                        >
+                                                                            Hapus
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
                                                         <td>
                                                             {permission.name}
                                                         </td>
