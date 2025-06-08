@@ -25,7 +25,7 @@ export default function Index({ wishlists }) {
                                     ) {
                                         const course = wishlist.wishlistable;
 
-                                        return (
+                                        return course ? (
                                             <div className="flex gap-4 py-4 border-b-2 border-b-base-200">
                                                 <div className="avatar w-20 lg:w-28 self-start">
                                                     <div className="mask rounded-xl">
@@ -162,6 +162,8 @@ export default function Index({ wishlists }) {
                                                     )}
                                                 </div>
                                             </div>
+                                        ) : (
+                                            <></>
                                         );
                                     }
                                 })}
