@@ -40,10 +40,13 @@ class CourseController extends Controller
     {
 
         $course = $course->load([
+            'course_category',
             'course_sections' => function ($query) {
                 $query->with(['course_lectures', 'evaluation']);
             },
         ]);
+
+        // return $course;
 
         return Inertia::render('LearningArea/Course/Show', compact('course'));
     }
