@@ -36,7 +36,7 @@ class Course extends BaseModel implements Cartable
         'course_review_recap',
         'total_lecture_duration'
     ];
-    protected $with = ['instructor', 'course_category', 'course_sections'];
+    protected $with = ['instructor', 'course_category'];
 
     public function getPrice(): float
     {
@@ -85,16 +85,15 @@ class Course extends BaseModel implements Cartable
     }
 
 
-
     public function course_category()
     {
         return $this->belongsTo(CourseCategory::class);
     }
 
-    public function course_sub_category()
-    {
-        return $this->belongsTo(CourseSubCategory::class);
-    }
+    // public function course_sub_category()
+    // {
+    //     return $this->belongsTo(CourseSubCategory::class);
+    // }
 
     public function course_reviews()
     {

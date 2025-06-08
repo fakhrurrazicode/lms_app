@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Requests\ProfilePhotoUpdateRequest;
+use App\Http\Requests\InstructorProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -58,6 +59,16 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+
+        return Redirect::route('user_area.profile.edit');
+    }
+
+    public function update_instructor_info(InstructorProfileUpdateRequest $request): RedirectResponse
+    {
+        $user = Auth::user();
+
+        $instructor_info = $user->instructor_info;
+        $instructor_info->update($request->validated());
 
         return Redirect::route('user_area.profile.edit');
     }

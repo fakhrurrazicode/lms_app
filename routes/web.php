@@ -135,6 +135,7 @@ Route::middleware(['auth'])->group(function () {
             Route::patch('/profile', [UserAreaProfileController::class, 'update'])->name('profile.update');
             Route::delete('/profile', [UserAreaProfileController::class, 'destroy'])->name('profile.destroy');
             Route::post('/profile/update_photo', [UserAreaProfileController::class, 'update_photo'])->name('profile.update_photo');
+            Route::patch('/profile/update_instructor_info', [UserAreaProfileController::class, 'update_instructor_info'])->name('profile.update_instructor_info');
 
             Route::resource('/enrollment', EnrollmentController::class);
             // ->middleware('verified');

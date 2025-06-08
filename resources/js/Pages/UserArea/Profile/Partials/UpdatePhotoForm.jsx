@@ -31,6 +31,7 @@ export default function UpdatePhotoForm({ className = "" }) {
 
         post(route("user_area.profile.update_photo"), {
             forceFormData: true,
+            preserveScroll: true,
         });
     };
 

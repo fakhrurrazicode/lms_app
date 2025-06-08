@@ -44,7 +44,7 @@ export default function FrontendLayout({ header, children }) {
         <>
             <div className="min-h-screen bg-gray-100/50 dark:bg-gray-900 relative">
                 <a
-                    href="https://wa.me/+6282261112049"
+                    href="https://wa.me/+62881025733655"
                     target="_blank"
                     className="btn btn-success rounded-full text-white fixed bottom-6 right-6 z-50"
                 >

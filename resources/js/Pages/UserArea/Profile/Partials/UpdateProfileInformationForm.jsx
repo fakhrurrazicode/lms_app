@@ -22,7 +22,9 @@ export default function UpdateProfileInformation({
     const submit = (e) => {
         e.preventDefault();
 
-        patch(route("user_area.profile.update"));
+        patch(route("user_area.profile.update"), {
+            preserveScroll: true,
+        });
     };
 
     return (

@@ -18,6 +18,9 @@ return new class extends Migration
             $table->text('bio');
             $table->tinyInteger('status')->nullable(); // 0 : pending, 1: accepted, 2: reject
             $table->text('verification_message')->nullable();
+            $table->string('facebook_url')->nullable();
+            $table->string('instagram_url')->nullable();
+            $table->string('youtube_url')->nullable();
             $table->timestamps();
         });
     }

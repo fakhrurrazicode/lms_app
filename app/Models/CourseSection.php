@@ -16,7 +16,7 @@ class CourseSection extends BaseModel
     protected $guarded = [];
 
     public $appends = ['has_evaluation'];
-    protected $with = ['course_lectures'];
+    // protected $with = ['course_lectures'];
 
     public function getHasEvaluationAttribute()
     {

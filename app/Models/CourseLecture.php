@@ -14,7 +14,7 @@ class CourseLecture extends BaseModel
         'video_duration_human_readable',
     ];
 
-    protected $with = ['course_track'];
+    // protected $with = ['course_track'];
 
     public function attachments()
     {

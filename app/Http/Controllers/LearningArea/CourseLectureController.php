@@ -43,9 +43,15 @@ class CourseLectureController extends Controller
      */
     public function show(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
     {
-        $course = Course::with(['course_sections' => function ($query) {
-            $query->with(['course_lectures', 'evaluation']);
-        }])->find($course->id);
+        $course = $course->load([
+            'course_category',
+            'course_sections.course_lectures.course_track',
+            'course_sections.evaluation',
+        ]);
+
+        // $course = Course::with(['course_sections' => function ($query) {
+        //     $query->with(['course_lectures', 'evaluation']);
+        // }])->find($course->id);
 
         $prev_course_lecture = CourseLecture::where([
             ['course_id', '=', $course->id],
