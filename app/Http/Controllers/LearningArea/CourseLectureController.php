@@ -49,17 +49,15 @@ class CourseLectureController extends Controller
 
         $prev_course_lecture = CourseLecture::where([
             ['course_id', '=', $course->id],
-            ['course_section_id', '=', $course_section->id],
             ['id', '<', $course_lecture->id],
         ])->first();
 
         $next_course_lecture = CourseLecture::where([
             ['course_id', '=', $course->id],
-            ['course_section_id', '=', $course_section->id],
             ['id', '>', $course_lecture->id],
         ])->first();
 
-        $evaluation = Evaluation::where('course_section_id', $course_section->id)->first();
+
 
         return Inertia::render('LearningArea/CourseLecture/Show', compact(
             'course',
@@ -67,7 +65,6 @@ class CourseLectureController extends Controller
             'course_lecture',
             'prev_course_lecture',
             'next_course_lecture',
-            'evaluation',
         ));
     }
 
@@ -102,9 +99,9 @@ class CourseLectureController extends Controller
                 'course_lecture' => $next_course_lecture->id,
             ]);
         } else {
-            // return to_route('learning_area.course.course_section.course_lecture.show', [
-            //     'course_lecture' => $course_lecture->id,
-            // ]);
+            return to_route('learning_area.course.show', [
+                'course' => $course->id,
+            ]);
         }
     }
 

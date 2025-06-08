@@ -1,288 +1,235 @@
 import React from "react";
-import FrontendLayout from "./FrontendLayout";
-import { FaCertificate, FaChevronDown, FaClock, FaStar } from "react-icons/fa";
+import FrontendLayout from "@/Layouts/FrontendLayout";
 
-import { BiCheck, BiHome, BiMoviePlay, BiStar } from "react-icons/bi";
-import { MdQuiz } from "react-icons/md";
-import { Link, usePage } from "@inertiajs/react";
-import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 
-const AccordionItem = ({ header, ...rest }) => (
-    <Item
-        {...rest}
-        header={({ state: { isEnter } }) => (
-            <>
-                {header}
-                <FaChevronDown
-                    className={`ml-auto transition-transform duration-200 ease-out ${
-                        isEnter && "rotate-180"
-                    }`}
-                />
-            </>
-        )}
-        className="border-0"
-        buttonProps={{
-            className: ({ isEnter }) =>
-                `flex w-full p-4 text-left bg-indigo-500 text-white border-0 ${
-                    isEnter && "bg-indigo-700"
-                }`,
-        }}
-        contentProps={{
-            className:
-                "transition-height duration-200 ease-out border border-0",
-        }}
-        panelProps={{ className: "p-4" }}
-    />
-);
+import {
+    FaBook,
+    FaCartPlus,
+    FaChevronDown,
+    FaParagraph,
+    FaStar,
+    FaTrash,
+    FaUserAlt,
+    FaClock,
+    FaEye,
+    FaLock,
+    FaCertificate,
+    FaFileAlt,
+} from "react-icons/fa";
+import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
+import CourseNav from "@/Pages/LearningArea/CourseNav";
+import { rupiah } from "@/bootstrap";
+import classNames from "classnames";
 
 export default function LearningAreaLayout({ children, course }) {
-    const { auth } = usePage().props;
-
     return (
         <FrontendLayout>
-            <div className="mx-auto max-w-[100rem] space-y-6 sm:px-6 lg:px-8 py-12">
-                <div className="card shadow-lg bg-info text-white">
-                    <div className="card-body">
-                        <div className="block md:flex justify-between items-center">
-                            <div className="flex gap-6 items-center">
-                                <div>
-                                    <div className="avatar">
-                                        <div className="w-24 border-4 rounded-full">
-                                            <img src={auth.user.photo_url} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold mb-2">
-                                        Hello, {auth.user.name}
-                                    </h3>
-                                    <div className="flex">
-                                        <div className="me-4">
-                                            Terdaftar pada{" "}
-                                            {auth.user.enrollments.length}{" "}
-                                            Kursus
-                                        </div>
-                                        <div className="me-4">0 Sertifikat</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
+            <div className="mx-auto max-w-[100rem] space-y-6 px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                    <div className="col-span-12 md:col-span-4">
-                        <div className="card shadow-lg bg-base-100 rounded-none">
-                            <div className="card-body p-0 overflow-hidden">
-                                <div className="p-4">
-                                    <Link
-                                        preserveScroll={true}
-                                        preserveState={true}
-                                        href={route(
-                                            "learning_area.course.show",
-                                            {
-                                                course: course,
-                                            }
-                                        )}
-                                        className="text-gray-600 border-b border-base-300 dark:border-gray-700 py-[10px] dark:text-white leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <BiHome size={18} />
-                                            <span>Home</span>
-                                        </div>
-                                    </Link>
-                                    <Link
-                                        preserveScroll={true}
-                                        preserveState={true}
-                                        href="#"
-                                        className="text-gray-600 border-b border-base-300 dark:border-gray-700 py-[10px] dark:text-white leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out"
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <FaStar size={18} />
-                                            <span>Review</span>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <Accordion
-                                    transition
-                                    transitionTimeout={200}
-                                    // popover="manual"
-                                    allowMultiple={true}
-                                >
-                                    {course.course_sections.map(
-                                        (course_section) => (
-                                            <AccordionItem
-                                                header={course_section.title}
-                                                initialEntered={true}
-                                            >
-                                                <ul className="">
-                                                    {course_section.course_lectures.map(
-                                                        (course_lecture) => (
-                                                            <li
-                                                                key={
-                                                                    course_lecture.id
-                                                                }
-                                                                className="py-[10px] border-b border-base-300 dark:border-gray-700"
-                                                            >
-                                                                <Link
-                                                                    preserveScroll={
-                                                                        true
-                                                                    }
-                                                                    preserveState={
-                                                                        true
-                                                                    }
-                                                                    href={route(
-                                                                        "learning_area.course.course_section.course_lecture.show",
-                                                                        {
-                                                                            course: course.id,
-                                                                            course_section:
-                                                                                course_section.id,
-                                                                            course_lecture:
-                                                                                course_lecture.id,
-                                                                        }
-                                                                    )}
-                                                                    className={`${
-                                                                        course_lecture.course_track
-                                                                            ? "text-success font-bold"
-                                                                            : "text-gray-600 dark:text-white"
-                                                                    } ${
-                                                                        route().current(
-                                                                            "learning_area.course.course_section.course_lecture.show",
-                                                                            {
-                                                                                course: course.id,
-                                                                                course_section:
-                                                                                    course_section.id,
-                                                                                course_lecture:
-                                                                                    course_lecture.id,
-                                                                            }
-                                                                        )
-                                                                            ? "!text-primary !font-bold"
-                                                                            : ""
-                                                                    } active:text-primary leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out`}
-                                                                >
-                                                                    <div className="flex items-center gap-4">
-                                                                        {course_lecture.course_track ? (
-                                                                            <BiCheck
-                                                                                size={
-                                                                                    22
-                                                                                }
-                                                                            />
-                                                                        ) : (
-                                                                            <BiMoviePlay
-                                                                                size={
-                                                                                    22
-                                                                                }
-                                                                            />
-                                                                        )}
-                                                                        <span>
-                                                                            {
-                                                                                course_lecture.title
-                                                                            }
-                                                                        </span>
-                                                                    </div>
-
-                                                                    <div className="flex items-center gap-2">
-                                                                        <FaClock />{" "}
-                                                                        <span>
-                                                                            3.37
-                                                                        </span>
-                                                                    </div>
-                                                                </Link>
-                                                            </li>
-                                                        )
-                                                    )}
-
-                                                    {course_section.evaluation ? (
-                                                        <li className="py-[10px] border-b border-base-300 dark:border-gray-700">
-                                                            <Link
-                                                                preserveScroll={
-                                                                    true
-                                                                }
-                                                                preserveState={
-                                                                    true
-                                                                }
-                                                                // href={route(
-                                                                //     "learning_area.course.course_section.course_lecture.show",
-                                                                //     {
-                                                                //         course: course_lecture.course_id,
-                                                                //         course_section:
-                                                                //             course_lecture.course_section_id,
-                                                                //         course_lecture:
-                                                                //             course_lecture.id,
-                                                                //     }
-                                                                // )}
-                                                                className={`
-                                                                    ${
-                                                                        course_section
-                                                                            .evaluation
-                                                                            .attempts
-                                                                            ? "text-success font-bold"
-                                                                            : "text-gray-600 dark:text-white"
-                                                                    } active:text-primary leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out`}
-                                                            >
-                                                                <div className="flex items-center gap-4">
-                                                                    {course_section
-                                                                        .evaluation
-                                                                        .attempts ? (
-                                                                        <BiCheck
-                                                                            size={
-                                                                                22
-                                                                            }
-                                                                        />
-                                                                    ) : (
-                                                                        <MdQuiz
-                                                                            size={
-                                                                                22
-                                                                            }
-                                                                        />
-                                                                    )}
-                                                                    <span>
-                                                                        {
-                                                                            course_section
-                                                                                .evaluation
-                                                                                .title
-                                                                        }
-                                                                    </span>
-                                                                </div>
-                                                                <div className="flex items-center gap-2">
-                                                                    <FaClock />{" "}
-                                                                    <span>
-                                                                        3.37
-                                                                    </span>
-                                                                </div>
-                                                            </Link>
-                                                        </li>
-                                                    ) : (
-                                                        <></>
-                                                    )}
-                                                </ul>
-                                            </AccordionItem>
-                                        )
-                                    )}
-                                </Accordion>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-span-12 md:col-span-8">
-                        <p className="mb-3 font-bold">Progress</p>
+                    <div className="col-span-12 lg:col-span-8">
                         <div className="bg-base-100 h-[35px] w-full rounded-lg relative overflow-hidden mb-6">
                             <div
                                 style={{
                                     width: course.progress_percentage + "%",
                                 }}
-                                className={`${
-                                    course.progress_percentage < 100
-                                        ? "bg-primary"
-                                        : "bg-success"
-                                } text-center absolute top-0 bottom-0 flex justify-center items-center`}
+                                className={classNames(
+                                    " text-center absolute top-0 bottom-0 flex justify-center items-center",
+                                    {
+                                        "bg-primary":
+                                            course.progress_percentage < 100,
+                                        "bg-success":
+                                            course.progress_percentage == 100,
+                                    }
+                                )}
                             >
                                 <span className="text-white text-xs">
                                     {course.progress_percentage}%
                                 </span>
                             </div>
                         </div>
+                        <div className="mb-8">{children}</div>
 
-                        {children}
+                        <div>
+                            <Tabs>
+                                <TabList className="w-auto flex">
+                                    <Tab
+                                        className="flex px-6 py-4 text-sm justify-center items-center gap-2 text-center cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-base-300 "
+                                        selectedClassName="border-none bg-base-200"
+                                    >
+                                        <FaFileAlt />
+                                        <span>Gambaran Umum</span>
+                                    </Tab>
+                                    <Tab
+                                        className="flex lg:hidden px-6 py-4 text-sm justify-center items-center gap-2 text-center cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-base-300 "
+                                        selectedClassName="border-none bg-base-200"
+                                    >
+                                        <FaFileAlt />
+                                        <span>Konten Kursus</span>
+                                    </Tab>
+                                    <Tab
+                                        className="flex px-6 py-4 text-sm justify-center items-center gap-2 text-center cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-base-300 "
+                                        selectedClassName="border-none bg-base-200"
+                                    >
+                                        <FaUserAlt />
+                                        <span>Instruktur</span>
+                                    </Tab>
+
+                                    <Tab
+                                        className="flex px-6 py-4 text-sm justify-center items-center gap-2 text-center cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-base-300 "
+                                        selectedClassName="border-none bg-base-200"
+                                    >
+                                        <FaUserAlt />
+                                        <span>Ulasan</span>
+                                    </Tab>
+                                </TabList>
+
+                                <TabPanel>
+                                    <div>
+                                        <div className="card bg-base-200 rounded-none">
+                                            <div className="card-body">
+                                                <div className="mb-10">
+                                                    <h3 className="text-3xl font-bold mb-4 text-primary">
+                                                        Deskripsi
+                                                    </h3>{" "}
+                                                    <div>
+                                                        <HtmlRenderer
+                                                            htmlString={
+                                                                course.description
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="mb-10">
+                                                    <h3 className="text-xl font-bold mb-4 text-primary">
+                                                        Prasyarat
+                                                    </h3>{" "}
+                                                    <div>
+                                                        <HtmlRenderer
+                                                            htmlString={
+                                                                course.prerequisites
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className="mb-10">
+                                                    <h3 className="text-xl font-bold mb-4 text-primary">
+                                                        Tujuan
+                                                    </h3>{" "}
+                                                    <div>
+                                                        <HtmlRenderer
+                                                            htmlString={
+                                                                course.goals
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </TabPanel>
+
+                                <TabPanel className="block lg:hidden">
+                                    <div>
+                                        <div className="card bg-base-200 rounded-none">
+                                            <div className="card-body">
+                                                <CourseNav course={course} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </TabPanel>
+
+                                <TabPanel>
+                                    <div>
+                                        <div className="card bg-base-200 rounded-none">
+                                            <div className="card-body">
+                                                <div className="flex gap-4">
+                                                    <div className="avatar">
+                                                        <div className="w-24 h-24 rounded-full">
+                                                            <img
+                                                                src={
+                                                                    course
+                                                                        .instructor
+                                                                        .photo_url
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div>
+                                                        <h3 className="mb-2 font-bold text-xl">
+                                                            {
+                                                                course
+                                                                    .instructor
+                                                                    .name
+                                                            }
+                                                        </h3>
+                                                        <div className="text-sm">
+                                                            {course.instructor
+                                                                .instructor_info
+                                                                ? course
+                                                                      .instructor
+                                                                      .instructor_info
+                                                                      .bio
+                                                                : ""}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </TabPanel>
+
+                                <TabPanel>
+                                    <div>
+                                        <div className="card bg-base-200 rounded-none">
+                                            <div className="card-body">
+                                                <div className="flex gap-4">
+                                                    <div className="avatar">
+                                                        <div className="w-24 h-24 rounded-full">
+                                                            <img
+                                                                src={
+                                                                    course
+                                                                        .instructor
+                                                                        .photo_url
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div>
+                                                        <h3 className="mb-2 font-bold text-xl">
+                                                            {
+                                                                course
+                                                                    .instructor
+                                                                    .name
+                                                            }
+                                                        </h3>
+                                                        <div className="text-sm">
+                                                            {course.instructor
+                                                                .instructor_info
+                                                                ? course
+                                                                      .instructor
+                                                                      .instructor_info
+                                                                      .bio
+                                                                : ""}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </TabPanel>
+                            </Tabs>
+                        </div>
+                    </div>
+                    <div className="col-span-12 lg:col-span-4 hidden lg:block">
+                        <div className="card shadow-lg bg-base-100 rounded-none">
+                            <div className="card-body p-0 overflow-hidden">
+                                <CourseNav course={course} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

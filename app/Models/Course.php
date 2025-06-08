@@ -36,7 +36,7 @@ class Course extends BaseModel implements Cartable
         'course_review_recap',
         'total_lecture_duration'
     ];
-    protected $with = ['instructor', 'course_category'];
+    protected $with = ['instructor', 'course_category', 'course_sections'];
 
     public function getPrice(): float
     {

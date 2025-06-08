@@ -17,7 +17,6 @@ export default function Show({
     course_lecture,
     prev_course_lecture,
     next_course_lecture,
-    evaluation,
 }) {
     return (
         <LearningAreaLayout course={course}>
@@ -119,63 +118,22 @@ export default function Show({
                             )}
                         </div>
                         <div>
-                            {next_course_lecture ? (
-                                <Link
-                                    href={route(
-                                        "learning_area.course.course_section.course_lecture.finish",
-                                        {
-                                            course: course.id,
-                                            course_section: course_section.id,
-                                            course_lecture: course_lecture.id,
-                                        }
-                                    )}
-                                    // preserveScroll={true}
-                                    preserveState={true}
-                                    method="PUT"
-                                    className="btn btn-accent"
-                                >
-                                    Selanjutnya <FaChevronRight />
-                                </Link>
-                            ) : (
-                                <>
-                                    {evaluation ? (
-                                        <Link
-                                            href={route(
-                                                "learning_area.course.course_section.evaluation.index",
-                                                {
-                                                    course: course.id,
-                                                    course_section:
-                                                        course_section.id,
-                                                }
-                                            )}
-                                            // preserveScroll={true}
-                                            preserveState={true}
-                                            className="btn btn-accent"
-                                        >
-                                            Kerjakan Evaluasi <FaChevronRight />
-                                        </Link>
-                                    ) : (
-                                        <Link
-                                            href={route(
-                                                "learning_area.course.course_section.course_lecture.finish",
-                                                {
-                                                    course: course.id,
-                                                    course_section:
-                                                        course_section.id,
-                                                    course_lecture:
-                                                        course_lecture.id,
-                                                }
-                                            )}
-                                            // preserveScroll={true}
-                                            preserveState={true}
-                                            method="PUT"
-                                            className="btn btn-accent"
-                                        >
-                                            Selanjutnya <FaChevronRight />
-                                        </Link>
-                                    )}
-                                </>
-                            )}
+                            <Link
+                                href={route(
+                                    "learning_area.course.course_section.course_lecture.finish",
+                                    {
+                                        course: course.id,
+                                        course_section: course_section.id,
+                                        course_lecture: course_lecture.id,
+                                    }
+                                )}
+                                // preserveScroll={true}
+                                preserveState={true}
+                                method="PUT"
+                                className="btn btn-accent"
+                            >
+                                Selanjutnya <FaChevronRight />
+                            </Link>
                         </div>
                     </div>
                 </div>

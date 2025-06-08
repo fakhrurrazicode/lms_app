@@ -39,12 +39,15 @@ class CourseController extends Controller
     public function show(Course $course)
     {
 
-        $course = $course->load([
-            'course_category',
-            'course_sections' => function ($query) {
-                $query->with(['course_lectures', 'evaluation']);
-            },
-        ]);
+        // $course = $course->load([
+        //     'course_category',
+        //     'course_sections' => function ($query) {
+        //         $query->with([
+        //             'course_lectures',
+        //             'evaluation'
+        //         ]);
+        //     },
+        // ]);
 
         // return $course;
 
