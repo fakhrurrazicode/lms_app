@@ -33,6 +33,7 @@ use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\InstructorInfoController;
 use App\Http\Controllers\Backend\TicketController as BackendTicketController;
+use App\Http\Controllers\Learning\CourseController as LearningCourseController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\LearningArea\EvaluationController;
 use App\Http\Controllers\LearningArea\LearningAreaController;
@@ -155,6 +156,12 @@ Route::middleware(['auth'])->group(function () {
         });
     });
 
+
+
+
+    Route::group(['prefix' => '/learning', 'as' => 'learning.'], function () {
+        Route::resource('course', LearningCourseController::class)->only(['show']);
+    });
 
 
 
