@@ -10,14 +10,16 @@ use App\Http\Controllers\PageController;
 
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\YouTubeController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\GoogleAuthController;
+
 use App\Http\Controllers\Auth\GoogleController;
+
 use App\Http\Controllers\Backend\TagController;
 
 use App\Http\Controllers\Backend\RoleController;
-
 use App\Http\Controllers\Backend\UserController;
-
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Backend\EventController;
 use App\Http\Controllers\Backend\CourseController;
@@ -32,13 +34,13 @@ use App\Http\Controllers\Backend\CourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\InstructorInfoController;
-use App\Http\Controllers\Backend\TicketController as BackendTicketController;
-use App\Http\Controllers\Learning\CourseController as LearningCourseController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\LearningArea\EvaluationController;
 use App\Http\Controllers\LearningArea\LearningAreaController;
 use App\Http\Controllers\UserArea\BecomeInstructorController;
+use App\Http\Controllers\Backend\TicketController as BackendTicketController;
 use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
+use App\Http\Controllers\Learning\CourseController as LearningCourseController;
 use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
 use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
 use App\Http\Controllers\UserArea\VoucherController as UserAreaVoucherController;
@@ -62,7 +64,8 @@ use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCou
 //     ]);
 // });
 
-
+Route::get('/google/oauth', [GoogleAuthController::class, 'redirectToGoogle']);
+Route::get('/google/oauth/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');

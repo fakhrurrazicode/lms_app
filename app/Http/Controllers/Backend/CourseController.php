@@ -14,6 +14,7 @@ use Spatie\Permission\Models\Permission;
 use App\Http\Requests\CourseStoreRequest;
 use App\Http\Requests\CourseUpdateRequest;
 use App\Http\Requests\CourseSetPermissionsRequest;
+use App\Models\CartItem;
 use App\Models\CourseSection;
 
 class CourseController extends Controller
@@ -109,7 +110,13 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
+        CartItem::where([
+            ['itemable_type', '=', Course::class],
+            ['itemable_id', '=', $course->id],
+        ])->delete();
+
         $course->delete();
+
         return to_route('backend.course.index');
     }
 }

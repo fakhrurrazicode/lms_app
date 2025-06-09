@@ -41,18 +41,24 @@ export default function Home({ latest_courses, course_categories }) {
                                 </p>
 
                                 <div className="flex gap-6">
-                                    <a
-                                        href=""
+                                    <Link
+                                        href={route("courses")}
                                         className="btn btn-primary btn-md"
                                     >
                                         Lihat Lebih Banyak Kursus
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
 
                             <div className="p-6 md:col-start-1 md:col-span-8 lg:col-start-9 lg:col-span-4">
                                 <div className="shadow-2xl shadow-primary/50">
-                                    <CourseCard course={latest_courses[0]} />
+                                    {latest_courses[0] ? (
+                                        <CourseCard
+                                            course={latest_courses[0]}
+                                        />
+                                    ) : (
+                                        <></>
+                                    )}
                                 </div>
                             </div>
                         </div>

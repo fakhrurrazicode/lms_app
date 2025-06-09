@@ -30,11 +30,11 @@ export default function Courses({ courses, course_categories, request }) {
                         <div className="card bg-white dark:bg-slate-950 w-full shadow-xl rounded-md mb-6">
                             <div className="card-body px-6">
                                 <h3 className="card-title mb-4 text-lg font-bold">
-                                    Search here
+                                    Cari Kursus Disini
                                 </h3>
                                 <input
                                     type="text"
-                                    placeholder="Search Courses"
+                                    placeholder="Cari Kursus"
                                     className="input input-bordered w-full "
                                     onChange={(e) =>
                                         router.reload({
@@ -54,85 +54,93 @@ export default function Courses({ courses, course_categories, request }) {
                         <div className="card bg-white dark:bg-slate-950 w-full shadow-xl rounded-md mb-6">
                             <div className="card-body px-6">
                                 <h3 className="card-title mb-4 text-lg font-bold">
-                                    Categories
+                                    Kategori Kursus
                                 </h3>
                                 <ul className="flex flex-col gap-y-4">
-                                    {course_categories.map(
-                                        (course_category) => (
-                                            <li
-                                                key={course_category.id}
-                                                className={
-                                                    request.course_category_ids &&
-                                                    request.course_category_ids.includes(
-                                                        course_category.id.toString()
-                                                    )
-                                                        ? "border border-2px dark:border-gray-800 rounded-md px-4 py-3 group bg-primary text-white transition-all ease-in-out text-sm"
-                                                        : "border border-2px dark:border-gray-800 rounded-md px-4 py-3 group hover:bg-primary hover:text-white transition-all ease-in-out text-sm"
-                                                }
-                                            >
-                                                <a
-                                                    href="#"
-                                                    className="flex justify-between items-center"
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        let new_course_category_ids =
-                                                            [];
-
-                                                        if (
-                                                            request.course_category_ids
-                                                        ) {
-                                                            if (
-                                                                request.course_category_ids.includes(
-                                                                    course_category.id.toString()
-                                                                )
-                                                            ) {
-                                                                new_course_category_ids =
-                                                                    request.course_category_ids.filter(
-                                                                        (
-                                                                            course_category_id
-                                                                        ) =>
-                                                                            course_category_id !==
-                                                                            course_category.id.toString()
-                                                                    );
-                                                            } else {
-                                                                new_course_category_ids =
-                                                                    [
-                                                                        ...request.course_category_ids,
-                                                                        course_category.id.toString(),
-                                                                    ];
-                                                            }
-                                                        } else {
-                                                            new_course_category_ids.push(
+                                    {course_categories.length > 0 ? (
+                                        <>
+                                            {course_categories.map(
+                                                (course_category) => (
+                                                    <li
+                                                        key={course_category.id}
+                                                        className={
+                                                            request.course_category_ids &&
+                                                            request.course_category_ids.includes(
                                                                 course_category.id.toString()
-                                                            );
+                                                            )
+                                                                ? "border border-2px dark:border-gray-800 rounded-md px-4 py-3 group bg-primary text-white transition-all ease-in-out text-sm"
+                                                                : "border border-2px dark:border-gray-800 rounded-md px-4 py-3 group hover:bg-primary hover:text-white transition-all ease-in-out text-sm"
                                                         }
+                                                    >
+                                                        <a
+                                                            href="#"
+                                                            className="flex justify-between items-center"
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                let new_course_category_ids =
+                                                                    [];
 
-                                                        router.get(
-                                                            "/courses/",
-                                                            {
-                                                                ...request,
-                                                                course_category_ids:
-                                                                    new_course_category_ids,
-                                                                page: 1,
-                                                            },
-                                                            {
-                                                                preserveScroll: true,
-                                                                preserveState: true,
-                                                            }
-                                                        );
-                                                    }}
-                                                >
-                                                    <span>
-                                                        {course_category.name}
-                                                    </span>
-                                                    <span>
-                                                        {
-                                                            course_category.course_count
-                                                        }
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        )
+                                                                if (
+                                                                    request.course_category_ids
+                                                                ) {
+                                                                    if (
+                                                                        request.course_category_ids.includes(
+                                                                            course_category.id.toString()
+                                                                        )
+                                                                    ) {
+                                                                        new_course_category_ids =
+                                                                            request.course_category_ids.filter(
+                                                                                (
+                                                                                    course_category_id
+                                                                                ) =>
+                                                                                    course_category_id !==
+                                                                                    course_category.id.toString()
+                                                                            );
+                                                                    } else {
+                                                                        new_course_category_ids =
+                                                                            [
+                                                                                ...request.course_category_ids,
+                                                                                course_category.id.toString(),
+                                                                            ];
+                                                                    }
+                                                                } else {
+                                                                    new_course_category_ids.push(
+                                                                        course_category.id.toString()
+                                                                    );
+                                                                }
+
+                                                                router.get(
+                                                                    "/courses/",
+                                                                    {
+                                                                        ...request,
+                                                                        course_category_ids:
+                                                                            new_course_category_ids,
+                                                                        page: 1,
+                                                                    },
+                                                                    {
+                                                                        preserveScroll: true,
+                                                                        preserveState: true,
+                                                                    }
+                                                                );
+                                                            }}
+                                                        >
+                                                            <span>
+                                                                {
+                                                                    course_category.name
+                                                                }
+                                                            </span>
+                                                            <span>
+                                                                {
+                                                                    course_category.course_count
+                                                                }
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                )
+                                            )}
+                                        </>
+                                    ) : (
+                                        <div>Belum tersedia data kategori</div>
                                     )}
                                 </ul>
                             </div>
@@ -140,11 +148,24 @@ export default function Courses({ courses, course_categories, request }) {
                     </div>
 
                     <div className="md:col-start-5 md:col-span-8 lg:col-start-4 lg:col-span-9 space-y-[30px]">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-[30px]">
-                            {courses.data.map((course) => (
-                                <CourseCard key={course.id} course={course} />
-                            ))}
-                        </div>
+                        {courses.data.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-[30px]">
+                                {courses.data.map((course) => (
+                                    <CourseCard
+                                        key={course.id}
+                                        course={course}
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="card bg-base-100">
+                                <div className="card-body">
+                                    <p className="text-center">
+                                        Kursus Belum tersedia
+                                    </p>
+                                </div>
+                            </div>
+                        )}
 
                         <div className="flex justify-center">
                             <div className="join">

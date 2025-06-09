@@ -35,6 +35,8 @@ class CourseSectionController extends Controller
      */
     public function create(Course $course)
     {
+
+        // return 'test';
         return Inertia::render('UserArea/Course/CourseSection/Create', compact('course'));
     }
 
