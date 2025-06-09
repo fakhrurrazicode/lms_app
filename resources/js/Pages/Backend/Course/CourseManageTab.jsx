@@ -9,7 +9,7 @@ export default function CourseManageTab({ course }) {
             <div className="mb-6">
                 <Link
                     className="btn btn-neutral"
-                    href={route("user_area.course.index")}
+                    href={route("backend.course.index")}
                 >
                     <ChevronLeft size={16} /> Kembali
                 </Link>
@@ -18,14 +18,14 @@ export default function CourseManageTab({ course }) {
                 <Link
                     preserveScroll={true}
                     preserveState={true}
-                    href={route("user_area.course.edit", {
+                    href={route("backend.course.edit", {
                         course: course,
                     })}
                     className={classNames(
                         "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
                         {
                             "!bg-base-100": route().current(
-                                "user_area.course.edit",
+                                "backend.course.edit",
                                 {
                                     course: course,
                                 }
@@ -38,14 +38,14 @@ export default function CourseManageTab({ course }) {
                 <Link
                     preserveScroll={true}
                     preserveState={true}
-                    href={route("user_area.course.course_section.index", {
+                    href={route("backend.course.course_section.index", {
                         course: course,
                     })}
                     className={classNames(
                         "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
                         {
                             "!bg-base-100": route().current(
-                                "user_area.course.course_section.index",
+                                "backend.course.course_section.index",
                                 {
                                     course: course,
                                 }
@@ -59,14 +59,14 @@ export default function CourseManageTab({ course }) {
                 <Link
                     preserveScroll={true}
                     preserveState={true}
-                    href={route("user_area.course.course_lecture.index", {
+                    href={route("backend.course.course_lecture.index", {
                         course: course,
                     })}
                     className={classNames(
                         "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
                         {
                             "!bg-base-100": route().current(
-                                "user_area.course.course_lecture.index",
+                                "backend.course.course_lecture.index",
                                 {
                                     course: course,
                                 }
@@ -80,14 +80,14 @@ export default function CourseManageTab({ course }) {
                 <Link
                     preserveScroll={true}
                     preserveState={true}
-                    href={route("user_area.course.evaluation.index", {
+                    href={route("backend.course.evaluation.index", {
                         course: course,
                     })}
                     className={classNames(
                         "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
                         {
                             "!bg-base-100": route().current(
-                                "user_area.course.evaluation.index",
+                                "backend.course.evaluation.index",
                                 {
                                     course: course,
                                 }
@@ -101,14 +101,14 @@ export default function CourseManageTab({ course }) {
                 {/* <Link
                     preserveScroll={true}
                     preserveState={true}
-                    href={route("user_area.course.evaluation.index", {
+                    href={route("backend.course.evaluation.index", {
                         course: course,
                     })}
                     className={classNames(
                         "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
                         {
                             "!bg-base-100": route().current(
-                                "user_area.course.evaluation.index",
+                                "backend.course.evaluation.index",
                                 {
                                     course: course,
                                 }

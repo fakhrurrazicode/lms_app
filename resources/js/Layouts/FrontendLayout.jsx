@@ -667,7 +667,7 @@ export default function FrontendLayout({ header, children }) {
                 {children}
 
                 <div className="bg-slate-950 text-white">
-                    <div className="container mx-auto pt-[65px] pb-5 lg:pb-10">
+                    <div className="container mx-auto pt-[65px] px-6 pb-5 lg:pb-10">
                         <section>
                             <div className="grid grid-cols-12 gap-6">
                                 <div className="mb-6 col-span-12 sm:col-span-12 lg:col-span-6">

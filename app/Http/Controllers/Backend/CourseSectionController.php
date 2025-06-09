@@ -2,23 +2,34 @@
 
 namespace App\Http\Controllers\Backend;
 
+
+
+use Inertia\Inertia;
+use App\Models\Course;
+use Illuminate\Http\Request;
+use App\Models\CourseSection;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PaginateRequest;
 use App\Http\Requests\CourseSectionStoreRequest;
 use App\Http\Requests\CourseSectionUpdateRequest;
-use App\Models\Course;
-use App\Models\CourseSection;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
 
 class CourseSectionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Course $course)
+    public function index(Request $request, Course $course)
     {
-        $course_sections = CourseSection::with(['course_lectures'])->where('course_id', $course->id)->get();
-        return Inertia::render('Backend/CourseSection/Index', compact('course', 'course_sections'));
+        $course_sections = CourseSection::where([
+            'course_id' => $course->id,
+        ])->orderBy('id', 'ASC')
+            ->get();
+
+        return Inertia::render('Backend/Course/CourseSection/Index', [
+            'course' => $course,
+            'course_sections' => $course_sections,
+        ]);
     }
 
     /**
@@ -26,7 +37,9 @@ class CourseSectionController extends Controller
      */
     public function create(Course $course)
     {
-        return Inertia::render('Backend/CourseSection/Create', compact('course'));
+
+        // return 'test';
+        return Inertia::render('Backend/Course/CourseSection/Create', compact('course'));
     }
 
     /**
@@ -35,9 +48,6 @@ class CourseSectionController extends Controller
     public function store(CourseSectionStoreRequest $request, Course $course)
     {
         CourseSection::create($request->validated());
-        return to_route('backend.course_section.index', [
-            'course' => $course
-        ]);
     }
 
     /**
@@ -53,7 +63,7 @@ class CourseSectionController extends Controller
      */
     public function edit(Course $course, CourseSection $course_section)
     {
-        return Inertia::render('Backend/CourseSection/Edit', compact('course', 'course_section'));
+        return Inertia::render('Backend/Course/CourseSection/Edit', compact('course', 'course_section'));
     }
 
     /**
@@ -62,9 +72,6 @@ class CourseSectionController extends Controller
     public function update(CourseSectionUpdateRequest $request, Course $course, CourseSection $course_section)
     {
         $course_section->update($request->validated());
-        return to_route('backend.course_section.index', [
-            'course' => $course
-        ]);
     }
 
     /**
@@ -73,8 +80,5 @@ class CourseSectionController extends Controller
     public function destroy(Course $course, CourseSection $course_section)
     {
         $course_section->delete();
-        return to_route('backend.course_section.index', [
-            'course' => $course
-        ]);
     }
 }

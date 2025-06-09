@@ -1,7 +1,7 @@
-import BackendLayout from "@/Layouts/BackendLayout";
+import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import React, { useEffect } from "react";
-import CourseCardDetail from "../Course/CourseCardDetail";
+
 import { FiArrowLeft } from "react-icons/fi";
 import { Save } from "lucide-react";
 
@@ -19,7 +19,7 @@ export default function Edit({ course, course_section, course_lecture }) {
         course_id: course.id,
         course_section_id: course_section.id,
         title: course_lecture.title,
-        video: course_lecture.video,
+        video: null,
         description: course_lecture.description,
     });
 
@@ -40,11 +40,11 @@ export default function Edit({ course, course_section, course_lecture }) {
         e.preventDefault();
 
         // post(
-        //     `/backend/course_lecture/${
+        //     `/user_area/course_lecture/${
         //         courseLecture ? courseLecture.id : ""
         //     }?${query}`,
         post(
-            route("backend.course_lecture.update", {
+            route("user_area.course_lecture.update", {
                 course: course,
                 course_section: course_section,
                 course_lecture: course_lecture,
@@ -62,30 +62,9 @@ export default function Edit({ course, course_section, course_lecture }) {
         const value = e.target.value;
 
         setData(name, value);
-
-        switch (name) {
-            case "video":
-                const file = e.target.files[0];
-
-                // if (file) {
-                //     const reader = new FileReader();
-
-                //     reader.onload = function (e) {
-                //         previewImageRef.current.src = e.target.result;
-                //     };
-
-                //     reader.readAsDataURL(file);
-                // } else {
-                //     previewImageRef.current.classList.add("hidden");
-                //     previewImageRef.current.src = "";
-                // }
-
-                setData("video", file);
-                break;
-        }
     };
     return (
-        <BackendLayout
+        <UserAreaLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     Edit Courses Sections
@@ -94,37 +73,39 @@ export default function Edit({ course, course_section, course_lecture }) {
         >
             <Head title="Edit Course Section" />
 
-            <div className="py-12">
-                <div className="w-full sm:px-6 lg:px-8">
+            <div className="">
+                <div className="w-full">
                     <div className="mb-6">
                         <Link
-                            href={route("backend.course_section.index", {
+                            href={route("user_area.course_section.index", {
                                 course: course,
                             })}
                             preserveState={true}
                             className="btn btn-neutral"
                         >
                             <FiArrowLeft />
-                            Back to Course Section
+                            Kembali ke Section
                         </Link>
-                    </div>
-                    <div className="mb-6">
-                        <CourseCardDetail course={course} />
                     </div>
 
                     <div className="card bg-base-100 shadow-xl">
                         <form onSubmit={onSubmitHandler} className="card-body">
                             <h2 className="card-title mb-6">
-                                Edit Lecture for section{" "}
+                                Perbaharui Lecture{" "}
                                 <span className="text-primary">
-                                    {course_section ? course_section.title : ""}
+                                    {course_lecture ? course_lecture.title : ""}
                                 </span>
                             </h2>
                             <div className="mb-6">
-                                <label className="form-control w-full mb-6">
+                                <label className="form-control w-full max-w-xs mb-6">
                                     <div className="label">
                                         <span className="label-text">
                                             Video
+                                        </span>
+
+                                        <span className="label-text-alt">
+                                            Abaikan jika tidak ingin mengubah
+                                            video
                                         </span>
                                     </div>
 
@@ -148,12 +129,12 @@ export default function Edit({ course, course_section, course_lecture }) {
                                 <label className="form-control w-full mb-6">
                                     <div className="label">
                                         <span className="label-text">
-                                            Title
+                                            Judul Lecture
                                         </span>
                                     </div>
                                     <input
                                         type="text"
-                                        placeholder="Title"
+                                        placeholder="Judul Lecture"
                                         className="input input-bordered w-full"
                                         name="title"
                                         onChange={inputChangeHandler}
@@ -171,12 +152,12 @@ export default function Edit({ course, course_section, course_lecture }) {
                                 <label className="form-control w-full mb-6">
                                     <div className="label">
                                         <span className="label-text">
-                                            Description
+                                            Deskripsi Lecture
                                         </span>
                                     </div>
                                     <textarea
                                         className="textarea textarea-bordered h-64"
-                                        placeholder="Description"
+                                        placeholder="Deskripsi Lecture"
                                         name="description"
                                         onChange={inputChangeHandler}
                                         value={data.description}
@@ -197,25 +178,29 @@ export default function Edit({ course, course_section, course_lecture }) {
                                     className="btn btn-primary"
                                     disabled={processing}
                                 >
-                                    <Save size={16} />
-                                    <span>Save</span>
+                                    {processing ? (
+                                        <span className="loading loading-spinner loading-md"></span>
+                                    ) : (
+                                        <Save size={16} />
+                                    )}
+                                    <span>Perbaharui</span>
                                 </button>
                                 <Link
                                     href={route(
-                                        "backend.course_section.index",
+                                        "user_area.course_section.index",
                                         {
                                             course: course,
                                         }
                                     )}
                                     className="btn btn-neutral"
                                 >
-                                    Cancel
+                                    Batalkan
                                 </Link>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </BackendLayout>
+        </UserAreaLayout>
     );
 }

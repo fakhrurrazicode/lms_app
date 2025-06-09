@@ -6,16 +6,17 @@ use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Models\CourseSection;
 use App\Models\CourseCategory;
 use App\Models\CourseSubCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PaginateRequest;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\CourseStoreRequest;
 use App\Http\Requests\CourseUpdateRequest;
 use App\Http\Requests\CourseSetPermissionsRequest;
-use App\Models\CartItem;
-use App\Models\CourseSection;
+
 
 class CourseController extends Controller
 {
@@ -25,12 +26,11 @@ class CourseController extends Controller
     public function index(PaginateRequest $request)
     {
 
-        $selected_course_id = $request->get('selected_course_id');
-        $selected_course_category_id = $request->get('selected_course_category_id');
-
         $courses = Course::orWhere([
             ['title', 'LIKE', '%' . $request->search . '%'],
             ['slug', 'LIKE', '%' . $request->search . '%'],
+        ])->where([
+            'instructor_id' => Auth::user()->id,
         ])->orderBy($request->orderby, $request->ordermethod)
             ->with(['instructor', 'course_category'])
             ->paginate($request->perpage)
@@ -40,11 +40,9 @@ class CourseController extends Controller
 
         return Inertia::render('Backend/Course/Index', [
             'courses' => $courses,
+            'course_categories' => CourseCategory::all(),
+
             'request' => $request,
-            'courseCategories' => CourseCategory::all(),
-            // 'courseSubCategories' => fn() => CourseSubCategory::where('course_category_id', $selected_course_category_id)->get() ?? [],
-            'instructors' => User::role('instructor')->get(),
-            'courseSections' => fn() => CourseSection::with(['course_lectures'])->where('course_id', $selected_course_id)->get() ?? [],
         ]);
     }
 
@@ -53,9 +51,10 @@ class CourseController extends Controller
      */
     public function create(Request $request)
     {
-        $instructors = User::role('instructor')->get();
+
         $course_categories = CourseCategory::all();
-        return Inertia::render('Backend/Course/Create', compact('instructors', 'course_categories'));
+        $instructors = User::whereHas('instructor_info')->get();
+        return Inertia::render('Backend/Course/Create', compact('course_categories', 'instructors'));
     }
 
     /**
@@ -63,15 +62,12 @@ class CourseController extends Controller
      */
     public function store(CourseStoreRequest $request)
     {
-
-
         $data = $request->except(['image']);
-        // return $data;
+        // $data['instructor_id'] = Auth::user()->id;
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('images', 'public');
         }
         Course::create($data);
-        return to_route('backend.course.index');
     }
 
     /**
@@ -87,9 +83,10 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        $instructors = User::role('instructor')->get();
+
         $course_categories = CourseCategory::all();
-        return Inertia::render('Backend/Course/Edit', compact('instructors', 'course_categories', 'course'));
+        $instructors = User::whereHas('instructor_info')->get();
+        return Inertia::render('Backend/Course/Edit', compact('course_categories', 'course', 'instructors'));
     }
 
     /**
@@ -98,11 +95,12 @@ class CourseController extends Controller
     public function update(CourseUpdateRequest $request, Course $course)
     {
         $data = $request->except(['image']);
+        $data['instructor_id'] = Auth::user()->id;
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('images', 'public');
         }
         $course->update($data);
-        return to_route('backend.course.index');
+        // return to_route('backend.course.index');
     }
 
     /**
@@ -110,13 +108,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        CartItem::where([
-            ['itemable_type', '=', Course::class],
-            ['itemable_id', '=', $course->id],
-        ])->delete();
-
         $course->delete();
-
         return to_route('backend.course.index');
     }
 }

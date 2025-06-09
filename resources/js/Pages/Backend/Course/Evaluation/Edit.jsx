@@ -1,11 +1,11 @@
-import BackendLayout from "@/Layouts/BackendLayout";
+import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import React, { useEffect } from "react";
-import CourseCardDetail from "../Course/CourseCardDetail";
+
 import { FiArrowLeft } from "react-icons/fi";
 import { Save } from "lucide-react";
 
-export default function Create({ course, course_section }) {
+export default function Edit({ course, course_section, course_lecture }) {
     const {
         data,
         setData,
@@ -18,42 +18,40 @@ export default function Create({ course, course_section }) {
     } = useForm({
         course_id: course.id,
         course_section_id: course_section.id,
-        title: "",
-        video: "",
-        description: "",
+        title: course_lecture.title,
+        video: null,
+        description: course_lecture.description,
     });
 
     // useEffect(() => {
+    //     // setData("title", courseLecture ? courseLecture.title : "");
     //     setData({
     //         ...data,
-    //         course_id: course_section ? course_section.course_id : "",
-    //         course_section_id: course_section ? course_section.id : "",
+    //         course_id: courseLecture ? courseLecture.course_id : "",
+    //         course_section_id: courseLecture
+    //             ? courseLecture.course_section_id
+    //             : "",
+    //         title: courseLecture ? courseLecture.title : "",
+    //         description: courseLecture ? courseLecture.description : "",
     //     });
-    // }, [course_section]);
-
-    // let {
-    //     props: { request },
-    // } = usePage();
+    // }, [courseLecture]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        // request.selected_course_id = course_section.course_id;
-        // const query = new URLSearchParams(request).toString();
-
-        // post(`/backend/course_lecture?${query}`, {
+        // post(
+        //     `/user_area/course_lecture/${
+        //         courseLecture ? courseLecture.id : ""
+        //     }?${query}`,
         post(
-            route("backend.course_lecture.store", {
+            route("user_area.course_lecture.update", {
                 course: course,
                 course_section: course_section,
+                course_lecture: course_lecture,
             }),
             {
                 preserveScroll: true,
                 preserveState: true,
-                onError: (error) => {
-                    console.log("data", data);
-                    console.log("error", error);
-                },
             }
         );
     };
@@ -63,72 +61,51 @@ export default function Create({ course, course_section }) {
         const name = e.target.name;
         const value = e.target.value;
 
-        switch (name) {
-            case "video":
-                const file = e.target.files[0];
-
-                // if (file) {
-                //     const reader = new FileReader();
-
-                //     reader.onload = function (e) {
-                //         previewImageRef.current.src = e.target.result;
-                //     };
-
-                //     reader.readAsDataURL(file);
-                // } else {
-                //     previewImageRef.current.classList.add("hidden");
-                //     previewImageRef.current.src = "";
-                // }
-
-                setData(name, file);
-                break;
-
-            default:
-                setData(name, value);
-                break;
-        }
+        setData(name, value);
     };
     return (
-        <BackendLayout
+        <UserAreaLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Create Courses Sections
+                    Edit Courses Sections
                 </h2>
             }
         >
-            <Head title="Create Course Section" />
+            <Head title="Edit Course Section" />
 
-            <div className="py-12">
-                <div className="w-full sm:px-6 lg:px-8">
+            <div className="">
+                <div className="w-full">
                     <div className="mb-6">
                         <Link
-                            href={route("backend.course_section.index", {
+                            href={route("user_area.course_section.index", {
                                 course: course,
                             })}
                             preserveState={true}
                             className="btn btn-neutral"
                         >
                             <FiArrowLeft />
-                            Back to Course Section
+                            Kembali ke Section
                         </Link>
-                    </div>
-                    <div className="mb-6">
-                        <CourseCardDetail course={course} />
                     </div>
 
                     <div className="card bg-base-100 shadow-xl">
                         <form onSubmit={onSubmitHandler} className="card-body">
                             <h2 className="card-title mb-6">
-                                Create new Lecture for section{" "}
+                                Perbaharui Lecture{" "}
                                 <span className="text-primary">
-                                    {course_section ? course_section.title : ""}
+                                    {course_lecture ? course_lecture.title : ""}
                                 </span>
                             </h2>
                             <div className="mb-6">
-                                <label className="form-control w-full mb-6">
+                                <label className="form-control w-full max-w-xs mb-6">
                                     <div className="label">
                                         <span className="label-text">
                                             Video
+                                        </span>
+
+                                        <span className="label-text-alt">
+                                            Abaikan jika tidak ingin mengubah
+                                            video
                                         </span>
                                     </div>
 
@@ -152,12 +129,12 @@ export default function Create({ course, course_section }) {
                                 <label className="form-control w-full mb-6">
                                     <div className="label">
                                         <span className="label-text">
-                                            Title
+                                            Judul Lecture
                                         </span>
                                     </div>
                                     <input
                                         type="text"
-                                        placeholder="Title"
+                                        placeholder="Judul Lecture"
                                         className="input input-bordered w-full"
                                         name="title"
                                         onChange={inputChangeHandler}
@@ -175,12 +152,12 @@ export default function Create({ course, course_section }) {
                                 <label className="form-control w-full mb-6">
                                     <div className="label">
                                         <span className="label-text">
-                                            Description
+                                            Deskripsi Lecture
                                         </span>
                                     </div>
                                     <textarea
                                         className="textarea textarea-bordered h-64"
-                                        placeholder="Description"
+                                        placeholder="Deskripsi Lecture"
                                         name="description"
                                         onChange={inputChangeHandler}
                                         value={data.description}
@@ -201,25 +178,29 @@ export default function Create({ course, course_section }) {
                                     className="btn btn-primary"
                                     disabled={processing}
                                 >
-                                    <Save size={16} />
-                                    <span>Save</span>
+                                    {processing ? (
+                                        <span className="loading loading-spinner loading-md"></span>
+                                    ) : (
+                                        <Save size={16} />
+                                    )}
+                                    <span>Perbaharui</span>
                                 </button>
                                 <Link
                                     href={route(
-                                        "backend.course_section.index",
+                                        "user_area.course_section.index",
                                         {
                                             course: course,
                                         }
                                     )}
                                     className="btn btn-neutral"
                                 >
-                                    Cancel
+                                    Batalkan
                                 </Link>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </BackendLayout>
+        </UserAreaLayout>
     );
 }
