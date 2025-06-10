@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 
 import { AiOutlineEnter } from "react-icons/ai";
 import ModalForm from "./ModalForm";
+import { FaFile } from "react-icons/fa";
 
 export default function Index({ course, course_sections }) {
     const [modalFormIsOpen, setModalFormIsOpen] = useState(false);
@@ -58,7 +59,7 @@ export default function Index({ course, course_sections }) {
         <UserAreaLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Lecture Kursus
+                    Pelajaran Kursus
                 </h2>
             }
         >
@@ -79,6 +80,18 @@ export default function Index({ course, course_sections }) {
                     <div className="card-body">
                         <div className="overflow-x-auto">
                             <div className="mb-6">
+                                <h3 className="text-primary text-xl font-bold mb-2">
+                                    Pelajaran
+                                </h3>
+                                <p className="text-sm">
+                                    Unit terkecil dalam struktur kursus online
+                                    yang berisi satu topik spesifik atau materi
+                                    pembelajaran. Setiap Pembelajaran Anda dapat
+                                    melakukan Upload Video, input teks, dan
+                                    attactment file yang dibutuhkan
+                                </p>
+                            </div>
+                            <div className="mb-6">
                                 <div>
                                     <button
                                         className="btn btn-primary"
@@ -95,7 +108,7 @@ export default function Index({ course, course_sections }) {
                                         {/* head */}
                                         <thead>
                                             <tr>
-                                                <th>Judul/Lecture</th>
+                                                <th>Judul</th>
                                                 <th>Video</th>
                                                 <th>
                                                     Sebagai
@@ -113,6 +126,7 @@ export default function Index({ course, course_sections }) {
                                                     <br />
                                                     (hanya 1)
                                                 </th>
+                                                <th>Lampiran</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -134,35 +148,11 @@ export default function Index({ course, course_sections }) {
                                                                         course_section.title
                                                                     }
                                                                 </td>
-
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-
-                                                                <td className="flex gap-1">
-                                                                    {/* <button
-                                                                        className="btn btn-info btn-xs"
-                                                                        onClick={() => {
-                                                                            setSelectedCourseSection(
-                                                                                course_section
-                                                                            );
-                                                                            setModalFormIsOpen(
-                                                                                true
-                                                                            );
-                                                                        }}
-                                                                    >
-                                                                        <span>
-                                                                            Tambah
-                                                                            Lecture
-                                                                        </span>
-                                                                        <AiOutlineEnter
-                                                                            size={
-                                                                                16
-                                                                            }
-                                                                            className="-rotate-90"
-                                                                        />
-                                                                    </button> */}
-                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
                                                             </tr>
 
                                                             {course_section.course_lectures.map(
@@ -299,6 +289,45 @@ export default function Index({ course, course_sections }) {
                                                                                 }}
                                                                             />
                                                                         </td>
+                                                                        <td className="">
+                                                                            <ul className="flex gap-2">
+                                                                                {course_lecture
+                                                                                    .attachments
+                                                                                    .length >
+                                                                                0 ? (
+                                                                                    <>
+                                                                                        {course_lecture.attachments.map(
+                                                                                            (
+                                                                                                attachment
+                                                                                            ) => (
+                                                                                                <li className="">
+                                                                                                    <a
+                                                                                                        target="_blank"
+                                                                                                        className="text-primary"
+                                                                                                        title={
+                                                                                                            attachment.filename
+                                                                                                        }
+                                                                                                        href={
+                                                                                                            attachment.file_url
+                                                                                                        }
+                                                                                                    >
+                                                                                                        <FaFile
+                                                                                                            size={
+                                                                                                                24
+                                                                                                            }
+                                                                                                        />
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                            )
+                                                                                        )}
+                                                                                    </>
+                                                                                ) : (
+                                                                                    <>
+
+                                                                                    </>
+                                                                                )}
+                                                                            </ul>
+                                                                        </td>
                                                                         <td className="flex gap-1">
                                                                             <button
                                                                                 className="btn btn-secondary btn-xs"
@@ -349,7 +378,14 @@ export default function Index({ course, course_sections }) {
                                                     )
                                                 )
                                             ) : (
-                                                <></>
+                                                <tr>
+                                                    <td colSpan={5}>
+                                                        <p>
+                                                            Pelajaran Belum
+                                                            Tersedia
+                                                        </p>
+                                                    </td>
+                                                </tr>
                                             )}
                                         </tbody>
                                     </table>

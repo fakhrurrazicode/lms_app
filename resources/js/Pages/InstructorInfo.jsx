@@ -1,9 +1,15 @@
 import CourseCard from "@/Components/CourseCard";
+import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 import TiltElement from "@/Components/TiltElement";
 import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import React from "react";
-import { FaStar } from "react-icons/fa";
+import {
+    FaFacebookSquare,
+    FaInstagramSquare,
+    FaStar,
+    FaYoutubeSquare,
+} from "react-icons/fa";
 
 export default function InstructorInfo() {
     const { auth, instructor } = usePage().props;
@@ -84,7 +90,66 @@ export default function InstructorInfo() {
                                 <h3 className="font-bold text-xl mb-6">
                                     Biografi
                                 </h3>
-                                <div>{instructor.instructor_info.bio}</div>
+                                <div className="mb-6 prose text-sm">
+                                    <HtmlRenderer
+                                        htmlString={
+                                            instructor.instructor_info.bio
+                                        }
+                                    />
+                                </div>
+
+                                <div className="flex gap-2 flex-wrap">
+                                    {instructor.instructor_info &&
+                                    instructor.instructor_info.facebook_url ? (
+                                        <a
+                                            target="_blank"
+                                            href={
+                                                instructor.instructor_info
+                                                    .facebook_url
+                                            }
+                                            className="btn btn-sm bg-blue-900 text-white"
+                                        >
+                                            <FaFacebookSquare size={16} />{" "}
+                                            Facebook
+                                        </a>
+                                    ) : (
+                                        ""
+                                    )}
+
+                                    {instructor.instructor_info &&
+                                    instructor.instructor_info.instagram_url ? (
+                                        <a
+                                            target="_blank"
+                                            href={
+                                                instructor.instructor_info
+                                                    .instagram_url
+                                            }
+                                            className="btn btn-sm bg-pink-800 text-white"
+                                        >
+                                            <FaInstagramSquare size={16} />{" "}
+                                            Instagram
+                                        </a>
+                                    ) : (
+                                        ""
+                                    )}
+
+                                    {instructor.instructor_info &&
+                                    instructor.instructor_info.instagram_url ? (
+                                        <a
+                                            target="_blank"
+                                            href={
+                                                instructor.instructor_info
+                                                    .instagram_url
+                                            }
+                                            className="btn btn-sm bg-red-900 text-white"
+                                        >
+                                            <FaYoutubeSquare size={16} />{" "}
+                                            YouTube
+                                        </a>
+                                    ) : (
+                                        ""
+                                    )}
+                                </div>
                             </div>
 
                             <div className="mb-6">

@@ -106,7 +106,7 @@ export default function ModalForm({
             className={classNames("modal", { "modal-open": isOpen })}
             open={isOpen}
         >
-            <div className="modal-box">
+            <div className="modal-box w-11/12 max-w-5xl">
                 <form method="dialog" ref={formRef}>
                     {/* if there is a button in form, it will close the modal */}
                     <button
@@ -121,9 +121,9 @@ export default function ModalForm({
                 </form>
                 <h3 className="font-bold text-lg mb-6">
                     {course_lecture ? (
-                        <>Ubah Lecture</>
+                        <>Ubah Pelajaran</>
                     ) : (
-                        <>Buat Lecture baru</>
+                        <>Buat Pelajaran baru</>
                     )}
                 </h3>
 
@@ -131,9 +131,7 @@ export default function ModalForm({
                     <div className="mb-6">
                         <label className="form-control w-full mb-6">
                             <div className="label">
-                                <span className="label-text">
-                                    Course Section
-                                </span>
+                                <span className="label-text">Pilih Bagian</span>
                             </div>
                             <select
                                 className="select select-bordered"
@@ -163,13 +161,18 @@ export default function ModalForm({
                         </label>
                         <label className="form-control w-full mb-6">
                             <div className="label">
-                                <span className="label-text">Video</span>
+                                <span className="label-text">
+                                    Video Pelajaran
+                                </span>
+                                <span className="label-text-alt">
+                                    {"Ukuran maksimal file <= 50MB"}
+                                </span>
                             </div>
 
                             <input
                                 type="file"
                                 accept="video/*"
-                                className="file-input file-input-bordered w-full max-w-xs"
+                                className="file-input file-input-bordered w-full"
                                 name="video"
                                 onChange={inputChangeHandler}
                                 ref={fileInputRef}
@@ -187,12 +190,12 @@ export default function ModalForm({
                         <label className="form-control w-full mb-6">
                             <div className="label">
                                 <span className="label-text">
-                                    Judul Lecture
+                                    Judul Pelajaran
                                 </span>
                             </div>
                             <input
                                 type="text"
-                                placeholder="Judul Lecture"
+                                placeholder="Judul Pelajaran"
                                 className="input input-bordered w-full"
                                 name="title"
                                 onChange={inputChangeHandler}
@@ -210,7 +213,7 @@ export default function ModalForm({
                         <label className="form-control w-full mb-6">
                             <div className="label">
                                 <span className="label-text">
-                                    Deskripsi Lecture
+                                    Deskripsi Pelajaran
                                 </span>
                             </div>
                             <ReactQuill
@@ -237,7 +240,10 @@ export default function ModalForm({
                         <label className="form-control w-full mb-6">
                             <div className="label">
                                 <span className="label-text">
-                                    Attachments (optional)
+                                    Lampiran (opsional)
+                                </span>
+                                <span className="label-text-alt">
+                                    Dapat Memilih lebih dari 1 file
                                 </span>
                             </div>
                             <input

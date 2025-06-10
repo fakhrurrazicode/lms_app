@@ -33,7 +33,7 @@ export default function CourseManageTab({ course }) {
                         }
                     )}
                 >
-                    Detail Course{" "}
+                    Informasi Kursus{" "}
                 </Link>
                 <Link
                     preserveScroll={true}
@@ -53,7 +53,7 @@ export default function CourseManageTab({ course }) {
                         }
                     )}
                 >
-                    Sections
+                    Bagian
                 </Link>
 
                 <Link
@@ -74,7 +74,7 @@ export default function CourseManageTab({ course }) {
                         }
                     )}
                 >
-                    Lectures
+                    Pelajaran
                 </Link>
 
                 <Link
@@ -95,7 +95,7 @@ export default function CourseManageTab({ course }) {
                         }
                     )}
                 >
-                    Evaluations
+                    Evaluasi
                 </Link>
 
                 {/* <Link

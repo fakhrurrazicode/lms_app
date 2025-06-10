@@ -17,6 +17,10 @@ import {
     FaEye,
     FaLock,
     FaTimes,
+    FaFacebook,
+    FaFacebookSquare,
+    FaInstagramSquare,
+    FaYoutubeSquare,
 } from "react-icons/fa";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import {
@@ -38,6 +42,7 @@ import { BiMoviePlay } from "react-icons/bi";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Modal from "@/Components/Modal";
+import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 
 const AccordionItem = ({ header, ...rest }) => (
     <Item
@@ -653,14 +658,100 @@ export default function Course() {
                                                                 }
                                                             </Link>
                                                         </h3>
-                                                        <div className="prose text-sm">
+                                                        <div className="prose text-sm mb-3">
                                                             {course.instructor
+                                                                .instructor_info ? (
+                                                                <HtmlRenderer
+                                                                    htmlString={
+                                                                        course
+                                                                            .instructor
+                                                                            .instructor_info
+                                                                            .bio
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                ""
+                                                            )}
+                                                        </div>
+
+                                                        <div className="flex gap-2 flex-wrap">
+                                                            {course.instructor
+                                                                .instructor_info &&
+                                                            course.instructor
                                                                 .instructor_info
-                                                                ? course
-                                                                      .instructor
-                                                                      .instructor_info
-                                                                      .bio
-                                                                : ""}
+                                                                .facebook_url ? (
+                                                                <a
+                                                                    target="_blank"
+                                                                    href={
+                                                                        course
+                                                                            .instructor
+                                                                            .instructor_info
+                                                                            .facebook_url
+                                                                    }
+                                                                    className="btn btn-sm bg-blue-900 text-white"
+                                                                >
+                                                                    <FaFacebookSquare
+                                                                        size={
+                                                                            16
+                                                                        }
+                                                                    />{" "}
+                                                                    Facebook
+                                                                </a>
+                                                            ) : (
+                                                                ""
+                                                            )}
+
+                                                            {course.instructor
+                                                                .instructor_info &&
+                                                            course.instructor
+                                                                .instructor_info
+                                                                .instagram_url ? (
+                                                                <a
+                                                                    target="_blank"
+                                                                    href={
+                                                                        course
+                                                                            .instructor
+                                                                            .instructor_info
+                                                                            .instagram_url
+                                                                    }
+                                                                    className="btn btn-sm bg-pink-800 text-white"
+                                                                >
+                                                                    <FaInstagramSquare
+                                                                        size={
+                                                                            16
+                                                                        }
+                                                                    />{" "}
+                                                                    Instagram
+                                                                </a>
+                                                            ) : (
+                                                                ""
+                                                            )}
+
+                                                            {course.instructor
+                                                                .instructor_info &&
+                                                            course.instructor
+                                                                .instructor_info
+                                                                .instagram_url ? (
+                                                                <a
+                                                                    target="_blank"
+                                                                    href={
+                                                                        course
+                                                                            .instructor
+                                                                            .instructor_info
+                                                                            .instagram_url
+                                                                    }
+                                                                    className="btn btn-sm bg-red-900 text-white"
+                                                                >
+                                                                    <FaYoutubeSquare
+                                                                        size={
+                                                                            16
+                                                                        }
+                                                                    />{" "}
+                                                                    YouTube
+                                                                </a>
+                                                            ) : (
+                                                                ""
+                                                            )}
                                                         </div>
                                                     </div>
                                                 </div>

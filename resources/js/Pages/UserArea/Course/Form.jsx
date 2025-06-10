@@ -101,7 +101,14 @@ export default function FormCourse({ course = null, course_categories }) {
     };
     return (
         <form onSubmit={onSubmitHandler} className="card-body">
-            <h2 className="card-title mb-6">Buat Kursus</h2>
+            <h2 className="text-primary card-title">Buat Kursus</h2>
+
+            <div className="mb-6">
+                <p className="text-sm">
+                    Masukkan Informasi kursus yang ingin anda buat, pastikan
+                    informasi kursus anda menarik, jelas dan mudah dipahami
+                </p>
+            </div>
             <div className="mb-6">
                 <div className="grid grid-cols-12 gap-6">
                     <label className="form-control mb-6 col-span-12 md:col-span-6">

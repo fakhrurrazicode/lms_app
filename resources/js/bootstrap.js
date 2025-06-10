@@ -69,3 +69,10 @@ export const generateSingkatan = (name, minLength = 2) => {
 
     return singkatan;
 };
+
+export const formatNumber = (num) => {
+    if (num >= 1_000_000)
+        return (num / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
+    if (num >= 1_000) return (num / 1_000).toFixed(1).replace(/\.0$/, "") + "k";
+    return num.toString();
+};

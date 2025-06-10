@@ -12,6 +12,19 @@ class CourseSection extends BaseModel
 {
 
 
+    // public static function boot()
+    // {
+    //     parent::boot();
+
+    //     CourseLecture::deleting(function ($course_lecture) {
+    //         $course_lecture->attachments()->delete();
+    //         $file = public_path('storage/' . $course_lecture->video);
+    //         // dd(File::exists($file));
+    //         if (File::isFile($file)) {
+    //             File::delete($file);
+    //         }
+    //     });
+    // }
 
     protected $guarded = [];
 

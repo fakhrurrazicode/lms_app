@@ -1,4 +1,4 @@
-import { number_format, rupiah } from "@/bootstrap";
+import { formatNumber, number_format, rupiah } from "@/bootstrap";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
@@ -148,7 +148,7 @@ export default function FrontendLayout({ header, children }) {
                             {user ? (
                                 <div className="hidden sm:ms-6 sm:flex sm:items-center">
                                     <div className="py-[8px] px-[12px] ml-[12px] text-sm">
-                                        <div className="flex items-center gap-2">
+                                        {/* <div className="flex items-center gap-2">
                                             <PiCoinDuotone className="text-yellow-500 text-xl" />
                                             <span className="">Coins</span>
                                             <span className="font-bold text-yellow-500">
@@ -156,7 +156,21 @@ export default function FrontendLayout({ header, children }) {
                                                     user.coin_balance
                                                 )}
                                             </span>
-                                        </div>
+                                        </div> */}
+                                        <button
+                                            type="button"
+                                            className="inline-flex relative items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
+                                        >
+                                            <PiCoinDuotone
+                                                className="text-yellow-500"
+                                                size={22}
+                                            />
+                                            <div className="badge badge-warning scale-75 absolute -top-1 -right-2 z-50 ">
+                                                {formatNumber(
+                                                    user.coin_balance
+                                                )}
+                                            </div>
+                                        </button>
                                     </div>
                                     <div className="relative ms-3">
                                         <Dropdown>

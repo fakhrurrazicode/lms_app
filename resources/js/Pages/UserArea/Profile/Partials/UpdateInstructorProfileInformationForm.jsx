@@ -4,6 +4,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Transition } from "@headlessui/react";
 import { Link, useForm, usePage } from "@inertiajs/react";
+import ReactQuill from "react-quill";
 
 export default function UpdateInstructorProfileInformation({ className = "" }) {
     const instructor_info = usePage().props.auth.user.instructor_info;
@@ -28,19 +29,19 @@ export default function UpdateInstructorProfileInformation({ className = "" }) {
         <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                    Profile Information as Instructor
+                    Informasi profil sebagai instruktur
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    Update your Instructor account's profile information
+                    Perbarui Informasi Profil Akun Instruktur Anda
                 </p>
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="bio" value="Bio" />
+                    <InputLabel htmlFor="bio" value="Bio" className="mb-3" />
 
-                    <TextInput
+                    {/* <TextInput
                         id="bio"
                         className="mt-1 block w-full"
                         value={data.bio}
@@ -48,6 +49,17 @@ export default function UpdateInstructorProfileInformation({ className = "" }) {
                         required
                         isFocused
                         autoComplete="bio"
+                    /> */}
+
+                    <ReactQuill
+                        theme="snow"
+                        value={data.bio}
+                        onChange={(value) => setData("bio", value)}
+                        className="input input-bordered rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600"
+                        style={{
+                            height: "16rem",
+                            marginBottom: "1rem",
+                        }}
                     />
 
                     <InputError className="mt-2" message={errors.bio} />

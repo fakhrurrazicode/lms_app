@@ -67,11 +67,11 @@ export default function Index({ course, course_sections }) {
         <UserAreaLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Section Kursus
+                    Bagian Kursus
                 </h2>
             }
         >
-            <Head title="Course Section" />
+            <Head title="Bagian Kursus" />
 
             <ModalForm
                 isOpen={modalFormIsOpen}
@@ -94,6 +94,18 @@ export default function Index({ course, course_sections }) {
                 <div className="card bg-base-100 shadow-xl rounded-t-none">
                     <div className="card-body">
                         <div className="overflow-x-auto">
+                            <div className="mb-6">
+                                <h3 className="text-primary text-xl font-bold mb-2">
+                                    Bagian
+                                </h3>
+                                <p className="text-sm">
+                                    Pembagian materi kursus menjadi beberapa
+                                    bagian atau modul yang lebih terstruktur.
+                                    Setiap Bagian biasanya berisi sekelompok
+                                    topik terkait yang membantu peserta kursus
+                                    memahami materi secara bertahap.
+                                </p>
+                            </div>
                             <div className="mb-6">
                                 <div>
                                     <button
