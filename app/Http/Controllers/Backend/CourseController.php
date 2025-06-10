@@ -29,8 +29,6 @@ class CourseController extends Controller
         $courses = Course::orWhere([
             ['title', 'LIKE', '%' . $request->search . '%'],
             ['slug', 'LIKE', '%' . $request->search . '%'],
-        ])->where([
-            'instructor_id' => Auth::user()->id,
         ])->orderBy($request->orderby, $request->ordermethod)
             ->with(['instructor', 'course_category'])
             ->paginate($request->perpage)
@@ -95,7 +93,7 @@ class CourseController extends Controller
     public function update(CourseUpdateRequest $request, Course $course)
     {
         $data = $request->except(['image']);
-        $data['instructor_id'] = Auth::user()->id;
+        // $data['instructor_id'] = Auth::user()->id;
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('images', 'public');
         }
