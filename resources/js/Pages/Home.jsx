@@ -176,9 +176,9 @@ export default function Home({ latest_courses, course_categories }) {
 
                 <section id="popular" className="py-32">
                     <div className="container mx-auto px-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-[30px] mb-[65px]">
+                        <div className="lg:flex space-y-6 lg:space-x-6 justify-between items-center my-16">
                             <div className="lg:col-star-1 lg:col-span-4">
-                                <span className="text-sm font-semibold text-primary bg-white px-6 py-[5px] mb-5 rounded-full inline-block">
+                                <span className="text-sm font-semibold bg-primary text-white px-6 py-[5px] mb-5 rounded-full inline-block">
                                     Course List
                                 </span>
                                 <h3 className="text-5xl md:text-size-35 2xl:text-size-38 3xl:text-size-42 leading-10 md:leading-45px 2xl:leading-50px 3xl:leading-2xl font-bold text-blackColor dark:text-blackColor-dark">
@@ -189,12 +189,6 @@ export default function Home({ latest_courses, course_categories }) {
                                 </h3>
                             </div>
 
-                            <div className="lg:col-star-5 lg:col-span-5">
-                                <p className="text-sm md:text-base text-gray-900 dark:text-white mb-[10px] 2xl:mb-[50px] 2xl:pl-[50px]">
-                                    Bergabung dan belajar bersama pengajar
-                                    terbaik di bidangnya
-                                </p>
-                            </div>
                             <div className="lg:col-star-10 lg:col-span-3 flex lg:justify-end">
                                 <div>
                                     <Link

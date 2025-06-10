@@ -122,7 +122,7 @@ export default function Login({ status, canResetPassword }) {
                             <a
                                 href="/auth/google/redirect"
                                 disabled={processing}
-                                className="btn btn-neutral bg-white hover:bg-gray-300 text-base-300"
+                                className="btn btn-neutral "
                             >
                                 <img
                                     src="/images/google-icon-logo.svg"

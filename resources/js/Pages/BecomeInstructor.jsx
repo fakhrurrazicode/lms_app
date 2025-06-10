@@ -338,7 +338,7 @@ export default function BecomeInstructor({}) {
                                         <a
                                             href="/auth/google/redirect/1"
                                             disabled={processing}
-                                            className="btn btn-neutral bg-white hover:bg-gray-300 text-base-300"
+                                            className="btn btn-neutral "
                                         >
                                             <img
                                                 src="/images/google-icon-logo.svg"
