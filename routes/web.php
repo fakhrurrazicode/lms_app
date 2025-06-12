@@ -57,6 +57,7 @@ use App\Http\Controllers\LearningArea\EvaluationController as LearningAreaEvalua
 use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
 use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEnrollmentController;
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
+use App\Http\Controllers\LearningArea\CourseSectionController as LearningAreaCourseSectionController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -173,8 +174,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => '/learning_area', 'as' => 'learning_area.'], function () {
         Route::resource('course', LearningAreaCourseController::class)->only(['index', 'show']);
+        // Route::resource('course.course_section', LearningAreaCourseSectionController::class)->only(['show']);
         Route::resource('course.course_section.course_lecture', LearningAreaCourseLectureController::class)->only(['show']);
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish', [LearningAreaCourseLectureController::class, 'finish'])->name('course.course_section.course_lecture.finish');
+        Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish_and_evaluate', [LearningAreaCourseLectureController::class, 'finish_and_evaluate'])->name('course.course_section.course_lecture.finish_and_evaluate');
 
         Route::resource('course.course_section.evaluation', LearningAreaEvaluationController::class)->only(['index', 'show']);
         Route::post(

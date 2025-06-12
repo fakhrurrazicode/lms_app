@@ -10,6 +10,7 @@ import {
     PlyrLayout,
     plyrLayoutIcons,
 } from "@vidstack/react/player/layouts/plyr";
+import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 
 export default function Show({
     course,
@@ -77,7 +78,9 @@ export default function Show({
                         {evaluation.title}
                     </h1>
 
-                    <div className="mb-12">{evaluation.instructions}</div>
+                    <div className="mb-12 prose">
+                        <HtmlRenderer htmlString={evaluation.instructions} />
+                    </div>
 
                     <div className="mb-12 text-center">
                         {evaluation_attempt ? (
@@ -99,7 +102,7 @@ export default function Show({
                                         {
                                             course: prev_course_lecture.course_id,
                                             course_section:
-                                                prev_course_lecture.course_id,
+                                                prev_course_lecture.course_section_id,
                                             course_lecture:
                                                 prev_course_lecture.id,
                                         }
@@ -134,7 +137,7 @@ export default function Show({
                             {next_course_lecture ? (
                                 <Link
                                     href={route(
-                                        "learning_area.course.course_section.course_lecture.finish",
+                                        "learning_area.course.course_section.course_lecture.show",
                                         {
                                             course: next_course_lecture.course_id,
                                             course_section:
@@ -145,7 +148,6 @@ export default function Show({
                                     )}
                                     // preserveScroll={true}
                                     preserveState={true}
-                                    method="PUT"
                                     className="btn btn-accent"
                                 >
                                     Selanjutnya <FaChevronRight />

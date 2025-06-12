@@ -27,6 +27,7 @@ class CourseLecture extends BaseModel
     protected $appends = [
         'video_url',
         'video_duration_human_readable',
+        'done'
     ];
 
     // protected $with = ['course_track'];
@@ -59,6 +60,21 @@ class CourseLecture extends BaseModel
 
         return $this->belongsTo(CourseTrack::class, 'id', 'course_lecture_id')
             ->where('user_id', Auth::user()->id);
+    }
+
+    public function getDoneAttribute()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $course_track = CourseTrack::where([
+                ['user_id', '=', $user->id],
+                ['course_lecture_id', '=', $this->id]
+            ])->first();
+
+            return $course_track ? true : false;
+        } else {
+            return false;
+        }
     }
 
     // public function getPrevCourseLectureAttribute()

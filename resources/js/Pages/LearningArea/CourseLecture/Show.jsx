@@ -2,7 +2,13 @@ import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
-import { FaCheck, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+    FaCheck,
+    FaChevronLeft,
+    FaChevronRight,
+    FaQuestion,
+    FaQuestionCircle,
+} from "react-icons/fa";
 import "@vidstack/react/player/styles/base.css";
 import "@vidstack/react/player/styles/plyr/theme.css";
 import { MediaPlayer, MediaProvider } from "@vidstack/react";
@@ -117,23 +123,85 @@ export default function Show({
                                 <></>
                             )}
                         </div>
-                        <div>
-                            <Link
-                                href={route(
-                                    "learning_area.course.course_section.course_lecture.finish",
-                                    {
-                                        course: course.id,
-                                        course_section: course_section.id,
-                                        course_lecture: course_lecture.id,
-                                    }
-                                )}
-                                // preserveScroll={true}
-                                preserveState={true}
-                                method="PUT"
-                                className="btn btn-accent"
-                            >
-                                Selanjutnya <FaChevronRight />
-                            </Link>
+
+                        <div className="flex gap-2">
+                            {next_course_lecture ? (
+                                <Link
+                                    href={route(
+                                        "learning_area.course.course_section.course_lecture.finish",
+                                        {
+                                            course: course.id,
+                                            course_section: course_section.id,
+                                            course_lecture: course_lecture.id,
+                                        }
+                                    )}
+                                    // preserveScroll={true}
+                                    preserveState={true}
+                                    method="PUT"
+                                    className="btn btn-accent"
+                                >
+                                    Selanjutnya <FaChevronRight />
+                                </Link>
+                            ) : (
+                                <>
+                                    {course_section.evaluation ? (
+                                        // <Link
+                                        //     href={route(
+                                        //         "learning_area.course.course_section.evaluation.index",
+                                        //         {
+                                        //             course: course.id,
+                                        //             course_section:
+                                        //                 course_section.id,
+                                        //         }
+                                        //     )}
+                                        //     // preserveScroll={true}
+                                        //     preserveState={true}
+                                        //     className="btn btn-info"
+                                        // >
+                                        //     Kerjakan Evaluasi{" "}
+                                        //     <FaQuestionCircle />
+                                        // </Link>
+                                        <Link
+                                            href={route(
+                                                "learning_area.course.course_section.course_lecture.finish_and_evaluate",
+                                                {
+                                                    course: course.id,
+                                                    course_section:
+                                                        course_section.id,
+                                                    course_lecture:
+                                                        course_lecture.id,
+                                                }
+                                            )}
+                                            // preserveScroll={true}
+                                            preserveState={true}
+                                            method="PUT"
+                                            className="btn btn-info"
+                                        >
+                                            Kerjakan Evaluasi
+                                            <FaQuestionCircle />
+                                        </Link>
+                                    ) : (
+                                        <Link
+                                            href={route(
+                                                "learning_area.course.course_section.course_lecture.finish",
+                                                {
+                                                    course: course.id,
+                                                    course_section:
+                                                        course_section.id,
+                                                    course_lecture:
+                                                        course_lecture.id,
+                                                }
+                                            )}
+                                            // preserveScroll={true}
+                                            preserveState={true}
+                                            method="PUT"
+                                            className="btn btn-accent"
+                                        >
+                                            Selanjutnya <FaChevronRight />
+                                        </Link>
+                                    )}
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -45,7 +45,7 @@ class EvaluationController extends Controller
         $next_course_section = CourseSection::where('id', '>', $course_section->id)->orderBy('id', 'ASC')->first();
 
         $next_course_lecture = CourseLecture::where([
-            ['course_id', '=', $course->id],
+            ['course_id', '=', $next_course_section->course_id],
             ['course_section_id', '=', $next_course_section->id],
             // ['id', '<', $course_lecture->id],
         ])->orderBy('id', 'asc')->first();
