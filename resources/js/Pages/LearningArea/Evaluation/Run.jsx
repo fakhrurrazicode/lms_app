@@ -16,6 +16,7 @@ import {
     PlyrLayout,
     plyrLayoutIcons,
 } from "@vidstack/react/player/layouts/plyr";
+import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 
 export default function Run({
     course,
@@ -144,7 +145,9 @@ export default function Run({
                         {evaluation.title}
                     </h1>
 
-                    <div className="mb-6">{evaluation.instructions}</div>
+                    <div className="mb-6">
+                        <HtmlRenderer htmlString={evaluation.instructions} />
+                    </div>
 
                     <form onSubmit={handleSubmit} ref={formRef}>
                         <div className="text-right text-lg font-bold text-red-500 mb-4">
@@ -155,26 +158,14 @@ export default function Run({
                                 <div className="card bg-base-200 mb-6">
                                     <div className="card-body">
                                         <div className="mb-6">
-                                            {question.question}
+                                            <HtmlRenderer
+                                                htmlString={question.question}
+                                            />
                                         </div>
 
                                         <div className="grid grid-cols-2">
                                             {question.choices.map((choice) => (
-                                                <label className="mb-4">
-                                                    {/* <input
-                                                    type="radio"
-                                                    name={`question-${question.id}`} // agar unik per pertanyaan
-                                                    value={choice.id}
-                                                    className="radio"
-                                                    onChange={(e) =>
-                                                        handleAnswerChange(
-                                                            question.id,
-                                                            parseInt(
-                                                                e.target.value
-                                                            )
-                                                        )
-                                                    }
-                                                /> */}
+                                                <label className="mb-4 flex">
                                                     <input
                                                         type="radio"
                                                         name={`question-${question.id}`}
@@ -193,7 +184,11 @@ export default function Run({
                                                         }
                                                     />
                                                     <span className="ml-6">
-                                                        {choice.text}
+                                                        <HtmlRenderer
+                                                            htmlString={
+                                                                choice.text
+                                                            }
+                                                        />
                                                     </span>
                                                 </label>
                                             ))}

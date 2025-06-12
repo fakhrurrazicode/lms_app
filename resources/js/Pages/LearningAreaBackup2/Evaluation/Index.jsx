@@ -82,11 +82,10 @@ export default function Show({
                     <div className="mb-12 text-center">
                         {evaluation_attempt ? (
                             <span className="text-success">
-                                Kamu telah berhasil menjawab benar 10 dari 10
-                                pertanyaan
+                                {JSON.stringify(evaluation_attempt)}
                             </span>
                         ) : (
-                            "has no evaluation attempt"
+                            "Belum melakukan evaluasi"
                         )}
                     </div>
 

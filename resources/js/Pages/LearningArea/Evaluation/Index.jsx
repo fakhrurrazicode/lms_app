@@ -82,14 +82,63 @@ export default function Show({
                         <HtmlRenderer htmlString={evaluation.instructions} />
                     </div>
 
-                    <div className="mb-12 text-center">
+                    <div className="mb-12">
                         {evaluation_attempt ? (
-                            <span className="text-success">
-                                Kamu telah berhasil menjawab benar 10 dari 10
-                                pertanyaan
-                            </span>
+                            <div className="card bg-base-200">
+                                <div className="card-body">
+                                    <div className="overflow-x-auto">
+                                        <table className="table table-zebra">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Skor</th>
+                                                    <td>
+                                                        {
+                                                            evaluation_attempt.correct_answers
+                                                        }
+                                                        /
+                                                        {
+                                                            evaluation.questions
+                                                                .length
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Dimulai Pada</th>
+                                                    <td>
+                                                        {
+                                                            evaluation_attempt.started_at
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>DiSubmit Pada</th>
+                                                    <td>
+                                                        {
+                                                            evaluation_attempt.submitted_at
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <h3 className="text-2xl font-bold">
+                                                            Hasil Evaluasi
+                                                        </h3>
+                                                    </th>
+                                                    <td>
+                                                        <h3 className="text-2xl font-bold">
+                                                            <span className="text-success">
+                                                                Lulus
+                                                            </span>
+                                                        </h3>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         ) : (
-                            "has no evaluation attempt"
+                            <></>
                         )}
                     </div>
 
@@ -128,9 +177,12 @@ export default function Show({
                                     }
                                 )}
                                 method="POST"
-                                className="btn btn-primary"
+                                className="btn btn-info"
                             >
-                                <FaPlay /> Mulai Evaluasi
+                                <FaPlay />{" "}
+                                {evaluation_attempt
+                                    ? "Kerjakan Ulang Evaluasi"
+                                    : "Mulai kerjakan Evaluasi"}
                             </Link>
                         </div>
                         <div>

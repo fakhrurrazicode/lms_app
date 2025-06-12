@@ -137,7 +137,7 @@ export default function CourseNav({ course }) {
                                     <div className="flex items-center gap-4">
                                         <FaRegQuestionCircle size={22} />
                                         <span className="text-wrap">
-                                            Evaluation
+                                            {course_section.evaluation.title}
                                         </span>
                                     </div>
 

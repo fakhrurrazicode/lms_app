@@ -136,12 +136,13 @@ class CourseLectureController extends Controller
             ]);
         }
 
-        $next_course_lecture = CourseLecture::where('id', '>', $course_lecture->id)
-            ->where('course_id', $course_section->course_id)
-            ->orderBy('id', 'asc')
-            ->first(); // jika tidak menemukan next lecture lagi arti nya course telah selesai
+        // $next_course_lecture = CourseLecture::where('id', '>', $course_lecture->id)
+        //     ->where('course_id', $course_section->course_id)
+        //     ->orderBy('id', 'asc')
+        //     ->first(); // jika tidak menemukan next lecture lagi arti nya course telah selesai
 
-        if ($next_course_lecture) {
+
+        if ($course_section->evaluation) {
             return to_route('learning_area.course.course_section.evaluation.index', [
                 'course' => $course->id,
                 'course_section' => $course_section->id,

@@ -180,13 +180,16 @@ export default function ModalFormQuestion({
                             <span className="label-text">Pertanyaan</span>
                         </div>
 
-                        <textarea
-                            className="textarea textarea-bordered h-24"
-                            placeholder="Pertanyaan"
-                            name="question"
-                            onChange={inputChangeHandler}
+                        <ReactQuill
+                            theme="snow"
                             value={data.question}
-                        ></textarea>
+                            onChange={(value) => setData("question", value)}
+                            className="input input-bordered"
+                            style={{
+                                height: "16rem",
+                                marginBottom: "1rem",
+                            }}
+                        />
                         {errors.question && (
                             <div className="label">
                                 <span className="label-text-alt text-error">
@@ -205,16 +208,22 @@ export default function ModalFormQuestion({
                         {data.items?.map((choice, index) => (
                             <div key={index} className="mb-4">
                                 <div className="flex items-center gap-2">
-                                    <input
-                                        type="text"
-                                        className={classNames(
-                                            "input input-bordered w-full"
-                                        )}
-                                        placeholder={`Pilihan ${index + 1}`}
+                                    <ReactQuill
+                                        theme="snow"
                                         value={choice.text}
-                                        onChange={(e) =>
-                                            handleChoiceChange(index, "text", e)
+                                        onChange={(value) =>
+                                            handleChoiceChange(
+                                                index,
+                                                "text",
+                                                value
+                                            )
                                         }
+                                        className="input input-bordered"
+                                        style={{
+                                            width: "100%",
+                                            height: "8rem",
+                                            marginBottom: "1rem",
+                                        }}
                                     />
                                     <label className="flex items-center gap-1">
                                         <input

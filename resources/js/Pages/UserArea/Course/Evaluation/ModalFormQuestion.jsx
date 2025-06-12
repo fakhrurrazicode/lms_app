@@ -6,6 +6,7 @@ import ReactModal from "react-modal";
 import { toast } from "react-toastify";
 import classNames from "classnames";
 import { FaPlus } from "react-icons/fa";
+import ReactQuill from "react-quill";
 
 export default function ModalFormQuestion({
     isOpen = false,
@@ -75,7 +76,7 @@ export default function ModalFormQuestion({
         setData("items", updated);
     };
 
-    const handleChoiceChange = (index, field, event) => {
+    const handleChoiceChange = (index, field, value) => {
         if (field === "is_correct") {
             const updated = data.items.map((item, i) => ({
                 ...item,
@@ -84,7 +85,7 @@ export default function ModalFormQuestion({
             setData("items", updated);
         } else {
             const updated = [...data.items];
-            updated[index][field] = event.target.value;
+            updated[index][field] = value;
             setData("items", updated);
         }
     };
@@ -180,13 +181,24 @@ export default function ModalFormQuestion({
                             <span className="label-text">Pertanyaan</span>
                         </div>
 
-                        <textarea
+                        {/* <textarea
                             className="textarea textarea-bordered h-24"
                             placeholder="Pertanyaan"
                             name="question"
                             onChange={inputChangeHandler}
                             value={data.question}
-                        ></textarea>
+                        ></textarea> */}
+
+                        <ReactQuill
+                            theme="snow"
+                            value={data.question}
+                            onChange={(value) => setData("question", value)}
+                            className="input input-bordered"
+                            style={{
+                                height: "16rem",
+                                marginBottom: "1rem",
+                            }}
+                        />
                         {errors.question && (
                             <div className="label">
                                 <span className="label-text-alt text-error">
@@ -204,8 +216,8 @@ export default function ModalFormQuestion({
                         </div>
                         {data.items?.map((choice, index) => (
                             <div key={index} className="mb-4">
-                                <div className="flex items-center gap-2">
-                                    <input
+                                <div className="flex justify-between items-center gap-6">
+                                    {/* <input
                                         type="text"
                                         className={classNames(
                                             "input input-bordered w-full"
@@ -215,6 +227,24 @@ export default function ModalFormQuestion({
                                         onChange={(e) =>
                                             handleChoiceChange(index, "text", e)
                                         }
+                                    /> */}
+
+                                    <ReactQuill
+                                        theme="snow"
+                                        value={choice.text}
+                                        onChange={(value) =>
+                                            handleChoiceChange(
+                                                index,
+                                                "text",
+                                                value
+                                            )
+                                        }
+                                        className="input input-bordered"
+                                        style={{
+                                            width: "100%",
+                                            height: "8rem",
+                                            marginBottom: "1rem",
+                                        }}
                                     />
                                     <label className="flex items-center gap-1">
                                         <input

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class EvaluationAttempt extends BaseModel
 {
     use HasFactory;
+    protected $appends = ['correct_answers'];
 
     protected $fillable = [
         'user_id',
@@ -33,5 +34,13 @@ class EvaluationAttempt extends BaseModel
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function getCorrectAnswersAttribute()
+    {
+        return Answer::where([
+            ['evaluation_attempt_id', '=', $this->id],
+            ['is_correct', '=', true]
+        ])->count();
     }
 }

@@ -13,6 +13,7 @@ use App\Models\CourseSection;
 use App\Models\EvaluationAttempt;
 use App\Http\Controllers\Controller;
 use App\Models\Choice;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class EvaluationController extends Controller
@@ -25,12 +26,16 @@ class EvaluationController extends Controller
         $user = Auth::user();
 
         $evaluation = $course_section->evaluation;
+        $evaluation->load('questions');
+
+
         $evaluation_attempt = EvaluationAttempt::where([
             ['user_id', '=', $user->id],
             ['evaluation_id', '=', $evaluation->id],
-        ])->first();
+        ])->orderBy('created_at', 'desc')->first();
 
         // return [$evaluation, $evaluation_attempt];
+        // $evaluation_attempt->load('answers');
 
         $course = Course::with(['course_sections' => function ($query) {
             $query->with(['course_lectures', 'evaluation']);
@@ -44,15 +49,23 @@ class EvaluationController extends Controller
 
         $next_course_section = CourseSection::where('id', '>', $course_section->id)->orderBy('id', 'ASC')->first();
 
-        $next_course_lecture = CourseLecture::where([
-            ['course_id', '=', $next_course_section->course_id],
-            ['course_section_id', '=', $next_course_section->id],
-            // ['id', '<', $course_lecture->id],
-        ])->orderBy('id', 'asc')->first();
+        if ($next_course_section) {
+            $next_course_lecture = CourseLecture::where([
+                ['course_id', '=', $next_course_section->course_id],
+                ['course_section_id', '=', $next_course_section->id],
+                // ['id', '<', $course_lecture->id],
+            ])->orderBy('id', 'asc')->first();
+        } else {
+            $next_course_lecture = null;
+        }
+
+
 
         // return [$prev_course_lecture, $next_course_lecture];
 
         // $evaluation = Evaluation::where('course_section_id', $course_section->id)->first();
+
+        // return $evaluation_attempt;
 
         return Inertia::render('LearningArea/Evaluation/Index', compact(
             'course',
@@ -84,10 +97,10 @@ class EvaluationController extends Controller
     {
         $user = Auth::user();
 
-        EvaluationAttempt::where([
-            ['user_id', '=', $user->id],
-            ['evaluation_id', '=', $evaluation->id],
-        ])->delete();
+        // EvaluationAttempt::where([
+        //     ['user_id', '=', $user->id],
+        //     ['evaluation_id', '=', $evaluation->id],
+        // ])->delete();
 
         $evaluation_attempt = EvaluationAttempt::create([
             'user_id' => $user->id,
@@ -142,6 +155,13 @@ class EvaluationController extends Controller
                 'is_correct' => $choice->is_correct
             ]);
         }
+
+        $evaluation_attempt = EvaluationAttempt::find($evaluation_attempt->id);
+
+        $evaluation_attempt->update([
+            'submitted_at' => Carbon::now(),
+            'passed' => $evaluation_attempt->correct_answer >= $evaluation->passing_score,
+        ]);
 
         return to_route('learning_area.course.course_section.evaluation.index', [
             'course' => $course,

@@ -12,6 +12,7 @@ import { AiOutlineEnter } from "react-icons/ai";
 import ModalForm from "./ModalForm";
 import ModalFormQuestion from "./ModalFormQuestion";
 import classNames from "classnames";
+import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 
 export default function Index({ course, course_sections }) {
     const [modalFormIsOpen, setModalFormIsOpen] = useState(false);
@@ -292,11 +293,11 @@ export default function Index({ course, course_sections }) {
                                                                                     ) => (
                                                                                         <tr>
                                                                                             <td className="pl-16">
-                                                                                                <div>
-                                                                                                    {
+                                                                                                <HtmlRenderer
+                                                                                                    htmlString={
                                                                                                         question.question
                                                                                                     }
-                                                                                                </div>
+                                                                                                />
                                                                                             </td>
                                                                                             <td>
                                                                                                 <ol
@@ -323,9 +324,13 @@ export default function Index({ course, course_sections }) {
                                                                                                                     }
                                                                                                                 )}
                                                                                                             >
-                                                                                                                {
-                                                                                                                    choice.text
-                                                                                                                }
+                                                                                                                <div className="inline-block">
+                                                                                                                    <HtmlRenderer
+                                                                                                                        htmlString={
+                                                                                                                            choice.text
+                                                                                                                        }
+                                                                                                                    />
+                                                                                                                </div>
                                                                                                             </li>
                                                                                                         )
                                                                                                     )}

@@ -211,13 +211,23 @@ export default function ModalForm({
                         <div className="label">
                             <span className="label-text">Instruksi</span>
                         </div>
-                        <textarea
+                        {/* <textarea
                             className="textarea textarea-bordered h-64"
                             placeholder="Instruksi"
                             name="instructions"
                             onChange={inputChangeHandler}
                             value={data.instructions}
-                        ></textarea>
+                        ></textarea> */}
+                        <ReactQuill
+                            theme="snow"
+                            value={data.instructions}
+                            onChange={(value) => setData("instructions", value)}
+                            className="input input-bordered"
+                            style={{
+                                height: "16rem",
+                                marginBottom: "1rem",
+                            }}
+                        />
                         {errors.instructions && (
                             <div className="label">
                                 <span className="label-text-alt text-error">
