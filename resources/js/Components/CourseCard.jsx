@@ -120,19 +120,29 @@ export default function CourseCard({ course }) {
                     </p>
                 ) : (
                     <p className="mb-2 font-bold text-sm">
-                        {course.discount_percentage ? (
+                        {course.price == 0 ? (
                             <>
-                                <span className="text-primary">
-                                    {rupiah(course.discounted_price)}
-                                </span>{" "}
-                                <span className="text-gray-400 line-through">
-                                    / {rupiah(course.price)}
+                                <span className="text-success text-xl">
+                                    Gratis
                                 </span>
                             </>
                         ) : (
-                            <span className="text-primary">
-                                {rupiah(course.price)}
-                            </span>
+                            <>
+                                {course.discount_percentage ? (
+                                    <>
+                                        <span className="text-primary">
+                                            {rupiah(course.discounted_price)}
+                                        </span>{" "}
+                                        <span className="text-gray-400 line-through">
+                                            / {rupiah(course.price)}
+                                        </span>
+                                    </>
+                                ) : (
+                                    <span className="text-primary">
+                                        {rupiah(course.price)}
+                                    </span>
+                                )}
+                            </>
                         )}
                     </p>
                 )}

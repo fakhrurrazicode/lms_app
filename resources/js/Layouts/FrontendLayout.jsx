@@ -198,7 +198,7 @@ export default function FrontendLayout({ header, children }) {
                                                                 (item) => {
                                                                     let itemable =
                                                                         item.itemable;
-                                                                    return (
+                                                                    return itemable ? (
                                                                         <div
                                                                             key={
                                                                                 item.id
@@ -286,6 +286,8 @@ export default function FrontendLayout({ header, children }) {
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                    ) : (
+                                                                        <></>
                                                                     );
                                                                 }
                                                             )}

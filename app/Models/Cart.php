@@ -21,7 +21,7 @@ class Cart extends BaseCart
 
     public function items(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(CartItem::class);
+        return $this->hasMany(CartItem::class)->whereHas('itemable');
     }
 
     public function user()
@@ -35,7 +35,8 @@ class Cart extends BaseCart
         $items = $this->items;
 
         foreach ($items as $item) {
-            $total_price += $item->itemable->price * $item->quantity;
+
+            $total_price += $item->itemable ? $item->itemable->price * $item->quantity : 0;
         }
 
         return $total_price;
@@ -47,7 +48,7 @@ class Cart extends BaseCart
         $items = $this->items;
 
         foreach ($items as $item) {
-            $total_discounted_price += $item->itemable->discounted_price * $item->quantity;
+            $total_discounted_price += $item->itemable ? ($item->itemable->discounted_price * $item->quantity) : 0;
         }
 
         return $total_discounted_price;

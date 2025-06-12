@@ -4,7 +4,7 @@ import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
 import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion";
 import "react-tabs/style/react-tabs.css";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
     FaBook,
     FaCartPlus,
@@ -21,6 +21,7 @@ import {
     FaFacebookSquare,
     FaInstagramSquare,
     FaYoutubeSquare,
+    FaDoorOpen,
 } from "react-icons/fa";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import {
@@ -45,6 +46,7 @@ import Modal from "@/Components/Modal";
 import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 
 const AccordionItem = ({ header, ...rest }) => (
+    // const first = useRef(second);
     <Item
         {...rest}
         header={({ state: { isEnter } }) => (
@@ -810,35 +812,52 @@ export default function Course() {
                                     </div>
                                 ) : (
                                     <>
-                                        {course.discount_percentage ? (
-                                            <div className="mb-6 flex justify-between">
-                                                <div className="text-xl font-bold text-primary leading-[25px]">
-                                                    <span>
-                                                        {rupiah(
-                                                            course.discounted_price
-                                                        )}
-                                                    </span>{" "}
-                                                    <span className="text-sm text-gray-500 font-semibold line-through">
-                                                        / {rupiah(course.price)}
-                                                    </span>
+                                        {course.price == 0 ? (
+                                            <>
+                                                <div className="mb-6 flex justify-between">
+                                                    <div className="text-3xl font-bold text-success leading-[25px]">
+                                                        <span>Gratis</span>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <span className="bg-secondary text-xs rounded-full px-3 py-1 text-white">
-                                                        {
-                                                            course.discount_percentage
-                                                        }
-                                                        % OFF
-                                                    </span>
-                                                </div>
-                                            </div>
+                                            </>
                                         ) : (
-                                            <div className="mb-6 flex justify-between">
-                                                <div className="text-3xl font-bold text-primary leading-[25px]">
-                                                    <span>
-                                                        {rupiah(course.price)}
-                                                    </span>
-                                                </div>
-                                            </div>
+                                            <>
+                                                {course.discount_percentage ? (
+                                                    <div className="mb-6 flex justify-between">
+                                                        <div className="text-xl font-bold text-primary leading-[25px]">
+                                                            <span>
+                                                                {rupiah(
+                                                                    course.discounted_price
+                                                                )}
+                                                            </span>{" "}
+                                                            <span className="text-sm text-gray-500 font-semibold line-through">
+                                                                /{" "}
+                                                                {rupiah(
+                                                                    course.price
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span className="bg-secondary text-xs rounded-full px-3 py-1 text-white">
+                                                                {
+                                                                    course.discount_percentage
+                                                                }
+                                                                % OFF
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className="mb-6 flex justify-between">
+                                                        <div className="text-3xl font-bold text-primary leading-[25px]">
+                                                            <span>
+                                                                {rupiah(
+                                                                    course.price
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </>
                                         )}
                                     </>
                                 )}
@@ -849,7 +868,7 @@ export default function Course() {
                                             <>
                                                 <Link
                                                     href={route(
-                                                        "learning_area.course.index",
+                                                        "learning_area.course.show",
                                                         {
                                                             course: course.id,
                                                         }
@@ -867,76 +886,129 @@ export default function Course() {
                                             </>
                                         ) : (
                                             <>
-                                                {!itemIsExitsOnCart(
-                                                    course,
-                                                    auth.cart
-                                                ) ? (
-                                                    <Link
-                                                        href={route(
-                                                            "cart.store"
-                                                        )}
-                                                        data={{
-                                                            itemable_type:
-                                                                "App\\Models\\Course",
-                                                            itemable_id:
-                                                                course.id,
-                                                        }}
-                                                        method="POST"
-                                                        onSuccess={() => {
-                                                            toast.success(
-                                                                "Berhasil di tambahkan ke keranjang"
-                                                            );
-                                                        }}
-                                                        onError={() => {
-                                                            toast.error(
-                                                                "Gagal menambahkan ke keranjang"
-                                                            );
-                                                        }}
-                                                        preserveScroll={true}
-                                                        preserveState={true}
-                                                        className="btn flex justify-center items-center btn-primary w-full mb-3"
-                                                    >
-                                                        <FaCartPlus />
-                                                        <span>
-                                                            Tambahkan ke
-                                                            keranjang
-                                                        </span>
-                                                    </Link>
+                                                {course.price == 0 ? (
+                                                    <>
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.preventDefault;
+                                                                router.post(
+                                                                    route(
+                                                                        "join_course"
+                                                                    ),
+                                                                    {
+                                                                        course_id:
+                                                                            course.id,
+                                                                    },
+                                                                    {
+                                                                        preserveState: true,
+                                                                        preserveScroll: true,
+                                                                        onError:
+                                                                            (
+                                                                                error
+                                                                            ) => {
+                                                                                toast.error(
+                                                                                    error.course_id
+                                                                                );
+                                                                            },
+                                                                        onSuccess:
+                                                                            (
+                                                                                error
+                                                                            ) => {},
+                                                                    }
+                                                                );
+                                                            }}
+                                                            preserveState={true}
+                                                            className="btn flex justify-center items-center btn-success w-full mb-3"
+                                                        >
+                                                            <FaDoorOpen />
+                                                            <span>
+                                                                Bergabung Ke
+                                                                Dalam Kelas
+                                                            </span>
+                                                        </button>
+
+                                                        <span className="join-course-valiation text-error"></span>
+                                                    </>
                                                 ) : (
-                                                    <Link
-                                                        href={route(
-                                                            "cart.destroy"
+                                                    <>
+                                                        {!itemIsExitsOnCart(
+                                                            course,
+                                                            auth.cart
+                                                        ) ? (
+                                                            <Link
+                                                                href={route(
+                                                                    "cart.store"
+                                                                )}
+                                                                data={{
+                                                                    itemable_type:
+                                                                        "App\\Models\\Course",
+                                                                    itemable_id:
+                                                                        course.id,
+                                                                }}
+                                                                method="POST"
+                                                                onSuccess={() => {
+                                                                    toast.success(
+                                                                        "Berhasil di tambahkan ke keranjang"
+                                                                    );
+                                                                }}
+                                                                onError={() => {
+                                                                    toast.error(
+                                                                        "Gagal menambahkan ke keranjang"
+                                                                    );
+                                                                }}
+                                                                preserveScroll={
+                                                                    true
+                                                                }
+                                                                preserveState={
+                                                                    true
+                                                                }
+                                                                className="btn flex justify-center items-center btn-primary w-full mb-3"
+                                                            >
+                                                                <FaCartPlus />
+                                                                <span>
+                                                                    Tambahkan ke
+                                                                    keranjang
+                                                                </span>
+                                                            </Link>
+                                                        ) : (
+                                                            <Link
+                                                                href={route(
+                                                                    "cart.destroy"
+                                                                )}
+                                                                data={{
+                                                                    itemable_type:
+                                                                        "App\\Models\\Course",
+                                                                    itemable_id:
+                                                                        course.id,
+                                                                }}
+                                                                method="DELETE"
+                                                                onSuccess={() => {
+                                                                    toast.success(
+                                                                        "Berhasil di hapus dari keranjang"
+                                                                    );
+                                                                }}
+                                                                onError={() => {
+                                                                    toast.error(
+                                                                        "Gagal menghapus dari keranjang"
+                                                                    );
+                                                                }}
+                                                                preserveScroll={
+                                                                    true
+                                                                }
+                                                                preserveState={
+                                                                    true
+                                                                }
+                                                                className="btn flex justify-center items-center btn-error w-full mb-3"
+                                                            >
+                                                                <FaTrash />
+                                                                <span>
+                                                                    Hapus Dari
+                                                                    Keranjang
+                                                                </span>
+                                                            </Link>
                                                         )}
-                                                        data={{
-                                                            itemable_type:
-                                                                "App\\Models\\Course",
-                                                            itemable_id:
-                                                                course.id,
-                                                        }}
-                                                        method="DELETE"
-                                                        onSuccess={() => {
-                                                            toast.success(
-                                                                "Berhasil di hapus dari keranjang"
-                                                            );
-                                                        }}
-                                                        onError={() => {
-                                                            toast.error(
-                                                                "Gagal menghapus dari keranjang"
-                                                            );
-                                                        }}
-                                                        preserveScroll={true}
-                                                        preserveState={true}
-                                                        className="btn flex justify-center items-center btn-error w-full mb-3"
-                                                    >
-                                                        <FaTrash />
-                                                        <span>
-                                                            Hapus Dari Keranjang
-                                                        </span>
-                                                    </Link>
+                                                    </>
                                                 )}
-                                                {/* <button className="btn flex justify-center items-center btn-secondary w-full">
-                                                    <span>Beli Sekarang</span>
-                                                </button> */}
                                             </>
                                         )}
                                     </div>

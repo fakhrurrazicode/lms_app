@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('course_id');
             $table->integer('user_id');
-            $table->integer('order_id');
-            $table->integer('order_item_id');
+            $table->integer('order_id')->nullable();
+            $table->integer('order_item_id')->nullable();;
             $table->double('progress')->default(0);
             $table->timestamps();
         });

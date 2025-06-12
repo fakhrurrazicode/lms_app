@@ -19,6 +19,7 @@ use App\Http\Requests\PaginateRequest;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\BecomeInstructorRequest;
+use App\Http\Requests\JoinCourseRequest;
 
 class PageController extends Controller
 {
@@ -81,6 +82,33 @@ class PageController extends Controller
 
         // return $course;
         return Inertia::render('Course', compact('course', 'more_courses'));
+    }
+
+
+    public function join_course(JoinCourseRequest $request)
+    {
+        $enrollment_exists = Enrollment::where([
+            'course_id' => $request->course_id,
+            'user_id' => Auth::user()->id,
+        ])->first();
+
+
+        if (!$enrollment_exists) {
+            Enrollment::create([
+                'course_id' => $request->course_id,
+                'user_id' => Auth::user()->id,
+
+            ]);
+
+
+            return to_route('learning_area.course.show', [
+                'course' => $request->course_id
+            ]);
+        } else {
+            return to_route('learning_area.course.show', [
+                'course' => $request->course_id
+            ]);
+        }
     }
 
     public function become_instructor()
