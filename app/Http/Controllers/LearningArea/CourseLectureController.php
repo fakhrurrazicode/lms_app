@@ -69,7 +69,7 @@ class CourseLectureController extends Controller
 
 
         // return [$prev_course_lecture, $next_course_lecture];
-        // return $course_lecture;
+        // return $course;
 
 
         return Inertia::render('LearningArea/CourseLecture/Show', compact(

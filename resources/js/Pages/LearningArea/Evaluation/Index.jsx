@@ -16,6 +16,7 @@ export default function Show({
     course,
     course_section,
     course_lecture,
+    next_course_section,
     prev_course_lecture,
     next_course_lecture,
     evaluation,
@@ -90,7 +91,15 @@ export default function Show({
                                         <table className="table table-zebra">
                                             <tbody>
                                                 <tr>
-                                                    <th>Skor</th>
+                                                    <th>Passing Skor</th>
+                                                    <td>
+                                                        {
+                                                            evaluation.passing_score
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Skor Peserta</th>
                                                     <td>
                                                         {
                                                             evaluation_attempt.correct_answers
@@ -126,9 +135,15 @@ export default function Show({
                                                     </th>
                                                     <td>
                                                         <h3 className="text-2xl font-bold">
-                                                            <span className="text-success">
-                                                                Lulus
-                                                            </span>
+                                                            {evaluation_attempt.passed ? (
+                                                                <span className="text-success">
+                                                                    Lulus
+                                                                </span>
+                                                            ) : (
+                                                                <span className="text-error">
+                                                                    Belum Lulus
+                                                                </span>
+                                                            )}
                                                         </h3>
                                                     </td>
                                                 </tr>
@@ -186,7 +201,7 @@ export default function Show({
                             </Link>
                         </div>
                         <div>
-                            {next_course_lecture ? (
+                            {next_course_lecture && next_course_section ? (
                                 <Link
                                     href={route(
                                         "learning_area.course.course_section.course_lecture.show",
@@ -205,7 +220,16 @@ export default function Show({
                                     Selanjutnya <FaChevronRight />
                                 </Link>
                             ) : (
-                                <></>
+                                <Link
+                                    href={route("learning_area.course.show", {
+                                        course: course.id,
+                                    })}
+                                    // preserveScroll={true}
+                                    preserveState={true}
+                                    className="btn btn-success"
+                                >
+                                    Selesai <FaCheck />
+                                </Link>
                             )}
                         </div>
                     </div>

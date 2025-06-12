@@ -17,7 +17,7 @@ export default function ModalForm({
     const formRef = useRef(null);
     const fileInputRef = useRef(null);
 
-    const { data, setData, post, errors, reset, clearErrors, processing } =
+    const { data, setData, post, put, errors, reset, clearErrors, processing } =
         useForm({
             course_section_id: evaluation
                 ? evaluation.course_section_id
@@ -82,7 +82,7 @@ export default function ModalForm({
         e.preventDefault();
 
         if (evaluation) {
-            post(
+            put(
                 route("user_area.evaluation.update", {
                     evaluation,
                 }),

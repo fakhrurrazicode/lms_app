@@ -59,17 +59,10 @@ class EvaluationController extends Controller
             $next_course_lecture = null;
         }
 
-
-
-        // return [$prev_course_lecture, $next_course_lecture];
-
-        // $evaluation = Evaluation::where('course_section_id', $course_section->id)->first();
-
-        // return $evaluation_attempt;
-
         return Inertia::render('LearningArea/Evaluation/Index', compact(
             'course',
             'course_section',
+            'next_course_section',
             'prev_course_lecture',
             'next_course_lecture',
             'evaluation',
@@ -157,10 +150,9 @@ class EvaluationController extends Controller
         }
 
         $evaluation_attempt = EvaluationAttempt::find($evaluation_attempt->id);
-
         $evaluation_attempt->update([
             'submitted_at' => Carbon::now(),
-            'passed' => $evaluation_attempt->correct_answer >= $evaluation->passing_score,
+            'passed' => $evaluation_attempt->correct_answers >= $evaluation->passing_score ? 1 : 0,
         ]);
 
         return to_route('learning_area.course.course_section.evaluation.index', [

@@ -81,7 +81,7 @@ class EvaluationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(EvaluationUpdateRequest $request, Course $course, CourseSection $course_section, Evaluation $evaluation)
+    public function update(EvaluationUpdateRequest $request, Evaluation $evaluation)
     {
         $data = $request->validated();
         $evaluation->update($data);

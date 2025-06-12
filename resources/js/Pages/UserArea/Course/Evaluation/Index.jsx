@@ -194,9 +194,11 @@ export default function Index({ course, course_sections }) {
                                                                             </td>
 
                                                                             <td>
-                                                                                {
-                                                                                    evaluation.instructions
-                                                                                }
+                                                                                <HtmlRenderer
+                                                                                    htmlString={
+                                                                                        evaluation.instructions
+                                                                                    }
+                                                                                />
                                                                             </td>
                                                                             <td>
                                                                                 {

@@ -16,6 +16,7 @@ import {
     PlyrLayout,
     plyrLayoutIcons,
 } from "@vidstack/react/player/layouts/plyr";
+import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 
 export default function Show({
     course,
@@ -98,7 +99,9 @@ export default function Show({
                         </MediaPlayer>
                     </div>
 
-                    <div className="mb-6">{course_lecture.description}</div>
+                    <div className="mb-6">
+                        <HtmlRenderer htmlString={course_lecture.description} />
+                    </div>
 
                     <div className="flex justify-between">
                         <div>
@@ -109,7 +112,7 @@ export default function Show({
                                         {
                                             course: prev_course_lecture.course_id,
                                             course_section:
-                                                prev_course_lecture.course_id,
+                                                prev_course_lecture.course_section_id,
                                             course_lecture:
                                                 prev_course_lecture.id,
                                         }
