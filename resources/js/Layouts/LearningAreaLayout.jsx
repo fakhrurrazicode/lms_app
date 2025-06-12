@@ -58,15 +58,16 @@ export default function LearningAreaLayout({ children, course }) {
                                         selectedClassName="border-none bg-base-200"
                                     >
                                         <FaFileAlt />
-                                        <span>Gambaran Umum</span>
+                                        <span>Konten Kursus</span>
                                     </Tab>
                                     <Tab
-                                        className="flex lg:hidden px-6 py-4 text-sm justify-center items-center gap-2 text-center cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-base-300 "
+                                        className="flex px-6 py-4 text-sm justify-center items-center gap-2 text-center cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-base-300 "
                                         selectedClassName="border-none bg-base-200"
                                     >
                                         <FaFileAlt />
-                                        <span>Konten Kursus</span>
+                                        <span>Gambaran Umum</span>
                                     </Tab>
+
                                     <Tab
                                         className="flex px-6 py-4 text-sm justify-center items-center gap-2 text-center cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-base-300 "
                                         selectedClassName="border-none bg-base-200"
@@ -83,6 +84,16 @@ export default function LearningAreaLayout({ children, course }) {
                                         <span>Ulasan</span>
                                     </Tab>
                                 </TabList>
+
+                                <TabPanel className="">
+                                    <div>
+                                        <div className="card bg-base-200 rounded-none">
+                                            <div className="card-body">
+                                                <CourseNav course={course} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </TabPanel>
 
                                 <TabPanel>
                                     <div>
@@ -125,16 +136,6 @@ export default function LearningAreaLayout({ children, course }) {
                                                         />
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </TabPanel>
-
-                                <TabPanel className="block lg:hidden">
-                                    <div>
-                                        <div className="card bg-base-200 rounded-none">
-                                            <div className="card-body">
-                                                <CourseNav course={course} />
                                             </div>
                                         </div>
                                     </div>

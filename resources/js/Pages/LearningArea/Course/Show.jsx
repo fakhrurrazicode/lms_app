@@ -17,9 +17,11 @@ import {
     FaLock,
     FaCertificate,
     FaFileAlt,
+    FaPlay,
 } from "react-icons/fa";
 import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
+import { Link } from "@inertiajs/react";
 
 export default function Show({ course }) {
     return (
@@ -50,7 +52,18 @@ export default function Show({ course }) {
                         </div>
                     </div>
 
-                    <h4 className="text-4xl font-bold mb-8">{course.title}</h4>
+                    <div className="lg:flex justify-between items-center mb-8 space-y-8 lg:space-y-0">
+                        <h4 className="text-4xl font-bold">{course.title}</h4>
+                        <Link
+                            href={route("learning_area.course.start", {
+                                course: course.id,
+                            })}
+                            className="btn btn-primary w-full lg:w-auto"
+                        >
+                            <FaPlay />
+                            Mulai Belajar
+                        </Link>
+                    </div>
 
                     <div className="text-gray-800 dark:text-gray-200 font-normal text-lg mb-[30px]">
                         <HtmlRenderer htmlString={course.description} />

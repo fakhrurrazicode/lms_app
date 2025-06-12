@@ -108,7 +108,7 @@ export default function EnrolledCourseCard({ enrollment }) {
                         <FaBook />
                         <span>Belajar Sekarang</span>
                     </Link>
-                    <Link
+                    {/* <Link
                         // href={route("learning_area.course_review.index", {
                         //     course: course,
                         // })}
@@ -118,7 +118,7 @@ export default function EnrolledCourseCard({ enrollment }) {
                     >
                         <FaStar />
                         <span>Review</span>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>

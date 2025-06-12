@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Learning;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CourseTrack;
 use Inertia\Inertia;
 
 class CourseController extends Controller
@@ -16,6 +17,8 @@ class CourseController extends Controller
     {
         //
     }
+
+
 
     /**
      * Show the form for creating a new resource.

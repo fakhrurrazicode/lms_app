@@ -174,6 +174,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => '/learning_area', 'as' => 'learning_area.'], function () {
         Route::resource('course', LearningAreaCourseController::class)->only(['index', 'show']);
+        Route::get('course/{course}/start', [LearningAreaCourseController::class, 'start'])->name('course.start');
         // Route::resource('course.course_section', LearningAreaCourseSectionController::class)->only(['show']);
         Route::resource('course.course_section.course_lecture', LearningAreaCourseLectureController::class)->only(['show']);
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish', [LearningAreaCourseLectureController::class, 'finish'])->name('course.course_section.course_lecture.finish');
