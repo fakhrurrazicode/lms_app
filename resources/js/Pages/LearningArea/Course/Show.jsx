@@ -22,6 +22,7 @@ import {
 import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 import { Link } from "@inertiajs/react";
+import { GrPlay, GrResume } from "react-icons/gr";
 
 export default function Show({ course }) {
     return (
@@ -60,8 +61,17 @@ export default function Show({ course }) {
                             })}
                             className="btn btn-primary w-full lg:w-auto"
                         >
-                            <FaPlay />
-                            Mulai Belajar
+                            {course.course_tracks.length ? (
+                                <>
+                                    <GrResume />
+                                    Lanjut Belajar
+                                </>
+                            ) : (
+                                <>
+                                    <GrPlay />
+                                    Mulai Belajar
+                                </>
+                            )}
                         </Link>
                     </div>
 

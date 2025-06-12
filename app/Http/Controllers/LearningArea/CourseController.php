@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\CourseTrack;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CourseLecture;
 
 class CourseController extends Controller
 {
@@ -20,15 +21,29 @@ class CourseController extends Controller
 
     public function start(Course $course)
     {
-        $latest_course_tracks = CourseTrack::where([
+        $latest_course_track = CourseTrack::where([
             ['course_id', '=', $course->id]
         ])->orderBy('created_at', 'DESC')->first();
 
-        return to_route('learning_area.course.course_section.course_lecture.show', [
-            'course' => $latest_course_tracks->course_id,
-            'course_section' => $latest_course_tracks->course_section_id,
-            'course_lecture' => $latest_course_tracks->course_lecture_id,
-        ]);
+
+
+        if ($latest_course_track) {
+            return to_route('learning_area.course.course_section.course_lecture.show', [
+                'course' => $latest_course_track->course_id,
+                'course_section' => $latest_course_track->course_section_id,
+                'course_lecture' => $latest_course_track->course_lecture_id,
+            ]);
+        } else {
+            $first_course_lecture = CourseLecture::where([
+                ['course_id', '=', $course->id],
+            ])->orderBy('id', 'ASC')->first();
+
+            return to_route('learning_area.course.course_section.course_lecture.show', [
+                'course' => $first_course_lecture->course_id,
+                'course_section' => $first_course_lecture->course_section_id,
+                'course_lecture' => $first_course_lecture->id,
+            ]);
+        }
     }
 
     /**
@@ -57,6 +72,7 @@ class CourseController extends Controller
             'course_category',
             'course_sections.course_lectures.course_track',
             'course_sections.evaluation',
+            'course_tracks'
         ]);
 
         // return $course;
