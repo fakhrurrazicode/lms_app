@@ -22,7 +22,7 @@ class InstructorProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'bio' => ['required', 'string', 'max:255'],
+            'bio' => ['required', 'string'],
             'facebook_url' => ['required', 'url:http,https', 'string', 'max:255'],
             'instagram_url' => ['required', 'url:http,https', 'string', 'max:255'],
             'youtube_url' => ['required', 'url:http,https', 'string', 'max:255'],

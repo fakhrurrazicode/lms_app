@@ -1,12 +1,13 @@
 import { Link, useForm } from "@inertiajs/react";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { Save } from "lucide-react";
 import ReactModal from "react-modal";
 import { toast } from "react-toastify";
 import classNames from "classnames";
 import ReactQuill from "react-quill";
+import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function ModalForm({
     isOpen = false,
@@ -17,6 +18,19 @@ export default function ModalForm({
 }) {
     const formRef = useRef(null);
     const fileInputRef = useRef(null);
+
+    const [videoFile, setVideoFile] = useState(null);
+    const [videoPreview, setVideoPreview] = useState(null);
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setVideoFile(file);
+        if (file && file.type.startsWith("video/")) {
+            setVideoPreview(URL.createObjectURL(file));
+        } else {
+            setVideoPreview(null);
+        }
+    };
 
     const { data, setData, post, errors, reset, clearErrors, processing } =
         useForm({
@@ -185,6 +199,20 @@ export default function ModalForm({
                                     </span>
                                 </div>
                             )}
+
+                            {videoPreview && (
+                                <div>
+                                    <h2 className="font-semibold mb-2">
+                                        Preview:
+                                    </h2>
+                                    <video
+                                        src={videoPreview}
+                                        controls
+                                        width="400"
+                                        className="rounded shadow"
+                                    />
+                                </div>
+                            )}
                         </label>
 
                         <label className="form-control w-full mb-6">
@@ -216,7 +244,7 @@ export default function ModalForm({
                                     Deskripsi Pelajaran
                                 </span>
                             </div>
-                            <ReactQuill
+                            {/* <ReactQuill
                                 theme="snow"
                                 value={data.description}
                                 onChange={(value) =>
@@ -227,6 +255,12 @@ export default function ModalForm({
                                     minHeight: "16rem",
                                     marginBottom: "1rem",
                                 }}
+                            /> */}
+                            <TinyEditor
+                                value={data.description}
+                                onChange={(value) =>
+                                    setData("description", value)
+                                }
                             />
                             {errors.description && (
                                 <div className="label">

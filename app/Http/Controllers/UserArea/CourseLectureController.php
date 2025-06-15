@@ -13,42 +13,25 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CourseLectureStoreRequest;
 use App\Http\Requests\CourseLectureUpdateRequest;
-
+use App\Models\Attachment;
 
 class CourseLectureController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, Course $course)
-    {
-        $course->load(['course_sections' => function ($query) {
-            $query->orderBy('id', 'ASC');
-        }]);
-
-        // return $course;
-
-        $course_sections = CourseSection::whereHas('course_lectures')->where([
-            'course_id' => $course->id,
-        ])->orderBy('id', 'ASC')
-            ->with(['course_lectures.attachments'])
-            ->get();
-
-        // return $course_sections;
-
-        return Inertia::render('UserArea/Course/CourseLecture/Index', [
-            'course' => $course,
-            'course_sections' => $course_sections,
-        ]);
-        // return Inertia::render('UserArea/CourseSection/Index', compact('course', 'course_section'));
-    }
+    public function index(Request $request, Course $course, CourseSection $course_section) {}
 
     /**
      * Show the form for creating a new resource.
      */
     public function create(Course $course, CourseSection $course_section)
     {
-        return Inertia::render('UserArea/CourseLecture/Create', compact('course', 'course_section'));
+
+        $course->load('course_sections');
+
+        // return $course;
+        return Inertia::render('UserArea/Course/CourseSection/CourseLecture/Create', compact('course', 'course_section'));
     }
 
     /**
@@ -102,7 +85,9 @@ class CourseLectureController extends Controller
             }
         }
 
-        // return response or redirect if needed
+        // return to_route('user_area.course.course_section.index', [
+        //     'course' => $course->id
+        // ]);
     }
 
 
@@ -119,7 +104,11 @@ class CourseLectureController extends Controller
      */
     public function edit(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
     {
-        return Inertia::render('UserArea/CourseLecture/Edit', compact('course', 'course_section', 'course_lecture'));
+        $course->load('course_sections');
+
+        $course_lecture->load('attachments');
+        // return $course_lecture;
+        return Inertia::render('UserArea/Course/CourseSection/CourseLecture/Edit', compact('course', 'course_section', 'course_lecture'));
     }
 
     /**
@@ -127,8 +116,10 @@ class CourseLectureController extends Controller
      */
     public function update(CourseLectureUpdateRequest $request, Course $course, CourseSection $course_section, CourseLecture $course_lecture)
     {
+
+
         $data = $request->validated();
-        unset($data['video']);
+        unset($data['video'], $data['attachments'], $data['removed_attachment_ids']); // Remove file from mass-assignment
         if ($request->hasFile('video')) {
             $data['video'] = $request->file('video')->store('videos', 'public');
             $full_path = storage_path('app/public/' . $data['video']);
@@ -157,6 +148,26 @@ class CourseLectureController extends Controller
         //     'course' => $course,
         //     'course_section' => $course_section,
         // ]);
+
+        foreach ($request->removed_attachment_ids ?? [] as $attachment_id) {
+            $attachment = Attachment::find($attachment_id);
+            if ($attachment && $attachment->attachable_type == CourseLecture::class && $attachment->attachable_id === $course_lecture->id) {
+                // Storage::delete($attachment->file);
+                $attachment->delete();
+            }
+        }
+
+        // Upload and attach files (attachments)
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $file) {
+                $path = $file->store('attachments', 'public');
+
+                $course_lecture->attachments()->create([
+                    'file' => $path,
+                    'filename' => $file->getClientOriginalName(),
+                ]);
+            }
+        }
     }
 
     /**
@@ -165,10 +176,6 @@ class CourseLectureController extends Controller
     public function destroy(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
     {
         $course_lecture->delete();
-        // return to_route('user_area.course_section.index', [
-        //     'course' => $course,
-        //     'course_section' => $course_section,
-        // ]);
     }
 
     public function set_as_preview(Request $request, Course $course, CourseSection $course_section, CourseLecture $course_lecture)

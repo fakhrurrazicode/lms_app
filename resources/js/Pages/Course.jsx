@@ -618,7 +618,7 @@ export default function Course() {
                                     <div className="py-8">
                                         <div className="card bg-base-100 rounded-none">
                                             <div className="card-body">
-                                                <div className="flex items-center gap-4">
+                                                <div className="flex gap-6">
                                                     <div className="avatar">
                                                         <Link
                                                             href={route(
@@ -642,7 +642,7 @@ export default function Course() {
                                                     </div>
 
                                                     <div>
-                                                        <h3 className="mb-2 font-bold text-xl">
+                                                        <h3 className="font-bold text-xl mb-4">
                                                             <Link
                                                                 href={route(
                                                                     "instructor_info",
@@ -660,23 +660,8 @@ export default function Course() {
                                                                 }
                                                             </Link>
                                                         </h3>
-                                                        <div className="prose text-sm mb-3">
-                                                            {course.instructor
-                                                                .instructor_info ? (
-                                                                <HtmlRenderer
-                                                                    htmlString={
-                                                                        course
-                                                                            .instructor
-                                                                            .instructor_info
-                                                                            .bio
-                                                                    }
-                                                                />
-                                                            ) : (
-                                                                ""
-                                                            )}
-                                                        </div>
 
-                                                        <div className="flex gap-2 flex-wrap">
+                                                        <div className="flex gap-2 flex-wrap mb-6">
                                                             {course.instructor
                                                                 .instructor_info &&
                                                             course.instructor
@@ -754,6 +739,19 @@ export default function Course() {
                                                             ) : (
                                                                 ""
                                                             )}
+                                                        </div>
+
+                                                        <div className="mb-6">
+                                                            <div className="mb-6 prose text-sm">
+                                                                <HtmlRenderer
+                                                                    htmlString={
+                                                                        course
+                                                                            .instructor
+                                                                            .instructor_info
+                                                                            .bio
+                                                                    }
+                                                                />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

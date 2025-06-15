@@ -3,6 +3,7 @@ import React from "react";
 import { useForm, Link, Head } from "@inertiajs/react";
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import ReactQuill from "react-quill";
+import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function Create() {
     const { data, setData, post, processing, errors } = useForm({
@@ -56,7 +57,7 @@ export default function Create() {
                                             )
                                         }
                                     /> */}
-                                    <ReactQuill
+                                    {/* <ReactQuill
                                         theme="snow"
                                         value={data.description}
                                         onChange={(value) =>
@@ -67,6 +68,12 @@ export default function Create() {
                                             minHeight: "16rem",
                                             marginBottom: "1rem",
                                         }}
+                                    /> */}
+                                    <TinyEditor
+                                        value={data.description}
+                                        onChange={(value) =>
+                                            setData("description", value)
+                                        }
                                     />
                                     {errors.description && (
                                         <p className="text-error text-sm">

@@ -53,10 +53,10 @@ export default function CourseManageTab({ course }) {
                         }
                     )}
                 >
-                    Bagian
+                    Bagian & Pelajaran
                 </Link>
 
-                <Link
+                {/* <Link
                     preserveScroll={true}
                     preserveState={true}
                     href={route("user_area.course.course_lecture.index", {
@@ -75,9 +75,9 @@ export default function CourseManageTab({ course }) {
                     )}
                 >
                     Pelajaran
-                </Link>
+                </Link> */}
 
-                <Link
+                {/* <Link
                     preserveScroll={true}
                     preserveState={true}
                     href={route("user_area.course.evaluation.index", {
@@ -96,7 +96,7 @@ export default function CourseManageTab({ course }) {
                     )}
                 >
                     Evaluasi
-                </Link>
+                </Link> */}
 
                 {/* <Link
                     preserveScroll={true}

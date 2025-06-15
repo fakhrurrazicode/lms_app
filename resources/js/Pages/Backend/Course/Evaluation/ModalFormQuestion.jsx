@@ -6,6 +6,7 @@ import ReactModal from "react-modal";
 import { toast } from "react-toastify";
 import classNames from "classnames";
 import { FaPlus } from "react-icons/fa";
+import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function ModalFormQuestion({
     isOpen = false,
@@ -180,7 +181,7 @@ export default function ModalFormQuestion({
                             <span className="label-text">Pertanyaan</span>
                         </div>
 
-                        <ReactQuill
+                        {/* <ReactQuill
                             theme="snow"
                             value={data.question}
                             onChange={(value) => setData("question", value)}
@@ -189,6 +190,10 @@ export default function ModalFormQuestion({
                                 height: "16rem",
                                 marginBottom: "1rem",
                             }}
+                        /> */}
+                        <TinyEditor
+                            value={data.question}
+                            onChange={(value) => setData("question", value)}
                         />
                         {errors.question && (
                             <div className="label">
@@ -208,7 +213,7 @@ export default function ModalFormQuestion({
                         {data.items?.map((choice, index) => (
                             <div key={index} className="mb-4">
                                 <div className="flex items-center gap-2">
-                                    <ReactQuill
+                                    {/* <ReactQuill
                                         theme="snow"
                                         value={choice.text}
                                         onChange={(value) =>
@@ -224,6 +229,16 @@ export default function ModalFormQuestion({
                                             height: "8rem",
                                             marginBottom: "1rem",
                                         }}
+                                    /> */}
+                                    <TinyEditor
+                                        value={choice.text}
+                                        onChange={(value) =>
+                                            handleChoiceChange(
+                                                index,
+                                                "text",
+                                                value
+                                            )
+                                        }
                                     />
                                     <label className="flex items-center gap-1">
                                         <input

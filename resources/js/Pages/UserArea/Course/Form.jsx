@@ -5,6 +5,8 @@ import { useRef } from "react";
 import { toast } from "react-toastify";
 import slugify from "slugify";
 import ReactQuill from "react-quill";
+import { Editor } from "@tinymce/tinymce-react";
+import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function FormCourse({ course = null, course_categories }) {
     const { auth } = usePage().props;
@@ -224,15 +226,9 @@ export default function FormCourse({ course = null, course_categories }) {
                             <span className="label-text">Keterangan</span>
                         </div>
 
-                        <ReactQuill
-                            theme="snow"
+                        <TinyEditor
                             value={data.description}
                             onChange={(value) => setData("description", value)}
-                            className="input input-bordered"
-                            style={{
-                                height: "16rem",
-                                marginBottom: "1rem",
-                            }}
                         />
                         {errors.description && (
                             <div className="label">
@@ -250,18 +246,13 @@ export default function FormCourse({ course = null, course_categories }) {
                             <span className="label-text">Prasyarat</span>
                         </div>
 
-                        <ReactQuill
-                            theme="snow"
+                        <TinyEditor
                             value={data.prerequisites}
                             onChange={(value) =>
                                 setData("prerequisites", value)
                             }
-                            className="input input-bordered"
-                            style={{
-                                height: "16rem",
-                                marginBottom: "1rem",
-                            }}
                         />
+
                         {errors.prerequisites && (
                             <div className="label">
                                 <span className="label-text-alt text-error">
@@ -278,15 +269,9 @@ export default function FormCourse({ course = null, course_categories }) {
                             <span className="label-text">Sasaran</span>
                         </div>
 
-                        <ReactQuill
-                            theme="snow"
+                        <TinyEditor
                             value={data.goals}
                             onChange={(value) => setData("goals", value)}
-                            className="input input-bordered"
-                            style={{
-                                height: "16rem",
-                                marginBottom: "1rem",
-                            }}
                         />
                         {errors.goals && (
                             <div className="label">

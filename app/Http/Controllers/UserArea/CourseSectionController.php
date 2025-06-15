@@ -19,10 +19,14 @@ class CourseSectionController extends Controller
      */
     public function index(Request $request, Course $course)
     {
-        $course_sections = CourseSection::where([
+        $course_sections = CourseSection::with([
+            'course_lectures.attachments'
+        ])->where([
             'course_id' => $course->id,
         ])->orderBy('id', 'ASC')
             ->get();
+
+        // return $course_sections;
 
         return Inertia::render('UserArea/Course/CourseSection/Index', [
             'course' => $course,

@@ -17,7 +17,8 @@ class EnrollmentController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $enrollments = Enrollment::with(['course'])->where('user_id', $user->id)->get();
+        $enrollments = Enrollment::whereHas('course')->with(['course'])->where('user_id', $user->id)->get();
+        // return $enrollments;
         return Inertia::render('UserArea/Enrollment/Index', compact('enrollments'));
     }
 

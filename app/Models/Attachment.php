@@ -14,7 +14,7 @@ class Attachment extends BaseModel
         parent::boot();
 
         Attachment::deleting(function ($attachment) {
-            $attachment->attachments()->delete();
+            // $attachment->attachments()->delete();
             $file = public_path('storage/' . $attachment->file);
             // dd(File::exists($file));
             if (File::isFile($file)) {

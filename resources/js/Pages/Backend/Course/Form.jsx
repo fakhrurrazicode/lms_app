@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { toast } from "react-toastify";
 import slugify from "slugify";
 import ReactQuill from "react-quill";
+import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function FormCourse({
     course = null,
@@ -254,7 +255,7 @@ export default function FormCourse({
                             <span className="label-text">Keterangan</span>
                         </div>
 
-                        <ReactQuill
+                        {/* <ReactQuill
                             theme="snow"
                             value={data.description}
                             onChange={(value) => setData("description", value)}
@@ -263,7 +264,13 @@ export default function FormCourse({
                                 height: "16rem",
                                 marginBottom: "1rem",
                             }}
+                        /> */}
+
+                        <TinyEditor
+                            value={data.description}
+                            onChange={(value) => setData("description", value)}
                         />
+
                         {errors.description && (
                             <div className="label">
                                 <span className="label-text-alt text-error">
@@ -280,7 +287,7 @@ export default function FormCourse({
                             <span className="label-text">Prasyarat</span>
                         </div>
 
-                        <ReactQuill
+                        {/* <ReactQuill
                             theme="snow"
                             value={data.prerequisites}
                             onChange={(value) =>
@@ -291,6 +298,12 @@ export default function FormCourse({
                                 height: "16rem",
                                 marginBottom: "1rem",
                             }}
+                        /> */}
+                        <TinyEditor
+                            value={data.prerequisites}
+                            onChange={(value) =>
+                                setData("prerequisites", value)
+                            }
                         />
                         {errors.prerequisites && (
                             <div className="label">
@@ -308,7 +321,7 @@ export default function FormCourse({
                             <span className="label-text">Sasaran</span>
                         </div>
 
-                        <ReactQuill
+                        {/* <ReactQuill
                             theme="snow"
                             value={data.goals}
                             onChange={(value) => setData("goals", value)}
@@ -317,6 +330,10 @@ export default function FormCourse({
                                 height: "16rem",
                                 marginBottom: "1rem",
                             }}
+                        /> */}
+                        <TinyEditor
+                            value={data.goals}
+                            onChange={(value) => setData("goals", value)}
                         />
                         {errors.goals && (
                             <div className="label">

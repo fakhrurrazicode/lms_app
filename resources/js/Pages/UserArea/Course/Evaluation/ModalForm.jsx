@@ -6,6 +6,7 @@ import ReactModal from "react-modal";
 import { toast } from "react-toastify";
 import classNames from "classnames";
 import ReactQuill from "react-quill";
+import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function ModalForm({
     isOpen = false,
@@ -134,7 +135,7 @@ export default function ModalForm({
             className={classNames("modal", { "modal-open": isOpen })}
             open={isOpen}
         >
-            <div className="modal-box">
+            <div className="modal-box w-11/12 max-w-5xl">
                 <form method="dialog" ref={formRef}>
                     {/* if there is a button in form, it will close the modal */}
                     <button
@@ -220,7 +221,7 @@ export default function ModalForm({
                             value={data.instructions}
                         ></textarea> */}
 
-                        <ReactQuill
+                        {/* <ReactQuill
                             theme="snow"
                             value={data.instructions}
                             onChange={(value) => setData("instructions", value)}
@@ -229,7 +230,13 @@ export default function ModalForm({
                                 height: "16rem",
                                 marginBottom: "1rem",
                             }}
+                        /> */}
+
+                        <TinyEditor
+                            value={data.instructions}
+                            onChange={(value) => setData("instructions", value)}
                         />
+
                         {errors.instructions && (
                             <div className="label">
                                 <span className="label-text-alt text-error">
@@ -242,6 +249,9 @@ export default function ModalForm({
                     <label className="form-control w-full mb-6">
                         <div className="label">
                             <span className="label-text">Durasi</span>
+                            <span className="label-text-alt">
+                                Dalam Satuan Menit
+                            </span>
                         </div>
                         <input
                             type="number"
@@ -263,6 +273,10 @@ export default function ModalForm({
                     <label className="form-control w-full mb-6">
                         <div className="label">
                             <span className="label-text">Passing Skor</span>
+                            <span className="label-text-alt">
+                                Harus Lebih Kecil atau sama dengan dari Jumlah
+                                Pertanyaan
+                            </span>
                         </div>
                         <input
                             type="number"

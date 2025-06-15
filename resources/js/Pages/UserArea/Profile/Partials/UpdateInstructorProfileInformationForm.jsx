@@ -1,3 +1,4 @@
+import TinyEditor from "@/Components/Custom/TinyEditor";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
@@ -51,7 +52,7 @@ export default function UpdateInstructorProfileInformation({ className = "" }) {
                         autoComplete="bio"
                     /> */}
 
-                    <ReactQuill
+                    {/* <ReactQuill
                         theme="snow"
                         value={data.bio}
                         onChange={(value) => setData("bio", value)}
@@ -60,6 +61,11 @@ export default function UpdateInstructorProfileInformation({ className = "" }) {
                             height: "16rem",
                             marginBottom: "1rem",
                         }}
+                    /> */}
+
+                    <TinyEditor
+                        value={data.bio}
+                        onChange={(value) => setData("bio", value)}
                     />
 
                     <InputError className="mt-2" message={errors.bio} />

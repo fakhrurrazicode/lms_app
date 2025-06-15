@@ -1,4 +1,5 @@
 import CourseCard from "@/Components/CourseCard";
+import TinyEditor from "@/Components/Custom/TinyEditor";
 import TiltElement from "@/Components/TiltElement";
 import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
@@ -291,7 +292,7 @@ export default function BecomeInstructor({}) {
                                         >
                                             {data.bio}
                                         </textarea> */}
-                                        <ReactQuill
+                                        {/* <ReactQuill
                                             theme="snow"
                                             value={data.bio}
                                             onChange={(value) =>
@@ -302,6 +303,12 @@ export default function BecomeInstructor({}) {
                                                 height: "16rem",
                                                 marginBottom: "1rem",
                                             }}
+                                        /> */}
+                                        <TinyEditor
+                                            value={data.bio}
+                                            onChange={(value) =>
+                                                setData("bio", value)
+                                            }
                                         />
                                         {errors.bio && (
                                             <div className="label">

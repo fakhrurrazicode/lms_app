@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Thread;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\Model;
 
 class CourseLecture extends BaseModel
 {
@@ -31,6 +32,11 @@ class CourseLecture extends BaseModel
     ];
 
     // protected $with = ['course_track'];
+
+    public function threads()
+    {
+        return $this->morphMany(Thread::class, 'threadable');
+    }
 
     public function attachments()
     {

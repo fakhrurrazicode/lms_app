@@ -35,6 +35,8 @@ class CourseLectureUpdateRequest extends FormRequest
             ],
             'title' => ['required'],
             'description' => ['required'],
+            'attachments' => ['nullable', 'array'],
+            'attachments.*' => ['file', 'max:51200'], // max 50MB per file
         ];
     }
 }

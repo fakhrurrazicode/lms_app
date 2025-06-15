@@ -122,7 +122,7 @@ export default function ModalFormCourseLecture({
             className={classNames("modal", { "modal-open": isOpen })}
             open={isOpen}
         >
-            <div className="modal-box">
+            <div className="modal-box w-11/12 max-w-5xl">
                 <form method="dialog" ref={formRef}>
                     {/* if there is a button in form, it will close the modal */}
                     <button
