@@ -23,12 +23,33 @@ import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 import { Link } from "@inertiajs/react";
 import { GrPlay, GrResume } from "react-icons/gr";
+import classNames from "classnames";
 
 export default function Show({ course }) {
     return (
         <LearningAreaLayout course={course}>
-            <div className="card bg-base-100 py-8 mb-8">
+            <div className="card bg-base-100 py-8 mb-8 rounded-none">
                 <div className="card-body py-0">
+                    <div className="bg-base-200 h-[35px] w-full rounded-lg relative overflow-hidden mb-6">
+                        <div
+                            style={{
+                                width: course.progress_percentage + "%",
+                            }}
+                            className={classNames(
+                                " text-center absolute top-0 bottom-0 flex justify-center items-center",
+                                {
+                                    "bg-primary":
+                                        course.progress_percentage < 100,
+                                    "bg-success":
+                                        course.progress_percentage == 100,
+                                }
+                            )}
+                        >
+                            <span className="text-white text-xs">
+                                Progress: {course.progress_percentage}%
+                            </span>
+                        </div>
+                    </div>
                     <div className="flex items-center justify-between flex-wrap gap-6 mb-[30px]">
                         <div className="flex items-center gap-6">
                             <span
@@ -166,6 +187,36 @@ export default function Show({ course }) {
                                     <></>
                                 )}
                             </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="mb-10">
+                            <h3 className="text-3xl font-bold mb-4 text-primary">
+                                Deskripsi
+                            </h3>{" "}
+                            <div>
+                                <HtmlRenderer htmlString={course.description} />
+                            </div>
+                        </div>
+                        <div className="mb-10">
+                            <h3 className="text-xl font-bold mb-4 text-primary">
+                                Prasyarat
+                            </h3>{" "}
+                            <div>
+                                <HtmlRenderer
+                                    htmlString={course.prerequisites}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="mb-10">
+                            <h3 className="text-xl font-bold mb-4 text-primary">
+                                Tujuan
+                            </h3>{" "}
+                            <div>
+                                <HtmlRenderer htmlString={course.goals} />
+                            </div>
                         </div>
                     </div>
                 </div>

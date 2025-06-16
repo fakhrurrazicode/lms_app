@@ -103,4 +103,18 @@ class CourseController extends Controller
     {
         //
     }
+
+    public function instructor_info(Course $course)
+    {
+        $course = $course->load([
+            'course_category',
+            'course_sections.course_lectures.course_track',
+            'course_sections.evaluation',
+            'course_tracks'
+        ]);
+
+        // return $course;
+
+        return Inertia::render('LearningArea/Course/InstructorInfo', compact('course'));
+    }
 }

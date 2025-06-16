@@ -1,0 +1,168 @@
+import FrontendLayout from "@/Layouts/FrontendLayout";
+import React, { Children } from "react";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+
+import CourseNav from "../CourseNav";
+import { rupiah } from "@/bootstrap";
+import {
+    FaStar,
+    FaFacebookSquare,
+    FaInstagramSquare,
+    FaYoutubeSquare,
+} from "react-icons/fa";
+import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
+import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
+import { Link } from "@inertiajs/react";
+import { GrPlay, GrResume } from "react-icons/gr";
+import classNames from "classnames";
+
+export default function Show({ course }) {
+    let instructor = course.instructor;
+
+    return (
+        <LearningAreaLayout course={course}>
+            <div className="card bg-base-100 py-8 mb-8 rounded-none">
+                <div className="card-body py-0">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-10 py-16">
+                        <div className="col-span-3 relative mb-6">
+                            <img
+                                className=" absolute -left-6 -top-6"
+                                src="/images/abouts/about_4.png"
+                                alt=""
+                            />
+                            <div className="avatar w-full">
+                                <div className="w-1/2 sm:w-1/4 lg:w-full mx-auto rounded z-10">
+                                    <img src={instructor.photo_url} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-span-9">
+                            <div className="flex justify-between gap-2 items-center mb-6">
+                                <div>
+                                    <h3 className="font-bold text-4xl">
+                                        {instructor.name}
+                                    </h3>
+                                    {/* <h5>Teches Interior marketer</h5> */}
+                                </div>
+                                <div className="flex gap-2 items-center">
+                                    <div className="">Reviews:</div>
+                                    <div className="flex items-center gap-1 text-sm">
+                                        {[...Array(5)].map((_, index) => {
+                                            if (
+                                                index + 1 <=
+                                                instructor.instructor_info
+                                                    .avg_reviews
+                                            ) {
+                                                return (
+                                                    <FaStar className=" text-yellow-400" />
+                                                );
+                                            } else {
+                                                return (
+                                                    <FaStar className=" text-gray-700" />
+                                                );
+                                            }
+                                        })}
+                                    </div>
+                                </div>
+                                {/* <div>
+                                                        <div>Follows Us:</div>
+                                                    </div>
+                                                    <div>
+                                                        <button className="btn btn-primary">
+                                                            Follow
+                                                        </button>
+                                                    </div> */}
+                            </div>
+
+                            <div className="divider"></div>
+
+                            <div className="mb-6">
+                                <h3 className="font-bold text-xl mb-6">
+                                    Biografi
+                                </h3>
+                                <div className="mb-6 prose text-sm">
+                                    <HtmlRenderer
+                                        htmlString={
+                                            instructor.instructor_info.bio
+                                        }
+                                    />
+                                </div>
+
+                                <div className="flex gap-2 flex-wrap">
+                                    {instructor.instructor_info &&
+                                    instructor.instructor_info.facebook_url ? (
+                                        <a
+                                            target="_blank"
+                                            href={
+                                                instructor.instructor_info
+                                                    .facebook_url
+                                            }
+                                            className="btn btn-sm bg-blue-900 text-white"
+                                        >
+                                            <FaFacebookSquare size={16} />{" "}
+                                            Facebook
+                                        </a>
+                                    ) : (
+                                        ""
+                                    )}
+
+                                    {instructor.instructor_info &&
+                                    instructor.instructor_info.instagram_url ? (
+                                        <a
+                                            target="_blank"
+                                            href={
+                                                instructor.instructor_info
+                                                    .instagram_url
+                                            }
+                                            className="btn btn-sm bg-pink-800 text-white"
+                                        >
+                                            <FaInstagramSquare size={16} />{" "}
+                                            Instagram
+                                        </a>
+                                    ) : (
+                                        ""
+                                    )}
+
+                                    {instructor.instructor_info &&
+                                    instructor.instructor_info.instagram_url ? (
+                                        <a
+                                            target="_blank"
+                                            href={
+                                                instructor.instructor_info
+                                                    .instagram_url
+                                            }
+                                            className="btn btn-sm bg-red-900 text-white"
+                                        >
+                                            <FaYoutubeSquare size={16} />{" "}
+                                            YouTube
+                                        </a>
+                                    ) : (
+                                        ""
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* <div className="mb-6">
+                                <h3 className="font-bold text-3xl mb-6">
+                                    Online Course
+                                </h3>
+                                {instructor.courses.length ? (
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                        {instructor.courses.map((course) => (
+                                            <CourseCard course={course} />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="italic">
+                                        Belum tersedia kursus pada instruktur
+                                        ini
+                                    </div>
+                                )}
+                            </div> */}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </LearningAreaLayout>
+    );
+}
