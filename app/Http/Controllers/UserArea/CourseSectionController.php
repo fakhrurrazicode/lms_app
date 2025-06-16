@@ -34,6 +34,40 @@ class CourseSectionController extends Controller
         ]);
     }
 
+    public function course_lectures(Request $request, Course $course)
+    {
+        $course_sections = CourseSection::with([
+            'course_lectures.attachments'
+        ])->where([
+            'course_id' => $course->id,
+        ])->orderBy('id', 'ASC')
+            ->get();
+
+        // return $course_sections;
+
+        return Inertia::render('UserArea/Course/CourseSection/CourseLectures', [
+            'course' => $course,
+            'course_sections' => $course_sections,
+        ]);
+    }
+
+    public function evaluations(Request $request, Course $course)
+    {
+        $course_sections = CourseSection::with([
+            'evaluation.questions.choices'
+        ])->where([
+            'course_id' => $course->id,
+        ])->orderBy('id', 'ASC')
+            ->get();
+
+        // return $course_sections;
+
+        return Inertia::render('UserArea/Course/CourseSection/Evaluations', [
+            'course' => $course,
+            'course_sections' => $course_sections,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

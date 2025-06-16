@@ -85,7 +85,7 @@ class CourseLectureController extends Controller
             }
         }
 
-        // return to_route('user_area.course.course_section.index', [
+        // return to_route('user_area.course.course_section.course_lectures', [
         //     'course' => $course->id
         // ]);
     }

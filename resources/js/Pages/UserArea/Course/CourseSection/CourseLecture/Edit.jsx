@@ -66,9 +66,12 @@ export default function Edit({ course, course_section, course_lecture }) {
                 onSuccess: () => {
                     toast.success("Pelajaran Kursus berhasil disimpan");
                     router.visit(
-                        route("user_area.course.course_section.index", {
-                            course: course.id,
-                        }),
+                        route(
+                            "user_area.course.course_section.course_lectures",
+                            {
+                                course: course.id,
+                            }
+                        ),
                         {
                             preserveScroll: true,
                             preserveState: true,
@@ -386,7 +389,7 @@ export default function Edit({ course, course_section, course_lecture }) {
                                 </button>
                                 <Link
                                     href={route(
-                                        "user_area.course.course_section.index",
+                                        "user_area.course.course_section.course_lectures",
                                         { course: course.id }
                                     )}
                                     className="btn btn-neutral"

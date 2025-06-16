@@ -33,9 +33,12 @@ export default function Create({ course }) {
                 onSuccess: () => {
                     toast.success("Course Bagian berhasil di simpan");
                     router.visit(
-                        route("user_area.course.course_section.index", {
-                            course: course.id,
-                        }),
+                        route(
+                            "user_area.course.course_section.course_lectures",
+                            {
+                                course: course.id,
+                            }
+                        ),
                         {
                             preserveScroll: true,
                             preserveState: true,
@@ -115,7 +118,7 @@ export default function Create({ course }) {
                                 </button>
                                 <Link
                                     href={route(
-                                        "user_area.course.course_section.index",
+                                        "user_area.course.course_section.course_lectures",
                                         {
                                             course: course.id,
                                         }

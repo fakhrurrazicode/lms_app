@@ -16,7 +16,7 @@ class Thread extends Model
         return $this->morphTo();
     }
 
-    public function posts()
+    public function thread_posts()
     {
         return $this->hasMany(ThreadPost::class);
     }

@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { FaFile } from "react-icons/fa";
 import FileIconByType from "@/Components/Custom/FileIconByType";
 
-export default function Index({ course, course_sections }) {
+export default function CourseLectures({ course, course_sections }) {
     const courseSectionDeleteHandler = (course_section) => {
         if (
             confirm(
@@ -71,7 +71,7 @@ export default function Index({ course, course_sections }) {
         <UserAreaLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Bagian Kursus
+                    Bagian dan Pelajaran Kursus
                 </h2>
             }
         >
@@ -85,7 +85,7 @@ export default function Index({ course, course_sections }) {
                         <div className="overflow-x-auto">
                             <div className="mb-6">
                                 <h3 className="text-primary text-xl font-bold mb-2">
-                                    Bagian
+                                    Bagian dan Pelajaran
                                 </h3>
                                 <p className="text-sm">
                                     Pembagian materi kursus menjadi beberapa

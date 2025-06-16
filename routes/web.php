@@ -58,6 +58,7 @@ use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCour
 use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEnrollmentController;
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
 use App\Http\Controllers\LearningArea\CourseSectionController as LearningAreaCourseSectionController;
+use App\Http\Controllers\LearningArea\ThreadController as LearningAreaThreadController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -152,7 +153,11 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('/course', UserAreaCourseController::class)->except(['update']);
             Route::post('/course/{course}', [UserAreaCourseController::class, 'update'])->name('course.update');
 
+            Route::get('/course/{course}/course_section/course_lectures', [UserAreaCourseSectionController::class, 'course_lectures'])->name('course.course_section.course_lectures');
+            Route::get('/course/{course}/course_section/evaluations', [UserAreaCourseSectionController::class, 'evaluations'])->name('course.course_section.evaluations');
             Route::resource('course.course_section', UserAreaCourseSectionController::class);
+
+
             Route::resource('course.course_section.course_lecture', UserAreaCourseLectureController::class)->except(['update']);
             Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [UserAreaCourseLectureController::class, 'update'])->name('course.course_section.course_lecture.update');
 
@@ -160,7 +165,8 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('course.course_enrollment', UserAreaCourseEnrollmentController::class)->shallow();
 
             Route::post('/course_lecture/{course_lecture}/update', [UserAreaCourseLectureController::class, 'update'])->name('course_lecture.update');
-            Route::resource('course.evaluation', UserAreaEvaluationController::class)->shallow();
+
+            Route::resource('course.course_section.evaluation', UserAreaEvaluationController::class);
             Route::resource('evaluation.question', UserAreaQuestionController::class)->shallow();
             // Route::resource('/course/{course}/course_section', UserAreaCourseSectionController::class);
             // Route::resource('/course/{course}/course_section/{course_section}/course_lecture', UserAreaCourseLectureController::class)->except(['index', 'update']);
@@ -181,10 +187,12 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('course', LearningAreaCourseController::class)->only(['index', 'show']);
         Route::get('course/{course}/instructor_info', [LearningAreaCourseController::class, 'instructor_info'])->name('course.instructor_info');
         Route::get('course/{course}/start', [LearningAreaCourseController::class, 'start'])->name('course.start');
+
+        Route::resource('course.thread', LearningAreaThreadController::class);
+
         Route::resource('course.course_section.course_lecture', LearningAreaCourseLectureController::class)->only(['show']);
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish', [LearningAreaCourseLectureController::class, 'finish'])->name('course.course_section.course_lecture.finish');
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish_and_evaluate', [LearningAreaCourseLectureController::class, 'finish_and_evaluate'])->name('course.course_section.course_lecture.finish_and_evaluate');
-
         Route::resource('course.course_section.evaluation', LearningAreaEvaluationController::class)->only(['index', 'show']);
         Route::post(
             'course/{course}/course_section/{course_section}/evaluation/{evaluation}/start',

@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Learning;
+namespace App\Http\Controllers\LearningArea;
 
-use App\Models\Course;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\CourseTrack;
-use Inertia\Inertia;
+use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class ThreadPostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,6 @@ class CourseController extends Controller
     {
         //
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -39,16 +34,15 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Course $course)
+    public function show(string $id)
     {
-        $course->load('course_sections.course_lectures');
-        return Inertia::render('Learning/Course/Show', compact('course'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Course $course)
+    public function edit(string $id)
     {
         //
     }
@@ -56,7 +50,7 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -64,7 +58,7 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Course $course)
+    public function destroy(string $id)
     {
         //
     }

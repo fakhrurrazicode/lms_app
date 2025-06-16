@@ -38,14 +38,17 @@ export default function CourseManageTab({ course }) {
                 <Link
                     preserveScroll={true}
                     preserveState={true}
-                    href={route("user_area.course.course_section.index", {
-                        course: course,
-                    })}
+                    href={route(
+                        "user_area.course.course_section.course_lectures",
+                        {
+                            course: course,
+                        }
+                    )}
                     className={classNames(
                         "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
                         {
                             "!bg-base-100": route().current(
-                                "user_area.course.course_section.index",
+                                "user_area.course.course_section.course_lectures",
                                 {
                                     course: course,
                                 }
@@ -54,6 +57,27 @@ export default function CourseManageTab({ course }) {
                     )}
                 >
                     Bagian & Pelajaran
+                </Link>
+
+                <Link
+                    preserveScroll={true}
+                    preserveState={true}
+                    href={route("user_area.course.course_section.evaluations", {
+                        course: course,
+                    })}
+                    className={classNames(
+                        "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
+                        {
+                            "!bg-base-100": route().current(
+                                "user_area.course.course_section.evaluations",
+                                {
+                                    course: course,
+                                }
+                            ),
+                        }
+                    )}
+                >
+                    Evaluasi, Pertanyaan & Pilihan
                 </Link>
 
                 {/* <Link
