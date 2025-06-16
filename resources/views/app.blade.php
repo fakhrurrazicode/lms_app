@@ -28,6 +28,16 @@
     <body class="font-sans antialiased">
         @inertia
 
+
+        <!-- Event snippet for Pembelian conversion page -->
+        <script>
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17006564055/SuSaCJLfhdoaENelrq0_',
+            'transaction_id': ''
+        });
+        </script>
+
+
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-M9SB8ZCB81"></script>
         <script>
@@ -37,5 +47,16 @@
 
             gtag('config', 'G-M9SB8ZCB81');
         </script>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17006564055"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-17006564055');
+        </script>
+
     </body>
 </html>

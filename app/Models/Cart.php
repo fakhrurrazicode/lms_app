@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends BaseCart
 {
 
-    public $appends = ['total_price', 'total_discounted_price', 'total_discount_percentage'];
+    public $appends = ['sub_total_price', 'biaya_layanan', 'total_price', 'total_discounted_price', 'total_discount_percentage'];
     /**
      * Relation one-to-many, CartItem model.
      */
@@ -21,7 +21,7 @@ class Cart extends BaseCart
 
     public function items(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(CartItem::class)->whereHas('itemable');
+        return $this->hasMany(CartItem::class);
     }
 
     public function user()
@@ -29,14 +29,35 @@ class Cart extends BaseCart
         return $this->belongsTo(User::class);
     }
 
-    public function getTotalPriceAttribute()
+    public function getSubTotalPriceAttribute()
     {
-        $total_price = 0;
+        $sub_total_price = 0;
         $items = $this->items;
 
         foreach ($items as $item) {
+            $sub_total_price += $item->itemable->discounted_price * $item->quantity;
+        }
 
-            $total_price += $item->itemable ? $item->itemable->price * $item->quantity : 0;
+        return $sub_total_price;
+    }
+
+    public function getBiayaLayananAttribute()
+    {
+        $biaya_layanan = 0;
+        if (env('PERSENTASE_BIAYA_LAYANAN')) {
+            $biaya_layanan = $this->sub_total_price * (env('PERSENTASE_BIAYA_LAYANAN') / 100);
+        }
+        return ceil($biaya_layanan);
+    }
+
+    public function getTotalPriceAttribute()
+    {
+        $total_price = $this->sub_total_price;
+
+        $total_price = $total_price + $this->biaya_layanan;
+
+        if ($this->use_poin) {
+            $total_price = $total_price - $this->user->coin_balance;
         }
 
         return $total_price;
@@ -48,7 +69,7 @@ class Cart extends BaseCart
         $items = $this->items;
 
         foreach ($items as $item) {
-            $total_discounted_price += $item->itemable ? ($item->itemable->discounted_price * $item->quantity) : 0;
+            $total_discounted_price += $item->itemable->discounted_price * $item->quantity;
         }
 
         return $total_discounted_price;

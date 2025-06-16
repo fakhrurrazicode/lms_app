@@ -1,8 +1,9 @@
-import { rupiah } from "@/bootstrap";
+import { formatNumber, number_format, rupiah } from "@/bootstrap";
 import CartItemCard from "@/Components/CartItemCard";
 import CheckoutButton from "@/Components/CheckoutButton";
 import FrontendLayout from "@/Layouts/FrontendLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
+import { router } from "@inertiajs/react";
 
 import React from "react";
 import {
@@ -15,6 +16,22 @@ import {
 import { toast } from "react-toastify";
 
 export default function Cart({ cart }) {
+    const page = usePage();
+
+    const user = page.props.auth.user;
+
+    const usePoinHandler = () => {
+        router.post(
+            route("cart.toggle_use_poin"),
+            {},
+            {
+                preserveScroll: true,
+                preserveState: true,
+                async: true,
+            }
+        );
+    };
+
     return (
         <FrontendLayout
             header={
@@ -224,21 +241,97 @@ export default function Cart({ cart }) {
                                 </div>
                             </div>
                             <div className="col-span-1">
+                                {user.coin_balance > 0 ? (
+                                    <div className="card bg-base-100 mb-4">
+                                        <div className="card-body">
+                                            <p></p>
+                                            <div className="form-control w-full">
+                                                <label className="label cursor-pointer">
+                                                    <span className="label-text">
+                                                        <span className="text-warning font-bold">
+                                                            Anda memiliki{" "}
+                                                            {formatNumber(
+                                                                user.coin_balance
+                                                            )}{" "}
+                                                            Coin
+                                                        </span>
+                                                        <br />
+                                                        Gunakan Coin Sebagai
+                                                        Potongan
+                                                    </span>
+                                                    <input
+                                                        type="checkbox"
+                                                        className="toggle toggle-warning"
+                                                        checked={cart.use_poin}
+                                                        onClick={usePoinHandler}
+                                                    />
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <></>
+                                )}
                                 <div className="card bg-base-100">
                                     <div className="card">
                                         <div className="card-body">
                                             <div className="mb-6">
-                                                <h3 className="font-bold">
+                                                {/* <h3 className="font-bold">
                                                     Total:
-                                                </h3>
-                                                <h1 className="text-3xl font-bold">
-                                                    {rupiah(
-                                                        cart.total_discounted_price
-                                                    )}
-                                                </h1>
-                                                <h3 className="line-through">
-                                                    {rupiah(cart.total_price)}
-                                                </h3>
+                                                </h3> */}
+                                                <div className="flex justify-between mb-2">
+                                                    <div className="text-sm">
+                                                        Subtotal Produk + Biaya
+                                                        Layanan
+                                                    </div>
+                                                    <div className="text-right">
+                                                        {rupiah(
+                                                            cart.sub_total_price +
+                                                                cart.biaya_layanan
+                                                        )}
+                                                    </div>
+                                                </div>
+
+                                                {/* <div className="flex justify-between mb-2">
+                                                     <div className="text-sm">
+                                                        Biaya Layanan (7%)
+                                                    </div>
+                                                    <div className="text-right">
+                                                        {rupiah(
+                                                            cart.biaya_layanan
+                                                        )}
+                                                    </div>
+                                                </div> */}
+
+                                                {cart.use_poin ? (
+                                                    <div className="flex justify-between mb-2">
+                                                        <div className="text-sm">
+                                                            Potongan Poin
+                                                        </div>
+                                                        <div className="text-right">
+                                                            {rupiah(
+                                                                -user.coin_balance
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <></>
+                                                )}
+
+                                                <div className="flex justify-between mb-2">
+                                                    <div>
+                                                        <h3 className="font-bold">
+                                                            Total:
+                                                        </h3>
+                                                    </div>
+                                                    <div className="text-right">
+                                                        <h1 className="text-xl font-bold">
+                                                            {rupiah(
+                                                                cart.total_price
+                                                            )}
+                                                        </h1>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <CheckoutButton />

@@ -23,6 +23,8 @@ class PaymentController extends Controller
 
         // return $cart;
 
+        $user = Auth::user();
+
         Config::$serverKey = env('MIDTRANS_SERVER_KEY');
         Config::$isProduction = env('MIDTRANS_IS_PRODUCTION', false);
         Config::$isSanitized = true;
@@ -50,6 +52,22 @@ class PaymentController extends Controller
             }
         }
 
+        $item_details[] = [
+            'id' => 'biaya-layanan',
+            'price' => $cart->biaya_layanan,
+            'name' => 'Biaya Layanan',
+            'quantity' => 1,
+        ];
+
+        if ($cart->use_poin) {
+            $item_details[] = [
+                'id' => 'potongan-poin',
+                'price' => $user->coin_balance * -1,
+                'name' => 'Potongan Poin',
+                'quantity' => 1,
+            ];
+        }
+
         $user = $cart->user;
         $name = explode(' ', $user->name);
         $first_name = array_shift($name);
@@ -58,7 +76,7 @@ class PaymentController extends Controller
         $params = [
             'transaction_details' => [
                 'order_id' => $order_id,
-                'gross_amount' => $cart->total_discounted_price, // Adjust price as needed
+                'gross_amount' => $cart->total_price, // Adjust price as needed
             ],
             'customer_details' => [
                 'first_name' => $first_name,
@@ -67,6 +85,7 @@ class PaymentController extends Controller
             ],
             'item_details' => $item_details
         ];
+
 
         try {
             $snap_token = Snap::getSnapToken($params);
@@ -97,6 +116,9 @@ class PaymentController extends Controller
             $order_items_array = OrderItem::where([
                 'order_id' => $order->id,
             ]);
+
+
+            $cart->delete();
 
             return response()->json(['token' => $snap_token]);
 

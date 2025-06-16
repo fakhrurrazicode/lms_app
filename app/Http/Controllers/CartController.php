@@ -113,4 +113,11 @@ class CartController extends Controller
             'cart_id' => $cart->id,
         ])->delete();
     }
+
+    public function toggle_use_poin(Request $request)
+    {
+        $cart = Cart::query()->firstOrCreate(['user_id' => Auth::user()->id]);
+        $cart->use_poin = !$cart->use_poin;
+        $cart->update();
+    }
 }

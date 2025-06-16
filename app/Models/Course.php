@@ -45,7 +45,7 @@ class Course extends BaseModel implements Cartable
 
     public function getDiscountedPriceAttribute()
     {
-        return $this->discount_percentage ? $this->price - ($this->price * ($this->discount_percentage / 100)) : $this->price;
+        return ceil($this->discount_percentage ? $this->price - ($this->price * ($this->discount_percentage / 100)) : $this->price);
     }
 
     public function getImageUrlAttribute()

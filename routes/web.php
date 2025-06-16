@@ -99,6 +99,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/cart', [CartController::class, 'destroy'])->name('cart.destroy');
     Route::delete('/cart/empty', [CartController::class, 'empty_cart'])->name('cart.empty');
     Route::post('/cart/add_to_wishlist', [CartController::class, 'add_to_wishlist'])->name('cart.add_to_wishlist');
+    Route::post('/cart/toggle_use_poin', [CartController::class, 'toggle_use_poin'])->name('cart.toggle_use_poin');
 
     Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 

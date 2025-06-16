@@ -741,18 +741,23 @@ export default function Course() {
                                                             )}
                                                         </div>
 
-                                                        <div className="mb-6">
-                                                            <div className="mb-6 prose text-sm">
-                                                                <HtmlRenderer
-                                                                    htmlString={
-                                                                        course
-                                                                            .instructor
-                                                                            .instructor_info
-                                                                            .bio
-                                                                    }
-                                                                />
+                                                        {course.instructor
+                                                            .instructor_info ? (
+                                                            <div className="mb-6">
+                                                                <div className="mb-6 prose text-sm">
+                                                                    <HtmlRenderer
+                                                                        htmlString={
+                                                                            course
+                                                                                .instructor
+                                                                                .instructor_info
+                                                                                .bio
+                                                                        }
+                                                                    />
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        ) : (
+                                                            <></>
+                                                        )}
                                                     </div>
                                                 </div>
                                             </div>
