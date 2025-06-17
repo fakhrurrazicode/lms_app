@@ -111,8 +111,13 @@ export default function Evaluations({ course, course_sections }) {
                                                     Judul Section / Evaluation /
                                                     Pertanyaan / Pilihan
                                                 </th>
-                                                <th>Instruksi</th>
+
                                                 <th>Durasi</th>
+                                                <th>
+                                                    Sebagai <br />
+                                                    Pilihan <br />
+                                                    Benar
+                                                </th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -342,7 +347,54 @@ export default function Evaluations({ course, course_sections }) {
                                                                                                             </div>
                                                                                                         </td>
                                                                                                         <td></td>
-                                                                                                        <td></td>
+                                                                                                        <td>
+                                                                                                            <input
+                                                                                                                type="checkbox"
+                                                                                                                className="toggle toggle-primary toggle-xs"
+                                                                                                                checked={
+                                                                                                                    // course_lecture.set_as_preview
+                                                                                                                    choice.is_correct
+                                                                                                                }
+                                                                                                                onChange={(
+                                                                                                                    e
+                                                                                                                ) => {
+                                                                                                                    // console.log(
+                                                                                                                    //     e
+                                                                                                                    //         .target
+                                                                                                                    //         .value
+                                                                                                                    // );
+                                                                                                                    // console.log(
+                                                                                                                    //     e
+                                                                                                                    //         .target
+                                                                                                                    //         .checked
+                                                                                                                    // );
+                                                                                                                    // router.put(
+                                                                                                                    //     route(
+                                                                                                                    //         "user_area.course.course_section.course_lecture.set_as_preview",
+                                                                                                                    //         {
+                                                                                                                    //             course: course.id,
+                                                                                                                    //             course_section:
+                                                                                                                    //                 course_section.id,
+                                                                                                                    //             course_lecture:
+                                                                                                                    //                 course_lecture.id,
+                                                                                                                    //         }
+                                                                                                                    //     ),
+                                                                                                                    //     {
+                                                                                                                    //         set_as_preview:
+                                                                                                                    //             e
+                                                                                                                    //                 .target
+                                                                                                                    //                 .checked
+                                                                                                                    //                 ? 1
+                                                                                                                    //                 : 0,
+                                                                                                                    //     },
+                                                                                                                    //     {
+                                                                                                                    //         preserveScroll: true,
+                                                                                                                    //         preserveState: true,
+                                                                                                                    //     }
+                                                                                                                    // );
+                                                                                                                }}
+                                                                                                            />
+                                                                                                        </td>
                                                                                                         <td></td>
                                                                                                     </tr>
                                                                                                 </>
