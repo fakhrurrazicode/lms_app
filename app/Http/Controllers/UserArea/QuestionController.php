@@ -39,7 +39,7 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Course $course, CourseSection $course_section, Evaluation $evaluation)
     {
         $request->validate([
             'evaluation_id' => 'required|exists:evaluations,id',
@@ -75,50 +75,66 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Course $course, CourseSection $course_section, Evaluation $evaluation, Question $question)
     {
-        //
+        $course->load(['course_sections.evaluation' => function ($query) {
+            $query->orderBy('id', 'ASC');
+        }]);
+
+        $question->load('choices');
+
+        // return $course;
+
+        return Inertia::render('UserArea/Course/CourseSection/Evaluation/Question/Edit', compact('course', 'course_section', 'evaluation', 'question'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, Course $course, CourseSection $course_section, Evaluation $evaluation, Question $question)
     {
         $validated = $request->validate([
-            'question' => 'required|string',
+            'evaluation_id' => 'required|exists:evaluations,id',
+            'question' => 'required|string|max:1000',
             'type' => 'required|string|in:multiple_choice,essay',
             'items' => 'required|array|min:1',
-            'items.*.text' => 'required|string',
+            'items.*.id' => 'nullable|exists:choices,id',
+            'items.*.text' => 'required|string|max:255',
             'items.*.is_correct' => 'required|boolean',
         ]);
 
-        DB::beginTransaction();
 
-        try {
-            // Update data pertanyaan
-            $question->update([
-                'question' => $validated['question'],
-                'type' => $validated['type'],
-            ]);
+        $question->update([
+            'evaluation_id' => $request->evaluation_id,
+            'question' => $validated['question'],
+            'type' => $validated['type'],
+        ]);
 
-            // Hapus semua pilihan lama
-            $question->choices()->delete();
+        $existingChoiceIds = $question->choices()->pluck('id')->toArray();
+        $incomingChoiceIds = collect($validated['items'])->pluck('id')->filter()->toArray();
 
-            // Simpan pilihan baru
-            foreach ($validated['items'] as $item) {
+        // Delete choices yang tidak ada di request
+        $choicesToDelete = array_diff($existingChoiceIds, $incomingChoiceIds);
+        $question->choices()->whereIn('id', $choicesToDelete)->delete();
+
+        // Simpan atau update items
+        foreach ($validated['items'] as $item) {
+            if (!empty($item['id'])) {
+                // Update existing choice
+                $choice = $question->choices()->find($item['id']);
+                if ($choice) {
+                    $choice->update([
+                        'text' => $item['text'],
+                        'is_correct' => $item['is_correct'],
+                    ]);
+                }
+            } else {
+                // Create new choice
                 $question->choices()->create([
                     'text' => $item['text'],
                     'is_correct' => $item['is_correct'],
                 ]);
             }
-
-            DB::commit();
-
-            return redirect()->back()->with('success', 'Pertanyaan berhasil diubah.');
-        } catch (\Throwable $e) {
-            DB::rollBack();
-            return back()->withErrors(['message' => 'Gagal mengubah pertanyaan: ' . $e->getMessage()]);
         }
     }
 

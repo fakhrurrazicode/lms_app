@@ -195,7 +195,14 @@ export default function Evaluations({ course, course_sections }) {
                                                                                 </span>
                                                                             </div>
                                                                         </td>
-                                                                        <td></td>
+                                                                        <td>
+                                                                            {
+                                                                                course_section
+                                                                                    .evaluation
+                                                                                    .duration
+                                                                            }{" "}
+                                                                            Menit
+                                                                        </td>
                                                                         <td></td>
                                                                         <td className="flex gap-1">
                                                                             <Link
@@ -309,11 +316,17 @@ export default function Evaluations({ course, course_sections }) {
                                                                                         <td className="flex gap-1">
                                                                                             <Link
                                                                                                 href={route(
-                                                                                                    "user_area.course.course_section.course_lecture.create",
+                                                                                                    "user_area.course.course_section.evaluation.question.edit",
                                                                                                     {
                                                                                                         course: course_section.course_id,
                                                                                                         course_section:
                                                                                                             course_section.id,
+                                                                                                        evaluation:
+                                                                                                            course_section
+                                                                                                                .evaluation
+                                                                                                                .id,
+                                                                                                        question:
+                                                                                                            question.id,
                                                                                                     }
                                                                                                 )}
                                                                                                 className="btn btn-info btn-xs"
@@ -377,6 +390,11 @@ export default function Evaluations({ course, course_sections }) {
                                                                                                                         className="text-error"
                                                                                                                     />
                                                                                                                 )}
+                                                                                                                <span>
+                                                                                                                    {
+                                                                                                                        choice.id
+                                                                                                                    }
+                                                                                                                </span>
                                                                                                                 <span>
                                                                                                                     <HtmlRenderer
                                                                                                                         htmlString={

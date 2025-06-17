@@ -65,7 +65,9 @@ export default function Create({ course, course_section, evaluation }) {
         e.preventDefault();
 
         post(
-            route("user_area.evaluation.question.store", {
+            route("user_area.course.course_section.evaluation.question.store", {
+                course: course.id,
+                course_section: course_section.id,
                 evaluation: evaluation,
             }),
             {
@@ -73,8 +75,15 @@ export default function Create({ course, course_section, evaluation }) {
                 preserveState: true,
                 onSuccess: () => {
                     toast.success("Question berhasil di simpan");
-                    reset();
-                    setIsOpen(false);
+                    router.visit(
+                        route("user_area.course.course_section.evaluations", {
+                            course: course.id,
+                        }),
+                        {
+                            preserveScroll: true,
+                            preserveState: true,
+                        }
+                    );
                 },
                 onError: () => {
                     toast.success("Question gagal di simpan");
@@ -143,35 +152,6 @@ export default function Create({ course, course_section, evaluation }) {
                                 {data.items?.map((choice, index) => (
                                     <div key={index} className="mb-4">
                                         <div className="flex justify-between items-center gap-6">
-                                            {/* <input
-                                                                type="text"
-                                                                className={classNames(
-                                                                    "input input-bordered w-full"
-                                                                )}
-                                                                placeholder={`Pilihan ${index + 1}`}
-                                                                value={choice.text}
-                                                                onChange={(e) =>
-                                                                    handleChoiceChange(index, "text", e)
-                                                                }
-                                                            /> */}
-
-                                            {/* <ReactQuill
-                                                                theme="snow"
-                                                                value={choice.text}
-                                                                onChange={(value) =>
-                                                                    handleChoiceChange(
-                                                                        index,
-                                                                        "text",
-                                                                        value
-                                                                    )
-                                                                }
-                                                                className="input input-bordered"
-                                                                style={{
-                                                                    width: "100%",
-                                                                    height: "8rem",
-                                                                    marginBottom: "1rem",
-                                                                }}
-                                                            /> */}
                                             <TinyEditor
                                                 value={choice.text}
                                                 onChange={(value) =>
@@ -181,6 +161,7 @@ export default function Create({ course, course_section, evaluation }) {
                                                         value
                                                     )
                                                 }
+                                                init={{ height: 200 }}
                                             />
                                             <label className="flex items-center gap-1">
                                                 <input

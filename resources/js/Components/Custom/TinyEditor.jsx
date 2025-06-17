@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
-export default function TinyEditor({ value, onChange }) {
+export default function TinyEditor({ value, onChange, init = {} }) {
     const [theme, setTheme] = useState("light");
 
     // Deteksi dark mode dari OS atau Tailwind class
@@ -69,6 +69,7 @@ export default function TinyEditor({ value, onChange }) {
                     "undo redo | blocks | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image media | code preview",
                 content_style:
                     "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                ...init,
             }}
         />
     );

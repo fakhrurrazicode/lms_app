@@ -1,30 +1,32 @@
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link, router, useForm } from "@inertiajs/react";
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import { Save, X } from "lucide-react";
 import { toast } from "react-toastify";
 import TinyEditor from "@/Components/Custom/TinyEditor";
-import FileIconByType from "@/Components/Custom/FileIconByType";
+import { FaPlus } from "react-icons/fa";
 
-export default function Create({ course, course_section, evaluation }) {
-    const { data, setData, post, put, errors, reset, clearErrors, processing } =
-        useForm({
-            evaluation_id: evaluation.id,
-            question: "",
-            type: "multiple_choice",
-            items: [
-                { text: "", is_correct: true },
-                { text: "", is_correct: false },
-                { text: "", is_correct: false },
-                { text: "", is_correct: false },
-            ],
-        });
+export default function Create({
+    course,
+    course_section,
+    evaluation,
+    question,
+}) {
+    const { data, setData, put, errors, processing } = useForm({
+        evaluation_id: evaluation.id,
+        question: question.question,
+        type: question.type || "multiple_choice",
+        items: question.choices.map((choice) => ({
+            id: choice.id,
+            text: choice.text,
+            is_correct: choice.is_correct,
+        })),
+    });
 
     const addChoice = () => {
         setData("items", [
             ...(data.items || []),
-            { text: "", is_correct: false },
+            { id: null, text: "", is_correct: false }, // id null untuk pilihan baru
         ]);
     };
 
@@ -39,48 +41,70 @@ export default function Create({ course, course_section, evaluation }) {
     };
 
     const handleChoiceChange = (index, field, value) => {
+        const updated = [...data.items];
+
         if (field === "is_correct") {
-            const updated = data.items.map((item, i) => ({
+            const newItems = updated.map((item, i) => ({
                 ...item,
-                is_correct: i === index, // hanya satu yang true
+                is_correct: i === index, // true jika dipilih
             }));
-            setData("items", updated);
+            setData("items", newItems);
         } else {
-            const updated = [...data.items];
-            updated[index][field] = value;
+            updated[index] = {
+                ...updated[index],
+                [field]: value,
+            };
             setData("items", updated);
         }
     };
 
     const inputChangeHandler = (e) => {
-        e.preventDefault();
         const name = e.target.name;
         const value = e.target.value;
-
         setData(name, value);
     };
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        post(
-            route("user_area.evaluation.question.store", {
-                evaluation: evaluation,
-            }),
+        const isValid = data.items.every((item) => item.text.trim() !== "");
+        if (!isValid) {
+            toast.error("Semua pilihan harus diisi.");
+            return;
+        }
+
+        put(
+            route(
+                "user_area.course.course_section.evaluation.question.update",
+                {
+                    course: course.id,
+                    course_section: course_section.id,
+                    evaluation: evaluation.id,
+                    question: question.id,
+                }
+            ),
             {
                 preserveScroll: true,
                 preserveState: true,
                 onSuccess: () => {
-                    toast.success("Question berhasil di simpan");
-                    reset();
-                    setIsOpen(false);
+                    toast.success("Pertanyaan berhasil diubah");
+                    router.visit(
+                        route("user_area.course.course_section.evaluations", {
+                            course: course.id,
+                        }),
+                        {
+                            preserveScroll: true,
+                            preserveState: true,
+                        }
+                    );
                 },
                 onError: () => {
-                    toast.success("Question gagal di simpan");
+                    toast.error("Pertanyaan gagal disimpan");
                 },
             }
         );
     };
+
     return (
         <UserAreaLayout
             header={
@@ -96,7 +120,7 @@ export default function Create({ course, course_section, evaluation }) {
                     <div className="card-body">
                         <div className="mb-6">
                             <h3 className="text-primary text-xl font-bold mb-2">
-                                Buat Pertanyaan Evaluasi Baru
+                                Ubah Pertanyaan Evaluasi
                             </h3>
                             <p className="text-sm">
                                 Evaluasi ini mencakup berbagai jenis pertanyaan
@@ -106,7 +130,7 @@ export default function Create({ course, course_section, evaluation }) {
                                 benar dan reflektif, sehingga dapat
                                 mengidentifikasi area yang perlu diperbaiki dan
                                 memperdalam pemahaman mereka tentang materi
-                                pembelajaran
+                                pembelajaran.
                             </p>
                         </div>
 
@@ -142,35 +166,6 @@ export default function Create({ course, course_section, evaluation }) {
                                 {data.items?.map((choice, index) => (
                                     <div key={index} className="mb-4">
                                         <div className="flex justify-between items-center gap-6">
-                                            {/* <input
-                                                                type="text"
-                                                                className={classNames(
-                                                                    "input input-bordered w-full"
-                                                                )}
-                                                                placeholder={`Pilihan ${index + 1}`}
-                                                                value={choice.text}
-                                                                onChange={(e) =>
-                                                                    handleChoiceChange(index, "text", e)
-                                                                }
-                                                            /> */}
-
-                                            {/* <ReactQuill
-                                                                theme="snow"
-                                                                value={choice.text}
-                                                                onChange={(value) =>
-                                                                    handleChoiceChange(
-                                                                        index,
-                                                                        "text",
-                                                                        value
-                                                                    )
-                                                                }
-                                                                className="input input-bordered"
-                                                                style={{
-                                                                    width: "100%",
-                                                                    height: "8rem",
-                                                                    marginBottom: "1rem",
-                                                                }}
-                                                            /> */}
                                             <TinyEditor
                                                 value={choice.text}
                                                 onChange={(value) =>
@@ -180,6 +175,7 @@ export default function Create({ course, course_section, evaluation }) {
                                                         value
                                                     )
                                                 }
+                                                init={{ height: 200 }}
                                             />
                                             <label className="flex items-center gap-1">
                                                 <input
@@ -210,7 +206,6 @@ export default function Create({ course, course_section, evaluation }) {
                                             </button>
                                         </div>
 
-                                        {/* Tampilkan error jika ada */}
                                         {errors[`items.${index}.text`] && (
                                             <div className="label">
                                                 <span className="label-text-alt text-error">
@@ -245,17 +240,21 @@ export default function Create({ course, course_section, evaluation }) {
                                     ) : (
                                         <Save size={16} />
                                     )}
-                                    <span>{question ? "Ubah" : "Simpan"}</span>
+                                    <span>Ubah</span>
                                 </button>
-                                <button
+                                <Link
+                                    href={route(
+                                        "user_area.course.course_section.evaluations",
+                                        {
+                                            course: course.id,
+                                        }
+                                    )}
+                                    preserveScroll={true}
+                                    preserveState={true}
                                     className="btn btn-neutral"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        setIsOpen(false);
-                                    }}
                                 >
                                     Batalkan
-                                </button>
+                                </Link>
                             </div>
                         </form>
                     </div>
