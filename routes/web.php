@@ -167,7 +167,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/course_lecture/{course_lecture}/update', [UserAreaCourseLectureController::class, 'update'])->name('course_lecture.update');
 
             Route::resource('course.course_section.evaluation', UserAreaEvaluationController::class);
-            Route::resource('evaluation.question', UserAreaQuestionController::class)->shallow();
+            Route::resource('course.course_section.evaluation.question', UserAreaQuestionController::class);
+
+            // Route::resource('evaluation.question', UserAreaQuestionController::class)->shallow();
             // Route::resource('/course/{course}/course_section', UserAreaCourseSectionController::class);
             // Route::resource('/course/{course}/course_section/{course_section}/course_lecture', UserAreaCourseLectureController::class)->except(['index', 'update']);
             // Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [UserAreaCourseLectureController::class, 'update'])->name('course_lecture.update');

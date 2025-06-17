@@ -55,7 +55,7 @@ export default function Evaluations({ course, course_sections }) {
         )
             router.delete(
                 route("user_area.course.course_section.evaluation.destroy", {
-                    course: evaluation.course_id,
+                    course: course.id,
                     course_section: evaluation.course_section_id,
                     evaluation: evaluation.id,
                 }),
@@ -63,10 +63,10 @@ export default function Evaluations({ course, course_sections }) {
                     preserveScroll: true,
                     preserveState: true,
                     onFinish: () => {
-                        toast.success("Pelajaran Kursus berhasil dihapus");
+                        toast.success("Evaluasi Bagian berhasil dihapus");
                     },
                     onError: () => {
-                        toast.success("Pelajaran Kursus gagal di hapus");
+                        toast.success("Evaluasi Bagian gagal di hapus");
                     },
                 }
             );
@@ -93,11 +93,14 @@ export default function Evaluations({ course, course_sections }) {
                                     Evaluasi dan Pertanyaan
                                 </h3>
                                 <p className="text-sm">
-                                    Pembagian materi kursus menjadi beberapa
-                                    bagian atau modul yang lebih terstruktur.
-                                    Setiap Bagian biasanya berisi sekelompok
-                                    topik terkait yang membantu peserta kursus
-                                    memahami materi secara bertahap.
+                                    Evaluasi ini mencakup berbagai jenis
+                                    pertanyaan yang bertujuan untuk menguji
+                                    pengetahuan dan keterampilan yang telah
+                                    diperoleh. Peserta diharapkan untuk menjawab
+                                    pertanyaan dengan benar dan reflektif,
+                                    sehingga dapat mengidentifikasi area yang
+                                    perlu diperbaiki dan memperdalam pemahaman
+                                    mereka tentang materi pembelajaran
                                 </p>
                             </div>
 
@@ -141,32 +144,34 @@ export default function Evaluations({ course, course_sections }) {
                                                                 </td>
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td className="flex gap-1">
-                                                                    {course_section.evaluation ? (
-                                                                        <></>
-                                                                    ) : (
-                                                                        <Link
-                                                                            href={route(
-                                                                                "user_area.course.course_section.course_lecture.create",
-                                                                                {
-                                                                                    course: course_section.course_id,
-                                                                                    course_section:
-                                                                                        course_section.id,
-                                                                                }
-                                                                            )}
-                                                                            className="btn btn-primary btn-xs"
-                                                                        >
-                                                                            <Plus
-                                                                                size={
-                                                                                    16
-                                                                                }
-                                                                            />
-                                                                            <span>
-                                                                                Tambah
-                                                                                Evaluasi
-                                                                            </span>
-                                                                        </Link>
-                                                                    )}
+                                                                <td>
+                                                                    <Link
+                                                                        disabled={
+                                                                            course_section.evaluation
+                                                                                ? true
+                                                                                : false
+                                                                        }
+                                                                        href={route(
+                                                                            "user_area.course.course_section.evaluation.create",
+                                                                            {
+                                                                                course: course_section.course_id,
+                                                                                course_section:
+                                                                                    course_section.id,
+                                                                            }
+                                                                        )}
+                                                                        title="aksjdhkasjhdkjsa"
+                                                                        className="btn btn-primary btn-xs"
+                                                                    >
+                                                                        <Plus
+                                                                            size={
+                                                                                16
+                                                                            }
+                                                                        />
+                                                                        <span>
+                                                                            Tambah
+                                                                            Evaluasi
+                                                                        </span>
+                                                                    </Link>
                                                                 </td>
                                                             </tr>
 
@@ -195,11 +200,15 @@ export default function Evaluations({ course, course_sections }) {
                                                                         <td className="flex gap-1">
                                                                             <Link
                                                                                 href={route(
-                                                                                    "user_area.course.course_section.course_lecture.create",
+                                                                                    "user_area.course.course_section.evaluation.edit",
                                                                                     {
                                                                                         course: course_section.course_id,
                                                                                         course_section:
                                                                                             course_section.id,
+                                                                                        evaluation:
+                                                                                            course_section
+                                                                                                .evaluation
+                                                                                                .id,
                                                                                     }
                                                                                 )}
                                                                                 className="btn btn-info btn-xs"
@@ -213,24 +222,55 @@ export default function Evaluations({ course, course_sections }) {
                                                                                     Ubah
                                                                                 </span>
                                                                             </Link>
-                                                                            <Link
-                                                                                href={route(
-                                                                                    "user_area.course.course_section.course_lecture.create",
-                                                                                    {
-                                                                                        course: course_section.course_id,
-                                                                                        course_section:
-                                                                                            course_section.id,
-                                                                                    }
-                                                                                )}
+                                                                            <button
                                                                                 className="btn btn-error btn-xs"
+                                                                                onClick={(
+                                                                                    e
+                                                                                ) => {
+                                                                                    e.preventDefault();
+                                                                                    evaluationDeleteHandler(
+                                                                                        course_section.evaluation
+                                                                                    );
+                                                                                }}
                                                                             >
-                                                                                <Edit
+                                                                                <Trash
                                                                                     size={
                                                                                         16
                                                                                     }
                                                                                 />
                                                                                 <span>
                                                                                     Hapus
+                                                                                </span>
+                                                                            </button>
+                                                                            <Link
+                                                                                href={route(
+                                                                                    "user_area.course.course_section.evaluation.question.create",
+                                                                                    {
+                                                                                        course: course_section.course_id,
+                                                                                        course_section:
+                                                                                            course_section.id,
+                                                                                        evaluation:
+                                                                                            course_section
+                                                                                                .evaluation
+                                                                                                .id,
+                                                                                    }
+                                                                                )}
+                                                                                preserveScroll={
+                                                                                    true
+                                                                                }
+                                                                                preserveState={
+                                                                                    true
+                                                                                }
+                                                                                className="btn btn-primary btn-xs"
+                                                                            >
+                                                                                <Plus
+                                                                                    size={
+                                                                                        16
+                                                                                    }
+                                                                                />
+                                                                                <span>
+                                                                                    Tambah
+                                                                                    Pertanyaan
                                                                                 </span>
                                                                             </Link>
                                                                         </td>
@@ -409,11 +449,47 @@ export default function Evaluations({ course, course_sections }) {
                                                                             )
                                                                         )
                                                                     ) : (
-                                                                        <></>
+                                                                        <tr>
+                                                                            <td
+                                                                                colSpan={
+                                                                                    4
+                                                                                }
+                                                                                className="pl-16 italic text-xs text-warning"
+                                                                            >
+                                                                                Belum
+                                                                                Tersedia
+                                                                                Pertanyaan
+                                                                                Untuk
+                                                                                Evaluasi
+                                                                                ini,
+                                                                                evaluasi
+                                                                                tidak
+                                                                                akan
+                                                                                di
+                                                                                tampilkan
+                                                                                pada
+                                                                                halaman
+                                                                                pembelajaran
+                                                                            </td>
+                                                                        </tr>
                                                                     )}
                                                                 </>
                                                             ) : (
-                                                                <></>
+                                                                <tr>
+                                                                    <td
+                                                                        colSpan={
+                                                                            4
+                                                                        }
+                                                                        className="pl-8 italic text-xs text-warning"
+                                                                    >
+                                                                        Belum
+                                                                        Tersedia
+                                                                        Evaluasi
+                                                                        Untuk
+                                                                        Bagian
+                                                                        ini
+                                                                    </td>
+                                                                </tr>
                                                             )}
                                                         </>
                                                     )

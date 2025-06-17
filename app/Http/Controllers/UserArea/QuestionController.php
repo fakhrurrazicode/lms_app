@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\UserArea;
 
+use Inertia\Inertia;
+use App\Models\Course;
 use App\Models\Question;
+use App\Models\Evaluation;
 use Illuminate\Http\Request;
+use App\Models\CourseSection;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\QuestionStoreRequest;
@@ -21,9 +25,15 @@ class QuestionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Course $course, CourseSection $course_section, Evaluation $evaluation)
     {
-        //
+        $course->load(['course_sections.evaluation' => function ($query) {
+            $query->orderBy('id', 'ASC');
+        }]);
+
+        // return $course;
+
+        return Inertia::render('UserArea/Course/CourseSection/Evaluation/Question/Create', compact('course', 'course_section', 'evaluation'));
     }
 
     /**

@@ -44,7 +44,11 @@ class EvaluationController extends Controller
      */
     public function create(Course $course, CourseSection $course_section)
     {
-        return Inertia::render('UserArea/Evaluation/Create', compact('course', 'course_section'));
+        $course->load(['course_sections' => function ($query) {
+            $query->orderBy('id', 'ASC');
+        }]);
+
+        return Inertia::render('UserArea/Course/CourseSection/Evaluation/Create', compact('course', 'course_section'));
     }
 
     /**
@@ -73,15 +77,18 @@ class EvaluationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Course $course, CourseSection $course_section, Evaluation $course_lecture)
+    public function edit(Course $course, CourseSection $course_section, Evaluation $evaluation)
     {
-        return Inertia::render('UserArea/Evaluation/Edit', compact('course', 'course_section', 'course_lecture'));
+        $course->load(['course_sections' => function ($query) {
+            $query->orderBy('id', 'ASC');
+        }]);
+        return Inertia::render('UserArea/Course/CourseSection/Evaluation/Edit', compact('course', 'course_section', 'evaluation'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EvaluationUpdateRequest $request, Evaluation $evaluation)
+    public function update(EvaluationUpdateRequest $request, Course $course, CourseSection $course_section, Evaluation $evaluation)
     {
         $data = $request->validated();
         $evaluation->update($data);

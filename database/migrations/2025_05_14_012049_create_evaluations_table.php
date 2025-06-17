@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('instructions')->nullable();
             $table->integer('duration'); // in minutes
-            $table->integer('passing_score')->default(0);
+            $table->integer('passing_score')->nullable();
             $table->timestamps();
         });
     }

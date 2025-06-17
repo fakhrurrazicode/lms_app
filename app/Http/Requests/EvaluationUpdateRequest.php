@@ -25,7 +25,7 @@ class EvaluationUpdateRequest extends FormRequest
         return [
             'course_section_id' => ['required', 'exists:' . CourseSection::class . ',id'],
             'title' => ['required'],
-            'instructions' => ['required'],
+            // 'instructions' => ['required'],
             'duration' => ['required'],
             'passing_score' => ['required'],
         ];

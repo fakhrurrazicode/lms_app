@@ -385,7 +385,7 @@ export default function Edit({ course, course_section, course_lecture }) {
                                     ) : (
                                         <Save size={16} />
                                     )}
-                                    <span>Simpan</span>
+                                    <span>Ubah</span>
                                 </button>
                                 <Link
                                     href={route(
