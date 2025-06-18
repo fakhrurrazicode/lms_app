@@ -416,40 +416,38 @@ export default function Evaluations({ course, course_sections }) {
                                                                                                                 onChange={(
                                                                                                                     e
                                                                                                                 ) => {
-                                                                                                                    // console.log(
-                                                                                                                    //     e
-                                                                                                                    //         .target
-                                                                                                                    //         .value
-                                                                                                                    // );
-                                                                                                                    // console.log(
-                                                                                                                    //     e
-                                                                                                                    //         .target
-                                                                                                                    //         .checked
-                                                                                                                    // );
-                                                                                                                    // router.put(
-                                                                                                                    //     route(
-                                                                                                                    //         "user_area.course.course_section.course_lecture.set_as_preview",
-                                                                                                                    //         {
-                                                                                                                    //             course: course.id,
-                                                                                                                    //             course_section:
-                                                                                                                    //                 course_section.id,
-                                                                                                                    //             course_lecture:
-                                                                                                                    //                 course_lecture.id,
-                                                                                                                    //         }
-                                                                                                                    //     ),
-                                                                                                                    //     {
-                                                                                                                    //         set_as_preview:
-                                                                                                                    //             e
-                                                                                                                    //                 .target
-                                                                                                                    //                 .checked
-                                                                                                                    //                 ? 1
-                                                                                                                    //                 : 0,
-                                                                                                                    //     },
-                                                                                                                    //     {
-                                                                                                                    //         preserveScroll: true,
-                                                                                                                    //         preserveState: true,
-                                                                                                                    //     }
-                                                                                                                    // );
+                                                                                                                    console.log(
+                                                                                                                        e
+                                                                                                                            .target
+                                                                                                                            .value
+                                                                                                                    );
+                                                                                                                    console.log(
+                                                                                                                        e
+                                                                                                                            .target
+                                                                                                                            .checked
+                                                                                                                    );
+                                                                                                                    router.put(
+                                                                                                                        route(
+                                                                                                                            "user_area.course.course_section.evaluation.question.choice.set_as_correct_answer",
+                                                                                                                            {
+                                                                                                                                course: course.id,
+                                                                                                                                course_section:
+                                                                                                                                    course_section.id,
+                                                                                                                                evaluation:
+                                                                                                                                    course_section
+                                                                                                                                        .evaluation
+                                                                                                                                        .id,
+                                                                                                                                question:
+                                                                                                                                    question.id,
+                                                                                                                                choice: choice.id,
+                                                                                                                            }
+                                                                                                                        ),
+                                                                                                                        {},
+                                                                                                                        {
+                                                                                                                            preserveScroll: true,
+                                                                                                                            preserveState: true,
+                                                                                                                        }
+                                                                                                                    );
                                                                                                                 }}
                                                                                                             />
                                                                                                         </td>

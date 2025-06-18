@@ -53,6 +53,7 @@ use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseCont
 use App\Http\Controllers\UserArea\EvaluationController as UserAreaEvaluationController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
+use App\Http\Controllers\UserArea\ChoiceController as UserAreaChoiceController;
 use App\Http\Controllers\LearningArea\EvaluationController as LearningAreaEvaluationController;
 use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
 use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEnrollmentController;
@@ -160,21 +161,17 @@ Route::middleware(['auth'])->group(function () {
 
             Route::resource('course.course_section.course_lecture', UserAreaCourseLectureController::class)->except(['update']);
             Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [UserAreaCourseLectureController::class, 'update'])->name('course.course_section.course_lecture.update');
-
-
-            Route::resource('course.course_enrollment', UserAreaCourseEnrollmentController::class)->shallow();
-
-            Route::post('/course_lecture/{course_lecture}/update', [UserAreaCourseLectureController::class, 'update'])->name('course_lecture.update');
+            Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_preview', [UserAreaCourseLectureController::class, 'set_as_preview'])->name('course.course_section.course_lecture.set_as_preview');
+            Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_featured', [UserAreaCourseLectureController::class, 'set_as_featured'])->name('course.course_section.course_lecture.set_as_featured');
 
             Route::resource('course.course_section.evaluation', UserAreaEvaluationController::class);
             Route::resource('course.course_section.evaluation.question', UserAreaQuestionController::class);
 
-            // Route::resource('evaluation.question', UserAreaQuestionController::class)->shallow();
-            // Route::resource('/course/{course}/course_section', UserAreaCourseSectionController::class);
-            // Route::resource('/course/{course}/course_section/{course_section}/course_lecture', UserAreaCourseLectureController::class)->except(['index', 'update']);
-            // Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [UserAreaCourseLectureController::class, 'update'])->name('course_lecture.update');
-            Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_preview', [UserAreaCourseLectureController::class, 'set_as_preview'])->name('course.course_section.course_lecture.set_as_preview');
-            Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_featured', [UserAreaCourseLectureController::class, 'set_as_featured'])->name('course.course_section.course_lecture.set_as_featured');
+            Route::put('/course/{course}/course_section/{course_section}/evaluation/{evaluation}/question/{question}/choice/{choice}/set_as_correct_answer', [UserAreaChoiceController::class, 'set_as_correct_answer'])->name('course.course_section.evaluation.question.choice.set_as_correct_answer');
+
+
+
+            Route::resource('course.course_enrollment', UserAreaCourseEnrollmentController::class)->shallow();
         });
     });
 

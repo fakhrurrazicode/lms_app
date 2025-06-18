@@ -109,28 +109,4 @@ class EvaluationController extends Controller
         //     'course_section' => $course_section,
         // ]);
     }
-
-    public function set_as_preview(Request $request, Course $course, CourseSection $course_section, Evaluation $evaluation)
-    {
-        $set_as_preview = $request->set_as_preview;
-
-        $evaluation->update([
-            'set_as_preview' => $set_as_preview
-        ]);
-    }
-
-
-    public function set_as_featured(Request $request, Course $course, CourseSection $course_section, Evaluation $evaluation)
-    {
-
-        Evaluation::where('course_id', $course->id)->update([
-            'set_as_featured' => 0,
-        ]);
-
-        $set_as_featured = $request->set_as_featured;
-
-        $evaluation->update([
-            'set_as_featured' => $set_as_featured
-        ]);
-    }
 }
