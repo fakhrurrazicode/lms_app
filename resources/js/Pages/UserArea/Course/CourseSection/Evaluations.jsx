@@ -390,11 +390,7 @@ export default function Evaluations({ course, course_sections }) {
                                                                                                                         className="text-error"
                                                                                                                     />
                                                                                                                 )}
-                                                                                                                <span>
-                                                                                                                    {
-                                                                                                                        choice.id
-                                                                                                                    }
-                                                                                                                </span>
+
                                                                                                                 <span>
                                                                                                                     <HtmlRenderer
                                                                                                                         htmlString={
