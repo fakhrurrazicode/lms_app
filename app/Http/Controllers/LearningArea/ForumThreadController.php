@@ -25,7 +25,14 @@ class ForumThreadController extends Controller
         ]);
 
 
-        $forum_threads = ForumThread::with(['forum_replies.user'])->orWhere([
+        $forum_threads = ForumThread::with(['forum_replies.user'])->where([
+            [
+                'threadable_type',
+                '=',
+                Course::class,
+            ],
+            ['threadable_id', '=', $course->id,]
+        ])->orWhere([
             ['title', 'LIKE', '%' . $request->search . '%'],
             ['body', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
@@ -61,7 +68,7 @@ class ForumThreadController extends Controller
      */
     public function show(Course $course, ForumThread $forum_thread)
     {
-        //
+        // return Inertia::render('LearningArea/ForumThread/Index')
     }
 
     /**

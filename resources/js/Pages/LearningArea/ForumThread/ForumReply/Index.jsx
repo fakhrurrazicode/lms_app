@@ -2,23 +2,6 @@ import FrontendLayout from "@/Layouts/FrontendLayout";
 import React, { Children } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 
-import CourseNav from "../CourseNav";
-import { rupiah } from "@/bootstrap";
-import {
-    FaBook,
-    FaCartPlus,
-    FaChevronDown,
-    FaParagraph,
-    FaStar,
-    FaTrash,
-    FaUserAlt,
-    FaClock,
-    FaEye,
-    FaLock,
-    FaCertificate,
-    FaFileAlt,
-    FaPlay,
-} from "react-icons/fa";
 import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 import { Link, router } from "@inertiajs/react";
@@ -170,7 +153,7 @@ export default function Index({ course, forum_threads, request }) {
                                                     <td>
                                                         <Link
                                                             href={route(
-                                                                "learning_area.course.forum_thread.forum_reply.index",
+                                                                "learning_area.course.forum_thread.show",
                                                                 {
                                                                     course: course.id,
                                                                     forum_thread:

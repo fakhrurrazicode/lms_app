@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForumReply extends Model
 {
-    public function thread()
+    public function forum_thread()
     {
         return $this->belongsTo(ForumThread::class, 'forum_thread_id');
     }

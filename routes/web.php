@@ -38,12 +38,14 @@ use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\InstructorInfoController;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\LearningArea\ForumReplyController as LearningAreaForumReplyController;
 use App\Http\Controllers\Backend\CourseEnrollmentController;
 use App\Http\Controllers\LearningArea\LearningAreaController;
 use App\Http\Controllers\UserArea\BecomeInstructorController;
 use App\Http\Controllers\Backend\TicketController as BackendTicketController;
 use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
 use App\Http\Controllers\Learning\CourseController as LearningCourseController;
+use App\Http\Controllers\UserArea\ChoiceController as UserAreaChoiceController;
 use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
 use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
 use App\Http\Controllers\UserArea\VoucherController as UserAreaVoucherController;
@@ -53,13 +55,12 @@ use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseCont
 use App\Http\Controllers\UserArea\EvaluationController as UserAreaEvaluationController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
-use App\Http\Controllers\UserArea\ChoiceController as UserAreaChoiceController;
 use App\Http\Controllers\LearningArea\EvaluationController as LearningAreaEvaluationController;
+use App\Http\Controllers\LearningArea\ForumThreadController as LearningAreaForumThreadController;
 use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
 use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEnrollmentController;
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
 use App\Http\Controllers\LearningArea\CourseSectionController as LearningAreaCourseSectionController;
-use App\Http\Controllers\LearningArea\ForumThreadController as LearningAreaForumThreadController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -207,6 +208,7 @@ Route::middleware(['auth'])->group(function () {
         )->name('course.course_section.evaluation.submit');
 
         Route::resource('course.forum_thread', LearningAreaForumThreadController::class);
+        Route::resource('course.forum_thread.forum_reply', LearningAreaForumReplyController::class);
     });
 
     // Route::group(['prefix' => '/learning_area', 'as' => 'learning_area.'], function () {
