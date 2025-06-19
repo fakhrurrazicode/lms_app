@@ -24,7 +24,7 @@ import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 import { Link } from "@inertiajs/react";
 import { GrPlay, GrResume } from "react-icons/gr";
 import classNames from "classnames";
-import { Plus } from "lucide-react";
+import { Edit, Plus, Trash } from "lucide-react";
 
 export default function Show({ course, forum_threads, request }) {
     const orderByOnClickHandler = (e) =>
@@ -123,7 +123,6 @@ export default function Show({ course, forum_threads, request }) {
                                 <table className="table mb-6">
                                     <thead>
                                         <tr>
-                                            <th></th>
                                             <th
                                                 className="cursor-pointer"
                                                 data-columnname="name"
@@ -131,13 +130,7 @@ export default function Show({ course, forum_threads, request }) {
                                             >
                                                 Title
                                             </th>
-                                            <th
-                                                className="cursor-pointer"
-                                                data-columnname="email"
-                                                onClick={orderByOnClickHandler}
-                                            >
-                                                Body
-                                            </th>
+
                                             <th
                                                 className="cursor-pointer"
                                                 data-columnname="email"
@@ -176,78 +169,26 @@ export default function Show({ course, forum_threads, request }) {
                                                     key={forum_thread.id}
                                                     className="hover"
                                                 >
-                                                    <th>
-                                                        <Link
-                                                            href={route(
-                                                                "learning_area.course.forum_thread.edit",
-                                                                forum_thread.id
-                                                            )}
-                                                            className="btn btn-accent btn-sm"
-                                                        >
-                                                            <Edit size={16} />
-                                                            <span>Edit</span>
-                                                        </Link>
-                                                        <Link
-                                                            href={route(
-                                                                "learning_area.course.forum_thread.edit_password",
-                                                                forum_thread.id
-                                                            )}
-                                                            className="btn btn-secondary btn-sm ml-1"
-                                                        >
-                                                            <KeyRound
-                                                                size={16}
-                                                            />
-                                                            <span>
-                                                                Edit Password
-                                                            </span>
-                                                        </Link>
-                                                        <button
-                                                            className="btn btn-error btn-sm ml-1"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                confirm(
-                                                                    "Anda yakin ingin menghapus data " +
-                                                                        forum_thread.name +
-                                                                        "?"
-                                                                )
-                                                                    ? router.delete(
-                                                                          route(
-                                                                              "learning_area.course.forum_thread.destroy",
-                                                                              {
-                                                                                  user: forum_thread.id,
-                                                                              }
-                                                                          ),
-                                                                          {
-                                                                              preserveState: true,
-                                                                              preserveScroll: true,
-                                                                          }
-                                                                      )
-                                                                    : null;
-                                                            }}
-                                                        >
-                                                            <Trash size={16} />
-                                                            <span>Delete</span>
-                                                        </button>
-                                                    </th>
-                                                    <td>{forum_thread.name}</td>
                                                     <td>
-                                                        {forum_thread.email}
+                                                        {forum_thread.title}
                                                     </td>
-                                                    <td>
-                                                        {forum_thread.roles
-                                                            .length
-                                                            ? forum_thread
-                                                                  .roles[0].name
-                                                            : "-"}
-                                                    </td>
+
+                                                    <td>users avatars</td>
                                                     <td>
                                                         {
-                                                            forum_thread.created_at
+                                                            forum_thread
+                                                                .forum_replies
+                                                                .length
                                                         }
                                                     </td>
                                                     <td>
                                                         {
-                                                            forum_thread.updated_at
+                                                            forum_thread.created_at_diff_for_humans
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        {
+                                                            forum_thread.updated_at_diff_for_humans
                                                         }
                                                     </td>
                                                 </tr>

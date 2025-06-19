@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForumThread extends Model
 {
+
+    protected $appends = ['created_at_diff_for_humans', 'updated_at_diff_for_humans'];
+
+    public function getCreatedAtDiffForHumansAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+    public function getUpdatedAtDiffForHumansAttribute()
+    {
+        return $this->updated_at->diffForHumans();
+    }
+
     public function threadable()
     {
         return $this->morphTo();
@@ -16,7 +28,7 @@ class ForumThread extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function replies()
+    public function forum_replies()
     {
         return $this->hasMany(ForumReply::class);
     }

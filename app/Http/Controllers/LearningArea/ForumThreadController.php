@@ -25,7 +25,7 @@ class ForumThreadController extends Controller
         ]);
 
 
-        $forum_threads = ForumThread::with(['forum_reply'])->orWhere([
+        $forum_threads = ForumThread::with(['forum_replies'])->orWhere([
             ['title', 'LIKE', '%' . $request->search . '%'],
             ['body', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
