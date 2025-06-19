@@ -25,7 +25,7 @@ class ForumThreadController extends Controller
         ]);
 
 
-        $forum_threads = ForumThread::with(['forum_replies'])->orWhere([
+        $forum_threads = ForumThread::with(['forum_replies.user'])->orWhere([
             ['title', 'LIKE', '%' . $request->search . '%'],
             ['body', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
@@ -59,7 +59,7 @@ class ForumThreadController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Course $course, ForumThread $forum_thread)
     {
         //
     }
@@ -67,7 +67,7 @@ class ForumThreadController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Course $course, ForumThread $forum_thread)
     {
         //
     }
@@ -75,7 +75,7 @@ class ForumThreadController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Course $course, ForumThread $forum_thread)
     {
         //
     }
@@ -83,7 +83,7 @@ class ForumThreadController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Course $course, ForumThread $forum_thread)
     {
         //
     }
