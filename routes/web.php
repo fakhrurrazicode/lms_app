@@ -59,7 +59,7 @@ use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCour
 use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEnrollmentController;
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
 use App\Http\Controllers\LearningArea\CourseSectionController as LearningAreaCourseSectionController;
-use App\Http\Controllers\LearningArea\ThreadController as LearningAreaThreadController;
+use App\Http\Controllers\LearningArea\ForumThreadController as LearningAreaForumThreadController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -187,7 +187,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('course/{course}/instructor_info', [LearningAreaCourseController::class, 'instructor_info'])->name('course.instructor_info');
         Route::get('course/{course}/start', [LearningAreaCourseController::class, 'start'])->name('course.start');
 
-        Route::resource('course.thread', LearningAreaThreadController::class);
 
         Route::resource('course.course_section.course_lecture', LearningAreaCourseLectureController::class)->only(['show']);
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish', [LearningAreaCourseLectureController::class, 'finish'])->name('course.course_section.course_lecture.finish');
@@ -206,6 +205,8 @@ Route::middleware(['auth'])->group(function () {
             'course/{course}/course_section/{course_section}/evaluation/{evaluation}/evaluation_attempt/{evaluation_attempt}/submit',
             [LearningAreaEvaluationController::class, 'submit']
         )->name('course.course_section.evaluation.submit');
+
+        Route::resource('course.forum_thread', LearningAreaForumThreadController::class);
     });
 
     // Route::group(['prefix' => '/learning_area', 'as' => 'learning_area.'], function () {
@@ -270,6 +271,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/voucher/create_batch', [VoucherController::class, 'create_batch'])->name('voucher.create_batch');
         Route::post('/voucher/store_batch', [VoucherController::class, 'store_batch'])->name('voucher.store_batch');
         Route::resource('/voucher', VoucherController::class);
+
+
 
         // Route::resource('/course/{course}/course_section', CourseSectionController::class);
         // Route::resource('/course/{course}/course_section/{course_section}/course_lecture', CourseLectureController::class)->except(['index', 'update']);

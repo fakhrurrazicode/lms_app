@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('threads', function (Blueprint $table) {
+        Schema::create('forum_threads', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Pembuat thread
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
+            // polymorphic relation
+            $table->morphs('threadable'); // threadable_id & threadable_type
+
             $table->string('title');
-            $table->morphs('threadable'); // polymorphic ke course, section, lecture
+            $table->text('body');
             $table->timestamps();
         });
     }
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('threads');
+        Schema::dropIfExists('forum_threads');
     }
 };

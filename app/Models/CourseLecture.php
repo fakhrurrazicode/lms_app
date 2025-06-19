@@ -24,6 +24,8 @@ class CourseLecture extends BaseModel
         });
     }
 
+
+
     protected $guarded = [];
     protected $appends = [
         'video_url',
@@ -33,9 +35,9 @@ class CourseLecture extends BaseModel
 
     // protected $with = ['course_track'];
 
-    public function threads()
+    public function forumThreads()
     {
-        return $this->morphMany(Thread::class, 'threadable');
+        return $this->morphMany(ForumThread::class, 'threadable');
     }
 
     public function attachments()

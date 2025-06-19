@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\LearningArea;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ThreadPostController extends Controller
+class ForumReplyController extends Controller
 {
     /**
      * Display a listing of the resource.

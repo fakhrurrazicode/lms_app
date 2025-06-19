@@ -37,6 +37,11 @@ class CourseSection extends BaseModel
         return $this->evaluation ? true : false;
     }
 
+    public function forumThreads()
+    {
+        return $this->morphMany(ForumThread::class, 'threadable');
+    }
+
     // public function getEvaluatableAttribute()
     // {
     //     return $this->course_lectures->count() == $this->course_tracks
