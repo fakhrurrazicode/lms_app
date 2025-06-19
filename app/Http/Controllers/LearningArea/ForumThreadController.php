@@ -2,17 +2,42 @@
 
 namespace App\Http\Controllers\LearningArea;
 
-use App\Http\Controllers\Controller;
+use Inertia\Inertia;
+use App\Models\Course;
+use App\Models\ForumThread;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\PaginateRequest;
 
 class ForumThreadController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PaginateRequest $request, Course $course)
     {
-        //
+
+        $course = $course->load([
+            'course_category',
+            'course_sections.course_lectures.course_track',
+            'course_sections.evaluation',
+            'course_sections.course_tracks',
+        ]);
+
+
+        $forum_threads = ForumThread::with(['forum_reply'])->orWhere([
+            ['title', 'LIKE', '%' . $request->search . '%'],
+            ['body', 'LIKE', '%' . $request->search . '%'],
+        ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
+
+        // $forum_threads->append($_GET);
+
+        // return $forum_threads;
+        return Inertia::render('LearningArea/ForumThread/Index', [
+            'forum_threads' => $forum_threads,
+            'course' => $course,
+            'request' => $request,
+        ]);
     }
 
     /**
