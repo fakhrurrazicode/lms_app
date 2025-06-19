@@ -32,7 +32,6 @@ class ForumReplyController extends Controller
                 $forum_thread->id,
             ],
         ])->orWhere([
-            ['title', 'LIKE', '%' . $request->search . '%'],
             ['body', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 

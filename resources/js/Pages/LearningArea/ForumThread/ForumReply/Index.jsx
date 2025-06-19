@@ -9,7 +9,12 @@ import { GrPlay, GrResume } from "react-icons/gr";
 import classNames from "classnames";
 import { Edit, Plus, Trash } from "lucide-react";
 
-export default function Index({ course, forum_threads, request }) {
+export default function Index({
+    course,
+    forum_thread,
+    forum_replies,
+    request,
+}) {
     const orderByOnClickHandler = (e) =>
         router.reload({
             preserveScroll: true,
@@ -99,139 +104,12 @@ export default function Index({ course, forum_threads, request }) {
                                 </label>
                             </div>
                         </div>
-                        <table className="table mb-6">
-                            <thead>
-                                <tr>
-                                    <th
-                                        className="cursor-pointer"
-                                        data-columnname="name"
-                                        onClick={orderByOnClickHandler}
-                                    >
-                                        Title
-                                    </th>
-
-                                    <th
-                                        className="cursor-pointer"
-                                        data-columnname="email"
-                                        onClick={orderByOnClickHandler}
-                                    >
-                                        Users
-                                    </th>
-
-                                    <th
-                                        className="cursor-pointer"
-                                        data-columnname="email"
-                                        onClick={orderByOnClickHandler}
-                                    >
-                                        Replies
-                                    </th>
-                                    <th
-                                        className="cursor-pointer"
-                                        data-columnname="created_at"
-                                        onClick={orderByOnClickHandler}
-                                    >
-                                        Created at
-                                    </th>
-                                    <th
-                                        className="cursor-pointer"
-                                        data-columnname="updated_at"
-                                        onClick={orderByOnClickHandler}
-                                    >
-                                        Updated at
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {forum_threads.data.length > 0 ? (
-                                    <>
-                                        {forum_threads.data.map(
-                                            (forum_thread) => (
-                                                <tr
-                                                    key={forum_thread.id}
-                                                    className="hover"
-                                                >
-                                                    <td>
-                                                        <Link
-                                                            href={route(
-                                                                "learning_area.course.forum_thread.show",
-                                                                {
-                                                                    course: course.id,
-                                                                    forum_thread:
-                                                                        forum_thread.id,
-                                                                }
-                                                            )}
-                                                        >
-                                                            {forum_thread.title}
-                                                        </Link>
-                                                    </td>
-
-                                                    <td>
-                                                        {forum_thread
-                                                            .forum_replies
-                                                            .length ? (
-                                                            <>
-                                                                {forum_thread.forum_replies
-                                                                    .slice(-3)
-                                                                    .map(
-                                                                        (
-                                                                            forum_reply
-                                                                        ) => (
-                                                                            <div className="flex gap-2">
-                                                                                <div className="avatar">
-                                                                                    <div className="w-8 rounded-full">
-                                                                                        <img
-                                                                                            src={
-                                                                                                forum_reply
-                                                                                                    .user
-                                                                                                    .photo_url
-                                                                                            }
-                                                                                        />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        )
-                                                                    )}
-                                                            </>
-                                                        ) : (
-                                                            <>-</>
-                                                        )}
-                                                    </td>
-                                                    <td>
-                                                        {
-                                                            forum_thread
-                                                                .forum_replies
-                                                                .length
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        {
-                                                            forum_thread.created_at_diff_for_humans
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        {
-                                                            forum_thread.updated_at_diff_for_humans
-                                                        }
-                                                    </td>
-                                                </tr>
-                                            )
-                                        )}
-                                    </>
-                                ) : (
-                                    <div className="py-6 text-center">
-                                        <p className="italic">
-                                            Belum Tersedia Forum Pada Kursus ini
-                                        </p>
-                                    </div>
-                                )}
-                            </tbody>
-                        </table>
 
                         <div className="flex justify-between">
                             <div></div>
                             <div>
                                 <div className="join">
-                                    {forum_threads.links.map((link, index) => (
+                                    {forum_replies.links.map((link, index) => (
                                         <Link
                                             preserveScroll={true}
                                             preserveState={true}
