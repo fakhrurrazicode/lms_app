@@ -6,13 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForumReply extends Model
 {
-    public function forum_thread()
+    public function forum()
     {
-        return $this->belongsTo(ForumThread::class, 'forum_thread_id');
+        return $this->belongsTo(Forum::class);
     }
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function votes()
+    {
+        return $this->morphMany(ForumVote::class, 'votable');
     }
 }

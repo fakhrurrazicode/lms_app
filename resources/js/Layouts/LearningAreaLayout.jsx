@@ -78,7 +78,7 @@ export default function LearningAreaLayout({ children, course }) {
 
                             <Link
                                 href={route(
-                                    "learning_area.course.forum_thread.index",
+                                    "learning_area.course.forum.index",
                                     {
                                         course: course.id,
                                     }
@@ -88,7 +88,7 @@ export default function LearningAreaLayout({ children, course }) {
                                     "tab h-auto !py-4 flex gap-2 justify-center",
                                     {
                                         "tab-active": route().current(
-                                            "learning_area.course.forum_thread.index",
+                                            "learning_area.course.forum.index",
                                             {
                                                 course: course.id,
                                             }

@@ -3,46 +3,34 @@
 namespace App\Http\Controllers\LearningArea;
 
 use Inertia\Inertia;
+use App\Models\Forum;
 use App\Models\Course;
-use App\Models\ForumReply;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginateRequest;
-use App\Models\ForumThread;
 
-class ForumReplyController extends Controller
+class ForumController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(PaginateRequest $request, Course $course, ForumThread $forum_thread)
+    public function index(PaginateRequest $request,  Course $course)
     {
-        $course = $course->load([
-            'course_category',
-            'course_sections.course_lectures.course_track',
-            'course_sections.evaluation',
-            'course_sections.course_tracks',
-        ]);
 
+        $course->load('course_sections.course_lectures');
 
-        $forum_replies = ForumReply::with(['forum_thread'])->where([
-            [
-                'forum_thread_id',
-                '=',
-                $forum_thread->id,
-            ],
+        $forums = Forum::with(['user'])->where([
+            'discussionable_type' => Course::class,
+            'discussionable_id' => $course->id
         ])->orWhere([
+            ['title', 'LIKE', '%' . $request->search . '%'],
             ['body', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
-        // $forum_replies->append($_GET);
 
-        // return $forum_replies;
-        return Inertia::render('LearningArea/ForumThread/ForumReply/Index', [
-
+        return Inertia::render('LearningArea/Forum/Index', [
             'course' => $course,
-            'forum_thread' => $forum_thread,
-            'forum_replies' => $forum_replies,
+            'forums' => $forums,
             'request' => $request,
         ]);
     }

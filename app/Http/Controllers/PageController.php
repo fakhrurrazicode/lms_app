@@ -155,6 +155,7 @@ class PageController extends Controller
             'user_id' => $data['user_id'],
             'id_card' => $data['id_card'],
             'bio' => $data['bio'],
+            'phone_number' => $data['phone_number'],
             'status' => 0,
         ]);
 

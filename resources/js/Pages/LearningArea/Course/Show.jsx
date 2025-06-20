@@ -1,24 +1,6 @@
-import FrontendLayout from "@/Layouts/FrontendLayout";
-import React, { Children } from "react";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import React from "react";
 
-import CourseNav from "../CourseNav";
 import { rupiah } from "@/bootstrap";
-import {
-    FaBook,
-    FaCartPlus,
-    FaChevronDown,
-    FaParagraph,
-    FaStar,
-    FaTrash,
-    FaUserAlt,
-    FaClock,
-    FaEye,
-    FaLock,
-    FaCertificate,
-    FaFileAlt,
-    FaPlay,
-} from "react-icons/fa";
 import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
 import { Link } from "@inertiajs/react";

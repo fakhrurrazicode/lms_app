@@ -4,23 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ForumThread extends Model
+class Forum extends Model
 {
 
-    protected $appends = ['created_at_diff_for_humans', 'updated_at_diff_for_humans'];
+    public $appends = ['created_at_diff_for_humans', 'updated_at_diff_for_humans'];
 
     public function getCreatedAtDiffForHumansAttribute()
     {
         return $this->created_at->diffForHumans();
     }
+
     public function getUpdatedAtDiffForHumansAttribute()
     {
         return $this->updated_at->diffForHumans();
-    }
-
-    public function threadable()
-    {
-        return $this->morphTo();
     }
 
     public function user()
@@ -28,8 +24,18 @@ class ForumThread extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function forum_replies()
+    public function discussionable()
+    {
+        return $this->morphTo();
+    }
+
+    public function replies()
     {
         return $this->hasMany(ForumReply::class);
+    }
+
+    public function votes()
+    {
+        return $this->morphMany(ForumVote::class, 'votable');
     }
 }

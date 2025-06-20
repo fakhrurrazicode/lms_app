@@ -17,6 +17,7 @@ export default function BecomeInstructor({}) {
         name: auth.user ? auth.user.name : "",
         username: auth.user ? auth.user.username : "",
         email: auth.user ? auth.user.email : "",
+        phone_number: auth.user ? auth.user.phone_number : "",
         bio: "",
     };
 
@@ -246,6 +247,29 @@ export default function BecomeInstructor({}) {
                                                     {
                                                         errors.password_confirmation
                                                     }
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                No Handphone
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="No Handphone"
+                                            className="input input-bordered w-full"
+                                            name="phone_number"
+                                            onChange={inputChangeHandler}
+                                            value={data.phone_number}
+                                        />
+                                        {errors.phone_number && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.phone_number}
                                                 </span>
                                             </div>
                                         )}

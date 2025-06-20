@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('forum_threads', function (Blueprint $table) {
+        Schema::create('forum_votes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-
-            // polymorphic relation
-            $table->morphs('threadable'); // threadable_id & threadable_type
-
-            $table->string('title');
-            $table->text('body');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->morphs('votable'); // Forum or ForumReply
+            $table->integer('value'); // 1 = up, -1 = down
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('forum_threads');
+        Schema::dropIfExists('forum_votes');
     }
 };

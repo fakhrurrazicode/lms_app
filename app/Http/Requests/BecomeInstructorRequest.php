@@ -38,7 +38,16 @@ class BecomeInstructorRequest extends FormRequest
                 'password' => ['required', 'confirmed', Password::defaults()],
                 'id_card' => ['required', 'image'],
                 'bio' => ['required'],
+                'phone_number' =>  ['required', 'regex:/^(\+62|08)[0-9]{8,13}$/'],
             ];
         }
+    }
+
+    public function messages(): array
+    {
+        return [
+            // 'phone.required' => 'Nomor telepon wajib diisi.',
+            'phone_number.regex' => 'Nomor telepon harus dimulai dengan +62 atau 08 dan diikuti 8–13 digit angka.',
+        ];
     }
 }
