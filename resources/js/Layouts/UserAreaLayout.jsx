@@ -45,6 +45,7 @@ export default function UserAreaLayout({ children }) {
                                     </div>
                                 </div>
                                 <div>
+                                    <h6>{auth.role.name}</h6>
                                     <h3 className="text-xl font-bold mb-2">
                                         Hello, {auth.user.name}
                                     </h3>

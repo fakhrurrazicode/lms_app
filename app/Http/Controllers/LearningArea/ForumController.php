@@ -22,10 +22,12 @@ class ForumController extends Controller
         $forums = Forum::with(['user'])->where([
             'discussionable_type' => Course::class,
             'discussionable_id' => $course->id
-        ])->orWhere([
-            ['title', 'LIKE', '%' . $request->search . '%'],
-            ['body', 'LIKE', '%' . $request->search . '%'],
-        ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
+        ])
+            // ->orWhere([
+            //     ['title', 'LIKE', '%' . $request->search . '%'],
+            //     ['body', 'LIKE', '%' . $request->search . '%'],
+            // ])
+            ->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
 
         return Inertia::render('LearningArea/Forum/Index', [

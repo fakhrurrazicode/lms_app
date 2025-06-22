@@ -12,10 +12,10 @@ export default function UpdateInstructorProfileInformation({ className = "" }) {
 
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
-            bio: instructor_info.bio,
-            facebook_url: instructor_info.facebook_url,
-            instagram_url: instructor_info.instagram_url,
-            youtube_url: instructor_info.youtube_url,
+            bio: instructor_info ? instructor_info.bio : "",
+            facebook_url: instructor_info ? instructor_info.facebook_url : "",
+            instagram_url: instructor_info ? instructor_info.instagram_url : "",
+            youtube_url: instructor_info ? instructor_info.youtube_url : "",
         });
 
     const submit = (e) => {

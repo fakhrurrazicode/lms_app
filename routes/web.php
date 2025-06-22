@@ -1,67 +1,68 @@
 <?php
 
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
-
 use Inertia\Inertia;
-
 use App\Models\Enrollment;
 
-use App\Http\Controllers\GoogleAuthController;
-use App\Http\Controllers\Auth\GoogleController;
+use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\CartController;
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\YouTubeController;
 use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Backend\TagController;
 
 use App\Http\Controllers\Backend\RoleController;
-use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Backend\EventController;
 use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\VoucherController;
+use App\Http\Controllers\UserArea\TicketController;
+use App\Http\Controllers\UserArea\QuestionController;
 use App\Http\Controllers\Backend\EvaluationController;
-use App\Http\Controllers\Backend\InstructorInfoController;
-use App\Http\Controllers\Backend\CourseLectureController;
-use App\Http\Controllers\Backend\CourseSectionController;
-use App\Http\Controllers\Backend\CourseCategoryController;
-use App\Http\Controllers\Backend\CourseEnrollmentController;
+use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\UserArea\DashboardController;
 use App\Http\Controllers\Backend\ActivityLogController;
+use App\Http\Controllers\UserArea\EnrollmentController;
+use App\Http\Controllers\UserArea\TicketReplyController;
+use App\Http\Controllers\Backend\CourseLectureController;
+
+use App\Http\Controllers\Backend\CourseSectionController;
+
+use App\Http\Controllers\Backend\CourseCategoryController;
+use App\Http\Controllers\Backend\InstructorInfoController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\Backend\CourseEnrollmentController;
+use App\Http\Controllers\LearningArea\LearningAreaController;
+use App\Http\Controllers\UserArea\BecomeInstructorController;
 use App\Http\Controllers\Backend\TicketController as BackendTicketController;
 
-use App\Http\Controllers\Learning\CourseController as LearningCourseController;
-
-use App\Http\Controllers\LearningArea\ForumController as LearningAreaForumController;
-use App\Http\Controllers\LearningArea\LearningAreaController;
-use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseController;
-use App\Http\Controllers\LearningArea\EvaluationController as LearningAreaEvaluationController;
-use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
-use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
-use App\Http\Controllers\LearningArea\CourseSectionController as LearningAreaCourseSectionController;
-
-use App\Http\Controllers\UserArea\DashboardController;
-use App\Http\Controllers\UserArea\EnrollmentController;
-use App\Http\Controllers\UserArea\BecomeInstructorController;
-use App\Http\Controllers\UserArea\TicketController;
-use App\Http\Controllers\UserArea\TicketReplyController;
 use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
+use App\Http\Controllers\Learning\CourseController as LearningCourseController;
 use App\Http\Controllers\UserArea\ChoiceController as UserAreaChoiceController;
 use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
+use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
+use App\Http\Controllers\UserArea\VoucherController as UserAreaVoucherController;
+use App\Http\Controllers\UserArea\QuestionController as UserAreaQuestionController;
+use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
+use App\Http\Controllers\LearningArea\ForumController as LearningAreaForumController;
+use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseController;
+use App\Http\Controllers\UserArea\EvaluationController as UserAreaEvaluationController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
+use App\Http\Controllers\LearningArea\EvaluationController as LearningAreaEvaluationController;
+use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
 use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEnrollmentController;
-use App\Http\Controllers\UserArea\EvaluationController as UserAreaEvaluationController;
-use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
-use App\Http\Controllers\UserArea\QuestionController as UserAreaQuestionController;
-use App\Http\Controllers\UserArea\VoucherController as UserAreaVoucherController;
-use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
 
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
+use App\Http\Controllers\LearningArea\CourseSectionController as LearningAreaCourseSectionController;
 
 
 // Route::get('/', function () {
