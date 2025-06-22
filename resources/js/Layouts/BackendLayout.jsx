@@ -342,11 +342,11 @@ export default function BackendLayout({ header, children }) {
 
                         <li>
                             <Link
-                                href="/backend/voucher"
+                                href="/backend/referral_code"
                                 className="flex justify-start items-center "
                             >
                                 <FaTicket size={16} />
-                                <span>Data Voucher</span>
+                                <span>Data Referral Code</span>
                             </Link>
                         </li>
 

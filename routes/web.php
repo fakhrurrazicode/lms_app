@@ -40,6 +40,7 @@ use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\InstructorInfoController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\Backend\CourseEnrollmentController;
+use App\Http\Controllers\Backend\ReferralCodeController;
 use App\Http\Controllers\LearningArea\LearningAreaController;
 use App\Http\Controllers\UserArea\BecomeInstructorController;
 use App\Http\Controllers\Backend\TicketController as BackendTicketController;
@@ -254,6 +255,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/voucher/create_batch', [VoucherController::class, 'create_batch'])->name('voucher.create_batch');
         Route::post('/voucher/store_batch', [VoucherController::class, 'store_batch'])->name('voucher.store_batch');
         Route::resource('/voucher', VoucherController::class);
+
+        Route::get('/referral_code/create_batch', [ReferralCodeController::class, 'create_batch'])->name('referral_code.create_batch');
+        Route::post('/referral_code/store_batch', [ReferralCodeController::class, 'store_batch'])->name('referral_code.store_batch');
+        Route::resource('/referral_code', ReferralCodeController::class);
 
 
 
