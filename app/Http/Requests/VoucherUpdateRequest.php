@@ -22,13 +22,14 @@ class VoucherUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => ['required'],
             'event_id' => ['required'],
-            'owner_id' => ['required'],
-            'customer_coin_reward' => ['required'],
-            'owner_coin_reward' => ['required'],
-            'usage_limit' => ['required'],
-            'expires_at' => ['required'],
+            'code' => ['required'],
+            'type' => ['required'],
+            'value' => ['required'],
+            'max_discount' => ['required'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
+            'quota' => ['required'],
         ];
     }
 }

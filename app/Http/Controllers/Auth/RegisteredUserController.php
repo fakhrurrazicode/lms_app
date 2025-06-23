@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Binafy\LaravelCart\Models\Cart;
 use App\Http\Controllers\Controller;
+use App\Models\ReferralCode;
+use App\Models\ReferralCodeUsage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
@@ -26,11 +28,12 @@ class RegisteredUserController extends Controller
 {
 
 
-    public function create(): Response
+    public function create($referral_code = null): Response
     {
         return Inertia::render('Auth/Register', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
+            'referral_code' => $referral_code
         ]);
     }
 
@@ -47,24 +50,24 @@ class RegisteredUserController extends Controller
             'username' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'voucher_code' => [
+            'referral_code' => [
                 'nullable',
                 'string',
                 function ($attribute, $value, $fail) {
-                    $voucher = \App\Models\Voucher::where('code', $value)->first();
+                    $referral_code = \App\Models\ReferralCode::where('code', $value)->first();
 
-                    if (!$voucher) {
-                        $fail('Kode Voucher tidak ditemukan.');
+                    if (!$referral_code) {
+                        $fail('Kode Referral tidak ditemukan.');
                         return;
                     }
 
-                    if ($voucher->expires_at && now()->greaterThan($voucher->expires_at)) {
-                        $fail('Kode voucher telah habis masa berlakunya.');
+                    if ($referral_code->expires_at && now()->greaterThan($referral_code->expires_at)) {
+                        $fail('Kode Referral telah habis masa berlakunya.');
                         return;
                     }
 
-                    if ($voucher->used_count >= $voucher->usage_limit) {
-                        $fail('Kode voucher telah mencapai batas penggunaannya.');
+                    if ($referral_code->used_count >= $referral_code->usage_limit) {
+                        $fail('Kode Referral telah mencapai batas penggunaannya.');
                         return;
                     }
                 },
@@ -92,29 +95,29 @@ class RegisteredUserController extends Controller
 
         $user->assignRole('student');
 
-        if (array_key_exists('voucher_code', $validated) && $validated['voucher_code']) {
+        if (array_key_exists('referral_code', $validated) && $validated['referral_code']) {
             // Voucher code diisi DAN sudah valid
-            $voucher = Voucher::where('code', $validated['voucher_code'])->first();
-            // Lanjutkan logika untuk voucher yang sudah valid
+            $referral_code = ReferralCode::where('code', $validated['referral_code'])->first();
+            // Lanjutkan logika untuk referral_code yang sudah valid
 
             Coin::create([
                 'user_id' => $user->id,
-                'amount' => $voucher->customer_coin_reward,
-                'source' => 'voucher_' . $voucher->code,
+                'amount' => $referral_code->customer_coin_reward,
+                'source' => 'referral_code_' . $referral_code->code,
             ]);
 
             Coin::create([
-                'user_id' => $voucher->owner_id,
-                'amount' => $voucher->owner_coin_reward,
-                'source' => 'referral_' . $voucher->code,
+                'user_id' => $referral_code->owner_id,
+                'amount' => $referral_code->owner_coin_reward,
+                'source' => 'referral_code_' . $referral_code->code,
             ]);
 
-            VoucherUsage::create([
-                'voucher_id' => $voucher->id,
+            ReferralCodeUsage::create([
+                'referral_code_id' => $referral_code->id,
                 'user_id' => $user->id,
             ]);
 
-            $voucher->increment('used_count');
+            $referral_code->increment('used_count');
         }
 
         Cart::query()->firstOrCreate(['user_id' => $user->id]);

@@ -124,7 +124,6 @@ export default function Index({ request, referral_codes }) {
                                     <table className="table table-xs mb-6">
                                         <thead>
                                             <tr>
-                                                <th className="whitespace-nowrap"></th>
                                                 <th
                                                     className="cursor-pointer"
                                                     data-columnname="events.title"
@@ -160,7 +159,11 @@ export default function Index({ request, referral_codes }) {
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    Customer Coin Reward
+                                                    Customer
+                                                    <br />
+                                                    Coin
+                                                    <br />
+                                                    Reward
                                                 </th>
 
                                                 <th
@@ -170,7 +173,11 @@ export default function Index({ request, referral_codes }) {
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    Owner Coin Reward
+                                                    Owner
+                                                    <br />
+                                                    Coin
+                                                    <br />
+                                                    Reward
                                                 </th>
 
                                                 <th
@@ -180,7 +187,9 @@ export default function Index({ request, referral_codes }) {
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    Batas Penggunaan
+                                                    Batas
+                                                    <br />
+                                                    Penggunaan
                                                 </th>
 
                                                 <th
@@ -190,7 +199,9 @@ export default function Index({ request, referral_codes }) {
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    Telah Digunakan
+                                                    Telah
+                                                    <br />
+                                                    Digunakan
                                                 </th>
                                                 <th
                                                     className="cursor-pointer"
@@ -201,25 +212,7 @@ export default function Index({ request, referral_codes }) {
                                                 >
                                                     Expired at
                                                 </th>
-
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="created_at"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Created at
-                                                </th>
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="updated_at"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Updated at
-                                                </th>
+                                                <th className="whitespace-nowrap"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -232,61 +225,6 @@ export default function Index({ request, referral_codes }) {
                                                             }
                                                             className="hover"
                                                         >
-                                                            <th className="whitespace-nowrap">
-                                                                <Link
-                                                                    href={route(
-                                                                        "backend.referral_code.edit",
-                                                                        referral_code.id
-                                                                    )}
-                                                                    className="btn btn-accent btn-sm"
-                                                                >
-                                                                    <Edit
-                                                                        size={
-                                                                            16
-                                                                        }
-                                                                    />
-                                                                    <span>
-                                                                        Edit
-                                                                    </span>
-                                                                </Link>
-
-                                                                <button
-                                                                    className="btn btn-error btn-sm ml-1"
-                                                                    onClick={(
-                                                                        e
-                                                                    ) => {
-                                                                        e.preventDefault();
-
-                                                                        if (
-                                                                            confirm(
-                                                                                "Anda yakin ingin menghapus data " +
-                                                                                    referral_code.title +
-                                                                                    " ?"
-                                                                            )
-                                                                        ) {
-                                                                            router.delete(
-                                                                                route(
-                                                                                    "backend.referral_code.destroy",
-                                                                                    referral_code.id
-                                                                                ),
-                                                                                {
-                                                                                    preserveState: true,
-                                                                                }
-                                                                            );
-                                                                        }
-                                                                    }}
-                                                                >
-                                                                    <Trash
-                                                                        size={
-                                                                            16
-                                                                        }
-                                                                    />
-                                                                    <span>
-                                                                        Delete
-                                                                    </span>
-                                                                </button>
-                                                            </th>
-
                                                             <td>
                                                                 {
                                                                     referral_code.event_title
@@ -330,15 +268,59 @@ export default function Index({ request, referral_codes }) {
                                                                     referral_code.expires_at
                                                                 }
                                                             </td>
-                                                            <td>
-                                                                {
-                                                                    referral_code.created_at
-                                                                }
-                                                            </td>
-                                                            <td>
-                                                                {
-                                                                    referral_code.updated_at
-                                                                }
+                                                            <td className="whitespace-nowrap">
+                                                                <Link
+                                                                    href={route(
+                                                                        "backend.referral_code.edit",
+                                                                        referral_code.id
+                                                                    )}
+                                                                    className="btn btn-accent btn-xs"
+                                                                >
+                                                                    <Edit
+                                                                        size={
+                                                                            16
+                                                                        }
+                                                                    />
+                                                                    <span>
+                                                                        Edit
+                                                                    </span>
+                                                                </Link>
+
+                                                                <button
+                                                                    className="btn btn-error btn-xs ml-1"
+                                                                    onClick={(
+                                                                        e
+                                                                    ) => {
+                                                                        e.preventDefault();
+
+                                                                        if (
+                                                                            confirm(
+                                                                                "Anda yakin ingin menghapus data " +
+                                                                                    referral_code.code +
+                                                                                    " ?"
+                                                                            )
+                                                                        ) {
+                                                                            router.delete(
+                                                                                route(
+                                                                                    "backend.referral_code.destroy",
+                                                                                    referral_code.id
+                                                                                ),
+                                                                                {
+                                                                                    preserveState: true,
+                                                                                }
+                                                                            );
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    <Trash
+                                                                        size={
+                                                                            16
+                                                                        }
+                                                                    />
+                                                                    <span>
+                                                                        Delete
+                                                                    </span>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     )

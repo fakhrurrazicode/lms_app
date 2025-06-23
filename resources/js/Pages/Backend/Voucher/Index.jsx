@@ -1,4 +1,4 @@
-import { number_format } from "@/bootstrap";
+import { number_format, rupiah } from "@/bootstrap";
 import BackendLayout from "@/Layouts/BackendLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
@@ -52,16 +52,6 @@ export default function Index({ request, vouchers }) {
                                         >
                                             <Plus size={16} />
                                             <span>Create new</span>
-                                        </Link>
-
-                                        <Link
-                                            href={route(
-                                                "backend.voucher.create_batch"
-                                            )}
-                                            className="btn btn-primary"
-                                        >
-                                            <Plus size={16} />
-                                            <span>Create Batch</span>
                                         </Link>
                                     </div>
                                     <div className="flex gap-2">
@@ -122,7 +112,6 @@ export default function Index({ request, vouchers }) {
                                     <table className="table table-xs mb-6">
                                         <thead>
                                             <tr>
-                                                <th className="whitespace-nowrap"></th>
                                                 <th
                                                     className="cursor-pointer"
                                                     data-columnname="events.title"
@@ -135,15 +124,6 @@ export default function Index({ request, vouchers }) {
 
                                                 <th
                                                     className="cursor-pointer"
-                                                    data-columnname="users.name"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Owner
-                                                </th>
-                                                <th
-                                                    className="cursor-pointer"
                                                     data-columnname="code"
                                                     onClick={
                                                         orderByOnClickHandler
@@ -153,12 +133,21 @@ export default function Index({ request, vouchers }) {
                                                 </th>
                                                 <th
                                                     className="cursor-pointer"
+                                                    data-columnname="type"
+                                                    onClick={
+                                                        orderByOnClickHandler
+                                                    }
+                                                >
+                                                    Type
+                                                </th>
+                                                <th
+                                                    className="cursor-pointer"
                                                     data-columnname="customer_coin_reward"
                                                     onClick={
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    Customer Coin Reward
+                                                    Value
                                                 </th>
 
                                                 <th
@@ -168,7 +157,7 @@ export default function Index({ request, vouchers }) {
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    Owner Coin Reward
+                                                    Max Discount
                                                 </th>
 
                                                 <th
@@ -178,7 +167,7 @@ export default function Index({ request, vouchers }) {
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    Batas Penggunaan
+                                                    Start Date
                                                 </th>
 
                                                 <th
@@ -188,7 +177,7 @@ export default function Index({ request, vouchers }) {
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    Telah Digunakan
+                                                    End Date
                                                 </th>
                                                 <th
                                                     className="cursor-pointer"
@@ -197,27 +186,9 @@ export default function Index({ request, vouchers }) {
                                                         orderByOnClickHandler
                                                     }
                                                 >
-                                                    Expired at
+                                                    Quota
                                                 </th>
-
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="created_at"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Created at
-                                                </th>
-                                                <th
-                                                    className="cursor-pointer"
-                                                    data-columnname="updated_at"
-                                                    onClick={
-                                                        orderByOnClickHandler
-                                                    }
-                                                >
-                                                    Updated at
-                                                </th>
+                                                <th className="whitespace-nowrap"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -227,13 +198,46 @@ export default function Index({ request, vouchers }) {
                                                         key={voucher.id}
                                                         className="hover"
                                                     >
+                                                        <td>
+                                                            {
+                                                                voucher.event_title
+                                                            }
+                                                        </td>
+
+                                                        <td>{voucher.code}</td>
+                                                        <td>{voucher.type}</td>
+                                                        <td>
+                                                            {voucher.type ==
+                                                            "nominal"
+                                                                ? rupiah(
+                                                                      voucher.value
+                                                                  )
+                                                                : voucher.value +
+                                                                  "%"}
+                                                        </td>
+                                                        <td>
+                                                            {voucher.type ==
+                                                            "percentage"
+                                                                ? rupiah(
+                                                                      voucher.value
+                                                                  )
+                                                                : "-"}
+                                                        </td>
+                                                        <td>
+                                                            {voucher.start_date}
+                                                        </td>
+                                                        <td>
+                                                            {voucher.end_date}
+                                                        </td>
+                                                        <td>{voucher.quota}</td>
+
                                                         <th className="whitespace-nowrap">
                                                             <Link
                                                                 href={route(
                                                                     "backend.voucher.edit",
                                                                     voucher.id
                                                                 )}
-                                                                className="btn btn-accent btn-sm"
+                                                                className="btn btn-accent btn-xs"
                                                             >
                                                                 <Edit
                                                                     size={16}
@@ -244,7 +248,7 @@ export default function Index({ request, vouchers }) {
                                                             </Link>
 
                                                             <button
-                                                                className="btn btn-error btn-sm ml-1"
+                                                                className="btn btn-error btn-xs ml-1"
                                                                 onClick={(
                                                                     e
                                                                 ) => {
@@ -253,7 +257,7 @@ export default function Index({ request, vouchers }) {
                                                                     if (
                                                                         confirm(
                                                                             "Anda yakin ingin menghapus data " +
-                                                                                voucher.title +
+                                                                                voucher.code +
                                                                                 " ?"
                                                                         )
                                                                     ) {
@@ -277,48 +281,6 @@ export default function Index({ request, vouchers }) {
                                                                 </span>
                                                             </button>
                                                         </th>
-
-                                                        <td>
-                                                            {
-                                                                voucher.event_title
-                                                            }
-                                                        </td>
-                                                        <td>
-                                                            {voucher.owner_name}
-                                                        </td>
-                                                        <td>{voucher.code}</td>
-
-                                                        <td>
-                                                            {number_format(
-                                                                voucher.customer_coin_reward
-                                                            )}
-                                                        </td>
-                                                        <td>
-                                                            {number_format(
-                                                                voucher.owner_coin_reward
-                                                            )}
-                                                        </td>
-
-                                                        <td>
-                                                            {number_format(
-                                                                voucher.usage_limit
-                                                            )}
-                                                        </td>
-                                                        <td>
-                                                            {number_format(
-                                                                voucher.usage_count
-                                                            )}
-                                                        </td>
-
-                                                        <td>
-                                                            {voucher.expires_at}
-                                                        </td>
-                                                        <td>
-                                                            {voucher.created_at}
-                                                        </td>
-                                                        <td>
-                                                            {voucher.updated_at}
-                                                        </td>
                                                     </tr>
                                                 ))
                                             ) : (

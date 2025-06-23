@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VoucherStoreRequest extends FormRequest
@@ -22,13 +23,26 @@ class VoucherStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => ['required'],
             'event_id' => ['required'],
-            'owner_id' => ['required'],
-            'customer_coin_reward' => ['required'],
-            'owner_coin_reward' => ['required'],
-            'usage_limit' => ['required'],
-            'expires_at' => ['required'],
+            'code' => ['required'],
+            'type' => ['required'],
+            'value' => ['required'],
+            'max_discount' => ['required'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
+            'quota' => ['required'],
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $start = Carbon::parse($this->input('start_date'));
+            $end = Carbon::parse($this->input('end_date'));
+
+            if ($start->greaterThanOrEqualTo($end)) {
+                $validator->errors()->add('start_date', 'Start date must be before the end date.');
+            }
+        });
     }
 }

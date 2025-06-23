@@ -26,10 +26,8 @@ class VoucherController extends Controller
     {
         $vouchers = Voucher::select([
             'vouchers.*',
-            'users.name as owner_name',
             'events.title as event_title'
         ])
-            ->join('users', 'users.id', '=', 'vouchers.owner_id')
             ->join('events', 'events.id', '=', 'vouchers.event_id')
             ->orWhere([
                 ['code', 'LIKE', '%' . $request->search . '%'],
@@ -160,11 +158,10 @@ class VoucherController extends Controller
     {
         // return $voucher;
         $events = Event::all();
-        $owners = User::role('instructor')->get();
+
         return Inertia::render('Backend/Voucher/Edit', [
             'voucher' => $voucher,
             'events' => $events,
-            'owners' => $owners
         ]);
     }
 

@@ -2,35 +2,43 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Event;
-use App\Models\VoucherUsage;
 use Illuminate\Database\Eloquent\Model;
 
-class Voucher extends BaseModel
+class Voucher extends Model
 {
-    protected $guarded = [];
-
-    public $appends = ['usage_count'];
-    // public $with = ['owner', 'event'];
+    protected $fillable = [
+        'event_id',
+        'code',
+        'type',
+        'value',
+        'max_discount',
+        'start_date',
+        'end_date',
+        'quota'
+    ];
 
     public function event()
     {
         return $this->belongsTo(Event::class);
     }
 
-    public function owner()
+    public function isValid()
     {
-        return $this->belongsTo(User::class, 'owner_id', 'id');
+        return now()->between($this->start_date, $this->end_date)
+            && ($this->quota === null || $this->quota > 0);
     }
 
-    public function usages()
+    public function calculateDiscount($price)
     {
-        return $this->hasMany(VoucherUsage::class);
-    }
+        if ($this->type === 'nominal') {
+            return min($this->value, $price);
+        }
 
-    public function getUsageCountAttribute()
-    {
-        return $this->usages()->count();
+        if ($this->type === 'percentage') {
+            $discount = $price * $this->value / 100;
+            return min($discount, $this->max_discount ?? $discount);
+        }
+
+        return 0;
     }
 }

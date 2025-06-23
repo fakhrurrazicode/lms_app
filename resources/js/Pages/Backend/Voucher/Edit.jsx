@@ -4,23 +4,22 @@ import { Save } from "lucide-react";
 import React, { useRef } from "react";
 import slugify from "slugify";
 
-export default function Edit({ voucher, events, owners }) {
-    const { data, setData, put, errors, reset, processing, progress } = useForm(
-        {
-            code: voucher.code,
+export default function Edit({ events, voucher }) {
+    const { data, setData, post, errors, reset, processing, progress } =
+        useForm({
             event_id: voucher.event_id,
-            owner_id: voucher.owner_id,
-            customer_coin_reward: voucher.customer_coin_reward,
-            owner_coin_reward: voucher.owner_coin_reward,
-            usage_limit: voucher.usage_limit,
-            used_count: voucher.used_count,
-            expires_at: voucher.expires_at,
-        }
-    );
+            code: voucher.code,
+            type: voucher.type, // nominal or percentage
+            value: voucher.value,
+            max_discount: voucher.max_discount,
+            start_date: voucher.start_date,
+            end_date: voucher.end_date,
+            quota: voucher.quota,
+        });
 
     const submitHandler = (e) => {
         e.preventDefault();
-        put(
+        post(
             route("backend.voucher.update", {
                 voucher: voucher.id,
             }),
@@ -96,36 +95,6 @@ export default function Edit({ voucher, events, owners }) {
                                     <label className="form-control w-full mb-6">
                                         <div className="label">
                                             <span className="label-text">
-                                                Owner
-                                            </span>
-                                        </div>
-
-                                        <select
-                                            className="select select-bordered"
-                                            name="owner_id"
-                                            onChange={inputChangeHandler}
-                                            value={data.owner_id}
-                                        >
-                                            <option>Pilih Owner</option>
-                                            {owners.map((owner) => (
-                                                <option value={owner.id}>
-                                                    {owner.name} - (
-                                                    {owner.email})
-                                                </option>
-                                            ))}
-                                        </select>
-                                        {errors.owner_id && (
-                                            <div className="label">
-                                                <span className="label-text-alt text-error">
-                                                    {errors.owner_id}
-                                                </span>
-                                            </div>
-                                        )}
-                                    </label>
-
-                                    <label className="form-control w-full mb-6">
-                                        <div className="label">
-                                            <span className="label-text">
                                                 Voucher Code
                                             </span>
                                         </div>
@@ -146,29 +115,86 @@ export default function Edit({ voucher, events, owners }) {
                                         )}
                                     </label>
 
+                                    <label className="form-control w-full mb-6">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Type Voucher
+                                            </span>
+                                        </div>
+                                        <div className="card bg-base-200">
+                                            <div className="card-body !py-4">
+                                                <div className="flex gap-4">
+                                                    <div className="form-control">
+                                                        <label className="label cursor-pointer gap-4">
+                                                            <span className="label-text">
+                                                                Nominal
+                                                            </span>
+                                                            <input
+                                                                type="radio"
+                                                                name="type"
+                                                                className="radio"
+                                                                value="nominal"
+                                                                onChange={
+                                                                    inputChangeHandler
+                                                                }
+                                                                checked={
+                                                                    data.type ==
+                                                                    "nominal"
+                                                                }
+                                                            />
+                                                        </label>
+                                                    </div>
+                                                    <div className="form-control">
+                                                        <label className="label cursor-pointer gap-4">
+                                                            <span className="label-text">
+                                                                Percentage
+                                                            </span>
+                                                            <input
+                                                                type="radio"
+                                                                name="type"
+                                                                className="radio"
+                                                                onChange={
+                                                                    inputChangeHandler
+                                                                }
+                                                                value="percentage"
+                                                                checked={
+                                                                    data.type ==
+                                                                    "percentage"
+                                                                }
+                                                            />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {errors.type && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.type}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
                                     <div className="block lg:flex gap-2">
                                         <label className="form-control w-full mb-6">
                                             <div className="label">
                                                 <span className="label-text">
-                                                    Customer Coin Reward
+                                                    Value
                                                 </span>
                                             </div>
                                             <input
                                                 type="number"
-                                                // placeholder="Customer Coin Reward"
+                                                // placeholder="Value"
                                                 className="input input-bordered w-full"
-                                                name="customer_coin_reward"
+                                                name="value"
                                                 onChange={inputChangeHandler}
-                                                value={
-                                                    data.customer_coin_reward
-                                                }
+                                                value={data.value}
                                             />
-                                            {errors.customer_coin_reward && (
+                                            {errors.value && (
                                                 <div className="label">
                                                     <span className="label-text-alt text-error">
-                                                        {
-                                                            errors.customer_coin_reward
-                                                        }
+                                                        {errors.value}
                                                     </span>
                                                 </div>
                                             )}
@@ -177,28 +203,75 @@ export default function Edit({ voucher, events, owners }) {
                                         <label className="form-control w-full mb-6">
                                             <div className="label">
                                                 <span className="label-text">
-                                                    Owner Coin Reward
+                                                    Max Discount
                                                 </span>
                                             </div>
                                             <input
+                                                disabled={
+                                                    data.type == "nominal"
+                                                }
                                                 type="number"
-                                                // placeholder="Customer Coin Reward"
+                                                // placeholder="Max Discount"
                                                 className="input input-bordered w-full"
-                                                name="owner_coin_reward"
+                                                name="max_discount"
                                                 onChange={inputChangeHandler}
-                                                value={data.owner_coin_reward}
+                                                value={data.max_discount}
                                             />
-                                            {errors.owner_coin_reward && (
+                                            {errors.max_discount && (
                                                 <div className="label">
                                                     <span className="label-text-alt text-error">
-                                                        {
-                                                            errors.owner_coin_reward
-                                                        }
+                                                        {errors.max_discount}
                                                     </span>
                                                 </div>
                                             )}
                                         </label>
                                     </div>
+
+                                    <label className="form-control w-full mb-6">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Mulai Dari Tanggal
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="date"
+                                            placeholder="Mulai Dari Tanggal"
+                                            className="input input-bordered w-full"
+                                            name="start_date"
+                                            onChange={inputChangeHandler}
+                                            value={data.start_date}
+                                        />
+                                        {errors.start_date && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.start_date}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
+                                    <label className="form-control w-full mb-6">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Berakhir Pada Tanggal
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="date"
+                                            placeholder="Berakhir Pada Tanggal"
+                                            className="input input-bordered w-full"
+                                            name="end_date"
+                                            onChange={inputChangeHandler}
+                                            value={data.end_date}
+                                        />
+                                        {errors.end_date && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.end_date}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
 
                                     <div className="grid grid-cols-1 gap-0 lg:gap-2 xl:gap-2 lg:grid-cols-2 xl:grid-cols-2">
                                         <label className="form-control w-full mb-6 col-span-1">
@@ -211,42 +284,19 @@ export default function Edit({ voucher, events, owners }) {
                                                 type="number"
                                                 // placeholder="Batas Penggunaan"
                                                 className="input input-bordered w-full"
-                                                name="usage_limit"
+                                                name="quota"
                                                 onChange={inputChangeHandler}
-                                                value={data.usage_limit}
+                                                value={data.quota}
                                             />
-                                            {errors.usage_limit && (
+                                            {errors.quota && (
                                                 <div className="label">
                                                     <span className="label-text-alt text-error">
-                                                        {errors.usage_limit}
+                                                        {errors.quota}
                                                     </span>
                                                 </div>
                                             )}
                                         </label>
                                     </div>
-
-                                    <label className="form-control w-full mb-6">
-                                        <div className="label">
-                                            <span className="label-text">
-                                                Tanggal Expired
-                                            </span>
-                                        </div>
-                                        <input
-                                            type="datetime-local"
-                                            placeholder="Tanggal Expired"
-                                            className="input input-bordered w-full"
-                                            name="expires_at"
-                                            onChange={inputChangeHandler}
-                                            value={data.expires_at}
-                                        />
-                                        {errors.expires_at && (
-                                            <div className="label">
-                                                <span className="label-text-alt text-error">
-                                                    {errors.expires_at}
-                                                </span>
-                                            </div>
-                                        )}
-                                    </label>
                                 </div>
 
                                 <div className="flex justify-end gap-2">
@@ -255,13 +305,13 @@ export default function Edit({ voucher, events, owners }) {
                                         className="btn btn-primary"
                                     >
                                         <Save size={16} />
-                                        <span>Save</span>
+                                        <span>Ubah</span>
                                     </button>
                                     <Link
                                         href={route("backend.voucher.index")}
                                         className="btn btn-neutral"
                                     >
-                                        Cancel
+                                        Batalkan
                                     </Link>
                                 </div>
                             </div>
