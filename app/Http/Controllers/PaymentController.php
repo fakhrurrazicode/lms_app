@@ -59,14 +59,25 @@ class PaymentController extends Controller
             'quantity' => 1,
         ];
 
-        if ($cart->use_poin) {
+
+        if ($cart->voucher) {
             $item_details[] = [
-                'id' => 'potongan-poin',
-                'price' => $user->coin_balance * -1,
-                'name' => 'Potongan Poin',
+                'id' => 'potongan-voucher',
+                'price' => $cart->voucher_discount * -1,
+                'name' => 'Potongan Voucher ' . $cart->voucher->code,
                 'quantity' => 1,
             ];
         }
+
+        if ($cart->use_poin) {
+            $item_details[] = [
+                'id' => 'potongan-coin',
+                'price' => $cart->coin_discount * -1,
+                'name' => 'Potongan coin',
+                'quantity' => 1,
+            ];
+        }
+
 
         $user = $cart->user;
         $name = explode(' ', $user->name);

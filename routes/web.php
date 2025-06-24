@@ -107,6 +107,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/cart/empty', [CartController::class, 'empty_cart'])->name('cart.empty');
     Route::post('/cart/add_to_wishlist', [CartController::class, 'add_to_wishlist'])->name('cart.add_to_wishlist');
     Route::post('/cart/toggle_use_poin', [CartController::class, 'toggle_use_poin'])->name('cart.toggle_use_poin');
+    Route::post('/cart/set_voucher', [CartController::class, 'set_voucher'])->name('cart.set_voucher');
+    Route::delete('/cart/remove_voucher', [CartController::class, 'remove_voucher'])->name('cart.remove_voucher');
+    // Route::post('/cart/set_voucher', [CartController::class, 'set_voucher'])->name('cart.set_voucher');
 
     Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 

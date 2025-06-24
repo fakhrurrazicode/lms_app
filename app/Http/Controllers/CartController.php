@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Cart;
 
 use Inertia\Inertia;
+use App\Models\Voucher;
 use App\Models\CartItem;
 use App\Models\Wishlist;
+use App\Models\VoucherUsage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class CartController extends Controller
 {
@@ -118,6 +122,53 @@ class CartController extends Controller
     {
         $cart = Cart::query()->firstOrCreate(['user_id' => Auth::user()->id]);
         $cart->use_poin = !$cart->use_poin;
+        $cart->update();
+    }
+
+    public function set_voucher(Request $request)
+    {
+        // $voucher = \App\Models\Voucher::where('code', $request->code)
+        //     ->first();
+        // dd($voucher);
+
+        $request->validate([
+            'code' => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) use ($request) {
+                    $voucher = \App\Models\Voucher::where('code', $value)
+                        ->first();
+
+                    // dd($voucher);
+
+                    if (!$voucher || !$voucher->isValid()) {
+                        return $fail('Voucher tidak valid atau telah kedaluwarsa.');
+                    }
+
+                    $used = \App\Models\VoucherUsage::where('voucher_id', $voucher->id)
+                        ->where('user_id', Auth::id())
+                        ->exists();
+
+                    if ($used) {
+                        return $fail('Voucher ini sudah pernah digunakan oleh Anda.');
+                    }
+
+                    // Jika kamu butuh voucher-nya nanti, bisa simpan di $request:
+                    $request->merge(['_voucher' => $voucher]);
+                },
+            ],
+        ]);
+
+        $voucher = $request->get('_voucher'); // akses voucher valid dari closure
+        $cart = Cart::query()->firstOrCreate(['user_id' => Auth::user()->id]);
+        $cart->voucher_id = $voucher->id;
+        $cart->update();
+    }
+
+    public function remove_voucher()
+    {
+        $cart = Cart::query()->firstOrCreate(['user_id' => Auth::user()->id]);
+        $cart->voucher_id = null;
         $cart->update();
     }
 }

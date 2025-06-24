@@ -2,7 +2,7 @@ import { formatNumber, number_format, rupiah } from "@/bootstrap";
 import CartItemCard from "@/Components/CartItemCard";
 import CheckoutButton from "@/Components/CheckoutButton";
 import FrontendLayout from "@/Layouts/FrontendLayout";
-import { Head, Link, usePage } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { router } from "@inertiajs/react";
 
 import React from "react";
@@ -11,6 +11,7 @@ import {
     FaHeart,
     FaShoppingCart,
     FaStar,
+    FaTimes,
     FaTrash,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -20,7 +21,7 @@ export default function Cart({ cart }) {
 
     const user = page.props.auth.user;
 
-    const usePoinHandler = () => {
+    const useCoinHandler = () => {
         router.post(
             route("cart.toggle_use_poin"),
             {},
@@ -30,6 +31,20 @@ export default function Cart({ cart }) {
                 async: true,
             }
         );
+    };
+
+    const { data, setData, post, processing, errors, clearErrors } = useForm({
+        code: cart.voucher ? cart.voucher.code : "",
+    });
+
+    const onSubmitVoucher = (e) => {
+        e.preventDefault();
+        clearErrors();
+        post(route("cart.set_voucher"), {
+            preserveScroll: true,
+            // preserveState: true,
+            async: true,
+        });
     };
 
     return (
@@ -240,11 +255,101 @@ export default function Cart({ cart }) {
                                     </div>
                                 </div>
                             </div>
+
                             <div className="col-span-1">
+                                <div className="card bg-base-100 mb-4">
+                                    <div className="card-body">
+                                        <form onSubmit={onSubmitVoucher}>
+                                            <label className="form-control w-full">
+                                                <div className="label">
+                                                    <span className="label-text">
+                                                        Gunakan Kode Voucher
+                                                    </span>
+                                                </div>
+                                                <div className="flex gap-2">
+                                                    <input
+                                                        type="text"
+                                                        disabled={cart.voucher}
+                                                        placeholder="Kode Voucher"
+                                                        className="input input-bordered w-full flex-1"
+                                                        name="code"
+                                                        value={data.code}
+                                                        onChange={(e) => {
+                                                            setData(
+                                                                e.target.name,
+                                                                e.target.value
+                                                            );
+                                                        }}
+                                                    />
+                                                    {cart.voucher ? (
+                                                        <Link
+                                                            href={route(
+                                                                "cart.remove_voucher"
+                                                            )}
+                                                            method="DELETE"
+                                                            preserveScroll={
+                                                                true
+                                                            }
+                                                            className="btn btn-error"
+                                                        >
+                                                            <FaTimes
+                                                                size={16}
+                                                            />
+                                                        </Link>
+                                                    ) : (
+                                                        <button
+                                                            type="submit"
+                                                            className="btn btn-primary"
+                                                        >
+                                                            <FaCheck
+                                                                size={16}
+                                                            />
+                                                        </button>
+                                                    )}
+                                                </div>
+
+                                                {cart.voucher ? (
+                                                    <div className="label">
+                                                        <span className="label-text-alt text-success">
+                                                            Anda mendapatkan
+                                                            voucher senilai{" "}
+                                                            {cart.voucher
+                                                                .type ===
+                                                            "percentage"
+                                                                ? cart.voucher
+                                                                      .value +
+                                                                  "%"
+                                                                : ""}
+                                                            {cart.voucher
+                                                                .type ===
+                                                            "nominal"
+                                                                ? rupiah(
+                                                                      cart
+                                                                          .voucher
+                                                                          .value
+                                                                  )
+                                                                : ""}
+                                                        </span>
+                                                    </div>
+                                                ) : (
+                                                    <></>
+                                                )}
+
+                                                {errors.code && (
+                                                    <div className="label">
+                                                        <span className="label-text-alt text-error">
+                                                            {errors.code}
+                                                        </span>
+                                                    </div>
+                                                )}
+                                            </label>
+                                        </form>
+                                    </div>
+                                </div>
+
                                 {user.coin_balance > 0 ? (
                                     <div className="card bg-base-100 mb-4">
                                         <div className="card-body">
-                                            <p></p>
                                             <div className="form-control w-full">
                                                 <label className="label cursor-pointer">
                                                     <span className="label-text">
@@ -263,7 +368,7 @@ export default function Cart({ cart }) {
                                                         type="checkbox"
                                                         className="toggle toggle-warning"
                                                         checked={cart.use_poin}
-                                                        onClick={usePoinHandler}
+                                                        onClick={useCoinHandler}
                                                     />
                                                 </label>
                                             </div>
@@ -272,6 +377,7 @@ export default function Cart({ cart }) {
                                 ) : (
                                     <></>
                                 )}
+
                                 <div className="card bg-base-100">
                                     <div className="card">
                                         <div className="card-body">
@@ -281,42 +387,55 @@ export default function Cart({ cart }) {
                                                 </h3> */}
                                                 <div className="flex justify-between mb-2">
                                                     <div className="text-sm">
-                                                        Subtotal Produk + Biaya
-                                                        Layanan
+                                                        Subtotal Produk
                                                     </div>
                                                     <div className="text-right">
                                                         {rupiah(
-                                                            cart.sub_total_price +
-                                                                cart.biaya_layanan
+                                                            cart.sub_total_price
                                                         )}
                                                     </div>
                                                 </div>
 
-                                                {/* <div className="flex justify-between mb-2">
-                                                     <div className="text-sm">
-                                                        Biaya Layanan (7%)
-                                                    </div>
-                                                    <div className="text-right">
-                                                        {rupiah(
-                                                            cart.biaya_layanan
-                                                        )}
-                                                    </div>
-                                                </div> */}
-
-                                                {cart.use_poin ? (
+                                                {cart.voucher ? (
                                                     <div className="flex justify-between mb-2">
                                                         <div className="text-sm">
-                                                            Potongan Poin
+                                                            Potongan Voucher
                                                         </div>
                                                         <div className="text-right">
                                                             {rupiah(
-                                                                -user.coin_balance
+                                                                -cart.voucher_discount
                                                             )}
                                                         </div>
                                                     </div>
                                                 ) : (
                                                     <></>
                                                 )}
+
+                                                {cart.use_poin ? (
+                                                    <div className="flex justify-between mb-2">
+                                                        <div className="text-sm">
+                                                            Potongan Coin
+                                                        </div>
+                                                        <div className="text-right">
+                                                            {rupiah(
+                                                                -cart.coin_discount
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <></>
+                                                )}
+
+                                                <div className="flex justify-between mb-2">
+                                                    <div className="text-sm">
+                                                        Biaya Layanan
+                                                    </div>
+                                                    <div className="text-right">
+                                                        {rupiah(
+                                                            cart.biaya_layanan
+                                                        )}
+                                                    </div>
+                                                </div>
 
                                                 <div className="flex justify-between mb-2">
                                                     <div>
