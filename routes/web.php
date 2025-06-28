@@ -92,6 +92,8 @@ Route::get('/instructor_info/{user}', [PageController::class, 'instructor_info']
 
 Route::get('/auth/google/redirect/{as_instructor?}', [GoogleController::class, 'redirect']);
 Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
+Route::get('/auth/google/youtube_callback', [GoogleController::class, 'youtubeCallback']);
+Route::get('/auth/google/youtube_connect', [GoogleController::class, 'youtubeConnect']);
 
 // Route::post('/payment/notification', [PaymentController::class, 'notification'])->name('payment.notification');
 

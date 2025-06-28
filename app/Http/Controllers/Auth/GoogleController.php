@@ -90,9 +90,9 @@ class GoogleController extends Controller
     public function youtubeConnect()
     {
         $client = new Google_Client();
-        $client->setClientId(config('services.google.client_id'));
-        $client->setClientSecret(config('services.google.client_secret'));
-        $client->setRedirectUri(config('services.google.redirect'));
+        $client->setClientId(config('services.youtube.client_id'));
+        $client->setClientSecret(config('services.youtube.client_secret'));
+        $client->setRedirectUri(config('services.youtube.redirect'));
         $client->setScopes(['https://www.googleapis.com/auth/youtube.upload']);
         $client->setAccessType('offline');
         $client->setPrompt('consent');
@@ -103,9 +103,9 @@ class GoogleController extends Controller
     public function youtubeCallback(Request $request)
     {
         $client = new Google_Client();
-        $client->setClientId(config('services.google.client_id'));
-        $client->setClientSecret(config('services.google.client_secret'));
-        $client->setRedirectUri(config('services.google.redirect'));
+        $client->setClientId(config('services.youtube.client_id'));
+        $client->setClientSecret(config('services.youtube.client_secret'));
+        $client->setRedirectUri(config('services.youtube.redirect'));
 
         $token = $client->fetchAccessTokenWithAuthCode($request->code);
 
