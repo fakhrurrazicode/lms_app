@@ -108,4 +108,11 @@ class CourseController extends Controller
         $course->delete();
         return to_route('user_area.course.index');
     }
+
+    public function toggle_active(Request $request, Course $course)
+    {
+        $course->update([
+            'status' => !$course->status
+        ]);
+    }
 }

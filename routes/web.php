@@ -159,6 +159,7 @@ Route::middleware(['auth'])->group(function () {
 
             Route::resource('/course', UserAreaCourseController::class)->except(['update']);
             Route::post('/course/{course}', [UserAreaCourseController::class, 'update'])->name('course.update');
+            Route::put('/course/{course}/toggle_active', [UserAreaCourseController::class, 'toggle_active'])->name('course.toggle_active');
 
             Route::get('/course/{course}/course_section/course_lectures', [UserAreaCourseSectionController::class, 'course_lectures'])->name('course.course_section.course_lectures');
             Route::get('/course/{course}/course_section/evaluations', [UserAreaCourseSectionController::class, 'evaluations'])->name('course.course_section.evaluations');

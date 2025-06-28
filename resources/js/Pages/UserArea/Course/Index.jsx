@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import { CourseDetail } from "./CourseCardDetail";
 
 export default function Index({ request, courses }) {
+    const onStatusToggle = (e) => {};
     return (
         <UserAreaLayout
             header={
@@ -131,9 +132,30 @@ export default function Index({ request, courses }) {
                                                                     }
                                                                 </td>
                                                                 <td>
-                                                                    {
-                                                                        course.status
-                                                                    }
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        className="toggle toggle-primary"
+                                                                        checked={
+                                                                            course.status
+                                                                        }
+                                                                        onChange={(
+                                                                            e
+                                                                        ) => {
+                                                                            router.put(
+                                                                                route(
+                                                                                    "user_area.course.toggle_active",
+                                                                                    {
+                                                                                        course: course.id,
+                                                                                    }
+                                                                                ),
+                                                                                {},
+                                                                                {
+                                                                                    preserveScroll: true,
+                                                                                    preserveState: true,
+                                                                                }
+                                                                            );
+                                                                        }}
+                                                                    />
                                                                 </td>
                                                             </tr>
                                                         )
