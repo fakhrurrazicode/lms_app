@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Setting;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Google\Client as Google_Client;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -81,5 +84,38 @@ class GoogleController extends Controller
         } else {
             return redirect(route('user_area.dashboard', absolute: false));
         }
+    }
+
+
+    public function youtubeConnect()
+    {
+        $client = new Google_Client();
+        $client->setClientId(config('services.google.client_id'));
+        $client->setClientSecret(config('services.google.client_secret'));
+        $client->setRedirectUri(config('services.google.redirect'));
+        $client->setScopes(['https://www.googleapis.com/auth/youtube.upload']);
+        $client->setAccessType('offline');
+        $client->setPrompt('consent');
+
+        return redirect()->away($client->createAuthUrl());
+    }
+
+    public function youtubeCallback(Request $request)
+    {
+        $client = new Google_Client();
+        $client->setClientId(config('services.google.client_id'));
+        $client->setClientSecret(config('services.google.client_secret'));
+        $client->setRedirectUri(config('services.google.redirect'));
+
+        $token = $client->fetchAccessTokenWithAuthCode($request->code);
+
+        // Simpan refresh_token ke database (misal ke settings table)
+        Setting::updateOrCreate([
+            'key' => 'youtube_tokens',
+        ], [
+            'value' => json_encode($token),
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Terhubung dengan YouTube!');
     }
 }
