@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\ReferralCodeUsage;
 use Illuminate\Database\Eloquent\Model;
 
 class ReferralCode extends Model

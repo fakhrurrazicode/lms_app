@@ -1,18 +1,22 @@
+import TinyEditor from "@/Components/Custom/TinyEditor";
 import TiltElement from "@/Components/TiltElement";
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
 
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 
-import React from "react";
+import React, { useState } from "react";
 import { FiCheckSquare, FiClock } from "react-icons/fi";
 
-export default function Create() {
+export default function Index() {
     const { auth } = usePage().props;
 
     console.log("auth", auth);
 
+    const [agreement, setAgreement] = useState(false);
+
     const { data, setData, post, errors, reset, processing, progress } =
         useForm({
+            phone_number: "",
             bio: "",
             id_card: "",
         });
@@ -128,6 +132,29 @@ export default function Create() {
                                 className="card bg-white dark:bg-slate-950 shadow-sm"
                             >
                                 <div className="card-body">
+                                    <label className="form-control w-full">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                No Handphone
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="No Handphone"
+                                            className="input input-bordered w-full"
+                                            name="phone_number"
+                                            onChange={inputChangeHandler}
+                                            value={data.phone_number}
+                                        />
+                                        {errors.phone_number && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.phone_number}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
                                     <label className="form-control mb-6 col-span-12 md:col-span-4">
                                         <div className="label">
                                             <span className="label-text">
@@ -161,14 +188,20 @@ export default function Create() {
                                                 Your bio
                                             </span>
                                         </div>
-                                        <textarea
+                                        {/* <textarea
                                             className="textarea textarea-bordered h-24"
                                             placeholder="Bio"
                                             name="bio"
                                             onChange={inputChangeHandler}
                                         >
                                             {data.bio}
-                                        </textarea>
+                                        </textarea> */}
+                                        <TinyEditor
+                                            value={data.bio}
+                                            onChange={(value) =>
+                                                setData("bio", value)
+                                            }
+                                        />
                                         {errors.bio && (
                                             <div className="label">
                                                 <span className="label-text-alt text-error">
@@ -186,6 +219,12 @@ export default function Create() {
                                             type="checkbox"
                                             className="checkbox checkbox-primary"
                                             name="agree"
+                                            checked={agreement}
+                                            onChange={(e) => {
+                                                setAgreement((value) => {
+                                                    return !value;
+                                                });
+                                            }}
                                         />
                                         <span>
                                             You agree to our friendly{" "}
@@ -197,7 +236,7 @@ export default function Create() {
                                     <div>
                                         <button
                                             type="submit"
-                                            disabled={processing}
+                                            disabled={!agreement || processing}
                                             className="btn btn-secondary w-full"
                                         >
                                             Update Info

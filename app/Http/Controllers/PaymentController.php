@@ -104,7 +104,7 @@ class PaymentController extends Controller
 
             $order = Order::create([
                 'order_id' => $order_id,
-                'gross_amount' => $cart->total_discounted_price,
+                'gross_amount' => $cart->total_price,
                 'user_id' => $user->id,
                 'snap_token' => $snap_token,
             ]);

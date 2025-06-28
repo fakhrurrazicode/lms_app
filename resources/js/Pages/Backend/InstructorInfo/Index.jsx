@@ -1,3 +1,4 @@
+import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 import Modal from "@/Components/Modal";
 import BackendLayout from "@/Layouts/BackendLayout";
 import { Head, Link, router, useForm } from "@inertiajs/react";
@@ -421,9 +422,11 @@ export default function Index({ request, instructor_infos }) {
                                                             </a>
                                                         </td>
                                                         <td className="max-w-64">
-                                                            {
-                                                                instructor_info.bio
-                                                            }
+                                                            <HtmlRenderer
+                                                                htmlString={
+                                                                    instructor_info.bio
+                                                                }
+                                                            />
                                                         </td>
                                                     </tr>
                                                 )

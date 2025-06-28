@@ -17,8 +17,9 @@ export default function BecomeInstructor({}) {
         name: auth.user ? auth.user.name : "",
         username: auth.user ? auth.user.username : "",
         email: auth.user ? auth.user.email : "",
-        phone_number: auth.user ? auth.user.phone_number : "",
+        phone_number: "",
         bio: "",
+        id_card: "",
     };
 
     if (auth.user) {
