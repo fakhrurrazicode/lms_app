@@ -308,8 +308,8 @@ class CourseLectureController extends Controller
             $token = json_decode(Setting::where('key', 'youtube_tokens')->value('value'), true);
 
             $client = new GoogleClient();
-            $client->setClientId(config('service.youtube.client_id'));
-            $client->setClientSecret(config('service.youtube.client_secret'));
+            $client->setClientId(config('services.youtube.client_id'));
+            $client->setClientSecret(config('services.youtube.client_secret'));
             $client->setAccessToken($token);
 
             // Refresh token jika expired

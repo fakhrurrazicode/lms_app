@@ -14,7 +14,7 @@ class ForumController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(PaginateRequest $request,  Course $course)
+    public function index(PaginateRequest $request, Course $course)
     {
 
         $course->load('course_sections.course_lectures');
@@ -56,9 +56,17 @@ class ForumController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Course $course, Forum $forum)
     {
-        //
+
+        $course->load('course_sections.course_lectures');
+        $forum->load(['user', 'replies.user']);
+        // return $forum;
+
+        return Inertia::render('LearningArea/Forum/Show', [
+            'course' => $course,
+            'forum' => $forum,
+        ]);
     }
 
     /**

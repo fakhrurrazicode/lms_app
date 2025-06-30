@@ -7,7 +7,7 @@ import { Link } from "@inertiajs/react";
 import { GrPlay, GrResume } from "react-icons/gr";
 import classNames from "classnames";
 
-export default function Show({ course, forums }) {
+export default function Index({ course, forums }) {
     return (
         <LearningAreaLayout course={course}>
             <div className="card bg-base-100 py-8 mb-8 rounded-none">
@@ -86,6 +86,24 @@ export default function Show({ course, forums }) {
                             </div>
                         </>
                     )}
+
+                    <div className="flex justify-center">
+                        <div className="join">
+                            {forums.links.map((link, index) => {
+                                return (
+                                    <Link
+                                        key={index}
+                                        href={link.url}
+                                        className="join-item btn"
+                                    >
+                                        {link.label
+                                            .replace("&laquo; Previous", "<<")
+                                            .replace("Next &raquo;", ">>")}
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
             </div>
         </LearningAreaLayout>

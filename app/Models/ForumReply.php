@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForumReply extends Model
 {
+    public $appends = ['created_at_diff_for_humans', 'updated_at_diff_for_humans'];
+
+    public function getCreatedAtDiffForHumansAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
+    public function getUpdatedAtDiffForHumansAttribute()
+    {
+        return $this->updated_at->diffForHumans();
+    }
+
     public function forum()
     {
         return $this->belongsTo(Forum::class);

@@ -87,16 +87,35 @@ export default function Show({
                         </h1>
                     </div>
                     <div className="mb-6">
-                        <MediaPlayer
-                            title="Sprite Fight"
-                            src={course_lecture.video_url}
-                        >
-                            <MediaProvider />
-                            <PlyrLayout
-                                // thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
-                                icons={plyrLayoutIcons}
-                            />
-                        </MediaPlayer>
+                        {course_lecture.youtube_video_id ? (
+                            <div className="aspect-video w-full rounded-xl overflow-hidden shadow">
+                                <iframe
+                                    className="w-full h-full"
+                                    src={`https://www.youtube.com/embed/${course_lecture.youtube_video_id}`}
+                                    title={course_lecture.title}
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                ></iframe>
+                            </div>
+                        ) : (
+                            <>
+                                {course_lecture.video ? (
+                                    <MediaPlayer
+                                        title="Sprite Fight"
+                                        src={course_lecture.video_url}
+                                    >
+                                        <MediaProvider />
+                                        <PlyrLayout
+                                            // thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
+                                            icons={plyrLayoutIcons}
+                                        />
+                                    </MediaPlayer>
+                                ) : (
+                                    <></>
+                                )}
+                            </>
+                        )}
                     </div>
 
                     <div className="mb-6">
