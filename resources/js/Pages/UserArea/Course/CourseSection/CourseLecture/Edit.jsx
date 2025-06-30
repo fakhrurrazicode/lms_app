@@ -158,28 +158,19 @@ export default function Edit({ course, course_section, course_lecture }) {
                                         </span>
                                     </div>
                                 )}
-                                {videoPreview && (
-                                    <div className="mt-4">
-                                        <video
-                                            controls
-                                            src={videoPreview}
-                                            className="w-full max-h-96 rounded-lg shadow"
-                                        />
-                                    </div>
-                                )}
-                                {!videoPreview && course_lecture.video_url && (
-                                    <div className="mt-4">
-                                        <video
-                                            controls
-                                            src={course_lecture.video_url}
-                                            className="w-full max-h-96 rounded-lg shadow"
-                                        />
-                                        <p className="text-sm mt-2 text-gray-500 italic">
-                                            Video lama, akan tetap digunakan
-                                            jika tidak mengganti video baru.
-                                        </p>
-                                    </div>
-                                )}
+                                {course_lecture.youtube_video_id &&
+                                    course_lecture.video_url && (
+                                        <div className="aspect-video w-full rounded-xl overflow-hidden shadow">
+                                            <iframe
+                                                className="w-full h-full"
+                                                src={`https://www.youtube.com/embed/${course_lecture.youtube_video_id}`}
+                                                title={lecture.title}
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                            ></iframe>
+                                        </div>
+                                    )}
                             </label>
 
                             <label className="form-control w-full mb-6">

@@ -116,6 +116,6 @@ class GoogleController extends Controller
             'value' => json_encode($token),
         ]);
 
-        return redirect()->route('dashboard')->with('success', 'Terhubung dengan YouTube!');
+        return redirect()->route('home')->with('success', 'Terhubung dengan YouTube!');
     }
 }

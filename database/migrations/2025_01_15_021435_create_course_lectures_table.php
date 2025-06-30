@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('course_id');
             $table->integer('course_section_id');
             $table->string('title');
-            $table->string('video');
+            $table->string('video')->nullable();
             $table->double('video_duration')->default(0); // in minutes
             $table->text('description');
             $table->boolean('set_as_preview')->default(false);

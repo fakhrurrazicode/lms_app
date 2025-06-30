@@ -49,7 +49,15 @@ class CourseLecture extends BaseModel
 
     public function getVideoUrlAttribute()
     {
-        return $this->video ? url('/storage/' . $this->video) : asset('videos/dummy/sample_video.mp4');
+        if ($this->video) {
+            return url('/storage/' . $this->video);
+        }
+
+        if ($this->youtube_video_id) {
+            return 'https://www.youtube.com/embed/' . $this->youtube_video_id;
+        }
+        // return $this->video ?: asset('videos/dummy/sample_video.mp4');
+        // return $this->youtube_video_id ? 'https://www.youtube.com/' . $this->youtube_video_id :  asset('videos/dummy/sample_video.mp4');
     }
 
     public function getVideoDurationHumanReadableAttribute()
