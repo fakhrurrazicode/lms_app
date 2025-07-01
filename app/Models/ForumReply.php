@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForumReply extends Model
 {
+
+    protected $guarded = [];
     public $appends = ['created_at_diff_for_humans', 'updated_at_diff_for_humans'];
 
     public function getCreatedAtDiffForHumansAttribute()

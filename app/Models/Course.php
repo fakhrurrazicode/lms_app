@@ -38,10 +38,10 @@ class Course extends BaseModel implements Cartable
     ];
     protected $with = ['instructor', 'course_category'];
 
-    public function forumThreads()
-    {
-        return $this->morphMany(ForumThread::class, 'threadable');
-    }
+    // public function forumThreads()
+    // {
+    //     return $this->morphMany(ForumThread::class, 'threadable');
+    // }
 
     public function getPrice(): float
     {

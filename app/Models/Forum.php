@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Forum extends Model
 {
 
-    public $appends = ['created_at_diff_for_humans', 'updated_at_diff_for_humans'];
+    public $appends = ['created_at_diff_for_humans', 'updated_at_diff_for_humans', 'reply_count'];
+
+    public function getReplyCountAttribute()
+    {
+        return $this->forum_replies()->count();
+    }
 
     public function getCreatedAtDiffForHumansAttribute()
     {
@@ -29,7 +34,7 @@ class Forum extends Model
         return $this->morphTo();
     }
 
-    public function replies()
+    public function forum_replies()
     {
         return $this->hasMany(ForumReply::class);
     }

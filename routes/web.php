@@ -54,6 +54,7 @@ use App\Http\Controllers\UserArea\VoucherController as UserAreaVoucherController
 use App\Http\Controllers\UserArea\QuestionController as UserAreaQuestionController;
 use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
 use App\Http\Controllers\LearningArea\ForumController as LearningAreaForumController;
+use App\Http\Controllers\LearningArea\ForumReplyController as LearningAreaForumReplyController;
 use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseController;
 use App\Http\Controllers\UserArea\EvaluationController as UserAreaEvaluationController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
@@ -196,8 +197,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('course/{course}/instructor_info', [LearningAreaCourseController::class, 'instructor_info'])->name('course.instructor_info');
         Route::get('course/{course}/start', [LearningAreaCourseController::class, 'start'])->name('course.start');
 
-
-
         Route::resource('course.course_section.course_lecture', LearningAreaCourseLectureController::class)->only(['show']);
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish', [LearningAreaCourseLectureController::class, 'finish'])->name('course.course_section.course_lecture.finish');
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish_and_evaluate', [LearningAreaCourseLectureController::class, 'finish_and_evaluate'])->name('course.course_section.course_lecture.finish_and_evaluate');
@@ -217,6 +216,11 @@ Route::middleware(['auth'])->group(function () {
         )->name('course.course_section.evaluation.submit');
 
         Route::resource('course.forum', LearningAreaForumController::class);
+        Route::post(
+            'course/{course}/forum/{forum}/reply',
+            [LearningAreaForumController::class, 'reply']
+        )->name('course.forum.reply');
+        Route::resource('course.forum.forum_reply', LearningAreaForumReplyController::class);
     });
 
 

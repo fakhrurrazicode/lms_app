@@ -8,6 +8,8 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginateRequest;
+use App\Models\ForumReply;
+use Illuminate\Support\Facades\Auth;
 
 class ForumController extends Controller
 {
@@ -29,6 +31,7 @@ class ForumController extends Controller
             // ])
             ->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
+        // return $forums;
 
         return Inertia::render('LearningArea/Forum/Index', [
             'course' => $course,
@@ -40,9 +43,32 @@ class ForumController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Course $course)
     {
-        //
+        $course->load('course_sections.course_lectures');
+
+        return Inertia::render('LearningArea/Forum/Create', [
+            'course' => $course,
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function reply(Request $request, Course $course, Forum $forum)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'body' => 'required|string',
+        ]);
+
+        $forum_reply = ForumReply::create([
+            'forum_id' => $forum->id,
+            'user_id' => $user->id,
+            'body' => $request->body,
+            'forum_reply_id' => null,
+        ]);
     }
 
     /**
@@ -56,16 +82,26 @@ class ForumController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Course $course, Forum $forum)
+    public function show(PaginateRequest $request, Course $course, Forum $forum)
     {
 
         $course->load('course_sections.course_lectures');
-        $forum->load(['user', 'replies.user']);
-        // return $forum;
+        $forum->load('user');
+
+        $forum_replies = ForumReply::with(['user'])->where([
+            'forum_id' => $forum->id,
+        ])
+            // ->orWhere([
+            //     ['title', 'LIKE', '%' . $request->search . '%'],
+            //     ['body', 'LIKE', '%' . $request->search . '%'],
+            // ])
+            ->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
+
 
         return Inertia::render('LearningArea/Forum/Show', [
             'course' => $course,
             'forum' => $forum,
+            'forum_replies' => $forum_replies
         ]);
     }
 

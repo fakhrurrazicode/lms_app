@@ -470,6 +470,14 @@ export default function FrontendLayout({ header, children }) {
 
                                                 <Dropdown.Link
                                                     href={route(
+                                                        "user_area.enrollment.index"
+                                                    )}
+                                                >
+                                                    Kursus Terdaftar
+                                                </Dropdown.Link>
+
+                                                <Dropdown.Link
+                                                    href={route(
                                                         "user_area.profile.edit"
                                                     )}
                                                 >
