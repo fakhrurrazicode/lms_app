@@ -74,9 +74,23 @@ class ForumController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Course $course)
     {
-        //
+        $user = Auth::user();
+
+        $request->validate([
+            'title' => 'required|string',
+            'body' => 'required|string',
+        ]);
+
+        $forum = Forum::create([
+
+            'user_id' => $user->id,
+            'title' => $request->title,
+            'body' => $request->body,
+            'discussionable_type' => Course::class,
+            'discussionable_id' => $course->id,
+        ]);
     }
 
     /**
@@ -88,7 +102,7 @@ class ForumController extends Controller
         $course->load('course_sections.course_lectures');
         $forum->load('user');
 
-        $forum_replies = ForumReply::with(['user'])->where([
+        $forum_replies = ForumReply::with(['user', 'forum_reply'])->where([
             'forum_id' => $forum->id,
         ])
             // ->orWhere([
@@ -97,6 +111,7 @@ class ForumController extends Controller
             // ])
             ->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
+        // return $forum_replies;
 
         return Inertia::render('LearningArea/Forum/Show', [
             'course' => $course,

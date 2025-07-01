@@ -5,19 +5,47 @@ import classNames from "classnames";
 import React, { useState } from "react";
 import { FaPaperPlane, FaReply, FaTimes } from "react-icons/fa";
 
-export default function ForumReply({ forum_reply }) {
+export default function ForumReply({ course, forum, forum_reply }) {
     const [showReplyForm, setShowReplyForm] = useState(false);
     const { data, setData, post, errors, reset, processing, progress } =
         useForm({
             body: "",
+            forum_reply_id: forum_reply.id,
         });
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+
+        post(
+            route("learning_area.course.forum.forum_reply.store", {
+                course: course.id,
+                forum: forum.id,
+            }),
+            {
+                preserveScroll: true,
+                preserveState: true,
+                onSuccess: () => {
+                    reset();
+                    setShowReplyForm(false);
+                },
+            }
+        );
     };
     return (
         <div className="card bg-base-200 mb-8 rounded-none">
             <div className="card-body">
+                {forum_reply.forum_reply ? (
+                    <div className="card bg-base-100 mb-8 rounded-none">
+                        <div className="card-body italic">
+                            Balasan untuk:
+                            <HtmlRenderer
+                                htmlString={forum_reply.forum_reply.body}
+                            />
+                        </div>
+                    </div>
+                ) : (
+                    <></>
+                )}
                 <div>
                     <div className="mb-4">
                         <HtmlRenderer htmlString={forum_reply.body} />
@@ -91,7 +119,11 @@ export default function ForumReply({ forum_reply }) {
                                 >
                                     <FaTimes /> Batalkan
                                 </button>
-                                <button className="btn btn-primary">
+                                <button
+                                    type="submit"
+                                    disabled={processing}
+                                    className="btn btn-primary"
+                                >
                                     <FaPaperPlane /> Kirim Balasan
                                 </button>
                             </div>

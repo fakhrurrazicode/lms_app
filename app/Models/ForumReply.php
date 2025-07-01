@@ -34,4 +34,9 @@ class ForumReply extends Model
     {
         return $this->morphMany(ForumVote::class, 'votable');
     }
+
+    public function forum_reply()
+    {
+        return $this->belongsTo(ForumReply::class, 'forum_reply_id', 'id');
+    }
 }

@@ -117,7 +117,13 @@ export default function Show({ course, forum, forum_replies }) {
                     </form>
 
                     {forum_replies.data.map((forum_reply) => {
-                        return <ForumReply forum_reply={forum_reply} />;
+                        return (
+                            <ForumReply
+                                course={course}
+                                forum={forum}
+                                forum_reply={forum_reply}
+                            />
+                        );
                     })}
 
                     <div className="flex justify-center">

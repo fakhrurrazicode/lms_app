@@ -28,16 +28,20 @@ class ForumReplyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreForumReply $request, Course $course, Forum $forum)
+    public function store(Request $request, Course $course, Forum $forum)
     {
 
         $user = Auth::user();
-        $data = $request->validated();
 
-        ForumReply::create([
-            'user_id' => $user->id,
+        $request->validate([
+            'body' => 'required|string',
+        ]);
+
+        $forum_reply = ForumReply::create([
             'forum_id' => $forum->id,
-            'body' => $data['body'],
+            'user_id' => $user->id,
+            'body' => $request->body,
+            'forum_reply_id' => $request->forum_reply_id,
         ]);
     }
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Forum extends Model
 {
-
+    protected $guarded = [];
     public $appends = ['created_at_diff_for_humans', 'updated_at_diff_for_humans', 'reply_count'];
 
     public function getReplyCountAttribute()
