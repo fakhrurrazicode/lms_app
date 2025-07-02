@@ -10,11 +10,13 @@ export default function ForumReply({ course, forum, forum_reply }) {
     const { data, setData, post, errors, reset, processing, progress } =
         useForm({
             body: "",
-            forum_reply_id: forum_reply.id,
+            forum_reply_id: "",
         });
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+
+        data.forum_reply_id = forum_reply.id;
 
         post(
             route("learning_area.course.forum.forum_reply.store", {
@@ -48,6 +50,7 @@ export default function ForumReply({ course, forum, forum_reply }) {
                 )}
                 <div>
                     <div className="mb-4">
+                        <p>id: {forum_reply.id}</p>
                         <HtmlRenderer htmlString={forum_reply.body} />
                     </div>
 
@@ -87,10 +90,33 @@ export default function ForumReply({ course, forum, forum_reply }) {
 
                     <div className={classNames({ hidden: !showReplyForm })}>
                         <form className="mb-4" onSubmit={onSubmitHandler}>
+                            {/* <label className="form-control mb-6 col-span-12 md:col-span-10">
+                                <div className="label">
+                                    <span className="label-text">
+                                        Forum Reply Id
+                                    </span>
+                                </div>
+
+                                <input
+                                    type="text"
+                                    placeholder="Forum Reply Id"
+                                    name="forum_reply_id"
+                                    value={forum_reply.id}
+                                    className="input input-bordered w-full"
+                                />
+
+                                {errors.forum_reply_id && (
+                                    <div className="label">
+                                        <span className="label-text-alt text-error">
+                                            {errors.forum_reply_id}
+                                        </span>
+                                    </div>
+                                )}
+                            </label> */}
                             <label className="form-control mb-6 col-span-12 md:col-span-10">
                                 <div className="label">
                                     <span className="label-text">
-                                        Balasan Anda
+                                        Balasan Anda ({forum_reply.id})
                                     </span>
                                 </div>
 

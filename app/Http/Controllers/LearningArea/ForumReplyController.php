@@ -43,6 +43,11 @@ class ForumReplyController extends Controller
             'body' => $request->body,
             'forum_reply_id' => $request->forum_reply_id,
         ]);
+
+        return to_route('learning_area.course.forum.show', [
+            'course' => $course->id,
+            'forum' => $forum->id,
+        ]);
     }
 
     /**

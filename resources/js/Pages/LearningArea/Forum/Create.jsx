@@ -3,11 +3,12 @@ import React from "react";
 import { rupiah, stripHtml } from "@/bootstrap";
 import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 import LearningAreaLayout from "@/Layouts/LearningAreaLayout";
-import { Link, useForm } from "@inertiajs/react";
+import { Link, router, useForm } from "@inertiajs/react";
 import { GrPlay, GrResume } from "react-icons/gr";
 import classNames from "classnames";
 import TinyEditor from "@/Components/Custom/TinyEditor";
 import { FaPaperPlane } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export default function Create({ course }) {
     const { data, setData, post, errors, reset, processing, progress } =
@@ -27,6 +28,12 @@ export default function Create({ course }) {
                 preserveState: true,
                 onSuccess: () => {
                     reset();
+                    toast.success("Forum Berhasil di terbitkan");
+                    router.visit(
+                        route("learning_area.course.forum.index", {
+                            course: course.id,
+                        })
+                    );
                 },
             }
         );

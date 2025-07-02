@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginateRequest;
 use App\Models\ForumReply;
+use App\Models\User;
+use App\Notifications\NewForumCreated;
 use Illuminate\Support\Facades\Auth;
 
 class ForumController extends Controller
@@ -84,13 +86,26 @@ class ForumController extends Controller
         ]);
 
         $forum = Forum::create([
-
             'user_id' => $user->id,
             'title' => $request->title,
             'body' => $request->body,
             'discussionable_type' => Course::class,
             'discussionable_id' => $course->id,
         ]);
+
+        // send notification for all user on enrollment in this course
+        $enrollments = $course->enrollments;
+
+        $enrollments->load('user');
+
+        // return $enrollments;
+
+        foreach ($enrollments as $enrollment) {
+            $user = $enrollment->user;
+            if ($user) {
+                $user->notify(new NewForumCreated($forum));
+            }
+        }
     }
 
     /**
