@@ -14,6 +14,8 @@ import {
 } from "react-icons/fi";
 import { Link, usePage } from "@inertiajs/react";
 import { FaTicket } from "react-icons/fa6";
+import { VscReferences } from "react-icons/vsc";
+
 export default function UserAreaLayout({ children }) {
     const { auth } = usePage().props;
 
@@ -187,6 +189,19 @@ export default function UserAreaLayout({ children }) {
                                             >
                                                 <FaTicket />
                                                 <span>Voucher Afiliasi</span>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                href={route(
+                                                    "user_area.referral_code.index"
+                                                )}
+                                                className={navClass(
+                                                    "user_area.referral_code.index"
+                                                )}
+                                            >
+                                                <VscReferences />
+                                                <span>Kode Referral</span>
                                             </Link>
                                         </li>
                                     </ul>

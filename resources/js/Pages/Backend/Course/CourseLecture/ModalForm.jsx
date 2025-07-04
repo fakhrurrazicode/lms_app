@@ -1,6 +1,6 @@
 import { Link, useForm } from "@inertiajs/react";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { Save } from "lucide-react";
 import ReactModal from "react-modal";
@@ -18,6 +18,19 @@ export default function ModalForm({
 }) {
     const formRef = useRef(null);
     const fileInputRef = useRef(null);
+
+    const [videoFile, setVideoFile] = useState(null);
+    const [videoPreview, setVideoPreview] = useState(null);
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setVideoFile(file);
+        if (file && file.type.startsWith("video/")) {
+            setVideoPreview(URL.createObjectURL(file));
+        } else {
+            setVideoPreview(null);
+        }
+    };
 
     const { data, setData, post, errors, reset, clearErrors, processing } =
         useForm({
@@ -59,8 +72,8 @@ export default function ModalForm({
         e.preventDefault();
 
         const url = course_lecture
-            ? route("user_area.course_lecture.update", { course_lecture })
-            : route("user_area.course.course_lecture.store", { course });
+            ? route("backend.course_lecture.update", { course_lecture })
+            : route("backend.course.course_lecture.store", { course });
 
         post(url, {
             forceFormData: true,
@@ -122,9 +135,9 @@ export default function ModalForm({
                 </form>
                 <h3 className="font-bold text-lg mb-6">
                     {course_lecture ? (
-                        <>Ubah Lecture</>
+                        <>Ubah Pelajaran</>
                     ) : (
-                        <>Buat Lecture baru</>
+                        <>Buat Pelajaran baru</>
                     )}
                 </h3>
 
@@ -132,9 +145,7 @@ export default function ModalForm({
                     <div className="mb-6">
                         <label className="form-control w-full mb-6">
                             <div className="label">
-                                <span className="label-text">
-                                    Course Section
-                                </span>
+                                <span className="label-text">Pilih Bagian</span>
                             </div>
                             <select
                                 className="select select-bordered"
@@ -164,13 +175,18 @@ export default function ModalForm({
                         </label>
                         <label className="form-control w-full mb-6">
                             <div className="label">
-                                <span className="label-text">Video</span>
+                                <span className="label-text">
+                                    Video Pelajaran
+                                </span>
+                                <span className="label-text-alt">
+                                    {"Ukuran maksimal file <= 50MB"}
+                                </span>
                             </div>
 
                             <input
                                 type="file"
                                 accept="video/*"
-                                className="file-input file-input-bordered w-full max-w-xs"
+                                className="file-input file-input-bordered w-full"
                                 name="video"
                                 onChange={inputChangeHandler}
                                 ref={fileInputRef}
@@ -183,17 +199,31 @@ export default function ModalForm({
                                     </span>
                                 </div>
                             )}
+
+                            {videoPreview && (
+                                <div>
+                                    <h2 className="font-semibold mb-2">
+                                        Preview:
+                                    </h2>
+                                    <video
+                                        src={videoPreview}
+                                        controls
+                                        width="400"
+                                        className="rounded shadow"
+                                    />
+                                </div>
+                            )}
                         </label>
 
                         <label className="form-control w-full mb-6">
                             <div className="label">
                                 <span className="label-text">
-                                    Judul Lecture
+                                    Judul Pelajaran
                                 </span>
                             </div>
                             <input
                                 type="text"
-                                placeholder="Judul Lecture"
+                                placeholder="Judul Pelajaran"
                                 className="input input-bordered w-full"
                                 name="title"
                                 onChange={inputChangeHandler}
@@ -211,7 +241,7 @@ export default function ModalForm({
                         <label className="form-control w-full mb-6">
                             <div className="label">
                                 <span className="label-text">
-                                    Deskripsi Lecture
+                                    Deskripsi Pelajaran
                                 </span>
                             </div>
                             {/* <ReactQuill
@@ -244,7 +274,10 @@ export default function ModalForm({
                         <label className="form-control w-full mb-6">
                             <div className="label">
                                 <span className="label-text">
-                                    Attachments (optional)
+                                    Lampiran (opsional)
+                                </span>
+                                <span className="label-text-alt">
+                                    Dapat Memilih lebih dari 1 file
                                 </span>
                             </div>
                             <input

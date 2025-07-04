@@ -22,47 +22,55 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Backend\EventController;
-use App\Http\Controllers\Backend\CourseController;
+
 use App\Http\Controllers\Backend\VoucherController;
+
 use App\Http\Controllers\UserArea\TicketController;
 use App\Http\Controllers\UserArea\QuestionController;
-use App\Http\Controllers\Backend\EvaluationController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\UserArea\DashboardController;
+
 use App\Http\Controllers\Backend\ActivityLogController;
 use App\Http\Controllers\UserArea\EnrollmentController;
+use App\Http\Controllers\Backend\ReferralCodeController;
+
 use App\Http\Controllers\UserArea\TicketReplyController;
-use App\Http\Controllers\Backend\CourseLectureController;
-
-use App\Http\Controllers\Backend\CourseSectionController;
-
 use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\InstructorInfoController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
-use App\Http\Controllers\Backend\CourseEnrollmentController;
-use App\Http\Controllers\Backend\ReferralCodeController;
 use App\Http\Controllers\LearningArea\LearningAreaController;
+
+
 use App\Http\Controllers\UserArea\BecomeInstructorController;
+use App\Http\Controllers\Backend\CourseController as BackendCourseController;
 use App\Http\Controllers\Backend\TicketController as BackendTicketController;
 
 use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
+use App\Http\Controllers\Backend\ChoiceController as  BackendChoiceController;
 use App\Http\Controllers\Learning\CourseController as LearningCourseController;
 use App\Http\Controllers\UserArea\ChoiceController as UserAreaChoiceController;
+
 use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
+use App\Http\Controllers\Backend\QuestionController as BackendQuestionController;
 use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
 use App\Http\Controllers\UserArea\VoucherController as UserAreaVoucherController;
 use App\Http\Controllers\UserArea\QuestionController as UserAreaQuestionController;
 use App\Http\Controllers\UserArea\WishlistController as UserAreaWishlistController;
+use App\Http\Controllers\Backend\EvaluationController as BackendEvaluationController;
 use App\Http\Controllers\LearningArea\ForumController as LearningAreaForumController;
-use App\Http\Controllers\LearningArea\ForumReplyController as LearningAreaForumReplyController;
 use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseController;
 use App\Http\Controllers\UserArea\EvaluationController as UserAreaEvaluationController;
+use App\Http\Controllers\Backend\CourseLectureController as BackendCourseLectureController;
+use App\Http\Controllers\Backend\CourseSectionController as BackendCourseSectionController;
+use App\Http\Controllers\UserArea\ReferralCodeController as UserAreaReferralCodeController;
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
 use App\Http\Controllers\LearningArea\EvaluationController as LearningAreaEvaluationController;
+use App\Http\Controllers\LearningArea\ForumReplyController as LearningAreaForumReplyController;
+
+use App\Http\Controllers\Backend\CourseEnrollmentController as BackendCourseEnrollmentController;
 use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
 use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEnrollmentController;
-
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
 use App\Http\Controllers\LearningArea\CourseSectionController as LearningAreaCourseSectionController;
 
@@ -150,6 +158,7 @@ Route::middleware(['auth'])->group(function () {
 
             Route::resource('/order', UserAreaOrderController::class);
             Route::resource('/voucher', UserAreaVoucherController::class);
+            Route::resource('/referral_code', UserAreaReferralCodeController::class);
 
             Route::get('/profile', [UserAreaProfileController::class, 'edit'])->name('profile.edit');
             Route::patch('/profile', [UserAreaProfileController::class, 'update'])->name('profile.update');
@@ -158,31 +167,20 @@ Route::middleware(['auth'])->group(function () {
             Route::patch('/profile/update_instructor_info', [UserAreaProfileController::class, 'update_instructor_info'])->name('profile.update_instructor_info');
 
             Route::resource('/enrollment', EnrollmentController::class);
-            // ->middleware('verified');
 
             Route::resource('/course', UserAreaCourseController::class)->except(['update']);
             Route::post('/course/{course}', [UserAreaCourseController::class, 'update'])->name('course.update');
             Route::put('/course/{course}/toggle_active', [UserAreaCourseController::class, 'toggle_active'])->name('course.toggle_active');
-
             Route::get('/course/{course}/course_section/course_lectures', [UserAreaCourseSectionController::class, 'course_lectures'])->name('course.course_section.course_lectures');
             Route::get('/course/{course}/course_section/evaluations', [UserAreaCourseSectionController::class, 'evaluations'])->name('course.course_section.evaluations');
             Route::resource('course.course_section', UserAreaCourseSectionController::class);
-
-
             Route::resource('course.course_section.course_lecture', UserAreaCourseLectureController::class)->except(['update']);
-
-            // Route::group();
             Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [UserAreaCourseLectureController::class, 'update'])->name('course.course_section.course_lecture.update');
             Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_preview', [UserAreaCourseLectureController::class, 'set_as_preview'])->name('course.course_section.course_lecture.set_as_preview');
             Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_featured', [UserAreaCourseLectureController::class, 'set_as_featured'])->name('course.course_section.course_lecture.set_as_featured');
-
             Route::resource('course.course_section.evaluation', UserAreaEvaluationController::class);
             Route::resource('course.course_section.evaluation.question', UserAreaQuestionController::class);
-
             Route::put('/course/{course}/course_section/{course_section}/evaluation/{evaluation}/question/{question}/choice/{choice}/set_as_correct_answer', [UserAreaChoiceController::class, 'set_as_correct_answer'])->name('course.course_section.evaluation.question.choice.set_as_correct_answer');
-
-
-
             Route::resource('course.course_enrollment', UserAreaCourseEnrollmentController::class)->shallow();
         });
     });
@@ -256,8 +254,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/course_category', CourseCategoryController::class);
         Route::resource('/tag', TagController::class);
 
-        Route::resource('/course', CourseController::class);
-        Route::post('/course/{course}', [CourseController::class, 'update'])->name('course.update');
+        // Route::resource('/course', CourseController::class);
+        // Route::post('/course/{course}', [CourseController::class, 'update'])->name('course.update');
 
         Route::resource('/event', EventController::class)->except(['update']);
         Route::post('/event/{event}', [EventController::class, 'update'])->name('event.update');
@@ -273,22 +271,37 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-        Route::resource('/course', CourseController::class)->except(['update']);
-        Route::post('/course/{course}', [CourseController::class, 'update'])->name('course.update');
+        // Route::resource('/course', CourseController::class)->except(['update']);
+        // Route::post('/course/{course}', [CourseController::class, 'update'])->name('course.update');
 
-        Route::resource('course.course_section', CourseSectionController::class)->shallow();
-        Route::resource('course.course_enrollment', CourseEnrollmentController::class)->shallow();
-        Route::resource('course.course_lecture', CourseLectureController::class)->except(['update'])->shallow();
-        Route::post('/course_lecture/{course_lecture}/update', [CourseLectureController::class, 'update'])->name('course_lecture.update');
-        Route::resource('course.evaluation', EvaluationController::class)->except(['update'])->shallow();
-        Route::resource('evaluation.question', QuestionController::class)->shallow();
-        // Route::resource('/course/{course}/course_section', CourseSectionController::class);
-        // Route::resource('/course/{course}/course_section/{course_section}/course_lecture', CourseLectureController::class)->except(['index', 'update']);
-        // Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [CourseLectureController::class, 'update'])->name('course_lecture.update');
-        Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_preview', [CourseLectureController::class, 'set_as_preview'])->name('course.set_as_preview');
-        Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_featured', [CourseLectureController::class, 'set_as_featured'])->name('course.set_as_featured');
+        // Route::resource('course.course_section', CourseSectionController::class)->shallow();
+        // Route::resource('course.course_enrollment', CourseEnrollmentController::class)->shallow();
+        // Route::resource('course.course_lecture', CourseLectureController::class)->except(['update'])->shallow();
+        // Route::post('/course_lecture/{course_lecture}/update', [CourseLectureController::class, 'update'])->name('course_lecture.update');
+        // Route::resource('course.evaluation', EvaluationController::class)->except(['update'])->shallow();
+        // Route::resource('evaluation.question', QuestionController::class)->shallow();
+        // // Route::resource('/course/{course}/course_section', CourseSectionController::class);
+        // // Route::resource('/course/{course}/course_section/{course_section}/course_lecture', CourseLectureController::class)->except(['index', 'update']);
+        // // Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [CourseLectureController::class, 'update'])->name('course_lecture.update');
+        // Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_preview', [CourseLectureController::class, 'set_as_preview'])->name('course.set_as_preview');
+        // Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_featured', [CourseLectureController::class, 'set_as_featured'])->name('course.set_as_featured');
 
-        Route::resource('/activity_log', ActivityLogController::class)->only(['index']);
+        // Route::resource('/activity_log', ActivityLogController::class)->only(['index']);
+
+        Route::resource('/course', BackendCourseController::class)->except(['update']);
+        Route::post('/course/{course}', [BackendCourseController::class, 'update'])->name('course.update');
+        Route::put('/course/{course}/toggle_active', [BackendCourseController::class, 'toggle_active'])->name('course.toggle_active');
+        Route::get('/course/{course}/course_section/course_lectures', [BackendCourseSectionController::class, 'course_lectures'])->name('course.course_section.course_lectures');
+        Route::get('/course/{course}/course_section/evaluations', [BackendCourseSectionController::class, 'evaluations'])->name('course.course_section.evaluations');
+        Route::resource('course.course_section', BackendCourseSectionController::class);
+        Route::resource('course.course_section.course_lecture', BackendCourseLectureController::class)->except(['update']);
+        Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [BackendCourseLectureController::class, 'update'])->name('course.course_section.course_lecture.update');
+        Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_preview', [BackendCourseLectureController::class, 'set_as_preview'])->name('course.course_section.course_lecture.set_as_preview');
+        Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_featured', [BackendCourseLectureController::class, 'set_as_featured'])->name('course.course_section.course_lecture.set_as_featured');
+        Route::resource('course.course_section.evaluation', BackendEvaluationController::class);
+        Route::resource('course.course_section.evaluation.question', BackendQuestionController::class);
+        Route::put('/course/{course}/course_section/{course_section}/evaluation/{evaluation}/question/{question}/choice/{choice}/set_as_correct_answer', [BackendChoiceController::class, 'set_as_correct_answer'])->name('course.course_section.evaluation.question.choice.set_as_correct_answer');
+        Route::resource('course.course_enrollment', BackendCourseEnrollmentController::class)->shallow();
     });
 });
 

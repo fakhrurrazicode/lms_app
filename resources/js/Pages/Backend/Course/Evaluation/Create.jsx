@@ -43,7 +43,7 @@ export default function Create({ course, course_section }) {
 
         // post(`/user_area/course_lecture?${query}`, {
         post(
-            route("user_area.course_lecture.store", {
+            route("backend.course_lecture.store", {
                 course: course,
                 course_section: course_section,
             }),
@@ -88,7 +88,7 @@ export default function Create({ course, course_section }) {
                 <div className="w-full">
                     <div className="mb-6">
                         <Link
-                            href={route("user_area.course_section.index", {
+                            href={route("backend.course_section.index", {
                                 course: course,
                             })}
                             preserveState={true}
@@ -193,7 +193,7 @@ export default function Create({ course, course_section }) {
                                 </button>
                                 <Link
                                     href={route(
-                                        "user_area.course_section.index",
+                                        "backend.course_section.index",
                                         {
                                             course: course,
                                         }

@@ -20,7 +20,7 @@ export default function Create({ course_categories, instructors }) {
                 </h2>
             }
         >
-            <Head title="Buat Kursus" />
+            <Head title="Create Course" />
 
             <div className="py-12">
                 <div className="w-full sm:px-6 lg:px-8">

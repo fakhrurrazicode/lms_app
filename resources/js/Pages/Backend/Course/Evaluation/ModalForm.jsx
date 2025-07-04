@@ -5,6 +5,7 @@ import { Save } from "lucide-react";
 import ReactModal from "react-modal";
 import { toast } from "react-toastify";
 import classNames from "classnames";
+import ReactQuill from "react-quill";
 import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function ModalForm({
@@ -17,7 +18,7 @@ export default function ModalForm({
     const formRef = useRef(null);
     const fileInputRef = useRef(null);
 
-    const { data, setData, post, errors, reset, clearErrors, processing } =
+    const { data, setData, post, put, errors, reset, clearErrors, processing } =
         useForm({
             course_section_id: evaluation
                 ? evaluation.course_section_id
@@ -82,8 +83,8 @@ export default function ModalForm({
         e.preventDefault();
 
         if (evaluation) {
-            post(
-                route("user_area.evaluation.update", {
+            put(
+                route("backend.evaluation.update", {
                     evaluation,
                 }),
                 {
@@ -102,7 +103,7 @@ export default function ModalForm({
         } else {
             console.log("data", data);
             post(
-                route("user_area.course.evaluation.store", {
+                route("backend.course.evaluation.store", {
                     course: course,
                 }),
                 {
@@ -219,6 +220,7 @@ export default function ModalForm({
                             onChange={inputChangeHandler}
                             value={data.instructions}
                         ></textarea> */}
+
                         {/* <ReactQuill
                             theme="snow"
                             value={data.instructions}
@@ -229,10 +231,12 @@ export default function ModalForm({
                                 marginBottom: "1rem",
                             }}
                         /> */}
+
                         <TinyEditor
                             value={data.instructions}
                             onChange={(value) => setData("instructions", value)}
                         />
+
                         {errors.instructions && (
                             <div className="label">
                                 <span className="label-text-alt text-error">

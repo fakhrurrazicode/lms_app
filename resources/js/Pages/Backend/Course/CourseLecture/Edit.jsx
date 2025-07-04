@@ -44,7 +44,7 @@ export default function Edit({ course, course_section, course_lecture }) {
         //         courseLecture ? courseLecture.id : ""
         //     }?${query}`,
         post(
-            route("user_area.course_lecture.update", {
+            route("backend.course_lecture.update", {
                 course: course,
                 course_section: course_section,
                 course_lecture: course_lecture,
@@ -77,7 +77,7 @@ export default function Edit({ course, course_section, course_lecture }) {
                 <div className="w-full">
                     <div className="mb-6">
                         <Link
-                            href={route("user_area.course_section.index", {
+                            href={route("backend.course_section.index", {
                                 course: course,
                             })}
                             preserveState={true}
@@ -187,7 +187,7 @@ export default function Edit({ course, course_section, course_lecture }) {
                                 </button>
                                 <Link
                                     href={route(
-                                        "user_area.course_section.index",
+                                        "backend.course_section.index",
                                         {
                                             course: course,
                                         }

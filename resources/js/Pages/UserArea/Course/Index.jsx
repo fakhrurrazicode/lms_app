@@ -18,182 +18,158 @@ export default function Index({ request, courses }) {
         >
             <Head title="Dashboard" />
 
-            <div className="">
-                <div className="w-full ">
-                    <div className="card bg-base-100 shadow-xl">
-                        <div className="card-body">
-                            <h2 className="card-title mb-6">All Courses</h2>
+            <div className="w-full ">
+                <div className="card bg-base-100 shadow-xl">
+                    <div className="card-body">
+                        <h2 className="card-title mb-6">All Courses</h2>
 
-                            <div className="overflow-x-auto">
-                                <div className="mb-6 flex justify-between items-center">
-                                    <div>
-                                        <Link
-                                            href={route(
-                                                "user_area.course.create"
-                                            )}
-                                            className="btn btn-primary"
-                                        >
-                                            <Plus size={16} />
-                                            <span>Buat Kursus Baru</span>
-                                        </Link>
-                                    </div>
-                                    <div className="flex gap-2">
-                                        <label className="form-control w-full max-w-xs">
-                                            <div className="label">
-                                                <span className="label-text">
-                                                    Entries per page
-                                                </span>
-                                            </div>
-                                            <select
-                                                name="perpage"
-                                                className="select select-bordered"
-                                                onChange={(e) =>
-                                                    router.reload({
-                                                        preserveScroll: true,
-                                                        preserveState: true,
-                                                        data: {
-                                                            ...request,
-                                                            perpage:
-                                                                e.target.value,
-                                                        },
-                                                    })
-                                                }
-                                            >
-                                                <option value={10}>10</option>
-                                                <option value={25}>25</option>
-                                                <option value={50}>50</option>
-                                                <option value={100}>100</option>
-                                            </select>
-                                        </label>
-                                        <label className="form-control w-full max-w-xs">
-                                            <div className="label">
-                                                <span className="label-text">
-                                                    Search
-                                                </span>
-                                            </div>
-                                            <input
-                                                type="text"
-                                                placeholder="Search"
-                                                className="input input-bordered w-full max-w-xs"
-                                                onChange={(e) =>
-                                                    router.reload({
-                                                        preserveScroll: true,
-                                                        preserveState: true,
-                                                        data: {
-                                                            ...request,
-                                                            search: e.target
-                                                                .value,
-                                                            page: 1,
-                                                        },
-                                                    })
-                                                }
-                                            />
-                                        </label>
-                                    </div>
+                        <div className="overflow-x-auto">
+                            <div className="mb-6 flex justify-between items-center">
+                                <div>
+                                    <Link
+                                        href={route("user_area.course.create")}
+                                        className="btn btn-primary"
+                                    >
+                                        <Plus size={16} />
+                                        <span>Buat Kursus Baru</span>
+                                    </Link>
                                 </div>
-                                <div className="mb-6">
-                                    <div className="overflow-x-auto">
-                                        <table className="table">
-                                            {/* head */}
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Judul</th>
-                                                    <th>Level</th>
-                                                    <th>Active</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {courses.data.length ? (
-                                                    courses.data.map(
-                                                        (course) => (
-                                                            <tr className="hover">
-                                                                <th>
-                                                                    <Link
-                                                                        href={route(
-                                                                            "user_area.course.edit",
-                                                                            {
-                                                                                course,
-                                                                            }
-                                                                        )}
-                                                                        className="btn btn-secondary btn-sm"
-                                                                    >
-                                                                        Manage
-                                                                    </Link>
-                                                                </th>
-                                                                <td>
-                                                                    {
-                                                                        course.title
-                                                                    }
-                                                                </td>
-                                                                <td>
-                                                                    {
-                                                                        course.level
-                                                                    }
-                                                                </td>
-                                                                <td>
-                                                                    <input
-                                                                        type="checkbox"
-                                                                        className="toggle toggle-primary"
-                                                                        checked={
-                                                                            course.status
-                                                                        }
-                                                                        onChange={(
-                                                                            e
-                                                                        ) => {
-                                                                            router.put(
-                                                                                route(
-                                                                                    "user_area.course.toggle_active",
-                                                                                    {
-                                                                                        course: course.id,
-                                                                                    }
-                                                                                ),
-                                                                                {},
-                                                                                {
-                                                                                    preserveScroll: true,
-                                                                                    preserveState: true,
-                                                                                }
-                                                                            );
-                                                                        }}
-                                                                    />
-                                                                </td>
-                                                            </tr>
-                                                        )
-                                                    )
-                                                ) : (
-                                                    <></>
-                                                )}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div className="flex justify-between">
-                                    <div></div>
-                                    <div>
-                                        <div className="join">
-                                            {courses.links.map(
-                                                (link, index) => (
-                                                    <Link
-                                                        preserveScroll={true}
-                                                        preserveState={true}
-                                                        key={index}
-                                                        href={link.url}
-                                                        className="join-item btn"
-                                                    >
-                                                        {link.label
-                                                            .replace(
-                                                                "&laquo;",
-                                                                ""
-                                                            )
-                                                            .replace(
-                                                                "&raquo;",
-                                                                ""
-                                                            )}
-                                                    </Link>
-                                                )
-                                            )}
+                                <div className="flex gap-2">
+                                    <label className="form-control w-full max-w-xs">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Entries per page
+                                            </span>
                                         </div>
+                                        <select
+                                            name="perpage"
+                                            className="select select-bordered"
+                                            onChange={(e) =>
+                                                router.reload({
+                                                    preserveScroll: true,
+                                                    preserveState: true,
+                                                    data: {
+                                                        ...request,
+                                                        perpage: e.target.value,
+                                                    },
+                                                })
+                                            }
+                                        >
+                                            <option value={10}>10</option>
+                                            <option value={25}>25</option>
+                                            <option value={50}>50</option>
+                                            <option value={100}>100</option>
+                                        </select>
+                                    </label>
+                                    <label className="form-control w-full max-w-xs">
+                                        <div className="label">
+                                            <span className="label-text">
+                                                Search
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Search"
+                                            className="input input-bordered w-full max-w-xs"
+                                            onChange={(e) =>
+                                                router.reload({
+                                                    preserveScroll: true,
+                                                    preserveState: true,
+                                                    data: {
+                                                        ...request,
+                                                        search: e.target.value,
+                                                        page: 1,
+                                                    },
+                                                })
+                                            }
+                                        />
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="mb-6">
+                                <div className="overflow-x-auto">
+                                    <table className="table">
+                                        {/* head */}
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Judul</th>
+                                                <th>Level</th>
+                                                <th>Active</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {courses.data.length ? (
+                                                courses.data.map((course) => (
+                                                    <tr className="hover">
+                                                        <th>
+                                                            <Link
+                                                                href={route(
+                                                                    "user_area.course.edit",
+                                                                    {
+                                                                        course,
+                                                                    }
+                                                                )}
+                                                                className="btn btn-secondary btn-sm"
+                                                            >
+                                                                Manage
+                                                            </Link>
+                                                        </th>
+                                                        <td>{course.title}</td>
+                                                        <td>{course.level}</td>
+                                                        <td>
+                                                            <input
+                                                                type="checkbox"
+                                                                className="toggle toggle-primary"
+                                                                checked={
+                                                                    course.status
+                                                                }
+                                                                onChange={(
+                                                                    e
+                                                                ) => {
+                                                                    router.put(
+                                                                        route(
+                                                                            "user_area.course.toggle_active",
+                                                                            {
+                                                                                course: course.id,
+                                                                            }
+                                                                        ),
+                                                                        {},
+                                                                        {
+                                                                            preserveScroll: true,
+                                                                            preserveState: true,
+                                                                        }
+                                                                    );
+                                                                }}
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            ) : (
+                                                <></>
+                                            )}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-between">
+                                <div></div>
+                                <div>
+                                    <div className="join">
+                                        {courses.links.map((link, index) => (
+                                            <Link
+                                                preserveScroll={true}
+                                                preserveState={true}
+                                                key={index}
+                                                href={link.url}
+                                                className="join-item btn"
+                                            >
+                                                {link.label
+                                                    .replace("&laquo;", "")
+                                                    .replace("&raquo;", "")}
+                                            </Link>
+                                        ))}
                                     </div>
                                 </div>
                             </div>

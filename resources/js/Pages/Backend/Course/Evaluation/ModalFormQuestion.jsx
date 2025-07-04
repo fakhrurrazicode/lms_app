@@ -6,6 +6,7 @@ import ReactModal from "react-modal";
 import { toast } from "react-toastify";
 import classNames from "classnames";
 import { FaPlus } from "react-icons/fa";
+import ReactQuill from "react-quill";
 import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function ModalFormQuestion({
@@ -76,7 +77,7 @@ export default function ModalFormQuestion({
         setData("items", updated);
     };
 
-    const handleChoiceChange = (index, field, event) => {
+    const handleChoiceChange = (index, field, value) => {
         if (field === "is_correct") {
             const updated = data.items.map((item, i) => ({
                 ...item,
@@ -85,7 +86,7 @@ export default function ModalFormQuestion({
             setData("items", updated);
         } else {
             const updated = [...data.items];
-            updated[index][field] = event.target.value;
+            updated[index][field] = value;
             setData("items", updated);
         }
     };
@@ -103,7 +104,7 @@ export default function ModalFormQuestion({
 
         if (question) {
             put(
-                route("user_area.question.update", {
+                route("backend.question.update", {
                     question,
                 }),
                 {
@@ -122,7 +123,7 @@ export default function ModalFormQuestion({
         } else {
             console.log("data", data);
             post(
-                route("user_area.evaluation.question.store", {
+                route("backend.evaluation.question.store", {
                     evaluation: evaluation,
                 }),
                 {
@@ -181,6 +182,14 @@ export default function ModalFormQuestion({
                             <span className="label-text">Pertanyaan</span>
                         </div>
 
+                        {/* <textarea
+                            className="textarea textarea-bordered h-24"
+                            placeholder="Pertanyaan"
+                            name="question"
+                            onChange={inputChangeHandler}
+                            value={data.question}
+                        ></textarea> */}
+
                         {/* <ReactQuill
                             theme="snow"
                             value={data.question}
@@ -191,6 +200,7 @@ export default function ModalFormQuestion({
                                 marginBottom: "1rem",
                             }}
                         /> */}
+
                         <TinyEditor
                             value={data.question}
                             onChange={(value) => setData("question", value)}
@@ -212,7 +222,19 @@ export default function ModalFormQuestion({
                         </div>
                         {data.items?.map((choice, index) => (
                             <div key={index} className="mb-4">
-                                <div className="flex items-center gap-2">
+                                <div className="flex justify-between items-center gap-6">
+                                    {/* <input
+                                        type="text"
+                                        className={classNames(
+                                            "input input-bordered w-full"
+                                        )}
+                                        placeholder={`Pilihan ${index + 1}`}
+                                        value={choice.text}
+                                        onChange={(e) =>
+                                            handleChoiceChange(index, "text", e)
+                                        }
+                                    /> */}
+
                                     {/* <ReactQuill
                                         theme="snow"
                                         value={choice.text}

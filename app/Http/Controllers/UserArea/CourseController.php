@@ -61,7 +61,7 @@ class CourseController extends Controller
     public function store(InstructorCourseStoreRequest $request)
     {
         $data = $request->except(['image']);
-        $data['instructor_id'] = Auth::user()->id;
+        // $data['instructor_id'] = Auth::user()->id;
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('images', 'public');
         }

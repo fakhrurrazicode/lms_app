@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { toast } from "react-toastify";
 import slugify from "slugify";
 import ReactQuill from "react-quill";
+import { Editor } from "@tinymce/tinymce-react";
 import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function FormCourse({
@@ -106,8 +107,47 @@ export default function FormCourse({
     };
     return (
         <form onSubmit={onSubmitHandler} className="card-body">
-            <h2 className="card-title mb-6">Buat Kursus</h2>
+            <h2 className="text-primary card-title">Buat Kursus</h2>
+
             <div className="mb-6">
+                <p className="text-sm">
+                    Masukkan Informasi kursus yang ingin anda buat, pastikan
+                    informasi kursus anda menarik, jelas dan mudah dipahami
+                </p>
+            </div>
+            <div className="mb-6">
+                <div className="grid grid-cols-12 gap-6">
+                    <label className="form-control mb-6 col-span-12 md:col-span-4">
+                        <div className="label">
+                            <span className="label-text">Instruktur</span>
+                        </div>
+                        <select
+                            className="select select-bordered"
+                            name="instructor_id"
+                            onChange={inputChangeHandler}
+                            value={data.instructor_id}
+                        >
+                            <option>:: Pilih Instruktur ::</option>
+
+                            {instructors.map((instructor) => (
+                                <option
+                                    key={instructor.id}
+                                    value={instructor.id}
+                                >
+                                    {instructor.name}
+                                </option>
+                            ))}
+                        </select>
+
+                        {errors.instructor_id && (
+                            <div className="label">
+                                <span className="label-text-alt text-error">
+                                    {errors.instructor_id}
+                                </span>
+                            </div>
+                        )}
+                    </label>
+                </div>
                 <div className="grid grid-cols-12 gap-6">
                     <label className="form-control mb-6 col-span-12 md:col-span-6">
                         <div className="label">
@@ -150,39 +190,6 @@ export default function FormCourse({
                             <div className="label">
                                 <span className="label-text-alt text-error">
                                     {errors.slug}
-                                </span>
-                            </div>
-                        )}
-                    </label>
-                </div>
-
-                <div className="grid grid-cols-12 gap-6">
-                    <label className="form-control mb-6 col-span-12 md:col-span-4">
-                        <div className="label">
-                            <span className="label-text">Instruktur</span>
-                        </div>
-                        <select
-                            className="select select-bordered"
-                            name="instructor_id"
-                            onChange={inputChangeHandler}
-                            value={data.instructor_id}
-                        >
-                            <option>:: Pilih Instruktur ::</option>
-
-                            {instructors.map((instructor) => (
-                                <option
-                                    key={instructor.id}
-                                    value={instructor.id}
-                                >
-                                    {instructor.name}
-                                </option>
-                            ))}
-                        </select>
-
-                        {errors.instructor_id && (
-                            <div className="label">
-                                <span className="label-text-alt text-error">
-                                    {errors.instructor_id}
                                 </span>
                             </div>
                         )}
@@ -255,22 +262,10 @@ export default function FormCourse({
                             <span className="label-text">Keterangan</span>
                         </div>
 
-                        {/* <ReactQuill
-                            theme="snow"
-                            value={data.description}
-                            onChange={(value) => setData("description", value)}
-                            className="input input-bordered"
-                            style={{
-                                height: "16rem",
-                                marginBottom: "1rem",
-                            }}
-                        /> */}
-
                         <TinyEditor
                             value={data.description}
                             onChange={(value) => setData("description", value)}
                         />
-
                         {errors.description && (
                             <div className="label">
                                 <span className="label-text-alt text-error">
@@ -287,24 +282,13 @@ export default function FormCourse({
                             <span className="label-text">Prasyarat</span>
                         </div>
 
-                        {/* <ReactQuill
-                            theme="snow"
-                            value={data.prerequisites}
-                            onChange={(value) =>
-                                setData("prerequisites", value)
-                            }
-                            className="input input-bordered"
-                            style={{
-                                height: "16rem",
-                                marginBottom: "1rem",
-                            }}
-                        /> */}
                         <TinyEditor
                             value={data.prerequisites}
                             onChange={(value) =>
                                 setData("prerequisites", value)
                             }
                         />
+
                         {errors.prerequisites && (
                             <div className="label">
                                 <span className="label-text-alt text-error">
@@ -321,16 +305,6 @@ export default function FormCourse({
                             <span className="label-text">Sasaran</span>
                         </div>
 
-                        {/* <ReactQuill
-                            theme="snow"
-                            value={data.goals}
-                            onChange={(value) => setData("goals", value)}
-                            className="input input-bordered"
-                            style={{
-                                height: "16rem",
-                                marginBottom: "1rem",
-                            }}
-                        /> */}
                         <TinyEditor
                             value={data.goals}
                             onChange={(value) => setData("goals", value)}

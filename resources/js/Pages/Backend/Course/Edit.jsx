@@ -23,7 +23,7 @@ export default function Edit({ course, course_categories, instructors }) {
                 <div className="w-full sm:px-6 lg:px-8">
                     <CourseManageTab course={course} />
 
-                    <div className="card bg-base-100 shadow-xl !rounded-t-none">
+                    <div className="card bg-base-100 shadow-xl rounded-t-none">
                         <Form
                             course={course}
                             course_categories={course_categories}

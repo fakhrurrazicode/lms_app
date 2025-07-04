@@ -33,19 +33,22 @@ export default function CourseManageTab({ course }) {
                         }
                     )}
                 >
-                    Detail Course{" "}
+                    Informasi Kursus{" "}
                 </Link>
                 <Link
                     preserveScroll={true}
                     preserveState={true}
-                    href={route("backend.course.course_section.index", {
-                        course: course,
-                    })}
+                    href={route(
+                        "backend.course.course_section.course_lectures",
+                        {
+                            course: course,
+                        }
+                    )}
                     className={classNames(
                         "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
                         {
                             "!bg-base-100": route().current(
-                                "backend.course.course_section.index",
+                                "backend.course.course_section.course_lectures",
                                 {
                                     course: course,
                                 }
@@ -53,10 +56,31 @@ export default function CourseManageTab({ course }) {
                         }
                     )}
                 >
-                    Sections
+                    Bagian & Pelajaran
                 </Link>
 
                 <Link
+                    preserveScroll={true}
+                    preserveState={true}
+                    href={route("backend.course.course_section.evaluations", {
+                        course: course,
+                    })}
+                    className={classNames(
+                        "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
+                        {
+                            "!bg-base-100": route().current(
+                                "backend.course.course_section.evaluations",
+                                {
+                                    course: course,
+                                }
+                            ),
+                        }
+                    )}
+                >
+                    Evaluasi, Pertanyaan & Pilihan
+                </Link>
+
+                {/* <Link
                     preserveScroll={true}
                     preserveState={true}
                     href={route("backend.course.course_lecture.index", {
@@ -74,10 +98,10 @@ export default function CourseManageTab({ course }) {
                         }
                     )}
                 >
-                    Lectures
-                </Link>
+                    Pelajaran
+                </Link> */}
 
-                <Link
+                {/* <Link
                     preserveScroll={true}
                     preserveState={true}
                     href={route("backend.course.evaluation.index", {
@@ -95,8 +119,8 @@ export default function CourseManageTab({ course }) {
                         }
                     )}
                 >
-                    Evaluations
-                </Link>
+                    Evaluasi
+                </Link> */}
 
                 {/* <Link
                     preserveScroll={true}

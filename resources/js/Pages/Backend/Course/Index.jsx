@@ -8,6 +8,7 @@ import { CourseDetail } from "./CourseCardDetail";
 import BackendLayout from "@/Layouts/BackendLayout";
 
 export default function Index({ request, courses }) {
+    const onStatusToggle = (e) => {};
     return (
         <BackendLayout
             header={
@@ -16,7 +17,7 @@ export default function Index({ request, courses }) {
                 </h2>
             }
         >
-            <Head title="Manajemen Kursus" />
+            <Head title="Dashboard" />
 
             <div className="py-12">
                 <div className="w-full sm:px-6 lg:px-8">
@@ -132,9 +133,30 @@ export default function Index({ request, courses }) {
                                                                     }
                                                                 </td>
                                                                 <td>
-                                                                    {
-                                                                        course.status
-                                                                    }
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        className="toggle toggle-primary"
+                                                                        checked={
+                                                                            course.status
+                                                                        }
+                                                                        onChange={(
+                                                                            e
+                                                                        ) => {
+                                                                            router.put(
+                                                                                route(
+                                                                                    "backend.course.toggle_active",
+                                                                                    {
+                                                                                        course: course.id,
+                                                                                    }
+                                                                                ),
+                                                                                {},
+                                                                                {
+                                                                                    preserveScroll: true,
+                                                                                    preserveState: true,
+                                                                                }
+                                                                            );
+                                                                        }}
+                                                                    />
                                                                 </td>
                                                             </tr>
                                                         )

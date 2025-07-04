@@ -10,8 +10,15 @@ class ReferralCode extends Model
 {
     protected $guarded = [];
 
-    public $appends = ['usage_count'];
+    public $appends = ['usage_count', 'referral_url'];
     // public $with = ['owner', 'event'];
+
+    public function getReferralUrlAttribute()
+    {
+        return route('register', [
+            'referral_code' => $this->code
+        ]);
+    }
 
     public function event()
     {

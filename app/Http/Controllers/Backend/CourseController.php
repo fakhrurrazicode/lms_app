@@ -34,12 +34,15 @@ class CourseController extends Controller
             ->paginate($request->perpage)
             ->withQueryString();
 
+
+        // $instructors = User::role('instructor')->get();
+        // $instructors = User::whereHas('instructor_info')->get();
         // return $courses;
+        // retrun $instructors;
 
         return Inertia::render('Backend/Course/Index', [
             'courses' => $courses,
             'course_categories' => CourseCategory::all(),
-
             'request' => $request,
         ]);
     }
@@ -108,5 +111,12 @@ class CourseController extends Controller
     {
         $course->delete();
         return to_route('backend.course.index');
+    }
+
+    public function toggle_active(Request $request, Course $course)
+    {
+        $course->update([
+            'status' => !$course->status
+        ]);
     }
 }
