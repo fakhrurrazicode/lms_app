@@ -22,11 +22,9 @@ class User extends Authenticatable implements MustVerifyEmail
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles, LogsActivity;
 
-    protected $with = ['cart', 'instructor_info', 'enrollments'];
+    protected $with = ['cart', 'enrollments'];
 
     protected $appends = ['photo_url', 'role_name', 'coin_balance'];
-
-
 
     public function sendPasswordResetNotification($token)
     {

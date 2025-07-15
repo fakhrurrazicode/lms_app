@@ -94,8 +94,7 @@ Route::post('/submit_become_instructor', [PageController::class, 'submit_become_
 Route::get('/course/{slug}', [PageController::class, 'course'])->name('course');
 Route::post('/join_course', [PageController::class, 'join_course'])->name('join_course');
 
-Route::get('/instructor_info/{user}', [PageController::class, 'instructor_info'])->name('instructor_info');
-
+Route::get('/instructor_info/{username}', [PageController::class, 'instructor_info'])->name('instructor_info');
 
 // Route::get('/dashboard', function () {})->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -113,20 +112,21 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-    Route::resource('/cart', CartController::class)->only(['index', 'store']);
-    Route::delete('/cart', [CartController::class, 'destroy'])->name('cart.destroy');
-    Route::delete('/cart/empty', [CartController::class, 'empty_cart'])->name('cart.empty');
-    Route::post('/cart/add_to_wishlist', [CartController::class, 'add_to_wishlist'])->name('cart.add_to_wishlist');
-    Route::post('/cart/toggle_use_poin', [CartController::class, 'toggle_use_poin'])->name('cart.toggle_use_poin');
-    Route::post('/cart/set_voucher', [CartController::class, 'set_voucher'])->name('cart.set_voucher');
-    Route::delete('/cart/remove_voucher', [CartController::class, 'remove_voucher'])->name('cart.remove_voucher');
-    // Route::post('/cart/set_voucher', [CartController::class, 'set_voucher'])->name('cart.set_voucher');
 
-    Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 
 
 
     Route::middleware(['verified'])->group(function () {
+        Route::resource('/cart', CartController::class)->only(['index', 'store']);
+        Route::delete('/cart', [CartController::class, 'destroy'])->name('cart.destroy');
+        Route::delete('/cart/empty', [CartController::class, 'empty_cart'])->name('cart.empty');
+        Route::post('/cart/add_to_wishlist', [CartController::class, 'add_to_wishlist'])->name('cart.add_to_wishlist');
+        Route::post('/cart/toggle_use_poin', [CartController::class, 'toggle_use_poin'])->name('cart.toggle_use_poin');
+        Route::post('/cart/set_voucher', [CartController::class, 'set_voucher'])->name('cart.set_voucher');
+        Route::delete('/cart/remove_voucher', [CartController::class, 'remove_voucher'])->name('cart.remove_voucher');
+        // Route::post('/cart/set_voucher', [CartController::class, 'set_voucher'])->name('cart.set_voucher');
+
+        Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
         // Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
         Route::post('/midtrans/token', [PaymentController::class, 'token'])->name('midtrans.token');
 
@@ -160,11 +160,19 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('/voucher', UserAreaVoucherController::class);
             Route::resource('/referral_code', UserAreaReferralCodeController::class);
 
-            Route::get('/profile', [UserAreaProfileController::class, 'edit'])->name('profile.edit');
-            Route::patch('/profile', [UserAreaProfileController::class, 'update'])->name('profile.update');
-            Route::delete('/profile', [UserAreaProfileController::class, 'destroy'])->name('profile.destroy');
+            Route::get('/profile/edit', [UserAreaProfileController::class, 'edit'])->name('profile.edit');
+            Route::patch('/profile/update', [UserAreaProfileController::class, 'update'])->name('profile.update');
+            Route::delete('/profile/destroy', [UserAreaProfileController::class, 'destroy'])->name('profile.destroy');
+
+            Route::get('/profile/edit_photo', [UserAreaProfileController::class, 'edit_photo'])->name('profile.edit_photo');
             Route::post('/profile/update_photo', [UserAreaProfileController::class, 'update_photo'])->name('profile.update_photo');
+
+            Route::get('/profile/edit_structor_info', [UserAreaProfileController::class, 'edit_structor_info'])->name('profile.edit_structor_info');
             Route::patch('/profile/update_instructor_info', [UserAreaProfileController::class, 'update_instructor_info'])->name('profile.update_instructor_info');
+
+            Route::get('/profile/delete_user', [UserAreaProfileController::class, 'delete_user'])->name('profile.delete_user');
+
+            Route::get('/profile/edit_password', [UserAreaProfileController::class, 'edit_password'])->name('profile.edit_password');
 
             Route::resource('/enrollment', EnrollmentController::class);
 

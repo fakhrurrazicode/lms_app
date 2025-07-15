@@ -162,10 +162,10 @@ class PageController extends Controller
         return to_route('user_area.become_instructor.status');
     }
 
-    public function instructor_info(User $user)
+    public function instructor_info($username)
     {
-        // return $user;
-        $instructor = $user->load(['courses', 'instructor_info']);
+
+        $instructor = User::with(['courses', 'instructor_info'])->where('username', $username)->firstOrFail();
         // return $instructor;
 
         return Inertia::render('InstructorInfo', ['instructor' => $instructor]);

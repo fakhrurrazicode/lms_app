@@ -28,6 +28,38 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function edit_photo(Request $request): Response
+    {
+        return Inertia::render('UserArea/Profile/EditPhoto', [
+            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'status' => session('status'),
+        ]);
+    }
+
+    public function edit_structor_info(Request $request): Response
+    {
+        return Inertia::render('UserArea/Profile/EditInstructorInfo', [
+            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'status' => session('status'),
+        ]);
+    }
+
+    public function edit_password(Request $request): Response
+    {
+        return Inertia::render('UserArea/Profile/EditPassword', [
+            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'status' => session('status'),
+        ]);
+    }
+
+    public function delete_user(Request $request): Response
+    {
+        return Inertia::render('UserArea/Profile/DeleteUser', [
+            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'status' => session('status'),
+        ]);
+    }
+
     public function update_photo(ProfilePhotoUpdateRequest $request)
     {
         $user = $request->user();

@@ -7,6 +7,7 @@ import React from "react";
 import {
     FaFacebookSquare,
     FaInstagramSquare,
+    FaShare,
     FaStar,
     FaYoutubeSquare,
 } from "react-icons/fa";
@@ -49,10 +50,44 @@ export default function InstructorInfo() {
                         <div className="col-span-2">
                             <div className="flex justify-between gap-2 items-center mb-6">
                                 <div>
-                                    <h3 className="font-bold text-4xl">
+                                    <h3 className="font-bold text-4xl mb-6">
                                         {instructor.name}
                                     </h3>
                                     {/* <h5>Teches Interior marketer</h5> */}
+
+                                    <div>
+                                        <button
+                                            className="btn btn-primary btn-xs"
+                                            onClick={async (e) => {
+                                                e.preventDefault();
+
+                                                if (navigator.share) {
+                                                    try {
+                                                        await navigator.share({
+                                                            title: "Profile Instruktur",
+                                                            text:
+                                                                "Profile Instruktur " +
+                                                                instructor.name,
+                                                            url: instructor
+                                                                .instructor_info
+                                                                .profile_url,
+                                                        });
+                                                    } catch (error) {
+                                                        console.log(error);
+                                                    }
+                                                } else {
+                                                    prompt(
+                                                        "Copy link ini untuk menuju ke halaman profil instructur",
+                                                        instructor
+                                                            .instructor_info
+                                                            .profile_url
+                                                    );
+                                                }
+                                            }}
+                                        >
+                                            <FaShare /> Share
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className="flex gap-2 items-center">
                                     <div className="">Reviews:</div>

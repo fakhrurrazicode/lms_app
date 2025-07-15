@@ -8,7 +8,7 @@ import UpdateInstructorProfileInformation from "./Partials/UpdateInstructorProfi
 import classNames from "classnames";
 import Tabs from "./Partials/Tabs";
 
-export default function Edit({ mustVerifyEmail, status }) {
+export default function DeleteUser({ mustVerifyEmail, status }) {
     return (
         <UserAreaLayout
             header={
@@ -24,7 +24,7 @@ export default function Edit({ mustVerifyEmail, status }) {
                 <div className="mx-auto max-w-7xl space-y-6">
                     {/* <div className="p-4 shadow sm:rounded-lg sm:p-8 bg-base-100">
                         <UpdatePhotoForm className="max-w-xl" />
-                    </div> */}
+                    </div>
                     <div className="p-4 shadow sm:rounded-lg sm:p-8 bg-base-100">
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}
@@ -33,17 +33,17 @@ export default function Edit({ mustVerifyEmail, status }) {
                         />
                     </div>
 
-                    {/* <div className="p-4 shadow sm:rounded-lg sm:p-8 bg-base-100">
+                    <div className="p-4 shadow sm:rounded-lg sm:p-8 bg-base-100">
                         <UpdateInstructorProfileInformation className="max-w-xl" />
                     </div>
 
                     <div className="p-4 shadow sm:rounded-lg sm:p-8 bg-base-100">
                         <UpdatePasswordForm className="max-w-xl" />
-                    </div>
+                    </div> */}
 
                     <div className="p-4 shadow sm:rounded-lg sm:p-8 bg-base-100">
                         <DeleteUserForm className="max-w-xl" />
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </UserAreaLayout>

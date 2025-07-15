@@ -48,7 +48,7 @@ export default function UpdateInstructorProfileInformation({ className = "" }) {
                         value={data.bio}
                         onChange={(e) => setData("bio", e.target.value)}
                         required
-                        isFocused
+                        
                         autoComplete="bio"
                     /> */}
 
@@ -82,7 +82,6 @@ export default function UpdateInstructorProfileInformation({ className = "" }) {
                             setData("facebook_url", e.target.value)
                         }
                         required
-                        isFocused
                         autoComplete="facebook_url"
                     />
 

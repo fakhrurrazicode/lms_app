@@ -152,7 +152,7 @@ export default function CourseCard({ course }) {
                         {course.instructor ? (
                             <Link
                                 href={route("instructor_info", {
-                                    user: course.instructor.id,
+                                    username: course.instructor.username,
                                 })}
                                 preserveState={true}
                                 // preserveScroll={true}

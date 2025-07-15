@@ -11,6 +11,7 @@ class InstructorInfo extends BaseModel
     protected $appends = [
         'id_card_url',
         'avg_reviews',
+        'profile_url'
     ];
 
     protected function serializeDate(\DateTimeInterface $date)
@@ -32,5 +33,10 @@ class InstructorInfo extends BaseModel
         $course_ids = Course::where('instructor_id', $this->user_id)->pluck('id');
 
         return round(CourseReview::whereIn('id', $course_ids)->avg('stars'), 2);
+    }
+
+    public function getProfileUrlAttribute()
+    {
+        return $this->user->username ? route('instructor_info', $this->user->username) : route('home');
     }
 }
