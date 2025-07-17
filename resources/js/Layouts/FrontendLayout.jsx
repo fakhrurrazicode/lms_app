@@ -741,6 +741,16 @@ export default function FrontendLayout({ header, children }) {
                                                                 Kode Referral
                                                             </Link>
                                                         </li>
+
+                                                        <li>
+                                                            <Link
+                                                                href={route(
+                                                                    "user_area.withdrawal.index"
+                                                                )}
+                                                            >
+                                                                Withdrawal
+                                                            </Link>
+                                                        </li>
                                                     </ul>
                                                 </details>
                                             </li>
