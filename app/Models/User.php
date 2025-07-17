@@ -113,10 +113,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    public function courses()
-    {
-        return $this->hasMany(Course::class, 'instructor_id', 'id');
-    }
+
 
     public function coins()
     {
@@ -131,5 +128,21 @@ class User extends Authenticatable implements MustVerifyEmail
                     ->orWhere('expired_at', '>', now());
             })
             ->sum('amount');
+    }
+
+    public function withdrawals()
+    {
+        return $this->hasMany(Withdrawal::class, 'instructor_id');
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'instructor_id', 'id');
+    }
+
+    public function scopeInstructor($query)
+    {
+        // return $query->where('verified_as_instructor', true); // atau sesuaikan dengan kolommu
+        return $query->role('instructor'); // langsung manfaatkan fitur Spatie
     }
 }

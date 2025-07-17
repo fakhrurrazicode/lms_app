@@ -18,7 +18,7 @@ import {
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { RiMenuFill } from "react-icons/ri";
-import { FaCalendar, FaGraduationCap, FaTag } from "react-icons/fa";
+import { FaCalendar, FaGraduationCap, FaTag, FaUsers } from "react-icons/fa";
 import { FaTicket } from "react-icons/fa6";
 
 export default function BackendLayout({ header, children }) {
@@ -221,11 +221,12 @@ export default function BackendLayout({ header, children }) {
                         aria-label="close sidebar"
                         className="drawer-overlay"
                     ></label>
-                    <ul className="menu bg-base-100 text-base-content min-h-full w-80 p-4">
-                        <li className="py-4">
+
+                    <ul className="menu min-h-full w-80 bg-base-100 text-base-content">
+                        <li>
                             <Link
                                 href="/dashboard"
-                                className="flex justify-start items-center "
+                                className="flex justify-start items-center !py-6"
                                 preserveScroll={true}
                                 preserveState={true}
                             >
@@ -235,11 +236,10 @@ export default function BackendLayout({ header, children }) {
                                 </span>
                             </Link>
                         </li>
-                        <li></li>
                         <li>
                             <Link
                                 href={route("backend.dashboard")}
-                                className="flex justify-start items-center "
+                                className="flex justify-start items-center"
                                 preserveScroll={true}
                                 preserveState={true}
                             >
@@ -247,109 +247,116 @@ export default function BackendLayout({ header, children }) {
                                 <span>Dashboard</span>
                             </Link>
                         </li>
-                        <li></li>
                         <li>
-                            <Link
-                                href="/backend/role"
-                                className="flex justify-start items-center "
-                                preserveScroll={true}
-                                preserveState={true}
-                            >
-                                <UserCheck size={16} />
-                                <span>Data Roles</span>
-                            </Link>
-                        </li>
+                            <details open>
+                                <summary>
+                                    <FaUsers size={16} />
+                                    <span>Manajemen Pengguna</span>
+                                </summary>
+                                <ul>
+                                    <li>
+                                        <Link
+                                            href="/backend/role"
+                                            className="flex justify-start items-center"
+                                            preserveScroll={true}
+                                            preserveState={true}
+                                        >
+                                            <UserCheck size={16} />
+                                            <span>Data Roles</span>
+                                        </Link>
+                                    </li>
 
+                                    <li>
+                                        <Link
+                                            href="/backend/permission"
+                                            className="flex justify-start items-center "
+                                        >
+                                            <UserCheck size={16} />
+                                            <span>Data Permissions</span>
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link
+                                            href="/backend/user"
+                                            className="flex justify-start items-center "
+                                        >
+                                            <Users size={16} />
+                                            <span>Data Users</span>
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link
+                                            href="/backend/instructor_info"
+                                            className="flex justify-start items-center "
+                                        >
+                                            <Users size={16} />
+                                            <span>Data Users Instruktur</span>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
                         <li>
-                            <Link
-                                href="/backend/permission"
-                                className="flex justify-start items-center "
-                            >
-                                <UserCheck size={16} />
-                                <span>Data Permissions</span>
-                            </Link>
+                            <details open>
+                                <summary>
+                                    <FaUsers size={16} />
+                                    <span>Manajemen Produk/Kursus</span>
+                                </summary>
+                                <ul>
+                                    <li>
+                                        <Link
+                                            href="/backend/tag"
+                                            className="flex justify-start items-center "
+                                        >
+                                            <FaTag size={16} />
+                                            <span>Data Tag</span>
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link
+                                            href="/backend/course_category"
+                                            className="flex justify-start items-center "
+                                        >
+                                            <LayoutList size={16} />
+                                            <span>Data Kategori Kursus</span>
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link
+                                            href="/backend/course"
+                                            className="flex justify-start items-center "
+                                        >
+                                            <FaGraduationCap size={16} />
+                                            <span>Data Kursus</span>
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link
+                                            href="/backend/event"
+                                            className="flex justify-start items-center "
+                                        >
+                                            <FaCalendar size={16} />
+                                            <span>Data Event</span>
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link
+                                            href="/backend/referral_code"
+                                            className="flex justify-start items-center "
+                                        >
+                                            <FaTicket size={16} />
+                                            <span>Data Referral Code</span>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </details>
                         </li>
-
-                        <li>
-                            <Link
-                                href="/backend/user"
-                                className="flex justify-start items-center "
-                            >
-                                <Users size={16} />
-                                <span>Data Users</span>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link
-                                href="/backend/instructor_info"
-                                className="flex justify-start items-center "
-                            >
-                                <Users size={16} />
-                                <span>Data Users Instruktur</span>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link
-                                href="/backend/tag"
-                                className="flex justify-start items-center "
-                            >
-                                <FaTag size={16} />
-                                <span>Data Tag</span>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link
-                                href="/backend/course_category"
-                                className="flex justify-start items-center "
-                            >
-                                <LayoutList size={16} />
-                                <span>Data Kategori Kursus</span>
-                            </Link>
-                        </li>
-
-                        {/* <li>
-                            <Link
-                                href="/backend/course_sub_category"
-                                className="flex justify-start items-center "
-                            >
-                                <LayoutList size={16} />
-                                <span>Data Course Sub Categories</span>
-                            </Link>
-                        </li> */}
-
-                        <li>
-                            <Link
-                                href="/backend/course"
-                                className="flex justify-start items-center "
-                            >
-                                <FaGraduationCap size={16} />
-                                <span>Data Kursus</span>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link
-                                href="/backend/event"
-                                className="flex justify-start items-center "
-                            >
-                                <FaCalendar size={16} />
-                                <span>Data Event</span>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link
-                                href="/backend/referral_code"
-                                className="flex justify-start items-center "
-                            >
-                                <FaTicket size={16} />
-                                <span>Data Referral Code</span>
-                            </Link>
-                        </li>
-
                         <li>
                             <Link
                                 href="/profile"

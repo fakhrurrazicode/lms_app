@@ -624,9 +624,10 @@ export default function Course() {
                                                             href={route(
                                                                 "instructor_info",
                                                                 {
-                                                                    user: course
-                                                                        .instructor
-                                                                        .id,
+                                                                    username:
+                                                                        course
+                                                                            .instructor
+                                                                            .username,
                                                                 }
                                                             )}
                                                             className="w-24 h-24 rounded-full"
@@ -647,9 +648,10 @@ export default function Course() {
                                                                 href={route(
                                                                     "instructor_info",
                                                                     {
-                                                                        user: course
-                                                                            .instructor
-                                                                            .id,
+                                                                        username:
+                                                                            course
+                                                                                .instructor
+                                                                                .username,
                                                                     }
                                                                 )}
                                                             >

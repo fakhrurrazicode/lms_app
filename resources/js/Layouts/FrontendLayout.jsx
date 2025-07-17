@@ -554,64 +554,8 @@ export default function FrontendLayout({ header, children }) {
                             " sm:hidden"
                         }
                     >
-                        <div className="space-y-1 pb-3 pt-2">
-                            <ResponsiveNavLink
-                                href={route("home")}
-                                active={route().current("home")}
-                            >
-                                Home
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                href={route("courses")}
-                                active={route().current("courses")}
-                            >
-                                Daftar Kursus
-                            </ResponsiveNavLink>
-
+                        <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
                             {user ? (
-                                role.name == "student" ? (
-                                    <></>
-                                ) : (
-                                    <></>
-                                )
-                            ) : (
-                                <ResponsiveNavLink
-                                    href={route("become_instructor")}
-                                    active={route().current(
-                                        "become_instructor"
-                                    )}
-                                    className="text-secondary"
-                                >
-                                    <span className="text-secondary">
-                                        Ingin Menjadi Pengajar?
-                                    </span>
-                                </ResponsiveNavLink>
-                            )}
-                        </div>
-
-                        {!user ? (
-                            <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
-                                <div className="mt-3 space-y-1">
-                                    <ResponsiveNavLink
-                                        href={route("login")}
-                                        active={route().current("login")}
-                                    >
-                                        Sign in
-                                    </ResponsiveNavLink>
-                                    <ResponsiveNavLink
-                                        href={route("register")}
-                                        active={route().current("register")}
-                                    >
-                                        Sign up
-                                    </ResponsiveNavLink>
-                                </div>
-                            </div>
-                        ) : (
-                            <></>
-                        )}
-
-                        {user ? (
-                            <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
                                 <div className="px-4 flex gap-2">
                                     <div className="avatar">
                                         <div className="w-12 rounded-full">
@@ -627,64 +571,204 @@ export default function FrontendLayout({ header, children }) {
                                         </div>
                                     </div>
                                 </div>
+                            ) : (
+                                <></>
+                            )}
 
-                                <div className="mt-3 space-y-1">
-                                    <ResponsiveNavLink
-                                        href={route("cart.index")}
-                                    >
-                                        Keranjang Belanja
-                                    </ResponsiveNavLink>
+                            <div className="mt-3 space-y-1">
+                                <ul className="menu">
+                                    <li>
+                                        <Link href={route("home")}>Home</Link>
+                                    </li>
+                                    <li>
+                                        <Link href={route("courses")}>
+                                            Daftar Kursus
+                                        </Link>
+                                    </li>
 
-                                    <ResponsiveNavLink
-                                        href={route("notification.index")}
-                                    >
-                                        Pemberitahuan
-                                    </ResponsiveNavLink>
+                                    {!user ? (
+                                        <>
+                                            <li>
+                                                <Link
+                                                    href={route(
+                                                        "become_instructor"
+                                                    )}
+                                                >
+                                                    Ingin Menjadi Pengajar?
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link href={route("login")}>
+                                                    Sign in
+                                                </Link>
+                                            </li>
 
-                                    {role.name == "instructor" ||
-                                    role.name == "student" ? (
-                                        <ResponsiveNavLink
-                                            href={route("user_area.dashboard")}
-                                        >
-                                            Dashboard
-                                        </ResponsiveNavLink>
+                                            <li>
+                                                <Link href={route("register")}>
+                                                    Sign up
+                                                </Link>
+                                            </li>
+                                        </>
                                     ) : (
-                                        <></>
+                                        <>
+                                            <li>
+                                                <Link
+                                                    href={route("cart.index")}
+                                                >
+                                                    Keranjang Belanja
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link
+                                                    href={route(
+                                                        "notification.index"
+                                                    )}
+                                                >
+                                                    Pemberitahuan
+                                                </Link>
+                                            </li>
+
+                                            <li>
+                                                <details>
+                                                    <summary>Menu User</summary>
+                                                    <ul>
+                                                        {role.name ===
+                                                            "instructor" ||
+                                                        role.name ===
+                                                            "student" ? (
+                                                            <li>
+                                                                <Link
+                                                                    href={route(
+                                                                        "user_area.dashboard"
+                                                                    )}
+                                                                >
+                                                                    Dashboard
+                                                                </Link>
+                                                            </li>
+                                                        ) : (
+                                                            <></>
+                                                        )}
+
+                                                        {role.name ===
+                                                        "administrator" ? (
+                                                            <li>
+                                                                <Link
+                                                                    href={route(
+                                                                        "backend.dashboard"
+                                                                    )}
+                                                                >
+                                                                    Dashboard
+                                                                </Link>
+                                                            </li>
+                                                        ) : (
+                                                            <></>
+                                                        )}
+
+                                                        <li>
+                                                            <Link
+                                                                href={route(
+                                                                    "user_area.profile.edit"
+                                                                )}
+                                                            >
+                                                                Kursus Terdaftar
+                                                            </Link>
+                                                        </li>
+
+                                                        <li>
+                                                            <Link
+                                                                href={route(
+                                                                    "user_area.wishlist.index"
+                                                                )}
+                                                            >
+                                                                Daftar Keinginan
+                                                            </Link>
+                                                        </li>
+
+                                                        <li>
+                                                            <Link
+                                                                href={route(
+                                                                    "user_area.order.index"
+                                                                )}
+                                                            >
+                                                                Riwayat Pesanan
+                                                            </Link>
+                                                        </li>
+
+                                                        <li>
+                                                            <Link
+                                                                href={route(
+                                                                    "user_area.ticket.index"
+                                                                )}
+                                                            >
+                                                                Ticket Support
+                                                            </Link>
+                                                        </li>
+                                                    </ul>
+                                                </details>
+                                            </li>
+
+                                            <li>
+                                                <details>
+                                                    <summary>
+                                                        Menu Pengajar
+                                                    </summary>
+                                                    <ul>
+                                                        <li>
+                                                            <Link
+                                                                href={route(
+                                                                    "user_area.course.index"
+                                                                )}
+                                                            >
+                                                                Manajemen Kursus
+                                                            </Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link
+                                                                href={route(
+                                                                    "user_area.voucher.index"
+                                                                )}
+                                                            >
+                                                                Voucher Afiliasi
+                                                            </Link>
+                                                        </li>
+
+                                                        <li>
+                                                            <Link
+                                                                href={route(
+                                                                    "user_area.referral_code.index"
+                                                                )}
+                                                            >
+                                                                Kode Referral
+                                                            </Link>
+                                                        </li>
+                                                    </ul>
+                                                </details>
+                                            </li>
+
+                                            <li>
+                                                <Link
+                                                    href={route(
+                                                        "user_area.profile.edit"
+                                                    )}
+                                                >
+                                                    Pengaturan
+                                                </Link>
+                                            </li>
+
+                                            <li>
+                                                <Link
+                                                    method="post"
+                                                    href={route("logout")}
+                                                    as="button"
+                                                >
+                                                    Log Out
+                                                </Link>
+                                            </li>
+                                        </>
                                     )}
-
-                                    {role.name == "administrator" ? (
-                                        <ResponsiveNavLink
-                                            href={route("backend.dashboard")}
-                                        >
-                                            Dashboard
-                                        </ResponsiveNavLink>
-                                    ) : (
-                                        <></>
-                                    )}
-
-                                    <ResponsiveNavLink
-                                        href={route("user_area.profile.edit")}
-                                    >
-                                        Profile
-                                    </ResponsiveNavLink>
-
-                                    <ResponsiveNavLink
-                                        href={route("user_area.wishlist.index")}
-                                    >
-                                        Wishlist
-                                    </ResponsiveNavLink>
-                                    <ResponsiveNavLink
-                                        method="post"
-                                        href={route("logout")}
-                                        as="button"
-                                    >
-                                        Log Out
-                                    </ResponsiveNavLink>
-                                </div>
+                                </ul>
                             </div>
-                        ) : (
-                            <></>
-                        )}
+                        </div>
                     </div>
                 </nav>
 

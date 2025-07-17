@@ -73,7 +73,7 @@ use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCour
 use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEnrollmentController;
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
 use App\Http\Controllers\LearningArea\CourseSectionController as LearningAreaCourseSectionController;
-
+use App\Http\Controllers\UserArea\WithdrawalController as UserAreaWithdrawalController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -159,6 +159,7 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('/order', UserAreaOrderController::class);
             Route::resource('/voucher', UserAreaVoucherController::class);
             Route::resource('/referral_code', UserAreaReferralCodeController::class);
+            Route::resource('/withdrawal', UserAreaWithdrawalController::class)->only(['index', 'store']);
 
             Route::get('/profile/edit', [UserAreaProfileController::class, 'edit'])->name('profile.edit');
             Route::patch('/profile/update', [UserAreaProfileController::class, 'update'])->name('profile.update');

@@ -85,7 +85,9 @@ export default function Show({ order }) {
                                             <tr>
                                                 <td></td>
                                                 <td>{itemable.title} </td>
-                                                <td>{rupiah(item.price)}</td>
+                                                <td>
+                                                    {rupiah(item.real_price)}
+                                                </td>
                                                 <td>
                                                     {item.discount_percentage >
                                                     0
@@ -93,11 +95,7 @@ export default function Show({ order }) {
                                                           "%"
                                                         : ""}
                                                 </td>
-                                                <td>
-                                                    {rupiah(
-                                                        item.discounted_price
-                                                    )}
-                                                </td>
+                                                <td>{rupiah(item.price)}</td>
                                             </tr>
                                         );
                                     })}

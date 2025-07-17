@@ -124,9 +124,9 @@ class PaymentController extends Controller
 
             OrderItem::insert($order_items);
 
-            $order_items_array = OrderItem::where([
-                'order_id' => $order->id,
-            ]);
+            // $order_items_array = OrderItem::where([
+            //     'order_id' => $order->id,
+            // ]);
 
 
             $cart->delete();

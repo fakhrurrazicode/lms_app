@@ -19,6 +19,7 @@ return new class extends Migration
             $table->double('price')->default(0);
             $table->double('discount_percentage')->nullable()->default(0);
             $table->json('options')->nullable();
+            $table->unsignedBigInteger('instructor_id')->nullable();
             $table->timestamps();
         });
     }
