@@ -5,7 +5,12 @@ import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
-import { FaCartArrowDown, FaTimes, FaWhatsapp } from "react-icons/fa";
+import {
+    FaCartArrowDown,
+    FaMoneyBill,
+    FaTimes,
+    FaWhatsapp,
+} from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
 import { PiCoinDuotone } from "react-icons/pi";
 
@@ -770,6 +775,16 @@ export default function UserAreaLayout({ header, children }) {
                                                                 Kode Referral
                                                             </Link>
                                                         </li>
+
+                                                        <li>
+                                                            <Link
+                                                                href={route(
+                                                                    "user_area.withdrawal.index"
+                                                                )}
+                                                            >
+                                                                Withdrawal
+                                                            </Link>
+                                                        </li>
                                                     </ul>
                                                 </details>
                                             </li>
@@ -979,6 +994,20 @@ export default function UserAreaLayout({ header, children }) {
                                                 >
                                                     <VscReferences />
                                                     <span>Kode Referral</span>
+                                                </Link>
+                                            </li>
+
+                                            <li>
+                                                <Link
+                                                    href={route(
+                                                        "user_area.withdrawal.index"
+                                                    )}
+                                                    className={navClass(
+                                                        "user_area.withdrawal.index"
+                                                    )}
+                                                >
+                                                    <FaMoneyBill />
+                                                    <span>Withdrawal</span>
                                                 </Link>
                                             </li>
                                         </ul>

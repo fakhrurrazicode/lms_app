@@ -26,7 +26,7 @@ class WithdrawalController extends Controller
             ->whereIn('status', ['approved', 'pending'])
             ->sum('amount');
 
-        return 100000;
+        // return 100000;
         return intval($total_earned - $total_withdrawn);
     }
     /**
