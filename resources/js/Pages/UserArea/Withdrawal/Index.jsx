@@ -88,20 +88,18 @@ export default function Index() {
                                                     className="hover"
                                                     key={item.id}
                                                 >
-                                                    <td className="p-2 border">
+                                                    <td>
                                                         {new Date(
                                                             item.created_at
                                                         ).toLocaleDateString()}
                                                     </td>
-                                                    <td className="p-2 border">
+                                                    <td>
                                                         Rp{" "}
                                                         {parseInt(
                                                             item.amount
                                                         ).toLocaleString()}
                                                     </td>
-                                                    <td className="p-2 border capitalize">
-                                                        {item.status}
-                                                    </td>
+                                                    <td>{item.status}</td>
                                                 </tr>
                                             ))
                                         ) : (

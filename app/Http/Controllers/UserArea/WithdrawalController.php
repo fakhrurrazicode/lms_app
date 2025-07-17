@@ -26,6 +26,7 @@ class WithdrawalController extends Controller
             ->whereIn('status', ['approved', 'pending'])
             ->sum('amount');
 
+        return 100000;
         return intval($total_earned - $total_withdrawn);
     }
     /**
@@ -77,7 +78,7 @@ class WithdrawalController extends Controller
             'status' => 'pending',
         ]);
 
-        return redirect()->route('instructor.withdrawals.index')->with('success', 'Permintaan penarikan berhasil diajukan.');
+        return redirect()->route('user_area.withdrawal.index')->with('success', 'Permintaan penarikan berhasil diajukan.');
     }
 
     /**
