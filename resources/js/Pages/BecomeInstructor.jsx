@@ -8,7 +8,6 @@ import { FaChartBar, FaChartLine } from "react-icons/fa6";
 import { FiArrowLeft, FiArrowRight, FiBookOpen } from "react-icons/fi";
 import { MdOutlineCheck } from "react-icons/md";
 import { RiTriangleLine } from "react-icons/ri";
-import ReactQuill from "react-quill";
 
 export default function BecomeInstructor({}) {
     const { auth } = usePage().props;
@@ -81,13 +80,23 @@ export default function BecomeInstructor({}) {
                                     Pengajar
                                 </span>
                             </h6>
-                            <TiltElement className="relative mb-12 w-3/4 mx-auto">
+                            {/* <TiltElement className="relative mb-12 w-3/4 mx-auto">
                                 <img
                                     className="z-10"
                                     src="/images/abouts/about_10.png"
                                     alt=""
                                 />
-                            </TiltElement>
+                            </TiltElement> */}
+
+                            <div class="video-responsive mb-6">
+                                <iframe
+                                    src="https://www.youtube.com/embed/YNN1SKC1Xv0"
+                                    title="YouTube Shorts video"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen
+                                ></iframe>
+                            </div>
 
                             <p className="mb-6">
                                 Selamat datang di aplikasi LMS! Sebagai

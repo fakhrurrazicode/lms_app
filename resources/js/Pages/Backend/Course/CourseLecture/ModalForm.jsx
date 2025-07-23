@@ -6,7 +6,6 @@ import { Save } from "lucide-react";
 import ReactModal from "react-modal";
 import { toast } from "react-toastify";
 import classNames from "classnames";
-import ReactQuill from "react-quill";
 import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function ModalForm({

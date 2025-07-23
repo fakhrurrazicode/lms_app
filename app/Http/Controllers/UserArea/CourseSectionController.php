@@ -40,8 +40,7 @@ class CourseSectionController extends Controller
             'course_lectures.attachments'
         ])->where([
             'course_id' => $course->id,
-        ])->orderBy('id', 'ASC')
-            ->get();
+        ])->get();
 
         // return $course_sections;
 
@@ -116,5 +115,16 @@ class CourseSectionController extends Controller
     public function destroy(Course $course, CourseSection $course_section)
     {
         $course_section->delete();
+    }
+
+    public function move_order_up(Course $course, CourseSection $course_section)
+    {
+        $course_section->moveOrderUp();
+    }
+
+    public function move_order_down(Course $course, CourseSection $course_section)
+    {
+
+        $course_section->moveOrderDown();
     }
 }

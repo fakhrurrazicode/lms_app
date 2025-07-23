@@ -747,44 +747,113 @@ export default function UserAreaLayout({ header, children }) {
                                                         Menu Pengajar
                                                     </summary>
                                                     <ul>
-                                                        <li>
-                                                            <Link
-                                                                href={route(
-                                                                    "user_area.course.index"
-                                                                )}
-                                                            >
-                                                                Manajemen Kursus
-                                                            </Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link
-                                                                href={route(
-                                                                    "user_area.voucher.index"
-                                                                )}
-                                                            >
-                                                                Voucher Afiliasi
-                                                            </Link>
-                                                        </li>
+                                                        {auth.role.name ==
+                                                        "instructor" ? (
+                                                            <>
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "user_area.course.index"
+                                                                        )}
+                                                                    >
+                                                                        Manajemen
+                                                                        Kursus
+                                                                    </Link>
+                                                                </li>
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "user_area.voucher.index"
+                                                                        )}
+                                                                    >
+                                                                        Voucher
+                                                                        Afiliasi
+                                                                    </Link>
+                                                                </li>
 
-                                                        <li>
-                                                            <Link
-                                                                href={route(
-                                                                    "user_area.referral_code.index"
-                                                                )}
-                                                            >
-                                                                Kode Referral
-                                                            </Link>
-                                                        </li>
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "user_area.referral_code.index"
+                                                                        )}
+                                                                    >
+                                                                        Kode
+                                                                        Referral
+                                                                    </Link>
+                                                                </li>
 
-                                                        <li>
-                                                            <Link
-                                                                href={route(
-                                                                    "user_area.withdrawal.index"
-                                                                )}
-                                                            >
-                                                                Withdrawal
-                                                            </Link>
-                                                        </li>
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "user_area.withdrawal.index"
+                                                                        )}
+                                                                    >
+                                                                        Withdrawal
+                                                                    </Link>
+                                                                </li>
+                                                            </>
+                                                        ) : (
+                                                            <></>
+                                                        )}
+
+                                                        {auth.role.name ==
+                                                        "student" ? (
+                                                            <>
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "user_area.become_instructor.index"
+                                                                        )}
+                                                                    >
+                                                                        <span>
+                                                                            Menjadi
+                                                                            Pengajar
+                                                                        </span>
+                                                                        {auth
+                                                                            .user
+                                                                            .instructor_info ? (
+                                                                            <>
+                                                                                {auth
+                                                                                    .user
+                                                                                    .instructor_info
+                                                                                    .status ==
+                                                                                0 ? (
+                                                                                    <div className="badge badge-warning text-[10px] absolute right-0">
+                                                                                        Menunggu
+                                                                                        Persetujuan
+                                                                                    </div>
+                                                                                ) : (
+                                                                                    <>
+
+                                                                                    </>
+                                                                                )}
+
+                                                                                {auth
+                                                                                    .user
+                                                                                    .instructor_info
+                                                                                    .status ==
+                                                                                2 ? (
+                                                                                    <div className="badge badge-error text-[10px] absolute right-0">
+                                                                                        Pengajuan
+                                                                                        Ditolak
+                                                                                    </div>
+                                                                                ) : (
+                                                                                    <>
+
+                                                                                    </>
+                                                                                )}
+                                                                            </>
+                                                                        ) : (
+                                                                            <>
+
+                                                                            </>
+                                                                        )}
+                                                                    </Link>
+                                                                </li>
+                                                            </>
+                                                        ) : (
+                                                            <></>
+                                                        )}
                                                     </ul>
                                                 </details>
                                             </li>

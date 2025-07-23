@@ -4,6 +4,7 @@ import { Head, Link, router, usePage } from "@inertiajs/react";
 import React from "react";
 
 export default function Courses({ courses, course_categories, request }) {
+    console.log("courses", courses);
     return (
         <FrontendLayout
             header={

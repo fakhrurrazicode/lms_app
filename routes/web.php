@@ -74,6 +74,8 @@ use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEn
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
 use App\Http\Controllers\LearningArea\CourseSectionController as LearningAreaCourseSectionController;
 use App\Http\Controllers\UserArea\WithdrawalController as UserAreaWithdrawalController;
+use App\Models\CourseLecture;
+use App\Models\CourseSection;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -83,6 +85,24 @@ use App\Http\Controllers\UserArea\WithdrawalController as UserAreaWithdrawalCont
 //         'phpVersion' => PHP_VERSION,
 //     ]);
 // });
+
+Route::get('/script_custom', function () {
+    $course_sections = CourseSection::all();
+
+    foreach ($course_sections as $course_section) {
+        $course_section->update([
+            'order_column' => $course_section->id,
+        ]);
+    }
+
+    $course_lectures = CourseLecture::all();
+
+    foreach ($course_lectures as $course_lecture) {
+        $course_lecture->update([
+            'order_column' => $course_lecture->id,
+        ]);
+    }
+});
 
 Route::get('/google/oauth', [GoogleAuthController::class, 'redirectToGoogle']);
 Route::get('/google/oauth/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
@@ -180,9 +200,16 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('/course', UserAreaCourseController::class)->except(['update']);
             Route::post('/course/{course}', [UserAreaCourseController::class, 'update'])->name('course.update');
             Route::put('/course/{course}/toggle_active', [UserAreaCourseController::class, 'toggle_active'])->name('course.toggle_active');
+
+            Route::post('/course/{course}/course_section/{course_section}/move_order_up', [UserAreaCourseSectionController::class, 'move_order_up'])->name('course.course_section.move_order_up');
+            Route::post('/course/{course}/course_section/{course_section}/move_order_down', [UserAreaCourseSectionController::class, 'move_order_down'])->name('course.course_section.move_order_down');
             Route::get('/course/{course}/course_section/course_lectures', [UserAreaCourseSectionController::class, 'course_lectures'])->name('course.course_section.course_lectures');
             Route::get('/course/{course}/course_section/evaluations', [UserAreaCourseSectionController::class, 'evaluations'])->name('course.course_section.evaluations');
             Route::resource('course.course_section', UserAreaCourseSectionController::class);
+
+
+            Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/move_order_up', [UserAreaCourseLectureController::class, 'move_order_up'])->name('course.course_section.course_lecture.move_order_up');
+            Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/move_order_down', [UserAreaCourseLectureController::class, 'move_order_down'])->name('course.course_section.course_lecture.move_order_down');
             Route::resource('course.course_section.course_lecture', UserAreaCourseLectureController::class)->except(['update']);
             Route::post('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/update', [UserAreaCourseLectureController::class, 'update'])->name('course.course_section.course_lecture.update');
             Route::put('/course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/set_as_preview', [UserAreaCourseLectureController::class, 'set_as_preview'])->name('course.course_section.course_lecture.set_as_preview');

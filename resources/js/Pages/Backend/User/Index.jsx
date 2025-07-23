@@ -105,13 +105,19 @@ export default function Index({ request, users, roles }) {
                                 <table className="table mb-6">
                                     <thead>
                                         <tr>
-                                            <th></th>
                                             <th
                                                 className="cursor-pointer"
                                                 data-columnname="name"
                                                 onClick={orderByOnClickHandler}
                                             >
                                                 Name
+                                            </th>
+                                            <th
+                                                className="cursor-pointer"
+                                                data-columnname="username"
+                                                onClick={orderByOnClickHandler}
+                                            >
+                                                Username
                                             </th>
                                             <th
                                                 className="cursor-pointer"
@@ -123,11 +129,20 @@ export default function Index({ request, users, roles }) {
 
                                             <th
                                                 className="cursor-pointer"
+                                                data-columnname="email_verified_at"
+                                                onClick={orderByOnClickHandler}
+                                            >
+                                                Email verified at
+                                            </th>
+
+                                            <th
+                                                className="cursor-pointer"
                                                 data-columnname="email"
                                                 onClick={orderByOnClickHandler}
                                             >
                                                 Role
                                             </th>
+
                                             <th
                                                 className="cursor-pointer"
                                                 data-columnname="created_at"
@@ -142,6 +157,7 @@ export default function Index({ request, users, roles }) {
                                             >
                                                 Updated at
                                             </th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -151,6 +167,19 @@ export default function Index({ request, users, roles }) {
                                                     key={user.id}
                                                     className="hover"
                                                 >
+                                                    <td>{user.name}</td>
+                                                    <td>{user.username}</td>
+                                                    <td>{user.email}</td>
+                                                    <td>
+                                                        {user.email_verified_at}
+                                                    </td>
+                                                    <td>
+                                                        {user.roles.length
+                                                            ? user.roles[0].name
+                                                            : "-"}
+                                                    </td>
+                                                    <td>{user.created_at}</td>
+                                                    <td>{user.updated_at}</td>
                                                     <th>
                                                         <Link
                                                             href={route(
@@ -204,15 +233,6 @@ export default function Index({ request, users, roles }) {
                                                             <span>Delete</span>
                                                         </button>
                                                     </th>
-                                                    <td>{user.name}</td>
-                                                    <td>{user.email}</td>
-                                                    <td>
-                                                        {user.roles.length
-                                                            ? user.roles[0].name
-                                                            : "-"}
-                                                    </td>
-                                                    <td>{user.created_at}</td>
-                                                    <td>{user.updated_at}</td>
                                                 </tr>
                                             ))
                                         ) : (

@@ -2,7 +2,6 @@
 import React from "react";
 import { useForm, Link, Head } from "@inertiajs/react";
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
-import ReactQuill from "react-quill";
 import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function Create() {

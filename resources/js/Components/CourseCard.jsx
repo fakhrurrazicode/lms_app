@@ -7,6 +7,7 @@ import { FiCheck } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 export default function CourseCard({ course }) {
+    // console.log("course", course);
     return (
         <div
             data-aos="fade-up"

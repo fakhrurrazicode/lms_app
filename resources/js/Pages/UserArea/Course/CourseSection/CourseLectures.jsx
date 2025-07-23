@@ -7,7 +7,7 @@ import { MdOutlineSubdirectoryArrowRight } from "react-icons/md";
 import CourseManageTab from "../CourseManageTab";
 
 import { toast } from "react-toastify";
-import { FaFile } from "react-icons/fa";
+import { FaArrowDown, FaArrowUp, FaFile } from "react-icons/fa";
 import FileIconByType from "@/Components/Custom/FileIconByType";
 
 export default function CourseLectures({ course, course_sections }) {
@@ -135,6 +135,7 @@ export default function CourseLectures({ course, course_sections }) {
                                                 (hanya 1)
                                             </th>
                                             <th>Lampiran</th>
+                                            <th>Urutkan</th>
                                             <th>Action</th>
                                         </thead>
                                         <tbody>
@@ -159,6 +160,71 @@ export default function CourseLectures({ course, course_sections }) {
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
+                                                                <td>
+                                                                    <div className="flex gap-1">
+                                                                        <button
+                                                                            className="btn btn-success btn-xs"
+                                                                            disabled={
+                                                                                index ==
+                                                                                0
+                                                                            }
+                                                                            onClick={(
+                                                                                e
+                                                                            ) => {
+                                                                                e.preventDefault();
+
+                                                                                router.post(
+                                                                                    route(
+                                                                                        "user_area.course.course_section.move_order_up",
+                                                                                        {
+                                                                                            course: course.id,
+                                                                                            course_section:
+                                                                                                course_section.id,
+                                                                                        }
+                                                                                    ),
+                                                                                    null,
+                                                                                    {
+                                                                                        preserveScroll: true,
+                                                                                        preserveState: true,
+                                                                                    }
+                                                                                );
+                                                                            }}
+                                                                        >
+                                                                            <FaArrowUp />
+                                                                        </button>
+                                                                        <button
+                                                                            className="btn btn-error btn-xs"
+                                                                            disabled={
+                                                                                index +
+                                                                                    1 ==
+                                                                                course_sections.length
+                                                                            }
+                                                                            onClick={(
+                                                                                e
+                                                                            ) => {
+                                                                                e.preventDefault();
+
+                                                                                router.post(
+                                                                                    route(
+                                                                                        "user_area.course.course_section.move_order_down",
+                                                                                        {
+                                                                                            course: course.id,
+                                                                                            course_section:
+                                                                                                course_section.id,
+                                                                                        }
+                                                                                    ),
+                                                                                    null,
+                                                                                    {
+                                                                                        preserveScroll: true,
+                                                                                        preserveState: true,
+                                                                                    }
+                                                                                );
+                                                                            }}
+                                                                        >
+                                                                            <FaArrowDown />
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
 
                                                                 <td className="flex gap-1">
                                                                     <Link
@@ -413,6 +479,77 @@ export default function CourseLectures({ course, course_sections }) {
                                                                                         </>
                                                                                     )}
                                                                                 </ul>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div className="flex gap-1">
+                                                                                    <button
+                                                                                        className="btn btn-success btn-xs"
+                                                                                        disabled={
+                                                                                            index ==
+                                                                                            0
+                                                                                        }
+                                                                                        onClick={(
+                                                                                            e
+                                                                                        ) => {
+                                                                                            e.preventDefault();
+
+                                                                                            router.post(
+                                                                                                route(
+                                                                                                    "user_area.course.course_section.course_lecture.move_order_up",
+                                                                                                    {
+                                                                                                        course: course.id,
+                                                                                                        course_section:
+                                                                                                            course_section.id,
+                                                                                                        course_lecture:
+                                                                                                            course_lecture.id,
+                                                                                                    }
+                                                                                                ),
+                                                                                                null,
+                                                                                                {
+                                                                                                    preserveScroll: true,
+                                                                                                    preserveState: true,
+                                                                                                }
+                                                                                            );
+                                                                                        }}
+                                                                                    >
+                                                                                        <FaArrowUp />
+                                                                                    </button>
+                                                                                    <button
+                                                                                        className="btn btn-error btn-xs"
+                                                                                        disabled={
+                                                                                            index +
+                                                                                                1 ==
+                                                                                            course_section
+                                                                                                .course_lectures
+                                                                                                .length
+                                                                                        }
+                                                                                        onClick={(
+                                                                                            e
+                                                                                        ) => {
+                                                                                            e.preventDefault();
+
+                                                                                            router.post(
+                                                                                                route(
+                                                                                                    "user_area.course.course_section.course_lecture.move_order_down",
+                                                                                                    {
+                                                                                                        course: course.id,
+                                                                                                        course_section:
+                                                                                                            course_section.id,
+                                                                                                        course_lecture:
+                                                                                                            course_lecture.id,
+                                                                                                    }
+                                                                                                ),
+                                                                                                null,
+                                                                                                {
+                                                                                                    preserveScroll: true,
+                                                                                                    preserveState: true,
+                                                                                                }
+                                                                                            );
+                                                                                        }}
+                                                                                    >
+                                                                                        <FaArrowDown />
+                                                                                    </button>
+                                                                                </div>
                                                                             </td>
                                                                             <td className="flex gap-1">
                                                                                 <Link

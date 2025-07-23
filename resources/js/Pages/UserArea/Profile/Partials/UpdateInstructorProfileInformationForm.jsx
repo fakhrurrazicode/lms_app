@@ -5,8 +5,6 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Transition } from "@headlessui/react";
 import { Link, useForm, usePage } from "@inertiajs/react";
-import ReactQuill from "react-quill";
-
 export default function UpdateInstructorProfileInformation({ className = "" }) {
     const instructor_info = usePage().props.auth.user.instructor_info;
 

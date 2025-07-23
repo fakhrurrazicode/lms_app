@@ -2,16 +2,44 @@
 
 namespace App\Models;
 
+
 use App\Models\Evaluation;
 use App\Models\CourseLecture;
-use Illuminate\Database\Eloquent\Model;
+use App\Scopes\OrderColumnScope;
 use Illuminate\Support\Facades\Auth;
 use Spatie\EloquentSortable\Sortable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\EloquentSortable\SortableTrait;
 
-class CourseSection extends BaseModel
+class CourseSection extends BaseModel implements Sortable
 {
 
+    use SortableTrait;
+
+    /**
+     * The sortable configuration.
+     *
+     * @var array<string, mixed>
+     */
+    public $sortable = [
+        'order_column_name' => 'order_column',
+        'sort_when_creating' => true,
+        'sort_on_has_many' => true,
+    ];
+
+    /**
+     * The query used for the sortorder package.
+     */
+    public function buildSortQuery(): Builder
+    {
+        return static::query()->where('course_id', $this->course_id);
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OrderColumnScope);
+    }
 
     // public static function boot()
     // {
@@ -37,10 +65,10 @@ class CourseSection extends BaseModel
         return $this->evaluation ? true : false;
     }
 
-    public function forumThreads()
-    {
-        return $this->morphMany(ForumThread::class, 'threadable');
-    }
+    // public function forumThreads()
+    // {
+    //     return $this->morphMany(ForumThread::class, 'threadable');
+    // }
 
     // public function getEvaluatableAttribute()
     // {
@@ -64,5 +92,16 @@ class CourseSection extends BaseModel
     public function evaluation()
     {
         return $this->hasOne(Evaluation::class);
+    }
+
+    public function move_order_up(Course $course, CourseSection $course_section)
+    {
+        $course_section->moveOrderUp();
+    }
+
+    public function move_order_down(Course $course, CourseSection $course_section)
+    {
+
+        $course_section->moveOrderDown();
     }
 }

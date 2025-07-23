@@ -68,6 +68,34 @@ export default function Create({ roles }) {
                                     <label className="form-control w-full mb-6">
                                         <div className="label">
                                             <span className="label-text">
+                                                Username
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Name"
+                                            className="input input-bordered w-full"
+                                            name="username"
+                                            onChange={(e) => {
+                                                setData(
+                                                    e.target.name,
+                                                    e.target.value
+                                                );
+                                            }}
+                                            value={data.username}
+                                        />
+                                        {errors.username && (
+                                            <div className="label">
+                                                <span className="label-text-alt text-error">
+                                                    {errors.username}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </label>
+
+                                    <label className="form-control w-full mb-6">
+                                        <div className="label">
+                                            <span className="label-text">
                                                 Email
                                             </span>
                                         </div>

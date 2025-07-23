@@ -417,4 +417,16 @@ class CourseLectureController extends Controller
             'set_as_featured' => $set_as_featured
         ]);
     }
+
+
+    public function move_order_up(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
+    {
+        $course_lecture->moveOrderUp();
+    }
+
+    public function move_order_down(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
+    {
+
+        $course_lecture->moveOrderDown();
+    }
 }

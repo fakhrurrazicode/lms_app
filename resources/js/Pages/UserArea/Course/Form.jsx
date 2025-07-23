@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { useRef } from "react";
 import { toast } from "react-toastify";
 import slugify from "slugify";
-import ReactQuill from "react-quill";
 import { Editor } from "@tinymce/tinymce-react";
 import TinyEditor from "@/Components/Custom/TinyEditor";
 

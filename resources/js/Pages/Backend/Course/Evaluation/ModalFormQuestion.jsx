@@ -6,7 +6,6 @@ import ReactModal from "react-modal";
 import { toast } from "react-toastify";
 import classNames from "classnames";
 import { FaPlus } from "react-icons/fa";
-import ReactQuill from "react-quill";
 import TinyEditor from "@/Components/Custom/TinyEditor";
 
 export default function ModalFormQuestion({

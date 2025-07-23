@@ -1,8 +1,8 @@
-import { formatNumber, number_format, rupiah } from "@/bootstrap";
+import { formatNumber, rupiah } from "@/bootstrap";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+
 import { Link, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { FaCartArrowDown, FaTimes, FaWhatsapp } from "react-icons/fa";
@@ -18,7 +18,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
 export default function FrontendLayout({ header, children }) {
-    console.log("usePage().props.auth", usePage().props.auth);
+    // console.log("usePage().props.auth", usePage().props.auth);
     const {
         user,
         role,
@@ -31,7 +31,7 @@ export default function FrontendLayout({ header, children }) {
     console.log(user, role);
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
+        useState(true);
 
     useEffect(() => {
         AOS.init({

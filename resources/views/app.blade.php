@@ -58,5 +58,13 @@
         gtag('config', 'AW-17006564055');
         </script>
 
+        {{-- <script>
+            window.tinyMCEPreInit = {
+                base: '/tinymce',
+                suffix: '.min'
+            };
+        </script> --}}
+
+
     </body>
 </html>

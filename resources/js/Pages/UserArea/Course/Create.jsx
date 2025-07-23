@@ -3,9 +3,7 @@ import { Head, Link, useForm, usePage } from "@inertiajs/react";
 
 import { Save } from "lucide-react";
 import React, { useRef, useState } from "react";
-import ReactQuill from "react-quill";
 import slugify from "slugify";
-import "react-quill/dist/quill.snow.css"; // Impo
 import Form from "./Form";
 
 export default function Create({ course_categories }) {

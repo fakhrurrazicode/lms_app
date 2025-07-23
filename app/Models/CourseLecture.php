@@ -3,12 +3,42 @@
 namespace App\Models;
 
 use App\Models\Thread;
+use App\Scopes\OrderColumnScope;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Spatie\EloquentSortable\SortableTrait;
 
-class CourseLecture extends BaseModel
+class CourseLecture extends BaseModel implements Sortable
 {
+
+    use SortableTrait;
+
+    /**
+     * The sortable configuration.
+     *
+     * @var array<string, mixed>
+     */
+    public $sortable = [
+        'order_column_name' => 'order_column',
+        'sort_when_creating' => true,
+        'sort_on_has_many' => true,
+    ];
+
+    /**
+     * The query used for the sortorder package.
+     */
+    public function buildSortQuery(): Builder
+    {
+        return static::query()->where('course_section_id', $this->course_section_id);
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new OrderColumnScope);
+    }
 
     public static function boot()
     {

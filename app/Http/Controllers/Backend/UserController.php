@@ -24,6 +24,7 @@ class UserController extends Controller
 
         $users = User::with(['roles'])->orWhere([
             ['name', 'LIKE', '%' . $request->search . '%'],
+            ['username', 'LIKE', '%' . $request->search . '%'],
             ['email', 'LIKE', '%' . $request->search . '%'],
         ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
@@ -55,6 +56,7 @@ class UserController extends Controller
 
         $user = User::create([
             'name' => $validated['name'],
+            'username' => $validated['username'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);

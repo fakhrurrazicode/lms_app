@@ -233,7 +233,21 @@ export default function Index({ request, instructor_infos }) {
                                                 data-columnname="user_id"
                                                 onClick={orderByOnClickHandler}
                                             >
-                                                User
+                                                Email
+                                            </th>
+                                            <th
+                                                className="cursor-pointer"
+                                                data-columnname="user_id"
+                                                onClick={orderByOnClickHandler}
+                                            >
+                                                Name
+                                            </th>
+                                            <th
+                                                className="cursor-pointer"
+                                                data-columnname="user_id"
+                                                onClick={orderByOnClickHandler}
+                                            >
+                                                Phone Number
                                             </th>
                                             <th
                                                 className="cursor-pointer"
@@ -339,6 +353,17 @@ export default function Index({ request, instructor_infos }) {
                                                             {
                                                                 instructor_info
                                                                     .user.email
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            {
+                                                                instructor_info
+                                                                    .user.name
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            {
+                                                                instructor_info.phone_number
                                                             }
                                                         </td>
                                                         <td className="max-w-16">
