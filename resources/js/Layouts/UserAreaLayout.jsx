@@ -78,7 +78,7 @@ export default function UserAreaLayout({ header, children }) {
         <>
             <div className="min-h-screen bg-gray-100/50 dark:bg-gray-900 relative">
                 <a
-                    href="https://wa.me/+62881025733655"
+                    href="https://wa.me/+6285129785115"
                     target="_blank"
                     className="btn btn-success rounded-full text-white fixed bottom-6 right-6 z-50"
                 >
@@ -1223,7 +1223,7 @@ export default function UserAreaLayout({ header, children }) {
 
                                         <p className="text-sm">
                                             <b>Call Center/wa :</b>{" "}
-                                            0858-1191-1787
+                                            0851-2978-5115
                                         </p>
                                         <p className="text-sm">
                                             <b>Telepon :</b> 0881-0257-33655

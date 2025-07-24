@@ -373,8 +373,10 @@ export default function Index({ request, courses }) {
                                     <div></div>
                                     <div>
                                         <div className="join">
-                                            {courses.links.map(
-                                                (link, index) => (
+                                            {courses.links.map((link, index) =>
+                                                link.url == null ? (
+                                                    <></>
+                                                ) : (
                                                     <Link
                                                         preserveScroll={true}
                                                         preserveState={true}

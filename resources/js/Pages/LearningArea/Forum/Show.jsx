@@ -129,7 +129,9 @@ export default function Show({ course, forum, forum_replies }) {
                     <div className="flex justify-center">
                         <div className="join">
                             {forum_replies.links.map((link, index) => {
-                                return (
+                                return link.url == null ? (
+                                    <></>
+                                ) : (
                                     <Link
                                         key={index}
                                         href={link.url}

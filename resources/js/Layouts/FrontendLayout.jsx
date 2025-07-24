@@ -44,7 +44,7 @@ export default function FrontendLayout({ header, children }) {
         <>
             <div className="min-h-screen bg-gray-100/50 dark:bg-gray-900 relative">
                 <a
-                    href="https://wa.me/+62881025733655"
+                    href="https://wa.me/+6285129785115"
                     target="_blank"
                     className="btn btn-success rounded-full text-white fixed bottom-6 right-6 z-50"
                 >
@@ -713,44 +713,113 @@ export default function FrontendLayout({ header, children }) {
                                                         Menu Pengajar
                                                     </summary>
                                                     <ul>
-                                                        <li>
-                                                            <Link
-                                                                href={route(
-                                                                    "user_area.course.index"
-                                                                )}
-                                                            >
-                                                                Manajemen Kursus
-                                                            </Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link
-                                                                href={route(
-                                                                    "user_area.voucher.index"
-                                                                )}
-                                                            >
-                                                                Voucher Afiliasi
-                                                            </Link>
-                                                        </li>
+                                                        {auth.role.name ==
+                                                        "instructor" ? (
+                                                            <>
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "user_area.course.index"
+                                                                        )}
+                                                                    >
+                                                                        Manajemen
+                                                                        Kursus
+                                                                    </Link>
+                                                                </li>
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "user_area.voucher.index"
+                                                                        )}
+                                                                    >
+                                                                        Voucher
+                                                                        Afiliasi
+                                                                    </Link>
+                                                                </li>
 
-                                                        <li>
-                                                            <Link
-                                                                href={route(
-                                                                    "user_area.referral_code.index"
-                                                                )}
-                                                            >
-                                                                Kode Referral
-                                                            </Link>
-                                                        </li>
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "user_area.referral_code.index"
+                                                                        )}
+                                                                    >
+                                                                        Kode
+                                                                        Referral
+                                                                    </Link>
+                                                                </li>
 
-                                                        <li>
-                                                            <Link
-                                                                href={route(
-                                                                    "user_area.withdrawal.index"
-                                                                )}
-                                                            >
-                                                                Withdrawal
-                                                            </Link>
-                                                        </li>
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "user_area.withdrawal.index"
+                                                                        )}
+                                                                    >
+                                                                        Withdrawal
+                                                                    </Link>
+                                                                </li>
+                                                            </>
+                                                        ) : (
+                                                            <></>
+                                                        )}
+
+                                                        {auth.role.name ==
+                                                        "student" ? (
+                                                            <>
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "user_area.become_instructor.index"
+                                                                        )}
+                                                                    >
+                                                                        <span>
+                                                                            Menjadi
+                                                                            Pengajar
+                                                                        </span>
+                                                                        {auth
+                                                                            .user
+                                                                            .instructor_info ? (
+                                                                            <>
+                                                                                {auth
+                                                                                    .user
+                                                                                    .instructor_info
+                                                                                    .status ==
+                                                                                0 ? (
+                                                                                    <div className="badge badge-warning text-[10px] absolute right-0">
+                                                                                        Menunggu
+                                                                                        Persetujuan
+                                                                                    </div>
+                                                                                ) : (
+                                                                                    <>
+
+                                                                                    </>
+                                                                                )}
+
+                                                                                {auth
+                                                                                    .user
+                                                                                    .instructor_info
+                                                                                    .status ==
+                                                                                2 ? (
+                                                                                    <div className="badge badge-error text-[10px] absolute right-0">
+                                                                                        Pengajuan
+                                                                                        Ditolak
+                                                                                    </div>
+                                                                                ) : (
+                                                                                    <>
+
+                                                                                    </>
+                                                                                )}
+                                                                            </>
+                                                                        ) : (
+                                                                            <>
+
+                                                                            </>
+                                                                        )}
+                                                                    </Link>
+                                                                </li>
+                                                            </>
+                                                        ) : (
+                                                            <></>
+                                                        )}
                                                     </ul>
                                                 </details>
                                             </li>
@@ -832,7 +901,7 @@ export default function FrontendLayout({ header, children }) {
 
                                         <p className="text-sm">
                                             <b>Call Center/wa :</b>{" "}
-                                            0858-1191-1787
+                                            0851-2978-5115
                                         </p>
                                         <p className="text-sm">
                                             <b>Telepon :</b> 0881-0257-33655

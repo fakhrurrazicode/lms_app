@@ -18,7 +18,7 @@ class ReferralCodeController extends Controller
     {
         $referral_codes = ReferralCode::with(['event', 'owner'])->orWhere([
             ['code', 'LIKE', '%' . $request->search . '%'],
-        ])->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
+        ])->where('owner_id', Auth::user()->id)->orderBy($request->orderby, $request->ordermethod)->paginate($request->perpage)->withQueryString();
 
         // return $referral_codes;
 

@@ -303,8 +303,10 @@ export default function Index({ request, vouchers }) {
                                     <div></div>
                                     <div>
                                         <div className="join">
-                                            {vouchers.links.map(
-                                                (link, index) => (
+                                            {vouchers.links.map((link, index) =>
+                                                link.url == null ? (
+                                                    <></>
+                                                ) : (
                                                     <Link
                                                         preserveScroll={true}
                                                         preserveState={true}

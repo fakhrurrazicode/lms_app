@@ -176,11 +176,17 @@ export default function CourseCard({ course }) {
                         {[...Array(5)].map((_, index) => {
                             if (index + 1 <= course.course_review_recap.avg) {
                                 return (
-                                    <FaStar className="text-xs text-yellow-400" />
+                                    <FaStar
+                                        key={index}
+                                        className="text-xs text-yellow-400"
+                                    />
                                 );
                             } else {
                                 return (
-                                    <FaStar className="text-xs text-gray-700" />
+                                    <FaStar
+                                        key={index}
+                                        className="text-xs text-gray-700"
+                                    />
                                 );
                             }
                         })}

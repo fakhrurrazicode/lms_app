@@ -1,3 +1,4 @@
+import { stripHtmlTags } from "@/bootstrap";
 import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
 import Modal from "@/Components/Modal";
 import BackendLayout from "@/Layouts/BackendLayout";
@@ -448,10 +449,15 @@ export default function Index({ request, instructor_infos }) {
                                                         </td>
                                                         <td className="max-w-64">
                                                             <HtmlRenderer
-                                                                htmlString={
-                                                                    instructor_info.bio
-                                                                }
+                                                                htmlString={instructor_info.bio.slice(
+                                                                    0,
+                                                                    200
+                                                                )}
                                                             />
+                                                            {stripHtmlTags(
+                                                                instructor_info.bio
+                                                            ).slice(0, 200)}
+                                                            ...
                                                         </td>
                                                     </tr>
                                                 )
@@ -474,25 +480,30 @@ export default function Index({ request, instructor_infos }) {
                                     <div>
                                         <div className="join">
                                             {instructor_infos.links.map(
-                                                (link, index) => (
-                                                    <Link
-                                                        preserveScroll={true}
-                                                        preserveState={true}
-                                                        key={index}
-                                                        href={link.url}
-                                                        className="join-item btn"
-                                                    >
-                                                        {link.label
-                                                            .replace(
-                                                                "&laquo;",
-                                                                ""
-                                                            )
-                                                            .replace(
-                                                                "&raquo;",
-                                                                ""
-                                                            )}
-                                                    </Link>
-                                                )
+                                                (link, index) =>
+                                                    link.url == null ? (
+                                                        <></>
+                                                    ) : (
+                                                        <Link
+                                                            preserveScroll={
+                                                                true
+                                                            }
+                                                            preserveState={true}
+                                                            key={index}
+                                                            href={link.url}
+                                                            className="join-item btn"
+                                                        >
+                                                            {link.label
+                                                                .replace(
+                                                                    "&laquo;",
+                                                                    ""
+                                                                )
+                                                                .replace(
+                                                                    "&raquo;",
+                                                                    ""
+                                                                )}
+                                                        </Link>
+                                                    )
                                             )}
                                         </div>
                                     </div>

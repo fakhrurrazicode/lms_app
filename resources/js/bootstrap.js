@@ -82,3 +82,10 @@ export const stripHtml = (html) => {
     tempDiv.innerHTML = html;
     return tempDiv.textContent || tempDiv.innerText || "";
 };
+
+export const stripHtmlTags = (htmlString) => {
+    // Regular expression to match HTML tags: < followed by any character not >, then >
+    // The 'g' flag ensures all occurrences are replaced, not just the first.
+    // The 'i' flag ensures case-insensitive matching (e.g., <P> and <p> are treated the same).
+    return htmlString.replace(/<[^>]*>/gi, "");
+};

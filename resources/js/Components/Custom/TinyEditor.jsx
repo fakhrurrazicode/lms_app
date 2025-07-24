@@ -2,6 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
 export default function TinyEditor({ value, onChange, init = {} }) {
+    return (
+        <textarea
+            className="textarea textarea-bordered"
+            placeholder="Bio"
+            onChange={(e) => {
+                onChange(e.target.value);
+            }}
+            value={value}
+        ></textarea>
+    );
     const [theme, setTheme] = useState("light");
 
     // Deteksi dark mode dari OS atau Tailwind class

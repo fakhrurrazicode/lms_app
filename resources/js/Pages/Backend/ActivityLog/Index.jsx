@@ -284,25 +284,30 @@ export default function Index({ request, activity_logs }) {
                                     <div>
                                         <div className="join">
                                             {activity_logs.links.map(
-                                                (link, index) => (
-                                                    <Link
-                                                        preserveScroll={true}
-                                                        preserveState={true}
-                                                        key={index}
-                                                        href={link.url}
-                                                        className="join-item btn"
-                                                    >
-                                                        {link.label
-                                                            .replace(
-                                                                "&laquo;",
-                                                                ""
-                                                            )
-                                                            .replace(
-                                                                "&raquo;",
-                                                                ""
-                                                            )}
-                                                    </Link>
-                                                )
+                                                (link, index) =>
+                                                    link.url == null ? (
+                                                        <></>
+                                                    ) : (
+                                                        <Link
+                                                            preserveScroll={
+                                                                true
+                                                            }
+                                                            preserveState={true}
+                                                            key={index}
+                                                            href={link.url}
+                                                            className="join-item btn"
+                                                        >
+                                                            {link.label
+                                                                .replace(
+                                                                    "&laquo;",
+                                                                    ""
+                                                                )
+                                                                .replace(
+                                                                    "&raquo;",
+                                                                    ""
+                                                                )}
+                                                        </Link>
+                                                    )
                                             )}
                                         </div>
                                     </div>

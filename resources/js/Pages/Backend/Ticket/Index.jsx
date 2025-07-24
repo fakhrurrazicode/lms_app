@@ -277,8 +277,10 @@ export default function Index({ request, tickets, users }) {
                                     <div></div>
                                     <div>
                                         <div className="join">
-                                            {tickets.links.map(
-                                                (link, index) => (
+                                            {tickets.links.map((link, index) =>
+                                                link.url == null ? (
+                                                    <></>
+                                                ) : (
                                                     <Link
                                                         preserveScroll={true}
                                                         preserveState={true}

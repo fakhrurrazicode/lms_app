@@ -110,7 +110,8 @@ class CourseController extends Controller
             'course_category',
             'course_sections.course_lectures.course_track',
             'course_sections.evaluation',
-            'course_tracks'
+            'course_tracks',
+            'instructor.instructor_info'
         ]);
 
         // return $course;

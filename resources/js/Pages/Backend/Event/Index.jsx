@@ -283,19 +283,29 @@ export default function Index({ request, events }) {
                                     <div></div>
                                     <div>
                                         <div className="join">
-                                            {events.links.map((link, index) => (
-                                                <Link
-                                                    preserveScroll={true}
-                                                    preserveState={true}
-                                                    key={index}
-                                                    href={link.url}
-                                                    className="join-item btn"
-                                                >
-                                                    {link.label
-                                                        .replace("&laquo;", "")
-                                                        .replace("&raquo;", "")}
-                                                </Link>
-                                            ))}
+                                            {events.links.map((link, index) =>
+                                                link.url == null ? (
+                                                    <></>
+                                                ) : (
+                                                    <Link
+                                                        preserveScroll={true}
+                                                        preserveState={true}
+                                                        key={index}
+                                                        href={link.url}
+                                                        className="join-item btn"
+                                                    >
+                                                        {link.label
+                                                            .replace(
+                                                                "&laquo;",
+                                                                ""
+                                                            )
+                                                            .replace(
+                                                                "&raquo;",
+                                                                ""
+                                                            )}
+                                                    </Link>
+                                                )
+                                            )}
                                         </div>
                                     </div>
                                 </div>

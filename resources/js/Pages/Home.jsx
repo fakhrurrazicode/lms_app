@@ -203,8 +203,8 @@ export default function Home({ latest_courses, course_categories }) {
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px]">
-                            {course_categories.map((course_category) => (
-                                <div data-aos="fade-up">
+                            {course_categories.map((course_category, index) => (
+                                <div data-aos="fade-up" key={index}>
                                     <div className="card dark:bg-slate-950 dark:text-white shadow-2xl shadow-indigo-600/50 transition-all ease-in-out duration-500 hover:-translate-y-2 hover:bg-indigo-700 hover:text-white group">
                                         <div className="card-body relative">
                                             <RiTriangleLine className="text-warning text-4xl absolute right-[15%] opacity-0 rotate-0 group-hover:opacity-80 group-hover:rotate-45 group-hover:transition-all duration-500 group-hover:ease-in-out" />
@@ -265,8 +265,8 @@ export default function Home({ latest_courses, course_categories }) {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                        {latest_courses.map((course) => (
-                            <div data-aos="fade-up">
+                        {latest_courses.map((course, index) => (
+                            <div data-aos="fade-up" key={index}>
                                 <CourseCard key={course.id} course={course} />
                             </div>
                         ))}

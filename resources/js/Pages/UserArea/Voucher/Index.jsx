@@ -230,19 +230,23 @@ export default function Index({ vouchers, request }) {
                                 <div></div>
                                 <div>
                                     <div className="join">
-                                        {vouchers.links.map((link, index) => (
-                                            <Link
-                                                preserveScroll={true}
-                                                preserveState={true}
-                                                key={index}
-                                                href={link.url}
-                                                className="join-item btn"
-                                            >
-                                                {link.label
-                                                    .replace("&laquo;", "")
-                                                    .replace("&raquo;", "")}
-                                            </Link>
-                                        ))}
+                                        {vouchers.links.map((link, index) =>
+                                            link.url == null ? (
+                                                <></>
+                                            ) : (
+                                                <Link
+                                                    preserveScroll={true}
+                                                    preserveState={true}
+                                                    key={index}
+                                                    href={link.url}
+                                                    className="join-item btn"
+                                                >
+                                                    {link.label
+                                                        .replace("&laquo;", "")
+                                                        .replace("&raquo;", "")}
+                                                </Link>
+                                            )
+                                        )}
                                     </div>
                                 </div>
                             </div>

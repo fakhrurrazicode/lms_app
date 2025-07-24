@@ -102,7 +102,9 @@ export default function Index({ course, forums }) {
                     <div className="flex justify-center">
                         <div className="join">
                             {forums.links.map((link, index) => {
-                                return (
+                                return link.url == null ? (
+                                    <></>
+                                ) : (
                                     <Link
                                         key={index}
                                         href={link.url}

@@ -171,11 +171,14 @@ export default function Courses({ courses, course_categories, request }) {
                         <div className="flex justify-center">
                             <div className="join">
                                 {courses.links.map((link, index) => {
-                                    return (
+                                    return link.url == null ? (
+                                        <></>
+                                    ) : (
                                         <Link
                                             key={index}
                                             href={link.url}
                                             className="join-item btn"
+                                            method="GET"
                                         >
                                             {link.label
                                                 .replace(
