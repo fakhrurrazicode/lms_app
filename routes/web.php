@@ -4,52 +4,54 @@
 use Inertia\Inertia;
 use App\Models\Enrollment;
 
-use Illuminate\Support\Facades\Route;
+use App\Models\CourseLecture;
 
+use App\Models\CourseSection;
+
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
-
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\YouTubeController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\GoogleAuthController;
+
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Backend\TagController;
-
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
+
 use App\Http\Controllers\NotificationController;
+
 use App\Http\Controllers\Backend\EventController;
-
 use App\Http\Controllers\Backend\VoucherController;
-
 use App\Http\Controllers\UserArea\TicketController;
 use App\Http\Controllers\UserArea\QuestionController;
+
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\UserArea\DashboardController;
-
 use App\Http\Controllers\Backend\ActivityLogController;
+
 use App\Http\Controllers\UserArea\EnrollmentController;
 use App\Http\Controllers\Backend\ReferralCodeController;
-
 use App\Http\Controllers\UserArea\TicketReplyController;
 use App\Http\Controllers\Backend\CourseCategoryController;
 use App\Http\Controllers\Backend\InstructorInfoController;
+
+
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\LearningArea\LearningAreaController;
-
 
 use App\Http\Controllers\UserArea\BecomeInstructorController;
 use App\Http\Controllers\Backend\CourseController as BackendCourseController;
 use App\Http\Controllers\Backend\TicketController as BackendTicketController;
-
 use App\Http\Controllers\UserArea\OrderController as UserAreaOrderController;
+
 use App\Http\Controllers\Backend\ChoiceController as  BackendChoiceController;
 use App\Http\Controllers\Learning\CourseController as LearningCourseController;
 use App\Http\Controllers\UserArea\ChoiceController as UserAreaChoiceController;
-
 use App\Http\Controllers\UserArea\CourseController as UserAreaCourseController;
 use App\Http\Controllers\Backend\QuestionController as BackendQuestionController;
 use App\Http\Controllers\UserArea\ProfileController as UserAreaProfileController;
@@ -60,22 +62,20 @@ use App\Http\Controllers\Backend\EvaluationController as BackendEvaluationContro
 use App\Http\Controllers\LearningArea\ForumController as LearningAreaForumController;
 use App\Http\Controllers\LearningArea\CourseController as LearningAreaCourseController;
 use App\Http\Controllers\UserArea\EvaluationController as UserAreaEvaluationController;
+use App\Http\Controllers\UserArea\WithdrawalController as UserAreaWithdrawalController;
 use App\Http\Controllers\Backend\CourseLectureController as BackendCourseLectureController;
 use App\Http\Controllers\Backend\CourseSectionController as BackendCourseSectionController;
 use App\Http\Controllers\UserArea\ReferralCodeController as UserAreaReferralCodeController;
+
 use App\Http\Controllers\UserArea\CourseLectureController as UserAreaCourseLectureController;
 use App\Http\Controllers\UserArea\CourseSectionController as UserAreaCourseSectionController;
 use App\Http\Controllers\LearningArea\EvaluationController as LearningAreaEvaluationController;
 use App\Http\Controllers\LearningArea\ForumReplyController as LearningAreaForumReplyController;
-
 use App\Http\Controllers\Backend\CourseEnrollmentController as BackendCourseEnrollmentController;
 use App\Http\Controllers\LearningArea\CourseReviewController as LearningAreaCourseReviewController;
 use App\Http\Controllers\UserArea\CourseEnrollmentController as UserAreaCourseEnrollmentController;
 use App\Http\Controllers\LearningArea\CourseLectureController as LearningAreaCourseLectureController;
 use App\Http\Controllers\LearningArea\CourseSectionController as LearningAreaCourseSectionController;
-use App\Http\Controllers\UserArea\WithdrawalController as UserAreaWithdrawalController;
-use App\Models\CourseLecture;
-use App\Models\CourseSection;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -227,6 +227,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::group(['prefix' => '/learning_area', 'as' => 'learning_area.'], function () {
+
         Route::resource('course', LearningAreaCourseController::class)->only(['index', 'show']);
         Route::get('course/{course}/instructor_info', [LearningAreaCourseController::class, 'instructor_info'])->name('course.instructor_info');
         Route::get('course/{course}/start', [LearningAreaCourseController::class, 'start'])->name('course.start');
@@ -234,27 +235,18 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('course.course_section.course_lecture', LearningAreaCourseLectureController::class)->only(['show']);
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish', [LearningAreaCourseLectureController::class, 'finish'])->name('course.course_section.course_lecture.finish');
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish_and_evaluate', [LearningAreaCourseLectureController::class, 'finish_and_evaluate'])->name('course.course_section.course_lecture.finish_and_evaluate');
-        Route::resource('course.course_section.evaluation', LearningAreaEvaluationController::class)->only(['index', 'show']);
-        Route::post(
-            'course/{course}/course_section/{course_section}/evaluation/{evaluation}/start',
-            [LearningAreaEvaluationController::class, 'start']
-        )->name('course.course_section.evaluation.start');
-        Route::get(
-            'course/{course}/course_section/{course_section}/evaluation/{evaluation}/evaluation_attempt/{evaluation_attempt}/run',
-            [LearningAreaEvaluationController::class, 'run']
-        )->name('course.course_section.evaluation.run');
 
-        Route::post(
-            'course/{course}/course_section/{course_section}/evaluation/{evaluation}/evaluation_attempt/{evaluation_attempt}/submit',
-            [LearningAreaEvaluationController::class, 'submit']
-        )->name('course.course_section.evaluation.submit');
+        Route::resource('course.course_section.evaluation', LearningAreaEvaluationController::class)->only(['index', 'show']);
+        Route::post('course/{course}/course_section/{course_section}/evaluation/{evaluation}/start', [LearningAreaEvaluationController::class, 'start'])->name('course.course_section.evaluation.start');
+        Route::get('course/{course}/course_section/{course_section}/evaluation/{evaluation}/evaluation_attempt/{evaluation_attempt}/run', [LearningAreaEvaluationController::class, 'run'])->name('course.course_section.evaluation.run');
+        Route::post('course/{course}/course_section/{course_section}/evaluation/{evaluation}/evaluation_attempt/{evaluation_attempt}/submit', [LearningAreaEvaluationController::class, 'submit'])->name('course.course_section.evaluation.submit');
 
         Route::resource('course.forum', LearningAreaForumController::class);
-        Route::post(
-            'course/{course}/forum/{forum}/reply',
-            [LearningAreaForumController::class, 'reply']
-        )->name('course.forum.reply');
+        Route::post('course/{course}/forum/{forum}/reply', [LearningAreaForumController::class, 'reply'])->name('course.forum.reply');
+
         Route::resource('course.forum.forum_reply', LearningAreaForumReplyController::class);
+
+        Route::resource('course.course_review', LearningAreaCourseReviewController::class);
     });
 
 

@@ -87,94 +87,11 @@ export default function LearningAreaLayout({ children, course }) {
                                 className={classNames(
                                     "tab h-auto !py-4 flex gap-2 justify-center",
                                     {
-                                        "tab-active": [
+                                        "tab-active": route().current(
+                                            "learning_area.course.forum.*",
                                             {
-                                                name: "learning_area.course.forum.index",
-                                                params: { course: course.id },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.store",
-                                                params: { course: course.id },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.create",
-                                                params: { course: course.id },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.show",
-                                                params: {
-                                                    course: course.id,
-                                                    forum: true,
-                                                },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.update",
-                                                params: {
-                                                    course: course.id,
-                                                    forum: true,
-                                                },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.destroy",
-                                                params: {
-                                                    course: course.id,
-                                                    forum: true,
-                                                },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.edit",
-                                                params: {
-                                                    course: course.id,
-                                                    forum: true,
-                                                },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.forum_reply.index",
-                                                params: {
-                                                    course: course.id,
-                                                    forum: true,
-                                                },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.forum_reply.store",
-                                                params: {
-                                                    course: course.id,
-                                                    forum: true,
-                                                },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.forum_reply.update",
-                                                params: {
-                                                    course: course.id,
-                                                    forum: true,
-                                                    forum_reply: true,
-                                                },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.forum_reply.destroy",
-                                                params: {
-                                                    course: course.id,
-                                                    forum: true,
-                                                    forum_reply: true,
-                                                },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.forum_reply.edit",
-                                                params: {
-                                                    course: course.id,
-                                                    forum: true,
-                                                    forum_reply: true,
-                                                },
-                                            },
-                                            {
-                                                name: "learning_area.course.forum.reply",
-                                                params: {
-                                                    course: course.id,
-                                                    forum: true,
-                                                },
-                                            },
-                                        ].some(({ name, params }) =>
-                                            route().current(name, params)
+                                                course: course.id,
+                                            }
                                         ),
                                     }
                                 )}
@@ -182,13 +99,28 @@ export default function LearningAreaLayout({ children, course }) {
                                 <GoCommentDiscussion size={16} />
                                 <span className="font-bold">Forum/Diskusi</span>
                             </Link>
-                            <a
+                            <Link
+                                href={route(
+                                    "learning_area.course.course_review.index",
+                                    { course: course }
+                                )}
                                 role="tab"
-                                className="tab h-auto !py-4 flex gap-2 justify-center"
+                                // className="tab h-auto !py-4 flex gap-2 justify-center"
+                                className={classNames(
+                                    "tab h-auto !py-4 flex gap-2 justify-center",
+                                    {
+                                        "tab-active": route().current(
+                                            "learning_area.course.course_review.*",
+                                            {
+                                                course: course.id,
+                                            }
+                                        ),
+                                    }
+                                )}
                             >
                                 <FaStar size={16} />
                                 <span className="font-bold">Ulasan</span>
-                            </a>
+                            </Link>
                             <a
                                 role="tab"
                                 className="tab h-auto !py-4 flex gap-2 justify-center"
