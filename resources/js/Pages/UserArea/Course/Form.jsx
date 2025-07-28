@@ -27,7 +27,7 @@ export default function FormCourse({ course = null, course_categories }) {
             discount_percentage:
                 course !== null ? course.discount_percentage : 0,
             level: course !== null ? course.level : "",
-            status: course !== null ? course.status : false,
+            status: false,
         });
 
     const onSubmitHandler = (e) => {
@@ -368,7 +368,7 @@ export default function FormCourse({ course = null, course_categories }) {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-12 gap-6 mb-6">
+                {/* <div className="grid grid-cols-12 gap-6 mb-6">
                     <div className="form-control py-6 col-span-8 md:col-span-6">
                         <label className="label cursor-pointer">
                             <span className="label-text">aktif?</span>
@@ -379,7 +379,7 @@ export default function FormCourse({ course = null, course_categories }) {
                             />
                         </label>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <div className="card-actions justify-end">

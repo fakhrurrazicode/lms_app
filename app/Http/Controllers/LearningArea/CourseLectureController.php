@@ -54,19 +54,20 @@ class CourseLectureController extends Controller
         //     $query->with(['course_lectures', 'evaluation']);
         // }])->find($course->id);
 
-        $prev_course_lecture = CourseLecture::where([
-            ['course_id', '=', $course->id],
-            ['course_section_id', '=', $course_section->id],
-            ['id', '<', $course_lecture->id],
-        ])->first();
-
-        $next_course_lecture = CourseLecture::where([
-            ['course_id', '=', $course->id],
-            ['course_section_id', '=', $course_section->id],
-            ['id', '>', $course_lecture->id],
-        ])->first(); // if null get data evaluation data
 
 
+        $prev_course_lecture = CourseLecture::where('order_column', '<', $course_lecture->order_column)
+            ->where('course_id', $course_section->course_id)
+            ->orderBy('course_section_id', 'asc')
+            ->orderBy('order_column', 'desc')
+            ->first();
+
+
+        $next_course_lecture = CourseLecture::where('order_column', '>', $course_lecture->order_column)
+            ->where('course_id', $course_section->course_id)
+            ->orderBy('course_section_id', 'asc')
+            ->orderBy('order_column', 'asc')
+            ->first(); // jika tidak menemukan next lecture lagi arti nya course telah selesai
 
         // return [$prev_course_lecture, $next_course_lecture];
         // return $course;
@@ -100,10 +101,13 @@ class CourseLectureController extends Controller
             ]);
         }
 
-        $next_course_lecture = CourseLecture::where('id', '>', $course_lecture->id)
+        $next_course_lecture = CourseLecture::where('order_column', '>', $course_lecture->order_column)
             ->where('course_id', $course_section->course_id)
-            ->orderBy('id', 'asc')
+            ->orderBy('course_section_id', 'asc')
+            ->orderBy('order_column', 'asc')
             ->first(); // jika tidak menemukan next lecture lagi arti nya course telah selesai
+
+
 
         if ($next_course_lecture) {
             return to_route('learning_area.course.course_section.course_lecture.show', [

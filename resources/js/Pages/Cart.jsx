@@ -66,10 +66,13 @@ export default function Cart({ cart }) {
                             <div className="col-span-2">
                                 <div className="card bg-base-100">
                                     <div className="card-body">
-                                        {cart.items.map((item) => {
+                                        {cart.items.map((item, index) => {
                                             const course = item.itemable;
                                             return (
-                                                <div className="flex gap-4 py-4 border-b-2 border-b-base-200">
+                                                <div
+                                                    key={index}
+                                                    className="flex gap-4 py-4 border-b-2 border-b-base-200"
+                                                >
                                                     <div className="avatar w-20 lg:w-28 self-start">
                                                         <div className="mask rounded-xl">
                                                             <img
@@ -122,6 +125,9 @@ export default function Cart({ cart }) {
                                                                         (i) => {
                                                                             return (
                                                                                 <FaStar
+                                                                                    key={
+                                                                                        i
+                                                                                    }
                                                                                     className={
                                                                                         i <=
                                                                                         course.average_stars

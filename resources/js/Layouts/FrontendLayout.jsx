@@ -40,6 +40,8 @@ export default function FrontendLayout({ header, children }) {
         });
     }, []);
 
+    const { auth } = usePage().props;
+
     return (
         <>
             <div className="min-h-screen bg-gray-100/50 dark:bg-gray-900 relative">
@@ -947,8 +949,8 @@ export default function FrontendLayout({ header, children }) {
                                     </h4>
                                     <ul className="flex flex-col gap-y-3">
                                         {footer.course_categories.map(
-                                            (course_category) => (
-                                                <li>
+                                            (course_category, index) => (
+                                                <li key={index}>
                                                     <Link
                                                         href={route("courses", {
                                                             course_category_ids:

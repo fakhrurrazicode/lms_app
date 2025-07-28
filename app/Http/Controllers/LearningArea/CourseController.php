@@ -25,8 +25,6 @@ class CourseController extends Controller
             ['course_id', '=', $course->id]
         ])->orderBy('created_at', 'DESC')->first();
 
-
-
         if ($latest_course_track) {
             return to_route('learning_area.course.course_section.course_lecture.show', [
                 'course' => $latest_course_track->course_id,

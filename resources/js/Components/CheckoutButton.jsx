@@ -6,8 +6,12 @@ export default function CheckoutButton() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        const midtransScriptUrl = "https://app.midtrans.com/snap/snap.js";
+        const isProduction = import.meta.env.MIDTRANS_IS_PRODUCTION;
         const clientKey = import.meta.env.MIDTRANS_CLIENT_KEY;
+
+        const midtransScriptUrl = isProduction
+            ? "https://app.midtrans.com/snap/snap.js"
+            : "https://app.sandbox.midtrans.com/snap/snap.js";
 
         let scriptTag = document.createElement("script");
         scriptTag.src = midtransScriptUrl;

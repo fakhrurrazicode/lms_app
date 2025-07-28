@@ -1269,8 +1269,8 @@ export default function UserAreaLayout({ header, children }) {
                                     </h4>
                                     <ul className="flex flex-col gap-y-3">
                                         {footer.course_categories.map(
-                                            (course_category) => (
-                                                <li>
+                                            (course_category, index) => (
+                                                <li key={index}>
                                                     <Link
                                                         href={route("courses", {
                                                             course_category_ids:

@@ -144,6 +144,8 @@ export default function Show({
                             ) : (
                                 <></>
                             )}
+
+                            <div>{JSON.stringify(prev_course_lecture)}</div>
                         </div>
 
                         <div className="flex gap-2">
@@ -162,27 +164,11 @@ export default function Show({
                                     method="PUT"
                                     className="btn btn-accent"
                                 >
-                                    Selanjutnya <FaChevronRight />
+                                    Selanjutnya 1 <FaChevronRight />
                                 </Link>
                             ) : (
                                 <>
                                     {course_section.evaluation ? (
-                                        // <Link
-                                        //     href={route(
-                                        //         "learning_area.course.course_section.evaluation.index",
-                                        //         {
-                                        //             course: course.id,
-                                        //             course_section:
-                                        //                 course_section.id,
-                                        //         }
-                                        //     )}
-                                        //     // preserveScroll={true}
-                                        //     preserveState={true}
-                                        //     className="btn btn-info"
-                                        // >
-                                        //     Kerjakan Evaluasi{" "}
-                                        //     <FaQuestionCircle />
-                                        // </Link>
                                         <Link
                                             href={route(
                                                 "learning_area.course.course_section.course_lecture.finish_and_evaluate",
@@ -219,7 +205,7 @@ export default function Show({
                                             method="PUT"
                                             className="btn btn-accent"
                                         >
-                                            Selanjutnya <FaChevronRight />
+                                            Selanjutnya 2 <FaChevronRight />
                                         </Link>
                                     )}
                                 </>
