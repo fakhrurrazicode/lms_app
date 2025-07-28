@@ -56,16 +56,20 @@ class CourseLectureController extends Controller
 
 
 
-        $prev_course_lecture = CourseLecture::where('order_column', '<', $course_lecture->order_column)
-            ->where('course_id', $course_section->course_id)
-            ->orderBy('course_section_id', 'asc')
+        $prev_course_lecture = CourseLecture::where([
+            ['course_id', '=', $course->id],
+            ['course_section_id', '=', $course_section->id],
+            ['order_column', '<', $course_lecture->order_column],
+        ])->orderBy('course_section_id')
             ->orderBy('order_column', 'desc')
             ->first();
 
 
-        $next_course_lecture = CourseLecture::where('order_column', '>', $course_lecture->order_column)
-            ->where('course_id', $course_section->course_id)
-            ->orderBy('course_section_id', 'asc')
+        $next_course_lecture = CourseLecture::where([
+            ['course_id', '=', $course->id],
+            ['course_section_id', '=', $course_section->id],
+            ['order_column', '>', $course_lecture->order_column],
+        ])->orderBy('course_section_id')
             ->orderBy('order_column', 'asc')
             ->first(); // jika tidak menemukan next lecture lagi arti nya course telah selesai
 
@@ -101,11 +105,19 @@ class CourseLectureController extends Controller
             ]);
         }
 
-        $next_course_lecture = CourseLecture::where('order_column', '>', $course_lecture->order_column)
-            ->where('course_id', $course_section->course_id)
-            ->orderBy('course_section_id', 'asc')
+        $next_course_lecture = CourseLecture::where([
+            ['course_id', '=', $course->id],
+            ['course_section_id', '=', $course_section->id],
+            ['order_column', '>', $course_lecture->order_column],
+        ])->orderBy('course_section_id')
             ->orderBy('order_column', 'asc')
             ->first(); // jika tidak menemukan next lecture lagi arti nya course telah selesai
+
+        // $next_course_lecture = CourseLecture::where('order_column', '>', $course_lecture->order_column)
+        //     ->where('course_id', $course_section->course_id)
+        //     ->orderBy('course_section_id', 'asc')
+        //     ->orderBy('order_column', 'asc')
+        //     ->first(); // jika tidak menemukan next lecture lagi arti nya course telah selesai
 
 
 

@@ -144,8 +144,6 @@ export default function Show({
                             ) : (
                                 <></>
                             )}
-
-                            <div>{JSON.stringify(prev_course_lecture)}</div>
                         </div>
 
                         <div className="flex gap-2">

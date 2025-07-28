@@ -34,8 +34,7 @@ class EvaluationController extends Controller
             ['evaluation_id', '=', $evaluation->id],
         ])->orderBy('created_at', 'desc')->first();
 
-        // return [$evaluation, $evaluation_attempt];
-        // $evaluation_attempt->load('answers');
+
 
         $course = Course::with(['course_sections' => function ($query) {
             $query->with(['course_lectures', 'evaluation']);
@@ -44,17 +43,22 @@ class EvaluationController extends Controller
         $prev_course_lecture = CourseLecture::where([
             ['course_id', '=', $course->id],
             ['course_section_id', '=', $course_section->id],
-            // ['id', '<', $course_lecture->id],
-        ])->orderBy('id', 'desc')->first();
+        ])->orderBy('order_column', 'desc')->first();
 
-        $next_course_section = CourseSection::where('id', '>', $course_section->id)->orderBy('id', 'ASC')->first();
+
+
+        $next_course_section = CourseSection::where([
+            ['course_id', '=', $course->id],
+            ['order_column', '>', $course_section->order_column],
+        ])->orderBy('course_id')
+            ->orderBy('order_column', 'desc')
+            ->first();
 
         if ($next_course_section) {
             $next_course_lecture = CourseLecture::where([
                 ['course_id', '=', $next_course_section->course_id],
                 ['course_section_id', '=', $next_course_section->id],
-                // ['id', '<', $course_lecture->id],
-            ])->orderBy('id', 'asc')->first();
+            ])->orderBy('order_column', 'asc')->first();
         } else {
             $next_course_lecture = null;
         }
