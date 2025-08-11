@@ -322,120 +322,138 @@ export default function CourseLectures({ course, course_sections }) {
                                                                                 </div>
                                                                             </td>
                                                                             <td>
-                                                                                <a
-                                                                                    className="text-primary flex gap-2 items-center"
-                                                                                    href={
-                                                                                        course_lecture.video_url
-                                                                                    }
-                                                                                    target="_blank"
-                                                                                >
-                                                                                    <Video
-                                                                                        size={
-                                                                                            16
+                                                                                {course_lecture.video_url ? (
+                                                                                    <a
+                                                                                        className="text-primary flex gap-2 items-center"
+                                                                                        href={
+                                                                                            course_lecture.video_url
                                                                                         }
+                                                                                        target="_blank"
+                                                                                    >
+                                                                                        <Video
+                                                                                            size={
+                                                                                                16
+                                                                                            }
+                                                                                        />
+                                                                                        <span>
+                                                                                            {
+                                                                                                course_lecture.video_duration_human_readable
+                                                                                            }
+                                                                                        </span>
+                                                                                    </a>
+                                                                                ) : (
+                                                                                    <>
+
+                                                                                    </>
+                                                                                )}
+                                                                            </td>
+                                                                            <td>
+                                                                                {course_lecture.video_url ? (
+                                                                                    <input
+                                                                                        type="checkbox"
+                                                                                        className="toggle toggle-primary toggle-xs"
+                                                                                        checked={
+                                                                                            course_lecture.set_as_preview
+                                                                                        }
+                                                                                        onChange={(
+                                                                                            e
+                                                                                        ) => {
+                                                                                            console.log(
+                                                                                                e
+                                                                                                    .target
+                                                                                                    .value
+                                                                                            );
+                                                                                            console.log(
+                                                                                                e
+                                                                                                    .target
+                                                                                                    .checked
+                                                                                            );
+
+                                                                                            router.put(
+                                                                                                route(
+                                                                                                    "user_area.course.course_section.course_lecture.set_as_preview",
+                                                                                                    {
+                                                                                                        course: course.id,
+                                                                                                        course_section:
+                                                                                                            course_section.id,
+                                                                                                        course_lecture:
+                                                                                                            course_lecture.id,
+                                                                                                    }
+                                                                                                ),
+                                                                                                {
+                                                                                                    set_as_preview:
+                                                                                                        e
+                                                                                                            .target
+                                                                                                            .checked
+                                                                                                            ? 1
+                                                                                                            : 0,
+                                                                                                },
+                                                                                                {
+                                                                                                    preserveScroll: true,
+                                                                                                    preserveState: true,
+                                                                                                }
+                                                                                            );
+                                                                                        }}
                                                                                     />
-                                                                                    <span>
-                                                                                        {
-                                                                                            course_lecture.video_duration_human_readable
+                                                                                ) : (
+                                                                                    <>
+
+                                                                                    </>
+                                                                                )}
+                                                                            </td>
+                                                                            <td>
+                                                                                {course_lecture.video_url ? (
+                                                                                    <input
+                                                                                        type="checkbox"
+                                                                                        className="toggle toggle-primary toggle-xs"
+                                                                                        checked={
+                                                                                            course_lecture.set_as_featured
                                                                                         }
-                                                                                    </span>
-                                                                                </a>
-                                                                            </td>
-                                                                            <td>
-                                                                                <input
-                                                                                    type="checkbox"
-                                                                                    className="toggle toggle-primary toggle-xs"
-                                                                                    checked={
-                                                                                        course_lecture.set_as_preview
-                                                                                    }
-                                                                                    onChange={(
-                                                                                        e
-                                                                                    ) => {
-                                                                                        console.log(
+                                                                                        onChange={(
                                                                                             e
-                                                                                                .target
-                                                                                                .value
-                                                                                        );
-                                                                                        console.log(
-                                                                                            e
-                                                                                                .target
-                                                                                                .checked
-                                                                                        );
+                                                                                        ) => {
+                                                                                            console.log(
+                                                                                                e
+                                                                                                    .target
+                                                                                                    .value
+                                                                                            );
+                                                                                            console.log(
+                                                                                                e
+                                                                                                    .target
+                                                                                                    .checked
+                                                                                            );
 
-                                                                                        router.put(
-                                                                                            route(
-                                                                                                "user_area.course.course_section.course_lecture.set_as_preview",
+                                                                                            router.put(
+                                                                                                route(
+                                                                                                    "user_area.course.course_section.course_lecture.set_as_featured",
+                                                                                                    {
+                                                                                                        course: course.id,
+                                                                                                        course_section:
+                                                                                                            course_section.id,
+                                                                                                        course_lecture:
+                                                                                                            course_lecture.id,
+                                                                                                    }
+                                                                                                ),
                                                                                                 {
-                                                                                                    course: course.id,
-                                                                                                    course_section:
-                                                                                                        course_section.id,
-                                                                                                    course_lecture:
-                                                                                                        course_lecture.id,
+                                                                                                    set_as_featured:
+                                                                                                        e
+                                                                                                            .target
+                                                                                                            .checked
+                                                                                                            ? 1
+                                                                                                            : 0,
+                                                                                                },
+                                                                                                {
+                                                                                                    preserveScroll: true,
+                                                                                                    preserveState: true,
                                                                                                 }
-                                                                                            ),
-                                                                                            {
-                                                                                                set_as_preview:
-                                                                                                    e
-                                                                                                        .target
-                                                                                                        .checked
-                                                                                                        ? 1
-                                                                                                        : 0,
-                                                                                            },
-                                                                                            {
-                                                                                                preserveScroll: true,
-                                                                                                preserveState: true,
-                                                                                            }
-                                                                                        );
-                                                                                    }}
-                                                                                />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input
-                                                                                    type="checkbox"
-                                                                                    className="toggle toggle-primary toggle-xs"
-                                                                                    checked={
-                                                                                        course_lecture.set_as_featured
-                                                                                    }
-                                                                                    onChange={(
-                                                                                        e
-                                                                                    ) => {
-                                                                                        console.log(
-                                                                                            e
-                                                                                                .target
-                                                                                                .value
-                                                                                        );
-                                                                                        console.log(
-                                                                                            e
-                                                                                                .target
-                                                                                                .checked
-                                                                                        );
+                                                                                            );
+                                                                                        }}
+                                                                                    />
+                                                                                ) : (
+                                                                                    <>
 
-                                                                                        router.put(
-                                                                                            route(
-                                                                                                "user_area.course.course_section.course_lecture.set_as_featured",
-                                                                                                {
-                                                                                                    course: course.id,
-                                                                                                    course_section:
-                                                                                                        course_section.id,
-                                                                                                    course_lecture:
-                                                                                                        course_lecture.id,
-                                                                                                }
-                                                                                            ),
-                                                                                            {
-                                                                                                set_as_featured:
-                                                                                                    e
-                                                                                                        .target
-                                                                                                        .checked
-                                                                                                        ? 1
-                                                                                                        : 0,
-                                                                                            },
-                                                                                            {
-                                                                                                preserveScroll: true,
-                                                                                                preserveState: true,
-                                                                                            }
-                                                                                        );
-                                                                                    }}
-                                                                                />
+                                                                                    </>
+                                                                                )}
                                                                             </td>
                                                                             <td className="">
                                                                                 <ul className="flex gap-2">

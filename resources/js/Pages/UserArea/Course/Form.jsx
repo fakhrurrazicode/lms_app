@@ -27,7 +27,7 @@ export default function FormCourse({ course = null, course_categories }) {
             discount_percentage:
                 course !== null ? course.discount_percentage : 0,
             level: course !== null ? course.level : "",
-            status: false,
+            status: true,
         });
 
     const onSubmitHandler = (e) => {

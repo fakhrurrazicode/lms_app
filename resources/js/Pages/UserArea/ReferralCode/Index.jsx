@@ -94,116 +94,60 @@ export default function Index({ referral_codes, request }) {
                                 </div>
                             </div>
                             <table className="table mb-6">
-                                <thead>
-                                    <tr>
-                                        <th
-                                            className="cursor-pointer"
-                                            data-columnname="event_id"
-                                            onClick={orderByOnClickHandler}
-                                        >
-                                            Event
-                                        </th>
-
-                                        <th
-                                            className="cursor-pointer"
-                                            data-columnname="code"
-                                            onClick={orderByOnClickHandler}
-                                        >
-                                            Code
-                                        </th>
-
-                                        {/* <th
-                                            className="cursor-pointer"
-                                            data-columnname="type"
-                                            onClick={orderByOnClickHandler}
-                                        >
-                                            Owner
-                                        </th> */}
-                                        <th
-                                            className="cursor-pointer"
-                                            data-columnname="value"
-                                            onClick={orderByOnClickHandler}
-                                        >
-                                            Customer Coin Reward
-                                        </th>
-                                        <th
-                                            className="cursor-pointer"
-                                            data-columnname="max_discount"
-                                            onClick={orderByOnClickHandler}
-                                        >
-                                            Owner Coin Reward
-                                        </th>
-                                        <th
-                                            className="cursor-pointer"
-                                            data-columnname="start_date"
-                                            onClick={orderByOnClickHandler}
-                                        >
-                                            Usage Limit
-                                        </th>
-                                        <th
-                                            className="cursor-pointer"
-                                            data-columnname="end_date"
-                                            onClick={orderByOnClickHandler}
-                                        >
-                                            Used Count
-                                        </th>
-                                        <th
-                                            className="cursor-pointer"
-                                            data-columnname="quota"
-                                            onClick={orderByOnClickHandler}
-                                        >
-                                            Expires At
-                                        </th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     {referral_codes.data.length > 0 ? (
                                         referral_codes.data.map(
                                             (referral_code) => (
                                                 <tr key={referral_code.id}>
                                                     <td>
-                                                        {
-                                                            referral_code.event
-                                                                .title
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        {referral_code.code}
-                                                    </td>
-                                                    {/* <td>
-                                                        {referral_code.owner
-                                                            ? referral_code
-                                                                  .owner.name
-                                                            : ""}
-                                                    </td> */}
-                                                    <td>
-                                                        {number_format(
-                                                            referral_code.customer_coin_reward
-                                                        )}
-                                                    </td>
-                                                    <td>
-                                                        {number_format(
-                                                            referral_code.owner_coin_reward
-                                                        )}
-                                                    </td>
-                                                    <td>
-                                                        {
-                                                            referral_code.usage_limit
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        {
-                                                            referral_code.used_count
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        {
-                                                            referral_code.expires_at
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        <div className="flex gap-2">
+                                                        <div className="font-bold text-2xl text-primary">
+                                                            {referral_code.code}
+                                                        </div>
+                                                        <div className="text-xs">
+                                                            Hadiah Coin
+                                                            Pelanggan:{" "}
+                                                            <span className="text-success font-bold">
+                                                                Rp.{" "}
+                                                                {number_format(
+                                                                    referral_code.customer_coin_reward
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                        <div className="text-xs">
+                                                            Hadiah Coin Pemilik:{" "}
+                                                            <span className="text-success font-bold">
+                                                                Rp.{" "}
+                                                                {number_format(
+                                                                    referral_code.owner_coin_reward
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                        <div className="text-xs">
+                                                            Penggunaan:{" "}
+                                                            <span className="text-primary font-bold">
+                                                                {number_format(
+                                                                    referral_code.usage_count
+                                                                )}
+                                                                /
+                                                                {number_format(
+                                                                    referral_code.usage_limit
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                        <div className="text-xs">
+                                                            Kedaluwarsa pada:{" "}
+                                                            <span className="text-primary font-bold">
+                                                                {number_format(
+                                                                    referral_code.usage_count
+                                                                )}
+                                                                /
+                                                                {number_format(
+                                                                    referral_code.usage_limit
+                                                                )}
+                                                            </span>
+                                                        </div>
+
+                                                        <div className="mt-2">
                                                             <button
                                                                 className="btn btn-primary btn-xs"
                                                                 onClick={async (

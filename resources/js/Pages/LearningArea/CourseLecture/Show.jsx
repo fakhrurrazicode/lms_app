@@ -8,6 +8,7 @@ import {
     FaChevronRight,
     FaQuestion,
     FaQuestionCircle,
+    FaDownload,
 } from "react-icons/fa";
 import "@vidstack/react/player/styles/base.css";
 import "@vidstack/react/player/styles/plyr/theme.css";
@@ -17,6 +18,8 @@ import {
     plyrLayoutIcons,
 } from "@vidstack/react/player/layouts/plyr";
 import HtmlRenderer from "@/Components/Custom/HtmlRenderer";
+import FileIconByType from "@/Components/Custom/FileIconByType";
+import { Save, X } from "lucide-react";
 
 export default function Show({
     course,
@@ -86,8 +89,9 @@ export default function Show({
                             {course_lecture.title}
                         </h1>
                     </div>
-                    <div className="mb-6">
-                        {course_lecture.youtube_video_id ? (
+
+                    {course_lecture.youtube_video_id ? (
+                        <div className="mb-6">
                             <div className="aspect-video w-full rounded-xl overflow-hidden shadow">
                                 <iframe
                                     className="w-full h-full"
@@ -98,116 +102,147 @@ export default function Show({
                                     allowFullScreen
                                 ></iframe>
                             </div>
-                        ) : (
-                            <>
-                                {course_lecture.video ? (
-                                    <MediaPlayer
-                                        title="Sprite Fight"
-                                        src={course_lecture.video_url}
-                                    >
-                                        <MediaProvider />
-                                        <PlyrLayout
-                                            // thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
-                                            icons={plyrLayoutIcons}
-                                        />
-                                    </MediaPlayer>
-                                ) : (
-                                    <></>
-                                )}
-                            </>
-                        )}
-                    </div>
+                        </div>
+                    ) : (
+                        <></>
+                    )}
+
+                    {course_lecture.video ? (
+                        <div className="mb-6">
+                            {course_lecture.video ? (
+                                <MediaPlayer
+                                    title="Sprite Fight"
+                                    src={course_lecture.video_url}
+                                >
+                                    <MediaProvider />
+                                    <PlyrLayout
+                                        // thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
+                                        icons={plyrLayoutIcons}
+                                    />
+                                </MediaPlayer>
+                            ) : (
+                                <></>
+                            )}
+                        </div>
+                    ) : (
+                        <></>
+                    )}
 
                     <div className="mb-6">
                         <HtmlRenderer htmlString={course_lecture.description} />
                     </div>
 
+                    {course_lecture.attachments.length > 0 && (
+                        <div className="mb-6">
+                            <div className="label">
+                                <span className="label-text">
+                                    Lampiran File
+                                </span>
+                            </div>
+                            <ul className="space-y-2 grid grid-cols-4 gap-4">
+                                {course_lecture.attachments.map(
+                                    (attachment) => (
+                                        <li
+                                            key={attachment.id}
+                                            className="flex items-center justify-between bg-base-200 p-6 rounded gap-4"
+                                        >
+                                            <div className="flex items-center gap-2">
+                                                <FileIconByType
+                                                    filename={
+                                                        attachment.filename
+                                                    }
+                                                    size={20}
+                                                />
+                                                <a
+                                                    href={attachment.file_url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-sm text-primary hover:underline break-words break-all"
+                                                >
+                                                    {attachment.filename}
+                                                </a>
+                                            </div>
+                                            <a
+                                                href={attachment.file_url}
+                                                download={true}
+                                                className="text-primary"
+                                            >
+                                                <FaDownload size={16} />
+                                            </a>
+                                        </li>
+                                    )
+                                )}
+                                {course_lecture.attachments.map(
+                                    (attachment) => (
+                                        <li
+                                            key={attachment.id}
+                                            className="flex items-center justify-between bg-base-200 p-6 rounded gap-4"
+                                        >
+                                            <div className="flex items-center gap-2">
+                                                <FileIconByType
+                                                    filename={
+                                                        attachment.filename
+                                                    }
+                                                    size={20}
+                                                />
+                                                <a
+                                                    href={attachment.file_url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-sm text-primary hover:underline break-words break-all"
+                                                >
+                                                    {attachment.filename}
+                                                </a>
+                                            </div>
+                                            <a
+                                                href={attachment.file_url}
+                                                download={true}
+                                                className="text-primary"
+                                            >
+                                                <FaDownload size={16} />
+                                            </a>
+                                        </li>
+                                    )
+                                )}
+                            </ul>
+                        </div>
+                    )}
+
                     <div className="flex justify-between">
                         <div>
-                            {prev_course_lecture ? (
-                                <Link
-                                    href={route(
-                                        "learning_area.course.course_section.course_lecture.show",
-                                        {
-                                            course: prev_course_lecture.course_id,
-                                            course_section:
-                                                prev_course_lecture.course_section_id,
-                                            course_lecture:
-                                                prev_course_lecture.id,
-                                        }
-                                    )}
-                                    className="btn btn-accent"
-                                >
-                                    <FaChevronLeft />
-                                    Sebelumnya
-                                </Link>
-                            ) : (
-                                <></>
-                            )}
+                            <Link
+                                href={route(
+                                    "learning_area.course.course_section.course_lecture.prev",
+                                    {
+                                        course: course.id,
+                                        course_section: course_section.id,
+                                        course_lecture: course_lecture.id,
+                                    }
+                                )}
+                                method="POST"
+                                className="btn btn-accent"
+                            >
+                                <FaChevronLeft />
+                                Sebelumnya
+                            </Link>
                         </div>
 
                         <div className="flex gap-2">
-                            {next_course_lecture ? (
-                                <Link
-                                    href={route(
-                                        "learning_area.course.course_section.course_lecture.finish",
-                                        {
-                                            course: course.id,
-                                            course_section: course_section.id,
-                                            course_lecture: course_lecture.id,
-                                        }
-                                    )}
-                                    // preserveScroll={true}
-                                    preserveState={true}
-                                    method="PUT"
-                                    className="btn btn-accent"
-                                >
-                                    Selanjutnya 1 <FaChevronRight />
-                                </Link>
-                            ) : (
-                                <>
-                                    {course_section.evaluation ? (
-                                        <Link
-                                            href={route(
-                                                "learning_area.course.course_section.course_lecture.finish_and_evaluate",
-                                                {
-                                                    course: course.id,
-                                                    course_section:
-                                                        course_section.id,
-                                                    course_lecture:
-                                                        course_lecture.id,
-                                                }
-                                            )}
-                                            // preserveScroll={true}
-                                            preserveState={true}
-                                            method="PUT"
-                                            className="btn btn-info"
-                                        >
-                                            Kerjakan Evaluasi
-                                            <FaQuestionCircle />
-                                        </Link>
-                                    ) : (
-                                        <Link
-                                            href={route(
-                                                "learning_area.course.course_section.course_lecture.finish",
-                                                {
-                                                    course: course.id,
-                                                    course_section:
-                                                        course_section.id,
-                                                    course_lecture:
-                                                        course_lecture.id,
-                                                }
-                                            )}
-                                            // preserveScroll={true}
-                                            preserveState={true}
-                                            method="PUT"
-                                            className="btn btn-accent"
-                                        >
-                                            Selanjutnya 2 <FaChevronRight />
-                                        </Link>
-                                    )}
-                                </>
-                            )}
+                            <Link
+                                href={route(
+                                    "learning_area.course.course_section.course_lecture.next",
+                                    {
+                                        course: course.id,
+                                        course_section: course_section.id,
+                                        course_lecture: course_lecture.id,
+                                    }
+                                )}
+                                method="POST"
+                                className="btn btn-accent"
+                            >
+                                Selanjutnya
+                                <FaChevronRight />
+                            </Link>
                         </div>
                     </div>
                 </div>

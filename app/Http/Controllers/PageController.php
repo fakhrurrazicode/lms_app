@@ -27,16 +27,26 @@ class PageController extends Controller
     {
 
         $course_categories = CourseCategory::orderBy('created_at', 'DESC')->limit(8)->get();
-        $latest_courses = Course::with(['course_category'])->orderBy('created_at', 'DESC')->limit(9)->get();
-        // return $latest_courses;
-
+        $latest_courses = Course::with(['course_category'])->where('status', true)->orderBy('created_at', 'DESC')->limit(9)->get();
 
         return Inertia::render('Home', compact('latest_courses', 'course_categories'));
+    }
+
+    public function refund_policy()
+    {
+        return Inertia::render('RefundPolicy');
+    }
+
+    public function terms_and_conditions()
+    {
+        return Inertia::render('TermsAndConditions');
     }
 
     public function courses(PaginateRequest $request)
     {
         $courses = Course::query();
+
+        $courses->where('status', true);
 
         if ($request->has('course_category_ids')) {
             $courses->whereIn('course_category_id', $request->course_category_ids);
@@ -48,6 +58,8 @@ class PageController extends Controller
                 ['slug', 'LIKE', '%' . $request->search . '%'],
             ]);
         }
+
+
 
         $courses = $courses->orderBy($request->orderby, $request->ordermethod)
             ->with(['instructor', 'course_category', 'course_reviews'])
@@ -70,18 +82,24 @@ class PageController extends Controller
 
     public function course($slug)
     {
-        $course = Course::where('slug', $slug)->with([
+        $course = Course::where([
+            ['slug', '=', $slug],
+            ['status', '=', true],
+        ])->with([
             'instructor.instructor_info',
             'course_category',
             'course_reviews',
             'course_sections.course_lectures',
             'course_lectures',
-            'course_reviews'
+            'latest_course_reviews.user'
         ])->firstOrFail();
 
         // return $course;
 
-        $more_courses = Course::with(['course_category'])->where('instructor_id', $course->instructor_id)->inRandomOrder()->limit(2)->get();
+        $more_courses = Course::with(['course_category'])->where([
+            ['instructor_id', '=', $course->instructor_id],
+            ['status', '=', true],
+        ])->inRandomOrder()->limit(2)->get();
 
         // return $course;
         return Inertia::render('Course', compact('course', 'more_courses'));

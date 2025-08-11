@@ -8,7 +8,7 @@ import { GrPlay, GrResume } from "react-icons/gr";
 import classNames from "classnames";
 import { FaPlus, FaStar } from "react-icons/fa";
 
-export default function Index({ course }) {
+export default function Index({ course, course_review }) {
     const { auth } = usePage().props;
     const { data, setData, post, errors, reset, clearErrors } = useForm({
         course_id: course.id,
@@ -21,13 +21,14 @@ export default function Index({ course }) {
         e.preventDefault();
 
         post(
-            route("learning_area.course_review.store", {
+            route("learning_area.course.course_review.store", {
                 course: course,
             }),
             {
                 onError: (error) => {
                     console.log("error", error);
                 },
+                preserveScroll: true,
             }
         );
     };
@@ -49,7 +50,7 @@ export default function Index({ course }) {
                             {course.title}
                         </h4>
 
-                        {!course.course_review ? (
+                        {!course_review ? (
                             <>
                                 <div className="text-gray-800 text-xl  dark:text-gray-200 mb-6">
                                     <h5 className="mb-4 font-semibold">
@@ -200,10 +201,10 @@ export default function Index({ course }) {
                             </>
                         ) : (
                             <div className="mt-12">
-                                <div className="text-gray-800 text-center text-5xl font-bold dark:text-gray-200  mb-6">
+                                <div className="text-gray-800 text-center text-2xl font-bold dark:text-gray-200  mb-6">
                                     Terima kasih sudah tetap bersama kami,
                                 </div>
-                                <div className="text-gray-800 text-center text-3xl font-normal dark:text-gray-200  mb-6">
+                                <div className="text-gray-800 text-center text-xl font-normal dark:text-gray-200  mb-6">
                                     review dan komentar anda akan menjadi
                                     motivasi bagi kami untuk tetap memberikan
                                     yang terbaik
@@ -213,7 +214,7 @@ export default function Index({ course }) {
 
                                 <div className="flex gap-2 justify-center mb-6 mt-6">
                                     <div>Komentar:</div>
-                                    <div>{course.course_review.comment}</div>
+                                    <div>{course_review.comment}</div>
                                 </div>
                                 <div className="flex gap-2 justify-center items-center mb-6">
                                     <div>Bintang:</div>

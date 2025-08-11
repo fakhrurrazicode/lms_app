@@ -1,9 +1,10 @@
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import classNames from "classnames";
 
 import React from "react";
 
 export default function Tabs() {
+    const { user, role } = usePage().props.auth;
     return (
         <div className="flex justify-start">
             <Link
@@ -38,21 +39,25 @@ export default function Tabs() {
                 Edit Photo
             </Link>
 
-            <Link
-                preserveScroll={true}
-                preserveState={true}
-                href={route("user_area.profile.edit_structor_info")}
-                className={classNames(
-                    "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
-                    {
-                        "!bg-base-100": route().current(
-                            "user_area.profile.edit_structor_info"
-                        ),
-                    }
-                )}
-            >
-                Edit Profile Instruktur
-            </Link>
+            {role.name == "instructor" ? (
+                <Link
+                    preserveScroll={true}
+                    preserveState={true}
+                    href={route("user_area.profile.edit_instructor_info")}
+                    className={classNames(
+                        "bg-base-100/25 hover:bg-base-100/50 px-5 py-4 rounded-t-lg text-xs",
+                        {
+                            "!bg-base-100": route().current(
+                                "user_area.profile.edit_instructor_info"
+                            ),
+                        }
+                    )}
+                >
+                    Edit Profile Instruktur
+                </Link>
+            ) : (
+                <></>
+            )}
 
             <Link
                 preserveScroll={true}

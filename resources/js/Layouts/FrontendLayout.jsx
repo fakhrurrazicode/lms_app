@@ -3,7 +3,7 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 
-import { Link, usePage } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { FaCartArrowDown, FaTimes, FaWhatsapp } from "react-icons/fa";
 import { IoMdNotifications } from "react-icons/io";
@@ -14,10 +14,15 @@ import "aos/dist/aos.css"; // Import file CSS AOS
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+// import useMetaPixel from "@/Hooks/useMetaPixel";
+import useMetaPixelAuto from "@/Hooks/useMetaPixelAuto";
+import useGtagAuto from "@/Hooks/useGtagAuto";
 
 dayjs.extend(relativeTime);
 
 export default function FrontendLayout({ header, children }) {
+    useMetaPixelAuto();
+    useGtagAuto();
     // console.log("usePage().props.auth", usePage().props.auth);
     const {
         user,
@@ -31,7 +36,7 @@ export default function FrontendLayout({ header, children }) {
     console.log(user, role);
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(true);
+        useState(false);
 
     useEffect(() => {
         AOS.init({
@@ -41,6 +46,8 @@ export default function FrontendLayout({ header, children }) {
     }, []);
 
     const { auth } = usePage().props;
+
+    const [search, setSearch] = useState("");
 
     return (
         <>
@@ -54,12 +61,26 @@ export default function FrontendLayout({ header, children }) {
                     <span>Hubungi Kami</span>
                 </a>
                 <header className="bg-white shadow dark:bg-gray-800">
-                    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            router.get(
+                                route("courses", {
+                                    search: search,
+                                })
+                            );
+                        }}
+                        className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"
+                    >
                         <label className="input input-bordered flex items-center gap-2 rounded-full">
                             <input
                                 type="text"
                                 className="grow border-none rounded-full"
                                 placeholder="Cari Materi Kursus"
+                                value={search}
+                                onChange={(e) => {
+                                    setSearch(e.target.value);
+                                }}
                             />
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +95,7 @@ export default function FrontendLayout({ header, children }) {
                                 />
                             </svg>
                         </label>
-                    </div>
+                    </form>
                 </header>
 
                 <nav className="border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800 shadow-lg">

@@ -92,6 +92,7 @@ class CourseController extends Controller
     public function update(InstructorCourseUpdateRequest $request, Course $course)
     {
         $data = $request->except(['image']);
+        // return $data;
         $data['instructor_id'] = Auth::user()->id;
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('images', 'public');
@@ -106,7 +107,6 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $course->delete();
-        return to_route('user_area.course.index');
     }
 
     public function toggle_active(Request $request, Course $course)

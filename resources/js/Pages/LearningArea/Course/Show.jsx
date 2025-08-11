@@ -18,7 +18,7 @@ export default function Show({ course }) {
                                 width: course.progress_percentage + "%",
                             }}
                             className={classNames(
-                                " text-center absolute top-0 bottom-0 flex justify-center items-center",
+                                "text-center absolute top-0 bottom-0 flex justify-center items-center px-4",
                                 {
                                     "bg-primary":
                                         course.progress_percentage < 100,
@@ -28,7 +28,7 @@ export default function Show({ course }) {
                             )}
                         >
                             <span className="text-white text-xs">
-                                Progress: {course.progress_percentage}%
+                                {course.progress_percentage}%
                             </span>
                         </div>
                     </div>
@@ -64,7 +64,8 @@ export default function Show({ course }) {
                             })}
                             className="btn btn-primary w-full lg:w-auto"
                         >
-                            {course.course_tracks.length ? (
+                            {course.course_tracks &&
+                            course.course_tracks.length ? (
                                 <>
                                     <GrResume />
                                     Lanjut Belajar

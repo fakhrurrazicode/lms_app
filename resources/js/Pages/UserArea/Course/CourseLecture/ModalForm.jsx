@@ -177,9 +177,7 @@ export default function ModalForm({
                                 <span className="label-text">
                                     Video Pelajaran
                                 </span>
-                                <span className="label-text-alt">
-                                    {"Ukuran maksimal file <= 50MB"}
-                                </span>
+                                <span className="label-text-alt"></span>
                             </div>
 
                             <input

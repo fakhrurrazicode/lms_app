@@ -5,6 +5,9 @@ namespace App\Http\Controllers\LearningArea;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CourseReviewStoreRequest;
+use App\Models\CourseReview;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class CourseReviewController extends Controller
@@ -16,8 +19,13 @@ class CourseReviewController extends Controller
     {
         $course->load('course_sections.course_lectures');
 
+        $course_review = Auth::check() ? CourseReview::where('user_id', Auth::id())->orderBy('id', "DESC")->first() : null;
+
+        // return dd($course_review);
+
         return Inertia::render('LearningArea/CourseReview/Index', [
-            'course' => $course
+            'course' => $course,
+            'course_review' => $course_review,
         ]);
     }
 
@@ -32,9 +40,9 @@ class CourseReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Course $course, CourseReviewStoreRequest $request)
     {
-        //
+        CourseReview::create($request->validated());
     }
 
     /**

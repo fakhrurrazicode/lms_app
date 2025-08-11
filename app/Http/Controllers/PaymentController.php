@@ -176,8 +176,6 @@ class PaymentController extends Controller
             'order_id' => $data['order_id']
         ])->first();
 
-        // dd($order);
-
         $order->update([
             'transaction_id' => $data['transaction_id'],
             'transaction_status' => $data['transaction_status'],

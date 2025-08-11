@@ -43,7 +43,7 @@
     pointer-events: none !important;
 } */
 
-.ql-toolbar.ql-snow {
+/* .ql-toolbar.ql-snow {
     border: transparent !important;
     box-sizing: border-box;
     font-family: inherit !important;
@@ -57,4 +57,9 @@
 
 .ql-editor {
     padding: 12px 0px !important;
+} */
+
+.ql-toolbar,
+.ql-container {
+    @apply bg-base-100 text-base-content rounded-xl !border-none;
 }

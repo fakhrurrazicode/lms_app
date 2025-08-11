@@ -102,20 +102,49 @@ class GoogleController extends Controller
 
     public function youtubeCallback(Request $request)
     {
+        // $client = new Google_Client();
+        // $client->setClientId(config('services.youtube.client_id'));
+        // $client->setClientSecret(config('services.youtube.client_secret'));
+        // $client->setRedirectUri(config('services.youtube.redirect'));
+
+        // $token = $client->fetchAccessTokenWithAuthCode($request->code);
+
+        // // Simpan refresh_token ke database (misal ke settings table)
+        // Setting::updateOrCreate([
+        //     'key' => 'youtube_tokens',
+        // ], [
+        //     'value' => json_encode($token),
+        // ]);
+
+        // return redirect()->route('home')->with('success', 'Terhubung dengan YouTube!');
+
         $client = new Google_Client();
         $client->setClientId(config('services.youtube.client_id'));
         $client->setClientSecret(config('services.youtube.client_secret'));
         $client->setRedirectUri(config('services.youtube.redirect'));
 
-        $token = $client->fetchAccessTokenWithAuthCode($request->code);
+        try {
+            $token = $client->fetchAccessTokenWithAuthCode($request->code);
 
-        // Simpan refresh_token ke database (misal ke settings table)
-        Setting::updateOrCreate([
-            'key' => 'youtube_tokens',
-        ], [
-            'value' => json_encode($token),
-        ]);
+            if (isset($token['error'])) {
+                return redirect()->route('home')->with('error', 'Gagal autentikasi YouTube: ' . $token['error_description']);
+            }
 
-        return redirect()->route('home')->with('success', 'Terhubung dengan YouTube!');
+            // Validasi: refresh_token wajib ada
+            if (!isset($token['refresh_token'])) {
+                return redirect()->route('home')->with('error', 'Refresh token tidak tersedia. Silakan ulangi proses dan pilih akun Google saat diminta.');
+            }
+
+            Setting::updateOrCreate([
+                'key' => 'youtube_tokens',
+            ], [
+                'value' => json_encode($token),
+            ]);
+
+            return redirect()->route('home')->with('success', 'Berhasil terhubung ke YouTube!');
+        } catch (\Exception $e) {
+            Log::error('YouTube OAuth Callback Error: ' . $e->getMessage());
+            return redirect()->route('home')->with('error', 'Terjadi kesalahan saat menghubungkan ke YouTube.');
+        }
     }
 }

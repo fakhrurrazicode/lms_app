@@ -105,6 +105,13 @@ class Course extends BaseModel implements Cartable
         return $this->hasMany(CourseReview::class);
     }
 
+    public function latest_course_reviews()
+    {
+        return $this->hasMany(CourseReview::class)
+            ->latest() // atau ->orderBy('created_at', 'desc')
+            ->limit(5);
+    }
+
     public function getCourseReviewRecapAttribute()
     {
         $avg = CourseReview::where('course_id', $this->id)->avg('stars');

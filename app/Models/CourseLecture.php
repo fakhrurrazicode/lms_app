@@ -86,6 +86,8 @@ class CourseLecture extends BaseModel implements Sortable
         if ($this->youtube_video_id) {
             return 'https://www.youtube.com/embed/' . $this->youtube_video_id;
         }
+
+        return null;
         // return $this->video ?: asset('videos/dummy/sample_video.mp4');
         // return $this->youtube_video_id ? 'https://www.youtube.com/' . $this->youtube_video_id :  asset('videos/dummy/sample_video.mp4');
     }

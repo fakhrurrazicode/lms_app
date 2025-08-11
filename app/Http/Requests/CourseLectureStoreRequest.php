@@ -28,10 +28,11 @@ class CourseLectureStoreRequest extends FormRequest
             'course_section_id' => ['required', 'exists:' . CourseSection::class . ',id'],
 
             'video' => [
-                'required',          // The video file is required
+                'nullable',          // The video file is required
+                // 'required',          // The video file is required
                 'file',              // The uploaded input must be a file
                 'mimes:mp4,mov,avi,wmv', // Specify allowed file types
-                'max:50000',         // Maximum file size in kilobytes (50MB in this case)
+                // 'max:50000',         // Maximum file size in kilobytes (50MB in this case)
             ],
             'title' => ['required'],
             'description' => ['required'],

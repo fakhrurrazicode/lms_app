@@ -14,6 +14,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Requests\ProfilePhotoUpdateRequest;
 use App\Http\Requests\InstructorProfileUpdateRequest;
+use App\Models\InstructorInfo;
 
 class ProfileController extends Controller
 {
@@ -36,7 +37,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function edit_structor_info(Request $request): Response
+    public function edit_instructor_info(Request $request): Response
     {
         return Inertia::render('UserArea/Profile/EditInstructorInfo', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
@@ -100,9 +101,17 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $instructor_info = $user->instructor_info;
-        $instructor_info->update($request->validated());
+        if ($instructor_info) {
+            $instructor_info->update($request->validated());
+        } else {
+            InstructorInfo::create(array_merge(
+                ['user_id' => $user->id, 'status' => 1],
+                $request->validated()
+            ));
+        }
 
-        return Redirect::route('user_area.profile.edit');
+
+        return Redirect::route('user_area.profile.edit_instructor_info');
     }
 
     /**

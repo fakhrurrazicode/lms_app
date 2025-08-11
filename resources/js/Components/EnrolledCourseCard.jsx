@@ -73,12 +73,26 @@ export default function EnrolledCourseCard({ enrollment }) {
                         )}
                     </div>
                     <div className="text-start md:text-end flex justify-end gap-1 items-center">
-                        <FaStar className="text-xs text-yellow-400" />
-                        <FaStar className="text-xs text-yellow-400" />
-                        <FaStar className="text-xs text-yellow-400" />
-                        <FaStar className="text-xs text-yellow-400" />
-                        <FaStar className="text-xs text-yellow-400" />
-                        <span className="text-xs text-lightGrey6">(44)</span>
+                        {[...Array(5)].map((_, index) => {
+                            if (index + 1 <= course.course_review_recap.avg) {
+                                return (
+                                    <FaStar
+                                        key={index}
+                                        className="text-xs text-yellow-400"
+                                    />
+                                );
+                            } else {
+                                return (
+                                    <FaStar
+                                        key={index}
+                                        className="text-xs text-gray-700"
+                                    />
+                                );
+                            }
+                        })}
+                        <span className="text-xs text-gray-300">
+                            ({course.course_review_recap.total})
+                        </span>
                     </div>
                 </div>
                 <div className="card-actions">

@@ -108,6 +108,8 @@ Route::get('/google/oauth', [GoogleAuthController::class, 'redirectToGoogle']);
 Route::get('/google/oauth/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/refund_policy', [PageController::class, 'refund_policy'])->name('refund_policy');
+Route::get('/terms_and_conditions', [PageController::class, 'terms_and_conditions'])->name('terms_and_conditions');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
 Route::get('/become_instructor', [PageController::class, 'become_instructor'])->name('become_instructor');
 Route::post('/submit_become_instructor', [PageController::class, 'submit_become_instructor'])->name('submit_become_instructor');
@@ -188,7 +190,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/profile/edit_photo', [UserAreaProfileController::class, 'edit_photo'])->name('profile.edit_photo');
             Route::post('/profile/update_photo', [UserAreaProfileController::class, 'update_photo'])->name('profile.update_photo');
 
-            Route::get('/profile/edit_structor_info', [UserAreaProfileController::class, 'edit_structor_info'])->name('profile.edit_structor_info');
+            Route::get('/profile/edit_instructor_info', [UserAreaProfileController::class, 'edit_instructor_info'])->name('profile.edit_instructor_info');
             Route::patch('/profile/update_instructor_info', [UserAreaProfileController::class, 'update_instructor_info'])->name('profile.update_instructor_info');
 
             Route::get('/profile/delete_user', [UserAreaProfileController::class, 'delete_user'])->name('profile.delete_user');
@@ -233,6 +235,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('course/{course}/start', [LearningAreaCourseController::class, 'start'])->name('course.start');
 
         Route::resource('course.course_section.course_lecture', LearningAreaCourseLectureController::class)->only(['show']);
+        Route::post('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/prev', [LearningAreaCourseLectureController::class, 'prev'])->name('course.course_section.course_lecture.prev');
+        Route::post(
+            'course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/next',
+            [LearningAreaCourseLectureController::class, 'next']
+        )
+            ->name('course.course_section.course_lecture.next');
+
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish', [LearningAreaCourseLectureController::class, 'finish'])->name('course.course_section.course_lecture.finish');
         Route::put('course/{course}/course_section/{course_section}/course_lecture/{course_lecture}/finish_and_evaluate', [LearningAreaCourseLectureController::class, 'finish_and_evaluate'])->name('course.course_section.course_lecture.finish_and_evaluate');
 

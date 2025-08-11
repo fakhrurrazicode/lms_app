@@ -38,7 +38,7 @@ class InstructorCourseUpdateRequest extends FormRequest
             'goals' => ['required'],
             // 'duration' => ['required'],
             'price' => ['required'],
-            'status' => ['required'],
+            // 'status' => ['required'],
         ];
     }
 }

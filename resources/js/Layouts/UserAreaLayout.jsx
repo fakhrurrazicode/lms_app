@@ -701,7 +701,7 @@ export default function UserAreaLayout({ header, children }) {
                                                         <li>
                                                             <Link
                                                                 href={route(
-                                                                    "user_area.profile.edit"
+                                                                    "user_area.enrollment.index"
                                                                 )}
                                                             >
                                                                 Kursus Terdaftar

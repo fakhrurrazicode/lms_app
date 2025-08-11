@@ -279,8 +279,8 @@ export default function Course() {
                                 <h3 className="border-l-4 border-primary pl-3 mb-[30px]">
                                     Detail Kursus
                                 </h3>
-                                <div className="card bg-base-100 mb-[30px] grid grid-cols-1 md:grid-cols-2">
-                                    <ul className="p-10px md:py-[55px] md:pl-[50px] md:pr-[70px] lg:py-[35px] lg:px-[30px] 2xl:py-[55px] 2xl:pl-[50px] 2xl:pr-[70px] border-r-2 border-base-200 space-y-[10px]">
+                                <div className="card bg-base-200 mb-[30px] grid grid-cols-1 md:grid-cols-2">
+                                    <ul className="p-[16px] md:py-[55px] md:pl-[50px] md:pr-[70px] lg:py-[35px] lg:px-[30px] 2xl:py-[55px] 2xl:pl-[50px] 2xl:pr-[70px] border-r-2 border-base-200 space-y-[10px]">
                                         <li>
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Instruktur :
@@ -323,7 +323,7 @@ export default function Course() {
                                         </li>
                                     </ul>
 
-                                    <ul className="p-10px md:py-[55px] md:pl-[50px] md:pr-[70px] lg:py-[35px] lg:px-[30px] 2xl:py-[55px] 2xl:pl-[50px] 2xl:pr-[70px] border-r-2 border-base-200 space-y-[10px]">
+                                    <ul className="p-[16px] md:py-[55px] md:pl-[50px] md:pr-[70px] lg:py-[35px] lg:px-[30px] 2xl:py-[55px] 2xl:pl-[50px] 2xl:pr-[70px] border-r-2 border-base-200 space-y-[10px]">
                                         <li>
                                             <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                                 Tingkatan :
@@ -373,30 +373,30 @@ export default function Course() {
                             </div>
 
                             <Tabs>
-                                <TabList className="w-full bg-white dark:bg-base-100 flex justify-between shadow-md">
+                                <TabList className="w-full overflow-x-scroll bg-white dark:bg-base-100 flex justify-between shadow-md">
                                     <Tab
-                                        className="flex-1 flex justify-center items-center gap-2 text-center py-6 cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-primary hover:text-white"
+                                        className="px-4 flex-1 flex justify-center items-center gap-2 text-center py-6 cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-primary hover:text-white"
                                         selectedClassName="border-none bg-primary text-white"
                                     >
                                         <FaBook />
                                         <span>Kurikulum</span>
                                     </Tab>
                                     <Tab
-                                        className="flex-1 flex justify-center items-center gap-2 text-center py-6 cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-primary hover:text-white"
+                                        className="px-4 flex-1 flex justify-center items-center gap-2 text-center py-6 cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-primary hover:text-white"
                                         selectedClassName="border-none bg-primary text-white"
                                     >
                                         <FaParagraph />
                                         <span>Deskripsi</span>
                                     </Tab>
                                     <Tab
-                                        className="flex-1 flex justify-center items-center gap-2 text-center py-6 cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-primary hover:text-white"
+                                        className="px-4 flex-1 flex justify-center items-center gap-2 text-center py-6 cursor-pointer focus-visible:outline-none transition-all ease-in-out hover:bg-primary hover:text-white"
                                         selectedClassName="border-none bg-primary text-white"
                                     >
                                         <FaStar />
                                         <span>Ulasan</span>
                                     </Tab>
                                     <Tab
-                                        className="flex-1 flex justify-center items-center gap-2 text-center py-6 cursor-pointer focus-visible:outline-none"
+                                        className="px-4 flex-1 flex justify-center items-center gap-2 text-center py-6 cursor-pointer focus-visible:outline-none"
                                         selectedClassName="border-none bg-primary text-white"
                                     >
                                         <FaUserAlt />
@@ -412,7 +412,9 @@ export default function Course() {
                                         >
                                             {course.course_sections.map(
                                                 (course_section, index) => {
-                                                    return (
+                                                    return course_section
+                                                        .course_lectures
+                                                        .length > 0 ? (
                                                         <AccordionItem
                                                             header={
                                                                 <span className="font-semibold">
@@ -439,7 +441,8 @@ export default function Course() {
                                                                                 }
                                                                             </div>
                                                                         </div>
-                                                                        {course_lecture.set_as_preview ? (
+                                                                        {course_lecture.video_url &&
+                                                                        course_lecture.set_as_preview ? (
                                                                             <div className="flex justify-between gap-4">
                                                                                 <div className="flex justify-between items-center gap-2">
                                                                                     <FaClock />
@@ -473,6 +476,8 @@ export default function Course() {
                                                                 )
                                                             )}
                                                         </AccordionItem>
+                                                    ) : (
+                                                        <></>
                                                     );
                                                 }
                                             )}
@@ -523,9 +528,9 @@ export default function Course() {
                                 </TabPanel>
                                 <TabPanel>
                                     <div className="py-8">
-                                        <div className="card bg-base-100 rounded-none">
+                                        <div className="card bg-base-100 rounded-none mb-6">
                                             <div className="card-body">
-                                                <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-x-30px gap-y-5">
+                                                <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-x-30px gap-y-5 ">
                                                     <div class="lg:col-start-1 lg:col-span-4 px-10px py-30px bg-whiteColor dark:bg-whiteColor-dark shadow-review text-center">
                                                         <p class="text-7xl font-extrabold text-blackColor dark:text-blackColor-dark leading-90px">
                                                             {
@@ -618,6 +623,81 @@ export default function Course() {
                                                 </div>
                                             </div>
                                         </div>
+
+                                        {course.latest_course_reviews.map(
+                                            (course_review) => {
+                                                return (
+                                                    <div className="card bg-base-100">
+                                                        <div className="card-body">
+                                                            <div className="flex gap-6">
+                                                                <div className="avatar w-20 h-20 rounded-full overflow-hidden">
+                                                                    <img
+                                                                        src={
+                                                                            course_review
+                                                                                .user
+                                                                                .photo_url
+                                                                        }
+                                                                    />
+                                                                </div>
+
+                                                                <div>
+                                                                    <h3 className="font-bold text-xl mb-2">
+                                                                        {
+                                                                            course_review
+                                                                                .user
+                                                                                .name
+                                                                        }
+                                                                    </h3>
+
+                                                                    <p className="mb-4">
+                                                                        {
+                                                                            course_review.comment
+                                                                        }
+                                                                    </p>
+
+                                                                    <div className="flex gap-2">
+                                                                        {[
+                                                                            ...Array(
+                                                                                5
+                                                                            ),
+                                                                        ].map(
+                                                                            (
+                                                                                _,
+                                                                                index
+                                                                            ) => {
+                                                                                if (
+                                                                                    index +
+                                                                                        1 <=
+                                                                                    course_review.stars
+                                                                                ) {
+                                                                                    return (
+                                                                                        <FaStar
+                                                                                            key={
+                                                                                                index
+                                                                                            }
+                                                                                            className="text-lg text-yellow-400"
+                                                                                        />
+                                                                                    );
+                                                                                } else {
+                                                                                    return (
+                                                                                        <FaStar
+                                                                                            key={
+                                                                                                index
+                                                                                            }
+                                                                                            className="text-lg text-gray-700"
+                                                                                        />
+                                                                                    );
+                                                                                }
+                                                                            }
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            }
+                                        )}
                                     </div>
                                 </TabPanel>
                                 <TabPanel>

@@ -54,38 +54,24 @@ export default function CourseNav({ course }) {
             // popover="manual"
             allowMultiple={true}
         >
-            {course.course_sections.map((course_section) => (
-                <AccordionItem
-                    key={"accordion-" + course_section.id}
-                    header={course_section.title}
-                    initialEntered={true}
-                >
-                    <ul className="">
-                        {course_section.course_lectures.map(
-                            (course_lecture) => (
-                                <li
-                                    key={course_lecture.id}
-                                    className="py-[10px] border-b border-base-300 dark:border-gray-700"
-                                >
-                                    <Link
-                                        preserveScroll={true}
-                                        preserveState={true}
-                                        href={route(
-                                            "learning_area.course.course_section.course_lecture.show",
-                                            {
-                                                course: course.id,
-                                                course_section:
-                                                    course_section.id,
-                                                course_lecture:
-                                                    course_lecture.id,
-                                            }
-                                        )}
-                                        className={`${
-                                            course_lecture.done
-                                                ? "text-success font-bold"
-                                                : "text-gray-600 dark:text-white"
-                                        } ${
-                                            route().current(
+            {course.course_sections.map((course_section) => {
+                return course_section.course_lectures.length > 0 ? (
+                    <AccordionItem
+                        key={"accordion-" + course_section.id}
+                        header={course_section.title}
+                        initialEntered={true}
+                    >
+                        <ul className="">
+                            {course_section.course_lectures.map(
+                                (course_lecture) => (
+                                    <li
+                                        key={course_lecture.id}
+                                        className="py-[10px] border-b border-base-300 dark:border-gray-700"
+                                    >
+                                        <Link
+                                            preserveScroll={true}
+                                            preserveState={true}
+                                            href={route(
                                                 "learning_area.course.course_section.course_lecture.show",
                                                 {
                                                     course: course.id,
@@ -94,80 +80,107 @@ export default function CourseNav({ course }) {
                                                     course_lecture:
                                                         course_lecture.id,
                                                 }
-                                            )
-                                                ? "!text-primary !font-bold"
-                                                : ""
-                                        } active:text-primary leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out`}
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            {course_lecture.done ? (
-                                                <BiCheck size={22} />
-                                            ) : (
-                                                <BiMoviePlay size={22} />
                                             )}
-                                            <span className="text-wrap">
-                                                {course_lecture.title}
-                                            </span>
-                                        </div>
+                                            className={`${
+                                                course_lecture.done
+                                                    ? "text-success font-bold"
+                                                    : "text-gray-600 dark:text-white"
+                                            } ${
+                                                route().current(
+                                                    "learning_area.course.course_section.course_lecture.show",
+                                                    {
+                                                        course: course.id,
+                                                        course_section:
+                                                            course_section.id,
+                                                        course_lecture:
+                                                            course_lecture.id,
+                                                    }
+                                                )
+                                                    ? "!text-primary !font-bold"
+                                                    : ""
+                                            } active:text-primary leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out`}
+                                        >
+                                            <div className="flex items-center gap-4">
+                                                {course_lecture.done ? (
+                                                    <BiCheck size={22} />
+                                                ) : (
+                                                    <BiMoviePlay size={22} />
+                                                )}
+                                                <span className="text-wrap">
+                                                    {course_lecture.title}{" "}
+                                                </span>
+                                            </div>
 
-                                        <div className="flex items-center gap-2">
-                                            <FaClock /> <span>3.37</span>
-                                        </div>
-                                    </Link>
-                                </li>
-                            )
-                        )}
+                                            <div className="flex items-center gap-2">
+                                                <FaClock />{" "}
+                                                <span>
+                                                    {
+                                                        course_lecture.video_duration_human_readable
+                                                    }
+                                                </span>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                )
+                            )}
 
-                        {course_section.evaluation ? (
-                            <li
-                                key={course_section.evaluation.id}
-                                className="py-[10px] border-b border-base-300 dark:border-gray-700"
-                            >
-                                <Link
-                                    preserveScroll={true}
-                                    preserveState={true}
-                                    href={route(
-                                        "learning_area.course.course_section.evaluation.index",
-                                        {
-                                            course: course.id,
-                                            course_section: course_section.id,
-                                        }
-                                    )}
-                                    className={`${
-                                        course_section.evaluation.done
-                                            ? "text-success font-bold"
-                                            : "text-gray-600 dark:text-white"
-                                    } ${
-                                        route().current(
+                            {course_section.evaluation ? (
+                                <li
+                                    key={course_section.evaluation.id}
+                                    className="py-[10px] border-b border-base-300 dark:border-gray-700"
+                                >
+                                    <Link
+                                        preserveScroll={true}
+                                        preserveState={true}
+                                        href={route(
                                             "learning_area.course.course_section.evaluation.index",
                                             {
                                                 course: course.id,
                                                 course_section:
                                                     course_section.id,
                                             }
-                                        )
-                                            ? "!text-primary !font-bold"
-                                            : ""
-                                    } active:text-primary leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out`}
-                                >
-                                    <div className="flex items-center gap-4">
-                                        <FaRegQuestionCircle size={22} />
-                                        <span className="text-wrap">
-                                            {course_section.evaluation.title}
-                                        </span>
-                                    </div>
+                                        )}
+                                        className={`${
+                                            course_section.evaluation.done
+                                                ? "text-success font-bold"
+                                                : "text-gray-600 dark:text-white"
+                                        } ${
+                                            route().current(
+                                                "learning_area.course.course_section.evaluation.index",
+                                                {
+                                                    course: course.id,
+                                                    course_section:
+                                                        course_section.id,
+                                                }
+                                            )
+                                                ? "!text-primary !font-bold"
+                                                : ""
+                                        } active:text-primary leading-1.8 flex gap-4 justify-between text-nowrap items-center text-sm hover:text-primary transition-all ease-in-out`}
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <FaRegQuestionCircle size={22} />
+                                            <span className="text-wrap">
+                                                {
+                                                    course_section.evaluation
+                                                        .title
+                                                }
+                                            </span>
+                                        </div>
 
-                                    {/* <div className="flex items-center gap-2">
+                                        {/* <div className="flex items-center gap-2">
                                         <FaClock /> <span>3.37</span>
                                     </div> */}
-                                </Link>
-                            </li>
-                        ) : (
-                            <></>
-                        )}
-                    </ul>
-                </AccordionItem>
-            ))}
+                                    </Link>
+                                </li>
+                            ) : (
+                                <></>
+                            )}
+                        </ul>
+                    </AccordionItem>
+                ) : (
+                    <></>
+                );
+            })}
         </Accordion>
     );
 }

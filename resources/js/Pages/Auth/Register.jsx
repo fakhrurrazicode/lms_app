@@ -17,6 +17,8 @@ export default function Register({ referral_code }) {
         referral_code: referral_code ? referral_code : "",
     });
 
+    const [agreed, setAgreed] = useState(false);
+
     const submit = (e) => {
         e.preventDefault();
 
@@ -195,17 +197,45 @@ export default function Register({ referral_code }) {
                             </Link>
                         </div>
 
+                        <div className="mt-4 mb-6 flex gap-4">
+                            <input
+                                type="checkbox"
+                                className="checkbox"
+                                checked={agreed}
+                                onChange={(e) => {
+                                    setAgreed(e.target.checked);
+                                }}
+                            />
+                            <p>
+                                I have read and agreed{" "}
+                                <a
+                                    target="_blank"
+                                    className="text-primary font-bold"
+                                    href={route("terms_and_conditions")}
+                                >
+                                    Terms and Conditions
+                                </a>{" "}
+                                and{" "}
+                                <a
+                                    target="_blank"
+                                    className="text-primary font-bold"
+                                    href={route("refund_policy")}
+                                >
+                                    Refund Policy
+                                </a>
+                            </p>
+                        </div>
+
                         <div className="flex flex-col gap-2">
                             <button
                                 type="submit"
-                                disabled={processing}
+                                disabled={processing || !agreed}
                                 className="btn btn-primary"
                             >
                                 Register
                             </button>
                             <a
                                 href="/auth/google/redirect"
-                                disabled={processing}
                                 className="btn btn-neutral"
                             >
                                 <img

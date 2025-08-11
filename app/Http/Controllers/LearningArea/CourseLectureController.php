@@ -45,16 +45,13 @@ class CourseLectureController extends Controller
     {
         $course = $course->load([
             'course_category',
+            'course_sections.course_lectures.attachments',
             'course_sections.course_lectures.course_track',
             'course_sections.evaluation',
             'course_sections.course_tracks',
         ]);
 
-        // $course = Course::with(['course_sections' => function ($query) {
-        //     $query->with(['course_lectures', 'evaluation']);
-        // }])->find($course->id);
-
-
+        $course_lecture->load(['attachments', 'course_track']);
 
         $prev_course_lecture = CourseLecture::where([
             ['course_id', '=', $course->id],
@@ -73,8 +70,6 @@ class CourseLectureController extends Controller
             ->orderBy('order_column', 'asc')
             ->first(); // jika tidak menemukan next lecture lagi arti nya course telah selesai
 
-        // return [$prev_course_lecture, $next_course_lecture];
-        // return $course;
 
 
         return Inertia::render('LearningArea/CourseLecture/Show', compact(
@@ -86,40 +81,76 @@ class CourseLectureController extends Controller
         ));
     }
 
-
-    public function finish(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
+    public function prev(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
     {
-        $course_track = CourseTrack::where([
-            'user_id' => Auth::user()->id,
+        // Simpan course track jika belum ada
+        CourseTrack::firstOrCreate([
+            'user_id' => Auth::id(),
             'course_id' => $course->id,
             'course_section_id' => $course_section->id,
             'course_lecture_id' => $course_lecture->id,
-        ])->first();
+        ]);
 
-        if (!$course_track) {
-            CourseTrack::create([
-                'user_id' => Auth::user()->id,
-                'course_id' => $course->id,
-                'course_section_id' => $course_section->id,
-                'course_lecture_id' => $course_lecture->id,
+        // Cari lecture sebelumnya dalam section yang sama
+        $prev_course_lecture = CourseLecture::where('course_id', $course->id)
+            ->where('course_section_id', $course_section->id)
+            ->where('order_column', '<', $course_lecture->order_column)
+            ->orderBy('course_section_id', 'desc')
+            ->orderBy('order_column', 'desc')
+            ->first();
+
+        if ($prev_course_lecture) {
+            return to_route('learning_area.course.course_section.course_lecture.show', [
+                'course' => $prev_course_lecture->course_id,
+                'course_section' => $prev_course_lecture->course_section_id,
+                'course_lecture' => $prev_course_lecture->id,
             ]);
         }
 
-        $next_course_lecture = CourseLecture::where([
-            ['course_id', '=', $course->id],
-            ['course_section_id', '=', $course_section->id],
-            ['order_column', '>', $course_lecture->order_column],
-        ])->orderBy('course_section_id')
-            ->orderBy('order_column', 'asc')
-            ->first(); // jika tidak menemukan next lecture lagi arti nya course telah selesai
+        // Jika tidak ada lecture sebelumnya di section ini, cari section sebelumnya
+        $prev_course_section = CourseSection::where('course_id', $course->id)
+            ->where('order_column', '<', $course_section->order_column)
+            ->has('course_lectures')
+            ->orderBy('course_id', 'desc')
+            ->orderBy('order_column', 'desc')
+            ->first();
 
-        // $next_course_lecture = CourseLecture::where('order_column', '>', $course_lecture->order_column)
-        //     ->where('course_id', $course_section->course_id)
-        //     ->orderBy('course_section_id', 'asc')
-        //     ->orderBy('order_column', 'asc')
-        //     ->first(); // jika tidak menemukan next lecture lagi arti nya course telah selesai
+        if ($prev_course_section) {
+            $prev_course_lecture = $prev_course_section->course_lectures()
+                ->orderBy('order_column', 'desc')
+                ->first();
+
+            return to_route('learning_area.course.course_section.course_lecture.show', [
+                'course' => $prev_course_lecture->course_id,
+                'course_section' => $prev_course_lecture->course_section_id,
+                'course_lecture' => $prev_course_lecture->id,
+            ]);
+        }
+
+        // Jika tidak ada sebelumnya, arahkan kembali ke halaman awal course
+        return to_route('learning_area.course.show', [
+            'course' => $course->id,
+        ]);
+    }
 
 
+    public function next(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
+    {
+        // Simpan course track jika belum ada
+        CourseTrack::firstOrCreate([
+            'user_id' => Auth::id(),
+            'course_id' => $course->id,
+            'course_section_id' => $course_section->id,
+            'course_lecture_id' => $course_lecture->id,
+        ]);
+
+        // Cari lecture berikutnya dalam section yang sama
+        $next_course_lecture = CourseLecture::where('course_id', $course->id)
+            ->where('course_section_id', $course_section->id)
+            ->where('order_column', '>', $course_lecture->order_column)
+            ->orderBy('course_section_id')
+            ->orderBy('order_column')
+            ->first();
 
         if ($next_course_lecture) {
             return to_route('learning_area.course.course_section.course_lecture.show', [
@@ -127,12 +158,107 @@ class CourseLectureController extends Controller
                 'course_section' => $next_course_lecture->course_section_id,
                 'course_lecture' => $next_course_lecture->id,
             ]);
-        } else {
-            return to_route('learning_area.course.show', [
+        }
+
+        // Cek apakah section memiliki evaluasi
+        $evaluation = Evaluation::where('course_section_id', $course_section->id)->first();
+        if ($evaluation) {
+            return to_route('learning_area.course.course_section.evaluation.index', [
                 'course' => $course->id,
+                'course_section' => $course_section->id,
             ]);
         }
+
+        // Cari section berikutnya
+        $next_course_section = CourseSection::where('course_id', $course->id)
+            ->where('order_column', '>', $course_section->order_column)
+            ->has('course_lectures')
+            ->orderBy('course_id')
+            ->orderBy('order_column')
+            ->first();
+
+        if ($next_course_section) {
+            $next_course_lecture = $next_course_section->course_lectures()
+                ->orderBy('order_column')
+                ->first();
+
+            return to_route('learning_area.course.course_section.course_lecture.show', [
+                'course' => $next_course_lecture->course_id,
+                'course_section' => $next_course_lecture->course_section_id,
+                'course_lecture' => $next_course_lecture->id,
+            ]);
+        }
+
+        // Jika tidak ada lecture dan section berikutnya
+        return to_route('learning_area.course.show', [
+            'course' => $course->id,
+        ]);
     }
+
+
+
+
+    public function finish(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
+    {
+        // Simpan course track jika belum ada
+        CourseTrack::firstOrCreate([
+            'user_id' => Auth::id(),
+            'course_id' => $course->id,
+            'course_section_id' => $course_section->id,
+            'course_lecture_id' => $course_lecture->id,
+        ]);
+
+        // Cari lecture berikutnya dalam section yang sama
+        $next_course_lecture = CourseLecture::where('course_id', $course->id)
+            ->where('course_section_id', $course_section->id)
+            ->where('order_column', '>', $course_lecture->order_column)
+            ->orderBy('course_section_id')
+            ->orderBy('order_column')
+            ->first();
+
+        if ($next_course_lecture) {
+            return to_route('learning_area.course.course_section.course_lecture.show', [
+                'course' => $next_course_lecture->course_id,
+                'course_section' => $next_course_lecture->course_section_id,
+                'course_lecture' => $next_course_lecture->id,
+            ]);
+        }
+
+        // Cek apakah section memiliki evaluasi
+        $evaluation = Evaluation::where('course_section_id', $course_section->id)->first();
+        if ($evaluation) {
+            return to_route('learning_area.course.course_section.evaluation.index', [
+                'course' => $course->id,
+                'course_section' => $course_section->id,
+            ]);
+        }
+
+        // Cari section berikutnya
+        $next_course_section = CourseSection::where('course_id', $course->id)
+            ->where('order_column', '>', $course_section->order_column)
+            ->has('course_lectures')
+            ->orderBy('course_id')
+            ->orderBy('order_column')
+            ->first();
+
+        if ($next_course_section) {
+            $next_course_lecture = $next_course_section->course_lectures()
+                ->orderBy('order_column')
+                ->first();
+
+            return to_route('learning_area.course.course_section.course_lecture.show', [
+                'course' => $next_course_lecture->course_id,
+                'course_section' => $next_course_lecture->course_section_id,
+                'course_lecture' => $next_course_lecture->id,
+            ]);
+        }
+
+        // Jika tidak ada lecture dan section berikutnya
+        return to_route('learning_area.course.show', [
+            'course' => $course->id,
+        ]);
+    }
+
 
     public function finish_and_evaluate(Course $course, CourseSection $course_section, CourseLecture $course_lecture)
     {

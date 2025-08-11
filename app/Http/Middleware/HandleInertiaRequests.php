@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Cart;
 use App\Models\CourseCategory;
+use App\Models\User;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,10 +33,13 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+
+        $user = Auth::check() ? User::with(['instructor_info'])->find(Auth::id()) : null;
         return [
             ...parent::share($request),
             'auth' => [
-                'user' => $request->user(),
+                // 'user' => $request->user()->load('instructor_info'),
+                'user' => $user,
                 'role' => Auth::check() ? Auth::user()->roles[0] : null,
                 'cart' => Auth::check() ? Cart::query()->firstOrCreate(['user_id' => $request->user()->id]) : null,
                 'unread_notifications_count' => Auth::check()

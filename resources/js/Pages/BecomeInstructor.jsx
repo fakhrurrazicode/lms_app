@@ -4,6 +4,7 @@ import TiltElement from "@/Components/TiltElement";
 import FrontendLayout from "@/Layouts/FrontendLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import React from "react";
+import { useState } from "react";
 import { FaChartBar, FaChartLine } from "react-icons/fa6";
 import { FiArrowLeft, FiArrowRight, FiBookOpen } from "react-icons/fi";
 import { MdOutlineCheck } from "react-icons/md";
@@ -11,6 +12,8 @@ import { RiTriangleLine } from "react-icons/ri";
 
 export default function BecomeInstructor({}) {
     const { auth } = usePage().props;
+
+    const [agreed, setAgreed] = useState(false);
 
     let formField = {
         name: auth.user ? auth.user.name : "",
@@ -353,32 +356,46 @@ export default function BecomeInstructor({}) {
                                         )}
                                     </label>
 
-                                    <label
-                                        htmlFor="agree"
-                                        className="flex items-center gap-2 py-6"
-                                    >
+                                    <div className="mt-4 mb-6 flex gap-4">
                                         <input
                                             type="checkbox"
-                                            className="checkbox checkbox-primary"
-                                            name="agree"
+                                            className="checkbox"
+                                            checked={agreed}
+                                            onChange={(e) => {
+                                                setAgreed(e.target.checked);
+                                            }}
                                         />
-                                        <span>
-                                            You agree to our friendly{" "}
-                                            <span className="font-bold cursor-pointer">
-                                                Privacy policy.
-                                            </span>
-                                        </span>
-                                    </label>
+                                        <p>
+                                            I have read and agreed{" "}
+                                            <a
+                                                target="_blank"
+                                                className="text-primary font-bold"
+                                                href={route(
+                                                    "terms_and_conditions"
+                                                )}
+                                            >
+                                                Terms and Conditions
+                                            </a>{" "}
+                                            and{" "}
+                                            <a
+                                                target="_blank"
+                                                className="text-primary font-bold"
+                                                href={route("refund_policy")}
+                                            >
+                                                Refund Policy
+                                            </a>
+                                        </p>
+                                    </div>
                                     <div className="flex flex-col gap-2">
                                         <button
-                                            disabled={processing}
+                                            disabled={processing || !agreed}
                                             className="btn btn-secondary w-full"
                                         >
                                             Daftar Sebagai Pengajar
                                         </button>
                                         <a
                                             href="/auth/google/redirect/1"
-                                            disabled={processing}
+                                            // disabled={processing}
                                             className="btn btn-neutral "
                                         >
                                             <img

@@ -2,12 +2,39 @@ import { rupiah, stripHtmlTags } from "@/bootstrap";
 import UserAreaLayout from "@/Layouts/UserAreaLayout";
 import { Head, Link, router, useForm } from "@inertiajs/react";
 
-import { Edit, KeyRound, ListCollapse, Plus, Trash } from "lucide-react";
+import { Edit, Edit2, KeyRound, ListCollapse, Plus, Trash } from "lucide-react";
 import { useRef, useState } from "react";
 import { CourseDetail } from "./CourseCardDetail";
+import { FaShare } from "react-icons/fa";
 
 export default function Index({ request, courses }) {
     const onStatusToggle = (e) => {};
+
+    const deleteHandler = (course) => {
+        if (
+            confirm(
+                "Apakah anda yakin ingin menghapus data kursus " +
+                    course.title +
+                    "?"
+            )
+        )
+            router.delete(
+                route("user_area.course.destroy", {
+                    course: course.id,
+                }),
+                {
+                    preserveScroll: true,
+                    preserveState: true,
+                    onFinish: () => {
+                        toast.success("Kursus berhasil dihapus");
+                    },
+                    onError: () => {
+                        toast.success("Kursus gagal di hapus");
+                    },
+                }
+            );
+    };
+
     return (
         <UserAreaLayout
             header={
@@ -124,10 +151,10 @@ export default function Index({ request, courses }) {
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th>Judul</th>
-                                                <th>Deskripsi</th>
-                                                <th>Tingkatan</th>
-                                                <th>Harga</th>
+                                                <th>Cover</th>
+                                                <th>Kursus</th>
+                                                {/* <th>Tingkatan</th>
+                                                <th>Harga</th> */}
                                                 <th>Publis</th>
                                             </tr>
                                         </thead>
@@ -140,22 +167,169 @@ export default function Index({ request, courses }) {
                                                             key={index}
                                                         >
                                                             <th>
-                                                                <Link
-                                                                    href={route(
-                                                                        "user_area.course.edit",
-                                                                        {
-                                                                            course,
+                                                                <div className="dropdown">
+                                                                    <div
+                                                                        tabIndex={
+                                                                            0
                                                                         }
-                                                                    )}
-                                                                    className="btn btn-secondary btn-sm"
-                                                                >
-                                                                    Atur Kursus
-                                                                </Link>
+                                                                        role="button"
+                                                                        className="btn btn-sm m-1"
+                                                                    >
+                                                                        ...
+                                                                    </div>
+                                                                    <ul
+                                                                        tabIndex={
+                                                                            0
+                                                                        }
+                                                                        className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                                                                    >
+                                                                        <li>
+                                                                            <Link
+                                                                                href={route(
+                                                                                    "user_area.course.edit",
+                                                                                    {
+                                                                                        course,
+                                                                                    }
+                                                                                )}
+                                                                            >
+                                                                                <Edit2
+                                                                                    size={
+                                                                                        16
+                                                                                    }
+                                                                                />
+                                                                                Atur
+                                                                                Kursus
+                                                                            </Link>
+                                                                        </li>
+
+                                                                        <li>
+                                                                            <a
+                                                                                className="text-error"
+                                                                                onClick={(
+                                                                                    e
+                                                                                ) => {
+                                                                                    e.preventDefault();
+                                                                                    deleteHandler(
+                                                                                        course
+                                                                                    );
+                                                                                }}
+                                                                            >
+                                                                                <Trash
+                                                                                    size={
+                                                                                        16
+                                                                                    }
+                                                                                />
+                                                                                <span>
+                                                                                    Hapus
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a
+                                                                                onClick={async (
+                                                                                    e
+                                                                                ) => {
+                                                                                    e.preventDefault();
+
+                                                                                    if (
+                                                                                        navigator.share
+                                                                                    ) {
+                                                                                        try {
+                                                                                            await navigator.share(
+                                                                                                {
+                                                                                                    title: course.title,
+                                                                                                    text: stripHtmlTags(
+                                                                                                        course.description
+                                                                                                    ).slice(
+                                                                                                        0,
+                                                                                                        100
+                                                                                                    ),
+                                                                                                    url: route(
+                                                                                                        "course",
+                                                                                                        {
+                                                                                                            slug: course.slug,
+                                                                                                        }
+                                                                                                    ),
+                                                                                                }
+                                                                                            );
+                                                                                        } catch (error) {
+                                                                                            console.log(
+                                                                                                error
+                                                                                            );
+                                                                                        }
+                                                                                    } else {
+                                                                                        prompt(
+                                                                                            "Copy url ini untuk membagikan ",
+                                                                                            route(
+                                                                                                "course",
+                                                                                                {
+                                                                                                    slug: course.slug,
+                                                                                                }
+                                                                                            )
+                                                                                        );
+                                                                                    }
+                                                                                }}
+                                                                            >
+                                                                                <FaShare
+                                                                                    size={
+                                                                                        16
+                                                                                    }
+                                                                                />
+                                                                                <span>
+                                                                                    Share
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
                                                             </th>
                                                             <td>
-                                                                {course.title}
+                                                                {" "}
+                                                                <img
+                                                                    className="w-36"
+                                                                    src={
+                                                                        course.image_url
+                                                                    }
+                                                                />
                                                             </td>
                                                             <td>
+                                                                <h5 className="text-md font-semibold mb-1">
+                                                                    {
+                                                                        course.title
+                                                                    }
+                                                                </h5>
+                                                                <p className="text-xs mb-1">
+                                                                    {stripHtmlTags(
+                                                                        course.description
+                                                                    ).slice(
+                                                                        0,
+                                                                        100
+                                                                    )}
+                                                                </p>
+                                                                <p className="text-xs">
+                                                                    {course.price ==
+                                                                    0 ? (
+                                                                        <span className="text-success font-bold">
+                                                                            Gratis
+                                                                        </span>
+                                                                    ) : (
+                                                                        rupiah(
+                                                                            course.price
+                                                                        )
+                                                                    )}{" "}
+                                                                    |{" "}
+                                                                    {
+                                                                        course.level
+                                                                    }{" "}
+                                                                    |{" "}
+                                                                    {course.course_category
+                                                                        ? course
+                                                                              .course_category
+                                                                              .name
+                                                                        : ""}
+                                                                </p>
+                                                            </td>
+                                                            {/* <td>
                                                                 {stripHtmlTags(
                                                                     course.description
                                                                 ).slice(0, 150)}
@@ -174,7 +348,7 @@ export default function Index({ request, courses }) {
                                                                         course.price
                                                                     )
                                                                 )}
-                                                            </td>
+                                                            </td> */}
                                                             <td>
                                                                 <input
                                                                     type="checkbox"
