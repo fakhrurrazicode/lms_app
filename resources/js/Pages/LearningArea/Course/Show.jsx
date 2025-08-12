@@ -140,34 +140,49 @@ export default function Show({ course }) {
                                     <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
                                         Harga Normal:
                                         <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                            {rupiah(course.price)}
+                                            {course.price == 0 ? (
+                                                <span className="text-success">
+                                                    Gratis
+                                                </span>
+                                            ) : (
+                                                rupiah(course.price)
+                                            )}
                                         </span>
                                     </p>
                                 </li>
-                                {course.discount_percentage ? (
-                                    <>
-                                        <li>
-                                            <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Diskon :
-                                                <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    {course.discount_percentage}
-                                                    %
-                                                </span>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
-                                                Harga Setelah Diskon :
-                                                <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
-                                                    {rupiah(
-                                                        course.discounted_price
-                                                    )}
-                                                </span>
-                                            </p>
-                                        </li>
-                                    </>
-                                ) : (
+
+                                {course.price == 0 ? (
                                     <></>
+                                ) : (
+                                    <>
+                                        {course.discount_percentage ? (
+                                            <>
+                                                <li>
+                                                    <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
+                                                        Diskon :
+                                                        <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
+                                                            {
+                                                                course.discount_percentage
+                                                            }
+                                                            %
+                                                        </span>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p className="text-contentColor2 dark:text-contentColor2-dark flex justify-between items-center">
+                                                        Harga Setelah Diskon :
+                                                        <span className="text-base lg:text-sm 2xl:text-base text-blackColor dark:text-deepgreen-dark font-medium text-opacity-100">
+                                                            {rupiah(
+                                                                course.discounted_price
+                                                            )}
+                                                        </span>
+                                                    </p>
+                                                </li>
+                                            </>
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </>
                                 )}
                             </ul>
                         </div>
