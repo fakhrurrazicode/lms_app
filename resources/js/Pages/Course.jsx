@@ -135,7 +135,7 @@ export default function Course() {
                         onClick={onClosePreviewModalHandler}
                     />
 
-                    {previewCourseLecture ? (
+                    {previewCourseLecture && previewCourseLecture.video_url ? (
                         <>
                             <div className="mb-6">
                                 <MediaPlayer
@@ -879,9 +879,8 @@ export default function Course() {
 
                     <div className="lg:col-start-9 lg:col-span-4">
                         <div className="card bg-base-100 shadow-xl">
-                            {!course.feature_course_lecture ? (
-                                <></>
-                            ) : (
+                            {course.feature_course_lecture &&
+                            course.feature_course_lecture.video_url ? (
                                 <MediaPlayer
                                     title={course.feature_course_lecture.title}
                                     src={
@@ -894,6 +893,8 @@ export default function Course() {
                                         icons={plyrLayoutIcons}
                                     />
                                 </MediaPlayer>
+                            ) : (
+                                <></>
                             )}
                             <div className="card-body">
                                 {course.enrolled ? (
