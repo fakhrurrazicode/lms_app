@@ -30,7 +30,7 @@ const formats = [
 
 export default function TinyEditor({ value, onChange, init = {} }) {
     return (
-        <div className=" rounded-xl shadow-sm p-2 bg-base-100">
+        <div className="rounded-xl shadow-sm p-2 ql-outer-container">
             <ReactQuill
                 theme="snow"
                 value={value}
