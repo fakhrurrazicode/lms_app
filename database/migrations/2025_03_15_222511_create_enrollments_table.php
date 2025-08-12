@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('order_id')->nullable();
             $table->integer('order_item_id')->nullable();;
             $table->double('progress')->default(0);
+            $table->boolean('eligible_for_certificate')->default(false);
             $table->timestamps();
         });
     }
