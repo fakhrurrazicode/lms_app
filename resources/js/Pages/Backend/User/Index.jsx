@@ -2,6 +2,7 @@ import BackendLayout from "@/Layouts/BackendLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
 import { Edit, KeyRound, Plus, Trash } from "lucide-react";
+import { HiDotsVertical } from "react-icons/hi";
 
 export default function Index({ request, users, roles }) {
     const orderByOnClickHandler = (e) =>
@@ -105,6 +106,7 @@ export default function Index({ request, users, roles }) {
                                 <table className="table mb-6">
                                     <thead>
                                         <tr>
+                                            <th>Action</th>
                                             <th
                                                 className="cursor-pointer"
                                                 data-columnname="name"
@@ -126,6 +128,13 @@ export default function Index({ request, users, roles }) {
                                             >
                                                 Email
                                             </th>
+                                            <th
+                                                className="cursor-pointer"
+                                                data-columnname="email"
+                                                onClick={orderByOnClickHandler}
+                                            >
+                                                Role
+                                            </th>
 
                                             <th
                                                 className="cursor-pointer"
@@ -133,14 +142,6 @@ export default function Index({ request, users, roles }) {
                                                 onClick={orderByOnClickHandler}
                                             >
                                                 Email verified at
-                                            </th>
-
-                                            <th
-                                                className="cursor-pointer"
-                                                data-columnname="email"
-                                                onClick={orderByOnClickHandler}
-                                            >
-                                                Role
                                             </th>
 
                                             <th
@@ -157,7 +158,6 @@ export default function Index({ request, users, roles }) {
                                             >
                                                 Updated at
                                             </th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -167,72 +167,99 @@ export default function Index({ request, users, roles }) {
                                                     key={user.id}
                                                     className="hover"
                                                 >
+                                                    <td>
+                                                        <details className="dropdown">
+                                                            <summary className="btn btn-sm btn-neutral m-1">
+                                                                <HiDotsVertical />
+                                                            </summary>
+                                                            <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "backend.user.edit",
+                                                                            user.id
+                                                                        )}
+                                                                    >
+                                                                        <Edit
+                                                                            size={
+                                                                                16
+                                                                            }
+                                                                        />
+                                                                        <span>
+                                                                            Edit
+                                                                        </span>
+                                                                    </Link>
+                                                                </li>
+                                                                <li>
+                                                                    <Link
+                                                                        href={route(
+                                                                            "backend.user.edit_password",
+                                                                            user.id
+                                                                        )}
+                                                                    >
+                                                                        <KeyRound
+                                                                            size={
+                                                                                16
+                                                                            }
+                                                                        />
+                                                                        <span>
+                                                                            Edit
+                                                                            Password
+                                                                        </span>
+                                                                    </Link>
+                                                                </li>
+                                                                <li>
+                                                                    <a
+                                                                        onClick={(
+                                                                            e
+                                                                        ) => {
+                                                                            e.preventDefault();
+                                                                            confirm(
+                                                                                "Anda yakin ingin menghapus data " +
+                                                                                    user.name +
+                                                                                    "?"
+                                                                            )
+                                                                                ? router.delete(
+                                                                                      route(
+                                                                                          "backend.user.destroy",
+                                                                                          {
+                                                                                              user: user.id,
+                                                                                          }
+                                                                                      ),
+                                                                                      {
+                                                                                          preserveState: true,
+                                                                                          preserveScroll: true,
+                                                                                      }
+                                                                                  )
+                                                                                : null;
+                                                                        }}
+                                                                    >
+                                                                        <Trash
+                                                                            size={
+                                                                                16
+                                                                            }
+                                                                        />
+                                                                        <span>
+                                                                            Delete
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </details>
+                                                    </td>
                                                     <td>{user.name}</td>
                                                     <td>{user.username}</td>
                                                     <td>{user.email}</td>
-                                                    <td>
-                                                        {user.email_verified_at}
-                                                    </td>
                                                     <td>
                                                         {user.roles.length
                                                             ? user.roles[0].name
                                                             : "-"}
                                                     </td>
+                                                    <td>
+                                                        {user.email_verified_at}
+                                                    </td>
                                                     <td>{user.created_at}</td>
                                                     <td>{user.updated_at}</td>
-                                                    <th>
-                                                        <Link
-                                                            href={route(
-                                                                "backend.user.edit",
-                                                                user.id
-                                                            )}
-                                                            className="btn btn-accent btn-sm"
-                                                        >
-                                                            <Edit size={16} />
-                                                            <span>Edit</span>
-                                                        </Link>
-                                                        <Link
-                                                            href={route(
-                                                                "backend.user.edit_password",
-                                                                user.id
-                                                            )}
-                                                            className="btn btn-secondary btn-sm ml-1"
-                                                        >
-                                                            <KeyRound
-                                                                size={16}
-                                                            />
-                                                            <span>
-                                                                Edit Password
-                                                            </span>
-                                                        </Link>
-                                                        <button
-                                                            className="btn btn-error btn-sm ml-1"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                confirm(
-                                                                    "Anda yakin ingin menghapus data " +
-                                                                        user.name +
-                                                                        "?"
-                                                                )
-                                                                    ? router.delete(
-                                                                          route(
-                                                                              "backend.user.destroy",
-                                                                              {
-                                                                                  user: user.id,
-                                                                              }
-                                                                          ),
-                                                                          {
-                                                                              preserveState: true,
-                                                                              preserveScroll: true,
-                                                                          }
-                                                                      )
-                                                                    : null;
-                                                            }}
-                                                        >
-                                                            <Trash size={16} />
-                                                            <span>Delete</span>
-                                                        </button>
-                                                    </th>
                                                 </tr>
                                             ))
                                         ) : (
