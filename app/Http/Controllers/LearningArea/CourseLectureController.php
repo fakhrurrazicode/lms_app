@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\CourseLecture;
 use App\Models\CourseSection;
 use App\Http\Controllers\Controller;
+use App\Models\Enrollment;
 use Illuminate\Support\Facades\Auth;
 
 class CourseLectureController extends Controller
@@ -143,6 +144,29 @@ class CourseLectureController extends Controller
             'course_section_id' => $course_section->id,
             'course_lecture_id' => $course_lecture->id,
         ]);
+
+        $course->refresh();
+
+        $enrollment = Enrollment::where([
+            ['course_id', '=', $course->id],
+            ['user_id', '=', Auth::id()],
+        ])->first();
+
+        if ($enrollment) {
+            if ($course->progress_percentage == 100) {
+                // update status enrollment.eligible_for_certificate = true
+                if ($enrollment) {
+                    $enrollment->update([
+                        'progress' => $course->progress_percentage,
+                        'eligible_for_certificate' => true
+                    ]);
+                }
+            } else {
+                $enrollment->update([
+                    'progress' => $course->progress_percentage
+                ]);
+            }
+        }
 
         // Cari lecture berikutnya dalam section yang sama
         $next_course_lecture = CourseLecture::where('course_id', $course->id)
