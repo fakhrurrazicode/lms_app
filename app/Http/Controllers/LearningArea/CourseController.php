@@ -8,6 +8,8 @@ use App\Models\CourseTrack;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CourseLecture;
+use App\Models\Enrollment;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -113,6 +115,16 @@ class CourseController extends Controller
         ]);
 
         // return $course;
+
+        return Inertia::render('LearningArea/Course/InstructorInfo', compact('course'));
+    }
+
+    public function certificate(Course $course)
+    {
+        $enrollment = Enrollment::where([
+            ['user_id', '=', Auth::id()],
+            ['course_id', '=', $course->id],
+        ])->first();
 
         return Inertia::render('LearningArea/Course/InstructorInfo', compact('course'));
     }
