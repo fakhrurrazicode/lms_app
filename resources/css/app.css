@@ -59,7 +59,20 @@
     padding: 12px 0px !important;
 } */
 
+.ql-outer-container {
+    border: 1px solid oklch(0.746477 0.0216 264.436 / 0.2) !important;
+}
+
 .ql-toolbar,
 .ql-container {
-    @apply bg-base-100 text-base-content rounded-xl !border-none;
+    @apply text-base-content rounded-xl !border-none;
+    /* border: ; */
+}
+
+.ql-container {
+    min-height: 200px; /* container height */
+}
+
+.ql-editor {
+    min-height: 200px; /* editable area height */
 }

@@ -887,25 +887,29 @@ export default function FrontendLayout({ header, children }) {
 
                                     <div>
                                         <h3 className="text-3xl font-bold mb-4 text-primary">
-                                            PT Ayootech Indonesia Industry
+                                            GuruTeknik.com
                                         </h3>
 
                                         <p className="mb-4 text-sm">
-                                            Didirikan pada tahun 2022 sebagai
-                                            perusahaan Teknology, PT AYOOTECH
-                                            INDONESIA INDUSTRY adalah IT
-                                            bernilai tambah yang menyediakan
-                                            perangkat keras, perangkat lunak,
-                                            layanan, dan solusi untuk integrator
-                                            antar perusahaan, didukung oleh
-                                            teknisi yang terampil dan
-                                            berpengetahuan luas telah
-                                            memungkinkan kami untuk mencapai
-                                            kepuasan pelanggan.
+                                            lahir pada tahun 2024 dengan
+                                            semangat startup untuk memajukan
+                                            dunia pendidikan melalui inovasi
+                                            teknologi. Kami menghadirkan solusi
+                                            terpadu—mulai dari perangkat keras,
+                                            perangkat lunak, hingga layanan dan
+                                            integrasi sistem—yang dirancang
+                                            untuk menghubungkan sekolah, guru,
+                                            dan dunia industri. Didukung oleh
+                                            tim teknisi berpengalaman dan
+                                            berwawasan luas, kami berkomitmen
+                                            menciptakan teknologi yang
+                                            benar-benar bermanfaat, mendorong
+                                            kolaborasi, dan meningkatkan
+                                            kualitas belajar-mengajar.
                                         </p>
 
                                         <p className="mb-4 text-sm">
-                                            <b>Depok</b>
+                                            <b>Depok - Marketing</b>
                                             <br />
                                             Alamat Jl Prindustrian Block C 183,
                                             RT.01/RW.25, Bakti Jaya, Kec.
@@ -914,7 +918,7 @@ export default function FrontendLayout({ header, children }) {
                                         </p>
 
                                         <p className="mb-4 text-sm">
-                                            <b>PIK2</b>
+                                            <b>PIK2 - Marketing</b>
                                             <br />
                                             Alamat PIK2 Rukan Osaka OTPA No. 18
                                             Salembaran Jati, Kec. Kosambi,

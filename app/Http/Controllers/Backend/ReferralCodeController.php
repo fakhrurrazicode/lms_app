@@ -136,7 +136,7 @@ class ReferralCodeController extends Controller
             $insertedReferralCode->load(['owner']);
             $referral_code_owner = $insertedReferralCode->owner;
 
-            $referral_code_owner->notify(new NewReferralCodeDistributed($insertedReferralCode));
+            // $referral_code_owner->notify(new NewReferralCodeDistributed($insertedReferralCode));
         }
 
 

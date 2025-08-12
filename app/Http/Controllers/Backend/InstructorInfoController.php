@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\InstructorInfo;
+use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Models\InstructorInfo;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\PaginateRequest;
+use Illuminate\Container\Attributes\Auth;
+use Illuminate\Validation\Rules\Password;
+use App\Notifications\BecomeInstructorApproved;
+use App\Notifications\BecomeInstructorRejected;
 use App\Http\Requests\InstructorInfoStoreRequest;
 use App\Http\Requests\InstructorInfoRejectRequest;
 use App\Http\Requests\InstructorInfoUpdateRequest;
 use App\Http\Requests\InstructorInfoVerifyRequest;
-use App\Notifications\BecomeInstructorApproved;
-use App\Notifications\BecomeInstructorRejected;
-use Illuminate\Container\Attributes\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules\Password;
+
 
 class InstructorInfoController extends Controller
 {
@@ -26,23 +28,24 @@ class InstructorInfoController extends Controller
     public function index(PaginateRequest $request)
     {
 
-        $instructor_infos = InstructorInfo::select('instructor_infos.*')
-            ->with(['user'])
-            ->join('users', 'instructor_infos.user_id', 'users.id')
-            ->orWhere([
-                ['users.name', 'LIKE', '%' . $request->search . '%'],
-            ])
+        $users = User::with(['roles', 'instructor_info'])
+            ->whereHas('instructor_info') // hanya ambil user yang punya relasi ini
+            ->where(function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->search . '%')
+                    ->orWhere('username', 'LIKE', '%' . $request->search . '%')
+                    ->orWhere('email', 'LIKE', '%' . $request->search . '%');
+            })
             ->orderBy($request->orderby, $request->ordermethod)
             ->paginate($request->perpage)
             ->withQueryString();
 
-        // return $instructor_infos;
+
 
 
 
         // return $instructor_infos;
         return Inertia::render('Backend/InstructorInfo/Index', [
-            'instructor_infos' => $instructor_infos,
+            'users' => $users,
             'request' => $request,
         ]);
     }

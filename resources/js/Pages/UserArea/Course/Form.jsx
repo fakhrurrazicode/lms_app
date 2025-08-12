@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 import slugify from "slugify";
 import { Editor } from "@tinymce/tinymce-react";
 import TinyEditor from "@/Components/Custom/TinyEditor";
+// import Select from "react-select/dist/declarations/src/Select";
+import Select from "react-select";
+import SelectSearch from "@/Components/SelectInput";
 
 export default function FormCourse({ course = null, course_categories }) {
     const { auth } = usePage().props;
@@ -164,23 +167,22 @@ export default function FormCourse({ course = null, course_categories }) {
                         <div className="label">
                             <span className="label-text">Kategori kursus</span>
                         </div>
-                        <select
-                            className="select select-bordered"
-                            name="course_category_id"
-                            onChange={inputChangeHandler}
-                            value={data.course_category_id}
-                        >
-                            <option>:: Pilih Kategori kursus ::</option>
 
-                            {course_categories.map((course_category) => (
-                                <option
-                                    key={course_category.id}
-                                    value={course_category.id}
-                                >
-                                    {course_category.name}
-                                </option>
-                            ))}
-                        </select>
+                        <SelectSearch
+                            options={course_categories.map(
+                                (course_category) => {
+                                    return {
+                                        value: course_category.id,
+                                        label: course_category.name,
+                                    };
+                                }
+                            )}
+                            value={data.course_category_id}
+                            onChange={inputChangeHandler}
+                            name="course_category_id"
+                            placeholder=":: Pilih Kategori kursus ::"
+                            isClearable
+                        />
 
                         {errors.course_category_id && (
                             <div className="label">
@@ -195,19 +197,19 @@ export default function FormCourse({ course = null, course_categories }) {
                         <div className="label">
                             <span className="label-text">Level kursus</span>
                         </div>
-                        <select
-                            className="select select-bordered"
-                            name="level"
-                            onChange={inputChangeHandler}
+
+                        <SelectSearch
+                            options={[
+                                "beginner",
+                                "intermediate",
+                                "advance",
+                            ].map((level) => ({ value: level, label: level }))}
                             value={data.level}
-                        >
-                            <option>:: Pilih Level kursus ::</option>
-                            {["beginner", "intermediate", "advance"].map(
-                                (level) => (
-                                    <option value={level}>{level}</option>
-                                )
-                            )}
-                        </select>
+                            onChange={inputChangeHandler}
+                            name="level"
+                            placeholder=":: Pilih Level Kursus ::"
+                            isClearable
+                        />
 
                         {errors.level && (
                             <div className="label">
